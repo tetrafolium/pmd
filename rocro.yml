@@ -1,8 +1,23 @@
 inspecode:
-
-  experimental:
-    runtime:
-      java: 14
-
-  checkstyle: auto-fix
-  pmd: auto-fix
+  checkstyle:
+  - ignore:
+    - "**/src/test/java/"
+    - "**/src/test/resources/"
+    auto-fix: true
+  - input:
+    - "**/src/test/java/"
+    auto-fix: true
+  - input:
+    - "**/src/test/resources/"
+    auto-fix: true
+  pmd:
+  - ignore:
+    - "**/src/test/java/"
+    - "**/src/test/resources/"
+    auto-fix: true
+  - input:
+    - "**/src/test/java/"
+    auto-fix: true
+  - input:
+    - "**/src/test/resources/"
+    auto-fix: true
