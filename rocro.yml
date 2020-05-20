@@ -20,4 +20,6 @@ inspecode:
     auto-fix: true
   - input:
     - "**/src/test/resources/"
+    ignore:
+    - "**/file_with_utf8_bom.java"
     auto-fix: true
