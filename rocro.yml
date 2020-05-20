@@ -1,3 +1,8 @@
 inspecode:
+
+  experimental:
+    runtime:
+      java: 14
+
   checkstyle: auto-fix
   pmd: auto-fix
