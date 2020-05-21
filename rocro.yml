@@ -21,5 +21,6 @@ inspecode:
   - input:
     - "**/src/test/resources/"
     ignore:
+    - "**/BadFile.java"
     - "**/file_with_utf8_bom.java"
     auto-fix: true
