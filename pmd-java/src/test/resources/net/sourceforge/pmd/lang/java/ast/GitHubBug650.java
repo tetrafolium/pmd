@@ -39,7 +39,7 @@ public class MapUtilsTest extends JUnitTestSupport {
     @Test
     public void testPutUniqueValuesForNoSource() {
         @SuppressWarnings("unchecked")
-        Map<Object, Object>[] maps = new Map[] { null, Collections.emptyMap() };
+        Map<Object, Object>[] maps = new Map[] {null, Collections.emptyMap() };
         for (Map<Object, Object> dst : maps) {
             for (Map<?, ?> src : maps) {
                 assertSame("Mismatched result for src=" + src + ", dst=" + dst, dst, MapUtils.putUniqueValues(src, dst));
@@ -80,7 +80,7 @@ public class MapUtilsTest extends JUnitTestSupport {
         assertEquals("Mismatched merged size", extra.size() + original.size(), merged.size());
 
         for (@SuppressWarnings("unchecked")
-        Map<String, String> m : new Map[] { original, extra }) {
+        Map<String, String> m : new Map[] {original, extra }) {
             for (Map.Entry<String, String> me : m.entrySet()) {
                 String key = me.getKey();
                 String expected = me.getValue();
@@ -334,7 +334,7 @@ public class MapUtilsTest extends JUnitTestSupport {
         Mockito.when(expected.toString()).thenReturn(getCurrentTestName());
         Mockito.doAnswer(new Answer<Void>() {
             @Override
-            public Void answer(InvocationOnMock invocation) throws Throwable {
+            public Void answer(final InvocationOnMock invocation) throws Throwable {
                 fail("Unexpected clear method invocation");
                 return null;
             }
@@ -364,7 +364,7 @@ public class MapUtilsTest extends JUnitTestSupport {
     @Test
     public void testClearAndReplace() {
         for (@SuppressWarnings("unchecked")
-            Map<String, String> expected : new Map[] { null, Collections.emptyMap(), new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER) {
+            Map<String, String> expected : new Map[] {null, Collections.emptyMap(), new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER) {
                 // Not serializing it
                 private static final long serialVersionUID = 1L;
 

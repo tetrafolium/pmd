@@ -1,3 +1,3 @@
 public class Foo {
- Class<Double> foo = (Class<Double>)clazz;
+ Class<Double> foo = (Class<Double>) clazz;
 }

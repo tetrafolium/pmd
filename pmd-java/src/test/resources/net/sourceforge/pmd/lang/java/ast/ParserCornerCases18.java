@@ -26,7 +26,8 @@ public class ParserCornerCases18 {
         FileFilter java2 = f -> f.getName().endsWith(".java");
         FileFilter java3 = (f) -> f.getName().endsWith(".java");
         FileFilter java4 = (f -> f.getName().endsWith(".java"));
-        IntStream.range(0, array.length).parallel().forEach(i -> { array[i] = generator.apply(i); });
+        IntStream.range(0, array.length).parallel().forEach(i -> {
+            array[i] = generator.apply(i); });
 
 
         FileFilter[] filters = new FileFilter[] {
@@ -39,11 +40,14 @@ public class ParserCornerCases18 {
         String user = doPrivileged(() -> System.getProperty("user.name"));
 
         Callable<String> c = () -> "done";
-        Runnable r = () -> { System.out.println("done"); };
-        Supplier<Runnable> sup = () -> () -> { System.out.println("hi"); };
+        Runnable r = () -> {
+            System.out.println("done"); };
+        Supplier<Runnable> sup = () -> () -> {
+            System.out.println("hi"); };
         boolean flag = 1 > 2;
         Callable<Integer> c2 = flag ? (() -> 23) : (() -> 42);
-        Object o = (Runnable) () -> { System.out.println("hi"); };
+        Object o = (Runnable) () -> {
+            System.out.println("hi"); };
         new ParserCornerCases18().r1.run();
 
         Comparator<String> comparer = (s1, s2) -> s1.compareToIgnoreCase(s2);
@@ -55,10 +59,14 @@ public class ParserCornerCases18 {
         // grammar/parser: don't get confused with this...
         int initialSizeGlobal = (int) (profilingContext.m_profileItems.size() * (150.0 * 0.30));
 
-        BiConsumer<String, Integer> lambda2 = (String s, Integer i) -> { i++; };
-        BiConsumer<String, Integer> lambda2a = (s, i) -> { i++; };
-        TriConsumer<String, Integer, Double> lambda3 = (String s, Integer i, Double d) -> { d += i; };
-        TriConsumer<String, Integer, Double> lambda3a = (s, i, d) -> { d += i; };
+        BiConsumer<String, Integer> lambda2 = (String s, Integer i) -> {
+            i++; };
+        BiConsumer<String, Integer> lambda2a = (s, i) -> {
+            i++; };
+        TriConsumer<String, Integer, Double> lambda3 = (String s, Integer i, Double d) -> {
+            d += i; };
+        TriConsumer<String, Integer, Double> lambda3a = (s, i, d) -> {
+            d += i; };
     }
 
     @FunctionalInterface
@@ -66,7 +74,8 @@ public class ParserCornerCases18 {
         void accept(A a, B b, C c);
     }
 
-    Runnable r1 = () -> { System.out.println(this); };
+    Runnable r1 = () -> {
+        System.out.println(this); };
 
     public Runnable toDoLater() {
         return () -> {
@@ -74,15 +83,15 @@ public class ParserCornerCases18 {
         };
     }
 
-    private String doPrivileged(PrivilegedAction<String> action) {
+    private String doPrivileged(final PrivilegedAction<String> action) {
         return action.run();
     }
 
-    private void filterFiles(FileFilter[] filters) {
+    private void filterFiles(final FileFilter[] filters) {
     }
 
     /* Example from java.util.Comparator. */
-    public static <K extends Comparable<? super K>, V> Comparator<Map.Entry<K,V>> comparingByKey() {
+    public static <K extends Comparable<? super K>, V> Comparator<Map.Entry<K, V>> comparingByKey() {
         // intersection types in cast
         return (Comparator<Map.Entry<K, V>> & Serializable)
             (c1, c2) -> c1.getKey().compareTo(c2.getKey());
@@ -117,7 +126,7 @@ public class ParserCornerCases18 {
         public PmdTest() {
             theFunction = this::foo;
         }
-        private int foo(int i) {
+        private int foo(final int i) {
             return i;
         }
     }
@@ -130,8 +139,8 @@ public class ParserCornerCases18 {
         String myString = (@NonNull String) str;
         Object o = new @Interned MyObject();
     }
-    class UnmodifiableList<T> implements @Readonly List<@Readonly T> {}
-    void monitorTemperature() throws @Critical TemperatureException {}
+    class UnmodifiableList<T> implements @Readonly List<@Readonly T> { }
+    void monitorTemperature() throws @Critical TemperatureException { }
 
     // https://sourceforge.net/p/pmd/bugs/1205/
     public static class X {
@@ -139,7 +148,7 @@ public class ParserCornerCases18 {
             Stream.of(1, 2, 3)
             .sorted((a, b) -> {
                 int x = a.hashCode() - b.hashCode();
-                if(a.equals(new X()))
+                if (a.equals(new X()))
                     x = 1;
                 return x;
             })
@@ -149,7 +158,7 @@ public class ParserCornerCases18 {
             Stream.of(1, 2, 3)
             .sorted((Integer a, Integer b) -> {
                 int x = a.hashCode() - b.hashCode();
-                if(a.equals(new X()))
+                if (a.equals(new X()))
                     x = 1;
                 return x;
             })
@@ -173,7 +182,7 @@ public class ParserCornerCases18 {
         return null;
     }
 
-    private byte @Nullable [] getBytes(){
+    private byte @Nullable [] getBytes() {
         return null;
     }
 
@@ -201,14 +210,14 @@ public class ParserCornerCases18 {
      * and: https://sourceforge.net/p/pmd/bugs/1455/
      */
     public void methodWithReceiverParameter(ParserCornerCases18 this) { }
-    public void methodWithReceiverAndOtherParameters(ParserCornerCases18 this, String other) { }
-    public void methodWithReceiverParameterWithAnnotation(@AnnotatedUsage ParserCornerCases18 this, String other) { }
+    public void methodWithReceiverAndOtherParameters(ParserCornerCases18 this, final String other) { }
+    public void methodWithReceiverParameterWithAnnotation(@AnnotatedUsage ParserCornerCases18 this, final String other) { }
 
     @Target(ElementType.TYPE_USE)
-    public @interface AnnotatedUsage {}
+    public @interface AnnotatedUsage { }
 
     class Inner {
-        Inner(ParserCornerCases18 ParserCornerCases18.this) {}
+        Inner(ParserCornerCases18 ParserCornerCases18.this) { }
     }
 }
 

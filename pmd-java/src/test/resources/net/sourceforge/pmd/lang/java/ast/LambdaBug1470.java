@@ -11,7 +11,7 @@ public class pmdTest {
         return Observable.create(
             (Subscriber<? super String> subscriber) -> {
 
-                stuff=true;
+                stuff = true;
             })
             .map(authToken -> false);
     }
@@ -20,7 +20,7 @@ public class pmdTest {
         return Observable.create(
             (subscriber) -> {
 
-                stuff=true;
+                stuff = true;
             })
             .map(authToken -> false);
     }

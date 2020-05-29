@@ -9,13 +9,13 @@
 
 class Superclass {
 
-	public Superclass() {
+        public Superclass() {
 	}
 
-	public <V> Superclass(Class<V> clazz) {
+	public <V> Superclass(final Class<V> clazz) {
 	}
 
-	<T> T doStuff(T s) {
+	<T> T doStuff(final T s) {
 		return s;
 	}
 }
@@ -32,7 +32,7 @@ class Outer {
 	}
 }
 class Child extends Outer.Inner {
-	Child(Outer o) {
+	Child(final Outer o) {
 		o.super();
 		System.out.println("Child constructor");
 	}
@@ -44,24 +44,24 @@ public class ParserCornerCases extends Superclass {
 		super();
 	}
 
-	public ParserCornerCases(int a) {
+	public ParserCornerCases(final int a) {
 		<Integer> this(a, 2);
 	}
 
-	public <W> ParserCornerCases(int a, int b) {
+	public <W> ParserCornerCases(final int a, final int b) {
 		<String> super(String.class);
 	}
 
-	public ParserCornerCases(String title) {
+	public ParserCornerCases(final String title) {
 		this();
 	}
 
 	public strictfp void testGeneric() {
-		String o = super.<String> doStuff("foo");
-		String v = this.<String> thisGeneric("bar");
+		String o = super.<String>doStuff("foo");
+		String v = this.<String>thisGeneric("bar");
 	}
 
-	<X> X thisGeneric(X x) {
+	<X> X thisGeneric(final X x) {
 		return x;
 	}
 
@@ -70,7 +70,7 @@ public class ParserCornerCases extends Superclass {
 	}
 
     public void bitwiseOperator() {
-        if ((modifiers & InputEvent.SHIFT_DOWN_MASK) != 0 ) {
+        if ((modifiers & InputEvent.SHIFT_DOWN_MASK) != 0) {
             buf.append("shift ");
         }
     }
@@ -80,7 +80,7 @@ public class ParserCornerCases extends Superclass {
  * Test case from http://jira.codehaus.org/browse/MPMD-126
  */
 class PmdTestParent {
-	public PmdTestParent(Object obj) {}
+	public PmdTestParent(final Object obj) { }
 }
 
 class PmdTestChild extends PmdTestParent {
@@ -111,7 +111,7 @@ class SimpleBean {
 }
 
 class SimpleBeanUser {
-    SimpleBeanUser(SimpleBean o) {
+    SimpleBeanUser(final SimpleBean o) {
 
     }
 
@@ -124,7 +124,7 @@ class SimpleBeanUser {
 
 class SimpleBeanUser2 extends SimpleBeanUser {
     SimpleBeanUser2() {
-        super(new SimpleBean(){{
+        super(new SimpleBean() {{
             name = "test2";
         }});
     }
@@ -148,15 +148,15 @@ class TestParseAnnototation {
 /*
  * Test case for bug #956 PMD Parse Exception
  */
-class FooBlock {}
+class FooBlock { }
 class MyFoo {
-    MyFoo(FooBlock b) {
+    MyFoo(final FooBlock b) {
     }
 }
 class Foo extends MyFoo {
     public Foo() {
         super(new FooBlock() {
-            public Object valueOf(Object object) {
+            public Object valueOf(final Object object) {
                 String fish = "salmon";
                 return fish;
             }

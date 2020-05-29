@@ -1,6 +1,6 @@
 public class Bug1429 {
     public Set<String> getAttributeTuples() {
-        return (Set<String>) (this.attributes == null ? Collections.<String> emptySet() : new HashSet<String>(
+        return (Set<String>) (this.attributes == null ? Collections.<String>emptySet() : new HashSet<String>(
                 CollectionUtils.collect(this.attributes.keySet(), new Transformer() {
                     @Override
                     public Object transform(final Object obj) {

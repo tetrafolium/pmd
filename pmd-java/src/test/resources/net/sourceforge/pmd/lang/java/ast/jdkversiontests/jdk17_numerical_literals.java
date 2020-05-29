@@ -13,16 +13,16 @@ public class Test {
   int i12 = 1_43_43598_7;
 
   long l1 = 0b00011110L;
-  long l2 = 0B00011110l;
+  long l2 = 0B00011110L;
   long l3 = 0xAL;
   long l4 = 0x1___A_FL;
   long l5 = 0b1L;
   long l6 = 0b1___1_0L;
-  long l7 = 0l;
+  long l7 = 0L;
   long l8 = 02L;
-  long l9 = 0_123l;
-  long l10 = 1l;
-  long l11 = 1___3l;
+  long l9 = 0_123L;
+  long l10 = 1L;
+  long l11 = 1___3L;
   long l12 = 1_43_43598_7L;
   long l13 = 1_43_43598_7;
 

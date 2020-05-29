@@ -12,7 +12,7 @@ public class LocalVariableTypeInference {
         print(s);
     }
 
-    private void print(String text) {
+    private void print(final String text) {
         System.out.println(text);
     }
 }
