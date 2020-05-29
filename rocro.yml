@@ -15,11 +15,11 @@ inspecode:
     - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
     auto-fix: true
   - input:
-    - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
-    auto-fix: true
-  - input:
     - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
     auto-fix: true
   - input:
     - pmd-core/src/test/resources/net/sourceforge/pmd/cpd/files/file_with_utf8_bom.java
+    auto-fix: true
+  - input:
+    - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
     auto-fix: true
