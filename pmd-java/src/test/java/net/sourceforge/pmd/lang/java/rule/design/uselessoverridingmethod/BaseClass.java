@@ -11,6 +11,6 @@ public class BaseClass {
     }
 
 
-    protected void doBaseWithArg(String foo) {
+    protected void doBaseWithArg(final String foo) {
     }
 }

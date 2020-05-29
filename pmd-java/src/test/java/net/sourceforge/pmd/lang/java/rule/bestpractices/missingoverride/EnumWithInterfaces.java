@@ -28,7 +28,7 @@ public enum EnumWithInterfaces implements MetricKey<ASTAnyTypeDeclaration> {
 
 
     @Override
-    public boolean supports(ASTAnyTypeDeclaration node) {
+    public boolean supports(final ASTAnyTypeDeclaration node) {
         return false;
     }
 }

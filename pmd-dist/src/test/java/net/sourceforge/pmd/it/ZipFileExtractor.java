@@ -38,7 +38,7 @@ public class ZipFileExtractor {
      * @param tempDir the target directory
      * @throws Exception if any error happens during extraction
      */
-    public static void extractZipFile(Path zipPath, Path tempDir) throws Exception {
+    public static void extractZipFile(final Path zipPath, final Path tempDir) throws Exception {
         ZipFile zip = new ZipFile(zipPath.toFile());
         try {
             Enumeration<ZipArchiveEntry> entries = zip.getEntries();
@@ -68,7 +68,7 @@ public class ZipFileExtractor {
      * @return list of all entries
      * @throws Exception if any error happens during read of the zip file
      */
-    public static List<String> readZipFile(Path zipPath) throws Exception {
+    public static List<String> readZipFile(final Path zipPath) throws Exception {
         List<String> result = new ArrayList<>();
         ZipFile zip = new ZipFile(zipPath.toFile());
         try {

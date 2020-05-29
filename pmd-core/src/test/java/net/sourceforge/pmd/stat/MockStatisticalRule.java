@@ -48,18 +48,18 @@ public class MockStatisticalRule extends FooRule implements StatisticalRule {
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         super.apply(nodes, ctx);
         helper.apply(ctx);
     }
 
     @Override
-    public void addDataPoint(DataPoint point) {
+    public void addDataPoint(final DataPoint point) {
         helper.addDataPoint(point);
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         return null;
     }
 }

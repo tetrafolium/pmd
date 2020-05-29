@@ -156,11 +156,11 @@ public class RuleSetFactoryCompatibilityTest {
         Assert.assertEquals("UTF-8", rsfc.determineEncoding(testString.getBytes(ISO_8859_1)));
     }
 
-    private RuleSet createRulesetFromString(final String ruleset, RuleSetFactory factory)
+    private RuleSet createRulesetFromString(final String ruleset, final RuleSetFactory factory)
             throws RuleSetNotFoundException {
         return factory.createRuleSet(new RuleSetReferenceId(null) {
             @Override
-            public InputStream getInputStream(ResourceLoader resourceLoader) throws RuleSetNotFoundException {
+            public InputStream getInputStream(final ResourceLoader resourceLoader) throws RuleSetNotFoundException {
                 return new ByteArrayInputStream(ruleset.getBytes(UTF_8));
             }
         });

@@ -14,12 +14,12 @@ public class ApexParsingHelper extends BaseParsingHelper<ApexParsingHelper, Apex
     public static final ApexParsingHelper DEFAULT = new ApexParsingHelper(Params.getDefaultProcess());
 
 
-    private ApexParsingHelper(Params p) {
+    private ApexParsingHelper(final Params p) {
         super(ApexLanguageModule.NAME, (Class<ApexRootNode<Compilation>>) (Class) ApexRootNode.class, p);
     }
 
     @Override
-    protected ApexParsingHelper clone(Params params) {
+    protected ApexParsingHelper clone(final Params params) {
         return new ApexParsingHelper(params);
     }
 

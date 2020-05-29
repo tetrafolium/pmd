@@ -53,7 +53,7 @@ public class PLSQLXPathRuleTest extends AbstractPLSQLParserTst {
     }
 
 
-    private void testOnVersion(XPathVersion xpath10) {
+    private void testOnVersion(final XPathVersion xpath10) {
         XPathRule rule = new XPathRule(xpath10, "//PrimaryPrefix");
         rule.setLanguage(LanguageRegistry.getLanguage(PLSQLLanguageModule.NAME));
         rule.setMessage("Test Violation");

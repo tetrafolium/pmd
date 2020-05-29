@@ -127,7 +127,7 @@ public class XmlParserOptionsTest {
 
     @Test
     public void testEqualsHashcode() throws Exception {
-        BooleanProperty[] properties = new BooleanProperty[] { XmlParserOptions.COALESCING_DESCRIPTOR,
+        BooleanProperty[] properties = new BooleanProperty[] {XmlParserOptions.COALESCING_DESCRIPTOR,
             XmlParserOptions.EXPAND_ENTITY_REFERENCES_DESCRIPTOR, XmlParserOptions.IGNORING_COMMENTS_DESCRIPTOR,
             XmlParserOptions.IGNORING_ELEMENT_CONTENT_WHITESPACE_DESCRIPTOR,
             XmlParserOptions.NAMESPACE_AWARE_DESCRIPTOR, XmlParserOptions.VALIDATING_DESCRIPTOR,

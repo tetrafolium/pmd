@@ -36,13 +36,13 @@ public class FooRule extends AbstractRule {
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Node node : nodes) {
             apply(node, ctx);
         }
     }
 
-    protected void apply(Node node, RuleContext ctx) {
+    protected void apply(final Node node, final RuleContext ctx) {
         for (int i = 0; i < node.getNumChildren(); i++) {
             apply(node.getChild(i), ctx);
         }

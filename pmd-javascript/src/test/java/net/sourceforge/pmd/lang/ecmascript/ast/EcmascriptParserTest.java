@@ -61,7 +61,7 @@ public class EcmascriptParserTest extends EcmascriptParserTestBase {
         final List<String> output = new ArrayList<>();
 
         class MyEcmascriptRule extends AbstractEcmascriptRule {
-            public Object visit(ASTScope node, Object data) {
+            public Object visit(final ASTScope node, final Object data) {
                 output.add("Scope from " + node.getBeginLine() + " to " + node.getEndLine());
                 return super.visit(node, data);
             }
@@ -107,7 +107,7 @@ public class EcmascriptParserTest extends EcmascriptParserTestBase {
         assertEquals("[a, b.c, d[], e[].f, y.z[]]", results.toString());
     }
 
-    private String getName(Node node) {
+    private String getName(final Node node) {
         if (node instanceof ASTName) {
             return ((ASTName) node).getIdentifier();
         }

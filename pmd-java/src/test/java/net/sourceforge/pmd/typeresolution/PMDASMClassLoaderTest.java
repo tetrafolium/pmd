@@ -89,7 +89,7 @@ public class PMDASMClassLoaderTest {
         int findClassCalls = 0;
 
         @Override
-        protected Class<?> findClass(String name) throws ClassNotFoundException {
+        protected Class<?> findClass(final String name) throws ClassNotFoundException {
             findClassCalls++;
             return super.findClass(name);
         }

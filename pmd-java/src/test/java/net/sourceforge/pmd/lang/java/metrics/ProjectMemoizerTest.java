@@ -65,12 +65,12 @@ public class ProjectMemoizerTest extends BaseNonParserTest {
     }
 
 
-    private List<Integer> visitWith(ASTCompilationUnit acu, final boolean force) {
+    private List<Integer> visitWith(final ASTCompilationUnit acu, final boolean force) {
         final List<Integer> result = new ArrayList<>();
 
         acu.jjtAccept(new JavaParserVisitorReducedAdapter() {
             @Override
-            public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+            public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
                 if (opMetricKey.supports(node)) {
                     result.add((int) MetricsUtil.computeMetric(opMetricKey, node, MetricOptions.emptyOptions(), force));
                 }
@@ -79,7 +79,7 @@ public class ProjectMemoizerTest extends BaseNonParserTest {
 
 
             @Override
-            public Object visit(ASTAnyTypeDeclaration node, Object data) {
+            public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
                 if (classMetricKey.supports(node)) {
                     result.add((int) MetricsUtil.computeMetric(classMetricKey, node, MetricOptions.emptyOptions(), force));
                 }
@@ -97,7 +97,7 @@ public class ProjectMemoizerTest extends BaseNonParserTest {
 
 
         @Override
-        public double computeFor(MethodLikeNode node, MetricOptions options) {
+        public double computeFor(final MethodLikeNode node, final MetricOptions options) {
             return random.nextInt();
         }
     }
@@ -108,7 +108,7 @@ public class ProjectMemoizerTest extends BaseNonParserTest {
 
 
         @Override
-        public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+        public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
             return random.nextInt();
         }
     }

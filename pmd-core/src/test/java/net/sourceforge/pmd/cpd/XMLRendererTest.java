@@ -196,7 +196,7 @@ public class XMLRendererTest {
         assertTrue(report.contains(espaceChar));
     }
 
-    private Mark createMark(String image, String tokenSrcID, int beginLine, int lineCount, String code) {
+    private Mark createMark(final String image, final String tokenSrcID, final int beginLine, final int lineCount, final String code) {
         Mark result = new Mark(new TokenEntry(image, tokenSrcID, beginLine));
 
         result.setLineCount(lineCount);
@@ -204,7 +204,7 @@ public class XMLRendererTest {
         return result;
     }
 
-    private Mark createMark(String image, String tokenSrcID, int beginLine, int lineCount, String code, int beginColumn, int endColumn) {
+    private Mark createMark(final String image, final String tokenSrcID, final int beginLine, final int lineCount, final String code, final int beginColumn, final int endColumn) {
         final TokenEntry beginToken = new TokenEntry(image, tokenSrcID, beginLine, beginColumn, beginColumn + 1);
         final TokenEntry endToken = new TokenEntry(image, tokenSrcID, beginLine + lineCount, endColumn - 1, endColumn);
         final Mark result = new Mark(beginToken);

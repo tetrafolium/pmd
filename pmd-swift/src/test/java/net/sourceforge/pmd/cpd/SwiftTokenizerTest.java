@@ -23,7 +23,7 @@ public class SwiftTokenizerTest extends AbstractTokenizerTest {
     private final String filename;
     private final int nExpectedTokens;
 
-    public SwiftTokenizerTest(String filename, int nExpectedTokens) {
+    public SwiftTokenizerTest(final String filename, final int nExpectedTokens) {
         this.filename = filename;
         this.nExpectedTokens = nExpectedTokens;
     }
@@ -31,11 +31,11 @@ public class SwiftTokenizerTest extends AbstractTokenizerTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(
-                new Object[] { "Swift5.2.swift", 90 },
-                new Object[] { "Swift5.1.swift", 242 },
-                new Object[] { "Swift5.0.swift", 172 },
-                new Object[] { "Swift4.2.swift", 91 },
-                new Object[] { "BTree.swift", 4239 }
+                new Object[] {"Swift5.2.swift", 90 },
+                new Object[] {"Swift5.1.swift", 242 },
+                new Object[] {"Swift5.0.swift", 172 },
+                new Object[] {"Swift4.2.swift", 91 },
+                new Object[] {"BTree.swift", 4239 }
         );
     }
 

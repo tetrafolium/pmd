@@ -783,11 +783,11 @@ public class JspDocStyleTest extends AbstractJspNodesTst {
      * @param elements
      * @return
      */
-    private List<ASTElement> sortNodesByName(Collection<ASTElement> elements) {
+    private List<ASTElement> sortNodesByName(final Collection<ASTElement> elements) {
         List<ASTElement> list = new ArrayList<>();
         list.addAll(elements);
         Collections.sort(list, new Comparator<ASTElement>() {
-            public int compare(ASTElement o1, ASTElement o2) {
+            public int compare(final ASTElement o1, final ASTElement o2) {
                 if (o1.getName() == null) {
                     return Integer.MIN_VALUE;
                 }
@@ -811,11 +811,11 @@ public class JspDocStyleTest extends AbstractJspNodesTst {
      * @param elements
      * @return
      */
-    private <T extends Node> List<T> sortByImage(Collection<T> elements) {
+    private <T extends Node> List<T> sortByImage(final Collection<T> elements) {
         List<T> list = new ArrayList<>();
         list.addAll(elements);
         Collections.sort(list, new Comparator<Node>() {
-            public int compare(Node o1, Node o2) {
+            public int compare(final Node o1, final Node o2) {
                 if (o1.getImage() == null) {
                     return Integer.MIN_VALUE;
                 }

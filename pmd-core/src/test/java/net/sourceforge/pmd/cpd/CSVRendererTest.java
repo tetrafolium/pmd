@@ -54,7 +54,7 @@ public class CSVRendererTest {
         assertEquals(expectedReport, report);
     }
 
-    private Mark createMark(String image, String tokenSrcID, int beginLine, int lineCount, String code) {
+    private Mark createMark(final String image, final String tokenSrcID, final int beginLine, final int lineCount, final String code) {
         Mark result = new Mark(new TokenEntry(image, tokenSrcID, beginLine));
 
         result.setLineCount(lineCount);

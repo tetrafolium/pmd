@@ -20,7 +20,7 @@ import net.sourceforge.pmd.lang.ast.RootNode;
 public class DocumentNavigatorTest {
 
     private static class DummyRootNode extends DummyNode implements RootNode {
-        DummyRootNode(int id) {
+        DummyRootNode(final int id) {
             super(id);
         }
     }

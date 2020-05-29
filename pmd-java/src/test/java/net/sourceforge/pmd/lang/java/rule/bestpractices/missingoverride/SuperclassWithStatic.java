@@ -15,7 +15,7 @@ public class SuperclassWithStatic {
     }
 
 
-    public static void fooBar(String f) {
+    public static void fooBar(final String f) {
 
     }
 

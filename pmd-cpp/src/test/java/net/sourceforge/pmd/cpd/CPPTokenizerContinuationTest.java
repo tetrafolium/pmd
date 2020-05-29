@@ -74,7 +74,7 @@ public class CPPTokenizerContinuationTest {
     }
 
 
-    private void assertToken(Token token, String image, int beginLine, int beginColumn, int endLine, int endColumn) {
+    private void assertToken(final Token token, final String image, final int beginLine, final int beginColumn, final int endLine, final int endColumn) {
         assertEquals(image, token.image);
         assertEquals(beginLine, token.beginLine);
         assertEquals(beginColumn, token.beginColumn);
@@ -94,13 +94,13 @@ public class CPPTokenizerContinuationTest {
         assertEquals(17, tokens.size());
     }
 
-    private void printTokens(Tokens tokens) {
+    private void printTokens(final Tokens tokens) {
         for (TokenEntry entry : tokens.getTokens()) {
             System.out.printf("%02d: %s%s", entry.getBeginLine(), entry.toString(), PMD.EOL);
         }
     }
 
-    private List<TokenEntry> findByLine(int line, Tokens tokens) {
+    private List<TokenEntry> findByLine(final int line, final Tokens tokens) {
         List<TokenEntry> result = new ArrayList<>();
         for (TokenEntry entry : tokens.getTokens()) {
             if (entry.getBeginLine() == line) {
@@ -113,12 +113,12 @@ public class CPPTokenizerContinuationTest {
         return result;
     }
 
-    private String load(String name) throws Exception {
+    private String load(final String name) throws Exception {
         return IOUtils.toString(CPPTokenizerContinuationTest.class
                 .getResourceAsStream("cpp/" + name), StandardCharsets.UTF_8);
     }
 
-    private Tokens parse(String code) throws IOException {
+    private Tokens parse(final String code) throws IOException {
         CPPTokenizer tokenizer = new CPPTokenizer();
         tokenizer.setProperties(new Properties());
         Tokens tokens = new Tokens();

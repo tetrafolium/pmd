@@ -28,11 +28,11 @@ public class MethodPotentialApplicability {
     }
 
     // test if variable arity with arity n -> then call arity >= n-1
-    int vararg(String b, int... a) {
+    int vararg(final String b, final int... a) {
         return 0;
     }
 
-    Exception vararg(String a, String b, String c, int... d) {
+    Exception vararg(final String a, final String b, final String c, final int... d) {
         return null;
     }
 
@@ -42,11 +42,11 @@ public class MethodPotentialApplicability {
     }
 
     // test not vararg mathching arity
-    String notVararg(int a, int b) {
+    String notVararg(final int a, final int b) {
         return null;
     }
 
-    Exception notVararg(int a) {
+    Exception notVararg(final int a) {
         return null;
     }
 }

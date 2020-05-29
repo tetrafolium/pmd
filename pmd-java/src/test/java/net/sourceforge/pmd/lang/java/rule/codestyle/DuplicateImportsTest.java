@@ -15,7 +15,7 @@ public class DuplicateImportsTest extends PmdRuleTst {
     // see:
     // /pmd-java/src/test/resources/net/sourceforge/pmd/lang/java/rule/codestyle/xml/DuplicateImports.xml
     // #1306 False positive on duplicate when using static imports
-    public static void assertTrue(String message, boolean condition) {
+    public static void assertTrue(final String message, final boolean condition) {
         if (!condition) {
             System.out.println(message);
         }

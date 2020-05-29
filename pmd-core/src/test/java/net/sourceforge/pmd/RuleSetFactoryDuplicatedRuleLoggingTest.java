@@ -74,7 +74,7 @@ public class RuleSetFactoryDuplicatedRuleLoggingTest {
         assertTrue(logging.getLog().contains("The ruleset rulesets/dummy/basic.xml is referenced multiple times in \"Custom Rules\"."));
     }
 
-    private RuleSet loadRuleSet(String ruleSetFilename) throws RuleSetNotFoundException {
+    private RuleSet loadRuleSet(final String ruleSetFilename) throws RuleSetNotFoundException {
         RuleSetFactory rsf = RulesetsFactoryUtils.defaultFactory();
         return rsf.createRuleSet("net/sourceforge/pmd/rulesets/duplicatedRuleLoggingTest/" + ruleSetFilename);
     }

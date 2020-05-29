@@ -159,18 +159,18 @@ public class CPPTokenizerTest {
         tokenizer.tokenize(code, new Tokens());
     }
 
-    public void testStringPrefix(String code, String expToken, int tokenIndex, int expNoTokens) {
+    public void testStringPrefix(final String code, final String expToken, final int tokenIndex, final int expNoTokens) {
         final Tokens tokens = parse(code);
         final TokenEntry token = tokens.getTokens().get(tokenIndex);
         assertEquals(expNoTokens, tokens.size());
         assertEquals(expToken, token.toString());
     }
 
-    public void testCharacterPrefix(String code, String expToken) {
+    public void testCharacterPrefix(final String code, final String expToken) {
         testStringPrefix(code, expToken, 3, 6);
     }
 
-    public void testStringPrefix(String code, String expToken) {
+    public void testStringPrefix(final String code, final String expToken) {
         testStringPrefix(code, expToken, 5, 8);
     }
 
@@ -239,7 +239,7 @@ public class CPPTokenizerTest {
         assertEquals(21, tokens.size());
     }
 
-    private Tokens parse(String snippet) {
+    private Tokens parse(final String snippet) {
         try {
             return parse(snippet, false, new Tokens());
         } catch (IOException e) {
@@ -247,11 +247,11 @@ public class CPPTokenizerTest {
         }
     }
 
-    private Tokens parse(String snippet, boolean skipBlocks, Tokens tokens) throws IOException {
+    private Tokens parse(final String snippet, final boolean skipBlocks, final Tokens tokens) throws IOException {
         return parse(snippet, skipBlocks, null, tokens);
     }
 
-    private Tokens parse(String snippet, boolean skipBlocks, String skipPattern, Tokens tokens) throws IOException {
+    private Tokens parse(final String snippet, final boolean skipBlocks, final String skipPattern, final Tokens tokens) throws IOException {
         Properties properties = new Properties();
         properties.setProperty(Tokenizer.OPTION_SKIP_BLOCKS, Boolean.toString(skipBlocks));
         if (skipPattern != null) {

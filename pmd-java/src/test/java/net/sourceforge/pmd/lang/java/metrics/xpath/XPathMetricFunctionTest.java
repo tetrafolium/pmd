@@ -42,7 +42,7 @@ public class XPathMetricFunctionTest {
     public ExpectedException expected = ExpectedException.none();
 
 
-    private Rule makeXpathRuleFromXPath(String xpath) {
+    private Rule makeXpathRuleFromXPath(final String xpath) {
         XPathRule rule = new XPathRule(XPathVersion.XPATH_1_0, xpath);
         rule.setMessage(VIOLATION_MESSAGE);
         rule.setLanguage(LanguageRegistry.getLanguage(JavaLanguageModule.NAME));
@@ -50,7 +50,7 @@ public class XPathMetricFunctionTest {
     }
 
 
-    private Iterator<RuleViolation> getViolations(Rule rule, String code) throws PMDException {
+    private Iterator<RuleViolation> getViolations(final Rule rule, final String code) throws PMDException {
         PMD p = new PMD();
         RuleContext ctx = new RuleContext();
         Report report = new Report();
@@ -129,9 +129,9 @@ public class XPathMetricFunctionTest {
     }
 
 
-    private void testWithExpectedException(String xpath, String code,
-                                           Class<? extends Exception> expectedThrowable,
-                                           String expectedMessage) throws Exception {
+    private void testWithExpectedException(final String xpath, final String code,
+                                           final Class<? extends Exception> expectedThrowable,
+                                           final String expectedMessage) throws Exception {
 
         Rule rule = makeXpathRuleFromXPath(xpath);
 

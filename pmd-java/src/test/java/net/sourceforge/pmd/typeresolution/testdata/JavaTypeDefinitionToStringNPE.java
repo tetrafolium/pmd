@@ -17,7 +17,7 @@ public class JavaTypeDefinitionToStringNPE<A extends JavaTypeDefinitionToStringN
 
     public static class SelfReferringType<T extends SelfReferringType<T>> { }
 
-    public final void putNull(TypeLink<?, ? super A> field) {
+    public final void putNull(final TypeLink<?, ? super A> field) {
         contents.put(field, Collections.singleton(null));
     }
 }

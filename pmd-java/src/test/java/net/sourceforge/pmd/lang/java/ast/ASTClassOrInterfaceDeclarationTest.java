@@ -119,7 +119,7 @@ public class ASTClassOrInterfaceDeclarationTest {
     }
 
 
-    private List<ASTClassOrInterfaceDeclaration> getClassDecls(String code) {
+    private List<ASTClassOrInterfaceDeclaration> getClassDecls(final String code) {
         return JavaParsingHelper.WITH_PROCESSING.getNodes(ASTClassOrInterfaceDeclaration.class, code);
     }
 }

@@ -101,7 +101,7 @@ public class XmlTreeRendererTest {
 
         XmlRenderingConfig strat = new XmlRenderingConfig() {
             @Override
-            public boolean takeAttribute(Node node, Attribute attribute) {
+            public boolean takeAttribute(final Node node, final Attribute attribute) {
                 return false;
             }
         }.lineSeparator("\n");
@@ -128,7 +128,7 @@ public class XmlTreeRendererTest {
 
         XmlRenderingConfig strategy = new XmlRenderingConfig() {
             @Override
-            public boolean takeAttribute(Node node, Attribute attribute) {
+            public boolean takeAttribute(final Node node, final Attribute attribute) {
                 return attribute.getName().equals("ohio");
             }
         }.lineSeparator("\n");
@@ -279,7 +279,7 @@ public class XmlTreeRendererTest {
 
         private final Map<String, String> attributes = new HashMap<>();
 
-        public void setXPathAttribute(String name, String value) {
+        public void setXPathAttribute(final String name, final String value) {
             attributes.put(name, value);
         }
 

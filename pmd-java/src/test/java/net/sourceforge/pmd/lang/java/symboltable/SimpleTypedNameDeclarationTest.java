@@ -66,19 +66,19 @@ public class SimpleTypedNameDeclarationTest {
         Assert.assertEquals(byName("Foo.I"), withNext(byName("Foo.I"), "Foo.B"));
     }
 
-    private static SimpleTypedNameDeclaration byClass(Class<?> c) {
+    private static SimpleTypedNameDeclaration byClass(final Class<?> c) {
         return new SimpleTypedNameDeclaration(c.getSimpleName(), c);
     }
 
-    private static SimpleTypedNameDeclaration byName(String n) {
+    private static SimpleTypedNameDeclaration byName(final String n) {
         return new SimpleTypedNameDeclaration(n, null);
     }
 
-    private static SimpleTypedNameDeclaration by(Class<?> c, String n) {
+    private static SimpleTypedNameDeclaration by(final Class<?> c, final String n) {
         return new SimpleTypedNameDeclaration(n, c);
     }
 
-    private static SimpleTypedNameDeclaration withNext(SimpleTypedNameDeclaration next, String n) {
+    private static SimpleTypedNameDeclaration withNext(final SimpleTypedNameDeclaration next, final String n) {
         SimpleTypedNameDeclaration t = new SimpleTypedNameDeclaration(n, null);
         t.addNext(next);
         return t;

@@ -11,10 +11,10 @@ import org.w3c.dom.Node;
 
 public class Serializer {
 
-    public Serializer(OutputStream out, String encoding) {
+    public Serializer(final OutputStream out, final String encoding) {
     }
 
-    protected void writeChild(Node node) throws IOException {
+    protected void writeChild(final Node node) throws IOException {
     }
 
 }

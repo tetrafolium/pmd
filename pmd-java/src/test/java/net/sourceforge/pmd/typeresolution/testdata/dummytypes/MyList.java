@@ -9,7 +9,7 @@ import java.util.List;
 // This is a stub for src/test/resources/net/sourceforge/pmd/lang/java/ast/jdkversiontests/java10/LocalVariableTypeInference_typeres.java
 public class MyList {
 
-    public void checkIterator(List<?> other) {
+    public void checkIterator(final List<?> other) {
         //var oit = other.iterator();
         //oit.hasNext();
     }

@@ -854,7 +854,7 @@ public class ClassTypeResolverTest {
 
 
     // subtest
-    private void testPrimitiveTypeFieldDecl(Node declaration) throws JaxenException {
+    private void testPrimitiveTypeFieldDecl(final Node declaration) throws JaxenException {
         // public int[] a, b[];
 
         ASTReferenceType typeNode = declaration.getFirstChildOfType(ASTType.class).getFirstChildOfType(ASTReferenceType.class);
@@ -880,7 +880,7 @@ public class ClassTypeResolverTest {
 
 
     // subtest
-    private void testRefTypeFieldDecl(Node declaration) throws JaxenException {
+    private void testRefTypeFieldDecl(final Node declaration) throws JaxenException {
 
         // public String[] c, d[];
 
@@ -1865,42 +1865,42 @@ public class ClassTypeResolverTest {
         assertEquals(forClass(Objects.class), expr.getFirstChildOfType(ASTPrimaryPrefix.class).getTypeDefinition());
     }
 
-    private JavaTypeDefinition getChildTypeDef(Node node, int childIndex) {
+    private JavaTypeDefinition getChildTypeDef(final Node node, final int childIndex) {
         return ((TypeNode) node.getChild(childIndex)).getTypeDefinition();
     }
 
-    private Class<?> getChildType(Node node, int childIndex) {
+    private Class<?> getChildType(final Node node, final int childIndex) {
         return ((TypeNode) node.getChild(childIndex)).getType();
     }
 
 
-    private <T> List<T> selectNodes(String source, Class<T> resultType, String xpath) throws JaxenException {
+    private <T> List<T> selectNodes(final String source, final Class<T> resultType, final String xpath) throws JaxenException {
         return selectNodes(source, "1.5", resultType, xpath);
     }
 
     // This is the master overload, others just default the parameters
-    private <T> List<T> selectNodes(String source, String version, Class<T> resultType, String xpath) throws JaxenException {
+    private <T> List<T> selectNodes(final String source, final String version, final Class<T> resultType, final String xpath) throws JaxenException {
         ASTCompilationUnit acu = java4.parse(source, version);
         return convertList(acu.findChildNodesWithXPath(xpath), resultType);
     }
 
 
-    private <T> List<T> selectNodes(Class<?> source, Class<T> resultType) {
+    private <T> List<T> selectNodes(final Class<?> source, final Class<T> resultType) {
         return java5.parseClass(source).findDescendantsOfType(resultType);
     }
 
-    private <T> List<T> selectNodes(Class<?> source, Class<T> resultType, String xpath) throws JaxenException {
+    private <T> List<T> selectNodes(final Class<?> source, final Class<T> resultType, final String xpath) throws JaxenException {
         return selectNodes(source, "1.5", resultType, xpath);
     }
 
 
-    private <T> List<T> selectNodes(Class<?> source, String version, Class<T> resultType, String xpath) throws JaxenException {
+    private <T> List<T> selectNodes(final Class<?> source, final String version, final Class<T> resultType, final String xpath) throws JaxenException {
         ASTCompilationUnit acu = java4.parseClass(source, version);
         return convertList(acu.findChildNodesWithXPath(xpath), resultType);
     }
 
 
-    private void assertChildTypeArgsEqualTo(Node node, int childIndex, Class<?>... classes) {
+    private void assertChildTypeArgsEqualTo(final Node node, final int childIndex, final Class<?>... classes) {
         JavaTypeDefinition typeDef = ((TypeNode) node.getChild(childIndex)).getTypeDefinition();
 
         for (int index = 0; index < classes.length; ++index) {
@@ -1909,7 +1909,7 @@ public class ClassTypeResolverTest {
     }
 
 
-    private static <T> List<T> convertList(List<Node> nodes, Class<T> target) {
+    private static <T> List<T> convertList(final List<Node> nodes, final Class<T> target) {
         List<T> converted = new ArrayList<>();
         for (Node n : nodes) {
             converted.add(target.cast(n));

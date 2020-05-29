@@ -21,13 +21,13 @@ public class AbstractRuleViolationFactoryTest {
 
     private static class TestRuleViolationFactory extends AbstractRuleViolationFactory {
         @Override
-        protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message) {
+        protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message) {
             return new ParametricRuleViolation<>(rule, ruleContext, node, message);
         }
 
         @Override
-        protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message,
-                int beginLine, int endLine) {
+        protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message,
+                final int beginLine, final int endLine) {
             ParametricRuleViolation<Node> violation = new ParametricRuleViolation<>(rule, ruleContext, node, message);
             violation.setLines(beginLine, endLine);
             return violation;
@@ -36,7 +36,7 @@ public class AbstractRuleViolationFactoryTest {
 
     private static class TestRule extends AbstractRule {
         @Override
-        public void apply(List<? extends Node> nodes, RuleContext ctx) {
+        public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
             throw new UnsupportedOperationException("not implemented");
         }
     }

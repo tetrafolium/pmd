@@ -182,7 +182,7 @@ public class DocumentOperationsApplierForNonOverlappingRegionsWithDocumentFileTe
         }
     }
 
-    private void shuffleAndApplyOperations(List<DocumentOperation> documentOperations) throws IOException {
+    private void shuffleAndApplyOperations(final List<DocumentOperation> documentOperations) throws IOException {
         try (DocumentFile documentFile = new DocumentFile(temporaryFile, StandardCharsets.UTF_8)) {
             applier = new DocumentOperationsApplierForNonOverlappingRegions(documentFile);
 

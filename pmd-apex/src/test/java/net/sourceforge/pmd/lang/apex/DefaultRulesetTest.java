@@ -43,7 +43,7 @@ public class DefaultRulesetTest {
     public void loadQuickstartRuleset() throws Exception {
         Logger.getLogger(RuleSetFactory.class.getName()).addHandler(new Handler() {
             @Override
-            public void publish(LogRecord record) {
+            public void publish(final LogRecord record) {
                 Assert.fail("No Logging expected: " + record.getMessage());
             }
 

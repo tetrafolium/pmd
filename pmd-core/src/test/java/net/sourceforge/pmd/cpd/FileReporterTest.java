@@ -53,7 +53,7 @@ public class FileReporterTest {
         fileReporter.report("");
     }
 
-    private String readFile(File file) throws IOException {
+    private String readFile(final File file) throws IOException {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(file));

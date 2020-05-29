@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public abstract class AbstractPackagedPropertyDescriptorTester<T> extends AbstractPropertyDescriptorTester<T> {
 
-    /* default */ AbstractPackagedPropertyDescriptorTester(String typeName) {
+    /* default */ AbstractPackagedPropertyDescriptorTester(final String typeName) {
         super(typeName);
     }
 

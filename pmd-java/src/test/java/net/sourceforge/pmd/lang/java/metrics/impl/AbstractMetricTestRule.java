@@ -89,7 +89,7 @@ public abstract class AbstractMetricTestRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         reportClasses = getProperty(reportClassesDescriptor);
         reportMethods = getProperty(reportMethodsDescriptor);
         reportLevel = getProperty(reportLevelDescriptor);
@@ -140,7 +140,7 @@ public abstract class AbstractMetricTestRule extends AbstractJavaMetricsRule {
 
 
     /** Gets a nice string representation of a double. */
-    private String niceDoubleString(double val) {
+    private String niceDoubleString(final double val) {
         if (val == (int) val) {
             return String.valueOf((int) val);
         } else {
@@ -150,7 +150,7 @@ public abstract class AbstractMetricTestRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         if (classKey != null && reportClasses && classKey.supports(node)) {
             double classValue = MetricsUtil.computeMetric(classKey, node, metricOptions);
 
@@ -169,7 +169,7 @@ public abstract class AbstractMetricTestRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(MethodLikeNode node, Object data) {
+    public Object visit(final MethodLikeNode node, final Object data) {
         if (opKey != null && reportMethods && opKey.supports(node)) {
             double methodValue = MetricsUtil.computeMetric(opKey, node, metricOptions);
             if (methodValue >= reportLevel) {

@@ -42,7 +42,7 @@ public class ApexMultifileVisitorTest extends ApexParserTestBase {
         // We could parse qnames from string but probably simpler to do that
         acu.jjtAccept(new ApexParserVisitorAdapter() {
             @Override
-            public Object visit(ASTMethod node, Object data) {
+            public Object visit(final ASTMethod node, final Object data) {
                 if (!node.getImage().matches("(<clinit>|<init>|clone)")) {
                     assertTrue(toplevel.hasMatchingSig(node.getQualifiedName(), opMask));
                 }

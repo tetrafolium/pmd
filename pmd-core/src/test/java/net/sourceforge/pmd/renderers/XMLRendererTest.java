@@ -56,30 +56,30 @@ public class XMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return getHeader() + "<error filename=\"file\" msg=\"RuntimeException: Error\">"
                 + PMD.EOL + "<![CDATA[" + error.getDetail() + "]]>" + PMD.EOL + "</error>" + PMD.EOL + "</pmd>" + PMD.EOL;
     }
 
     @Override
-    public String getExpectedErrorWithoutMessage(ProcessingError error) {
+    public String getExpectedErrorWithoutMessage(final ProcessingError error) {
         return getHeader() + "<error filename=\"file\" msg=\"NullPointerException: null\">"
                 + PMD.EOL + "<![CDATA[" + error.getDetail() + "]]>" + PMD.EOL + "</error>" + PMD.EOL + "</pmd>" + PMD.EOL;
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return getHeader() + "<configerror rule=\"Foo\" msg=\"a configuration error\"/>"
                 + PMD.EOL + "</pmd>" + PMD.EOL;
     }
 
     @Override
-    public String filter(String expected) {
+    public String filter(final String expected) {
         String result = expected.replaceAll(" timestamp=\"[^\"]+\">", " timestamp=\"\">");
         return result;
     }
 
-    private RuleViolation createRuleViolation(String description) {
+    private RuleViolation createRuleViolation(final String description) {
         DummyNode node = new DummyNode(1);
         node.testingOnlySetBeginLine(1);
         node.testingOnlySetBeginColumn(1);
@@ -90,7 +90,7 @@ public class XMLRendererTest extends AbstractRendererTest {
         return new ParametricRuleViolation<Node>(new FooRule(), ctx, node, description);
     }
 
-    private void verifyXmlEscaping(Renderer renderer, String shouldContain) throws Exception {
+    private void verifyXmlEscaping(final Renderer renderer, final String shouldContain) throws Exception {
         Report report = new Report();
         String surrogatePair = "\ud801\udc1c";
         String msg = "The String literal \"Tokenizer " + surrogatePair + "\" appears...";

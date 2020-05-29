@@ -126,7 +126,7 @@ public abstract class AbstractApexMetricTestRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         reportClasses = getProperty(reportClassesDescriptor);
         reportMethods = getProperty(reportMethodsDescriptor);
         reportLevel = getProperty(reportLevelDescriptor);
@@ -152,7 +152,7 @@ public abstract class AbstractApexMetricTestRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (opKey != null && reportMethods && opKey.supports(node)) {
             int methodValue = (int) MetricsUtil.computeMetric(opKey, node, metricOptions);
             if (methodValue >= reportLevel) {

@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 class ExposingSerializer extends Serializer {
 
 
-    ExposingSerializer(OutputStream out, String encoding) throws UnsupportedEncodingException {
+    ExposingSerializer(final OutputStream out, final String encoding) throws UnsupportedEncodingException {
         super(out, encoding);
     }
 
@@ -25,7 +25,7 @@ class ExposingSerializer extends Serializer {
      *
      * <p>See: https://sourceforge.net/tracker/?func=detail&aid=1415525&group_id=56262&atid=479921
      */
-    public void writeChild(Node node) throws IOException {
+    public void writeChild(final Node node) throws IOException {
         super.writeChild(node);
     }
 }

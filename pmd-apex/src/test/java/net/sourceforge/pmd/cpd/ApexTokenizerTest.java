@@ -53,7 +53,7 @@ public class ApexTokenizerTest {
         assertEquals(17, tokens2.size());
     }
 
-    private List<TokenEntry> findTokensByLine(int line, Tokens tokens) {
+    private List<TokenEntry> findTokensByLine(final int line, final Tokens tokens) {
         List<TokenEntry> result = new ArrayList<>();
         for (TokenEntry entry : tokens.getTokens()) {
             if (entry.getBeginLine() == line) {
@@ -66,11 +66,11 @@ public class ApexTokenizerTest {
         return result;
     }
 
-    private Tokens tokenize(String code) {
+    private Tokens tokenize(final String code) {
         return tokenize(code, false);
     }
 
-    private Tokens tokenize(String code, boolean caseSensitive) {
+    private Tokens tokenize(final String code, final boolean caseSensitive) {
         ApexTokenizer tokenizer = new ApexTokenizer();
         Properties properties = new Properties();
         properties.setProperty(ApexTokenizer.CASE_SENSITIVE, Boolean.toString(caseSensitive));
@@ -80,13 +80,13 @@ public class ApexTokenizerTest {
         return tokens;
     }
 
-    private void printTokens(Tokens tokens) {
+    private void printTokens(final Tokens tokens) {
         for (TokenEntry entry : tokens.getTokens()) {
             System.out.printf("%02d: %s%s", entry.getBeginLine(), entry.toString(), PMD.EOL);
         }
     }
 
-    private String load(String name) throws IOException {
+    private String load(final String name) throws IOException {
         return IOUtils.toString(ApexTokenizerTest.class.getResourceAsStream(name), StandardCharsets.UTF_8);
     }
 }

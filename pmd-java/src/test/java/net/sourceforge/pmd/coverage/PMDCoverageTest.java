@@ -45,7 +45,7 @@ public class PMDCoverageTest {
      *
      * @param commandLine
      */
-    private void runPmd(String commandLine) {
+    private void runPmd(final String commandLine) {
         String[] args;
         args = commandLine.split("\\s");
 

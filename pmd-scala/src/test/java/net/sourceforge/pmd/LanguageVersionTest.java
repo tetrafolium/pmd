@@ -15,20 +15,20 @@ import net.sourceforge.pmd.lang.scala.ScalaLanguageModule;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-            { ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.13",
+            {ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.13",
                 LanguageRegistry.getLanguage(ScalaLanguageModule.NAME).getVersion("2.13"), },
-            { ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.12",
+            {ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.12",
                 LanguageRegistry.getLanguage(ScalaLanguageModule.NAME).getVersion("2.12"), },
-            { ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.11",
+            {ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.11",
                 LanguageRegistry.getLanguage(ScalaLanguageModule.NAME).getVersion("2.11"), },
-            { ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.10",
+            {ScalaLanguageModule.NAME, ScalaLanguageModule.TERSE_NAME, "2.10",
                 LanguageRegistry.getLanguage(ScalaLanguageModule.NAME).getVersion("2.10"), }, });
     }
 }

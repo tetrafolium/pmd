@@ -23,7 +23,7 @@ public class DartTokenizerTest extends AbstractTokenizerTest {
     private final String filename;
     private final int nExpectedTokens;
 
-    public DartTokenizerTest(String filename, int nExpectedTokens) {
+    public DartTokenizerTest(final String filename, final int nExpectedTokens) {
         this.filename = filename;
         this.nExpectedTokens = nExpectedTokens;
     }
@@ -31,17 +31,17 @@ public class DartTokenizerTest extends AbstractTokenizerTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(
-                new Object[] { "comment.dart", 5 },
-                new Object[] { "escape_sequences.dart", 13 },
-                new Object[] { "escaped_backslash.dart", 14 },
-                new Object[] { "escaped_string.dart", 17 },
-                new Object[] { "increment.dart", 185 },
-                new Object[] { "imports.dart", 1 },
-                new Object[] { "regex.dart", 13 },
-                new Object[] { "regex2.dart", 13 },
-                new Object[] { "regex3.dart", 13 },
-                new Object[] { "string_with_backslashes.dart", 9 },
-                new Object[] { "string_multiline.dart", 13 }
+                new Object[] {"comment.dart", 5 },
+                new Object[] {"escape_sequences.dart", 13 },
+                new Object[] {"escaped_backslash.dart", 14 },
+                new Object[] {"escaped_string.dart", 17 },
+                new Object[] {"increment.dart", 185 },
+                new Object[] {"imports.dart", 1 },
+                new Object[] {"regex.dart", 13 },
+                new Object[] {"regex2.dart", 13 },
+                new Object[] {"regex3.dart", 13 },
+                new Object[] {"string_with_backslashes.dart", 9 },
+                new Object[] {"string_multiline.dart", 13 }
         );
     }
 

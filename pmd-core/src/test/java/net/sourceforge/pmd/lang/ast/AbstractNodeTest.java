@@ -58,7 +58,7 @@ public class AbstractNodeTest {
         int i = 0;
         for (final int childIndex : childrenIndexes) {
             for (final int grandChildIndex : grandChildrenIndexes) {
-                indexes[i++] = new Integer[] { childIndex, grandChildIndex };
+                indexes[i++] = new Integer[] {childIndex, grandChildIndex };
             }
         }
         return indexes;
@@ -232,7 +232,7 @@ public class AbstractNodeTest {
     public void testDeprecatedAttributeXPathQuery() throws JaxenException {
         class MyRootNode extends DummyNode implements RootNode {
 
-            private MyRootNode(int id) {
+            private MyRootNode(final int id) {
                 super(id);
             }
         }

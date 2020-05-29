@@ -23,7 +23,7 @@ public class ReportTest extends RuleTst {
         Report rpt = new Report();
         Rule rule = new AbstractEcmascriptRule() {
             @Override
-            public Object visit(ASTFunctionNode node, Object data) {
+            public Object visit(final ASTFunctionNode node, final Object data) {
                 EcmascriptRuleViolationFactory.INSTANCE.addViolation((RuleContext) data, this, node, "Test", null);
                 return super.visit(node, data);
             }

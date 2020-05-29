@@ -25,13 +25,13 @@ public class ModelicaResolverTest {
         private Class<?> nodeClass;
         private String nodeName;
 
-        NodeFinder(Class<?> nodeClass, String nodeName) {
+        NodeFinder(final Class<?> nodeClass, final String nodeName) {
             this.nodeClass = nodeClass;
             this.nodeName = nodeName;
         }
 
         @Override
-        public Object visit(ModelicaNode node, Object data) {
+        public Object visit(final ModelicaNode node, final Object data) {
             if (nodeClass.isInstance(node) && node.getImage().equals(nodeName)) {
                 Assert.assertNull(result);
                 result = node;
@@ -44,43 +44,43 @@ public class ModelicaResolverTest {
         }
     }
 
-    private ModelicaNode findNodeByClassAndImage(ASTStoredDefinition ast, Class<?> clazz, String image) {
+    private ModelicaNode findNodeByClassAndImage(final ASTStoredDefinition ast, final Class<?> clazz, final String image) {
         NodeFinder vis = new NodeFinder(clazz, image);
         ast.jjtAccept(vis, null);
         return vis.getResult();
     }
 
-    private void ensureCounts(ResolutionResult result, int best, int hidden) {
+    private void ensureCounts(final ResolutionResult result, final int best, final int hidden) {
         Assert.assertFalse(result.wasTimedOut());
         Assert.assertEquals(best, result.getBestCandidates().size());
         Assert.assertEquals(hidden, result.getHiddenCandidates().size());
     }
 
-    private ResolutionResult<ResolvableEntity> resolveIn(int best, int hidden, ResolutionState state, SubcomponentResolver resolver, boolean absolute, String[] names) {
+    private ResolutionResult<ResolvableEntity> resolveIn(final int best, final int hidden, final ResolutionState state, final SubcomponentResolver resolver, final boolean absolute, final String[] names) {
         ResolutionResult<ResolvableEntity> result = resolver.safeResolveComponent(ResolvableEntity.class, state, CompositeName.create(absolute, names));
         ensureCounts(result, best, hidden);
         return result;
     }
 
-    private ResolutionResult<ResolvableEntity> resolveIn(int best, int hidden, ResolutionState state, ModelicaScope resolver, boolean absolute, String[] names) {
+    private ResolutionResult<ResolvableEntity> resolveIn(final int best, final int hidden, final ResolutionState state, final ModelicaScope resolver, final boolean absolute, final String[] names) {
         ResolutionResult<ResolvableEntity> result = resolver.safeResolveLexically(ResolvableEntity.class, state, CompositeName.create(absolute, names));
         ensureCounts(result, best, hidden);
         return result;
     }
 
-    private ResolutionResult<ResolvableEntity> testResolvedTypeCount(int best, int hidden, SubcomponentResolver scope, boolean absolute, String... names) {
+    private ResolutionResult<ResolvableEntity> testResolvedTypeCount(final int best, final int hidden, final SubcomponentResolver scope, final boolean absolute, final String... names) {
         return resolveIn(best, hidden, ResolutionState.forType(), scope, absolute, names);
     }
 
-    private ResolutionResult<ResolvableEntity> testResolvedTypeCount(int best, int hidden, ModelicaScope scope, boolean absolute, String... names) {
+    private ResolutionResult<ResolvableEntity> testResolvedTypeCount(final int best, final int hidden, final ModelicaScope scope, final boolean absolute, final String... names) {
         return resolveIn(best, hidden, ResolutionState.forType(), scope, absolute, names);
     }
 
-    private ResolutionResult<ResolvableEntity> testResolvedComponentCount(int best, int hidden, ModelicaScope scope, boolean absolute, String... names) {
+    private ResolutionResult<ResolvableEntity> testResolvedComponentCount(final int best, final int hidden, final ModelicaScope scope, final boolean absolute, final String... names) {
         return resolveIn(best, hidden, ResolutionState.forComponentReference(), scope, absolute, names);
     }
 
-    private ResolutionResult<ResolvableEntity> testLexicallyResolvedComponents(int best, int hidden, ModelicaClassScope scope, boolean absolute, String... names) {
+    private ResolutionResult<ResolvableEntity> testLexicallyResolvedComponents(final int best, final int hidden, final ModelicaClassScope scope, final boolean absolute, final String... names) {
         ResolutionState state = ResolutionState.forComponentReference();
         ResolutionResult<ResolvableEntity> result = scope.safeResolveLexically(ResolvableEntity.class, state, CompositeName.create(absolute, names));
         ensureCounts(result, best, hidden);

@@ -20,27 +20,27 @@ public class MethodSecondPhase {
         int f = unboxing("", (Byte) null);
     }
 
-    String boxing(Number a, String b) {
+    String boxing(final Number a, final String b) {
         return null;
     }
 
-    Exception boxing(Character a, String b) {
+    Exception boxing(final Character a, final String b) {
         return null;
     }
 
-    int boxing(Long a, String b) {
+    int boxing(final Long a, final String b) {
         return 0;
     }
 
-    String unboxing(String b, long a) {
+    String unboxing(final String b, final long a) {
         return null;
     }
 
-    Exception unboxing(String b, char a) {
+    Exception unboxing(final String b, final char a) {
         return null;
     }
 
-    int unboxing(String b, short a) {
+    int unboxing(final String b, final short a) {
         return 0;
     }
 }

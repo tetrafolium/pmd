@@ -11,11 +11,11 @@ public class ApexParserTestBase {
     protected final ApexParsingHelper apex = ApexParsingHelper.DEFAULT.withResourceContext(getClass());
 
 
-    protected ApexNode<Compilation> parse(String code) {
+    protected ApexNode<Compilation> parse(final String code) {
         return apex.parse(code);
     }
 
-    protected ApexNode<Compilation> parseResource(String code) {
+    protected ApexNode<Compilation> parseResource(final String code) {
         return apex.parseResource(code);
     }
 }

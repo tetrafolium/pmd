@@ -55,7 +55,7 @@ public class JavaMultifileVisitorTest extends BaseNonParserTest {
         // We could parse qnames from string but probably simpler to do that
         acu.jjtAccept(new JavaParserVisitorAdapter() {
             @Override
-            public Object visit(ASTMethodDeclaration node, Object data) {
+            public Object visit(final ASTMethodDeclaration node, final Object data) {
                 assertTrue(toplevel.hasMatchingSig(node.getQualifiedName(), opMask));
                 return data;
             }

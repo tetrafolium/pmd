@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class ClassWithImportInnerOnDemand {
 
-    public void foo(Map<String, String> m) {
+    public void foo(final Map<String, String> m) {
         Map.Entry<String, String> e = m.entrySet().iterator().next();
         assert e != null;
     }

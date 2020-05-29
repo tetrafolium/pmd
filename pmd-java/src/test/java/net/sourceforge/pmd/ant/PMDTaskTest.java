@@ -112,7 +112,7 @@ public class PMDTaskTest extends AbstractAntTestHelper {
     };
 
     // See http://stackoverflow.com/questions/361975/setting-the-default-java-character-encoding and http://stackoverflow.com/a/14987992/1169968
-    private static void setDefaultCharset(String charsetName) {
+    private static void setDefaultCharset(final String charsetName) {
         try {
             System.setProperty("file.encoding", charsetName);
             Field charset = Charset.class.getDeclaredField("defaultCharset");

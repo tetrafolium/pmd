@@ -11,12 +11,12 @@ public final class JspParsingHelper extends BaseParsingHelper<JspParsingHelper, 
 
     public static final JspParsingHelper DEFAULT = new JspParsingHelper(Params.getDefaultProcess());
 
-    private JspParsingHelper(Params params) {
+    private JspParsingHelper(final Params params) {
         super(JspLanguageModule.NAME, ASTCompilationUnit.class, params);
     }
 
     @Override
-    protected JspParsingHelper clone(Params params) {
+    protected JspParsingHelper clone(final Params params) {
         return new JspParsingHelper(params);
     }
 }

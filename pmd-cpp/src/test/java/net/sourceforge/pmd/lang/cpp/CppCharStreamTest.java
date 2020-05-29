@@ -31,7 +31,7 @@ public class CppCharStreamTest {
         assertStream(stream, "a\\b\\\rc");
     }
 
-    private void assertStream(CppCharStream stream, String token) throws IOException {
+    private void assertStream(final CppCharStream stream, final String token) throws IOException {
         char c = stream.BeginToken();
         assertEquals(token.charAt(0), c);
         for (int i = 1; i < token.length(); i++) {

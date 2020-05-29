@@ -61,7 +61,7 @@ public class ApexParserTest extends ApexParserTestBase {
         assertLineNumbersForTestCode(rootNode);
     }
 
-    private void assertLineNumbersForTestCode(ApexNode<Compilation> rootNode) {
+    private void assertLineNumbersForTestCode(final ApexNode<Compilation> rootNode) {
         // whole source code, well from the beginning of the class
         // name Modifier of the class - doesn't work. This node just
         // sees the identifier ("SimpleClass")
@@ -179,7 +179,7 @@ public class ApexParserTest extends ApexParserTestBase {
         Assert.assertEquals(487, count);
     }
 
-    private int visitPosition(Node node, int count) {
+    private int visitPosition(final Node node, final int count) {
         int result = count + 1;
         Assert.assertTrue(node.getBeginLine() > 0);
         Assert.assertTrue(node.getBeginColumn() > 0);
@@ -193,7 +193,7 @@ public class ApexParserTest extends ApexParserTestBase {
 
     // TEST HELPER
 
-    private static void assertPosition(Node node, int beginLine, int beginColumn, int endLine, int endColumn) {
+    private static void assertPosition(final Node node, final int beginLine, final int beginColumn, final int endLine, final int endColumn) {
         assertEquals("Wrong begin line", beginLine, node.getBeginLine());
         assertEquals("Wrong begin column", beginColumn, node.getBeginColumn());
         assertEquals("Wrong end line", endLine, node.getEndLine());

@@ -65,7 +65,7 @@ public class VBHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return "<html><head><title>PMD</title></head><style type=\"text/css\"><!--" + PMD.EOL
                 + "body { background-color: white; font-family:verdana, arial, helvetica, geneva; font-size: 16px; font-style: italic; color: black; }"
                 + PMD.EOL
@@ -80,7 +80,7 @@ public class VBHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return "<html><head><title>PMD</title></head><style type=\"text/css\"><!--" + PMD.EOL
                 + "body { background-color: white; font-family:verdana, arial, helvetica, geneva; font-size: 16px; font-style: italic; color: black; }"
                 + PMD.EOL

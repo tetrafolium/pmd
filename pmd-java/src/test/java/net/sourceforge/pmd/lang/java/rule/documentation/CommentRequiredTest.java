@@ -47,7 +47,7 @@ public class CommentRequiredTest extends PmdRuleTst {
         }
     }
 
-    private static List<PropertyDescriptor<?>> getProperties(Rule rule) {
+    private static List<PropertyDescriptor<?>> getProperties(final Rule rule) {
         List<PropertyDescriptor<?>> result = new ArrayList<>();
         for (PropertyDescriptor<?> property : rule.getPropertyDescriptors()) {
             if (property != Rule.VIOLATION_SUPPRESS_REGEX_DESCRIPTOR
@@ -58,7 +58,7 @@ public class CommentRequiredTest extends PmdRuleTst {
         return result;
     }
 
-    private static <T> void setPropertyValue(Rule rule, PropertyDescriptor<T> property, String value) {
+    private static <T> void setPropertyValue(final Rule rule, final PropertyDescriptor<T> property, final String value) {
         rule.setProperty(property, property.valueFrom(value));
     }
 }

@@ -44,7 +44,7 @@ public class RuleSetResolverTest {
         }
     }
 
-    private void filterRuleSets(List<String> additionalRulesets) {
+    private void filterRuleSets(final List<String> additionalRulesets) {
         Iterator<String> it = additionalRulesets.iterator();
         while (it.hasNext()) {
             String filename = it.next();

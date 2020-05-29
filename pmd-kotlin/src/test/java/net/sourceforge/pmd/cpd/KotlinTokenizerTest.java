@@ -22,7 +22,7 @@ public class KotlinTokenizerTest extends AbstractTokenizerTest {
     private final String filename;
     private final int nExpectedTokens;
 
-    public KotlinTokenizerTest(String filename, int nExpectedTokens) {
+    public KotlinTokenizerTest(final String filename, final int nExpectedTokens) {
         this.filename = filename;
         this.nExpectedTokens = nExpectedTokens;
     }
@@ -30,9 +30,9 @@ public class KotlinTokenizerTest extends AbstractTokenizerTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(
-                new Object[] { "comment.kt", 5 },
-                new Object[] { "increment.kt", 185 },
-                new Object[] { "imports.kt", 1 }
+                new Object[] {"comment.kt", 5 },
+                new Object[] {"increment.kt", 185 },
+                new Object[] {"imports.kt", 1 }
         );
     }
 

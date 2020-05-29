@@ -162,7 +162,7 @@ public class CsTokenizerTest {
         assertEquals("using", tokens.getTokens().get(0).toString());
     }
 
-    private SourceCode toSourceCode(String source) {
+    private SourceCode toSourceCode(final String source) {
         return new SourceCode(new SourceCode.StringCodeLoader(source));
     }
 }

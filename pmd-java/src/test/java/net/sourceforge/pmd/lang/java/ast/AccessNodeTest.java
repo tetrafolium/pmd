@@ -18,11 +18,11 @@ import net.sourceforge.pmd.lang.java.JavaParsingHelper;
 public class AccessNodeTest extends BaseParserTest {
 
     public static class MyAccessNode extends AbstractJavaAccessNode {
-        public MyAccessNode(int i) {
+        public MyAccessNode(final int i) {
             super(i);
         }
 
-        public MyAccessNode(JavaParser parser, int i) {
+        public MyAccessNode(final JavaParser parser, final int i) {
             super(parser, i);
         }
     }
@@ -138,7 +138,7 @@ public class AccessNodeTest extends BaseParserTest {
     }
 
 
-    private static String makeAccessJavaCode(String[] access, String declRest) {
+    private static String makeAccessJavaCode(final String[] access, final String declRest) {
         String result = "public class Test { ";
         for (String s : access) {
             result += s + " ";
@@ -147,7 +147,7 @@ public class AccessNodeTest extends BaseParserTest {
     }
 
 
-    public static <T extends Node> T getDeclWithModifiers(String[] access, Class<T> target, String declRest) {
+    public static <T extends Node> T getDeclWithModifiers(final String[] access, final Class<T> target, final String declRest) {
         ASTCompilationUnit acu = JavaParsingHelper.JUST_PARSE.parse(makeAccessJavaCode(access, declRest));
 
         List<T> declarations = acu.getFirstDescendantOfType(ASTClassOrInterfaceDeclaration.class)

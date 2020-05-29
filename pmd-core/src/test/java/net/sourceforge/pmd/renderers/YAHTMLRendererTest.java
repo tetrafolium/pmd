@@ -45,7 +45,7 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
         deleteDirectory(new File(outputDir));
     }
 
-    private File getTemporaryDirectory(String prefix) throws IOException {
+    private File getTemporaryDirectory(final String prefix) throws IOException {
         // TODO: move to util class?
         File dir = File.createTempFile(prefix, "");
         dir.delete();
@@ -53,7 +53,7 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
         return dir;
     }
 
-    private void deleteDirectory(File dir) {
+    private void deleteDirectory(final File dir) {
         // TODO: move to util class?
         File[] a = dir.listFiles();
         if (a != null) {
@@ -68,7 +68,7 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
         dir.delete();
     }
 
-    private RuleViolation newRuleViolation(int endColumn, final String packageNameArg, final String classNameArg) {
+    private RuleViolation newRuleViolation(final int endColumn, final String packageNameArg, final String classNameArg) {
         DummyNode node = createNode(endColumn);
         RuleContext ctx = new RuleContext();
         ctx.setSourceCodeFile(new File(getSourceCodeFilename()));
@@ -81,7 +81,7 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    protected RuleViolation newRuleViolation(int endColumn) {
+    protected RuleViolation newRuleViolation(final int endColumn) {
         return newRuleViolation(endColumn, "net.sf.pmd.test", "YAHTMLSampleClass");
     }
 
@@ -112,7 +112,7 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
         }
     }
 
-    private static String normalizeLineSeparators(String s) {
+    private static String normalizeLineSeparators(final String s) {
         return s.replaceAll(Pattern.quote(IOUtils.LINE_SEPARATOR_WINDOWS), IOUtils.LINE_SEPARATOR_UNIX)
                 .replaceAll(Pattern.quote(IOUtils.LINE_SEPARATOR_UNIX), PMD.EOL);
     }
@@ -140,12 +140,12 @@ public class YAHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return getExpected();
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return getExpected();
     }
 }

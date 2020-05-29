@@ -15,13 +15,13 @@ import net.sourceforge.pmd.lang.vf.VfLanguageModule;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] { { VfLanguageModule.NAME, VfLanguageModule.TERSE_NAME, "",
+        return Arrays.asList(new Object[][] {{VfLanguageModule.NAME, VfLanguageModule.TERSE_NAME, "",
             LanguageRegistry.getLanguage(VfLanguageModule.NAME).getDefaultVersion(), }, });
     }
 }

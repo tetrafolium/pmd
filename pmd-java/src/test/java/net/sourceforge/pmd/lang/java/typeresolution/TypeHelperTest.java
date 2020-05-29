@@ -78,14 +78,14 @@ public class TypeHelperTest extends BaseNonParserTest {
         assertIsA(klass, Object.class);
     }
 
-    private void assertIsA(TypeNode node, Class<?> type) {
+    private void assertIsA(final TypeNode node, final Class<?> type) {
         Assert.assertTrue("TypeHelper::isA with class arg: " + type.getCanonicalName(),
                           TypeHelper.isA(node, type));
         Assert.assertTrue("TypeHelper::isA with string arg: " + type.getCanonicalName(),
                           TypeHelper.isA(node, type.getCanonicalName()));
     }
 
-    private void assertIsExactlyA(TypeNode node, Class<?> type) {
+    private void assertIsExactlyA(final TypeNode node, final Class<?> type) {
         Assert.assertTrue(TypeHelper.isExactlyA(node, type.getCanonicalName()));
         assertIsA(node, type);
     }

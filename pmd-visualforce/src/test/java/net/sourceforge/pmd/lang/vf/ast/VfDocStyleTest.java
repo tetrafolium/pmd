@@ -638,10 +638,10 @@ public class VfDocStyleTest extends AbstractVfNodesTest {
      * @param elements
      * @return
      */
-    private List<ASTElement> sortNodesByName(List<ASTElement> elements) {
+    private List<ASTElement> sortNodesByName(final List<ASTElement> elements) {
         Collections.sort(elements, new Comparator<ASTElement>() {
             @Override
-            public int compare(ASTElement o1, ASTElement o2) {
+            public int compare(final ASTElement o1, final ASTElement o2) {
                 if (o1.getName() == null) {
                     return Integer.MIN_VALUE;
                 }

@@ -10,16 +10,16 @@ package net.sourceforge.pmd.lang.java.rule.bestpractices.missingoverride;
  */
 public abstract class AbstractClass {
 
-    Object fun(String s) {
+    Object fun(final String s) {
         return new Object();
     }
 
 
-    public void arrayParams(String dflt, int[] keys, StringBuilder[] labels) {
+    public void arrayParams(final String dflt, final int[] keys, final StringBuilder[] labels) {
     }
 
 
-    public <T, R> R generic(T t, R r) {
+    public <T, R> R generic(final T t, final R r) {
         return r;
     }
 

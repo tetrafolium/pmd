@@ -23,7 +23,7 @@ public class ExecutionResult {
     private final String errorOutput;
     private final String report;
 
-    ExecutionResult(int theExitCode, String theOutput, String theErrorOutput, String theReport) {
+    ExecutionResult(final int theExitCode, final String theOutput, final String theErrorOutput, final String theReport) {
         this.exitCode = theExitCode;
         this.output = theOutput;
         this.errorOutput = theErrorOutput;
@@ -49,7 +49,7 @@ public class ExecutionResult {
      * @param expectedExitCode the exit code, e.g. 0 if no rule violations are expected, or 4 if violations are found
      * @param expectedOutput the output to search for
      */
-    public void assertExecutionResult(int expectedExitCode, String expectedOutput) {
+    public void assertExecutionResult(final int expectedExitCode, final String expectedOutput) {
         assertExecutionResult(expectedExitCode, expectedOutput, null);
     }
 
@@ -62,7 +62,7 @@ public class ExecutionResult {
      * @param expectedOutput the output to search for
      * @param expectedReport the string to search for tin the report
      */
-    public void assertExecutionResult(int expectedExitCode, String expectedOutput, String expectedReport) {
+    public void assertExecutionResult(final int expectedExitCode, final String expectedOutput, final String expectedReport) {
         assertEquals("Command exited with wrong code.\nComplete result:\n\n" + this, expectedExitCode, exitCode);
         assertNotNull("No output found", output);
         if (expectedOutput != null && !expectedOutput.isEmpty()) {
@@ -82,7 +82,7 @@ public class ExecutionResult {
      * Asserts that the given error message is not in the error output.
      * @param errorMessage the error message to search for
      */
-    public void assertNoError(String errorMessage) {
+    public void assertNoError(final String errorMessage) {
         assertFalse("Found error message: " + errorMessage + ".\nComplete result:\n\n" + this,
                 errorOutput.contains(errorMessage));
     }
@@ -91,7 +91,7 @@ public class ExecutionResult {
      * Asserts that the given error message is not in the report.
      * @param errorMessage the error message to search for
      */
-    public void assertNoErrorInReport(String errorMessage) {
+    public void assertNoErrorInReport(final String errorMessage) {
         assertFalse("Found error message in report: " + errorMessage + ".\nComplete result:\n\n" + this,
                 report.contains(errorMessage));
     }
@@ -102,22 +102,22 @@ public class ExecutionResult {
         private String errorOutput;
         private String report;
 
-        Builder withExitCode(int exitCode) {
+        Builder withExitCode(final int exitCode) {
             this.exitCode = exitCode;
             return this;
         }
 
-        Builder withOutput(String output) {
+        Builder withOutput(final String output) {
             this.output = output;
             return this;
         }
 
-        Builder withErrorOutput(String errorOutput) {
+        Builder withErrorOutput(final String errorOutput) {
             this.errorOutput = errorOutput;
             return this;
         }
 
-        Builder withReport(String report) {
+        Builder withReport(final String report) {
             this.report = report;
             return this;
         }

@@ -19,7 +19,7 @@ public class DefaultLocale implements TestRule {
     private Locale loc = Locale.getDefault();
 
     /** Set the locale value (overwrites previously set value). */
-    public void set(Locale locale) {
+    public void set(final Locale locale) {
         if (statementIsExecuting) {
             Locale.setDefault(locale);
         } else {
@@ -28,7 +28,7 @@ public class DefaultLocale implements TestRule {
     }
 
     @Override
-    public Statement apply(Statement base, Description description) {
+    public Statement apply(final Statement base, final Description description) {
         return new EnvironmentVariablesStatement(base);
     }
 
@@ -36,7 +36,7 @@ public class DefaultLocale implements TestRule {
 
         final Statement baseStatement;
 
-        EnvironmentVariablesStatement(Statement baseStatement) {
+        EnvironmentVariablesStatement(final Statement baseStatement) {
             this.baseStatement = baseStatement;
         }
 

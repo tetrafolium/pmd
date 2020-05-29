@@ -14,12 +14,12 @@ public class PlsqlParsingHelper extends BaseParsingHelper<PlsqlParsingHelper, AS
     /** This runs all processing stages when parsing. */
     public static final PlsqlParsingHelper WITH_PROCESSING = new PlsqlParsingHelper(Params.getDefaultProcess());
 
-    private PlsqlParsingHelper(Params params) {
+    private PlsqlParsingHelper(final Params params) {
         super(PLSQLLanguageModule.NAME, ASTInput.class, params);
     }
 
     @Override
-    protected PlsqlParsingHelper clone(Params params) {
+    protected PlsqlParsingHelper clone(final Params params) {
         return new PlsqlParsingHelper(params);
     }
 

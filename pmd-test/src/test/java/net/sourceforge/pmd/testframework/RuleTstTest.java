@@ -66,7 +66,7 @@ public class RuleTstTest {
         when(rule.getLanguage()).thenReturn(dummyLanguage.getLanguage());
         when(rule.getName()).thenReturn("test rule");
         Mockito.doAnswer(new Answer<Void>() {
-            private RuleViolation createViolation(RuleContext context, int beginLine, String message) {
+            private RuleViolation createViolation(final RuleContext context, final int beginLine, final String message) {
                 DummyNode node = new DummyNode(1);
                 node.testingOnlySetBeginLine(beginLine);
                 node.testingOnlySetBeginColumn(1);
@@ -75,7 +75,7 @@ public class RuleTstTest {
             }
 
             @Override
-            public Void answer(InvocationOnMock invocation) throws Throwable {
+            public Void answer(final InvocationOnMock invocation) throws Throwable {
                 RuleContext context = invocation.getArgumentAt(1, RuleContext.class);
                 // the violations are reported out of order
                 context.getReport().addRuleViolation(createViolation(context, 15, "first reported violation"));

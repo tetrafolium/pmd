@@ -70,12 +70,12 @@ public class ApexProjectMirrorTest extends ApexParserTestBase {
     }
 
 
-    private List<Integer> visitWith(ApexNode<Compilation> acu, final boolean force) {
+    private List<Integer> visitWith(final ApexNode<Compilation> acu, final boolean force) {
         final List<Integer> result = new ArrayList<>();
 
         acu.jjtAccept(new ApexParserVisitorAdapter() {
             @Override
-            public Object visit(ASTMethod node, Object data) {
+            public Object visit(final ASTMethod node, final Object data) {
                 if (opMetricKey.supports(node)) {
                     result.add((int) MetricsUtil.computeMetric(opMetricKey, node, MetricOptions.emptyOptions(), force));
                 }
@@ -84,7 +84,7 @@ public class ApexProjectMirrorTest extends ApexParserTestBase {
 
 
             @Override
-            public Object visit(ASTUserClass node, Object data) {
+            public Object visit(final ASTUserClass node, final Object data) {
                 if (classMetricKey.supports(node)) {
                     result.add((int) MetricsUtil.computeMetric(classMetricKey, node, MetricOptions.emptyOptions(), force));
                 }
@@ -102,7 +102,7 @@ public class ApexProjectMirrorTest extends ApexParserTestBase {
 
 
         @Override
-        public double computeFor(ASTMethod node, MetricOptions options) {
+        public double computeFor(final ASTMethod node, final MetricOptions options) {
             return random.nextInt();
         }
     }
@@ -113,7 +113,7 @@ public class ApexProjectMirrorTest extends ApexParserTestBase {
 
 
         @Override
-        public double computeFor(ASTUserClassOrInterface<?> node, MetricOptions options) {
+        public double computeFor(final ASTUserClassOrInterface<?> node, final MetricOptions options) {
             return random.nextInt();
         }
     }

@@ -364,7 +364,7 @@ public class XmlParserTest {
      *            attributes - each object pair forms one attribute: first name,
      *            then value.
      */
-    private void assertNode(Node node, String toString, int childs, Object... atts) {
+    private void assertNode(final Node node, final String toString, final int childs, final Object... atts) {
         Assert.assertEquals(toString, String.valueOf(node));
         Assert.assertEquals(childs, node.getNumChildren());
         Iterator<Attribute> attributeIterator = ((XmlNode) node).getAttributeIterator();
@@ -389,7 +389,7 @@ public class XmlParserTest {
      * @param text
      *            the text to expect
      */
-    private void assertTextNode(Node node, String text) {
+    private void assertTextNode(final Node node, final String text) {
         assertTextNode(node, text, "text");
     }
 
@@ -403,7 +403,7 @@ public class XmlParserTest {
      * @param toString
      *            the to string representation
      */
-    private void assertTextNode(Node node, String text, String toString) {
+    private void assertTextNode(final Node node, final String text, final String toString) {
         Assert.assertEquals(toString, String.valueOf(node));
         Assert.assertEquals(0, node.getNumChildren());
         Assert.assertEquals(text, StringUtil.escapeWhitespace(node.getImage()));
@@ -429,7 +429,7 @@ public class XmlParserTest {
      * @param endColumn
      *            the end column
      */
-    private void assertLineNumbers(Node node, int beginLine, int beginColumn, int endLine, int endColumn) {
+    private void assertLineNumbers(final Node node, final int beginLine, final int beginColumn, final int endLine, final int endColumn) {
         Assert.assertEquals("begin line wrong", beginLine, node.getBeginLine());
         Assert.assertEquals("begin column wrong", beginColumn, node.getBeginColumn());
         Assert.assertEquals("end line wrong", endLine, node.getEndLine());

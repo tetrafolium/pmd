@@ -29,7 +29,7 @@ public class ScalaRuleTest extends BaseScalaTest {
         ScalaRule rule = new ScalaRule() {
 
             @Override
-            public RuleContext visit(ScalaNode<?> node, RuleContext data) {
+            public RuleContext visit(final ScalaNode<?> node, final RuleContext data) {
                 visited.incrementAndGet();
                 return super.visit(node, data);
             }
@@ -43,7 +43,7 @@ public class ScalaRuleTest extends BaseScalaTest {
     public void testDummyRule() {
         ScalaRule rule = new ScalaRule() {
             @Override
-            public RuleContext visit(ASTTermApply node, RuleContext data) {
+            public RuleContext visit(final ASTTermApply node, final RuleContext data) {
                 ASTTermName child = node.getFirstChildOfType(ASTTermName.class);
                 if (child != null && child.hasImageEqualTo("println")) {
                     addViolation(data, node);

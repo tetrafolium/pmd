@@ -48,27 +48,27 @@ public class DocumentNavigatorTest extends RuleTst {
          * @see net.sourceforge.pmd.lang.java.ast.JavaParserVisitor#visit(ASTCompilationUnit,
          *      Object)
          */
-        public Object visit(ASTCompilationUnit node, Object data) {
+        public Object visit(final ASTCompilationUnit node, final Object data) {
             this.compilationUnit = node;
             return super.visit(node, data);
         }
 
-        public Object visit(ASTImportDeclaration node, Object data) {
+        public Object visit(final ASTImportDeclaration node, final Object data) {
             this.importDeclaration = node;
             return super.visit(node, data);
         }
 
-        public Object visit(ASTStatement node, Object data) {
+        public Object visit(final ASTStatement node, final Object data) {
             this.statement = node;
             return super.visit(node, data);
         }
 
-        public Object visit(ASTPrimaryPrefix node, Object data) {
+        public Object visit(final ASTPrimaryPrefix node, final Object data) {
             this.primaryPrefix = node;
             return super.visit(node, data);
         }
 
-        public Object visit(ASTPrimaryExpression node, Object data) {
+        public Object visit(final ASTPrimaryExpression node, final Object data) {
             this.primaryExpression = node;
             return super.visit(node, data);
         }

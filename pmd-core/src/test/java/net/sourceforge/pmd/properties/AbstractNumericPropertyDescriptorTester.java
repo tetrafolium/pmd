@@ -19,7 +19,7 @@ import net.sourceforge.pmd.properties.builders.SingleNumericPropertyBuilder;
  */
 public abstract class AbstractNumericPropertyDescriptorTester<T> extends AbstractPropertyDescriptorTester<T> {
 
-    public AbstractNumericPropertyDescriptorTester(String typeName) {
+    public AbstractNumericPropertyDescriptorTester(final String typeName) {
         super(typeName);
     }
 

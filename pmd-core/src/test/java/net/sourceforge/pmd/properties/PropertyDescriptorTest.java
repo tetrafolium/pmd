@@ -337,7 +337,7 @@ public class PropertyDescriptorTest {
         return new SubstringMatcher(substring) {
 
             @Override
-            protected boolean evalSubstringOf(String string) {
+            protected boolean evalSubstringOf(final String string) {
                 return StringUtils.indexOfIgnoreCase(string, substring) != -1;
             }
 

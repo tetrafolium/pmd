@@ -16,7 +16,7 @@ public class RuleWithProperties extends FooRule {
     public static final StringProperty STRING_PROPERTY_DESCRIPTOR = new StringProperty("stringProperty",
             "simple string property", null, 1.0f);
     public static final StringMultiProperty MULTI_STRING_PROPERTY_DESCRIPTOR = new StringMultiProperty("multiString",
-            "multi string property", new String[] { "default1", "default2" }, 2.0f, ',');
+            "multi string property", new String[] {"default1", "default2" }, 2.0f, ',');
 
     public RuleWithProperties() {
         definePropertyDescriptor(STRING_PROPERTY_DESCRIPTOR);

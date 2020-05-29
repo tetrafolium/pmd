@@ -11,7 +11,7 @@ public class LocalGenericClass {
             private T state;
 
             @Override
-            public void accept(T t) { }
+            public void accept(final T t) { }
 
             @Override
             public Optional<T> get() {
@@ -19,7 +19,7 @@ public class LocalGenericClass {
             }
 
             @Override
-            public void combine(MyLocalClass other) {
+            public void combine(final MyLocalClass other) {
                 accept(other.state);
             }
         }

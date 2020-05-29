@@ -96,7 +96,7 @@ public class CommentTest {
         Assert.assertEquals("line 1" + PMD.EOL + "line 2", filtered);
     }
 
-    private String filter(String comment) {
+    private String filter(final String comment) {
         Token t = new Token();
         t.image = comment;
         Comment node = new Comment(t) {
@@ -104,7 +104,7 @@ public class CommentTest {
         return node.getFilteredComment();
     }
 
-    private int lineCount(String filtered) {
+    private int lineCount(final String filtered) {
         return StringUtils.countMatches(filtered, PMD.EOL) + 1;
     }
 }

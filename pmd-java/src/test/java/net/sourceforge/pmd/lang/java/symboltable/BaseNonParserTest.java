@@ -24,7 +24,7 @@ public abstract class BaseNonParserTest {
         return java.parse(code);
     }
 
-    protected <T extends Node> List<T> getOrderedNodes(Class<T> target, String code) {
+    protected <T extends Node> List<T> getOrderedNodes(final Class<T> target, final String code) {
         return JavaParsingHelper.WITH_PROCESSING.getNodes(target, code);
     }
 }

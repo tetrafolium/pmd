@@ -15,7 +15,7 @@ public class VarargsZeroArity {
         return 0;
     }
 
-    public String aMethod(String... args) {
+    public String aMethod(final String... args) {
         return null;
     }
 }

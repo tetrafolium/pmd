@@ -29,7 +29,7 @@ public class InterfaceMethodTest {
     // the classpath. Normally the IDE doesn't put source directories themselves
     // directly in the classpath, only
     // the output directories are in the classpath.
-    private ASTCompilationUnit parseAndTypeResolveForClass(Class<?> clazz) {
+    private ASTCompilationUnit parseAndTypeResolveForClass(final Class<?> clazz) {
         String sourceFile = clazz.getName().replace('.', '/') + ".java";
         InputStream is = InterfaceMethodTest.class.getClassLoader().getResourceAsStream(sourceFile);
         if (is == null) {

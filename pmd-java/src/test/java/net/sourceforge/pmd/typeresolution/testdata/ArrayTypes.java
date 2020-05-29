@@ -10,6 +10,6 @@ public class ArrayTypes {
     public void test() {
         int[] a = new int[1];
         Object[][] b = new Object[1][0];
-        ArrayTypes[][][] c = new ArrayTypes[][][] { new ArrayTypes[1][2] };
+        ArrayTypes[][][] c = new ArrayTypes[][][] {new ArrayTypes[1][2] };
     }
 }

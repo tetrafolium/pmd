@@ -10,14 +10,14 @@ public class VarargsAsFixedArity {
         int var = aMethod("");
         String var2 = aMethod();
         String var3 = aMethod("", "");
-        String var4 = aMethod(new Object[] { null });
+        String var4 = aMethod(new Object[] {null });
     }
 
-    public int aMethod(Object s) {
+    public int aMethod(final Object s) {
         return 0;
     }
 
-    public String aMethod(Object... s) {
+    public String aMethod(final Object... s) {
         return null;
     }
 }

@@ -36,19 +36,19 @@ public abstract class AbstractRendererTest {
 
     public abstract String getExpectedMultiple();
 
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return "";
     }
 
-    public String getExpectedErrorWithoutMessage(ProcessingError error) {
+    public String getExpectedErrorWithoutMessage(final ProcessingError error) {
         return getExpectedError(error);
     }
 
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return "";
     }
 
-    public String filter(String expected) {
+    public String filter(final String expected) {
         return expected;
     }
 
@@ -74,14 +74,14 @@ public abstract class AbstractRendererTest {
         return report;
     }
 
-    protected RuleViolation newRuleViolation(int endColumn) {
+    protected RuleViolation newRuleViolation(final int endColumn) {
         DummyNode node = createNode(endColumn);
         RuleContext ctx = new RuleContext();
         ctx.setSourceCodeFile(new File(getSourceCodeFilename()));
         return new ParametricRuleViolation<Node>(new FooRule(), ctx, node, "blah");
     }
 
-    protected static DummyNode createNode(int endColumn) {
+    protected static DummyNode createNode(final int endColumn) {
         DummyNode node = new DummyNode(1);
         node.testingOnlySetBeginLine(1);
         node.testingOnlySetBeginColumn(1);

@@ -81,7 +81,7 @@ public class ClassTypeResolverJava8Test {
         assertEquals("All expressions not tested", index, expressions.size());
     }
 
-    private static <T> List<T> convertList(List<Node> nodes, Class<T> target) {
+    private static <T> List<T> convertList(final List<Node> nodes, final Class<T> target) {
         List<T> converted = new ArrayList<>();
         for (Node n : nodes) {
             converted.add(target.cast(n));
@@ -89,7 +89,7 @@ public class ClassTypeResolverJava8Test {
         return converted;
     }
 
-    private ASTCompilationUnit parseAndTypeResolveForClass18(Class<?> clazz) {
+    private ASTCompilationUnit parseAndTypeResolveForClass18(final Class<?> clazz) {
         return parseAndTypeResolveForClass(clazz, "1.8");
     }
 
@@ -98,7 +98,7 @@ public class ClassTypeResolverJava8Test {
     // the classpath. Normally the IDE doesn't put source directories themselves
     // directly in the classpath, only
     // the output directories are in the classpath.
-    private ASTCompilationUnit parseAndTypeResolveForClass(Class<?> clazz, String version) {
+    private ASTCompilationUnit parseAndTypeResolveForClass(final Class<?> clazz, final String version) {
         String sourceFile = clazz.getName().replace('.', '/') + ".java";
         InputStream is = ClassTypeResolverJava8Test.class.getClassLoader().getResourceAsStream(sourceFile);
         if (is == null) {

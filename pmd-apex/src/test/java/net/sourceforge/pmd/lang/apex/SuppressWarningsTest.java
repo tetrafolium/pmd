@@ -22,7 +22,7 @@ public class SuppressWarningsTest extends RuleTst {
 
     private static class BarRule extends AbstractApexRule {
         @Override
-        public Object visit(ASTUserClass clazz, Object ctx) {
+        public Object visit(final ASTUserClass clazz, final Object ctx) {
             if (clazz.getImage().equalsIgnoreCase("bar")) {
                 addViolation(ctx, clazz);
             }

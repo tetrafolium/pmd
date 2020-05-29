@@ -15,13 +15,13 @@ import net.sourceforge.pmd.lang.go.GoLanguageModule;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] { { GoLanguageModule.NAME, GoLanguageModule.TERSE_NAME, "1",
+        return Arrays.asList(new Object[][] {{GoLanguageModule.NAME, GoLanguageModule.TERSE_NAME, "1",
             LanguageRegistry.getLanguage(GoLanguageModule.NAME).getDefaultVersion(), }, });
     }
 }

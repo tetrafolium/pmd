@@ -115,7 +115,7 @@ public class RuleSetFactoryTest {
         assertEquals(2, ruleset4Rule2.getPriority().getPriority());
     }
 
-    private int countRule(RuleSets rs, String ruleName) {
+    private int countRule(final RuleSets rs, final String ruleName) {
         int count = 0;
         for (Rule r : rs.getAllRules()) {
             if (ruleName.equals(r.getName())) {
@@ -1106,17 +1106,17 @@ public class RuleSetFactoryTest {
             + "<ruleset name=\"test\">" + PMD.EOL + "<description>testdesc</description>" + PMD.EOL
             + "<rule ref=\"net/sourceforge/pmd/external-reference-ruleset.xml/MockRule\"/>" + PMD.EOL + "</ruleset>";
 
-    private Rule loadFirstRule(String ruleSetXml) throws RuleSetNotFoundException {
+    private Rule loadFirstRule(final String ruleSetXml) throws RuleSetNotFoundException {
         RuleSet rs = loadRuleSet(ruleSetXml);
         return rs.getRules().iterator().next();
     }
 
-    private RuleSet loadRuleSet(String ruleSetXml) throws RuleSetNotFoundException {
+    private RuleSet loadRuleSet(final String ruleSetXml) throws RuleSetNotFoundException {
         RuleSetFactory rsf = RulesetsFactoryUtils.defaultFactory();
         return rsf.createRuleSet(createRuleSetReferenceId(ruleSetXml));
     }
 
-    private RuleSet loadRuleSetWithDeprecationWarnings(String ruleSetXml) throws RuleSetNotFoundException {
+    private RuleSet loadRuleSetWithDeprecationWarnings(final String ruleSetXml) throws RuleSetNotFoundException {
         RuleSetFactory rsf = RulesetsFactoryUtils.createFactory(RulePriority.LOW, true, false);
         return rsf.createRuleSet(createRuleSetReferenceId(ruleSetXml));
     }
@@ -1124,7 +1124,7 @@ public class RuleSetFactoryTest {
     private static RuleSetReferenceId createRuleSetReferenceId(final String ruleSetXml) {
         return new RuleSetReferenceId(null) {
             @Override
-            public InputStream getInputStream(ResourceLoader resourceLoader) throws RuleSetNotFoundException {
+            public InputStream getInputStream(final ResourceLoader resourceLoader) throws RuleSetNotFoundException {
                 try {
                     return new ByteArrayInputStream(ruleSetXml.getBytes("UTF-8"));
                 } catch (UnsupportedEncodingException e) {

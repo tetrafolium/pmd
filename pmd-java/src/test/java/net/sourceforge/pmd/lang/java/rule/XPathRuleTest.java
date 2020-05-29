@@ -44,7 +44,7 @@ import net.sourceforge.pmd.testframework.RuleTst;
  */
 public class XPathRuleTest extends RuleTst {
 
-    private XPathRule makeXPath(String expression) {
+    private XPathRule makeXPath(final String expression) {
         XPathRule rule = new XPathRule(XPathVersion.XPATH_2_0, expression);
         rule.setLanguage(LanguageRegistry.getLanguage(JavaLanguageModule.NAME));
         rule.setMessage("XPath Rule Failed");
@@ -200,7 +200,7 @@ public class XPathRuleTest extends RuleTst {
         assertEquals(5, nodes.get(1).getBeginLine());
     }
 
-    private static Report getReportForTestString(Rule r, String test) throws PMDException {
+    private static Report getReportForTestString(final Rule r, final String test) throws PMDException {
         PMD p = new PMD();
         RuleContext ctx = new RuleContext();
         Report report = new Report();

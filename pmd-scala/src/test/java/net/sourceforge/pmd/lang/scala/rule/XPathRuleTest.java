@@ -27,7 +27,7 @@ public class XPathRuleTest extends BaseScalaTest {
         assertEquals(2, rv.getBeginLine());
     }
 
-    private Report evaluate(String testSource, String xpath) {
+    private Report evaluate(final String testSource, final String xpath) {
         XPathRule rule = new XPathRule(XPathVersion.XPATH_2_0, xpath);
         rule.setLanguage(LanguageRegistry.getLanguage(ScalaLanguageModule.NAME));
         rule.setMessage("XPath Rule Failed");

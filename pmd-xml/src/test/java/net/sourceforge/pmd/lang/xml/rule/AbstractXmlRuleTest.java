@@ -48,13 +48,13 @@ public class AbstractXmlRuleTest {
         }
 
         @Override
-        public void apply(List<? extends Node> nodes, RuleContext ctx) {
+        public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
             visitedNodes.clear();
             super.apply(nodes, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, RuleContext ctx) {
+        protected void visit(final XmlNode node, final RuleContext ctx) {
             visitedNodes.add(node);
             super.visit(node, ctx);
         }

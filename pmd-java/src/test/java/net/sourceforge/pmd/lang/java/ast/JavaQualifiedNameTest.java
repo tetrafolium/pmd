@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.java.qname.QualifiedNameFactory;
 public class JavaQualifiedNameTest {
 
 
-    private <T extends Node> List<T> getNodes(Class<T> target, String code) {
+    private <T extends Node> List<T> getNodes(final Class<T> target, final String code) {
         return JavaParsingHelper.WITH_PROCESSING.getNodes(target, code);
     }
 

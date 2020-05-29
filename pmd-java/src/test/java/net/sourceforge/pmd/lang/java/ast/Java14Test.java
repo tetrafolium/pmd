@@ -47,7 +47,7 @@ public class Java14Test {
         parseAndCheckSwitchExpression(java13);
     }
 
-    private void parseAndCheckSwitchExpression(JavaParsingHelper parser) {
+    private void parseAndCheckSwitchExpression(final JavaParsingHelper parser) {
         ASTCompilationUnit compilationUnit = parser.parseResource("SwitchExpressions.java");
         List<ASTSwitchStatement> switchStatements = compilationUnit.findDescendantsOfType(ASTSwitchStatement.class);
         Assert.assertEquals(2, switchStatements.size());
@@ -92,7 +92,7 @@ public class Java14Test {
         checkYieldStatements(java14);
     }
 
-    private void checkYieldStatements(JavaParsingHelper parser) {
+    private void checkYieldStatements(final JavaParsingHelper parser) {
         ASTCompilationUnit compilationUnit = parser.parseResource("YieldStatements.java");
         List<JavaNode> stmts = compilationUnit.<JavaNode>findDescendantsOfType(ASTBlockStatement.class);
         // fetch the interesting node, on the java-grammar branch this is not needed
@@ -143,7 +143,7 @@ public class Java14Test {
         multipleCaseLabels(java14p);
     }
 
-    private void multipleCaseLabels(JavaParsingHelper parser) {
+    private void multipleCaseLabels(final JavaParsingHelper parser) {
         ASTCompilationUnit compilationUnit = parser.parseResource("MultipleCaseLabels.java");
         ASTSwitchStatement switchStatement = compilationUnit.getFirstDescendantOfType(ASTSwitchStatement.class);
         Assert.assertTrue(switchStatement.getChild(0) instanceof ASTExpression);
@@ -159,7 +159,7 @@ public class Java14Test {
         switchRules(java14p);
     }
 
-    private void switchRules(JavaParsingHelper parser) {
+    private void switchRules(final JavaParsingHelper parser) {
         ASTCompilationUnit compilationUnit = parser.parseResource("SwitchRules.java");
         ASTSwitchStatement switchStatement = compilationUnit.getFirstDescendantOfType(ASTSwitchStatement.class);
         Assert.assertTrue(switchStatement.getChild(0) instanceof ASTExpression);
@@ -187,7 +187,7 @@ public class Java14Test {
         simpleSwitchExpressions(java14p);
     }
 
-    private void simpleSwitchExpressions(JavaParsingHelper parser) {
+    private void simpleSwitchExpressions(final JavaParsingHelper parser) {
         ASTCompilationUnit compilationUnit = parser.parseResource("SimpleSwitchExpressions.java");
         ASTSwitchExpression switchExpression = compilationUnit.getFirstDescendantOfType(ASTSwitchExpression.class);
         Assert.assertEquals(6, switchExpression.getNumChildren());

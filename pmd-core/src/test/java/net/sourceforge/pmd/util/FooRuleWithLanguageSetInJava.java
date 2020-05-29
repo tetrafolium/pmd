@@ -20,7 +20,7 @@ public class FooRuleWithLanguageSetInJava extends AbstractRule {
 
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         // do nothing
     }
 }

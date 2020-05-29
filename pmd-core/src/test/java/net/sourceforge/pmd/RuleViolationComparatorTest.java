@@ -69,8 +69,8 @@ public class RuleViolationComparatorTest {
         assertEquals("Missing assertion for every RuleViolation", expectedOrder.length, count);
     }
 
-    private RuleViolation createJavaRuleViolation(Rule rule, String fileName, int beginLine, String description,
-            int beginColumn, int endLine, int endColumn) {
+    private RuleViolation createJavaRuleViolation(final Rule rule, final String fileName, final int beginLine, final String description,
+            final int beginColumn, final int endLine, final int endColumn) {
         RuleContext ruleContext = new RuleContext();
         ruleContext.setSourceCodeFile(new File(fileName));
         DummyNode simpleNode = new DummyNode(1);

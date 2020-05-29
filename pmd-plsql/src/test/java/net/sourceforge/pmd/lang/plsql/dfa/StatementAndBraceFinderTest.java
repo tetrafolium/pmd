@@ -28,7 +28,7 @@ public class StatementAndBraceFinderTest extends AbstractPLSQLParserTst {
 
     private final PlsqlParsingHelper plsql = PlsqlParsingHelper.WITH_PROCESSING.withResourceContext(StatementAndBraceFinderTest.class);
 
-    private ASTExpression getExpr(String test1) {
+    private ASTExpression getExpr(final String test1) {
         return plsql.parse(test1).getFirstDescendantOfType(ASTExpression.class);
     }
 

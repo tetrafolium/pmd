@@ -56,7 +56,7 @@ public class StringPropertyTest extends AbstractPropertyDescriptorTester<String>
      *
      * @return char
      */
-    private char randomCharIn(char[] chars) {
+    private char randomCharIn(final char[] chars) {
         return randomChar(chars);
     }
 

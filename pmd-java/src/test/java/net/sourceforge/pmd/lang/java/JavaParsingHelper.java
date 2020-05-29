@@ -14,13 +14,13 @@ public class JavaParsingHelper extends BaseParsingHelper<JavaParsingHelper, ASTC
     /** This runs all processing stages when parsing. */
     public static final JavaParsingHelper WITH_PROCESSING = new JavaParsingHelper(Params.getDefaultProcess());
 
-    private JavaParsingHelper(Params params) {
+    private JavaParsingHelper(final Params params) {
         super(JavaLanguageModule.NAME, ASTCompilationUnit.class, params);
     }
 
 
     @Override
-    protected JavaParsingHelper clone(Params params) {
+    protected JavaParsingHelper clone(final Params params) {
         return new JavaParsingHelper(params);
     }
 

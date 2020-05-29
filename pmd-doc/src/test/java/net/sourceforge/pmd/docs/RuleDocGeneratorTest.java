@@ -55,20 +55,20 @@ public class RuleDocGeneratorTest {
     public void cleanup() throws IOException {
         Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
             @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
                 Files.delete(file);
                 return FileVisitResult.CONTINUE;
             }
 
             @Override
-            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+            public FileVisitResult postVisitDirectory(final Path dir, final IOException exc) throws IOException {
                 Files.delete(dir);
                 return FileVisitResult.CONTINUE;
             }
         });
     }
 
-    private static String loadResource(String name) throws IOException {
+    private static String loadResource(final String name) throws IOException {
         return MockedFileWriter.normalizeLineSeparators(
                 IOUtils.toString(RuleDocGeneratorTest.class.getResourceAsStream(name), StandardCharsets.UTF_8));
     }

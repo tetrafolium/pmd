@@ -13,7 +13,7 @@ public class GenericMethodsImplicit<T> {
     public <A, B extends Number & Runnable, C extends D, D extends T> void foo() {
     }
 
-    public <A, B> A bar(A a, A b, Integer c, B d) {
+    public <A, B> A bar(final A a, final A b, final Integer c, final B d) {
         return null;
     }
 

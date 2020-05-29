@@ -35,7 +35,7 @@ public class AllRulesIT extends AbstractBinaryDistributionTest {
         assertDefaultExecutionResult(result);
     }
 
-    private static void assertDefaultExecutionResult(ExecutionResult result) {
+    private static void assertDefaultExecutionResult(final ExecutionResult result) {
         result.assertExecutionResult(4, "");
 
         result.assertNoError("Exception applying rule");

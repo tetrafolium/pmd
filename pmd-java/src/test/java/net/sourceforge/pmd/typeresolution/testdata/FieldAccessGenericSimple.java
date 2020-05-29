@@ -19,7 +19,7 @@ public class FieldAccessGenericSimple extends GenericSuperClassA<Long> {
     GenericClass<String, GenericClass<Number, Double>> genericTypeArg;
     FieldAccessGenericSimple fieldAcc;
 
-    void foo(GenericClass<Integer, Character> param) {
+    void foo(final GenericClass<Integer, Character> param) {
         GenericClass<Float, Long> local = null;
 
         // access a generic field through member field

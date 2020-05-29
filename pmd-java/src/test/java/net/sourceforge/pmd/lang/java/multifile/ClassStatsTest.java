@@ -95,13 +95,13 @@ public class ClassStatsTest {
         }
 
 
-        JavaOperationSigMask restrictVisibilitiesTo(Visibility... visibilities) {
+        JavaOperationSigMask restrictVisibilitiesTo(final Visibility... visibilities) {
             mask.restrictVisibilitiesTo(visibilities);
             return mask;
         }
 
 
-        JavaOperationSigMask restrictRolesTo(Role... roles) {
+        JavaOperationSigMask restrictRolesTo(final Role... roles) {
             mask.restrictRolesTo(roles);
             return mask;
         }
@@ -112,7 +112,7 @@ public class ClassStatsTest {
         JavaFieldSigMask mask = new JavaFieldSigMask();
 
 
-        JavaFieldSigMask restrictVisibilitiesTo(Visibility... visibilities) {
+        JavaFieldSigMask restrictVisibilitiesTo(final Visibility... visibilities) {
             mask.restrictVisibilitiesTo(visibilities);
             return mask;
         }

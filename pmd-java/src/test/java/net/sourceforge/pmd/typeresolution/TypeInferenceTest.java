@@ -348,7 +348,7 @@ public class TypeInferenceTest {
         assertEquals(JavaTypeDefinition.forClass(SuperClassA2.class), result.get(alpha));
     }
 
-    private List<Constraint> incorporationResult(Bound firstBound, Bound secondBound) {
+    private List<Constraint> incorporationResult(final Bound firstBound, final Bound secondBound) {
         List<Bound> current = new ArrayList<>();
         List<Bound> newBounds = new ArrayList<>();
         current.add(firstBound);
@@ -357,8 +357,8 @@ public class TypeInferenceTest {
     }
 
 
-    private void testBoundOrConstraint(BoundOrConstraint val, JavaTypeDefinition left, JavaTypeDefinition right,
-                                       InferenceRuleType rule, Class<? extends BoundOrConstraint> type) {
+    private void testBoundOrConstraint(final BoundOrConstraint val, final JavaTypeDefinition left, final JavaTypeDefinition right,
+                                       final InferenceRuleType rule, final Class<? extends BoundOrConstraint> type) {
         assertSame(type, val.getClass());
         assertEquals(left, val.leftProper());
         assertEquals(right, val.rightProper());
@@ -366,24 +366,24 @@ public class TypeInferenceTest {
     }
 
 
-    private void testBoundOrConstraint(BoundOrConstraint val, JavaTypeDefinition left, Variable right,
-                                       InferenceRuleType rule, Class<? extends BoundOrConstraint> type) {
+    private void testBoundOrConstraint(final BoundOrConstraint val, final JavaTypeDefinition left, final Variable right,
+                                       final InferenceRuleType rule, final Class<? extends BoundOrConstraint> type) {
         assertSame(type, val.getClass());
         assertEquals(left, val.leftProper());
         assertEquals(right, val.rightVariable());
         assertEquals(rule, val.ruleType());
     }
 
-    private void testBoundOrConstraint(BoundOrConstraint val, Variable left, JavaTypeDefinition right,
-                                       InferenceRuleType rule, Class<? extends BoundOrConstraint> type) {
+    private void testBoundOrConstraint(final BoundOrConstraint val, final Variable left, final JavaTypeDefinition right,
+                                       final InferenceRuleType rule, final Class<? extends BoundOrConstraint> type) {
         assertSame(type, val.getClass());
         assertEquals(left, val.leftVariable());
         assertEquals(right, val.rightProper());
         assertEquals(rule, val.ruleType());
     }
 
-    private void testBoundOrConstraint(BoundOrConstraint val, Variable left, Variable right,
-                                       InferenceRuleType rule, Class<? extends BoundOrConstraint> type) {
+    private void testBoundOrConstraint(final BoundOrConstraint val, final Variable left, final Variable right,
+                                       final InferenceRuleType rule, final Class<? extends BoundOrConstraint> type) {
         assertSame(type, val.getClass());
         assertEquals(left, val.leftVariable());
         assertEquals(right, val.rightVariable());

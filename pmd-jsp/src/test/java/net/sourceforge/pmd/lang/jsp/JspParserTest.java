@@ -74,14 +74,14 @@ public class JspParserTest {
         testInternalJspFile(Paths.get("sample.xxx").toFile());
     }
 
-    private void testInternalJspFile(File jspFile) {
+    private void testInternalJspFile(final File jspFile) {
         LanguageVersionDiscoverer discoverer = new LanguageVersionDiscoverer();
         LanguageVersion languageVersion = discoverer.getDefaultLanguageVersionForFile(jspFile);
         Assert.assertEquals("LanguageVersion must be JSP!",
                 LanguageRegistry.getLanguage(JspLanguageModule.NAME).getDefaultVersion(), languageVersion);
     }
 
-    private Node parse(String code) {
+    private Node parse(final String code) {
         LanguageVersionHandler jspLang = LanguageRegistry.getLanguage(JspLanguageModule.NAME).getDefaultVersion()
                 .getLanguageVersionHandler();
         Parser parser = jspLang.getParser(jspLang.getDefaultParserOptions());

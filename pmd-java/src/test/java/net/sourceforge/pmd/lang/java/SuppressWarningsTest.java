@@ -20,7 +20,7 @@ public class SuppressWarningsTest extends RuleTst {
 
     private static class BarRule extends AbstractJavaRule {
         @Override
-        public Object visit(ASTCompilationUnit cu, Object ctx) {
+        public Object visit(final ASTCompilationUnit cu, final Object ctx) {
             // Convoluted rule to make sure the violation is reported for the
             // ASTCompilationUnit node
             for (ASTClassOrInterfaceDeclaration c : cu.findDescendantsOfType(ASTClassOrInterfaceDeclaration.class)) {

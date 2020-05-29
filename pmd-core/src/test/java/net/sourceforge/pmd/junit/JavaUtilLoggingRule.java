@@ -28,7 +28,7 @@ public class JavaUtilLoggingRule extends ExternalResource {
      * to the given logger.
      * @param loggerName the name of the logger to check
      */
-    public JavaUtilLoggingRule(String loggerName) {
+    public JavaUtilLoggingRule(final String loggerName) {
         this.logger = Logger.getLogger(loggerName);
         this.stream = new ByteArrayOutputStream();
 

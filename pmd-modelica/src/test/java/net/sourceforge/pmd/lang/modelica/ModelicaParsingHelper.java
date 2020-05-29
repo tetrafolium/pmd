@@ -13,12 +13,12 @@ public class ModelicaParsingHelper extends BaseParsingHelper<ModelicaParsingHelp
     /** This runs all processing stages when parsing. */
     public static final ModelicaParsingHelper DEFAULT = new ModelicaParsingHelper(Params.getDefaultProcess());
 
-    private ModelicaParsingHelper(Params params) {
+    private ModelicaParsingHelper(final Params params) {
         super(ModelicaLanguageModule.NAME, ASTStoredDefinition.class, params);
     }
 
     @Override
-    protected ModelicaParsingHelper clone(Params params) {
+    protected ModelicaParsingHelper clone(final Params params) {
         return new ModelicaParsingHelper(params);
     }
 

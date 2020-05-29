@@ -57,7 +57,7 @@ public class DBMSMetadataTest {
     /**
      * Convert Readers to Strings for eay output and comparison.
      */
-    private static String getStringFromReader(Reader reader) throws IOException {
+    private static String getStringFromReader(final Reader reader) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder(1024);
         char[] charArray = new char[1024];
@@ -75,7 +75,7 @@ public class DBMSMetadataTest {
     /**
      * Dump ResultSet
      */
-    private static void dumpResultSet(ResultSet resultSet, String description) {
+    private static void dumpResultSet(final ResultSet resultSet, final String description) {
 
         try {
 

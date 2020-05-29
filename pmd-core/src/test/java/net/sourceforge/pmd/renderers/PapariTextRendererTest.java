@@ -18,7 +18,7 @@ public class PapariTextRendererTest extends AbstractRendererTest {
     public Renderer getRenderer() {
         TextColorRenderer result = new TextColorRenderer() {
             @Override
-            protected Reader getReader(String sourceFile) throws FileNotFoundException {
+            protected Reader getReader(final String sourceFile) throws FileNotFoundException {
                 return new StringReader("public class Foo {}");
             }
         };
@@ -48,21 +48,21 @@ public class PapariTextRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return PMD.EOL + PMD.EOL + "Summary:" + PMD.EOL + PMD.EOL + "* file: file" + PMD.EOL + "    err:  RuntimeException: Error" + PMD.EOL
                 + error.getDetail() + PMD.EOL + PMD.EOL
                 + "* errors:   1" + PMD.EOL + "* warnings: 0" + PMD.EOL;
     }
 
     @Override
-    public String getExpectedErrorWithoutMessage(ProcessingError error) {
+    public String getExpectedErrorWithoutMessage(final ProcessingError error) {
         return PMD.EOL + PMD.EOL + "Summary:" + PMD.EOL + PMD.EOL + "* file: file" + PMD.EOL + "    err:  NullPointerException: null" + PMD.EOL
                 + error.getDetail() + PMD.EOL + PMD.EOL
                 + "* errors:   1" + PMD.EOL + "* warnings: 0" + PMD.EOL;
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return PMD.EOL + PMD.EOL + "Summary:" + PMD.EOL + PMD.EOL + "* rule: Foo" + PMD.EOL
                 + "    err:  a configuration error" + PMD.EOL + PMD.EOL
                 + "* errors:   1" + PMD.EOL + "* warnings: 0" + PMD.EOL;

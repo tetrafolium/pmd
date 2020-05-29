@@ -20,7 +20,7 @@ public class FieldAccess extends SuperClassA {
     public FieldAccess f;
     public static FieldAccess staticF;
 
-    public void foo(FieldAccess param) {
+    public void foo(final FieldAccess param) {
         FieldAccess local = null;
 
         // access through method parameter

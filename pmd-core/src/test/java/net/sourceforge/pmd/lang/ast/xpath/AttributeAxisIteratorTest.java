@@ -71,7 +71,7 @@ public class AttributeAxisIteratorTest {
         assertFalse(atts.containsKey("NodeList"));
     }
 
-    private Map<String, Attribute> toMap(AttributeAxisIterator it) {
+    private Map<String, Attribute> toMap(final AttributeAxisIterator it) {
         Map<String, Attribute> atts = new HashMap<>();
         while (it.hasNext()) {
             Attribute attribute = it.next();
@@ -82,7 +82,7 @@ public class AttributeAxisIteratorTest {
 
     public static class DummyNodeWithEnum extends DummyNode {
 
-        public DummyNodeWithEnum(int id) {
+        public DummyNodeWithEnum(final int id) {
             super(id);
         }
 
@@ -97,7 +97,7 @@ public class AttributeAxisIteratorTest {
 
     public static class DummyNodeWithList extends DummyNode {
 
-        public DummyNodeWithList(int id) {
+        public DummyNodeWithList(final int id) {
             super(id);
         }
 

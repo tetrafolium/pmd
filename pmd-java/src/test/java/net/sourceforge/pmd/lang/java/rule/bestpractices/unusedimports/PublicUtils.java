@@ -8,15 +8,15 @@ public class PublicUtils {
     private PublicUtils() {
     }
 
-    public static int g1(int x) {
+    public static int g1(final int x) {
         return x + 1;
     }
 
-    public static int g2(int x) {
+    public static int g2(final int x) {
         return x + 1;
     }
 
-    public static int g3(int x) {
+    public static int g3(final int x) {
         return x + 1;
     }
 }

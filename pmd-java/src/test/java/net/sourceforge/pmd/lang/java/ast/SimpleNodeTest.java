@@ -269,7 +269,7 @@ public class SimpleNodeTest extends BaseParserTest {
         assertNull(c.getUserData());
     }
 
-    private void verifyNode(Node node, int beginLine, int beginCol, int endLine, int endCol) {
+    private void verifyNode(final Node node, final int beginLine, final int beginCol, final int endLine, final int endCol) {
         assertEquals("Unexpected beginning line: ", beginLine, node.getBeginLine());
         assertEquals("Unexpected beginning column: ", beginCol, node.getBeginColumn());
         assertEquals("Unexpected ending line:", endLine, node.getEndLine());

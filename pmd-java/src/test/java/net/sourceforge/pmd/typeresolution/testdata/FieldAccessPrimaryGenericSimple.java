@@ -11,7 +11,7 @@ public class FieldAccessPrimaryGenericSimple extends GenericSuperClassA<Long> {
     GenericClass<String, Double> genericField;
     GenericClass<String, GenericClass<Number, Double>> genericTypeArg;
 
-    void foo(GenericClass<Integer, Character> param) {
+    void foo(final GenericClass<Integer, Character> param) {
         GenericClass<Float, Long> local = null;
 
         // access a generic field through member field

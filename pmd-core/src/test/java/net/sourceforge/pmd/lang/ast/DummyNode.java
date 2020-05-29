@@ -8,7 +8,7 @@ public class DummyNode extends AbstractNode {
     private final boolean findBoundary;
     private final String xpathName;
 
-    public DummyNode(int id) {
+    public DummyNode(final int id) {
         this(id, false);
     }
 
@@ -16,25 +16,25 @@ public class DummyNode extends AbstractNode {
         this(0, false);
     }
 
-    public DummyNode(int id, boolean findBoundary) {
+    public DummyNode(final int id, final boolean findBoundary) {
         this(id, findBoundary, "dummyNode");
     }
 
-    public DummyNode(int id, boolean findBoundary, String xpathName) {
+    public DummyNode(final int id, final boolean findBoundary, final String xpathName) {
         super(id);
         this.findBoundary = findBoundary;
         this.xpathName = xpathName;
     }
 
-    public void setBeginColumn(int i) {
+    public void setBeginColumn(final int i) {
         beginColumn = i;
     }
 
-    public void setBeginLine(int i) {
+    public void setBeginLine(final int i) {
         beginLine = i;
     }
 
-    public void setCoords(int bline, int bcol, int eline, int ecol) {
+    public void setCoords(final int bline, final int bcol, final int eline, final int ecol) {
         beginLine = bline;
         beginColumn = bcol;
         endLine = eline;

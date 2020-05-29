@@ -15,7 +15,7 @@ public abstract class EcmascriptParserTestBase {
     protected final JsParsingHelper js18 = JsParsingHelper.DEFAULT.withResourceContext(getClass())
                                                                   .withParserOptions(parserVersion(Version.VERSION_1_8));
 
-    public ParserOptions parserVersion(EcmascriptParserOptions.Version version) {
+    public ParserOptions parserVersion(final EcmascriptParserOptions.Version version) {
         EcmascriptParserOptions parserOptions = new EcmascriptParserOptions();
         parserOptions.setRhinoLanguageVersion(version);
         return parserOptions;

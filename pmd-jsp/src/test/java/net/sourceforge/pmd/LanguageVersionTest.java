@@ -15,13 +15,13 @@ import net.sourceforge.pmd.lang.jsp.JspLanguageModule;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] { { JspLanguageModule.NAME, JspLanguageModule.TERSE_NAME, "",
+        return Arrays.asList(new Object[][] {{JspLanguageModule.NAME, JspLanguageModule.TERSE_NAME, "",
             LanguageRegistry.getLanguage(JspLanguageModule.NAME).getDefaultVersion(), }, });
     }
 }

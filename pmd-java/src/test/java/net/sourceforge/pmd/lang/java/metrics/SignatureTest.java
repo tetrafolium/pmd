@@ -107,7 +107,7 @@ public class SignatureTest extends BaseNonParserTest {
 
         compilationUnit.jjtAccept(new JavaParserVisitorAdapter() {
             @Override
-            public Object visit(ASTMethodDeclaration node, Object data) {
+            public Object visit(final ASTMethodDeclaration node, final Object data) {
                 assertEquals(Role.GETTER_OR_SETTER, Role.get(node));
                 return data;
             }
@@ -120,7 +120,7 @@ public class SignatureTest extends BaseNonParserTest {
 
         compilationUnit.jjtAccept(new JavaParserVisitorAdapter() {
             @Override
-            public Object visit(ASTMethodDeclaration node, Object data) {
+            public Object visit(final ASTMethodDeclaration node, final Object data) {
                 assertEquals(Role.GETTER_OR_SETTER, Role.get(node));
                 return data;
             }

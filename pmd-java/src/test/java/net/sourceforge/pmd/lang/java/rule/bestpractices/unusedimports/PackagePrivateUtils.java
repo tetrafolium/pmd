@@ -8,15 +8,15 @@ final class PackagePrivateUtils {
     private PackagePrivateUtils() {
     }
 
-    static int f1(int x) {
+    static int f1(final int x) {
         return x + 1;
     }
 
-    static int f2(int x) {
+    static int f2(final int x) {
         return x + 1;
     }
 
-    static int f3(int x) {
+    static int f3(final int x) {
         return x + 1;
     }
 }

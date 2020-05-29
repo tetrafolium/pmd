@@ -43,7 +43,7 @@ public class JSPTokenizerTest {
         Assert.assertEquals("<JSP_SCRIPTLET>", getTokenImage(tokenEntries.getTokens().get(4)));
     }
 
-    private static String getTokenImage(TokenEntry token) {
+    private static String getTokenImage(final TokenEntry token) {
         int kind = 0;
         if (token != TokenEntry.EOF) {
             kind = Integer.parseInt(token.toString());

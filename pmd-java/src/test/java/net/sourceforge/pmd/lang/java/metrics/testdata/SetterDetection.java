@@ -16,23 +16,23 @@ public class SetterDetection {
     private boolean bool;
 
 
-    public void setValue(int x) {
+    public void setValue(final int x) {
         value = x;
     }
 
-    public void value(int x) {
+    public void value(final int x) {
         value = x > 0 ? x : -x;
     }
 
-    public void speed(int x) {
+    public void speed(final int x) {
         mutX.setValue(x);
     }
 
-    public void mutX(int x) {
+    public void mutX(final int x) {
         mutX.increment();
     }
 
-    public void bool(int value) {
+    public void bool(final int value) {
         this.value = value;
     }
 }

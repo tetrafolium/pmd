@@ -20,7 +20,7 @@ public class MetricsVisitorTestData {
 
     }
 
-    private MetricsVisitorTestData(String x) {
+    private MetricsVisitorTestData(final String x) {
 
     }
 
@@ -32,11 +32,11 @@ public class MetricsVisitorTestData {
         return y;
     }
 
-    public void setX(String n) {
+    public void setX(final String n) {
         x = n;
     }
 
-    public void setY(String n) {
+    public void setY(final String n) {
         y = n;
     }
 
@@ -64,11 +64,11 @@ public class MetricsVisitorTestData {
 
     }
 
-    private static void mystatic2(String k) {
+    private static void mystatic2(final String k) {
 
     }
 
-    private static void mystatic2(String k, String l) {
+    private static void mystatic2(final String k, final String l) {
 
     }
 

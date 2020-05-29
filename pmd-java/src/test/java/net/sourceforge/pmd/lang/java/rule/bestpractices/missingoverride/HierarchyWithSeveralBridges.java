@@ -21,7 +21,7 @@ public abstract class HierarchyWithSeveralBridges<T extends Node> {
 
     public abstract static class SubclassTwo<T extends AbstractJavaTypeNode> extends SubclassOne<T> {
         @Override
-        void foo(T node) {
+        void foo(final T node) {
 
         }
     }
@@ -32,7 +32,7 @@ public abstract class HierarchyWithSeveralBridges<T extends Node> {
         // bridges: foo(AbstractJavaTypeNode), foo(JavaNode), foo(Node)
 
         @Override
-        void foo(ASTType node) {
+        void foo(final ASTType node) {
 
         }
     }

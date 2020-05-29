@@ -95,7 +95,7 @@ public class TreeRenderersTest {
 
         private final Map<String, String> attributes = new HashMap<>();
 
-        public void setXPathAttribute(String name, String value) {
+        public void setXPathAttribute(final String name, final String value) {
             attributes.put(name, value);
         }
 

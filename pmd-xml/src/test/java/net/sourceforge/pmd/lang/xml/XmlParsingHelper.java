@@ -19,12 +19,12 @@ public final class XmlParsingHelper extends BaseParsingHelper<XmlParsingHelper, 
     public static final XmlParsingHelper POM = new XmlParsingHelper(PomLanguageModule.NAME, Params.getDefaultProcess());
 
 
-    private XmlParsingHelper(String langName, Params params) {
+    private XmlParsingHelper(final String langName, final Params params) {
         super(langName, RootXmlNode.class, params);
     }
 
     @Override
-    protected XmlParsingHelper clone(Params params) {
+    protected XmlParsingHelper clone(final Params params) {
         return new XmlParsingHelper(this.getLangName(), params);
     }
 }

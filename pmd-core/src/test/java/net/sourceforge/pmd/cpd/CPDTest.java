@@ -48,11 +48,11 @@ public class CPDTest {
 
         Runtime runtime = Runtime.getRuntime();
         if (!new File(TARGET_TEST_RESOURCE_PATH, "symlink-for-real-file.txt").exists()) {
-            runtime.exec(new String[] { "ln", "-s", BASE_TEST_RESOURCE_PATH + "real-file.txt",
+            runtime.exec(new String[] {"ln", "-s", BASE_TEST_RESOURCE_PATH + "real-file.txt",
                 TARGET_TEST_RESOURCE_PATH + "symlink-for-real-file.txt", }).waitFor();
         }
         if (!new File(BASE_TEST_RESOURCE_PATH, "this-is-a-broken-sym-link-for-test").exists()) {
-            runtime.exec(new String[] { "ln", "-s", "broken-sym-link",
+            runtime.exec(new String[] {"ln", "-s", "broken-sym-link",
                 TARGET_TEST_RESOURCE_PATH + "this-is-a-broken-sym-link-for-test", }).waitFor();
         }
     }
@@ -137,13 +137,13 @@ public class CPDTest {
         private int expectedFilesCount;
         private int files;
 
-        NoFileAssertListener(int expectedFilesCount) {
+        NoFileAssertListener(final int expectedFilesCount) {
             this.expectedFilesCount = expectedFilesCount;
             this.files = 0;
         }
 
         @Override
-        public void addedFile(int fileCount, File file) {
+        public void addedFile(final int fileCount, final File file) {
             files++;
             if (files > expectedFilesCount) {
                 Assert.fail("File was added! - " + file);
@@ -151,7 +151,7 @@ public class CPDTest {
         }
 
         @Override
-        public void phaseUpdate(int phase) {
+        public void phaseUpdate(final int phase) {
             // not needed for this test
         }
 

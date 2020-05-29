@@ -147,13 +147,13 @@ public class SaxonXPathRuleQueryTest {
         assertExpression("DocumentSorter((LetExpression(LazyExpression(CardinalityChecker(ItemChecker(UntypedAtomicConverter(Atomizer($testClassPattern))))), (((/)/descendant::element(dummyNode, xs:anyType))[matches(CardinalityChecker(ItemChecker(UntypedAtomicConverter(Atomizer(attribute::attribute(SimpleName, xs:anyAtomicType))))), $zz:zz952562199)]))/child::element(foo, xs:anyType)))", query.nodeNameToXPaths.get(SaxonXPathRuleQuery.AST_ROOT).get(0));
     }
 
-    private static void assertExpression(String expected, Expression actual) {
+    private static void assertExpression(final String expected, final Expression actual) {
         Assert.assertEquals(normalizeExprDump(expected),
                             normalizeExprDump(actual.toString()));
         //Assert.assertEquals(expected, actual);
     }
 
-    private static String normalizeExprDump(String dump) {
+    private static String normalizeExprDump(final String dump) {
         return dump.replaceAll("\\$qq:qq-?\\d+", "\\$qq:qq000")
                    .replaceAll("\\$zz:zz-?\\d+", "\\$zz:zz000");
     }
@@ -174,13 +174,13 @@ public class SaxonXPathRuleQueryTest {
         assertExpression("((DocumentSorter(((((/)/descendant::element(dummyNode, xs:anyType))[QuantifiedExpression(Atomizer(attribute::attribute(Image, xs:anyAtomicType)), ($qq:qq692331943 singleton eq \"baz\"))])/child::element(foo, xs:anyType))) | (((/)/descendant::element(bar, xs:anyType))[QuantifiedExpression(Atomizer(attribute::attribute(Public, xs:anyAtomicType)), ($qq:qq2127036371 singleton eq \"true\"))])) | (((/)/descendant::element(dummyNode, xs:anyType))[QuantifiedExpression(Atomizer(attribute::attribute(Public, xs:anyAtomicType)), ($qq:qq1529060733 singleton eq \"false\"))]))", query.nodeNameToXPaths.get(SaxonXPathRuleQuery.AST_ROOT).get(0));
     }
 
-    private static void assertQuery(int resultSize, String xpath, Node node) {
+    private static void assertQuery(final int resultSize, final String xpath, final Node node) {
         SaxonXPathRuleQuery query = createQuery(xpath);
         List<Node> result = query.evaluate(node, new RuleContext());
         Assert.assertEquals(resultSize, result.size());
     }
 
-    private static SaxonXPathRuleQuery createQuery(String xpath, PropertyDescriptor<?> ...descriptors) {
+    private static SaxonXPathRuleQuery createQuery(final String xpath, final PropertyDescriptor<?>...descriptors) {
         SaxonXPathRuleQuery query = new SaxonXPathRuleQuery();
         query.setVersion(XPathRuleQuery.XPATH_2_0);
         if (descriptors != null) {

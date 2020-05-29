@@ -15,13 +15,13 @@ import net.sourceforge.pmd.lang.LanguageVersion;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<?> data() {
-        return Arrays.asList(new Object[][] { { ApexLanguageModule.NAME, ApexLanguageModule.TERSE_NAME, "35",
+        return Arrays.asList(new Object[][] {{ApexLanguageModule.NAME, ApexLanguageModule.TERSE_NAME, "35",
             LanguageRegistry.getLanguage("Apex").getVersion("35"), }, });
     }
 }

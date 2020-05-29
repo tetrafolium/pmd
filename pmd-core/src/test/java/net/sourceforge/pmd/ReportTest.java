@@ -30,12 +30,12 @@ public class ReportTest implements ThreadSafeReportListener {
     private boolean metricSemaphore;
 
     @Override
-    public void ruleViolationAdded(RuleViolation ruleViolation) {
+    public void ruleViolationAdded(final RuleViolation ruleViolation) {
         violationSemaphore = true;
     }
 
     @Override
-    public void metricAdded(Metric metric) {
+    public void metricAdded(final Metric metric) {
         metricSemaphore = true;
     }
 
@@ -168,7 +168,7 @@ public class ReportTest implements ThreadSafeReportListener {
         assertEquals(2, treeCount);
     }
 
-    private static Node getNode(int line, int column) {
+    private static Node getNode(final int line, final int column) {
         DummyNode s = new DummyNode(2);
         DummyNode parent = new DummyNode(1);
         parent.testingOnlySetBeginLine(line);
@@ -179,7 +179,7 @@ public class ReportTest implements ThreadSafeReportListener {
         return s;
     }
 
-    private static Node getNode(int line, int column, boolean nextLine) {
+    private static Node getNode(final int line, final int column, final boolean nextLine) {
         DummyNode s = (DummyNode) getNode(line, column);
         if (nextLine) {
             s.testingOnlySetBeginLine(line + 1);
@@ -188,7 +188,7 @@ public class ReportTest implements ThreadSafeReportListener {
         return s;
     }
 
-    public static String render(Renderer renderer, Report report) throws IOException {
+    public static String render(final Renderer renderer, final Report report) throws IOException {
         StringWriter writer = new StringWriter();
         renderer.setWriter(writer);
         renderer.start();

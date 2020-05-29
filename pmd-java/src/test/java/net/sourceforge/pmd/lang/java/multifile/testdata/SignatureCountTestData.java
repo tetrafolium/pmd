@@ -37,7 +37,7 @@ public abstract class SignatureCountTestData {
     protected int t;
 
 
-    public SignatureCountTestData(int x, int y, int z, int t) {
+    public SignatureCountTestData(final int x, final int y, final int z, final int t) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -45,10 +45,10 @@ public abstract class SignatureCountTestData {
     }
 
 
-    public SignatureCountTestData(int x, int y, int z) {}
+    public SignatureCountTestData(final int x, final int y, final int z) { }
 
 
-    public SignatureCountTestData(int x, int y) {}
+    public SignatureCountTestData(final int x, final int y) { }
 
 
     public int getX() {
@@ -56,7 +56,7 @@ public abstract class SignatureCountTestData {
     }
 
 
-    void setX(int x) {
+    void setX(final int x) {
         this.x = x;
     }
 
@@ -66,7 +66,7 @@ public abstract class SignatureCountTestData {
     }
 
 
-    void setY(int y) {
+    void setY(final int y) {
         this.y = y;
     }
 
@@ -76,7 +76,7 @@ public abstract class SignatureCountTestData {
     }
 
 
-    void setZ(int z) {
+    void setZ(final int z) {
         this.z = z;
     }
 
@@ -86,27 +86,27 @@ public abstract class SignatureCountTestData {
     }
 
 
-    void setT(int t) {
+    void setT(final int t) {
         this.t = t;
     }
 
 
-    public boolean isNotEmpty(String value) {
+    public boolean isNotEmpty(final String value) {
         return !isEmpty(value);
     }
 
 
-    private boolean isEmpty(String value) {
+    private boolean isEmpty(final String value) {
         return StringUtils.isBlank(value);
     }
 
 
-    protected boolean isMissing(String value) {
+    protected boolean isMissing(final String value) {
         return StringUtils.isEmpty(value);
     }
 
 
-    protected boolean areSemanticEquals(String a, String b) {
+    protected boolean areSemanticEquals(final String a, final String b) {
         return a.equals(b);
     }
 
@@ -118,22 +118,22 @@ public abstract class SignatureCountTestData {
     protected abstract void appendXmlEscaped(StringBuilder buf, String src);
 
 
-    public static boolean startsWithAny(String text, String... prefixes) {
+    public static boolean startsWithAny(final String text, final String... prefixes) {
         return false;
     }
 
 
-    public static boolean isAnyOf(String text, String... tests) {
+    public static boolean isAnyOf(final String text, final String... tests) {
         return false;
     }
 
 
-    private static String withoutPrefixes(String text, String... prefixes) {
+    private static String withoutPrefixes(final String text, final String... prefixes) {
         return text;
     }
 
 
-    private static void appendXmlEscaped(StringBuilder buf, String src, boolean supportUTF8) {
+    private static void appendXmlEscaped(final StringBuilder buf, final String src, final boolean supportUTF8) {
     }
 
 

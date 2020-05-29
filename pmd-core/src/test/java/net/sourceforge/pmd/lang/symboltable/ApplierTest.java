@@ -19,12 +19,12 @@ public class ApplierTest {
         private int numCallbacks = 0;
         private final int maxCallbacks;
 
-        MyFunction(int maxCallbacks) {
+        MyFunction(final int maxCallbacks) {
             this.maxCallbacks = maxCallbacks;
         }
 
         @Override
-        public boolean applyTo(Object o) {
+        public boolean applyTo(final Object o) {
             this.numCallbacks++;
             return numCallbacks < maxCallbacks;
         }

@@ -113,7 +113,7 @@ public class RuleSetTest {
         assertEquals("Rule isn't in ruleset.", rule, i.next());
     }
 
-    private RuleSetBuilder createRuleSetBuilder(String name) {
+    private RuleSetBuilder createRuleSetBuilder(final String name) {
         return new RuleSetBuilder(new Random().nextLong())
                 .withName(name)
                 .withDescription("Description for " + name);
@@ -475,7 +475,7 @@ public class RuleSetTest {
         assertNotSame(rule, ruleSet2.getRuleByName("FooRule1"));
     }
 
-    private void verifyRuleSet(RuleSet ruleset, int size, Set<RuleViolation> values) {
+    private void verifyRuleSet(final RuleSet ruleset, final int size, final Set<RuleViolation> values) {
 
         RuleContext context = new RuleContext();
         Set<RuleViolation> reportedValues = new HashSet<>();
@@ -514,7 +514,7 @@ public class RuleSetTest {
         RuleSet ruleset = createRuleSetBuilder("ruleExceptionShouldBeReported")
                 .addRule(new MockRule() {
                     @Override
-                    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+                    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                         throw new RuntimeException("Test exception while applying rule");
                     }
                 })
@@ -538,7 +538,7 @@ public class RuleSetTest {
         RuleSet ruleset = createRuleSetBuilder("ruleExceptionShouldBeReported")
                 .addRule(new MockRule() {
                     @Override
-                    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+                    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                         throw new RuntimeException("Test exception while applying rule");
                     }
                 })
@@ -555,12 +555,12 @@ public class RuleSetTest {
     public void ruleExceptionShouldNotStopProcessingFile() {
         RuleSet ruleset = createRuleSetBuilder("ruleExceptionShouldBeReported").addRule(new MockRule() {
             @Override
-            public void apply(List<? extends Node> nodes, RuleContext ctx) {
+            public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                 throw new RuntimeException("Test exception while applying rule");
             }
         }).addRule(new MockRule() {
             @Override
-            public void apply(List<? extends Node> nodes, RuleContext ctx) {
+            public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                 for (Node node : nodes) {
                     addViolationWithMessage(ctx, node, "Test violation of the second rule in the ruleset");
                 }
@@ -590,7 +590,7 @@ public class RuleSetTest {
             }
 
             @Override
-            public void apply(List<? extends Node> nodes, RuleContext ctx) {
+            public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                 throw new RuntimeException("Test exception while applying rule");
             }
         }).addRule(new MockRule() {
@@ -599,7 +599,7 @@ public class RuleSetTest {
             }
 
             @Override
-            public void apply(List<? extends Node> nodes, RuleContext ctx) {
+            public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
                 for (Node node : nodes) {
                     addViolationWithMessage(ctx, node, "Test violation of the second rule in the ruleset");
                 }

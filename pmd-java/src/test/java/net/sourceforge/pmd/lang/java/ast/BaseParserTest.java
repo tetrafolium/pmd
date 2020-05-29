@@ -25,7 +25,7 @@ public abstract class BaseParserTest {
         return java.parse(code);
     }
 
-    protected <T extends Node> List<T> getNodes(Class<T> target, String code) {
+    protected <T extends Node> List<T> getNodes(final Class<T> target, final String code) {
         return JavaParsingHelper.WITH_PROCESSING.getNodes(target, code);
     }
 }

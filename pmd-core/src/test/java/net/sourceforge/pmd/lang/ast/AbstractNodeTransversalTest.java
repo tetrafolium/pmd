@@ -24,7 +24,7 @@ public class AbstractNodeTransversalTest {
         return id++;
     }
 
-    private Node newDummyNode(boolean boundary) {
+    private Node newDummyNode(final boolean boundary) {
         return new DummyNode(nextId(), boundary);
     }
 

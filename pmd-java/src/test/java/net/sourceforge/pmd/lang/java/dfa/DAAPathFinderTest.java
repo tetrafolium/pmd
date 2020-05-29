@@ -20,7 +20,7 @@ public class DAAPathFinderTest {
         ASTMethodDeclarator meth = JavaParsingHelper.WITH_PROCESSING.getNodes(ASTMethodDeclarator.class, TWO_UPDATE_DEFS).get(0);
         DAAPathFinder a = new DAAPathFinder(meth.getDataFlowNode().getFlow().get(0), new Executable() {
             @Override
-            public void execute(CurrentPath path) {
+            public void execute(final CurrentPath path) {
 
             }
         });

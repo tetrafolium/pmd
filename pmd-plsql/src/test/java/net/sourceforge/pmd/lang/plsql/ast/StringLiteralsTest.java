@@ -37,12 +37,12 @@ public class StringLiteralsTest extends AbstractPLSQLParserTst {
         Assert.assertTrue(normalizeEol(strings.get(0).getString()).startsWith("\ncreate or replace and"));
     }
 
-    private static void assertString(String quoted, String plain, int index, List<ASTStringLiteral> strings) {
+    private static void assertString(final String quoted, final String plain, final int index, final List<ASTStringLiteral> strings) {
         Assert.assertEquals(quoted, normalizeEol(strings.get(index).getImage()));
         Assert.assertEquals(plain, normalizeEol(strings.get(index).getString()));
     }
 
-    private static String normalizeEol(String s) {
+    private static String normalizeEol(final String s) {
         return s.replaceAll("\r\n|\n\r|\n|\r", "\n");
     }
 }

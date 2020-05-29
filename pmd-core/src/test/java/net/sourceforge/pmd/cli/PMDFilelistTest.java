@@ -77,7 +77,7 @@ public class PMDFilelistTest {
         Assert.assertEquals(4, applicableFiles.size());
         Collections.sort(applicableFiles, new Comparator<DataSource>() {
             @Override
-            public int compare(DataSource o1, DataSource o2) {
+            public int compare(final DataSource o1, final DataSource o2) {
                 if (o1 == null && o2 != null) {
                     return -1;
                 } else if (o1 != null && o2 == null) {

@@ -86,7 +86,7 @@ public class SummaryHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return "<html><head><title>PMD</title></head><body>" + PMD.EOL + "<center><h2>Summary</h2></center>" + PMD.EOL
                 + "<table align=\"center\" cellspacing=\"0\" cellpadding=\"3\">" + PMD.EOL
                 + "<tr><th>Rule name</th><th>Number of violations</th></tr>" + PMD.EOL + "</table>" + PMD.EOL
@@ -101,7 +101,7 @@ public class SummaryHTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return "<html><head><title>PMD</title></head><body>" + PMD.EOL + "<center><h2>Summary</h2></center>" + PMD.EOL
                 + "<table align=\"center\" cellspacing=\"0\" cellpadding=\"3\">" + PMD.EOL
                 + "<tr><th>Rule name</th><th>Number of violations</th></tr>" + PMD.EOL + "</table>" + PMD.EOL

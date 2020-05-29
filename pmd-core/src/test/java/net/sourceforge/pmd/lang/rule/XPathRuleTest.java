@@ -56,7 +56,7 @@ public class XPathRuleTest {
         testDeprecation(XPathVersion.XPATH_2_0);
     }
 
-    public void testDeprecation(XPathVersion version) {
+    public void testDeprecation(final XPathVersion version) {
         XPathRule xpr = makeRule(version, "SomeRule");
 
         loggingRule.clear();
@@ -98,14 +98,14 @@ public class XPathRuleTest {
 
     }
 
-    public XPathRule makeRule(XPathVersion version, String name) {
+    public XPathRule makeRule(final XPathVersion version, final String name) {
         XPathRule xpr = new XPathRule(version, "//dummyNode[@Size >= 2 and @Name='foo']");
         xpr.setName(name);
         xpr.setMessage("gotcha");
         return xpr;
     }
 
-    public void eval(RuleContext ctx, net.sourceforge.pmd.Rule rule, DummyNode node) {
+    public void eval(final RuleContext ctx, final net.sourceforge.pmd.Rule rule, final DummyNode node) {
         rule.apply(singletonList(node), ctx);
     }
 

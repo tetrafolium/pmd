@@ -177,7 +177,7 @@ public class Java14PreviewTest {
         Assert.assertEquals(2, impl.findChildrenOfType(ASTClassOrInterfaceType.class).size());
     }
 
-    private ASTRecordComponent getComponent(ASTRecordDeclaration arrayRec, int index) {
+    private ASTRecordComponent getComponent(final ASTRecordDeclaration arrayRec, final int index) {
         return (ASTRecordComponent) arrayRec.getComponentList().getChild(index);
     }
 

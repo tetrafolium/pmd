@@ -15,12 +15,12 @@ public class AmbiguousOverload implements Comparator<StringBuilder> {
 
 
     @Override
-    public int compare(StringBuilder o1, StringBuilder o2) {
+    public int compare(final StringBuilder o1, final StringBuilder o2) {
         return 0;
     }
 
 
-    public int compare(String s, String s2) {
+    public int compare(final String s, final String s2) {
         return 0;
     }
 

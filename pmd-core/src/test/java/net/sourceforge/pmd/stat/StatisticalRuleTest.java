@@ -186,7 +186,7 @@ public class StatisticalRuleTest {
      * This returns a Random value for Sigma which value is greater than the
      * parameter.
      */
-    public double randomSigma(int minimum) {
+    public double randomSigma(final int minimum) {
         double minSigma = ((POINTS - 1 - minimum) - MEAN) / SIGMA;
 
         if ((minSigma <= 0) || (minSigma > 2)) {
@@ -200,7 +200,7 @@ public class StatisticalRuleTest {
      * This returns the expected number of results when the Sigma rating is the
      * smallest.
      */
-    public int expectedSigma(double sigma) {
+    public int expectedSigma(final double sigma) {
         long expectedMin = Math.round(MEAN + (sigma * SIGMA));
 
         if (((POINTS - 1) - expectedMin) < 0) {
@@ -220,7 +220,7 @@ public class StatisticalRuleTest {
      * This generates a random minimum value for which fewer results would be
      * returned.
      */
-    public double randomMinimum(int minimum) {
+    public double randomMinimum(final int minimum) {
         double diffTarget = 1.0 * (POINTS - 1 - minimum);
         return (random.nextDouble() * minimum) + diffTarget;
     }
@@ -231,7 +231,7 @@ public class StatisticalRuleTest {
      * <p>If the Minimum comes in at 521.569 then we expect 522, 523, ... 999 will
      * pass.</p>
      */
-    public int expectedMinimum(double minimum) {
+    public int expectedMinimum(final double minimum) {
         Double d = Double.valueOf(minimum);
         return POINTS - 1 - d.intValue();
     }
@@ -255,7 +255,7 @@ public class StatisticalRuleTest {
      * This will return a random value for the Top Score which will return more
      * than the minimum provided.
      */
-    public int randomTopScore(double target) {
+    public int randomTopScore(final double target) {
         if (target < 0) {
             return 0;
         }
@@ -266,7 +266,7 @@ public class StatisticalRuleTest {
     /**
      * This will return the expected number of results with the given Top Score.
      */
-    public int expectedTopScore(int target) {
+    public int expectedTopScore(final int target) {
         return target;
     }
 
@@ -800,7 +800,7 @@ public class StatisticalRuleTest {
      * Sigma, as we really can't calculate it exactly.
      */
 
-    public void verifyResults(double sigma, double minimum, int topScore, int expected, int delta) {
+    public void verifyResults(final double sigma, final double minimum, final int topScore, final int expected, final int delta) {
         try {
             setUp();
             if (sigma >= 0) {
@@ -852,7 +852,7 @@ public class StatisticalRuleTest {
         }
     }
 
-    public Report makeReport(Rule rule) {
+    public Report makeReport(final Rule rule) {
         List<Node> list = new ArrayList<>();
         Report report = new Report();
 

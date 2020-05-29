@@ -37,7 +37,7 @@ public class HTMLRendererTest extends AbstractRendererTest {
         return getExpected(null, null);
     }
 
-    private String getExpected(String linkPrefix, String lineAnchor) {
+    private String getExpected(final String linkPrefix, final String lineAnchor) {
         String filename = getEscapedFilename();
         if (linkPrefix != null) {
             filename = "<a href=\"" + linkPrefix + filename + "#" + lineAnchor + "\">"
@@ -67,7 +67,7 @@ public class HTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         return getHeader()
                 + "</table><hr/><center><h3>Processing errors</h3></center><table align=\"center\" cellspacing=\"0\" cellpadding=\"3\"><tr>"
                 + PMD.EOL + "<th>File</th><th>Problem</th></tr>" + PMD.EOL + "<tr bgcolor=\"lightgrey\"> " + PMD.EOL
@@ -76,7 +76,7 @@ public class HTMLRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return getHeader()
                 + "</table><hr/><center><h3>Configuration errors</h3></center><table align=\"center\" cellspacing=\"0\" cellpadding=\"3\"><tr>"
                 + PMD.EOL + "<th>Rule</th><th>Problem</th></tr>" + PMD.EOL + "<tr bgcolor=\"lightgrey\"> " + PMD.EOL

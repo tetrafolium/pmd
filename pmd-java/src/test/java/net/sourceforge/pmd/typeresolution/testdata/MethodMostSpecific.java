@@ -19,15 +19,15 @@ public abstract class MethodMostSpecific {
         int c = moreSpecific((Double) null, (RoleList) null);
     }
 
-    String moreSpecific(Number a, AbstractCollection b) {
+    String moreSpecific(final Number a, final AbstractCollection b) {
         return null;
     }
 
-    Exception moreSpecific(Integer a, AbstractList b) {
+    Exception moreSpecific(final Integer a, final AbstractList b) {
         return null;
     }
 
-    int moreSpecific(Number a, ArrayList b) {
+    int moreSpecific(final Number a, final ArrayList b) {
         return 0;
     }
 }

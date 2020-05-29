@@ -22,17 +22,17 @@ public final class ScalaParsingHelper extends BaseParsingHelper<ScalaParsingHelp
 
     public static final ScalaParsingHelper DEFAULT = new ScalaParsingHelper(Params.getDefaultProcess());
 
-    private ScalaParsingHelper(Params params) {
+    private ScalaParsingHelper(final Params params) {
         super(ScalaLanguageModule.NAME, ASTSource.class, params);
     }
 
     @Override
-    protected ScalaParsingHelper clone(Params params) {
+    protected ScalaParsingHelper clone(final Params params) {
         return new ScalaParsingHelper(params);
     }
 
 
-    public Report getReportForTestString(Rule rule, String testSourceCode) {
+    public Report getReportForTestString(final Rule rule, final String testSourceCode) {
         PMD p = new PMD();
         RuleContext ctx = new RuleContext();
         Report report = new Report();
@@ -47,7 +47,7 @@ public final class ScalaParsingHelper extends BaseParsingHelper<ScalaParsingHelp
         return report;
     }
 
-    public Report getReportForResource(Rule rule, String resourcePath) {
+    public Report getReportForResource(final Rule rule, final String resourcePath) {
         return getReportForTestString(rule, readResource(resourcePath));
     }
 }

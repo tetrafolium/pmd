@@ -64,7 +64,7 @@ public class RuleSetSchemaTest {
         errorHandler.reset();
     }
 
-    private Document parseWithVersion2(String ruleset) throws SAXException, ParserConfigurationException, IOException {
+    private Document parseWithVersion2(final String ruleset) throws SAXException, ParserConfigurationException, IOException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(true);
         dbf.setFeature("http://apache.org/xml/features/validation/schema", true);
@@ -76,7 +76,7 @@ public class RuleSetSchemaTest {
         return doc;
     }
 
-    private String generateRuleSet(String version) {
+    private String generateRuleSet(final String version) {
         String versionUnderscore = version.replaceAll("\\.", "_");
         String ruleset = "<?xml version=\"1.0\"?>" + PMD.EOL
                 + "<ruleset " + PMD.EOL
@@ -110,7 +110,7 @@ public class RuleSetSchemaTest {
         private static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         @Override
-        public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        public InputSource resolveEntity(final String publicId, final String systemId) throws SAXException, IOException {
             if ("https://pmd.sourceforge.io/ruleset_2_0_0.xsd".equals(systemId)) {
                 return new InputSource(schema2.toExternalForm());
             }
@@ -144,17 +144,17 @@ public class RuleSetSchemaTest {
         }
 
         @Override
-        public void warning(SAXParseException exception) throws SAXException {
+        public void warning(final SAXParseException exception) throws SAXException {
             warnings.add(exception);
         }
 
         @Override
-        public void error(SAXParseException exception) throws SAXException {
+        public void error(final SAXParseException exception) throws SAXException {
             errors.add(exception);
         }
 
         @Override
-        public void fatalError(SAXParseException exception) throws SAXException {
+        public void fatalError(final SAXParseException exception) throws SAXException {
             fatalErrors.add(exception);
         }
 

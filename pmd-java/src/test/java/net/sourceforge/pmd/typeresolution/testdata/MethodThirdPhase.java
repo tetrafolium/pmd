@@ -19,19 +19,19 @@ public class MethodThirdPhase {
         String d = mostSpecific(10, 10, 10);
     }
 
-    Exception mostSpecific(Number... b) {
+    Exception mostSpecific(final Number... b) {
         return null;
     }
 
-    String mostSpecific(Integer... b) {
+    String mostSpecific(final Integer... b) {
         return null;
     }
 
-    Exception vararg(int a, Number... b) {
+    Exception vararg(final int a, final Number... b) {
         return null;
     }
 
-    int vararg(int a, String c, String... b) {
+    int vararg(final int a, final String c, final String... b) {
         return 0;
     }
 }

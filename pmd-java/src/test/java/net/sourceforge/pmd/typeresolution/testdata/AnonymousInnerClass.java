@@ -10,7 +10,7 @@ import java.util.List;
 public class AnonymousInnerClass {
     List<Object> list = new AbstractList<Object>() {
         @Override
-        public Object get(int index) {
+        public Object get(final int index) {
             return null;
         }
 

@@ -91,7 +91,7 @@ public class MultiThreadProcessorTest {
         private final String data;
         private final String name;
 
-        StringDataSource(String name, String data) {
+        StringDataSource(final String name, final String data) {
             this.name = name;
             this.data = data;
         }
@@ -102,7 +102,7 @@ public class MultiThreadProcessorTest {
         }
 
         @Override
-        public String getNiceFileName(boolean shortNames, String inputFileName) {
+        public String getNiceFileName(final boolean shortNames, final String inputFileName) {
             return name;
         }
     }
@@ -113,7 +113,7 @@ public class MultiThreadProcessorTest {
         // between the threads
 
         @Override
-        public void apply(List<? extends Node> nodes, RuleContext ctx) {
+        public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
             count.incrementAndGet();
 
             if (ctx.getSourceCodeFilename().contains("violation")) {
@@ -129,7 +129,7 @@ public class MultiThreadProcessorTest {
             }
         }
 
-        private void letTheOtherThreadRun(int millis) {
+        private void letTheOtherThreadRun(final int millis) {
             try {
                 Thread.yield();
                 Thread.sleep(millis);
@@ -144,7 +144,7 @@ public class MultiThreadProcessorTest {
         public static final String DYSFUNCTIONAL_RULE_REASON = "dysfunctional rule is dysfunctional";
 
         @Override
-        public void apply(List<? extends Node> nodes, RuleContext ctx) {
+        public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
             // noop
         }
 
@@ -158,18 +158,18 @@ public class MultiThreadProcessorTest {
         public AtomicInteger violations = new AtomicInteger(0);
 
         @Override
-        public void ruleViolationAdded(RuleViolation ruleViolation) {
+        public void ruleViolationAdded(final RuleViolation ruleViolation) {
             violations.incrementAndGet();
         }
 
         @Override
-        public void metricAdded(Metric metric) {
+        public void metricAdded(final Metric metric) {
         }
     }
 
     private static class SimpleRenderer extends AbstractAccumulatingRenderer {
 
-        /* default */ SimpleRenderer(String name, String description) {
+        /* default */ SimpleRenderer(final String name, final String description) {
             super(name, description);
         }
 

@@ -33,7 +33,7 @@ public class MockedFileWriter implements FileWriter {
     private List<FileEntry> data = new ArrayList<>();
 
     @Override
-    public void write(Path path, List<String> lines) throws IOException {
+    public void write(final Path path, final List<String> lines) throws IOException {
         FileEntry entry = new FileEntry();
         entry.filename = path.toString();
         entry.content = StringUtils.join(lines, System.getProperty("line.separator"));
@@ -48,7 +48,7 @@ public class MockedFileWriter implements FileWriter {
         data.clear();
     }
 
-    public static String normalizeLineSeparators(String s) {
+    public static String normalizeLineSeparators(final String s) {
         return s.replaceAll(Pattern.quote(IOUtils.LINE_SEPARATOR_WINDOWS), IOUtils.LINE_SEPARATOR_UNIX)
                 .replaceAll(Pattern.quote(IOUtils.LINE_SEPARATOR_UNIX), PMD.EOL);
     }

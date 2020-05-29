@@ -15,13 +15,13 @@ import net.sourceforge.pmd.lang.ecmascript.EcmascriptLanguageModule;
 
 public class LanguageVersionTest extends AbstractLanguageVersionTest {
 
-    public LanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public LanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         super(name, terseName, version, expected);
     }
 
     @Parameters
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] { { EcmascriptLanguageModule.NAME, EcmascriptLanguageModule.TERSE_NAME, "3",
+        return Arrays.asList(new Object[][] {{EcmascriptLanguageModule.NAME, EcmascriptLanguageModule.TERSE_NAME, "3",
             LanguageRegistry.getLanguage(EcmascriptLanguageModule.NAME).getDefaultVersion(), }, });
     }
 }

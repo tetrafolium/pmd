@@ -26,35 +26,35 @@ public class MethodFirstPhase {
         Collections.sort(myList); // TODO: generic type variables on methods
     }
 
-    String vararg(Number... a) {
+    String vararg(final Number... a) {
         return null;
     }
 
-    Exception vararg(Number a) {
+    Exception vararg(final Number a) {
         return null;
     }
 
-    void stringVarargs(String... s) {
+    void stringVarargs(final String... s) {
 
     }
 
-    void classVarargs(Class<?>... c) {
+    void classVarargs(final Class<?>... c) {
 
     }
 
-    Exception subtype(short a, int b, String c) {
+    Exception subtype(final short a, final int b, final String c) {
         return null;
     }
 
-    <T extends CharSequence> int subtype(T a, int b, String c) {
+    <T extends CharSequence> int subtype(final T a, final int b, final String c) {
         return 0;
     }
 
-    int subtype(Long a, int b, String c) {
+    int subtype(final Long a, final int b, final String c) {
         return 0;
     }
 
-    Exception subtype(long a, byte b, String c) {
+    Exception subtype(final long a, final byte b, final String c) {
         return null;
     }
 }

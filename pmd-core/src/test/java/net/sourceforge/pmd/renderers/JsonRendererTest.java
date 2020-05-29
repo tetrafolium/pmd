@@ -43,7 +43,7 @@ public class JsonRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ProcessingError error) {
+    public String getExpectedError(final ProcessingError error) {
         String expected = readFile("expected-processingerror.json");
         expected = expected.replace("###REPLACE_ME###", error.getDetail()
                 .replaceAll("\r", "\\\\r")
@@ -53,12 +53,12 @@ public class JsonRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String getExpectedError(ConfigurationError error) {
+    public String getExpectedError(final ConfigurationError error) {
         return readFile("expected-configurationerror.json");
     }
 
     @Override
-    public String getExpectedErrorWithoutMessage(ProcessingError error) {
+    public String getExpectedErrorWithoutMessage(final ProcessingError error) {
         String expected = readFile("expected-processingerror-no-message.json");
         expected = expected.replace("###REPLACE_ME###", error.getDetail()
                 .replaceAll("\r", "\\\\r")
@@ -67,7 +67,7 @@ public class JsonRendererTest extends AbstractRendererTest {
         return expected;
     }
 
-    private String readFile(String name) {
+    private String readFile(final String name) {
         try (InputStream in = JsonRendererTest.class.getResourceAsStream("json/" + name)) {
             return IOUtils.toString(in, StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -76,7 +76,7 @@ public class JsonRendererTest extends AbstractRendererTest {
     }
 
     @Override
-    public String filter(String expected) {
+    public String filter(final String expected) {
         String result = expected
                 .replaceAll("\"timestamp\":\\s*\"[^\"]+\"", "\"timestamp\": \"--replaced--\"")
                 .replaceAll("\r\n", "\n"); // make the test run on Windows, too

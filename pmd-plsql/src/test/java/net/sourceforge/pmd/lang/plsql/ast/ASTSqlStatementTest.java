@@ -48,7 +48,7 @@ public class ASTSqlStatementTest extends AbstractPLSQLParserTst {
         assertType(sqlStatements, 2, ASTSqlStatement.Type.COMMIT);
     }
 
-    private void assertType(List<ASTSqlStatement> sqlStatements, int index, ASTSqlStatement.Type expectedType) {
+    private void assertType(final List<ASTSqlStatement> sqlStatements, final int index, final ASTSqlStatement.Type expectedType) {
         Assert.assertEquals(expectedType, sqlStatements.get(index).getType());
     }
 }

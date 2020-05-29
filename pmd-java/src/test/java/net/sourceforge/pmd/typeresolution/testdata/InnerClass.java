@@ -8,6 +8,6 @@ public class InnerClass {
     public class TheInnerClass {
     }
 
-    public void foo(TheInnerClass arg) {
+    public void foo(final TheInnerClass arg) {
     }
 }

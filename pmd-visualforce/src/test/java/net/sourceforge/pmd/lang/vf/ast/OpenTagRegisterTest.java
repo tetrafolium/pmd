@@ -138,7 +138,7 @@ public class OpenTagRegisterTest {
         assertTrue(b2.isUnclosed());
     }
 
-    private ASTElement element(String name) {
+    private ASTElement element(final String name) {
         ASTElement elm = new ASTElement(elmId++);
         elm.setName(name);
         return elm;

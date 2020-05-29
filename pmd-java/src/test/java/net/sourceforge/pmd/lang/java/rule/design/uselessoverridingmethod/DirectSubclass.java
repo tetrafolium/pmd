@@ -14,7 +14,7 @@ public class DirectSubclass extends BaseClass {
 
 
     @Override
-    public void doBaseWithArg(String foo) {
+    public void doBaseWithArg(final String foo) {
         super.doBaseWithArg(foo);
     }
 }

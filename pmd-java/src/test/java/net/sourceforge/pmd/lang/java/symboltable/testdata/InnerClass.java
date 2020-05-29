@@ -15,12 +15,12 @@ public class InnerClass {
         ONE, TWO;
     }
 
-    public void foo(TheInnerClass arg) {
+    public void foo(final TheInnerClass arg) {
     }
 
-    public void bar(InnerClass.TheInnerClass arg) {
+    public void bar(final InnerClass.TheInnerClass arg) {
     }
 
-    public void baz(EnumTest e) {
+    public void baz(final EnumTest e) {
     }
 }

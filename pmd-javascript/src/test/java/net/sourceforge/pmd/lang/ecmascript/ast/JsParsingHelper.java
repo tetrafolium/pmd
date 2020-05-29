@@ -11,12 +11,12 @@ public final class JsParsingHelper extends BaseParsingHelper<JsParsingHelper, AS
 
     public static final JsParsingHelper DEFAULT = new JsParsingHelper(Params.getDefaultProcess());
 
-    private JsParsingHelper(Params params) {
+    private JsParsingHelper(final Params params) {
         super(EcmascriptLanguageModule.NAME, ASTAstRoot.class, params);
     }
 
     @Override
-    protected JsParsingHelper clone(Params params) {
+    protected JsParsingHelper clone(final Params params) {
         return new JsParsingHelper(params);
     }
 }

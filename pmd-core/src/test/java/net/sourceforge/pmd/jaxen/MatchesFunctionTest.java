@@ -31,7 +31,7 @@ public class MatchesFunctionTest {
             return "MyNode";
         }
 
-        public void setClassName(String className) {
+        public void setClassName(final String className) {
             this.className = className;
         }
 
@@ -62,7 +62,7 @@ public class MatchesFunctionTest {
         assertTrue(tryRegexp(myNode, "Foo") instanceof Boolean);
     }
 
-    private Object tryRegexp(MyNode myNode, String exp) throws FunctionCallException, NoSuchMethodException {
+    private Object tryRegexp(final MyNode myNode, final String exp) throws FunctionCallException, NoSuchMethodException {
         MatchesFunction function = new MatchesFunction();
         List<Object> list = new ArrayList<>();
         List<Attribute> attrs = new ArrayList<>();

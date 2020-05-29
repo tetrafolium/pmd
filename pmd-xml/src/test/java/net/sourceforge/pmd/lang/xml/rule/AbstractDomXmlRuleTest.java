@@ -152,7 +152,7 @@ public class AbstractDomXmlRuleTest {
 
         }
 
-        private void visit(String key, org.w3c.dom.Node node) {
+        private void visit(final String key, final org.w3c.dom.Node node) {
             List<org.w3c.dom.Node> nodes = visitedNodes.get(key);
             if (nodes == null) {
                 nodes = new ArrayList<>();
@@ -162,72 +162,72 @@ public class AbstractDomXmlRuleTest {
         }
 
         @Override
-        public void apply(List<? extends Node> nodes, RuleContext ctx) {
+        public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
             super.apply(nodes, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Attr attr, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Attr attr, final RuleContext ctx) {
             visit("Attr", attr);
             super.visit(node, attr, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, CharacterData characterData, RuleContext ctx) {
+        protected void visit(final XmlNode node, final CharacterData characterData, final RuleContext ctx) {
             visit("CharacterData", characterData);
             super.visit(node, characterData, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Comment comment, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Comment comment, final RuleContext ctx) {
             visit("Comment", comment);
             super.visit(node, comment, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Document document, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Document document, final RuleContext ctx) {
             visit("Document", document);
             super.visit(node, document, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, DocumentType documentType, RuleContext ctx) {
+        protected void visit(final XmlNode node, final DocumentType documentType, final RuleContext ctx) {
             visit("DocumentType", documentType);
             super.visit(node, documentType, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Element element, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Element element, final RuleContext ctx) {
             visit("Element", element);
             super.visit(node, element, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Entity entity, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Entity entity, final RuleContext ctx) {
             visit("Entity", entity);
             super.visit(node, entity, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, EntityReference entityReference, RuleContext ctx) {
+        protected void visit(final XmlNode node, final EntityReference entityReference, final RuleContext ctx) {
             visit("EntityReference", entityReference);
             super.visit(node, entityReference, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Notation notation, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Notation notation, final RuleContext ctx) {
             visit("Notation", notation);
             super.visit(node, notation, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, ProcessingInstruction processingInstruction, RuleContext ctx) {
+        protected void visit(final XmlNode node, final ProcessingInstruction processingInstruction, final RuleContext ctx) {
             visit("ProcessingInstruction", processingInstruction);
             super.visit(node, processingInstruction, ctx);
         }
 
         @Override
-        protected void visit(XmlNode node, Text text, RuleContext ctx) {
+        protected void visit(final XmlNode node, final Text text, final RuleContext ctx) {
             visit("Text", text);
             super.visit(node, text, ctx);
         }

@@ -15,11 +15,11 @@ public class NestedAnonymousClass {
     public ConverterFactory<String, Bar> factory = new ConverterFactory<String, Bar>() {
 
         @Override
-        public <Z extends Bar> Converter<String, Z> getConverter(Class<Z> targetType) {
+        public <Z extends Bar> Converter<String, Z> getConverter(final Class<Z> targetType) {
             return new Converter<String, Z>() {
                 @SuppressWarnings("unchecked")
                 @Override
-                public Z convert(String source) {
+                public Z convert(final String source) {
                     return (Z) new Bar();
                 }
             };

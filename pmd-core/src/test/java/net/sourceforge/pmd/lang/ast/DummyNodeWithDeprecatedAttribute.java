@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.ast.xpath.internal.DeprecatedAttribute;
 public class DummyNodeWithDeprecatedAttribute extends DummyNode {
 
 
-    public DummyNodeWithDeprecatedAttribute(int id) {
+    public DummyNodeWithDeprecatedAttribute(final int id) {
         super(id);
     }
 

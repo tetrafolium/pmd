@@ -126,7 +126,7 @@ public class JaxenXPathRuleQueryTest {
         Assert.assertEquals(xpath, query.nodeNameToXPaths.get(JaxenXPathRuleQuery.AST_ROOT).get(0).toString());
     }
 
-    private static void assertQuery(int resultSize, String xpath, Node node) {
+    private static void assertQuery(final int resultSize, final String xpath, final Node node) {
         JaxenXPathRuleQuery query = createQuery(xpath);
         RuleContext data = new RuleContext();
         data.setLanguageVersion(LanguageRegistry.findLanguageByTerseName("dummy").getDefaultVersion());
@@ -134,7 +134,7 @@ public class JaxenXPathRuleQueryTest {
         Assert.assertEquals(resultSize, result.size());
     }
 
-    private static JaxenXPathRuleQuery createQuery(String xpath) {
+    private static JaxenXPathRuleQuery createQuery(final String xpath) {
         JaxenXPathRuleQuery query = new JaxenXPathRuleQuery();
         query.setVersion("1.0");
         query.setProperties(Collections.<PropertyDescriptor<?>, Object>emptyMap());

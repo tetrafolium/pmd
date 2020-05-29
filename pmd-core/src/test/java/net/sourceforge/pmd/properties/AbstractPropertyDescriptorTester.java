@@ -44,7 +44,7 @@ public abstract class AbstractPropertyDescriptorTester<T> {
     protected final String typeName;
 
 
-    public AbstractPropertyDescriptorTester(String typeName) {
+    public AbstractPropertyDescriptorTester(final String typeName) {
         this.typeName = typeName;
     }
 
@@ -108,7 +108,7 @@ public abstract class AbstractPropertyDescriptorTester<T> {
     }
 
 
-    private List<T> createMultipleValues(int count) {
+    private List<T> createMultipleValues(final int count) {
         List<T> res = new ArrayList<>();
         while (count > 0) {
             res.add(createValue());
@@ -252,7 +252,7 @@ public abstract class AbstractPropertyDescriptorTester<T> {
     }
 
 
-    private List<T> createMultipleBadValues(int count) {
+    private List<T> createMultipleBadValues(final int count) {
         List<T> res = new ArrayList<>();
         while (count > 0) {
             res.add(createBadValue());
@@ -308,32 +308,32 @@ public abstract class AbstractPropertyDescriptorTester<T> {
     }
 
 
-    static char randomChar(char[] characters) {
+    static char randomChar(final char[] characters) {
         return characters[randomInt(0, characters.length)];
     }
 
 
-    static int randomInt(int min, int max) {
+    static int randomInt(final int min, final int max) {
         return (int) randomLong(min, max);
     }
 
 
-    static float randomFloat(float min, float max) {
+    static float randomFloat(final float min, final float max) {
         return (float) randomDouble(min, max);
     }
 
 
-    static double randomDouble(double min, double max) {
+    static double randomDouble(final double min, final double max) {
         return min + RANDOM.nextDouble() * Math.abs(max - min);
     }
 
 
-    static long randomLong(long min, long max) {
+    static long randomLong(final long min, final long max) {
         return min + RANDOM.nextInt((int) Math.abs(max - min));
     }
 
 
-    static <T> T randomChoice(T[] items) {
+    static <T> T randomChoice(final T[] items) {
         return items[randomInt(0, items.length)];
     }
 
@@ -345,7 +345,7 @@ public abstract class AbstractPropertyDescriptorTester<T> {
      * @param removeChar char
      * @return char[]
      */
-    protected static char[] filter(char[] chars, char removeChar) {
+    protected static char[] filter(final char[] chars, final char removeChar) {
         int count = 0;
         for (char c : chars) {
             if (c == removeChar) {

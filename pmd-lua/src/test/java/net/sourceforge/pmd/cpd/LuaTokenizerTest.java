@@ -23,7 +23,7 @@ public class LuaTokenizerTest extends AbstractTokenizerTest {
     private final String filename;
     private final int nExpectedTokens;
 
-    public LuaTokenizerTest(String filename, int nExpectedTokens) {
+    public LuaTokenizerTest(final String filename, final int nExpectedTokens) {
         this.filename = filename;
         this.nExpectedTokens = nExpectedTokens;
     }
@@ -31,8 +31,8 @@ public class LuaTokenizerTest extends AbstractTokenizerTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(
-                new Object[] { "factorial.lua", 44 },
-                new Object[] { "helloworld.lua", 5 }
+                new Object[] {"factorial.lua", 44 },
+                new Object[] {"helloworld.lua", 5 }
         );
     }
 

@@ -23,7 +23,7 @@ abstract class MessageBuilder<T extends MessageBuilder, U extends PartBuilder<U>
 
     public abstract U newComponent();
 
-    public T addComponent(U ignore) {
+    public T addComponent(final U ignore) {
         return (T) this;
     }
 }
@@ -38,7 +38,7 @@ class MessageBuilderA extends MessageBuilder<MessageBuilderA, PartBuilderA> {
 
 class PartBuilder<T extends PartBuilder> {
 
-    public T withSomeValue(String ignore) {
+    public T withSomeValue(final String ignore) {
         return (T) this;
     }
 }

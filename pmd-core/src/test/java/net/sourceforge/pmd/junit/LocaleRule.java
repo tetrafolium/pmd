@@ -20,22 +20,22 @@ public class LocaleRule extends TestWatcher {
     private Locale localeForTest;
     private Locale originalDefault;
 
-    private LocaleRule(Locale localeForTest) {
+    private LocaleRule(final Locale localeForTest) {
         this.localeForTest = Objects.requireNonNull(localeForTest);
     }
 
     @Override
-    protected void starting(Description description) {
+    protected void starting(final Description description) {
         originalDefault = Locale.getDefault();
         Locale.setDefault(localeForTest);
     }
 
     @Override
-    protected void finished(Description description) {
+    protected void finished(final Description description) {
         Locale.setDefault(originalDefault);
     }
 
-    public void setDefault(Locale newLocale) {
+    public void setDefault(final Locale newLocale) {
         Locale.setDefault(Objects.requireNonNull(newLocale));
     }
 
