@@ -35,7 +35,7 @@ public class MetricOptions {
     }
 
 
-    private MetricOptions(Set<? extends MetricOption> opts) {
+    private MetricOptions(final Set<? extends MetricOption> opts) {
 
         switch (opts.size()) {
         case 0:
@@ -52,7 +52,7 @@ public class MetricOptions {
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -87,7 +87,7 @@ public class MetricOptions {
      *
      * @param option Option to look for
      */
-    public boolean contains(MetricOption option) {
+    public boolean contains(final MetricOption option) {
         return options.contains(option);
     }
 
@@ -118,7 +118,7 @@ public class MetricOptions {
      *
      * @return An options bundle
      */
-    public static MetricOptions ofOptions(Collection<? extends MetricOption> options) {
+    public static MetricOptions ofOptions(final Collection<? extends MetricOption> options) {
         MetricOptionsBuilder builder = new MetricOptionsBuilder();
         builder.addAll(options);
         return builder.build();
@@ -133,7 +133,7 @@ public class MetricOptions {
      *
      * @return An options bundle
      */
-    public static MetricOptions ofOptions(MetricOption option, MetricOption... options) {
+    public static MetricOptions ofOptions(final MetricOption option, final MetricOption... options) {
         MetricOptionsBuilder builder = new MetricOptionsBuilder();
 
         builder.add(option);
@@ -152,14 +152,14 @@ public class MetricOptions {
         private Set<MetricOption> opts = new HashSet<>();
 
 
-        void add(MetricOption option) {
+        void add(final MetricOption option) {
             if (option != null) {
                 opts.add(option);
             }
         }
 
 
-        void addAll(Collection<? extends MetricOption> options) {
+        void addAll(final Collection<? extends MetricOption> options) {
             if (options != null) {
                 this.opts.addAll(options);
                 opts.remove(null);

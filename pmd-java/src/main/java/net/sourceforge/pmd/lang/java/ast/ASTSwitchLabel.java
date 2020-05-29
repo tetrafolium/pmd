@@ -25,14 +25,14 @@ public class ASTSwitchLabel extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTSwitchLabel(int id) {
+    public ASTSwitchLabel(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTSwitchLabel(JavaParser p, int id) {
+    public ASTSwitchLabel(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -48,7 +48,7 @@ public class ASTSwitchLabel extends AbstractJavaNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

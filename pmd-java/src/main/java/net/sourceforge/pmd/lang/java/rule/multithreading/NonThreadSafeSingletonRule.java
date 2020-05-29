@@ -49,7 +49,7 @@ public class NonThreadSafeSingletonRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         fieldDecls.clear();
         checkNonStaticMethods = getProperty(CHECK_NON_STATIC_METHODS_DESCRIPTOR);
         checkNonStaticFields = getProperty(CHECK_NON_STATIC_FIELDS_DESCRIPTOR);
@@ -57,7 +57,7 @@ public class NonThreadSafeSingletonRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         if (checkNonStaticFields || node.isStatic()) {
             fieldDecls.put(node.getVariableName(), node);
         }
@@ -65,7 +65,7 @@ public class NonThreadSafeSingletonRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
 
         if (checkNonStaticMethods && !node.isStatic() || node.isSynchronized()) {
             return super.visit(node, data);

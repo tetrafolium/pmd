@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.plsql.dfa.PLSQLDataFlowNode;
 
 public class PLSQLDataFlowHandler implements DataFlowHandler {
     @Override
-    public DataFlowNode createDataFlowNode(List<DataFlowNode> dataFlow, Node node) {
+    public DataFlowNode createDataFlowNode(final List<DataFlowNode> dataFlow, final Node node) {
         return new PLSQLDataFlowNode(dataFlow, node);
     }
 

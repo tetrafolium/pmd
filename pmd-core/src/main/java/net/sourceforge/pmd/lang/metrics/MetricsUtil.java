@@ -23,7 +23,7 @@ public final class MetricsUtil {
         // util class
     }
 
-    public static <N extends Node> boolean supportsAll(N node, MetricKey<N>... metrics) {
+    public static <N extends Node> boolean supportsAll(final N node, final MetricKey<N>... metrics) {
         for (MetricKey<N> metric : metrics) {
             if (!metric.supports(node)) {
                 return false;
@@ -32,7 +32,7 @@ public final class MetricsUtil {
         return true;
     }
 
-    public static <O extends Node> double computeAggregate(MetricKey<? super O> key, Iterable<? extends O> ops, ResultOption resultOption) {
+    public static <O extends Node> double computeAggregate(final MetricKey<? super O> key, final Iterable<? extends O> ops, final ResultOption resultOption) {
         return computeAggregate(key, ops, MetricOptions.emptyOptions(), resultOption);
     }
 
@@ -46,7 +46,7 @@ public final class MetricsUtil {
      *
      * @return The result of the computation, or {@code Double.NaN} if it couldn't be performed
      */
-    public static <O extends Node> double computeAggregate(MetricKey<? super O> key, Iterable<? extends O> ops, MetricOptions options, ResultOption resultOption) {
+    public static <O extends Node> double computeAggregate(final MetricKey<? super O> key, final Iterable<? extends O> ops, final MetricOptions options, final ResultOption resultOption) {
 
 
         Objects.requireNonNull(key, NULL_KEY_MESSAGE);
@@ -84,7 +84,7 @@ public final class MetricsUtil {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static <N extends Node> double computeMetric(MetricKey<? super N> key, N node) {
+    public static <N extends Node> double computeMetric(final MetricKey<? super N> key, final N node) {
         return computeMetric(key, node, MetricOptions.emptyOptions());
     }
 
@@ -103,7 +103,7 @@ public final class MetricsUtil {
      *     the metric supports the argument.
      */
     @Deprecated
-    public static <N extends Node> double computeMetricOrNaN(MetricKey<? super N> key, N node, MetricOptions options) {
+    public static <N extends Node> double computeMetricOrNaN(final MetricKey<? super N> key, final N node, final MetricOptions options) {
         if (!key.supports(node)) {
             return Double.NaN;
         }
@@ -125,7 +125,7 @@ public final class MetricsUtil {
      *
      * @throws IllegalArgumentException If the metric does not support the given node
      */
-    public static <N extends Node> double computeMetric(MetricKey<? super N> key, N node, MetricOptions options) {
+    public static <N extends Node> double computeMetric(final MetricKey<? super N> key, final N node, final MetricOptions options) {
         return computeMetric(key, node, options, false);
     }
 
@@ -145,7 +145,7 @@ public final class MetricsUtil {
      *
      * @throws IllegalArgumentException If the metric does not support the given node
      */
-    public static <N extends Node> double computeMetric(MetricKey<? super N> key, N node, MetricOptions options, boolean forceRecompute) {
+    public static <N extends Node> double computeMetric(final MetricKey<? super N> key, final N node, final MetricOptions options, final boolean forceRecompute) {
         Objects.requireNonNull(key, NULL_KEY_MESSAGE);
         Objects.requireNonNull(options, NULL_OPTIONS_MESSAGE);
         Objects.requireNonNull(node, NULL_NODE_MESSAGE);
@@ -166,7 +166,7 @@ public final class MetricsUtil {
         return val;
     }
 
-    private static double sum(List<Double> values) {
+    private static double sum(final List<Double> values) {
         double sum = 0;
         for (double val : values) {
             sum += val;
@@ -175,7 +175,7 @@ public final class MetricsUtil {
     }
 
 
-    private static double highest(List<Double> values) {
+    private static double highest(final List<Double> values) {
         double highest = Double.NEGATIVE_INFINITY;
         for (double val : values) {
             if (val > highest) {
@@ -186,7 +186,7 @@ public final class MetricsUtil {
     }
 
 
-    private static double average(List<Double> values) {
+    private static double average(final List<Double> values) {
         return sum(values) / values.size();
     }
 

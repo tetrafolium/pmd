@@ -21,7 +21,7 @@ class SplitUnions extends SaxonExprVisitor {
     private List<Expression> expressions = new ArrayList<>();
 
     @Override
-    public Expression visit(VennExpression e) {
+    public Expression visit(final VennExpression e) {
         if (e.getOperator() == Token.UNION) {
             for (Expression operand : e.getOperands()) {
                 if (operand instanceof VennExpression) {

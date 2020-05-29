@@ -37,13 +37,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
     private final Class<?> valueType;
 
 
-    protected PropertyDescriptorBuilderConversionWrapper(Class<?> valueType) {
+    protected PropertyDescriptorBuilderConversionWrapper(final Class<?> valueType) {
         this.valueType = valueType;
     }
 
 
     /** Populates the builder with extracted fields. To be overridden. */
-    protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+    protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
         builder.desc(fields.get(PropertyDescriptorField.DESCRIPTION));
         if (fields.containsKey(PropertyDescriptorField.UI_ORDER)) {
             builder.uiOrder(Float.parseFloat(fields.get(PropertyDescriptorField.UI_ORDER)));
@@ -65,7 +65,7 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
 
 
     @Override
-    public PropertyDescriptor<E> build(Map<PropertyDescriptorField, String> fields) {
+    public PropertyDescriptor<E> build(final Map<PropertyDescriptorField, String> fields) {
         T builder = newBuilder(fields.get(PropertyDescriptorField.NAME));
         populate(builder, fields);
         builder.isDefinedInXML = true;
@@ -73,13 +73,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
     }
 
 
-    protected static String[] legalPackageNamesIn(Map<PropertyDescriptorField, String> valuesById, char delimiter) {
+    protected static String[] legalPackageNamesIn(final Map<PropertyDescriptorField, String> valuesById, final char delimiter) {
         String names = valuesById.get(LEGAL_PACKAGES);
         return StringUtils.isBlank(names) ? null : StringUtils.split(names, delimiter);
     }
 
 
-    private static char delimiterIn(Map<PropertyDescriptorField, String> valuesById, char defalt) {
+    private static char delimiterIn(final Map<PropertyDescriptorField, String> valuesById, final char defalt) {
         String characterStr = "";
         if (valuesById.containsKey(DELIMITER)) {
             characterStr = valuesById.get(DELIMITER).trim();
@@ -108,14 +108,14 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         protected final ValueParser<V> parser;
 
 
-        protected MultiValue(Class<V> valueType, ValueParser<V> parser) {
+        protected MultiValue(final Class<V> valueType, final ValueParser<V> parser) {
             super(valueType);
             this.parser = parser;
         }
 
 
         @Override
-        protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+        protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
             super.populate(builder, fields);
             char delim = delimiterIn(fields, builder.multiValueDelimiter);
             builder.delim(delim).defaultValues(ValueParserConstants.multi(parser, delim)
@@ -138,13 +138,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         public abstract static class Numeric<V, T extends MultiNumericPropertyBuilder<V, T>>
             extends MultiValue<V, T> {
 
-            protected Numeric(Class<V> valueType, ValueParser<V> parser) {
+            protected Numeric(final Class<V> valueType, final ValueParser<V> parser) {
                 super(valueType, parser);
             }
 
 
             @Override
-            protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+            protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
                 super.populate(builder, fields);
                 V min = parser.valueOf(fields.get(PropertyDescriptorField.MIN));
                 V max = parser.valueOf(fields.get(PropertyDescriptorField.MAX));
@@ -162,13 +162,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         public abstract static class Packaged<V, T extends MultiPackagedPropertyBuilder<V, T>>
             extends MultiValue<V, T> {
 
-            protected Packaged(Class<V> valueType, ValueParser<V> parser) {
+            protected Packaged(final Class<V> valueType, final ValueParser<V> parser) {
                 super(valueType, parser);
             }
 
 
             @Override
-            protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+            protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
                 super.populate(builder, fields);
                 builder.legalPackages(legalPackageNamesIn(fields, PropertyDescriptorBuilderConversionWrapper.delimiterIn(fields,
                     MultiValuePropertyDescriptor.DEFAULT_DELIMITER)));
@@ -190,14 +190,14 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         protected final ValueParser<E> parser;
 
 
-        protected SingleValue(Class<E> valueType, ValueParser<E> parser) {
+        protected SingleValue(final Class<E> valueType, final ValueParser<E> parser) {
             super(valueType);
             this.parser = parser;
         }
 
 
         @Override
-        protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+        protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
             super.populate(builder, fields);
             builder.defaultValue(parser.valueOf(fields.get(PropertyDescriptorField.DEFAULT_VALUE)));
         }
@@ -218,13 +218,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         public abstract static class Numeric<V, T extends SingleNumericPropertyBuilder<V, T>>
             extends SingleValue<V, T> {
 
-            protected Numeric(Class<V> valueType, ValueParser<V> parser) {
+            protected Numeric(final Class<V> valueType, final ValueParser<V> parser) {
                 super(valueType, parser);
             }
 
 
             @Override
-            protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+            protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
                 super.populate(builder, fields);
                 V min = parser.valueOf(fields.get(PropertyDescriptorField.MIN));
                 V max = parser.valueOf(fields.get(PropertyDescriptorField.MAX));
@@ -242,13 +242,13 @@ public abstract class PropertyDescriptorBuilderConversionWrapper<E, T extends Pr
         public abstract static class Packaged<E, T extends SinglePackagedPropertyBuilder<E, T>>
             extends SingleValue<E, T> {
 
-            protected Packaged(Class<E> valueType, ValueParser<E> parser) {
+            protected Packaged(final Class<E> valueType, final ValueParser<E> parser) {
                 super(valueType, parser);
             }
 
 
             @Override
-            protected void populate(T builder, Map<PropertyDescriptorField, String> fields) {
+            protected void populate(final T builder, final Map<PropertyDescriptorField, String> fields) {
                 super.populate(builder, fields);
                 builder.legalPackageNames(legalPackageNamesIn(fields, PropertyDescriptorBuilderConversionWrapper.delimiterIn(fields,
                     MultiValuePropertyDescriptor.DEFAULT_DELIMITER)));

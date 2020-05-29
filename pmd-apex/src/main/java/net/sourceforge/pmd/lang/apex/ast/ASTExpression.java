@@ -12,12 +12,12 @@ public class ASTExpression extends AbstractApexNode<Expression> {
 
     @Deprecated
     @InternalApi
-    public ASTExpression(Expression expression) {
+    public ASTExpression(final Expression expression) {
         super(expression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

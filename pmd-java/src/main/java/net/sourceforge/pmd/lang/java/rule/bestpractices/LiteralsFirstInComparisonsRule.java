@@ -29,7 +29,7 @@ public class LiteralsFirstInComparisonsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         ASTPrimaryPrefix primaryPrefix = node.getFirstChildOfType(ASTPrimaryPrefix.class);
         ASTPrimarySuffix primarySuffix = node.getFirstChildOfType(ASTPrimarySuffix.class);
         if (primaryPrefix != null && primarySuffix != null) {
@@ -48,7 +48,7 @@ public class LiteralsFirstInComparisonsRule extends AbstractJavaRule {
         return node;
     }
 
-    private boolean isIrrelevantImage(String image) {
+    private boolean isIrrelevantImage(final String image) {
         for (String comparisonOp : COMPARISON_OPS) {
             if (image.endsWith(comparisonOp)) {
                 return false;
@@ -57,7 +57,7 @@ public class LiteralsFirstInComparisonsRule extends AbstractJavaRule {
         return true;
     }
 
-    private boolean isWithinNullComparison(ASTPrimaryExpression node) {
+    private boolean isWithinNullComparison(final ASTPrimaryExpression node) {
         for (ASTExpression parentExpr : node.getParentsOfType(ASTExpression.class)) {
             if (isComparisonWithNull(parentExpr, "==", ASTConditionalOrExpression.class)
                     || isComparisonWithNull(parentExpr, "!=", ASTConditionalAndExpression.class)) {
@@ -71,7 +71,7 @@ public class LiteralsFirstInComparisonsRule extends AbstractJavaRule {
      * Expression/ConditionalAndExpression//EqualityExpression(@Image='!=']//NullLiteral
      * Expression/ConditionalOrExpression//EqualityExpression(@Image='==']//NullLiteral
      */
-    private boolean isComparisonWithNull(ASTExpression parentExpr, String equalOperator, Class<? extends JavaNode> condition) {
+    private boolean isComparisonWithNull(final ASTExpression parentExpr, final String equalOperator, final Class<? extends JavaNode> condition) {
         Node condExpr = null;
         ASTEqualityExpression eqExpr = null;
         if (parentExpr != null) {
@@ -92,7 +92,7 @@ public class LiteralsFirstInComparisonsRule extends AbstractJavaRule {
      *       and
      * ( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )
      */
-    private boolean isSingleStringLiteralArgument(ASTPrimarySuffix primarySuffix) {
+    private boolean isSingleStringLiteralArgument(final ASTPrimarySuffix primarySuffix) {
         if (!primarySuffix.isArguments() || primarySuffix.getArgumentCount() != 1) {
             return false;
         }

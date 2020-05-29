@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTForInLoop extends AbstractEcmascriptNode<ForInLoop> {
     @Deprecated
     @InternalApi
-    public ASTForInLoop(ForInLoop forInLoop) {
+    public ASTForInLoop(final ForInLoop forInLoop) {
         super(forInLoop);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

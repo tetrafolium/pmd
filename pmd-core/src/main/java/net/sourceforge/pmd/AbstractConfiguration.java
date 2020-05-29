@@ -38,7 +38,7 @@ public abstract class AbstractConfiguration {
      * @param sourceEncoding
      *            The character encoding.
      */
-    public void setSourceEncoding(String sourceEncoding) {
+    public void setSourceEncoding(final String sourceEncoding) {
         this.sourceEncoding = Charset.forName(sourceEncoding);
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractConfiguration {
      *            The debug indicator to set.
      * @see #isDebug()
      */
-    public void setDebug(boolean debug) {
+    public void setDebug(final boolean debug) {
         this.debug = debug;
     }
 }

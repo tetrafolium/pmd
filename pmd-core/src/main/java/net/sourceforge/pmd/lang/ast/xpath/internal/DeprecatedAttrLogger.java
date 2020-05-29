@@ -27,7 +27,7 @@ public abstract class DeprecatedAttrLogger {
      * Create a new context for the given rule, returns a noop implementation
      * if the warnings would be ignored anyway.
      */
-    public static DeprecatedAttrLogger create(XPathRule rule) {
+    public static DeprecatedAttrLogger create(final XPathRule rule) {
         if (LOG.isLoggable(Level.WARNING)) {
             return new AttrLoggerImpl(rule);
         } else {
@@ -47,7 +47,7 @@ public abstract class DeprecatedAttrLogger {
         return Noop.INSTANCE;
     }
 
-    private static String getLoggableAttributeName(Attribute attr) {
+    private static String getLoggableAttributeName(final Attribute attr) {
         return attr.getParent().getXPathNodeName() + "/@" + attr.getName();
     }
 
@@ -56,7 +56,7 @@ public abstract class DeprecatedAttrLogger {
         static final Noop INSTANCE = new Noop();
 
         @Override
-        public void recordUsageOf(Attribute attribute) {
+        public void recordUsageOf(final Attribute attribute) {
             // do nothing
         }
     }
@@ -66,12 +66,12 @@ public abstract class DeprecatedAttrLogger {
         private final ConcurrentMap<String, Boolean> deprecated = new ConcurrentHashMap<>();
         private final XPathRule rule;
 
-        private AttrLoggerImpl(XPathRule rule) {
+        private AttrLoggerImpl(final XPathRule rule) {
             this.rule = rule;
         }
 
         @Override
-        public void recordUsageOf(Attribute attribute) {
+        public void recordUsageOf(final Attribute attribute) {
             String replacement = attribute.replacementIfDeprecated();
             if (replacement != null) {
                 String name = getLoggableAttributeName(attribute);
@@ -100,7 +100,7 @@ public abstract class DeprecatedAttrLogger {
 
     private static class AdhocLoggerImpl extends DeprecatedAttrLogger {
         @Override
-        public void recordUsageOf(Attribute attribute) {
+        public void recordUsageOf(final Attribute attribute) {
             String replacement = attribute.replacementIfDeprecated();
             if (replacement != null) {
                 String name = getLoggableAttributeName(attribute);

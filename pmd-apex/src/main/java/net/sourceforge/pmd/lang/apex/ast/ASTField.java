@@ -13,12 +13,12 @@ public class ASTField extends AbstractApexNode<Field> implements CanSuppressWarn
 
     @Deprecated
     @InternalApi
-    public ASTField(Field field) {
+    public ASTField(final Field field) {
         super(field);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -28,7 +28,7 @@ public class ASTField extends AbstractApexNode<Field> implements CanSuppressWarn
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (ASTModifierNode modifier : findChildrenOfType(ASTModifierNode.class)) {
             for (ASTAnnotation a : modifier.findChildrenOfType(ASTAnnotation.class)) {
                 if (a.suppresses(rule)) {

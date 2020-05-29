@@ -60,12 +60,12 @@ public class JaxenXPathRuleQuery extends AbstractXPathRuleQuery {
         this(DeprecatedAttrLogger.noop());
     }
 
-    public JaxenXPathRuleQuery(DeprecatedAttrLogger attrCtx) {
+    public JaxenXPathRuleQuery(final DeprecatedAttrLogger attrCtx) {
         this.attrCtx = attrCtx;
     }
 
     @Override
-    public boolean isSupportedVersion(String version) {
+    public boolean isSupportedVersion(final String version) {
         return XPATH_1_0.equals(version);
     }
 

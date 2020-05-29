@@ -136,7 +136,7 @@ public class CPDConfiguration extends AbstractConfiguration {
     public static class LanguageConverter implements IStringConverter<Language> {
 
         @Override
-        public Language convert(String languageString) {
+        public Language convert(final String languageString) {
             if (languageString == null || "".equals(languageString)) {
                 languageString = DEFAULT_LANGUAGE;
             }
@@ -145,16 +145,16 @@ public class CPDConfiguration extends AbstractConfiguration {
     }
 
     @Parameter(names = "--encoding", description = "Character encoding to use when processing files", required = false)
-    public void setEncoding(String encoding) {
+    public void setEncoding(final String encoding) {
         this.encoding = encoding;
         setSourceEncoding(encoding);
     }
 
-    public SourceCode sourceCodeFor(File file) {
+    public SourceCode sourceCodeFor(final File file) {
         return new SourceCode(new SourceCode.FileCodeLoader(file, getSourceEncoding().name()));
     }
 
-    public SourceCode sourceCodeFor(Reader reader, String sourceCodeName) {
+    public SourceCode sourceCodeFor(final Reader reader, final String sourceCodeName) {
         return new SourceCode(new SourceCode.ReaderCodeLoader(reader, sourceCodeName));
     }
 
@@ -179,7 +179,7 @@ public class CPDConfiguration extends AbstractConfiguration {
      * @deprecated Use {@link #getCPDRendererFromString(String, String)} instead
      */
     @Deprecated
-    public static Renderer getRendererFromString(String name, String encoding) {
+    public static Renderer getRendererFromString(final String name, final String encoding) {
         String clazzname = name;
         if (clazzname == null || "".equals(clazzname)) {
             clazzname = DEFAULT_RENDERER;
@@ -204,7 +204,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         }
     }
 
-    public static CPDRenderer getCPDRendererFromString(String name, String encoding) {
+    public static CPDRenderer getCPDRendererFromString(final String name, final String encoding) {
         String clazzname = name;
         if (clazzname == null || "".equals(clazzname)) {
             clazzname = DEFAULT_RENDERER;
@@ -228,7 +228,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         }
     }
 
-    private static void setRendererEncoding(Object renderer, String encoding)
+    private static void setRendererEncoding(final Object renderer, final String encoding)
             throws IllegalAccessException, InvocationTargetException {
         try {
             PropertyDescriptor encodingProperty = new PropertyDescriptor("encoding", renderer.getClass());
@@ -247,11 +247,11 @@ public class CPDConfiguration extends AbstractConfiguration {
         return result;
     }
 
-    public static Language getLanguageFromString(String languageString) {
+    public static Language getLanguageFromString(final String languageString) {
         return LanguageFactory.createLanguage(languageString);
     }
 
-    public static void setSystemProperties(CPDConfiguration configuration) {
+    public static void setSystemProperties(final CPDConfiguration configuration) {
         Properties properties = new Properties();
         if (configuration.isIgnoreLiterals()) {
             properties.setProperty(Tokenizer.IGNORE_LITERALS, "true");
@@ -282,7 +282,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return language;
     }
 
-    public void setLanguage(Language language) {
+    public void setLanguage(final Language language) {
         this.language = language;
     }
 
@@ -290,7 +290,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return minimumTileSize;
     }
 
-    public void setMinimumTileSize(int minimumTileSize) {
+    public void setMinimumTileSize(final int minimumTileSize) {
         this.minimumTileSize = minimumTileSize;
     }
 
@@ -298,7 +298,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return skipDuplicates;
     }
 
-    public void setSkipDuplicates(boolean skipDuplicates) {
+    public void setSkipDuplicates(final boolean skipDuplicates) {
         this.skipDuplicates = skipDuplicates;
     }
 
@@ -306,7 +306,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return rendererName;
     }
 
-    public void setRendererName(String rendererName) {
+    public void setRendererName(final String rendererName) {
         this.rendererName = rendererName;
     }
 
@@ -353,7 +353,7 @@ public class CPDConfiguration extends AbstractConfiguration {
 
         return new FilenameFilter() {
             @Override
-            public boolean accept(File dir, String name) {
+            public boolean accept(final File dir, final String name) {
                 File f = new File(dir, name);
                 if (exclusions.contains(FileUtil.normalizeFilename(f.getAbsolutePath()))) {
                     System.err.println("Excluding " + f.getAbsolutePath());
@@ -369,12 +369,12 @@ public class CPDConfiguration extends AbstractConfiguration {
      * @param renderer
      */
     @Deprecated
-    public void setRenderer(Renderer renderer) {
+    public void setRenderer(final Renderer renderer) {
         this.renderer = renderer;
         this.cpdRenderer = null;
     }
 
-    public void setCPDRenderer(CPDRenderer renderer) {
+    public void setCPDRenderer(final CPDRenderer renderer) {
         this.cpdRenderer = renderer;
         this.renderer = null;
     }
@@ -383,7 +383,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return ignoreLiterals;
     }
 
-    public void setIgnoreLiterals(boolean ignoreLiterals) {
+    public void setIgnoreLiterals(final boolean ignoreLiterals) {
         this.ignoreLiterals = ignoreLiterals;
     }
 
@@ -391,7 +391,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return ignoreIdentifiers;
     }
 
-    public void setIgnoreIdentifiers(boolean ignoreIdentifiers) {
+    public void setIgnoreIdentifiers(final boolean ignoreIdentifiers) {
         this.ignoreIdentifiers = ignoreIdentifiers;
     }
 
@@ -399,7 +399,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return ignoreAnnotations;
     }
 
-    public void setIgnoreAnnotations(boolean ignoreAnnotations) {
+    public void setIgnoreAnnotations(final boolean ignoreAnnotations) {
         this.ignoreAnnotations = ignoreAnnotations;
     }
 
@@ -407,7 +407,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return ignoreUsings;
     }
 
-    public void setIgnoreUsings(boolean ignoreUsings) {
+    public void setIgnoreUsings(final boolean ignoreUsings) {
         this.ignoreUsings = ignoreUsings;
     }
 
@@ -415,7 +415,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return skipLexicalErrors;
     }
 
-    public void setSkipLexicalErrors(boolean skipLexicalErrors) {
+    public void setSkipLexicalErrors(final boolean skipLexicalErrors) {
         this.skipLexicalErrors = skipLexicalErrors;
     }
 
@@ -423,7 +423,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return files;
     }
 
-    public void setFiles(List<File> files) {
+    public void setFiles(final List<File> files) {
         this.files = files;
     }
 
@@ -431,7 +431,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return fileListPath;
     }
 
-    public void setFileListPath(String fileListPath) {
+    public void setFileListPath(final String fileListPath) {
         this.fileListPath = fileListPath;
     }
 
@@ -439,7 +439,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return uri;
     }
 
-    public void setURI(String uri) {
+    public void setURI(final String uri) {
         this.uri = uri;
     }
 
@@ -447,7 +447,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return excludes;
     }
 
-    public void setExcludes(List<File> excludes) {
+    public void setExcludes(final List<File> excludes) {
         this.excludes = excludes;
     }
 
@@ -455,7 +455,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return nonRecursive;
     }
 
-    public void setNonRecursive(boolean nonRecursive) {
+    public void setNonRecursive(final boolean nonRecursive) {
         this.nonRecursive = nonRecursive;
     }
 
@@ -463,7 +463,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return help;
     }
 
-    public void setHelp(boolean help) {
+    public void setHelp(final boolean help) {
         this.help = help;
     }
 
@@ -475,7 +475,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return noSkipBlocks;
     }
 
-    public void setNoSkipBlocks(boolean noSkipBlocks) {
+    public void setNoSkipBlocks(final boolean noSkipBlocks) {
         this.noSkipBlocks = noSkipBlocks;
     }
 
@@ -483,7 +483,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return skipBlocksPattern;
     }
 
-    public void setSkipBlocksPattern(String skipBlocksPattern) {
+    public void setSkipBlocksPattern(final String skipBlocksPattern) {
         this.skipBlocksPattern = skipBlocksPattern;
     }
 
@@ -491,7 +491,7 @@ public class CPDConfiguration extends AbstractConfiguration {
         return failOnViolation;
     }
 
-    public void setFailOnViolation(boolean failOnViolation) {
+    public void setFailOnViolation(final boolean failOnViolation) {
         this.failOnViolation = failOnViolation;
     }
 }

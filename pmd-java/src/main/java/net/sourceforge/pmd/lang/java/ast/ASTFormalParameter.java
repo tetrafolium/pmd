@@ -25,13 +25,13 @@ public class ASTFormalParameter extends AbstractJavaAccessTypeNode implements Di
 
     @InternalApi
     @Deprecated
-    public ASTFormalParameter(int id) {
+    public ASTFormalParameter(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTFormalParameter(JavaParser p, int id) {
+    public ASTFormalParameter(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -79,7 +79,7 @@ public class ASTFormalParameter extends AbstractJavaAccessTypeNode implements Di
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -92,7 +92,7 @@ public class ASTFormalParameter extends AbstractJavaAccessTypeNode implements Di
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (ASTAnnotation a : findChildrenOfType(ASTAnnotation.class)) {
             if (a.suppresses(rule)) {
                 return true;
@@ -171,7 +171,7 @@ public class ASTFormalParameter extends AbstractJavaAccessTypeNode implements Di
     @InternalApi
     @Deprecated
     @Override
-    public void setTypeDefinition(JavaTypeDefinition type) {
+    public void setTypeDefinition(final JavaTypeDefinition type) {
         // see javadoc
     }
 
@@ -182,7 +182,7 @@ public class ASTFormalParameter extends AbstractJavaAccessTypeNode implements Di
     @InternalApi
     @Deprecated
     @Override
-    public void setType(Class<?> type) {
+    public void setType(final Class<?> type) {
         // see javadoc
     }
 }

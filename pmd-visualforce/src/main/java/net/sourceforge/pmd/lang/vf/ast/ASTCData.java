@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTCData extends AbstractVFNode {
     @Deprecated
     @InternalApi
-    public ASTCData(int id) {
+    public ASTCData(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTCData(VfParser p, int id) {
+    public ASTCData(final VfParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

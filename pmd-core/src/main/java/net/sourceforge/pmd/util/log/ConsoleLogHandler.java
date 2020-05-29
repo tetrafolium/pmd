@@ -22,7 +22,7 @@ public class ConsoleLogHandler extends Handler {
     private static final Formatter FORMATTER = new PmdLogFormatter();
 
     @Override
-    public void publish(LogRecord logRecord) {
+    public void publish(final LogRecord logRecord) {
         System.out.println(FORMATTER.format(logRecord));
         if (logRecord.getThrown() != null) {
             // Use the same channel, to make sure that the stacktrace comes

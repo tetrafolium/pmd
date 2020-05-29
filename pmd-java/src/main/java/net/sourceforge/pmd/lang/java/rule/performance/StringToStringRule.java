@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.symboltable.ScopedNode;
 public class StringToStringRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node.getNameDeclaration() == null
             || !TypeHelper.isExactlyAny(node.getNameDeclaration(), String.class)
                 && !TypeHelper.isExactlyAny(node.getNameDeclaration(), String[].class)) {
@@ -38,15 +38,15 @@ public class StringToStringRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isNotAMethodReference(NameOccurrence qualifier) {
+    private boolean isNotAMethodReference(final NameOccurrence qualifier) {
         return isNotA(qualifier, ASTMethodReference.class);
     }
 
-    private boolean isNotAName(NameOccurrence qualifier) {
+    private boolean isNotAName(final NameOccurrence qualifier) {
         return isNotA(qualifier, ASTName.class);
     }
 
-    private boolean isNotA(NameOccurrence qualifier, Class<? extends AbstractJavaNode> type) {
+    private boolean isNotA(final NameOccurrence qualifier, final Class<? extends AbstractJavaNode> type) {
         ScopedNode location = qualifier.getLocation();
         return location == null || !(type.isAssignableFrom(location.getClass()));
     }

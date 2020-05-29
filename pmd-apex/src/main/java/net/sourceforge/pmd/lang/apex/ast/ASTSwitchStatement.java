@@ -9,13 +9,13 @@ import apex.jorje.semantic.ast.statement.SwitchStatement;
 public final class ASTSwitchStatement extends AbstractApexNode<SwitchStatement> {
 
 
-    ASTSwitchStatement(SwitchStatement node) {
+    ASTSwitchStatement(final SwitchStatement node) {
         super(node);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

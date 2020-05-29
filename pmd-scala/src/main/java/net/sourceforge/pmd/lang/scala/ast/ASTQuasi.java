@@ -15,12 +15,12 @@ public class ASTQuasi extends AbstractScalaNode<Quasi> {
 
     @Deprecated
     @InternalApi
-    public ASTQuasi(Quasi scalaNode) {
+    public ASTQuasi(final Quasi scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -18,7 +18,7 @@ public abstract class SingleNumericPropertyBuilder<V, T extends SingleNumericPro
     protected V upperLimit;
 
 
-    public SingleNumericPropertyBuilder(String name) {
+    public SingleNumericPropertyBuilder(final String name) {
         super(name);
     }
 
@@ -32,7 +32,7 @@ public abstract class SingleNumericPropertyBuilder<V, T extends SingleNumericPro
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T range(V min, V max) {
+    public T range(final V min, final V max) {
         this.lowerLimit = min;
         this.upperLimit = max;
         return (T) this;

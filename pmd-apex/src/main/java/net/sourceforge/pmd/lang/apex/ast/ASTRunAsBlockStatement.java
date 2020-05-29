@@ -12,12 +12,12 @@ public class ASTRunAsBlockStatement extends AbstractApexNode<RunAsBlockStatement
 
     @Deprecated
     @InternalApi
-    public ASTRunAsBlockStatement(RunAsBlockStatement runAsBlockStatement) {
+    public ASTRunAsBlockStatement(final RunAsBlockStatement runAsBlockStatement) {
         super(runAsBlockStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

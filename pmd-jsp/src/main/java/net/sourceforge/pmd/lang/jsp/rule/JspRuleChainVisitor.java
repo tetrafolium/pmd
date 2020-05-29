@@ -19,12 +19,12 @@ import net.sourceforge.pmd.lang.rule.XPathRule;
 public class JspRuleChainVisitor extends AbstractRuleChainVisitor {
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         JspParserVisitor jspParserVisitor = new JspParserVisitorAdapter() {
             // Perform a visitation of the AST to index nodes which need
             // visiting by type
             @Override
-            public Object visit(JspNode node, Object data) {
+            public Object visit(final JspNode node, final Object data) {
                 indexNode(node);
                 return super.visit(node, data);
             }
@@ -36,7 +36,7 @@ public class JspRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         // Rule better either be a JspParserVisitor, or a XPathRule
         if (rule instanceof JspParserVisitor) {
             ((JspNode) node).jjtAccept((JspParserVisitor) rule, ctx);

@@ -32,13 +32,13 @@ public class ASTAnnotation extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTAnnotation(int id) {
+    public ASTAnnotation(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAnnotation(JavaParser p, int id) {
+    public ASTAnnotation(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -75,7 +75,7 @@ public class ASTAnnotation extends AbstractJavaTypeNode {
      * @return True if this annotation suppresses the given rule
      */
     // @formatter:on
-    public boolean suppresses(Rule rule) {
+    public boolean suppresses(final Rule rule) {
 
         if (getChild(0) instanceof ASTMarkerAnnotation) {
             return false;
@@ -104,7 +104,7 @@ public class ASTAnnotation extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

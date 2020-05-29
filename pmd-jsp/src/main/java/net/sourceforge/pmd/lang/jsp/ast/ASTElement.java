@@ -26,13 +26,13 @@ public class ASTElement extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public ASTElement(int id) {
+    public ASTElement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTElement(JspParser p, int id) {
+    public ASTElement(final JspParser p, final int id) {
         super(p, id);
     }
 
@@ -69,7 +69,7 @@ public class ASTElement extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -83,18 +83,18 @@ public class ASTElement extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setUnclosed(boolean unclosed) {
+    public void setUnclosed(final boolean unclosed) {
         this.unclosed = unclosed;
     }
 
     @InternalApi
     @Deprecated
-    public void setEmpty(boolean empty) {
+    public void setEmpty(final boolean empty) {
         this.empty = empty;
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

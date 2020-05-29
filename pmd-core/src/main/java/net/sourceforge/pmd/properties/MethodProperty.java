@@ -39,15 +39,15 @@ public final class MethodProperty extends AbstractPackagedProperty<Method> {
      * @param legalPackageNames Legal packages
      * @param theUIOrder        UI order
      */
-    public MethodProperty(String theName, String theDescription, Method theDefault, String[] legalPackageNames,
-                          float theUIOrder) {
+    public MethodProperty(final String theName, final String theDescription, final Method theDefault, final String[] legalPackageNames,
+                          final float theUIOrder) {
         this(theName, theDescription, theDefault, legalPackageNames, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private MethodProperty(String theName, String theDescription, Method theDefault, String[] legalPackageNames,
-                           float theUIOrder, boolean isDefinedExternally) {
+    private MethodProperty(final String theName, final String theDescription, final Method theDefault, final String[] legalPackageNames,
+                           final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally,
             new MethodPropertyModule(legalPackageNames, Collections.singletonList(theDefault)));
     }
@@ -64,15 +64,15 @@ public final class MethodProperty extends AbstractPackagedProperty<Method> {
      *
      * @deprecated will be removed in 7.0.0
      */
-    public MethodProperty(String theName, String theDescription, String defaultMethodStr, String[] legalPackageNames,
-                          float theUIOrder) {
+    public MethodProperty(final String theName, final String theDescription, final String defaultMethodStr, final String[] legalPackageNames,
+                          final float theUIOrder) {
         this(theName, theDescription, METHOD_PARSER.valueOf(defaultMethodStr),
             legalPackageNames, theUIOrder, false);
     }
 
 
     @Override
-    protected String asString(Method value) {
+    protected String asString(final Method value) {
         return MethodPropertyModule.asString(value);
     }
 
@@ -84,7 +84,7 @@ public final class MethodProperty extends AbstractPackagedProperty<Method> {
 
 
     @Override
-    public Method createFrom(String valueString) throws IllegalArgumentException {
+    public Method createFrom(final String valueString) throws IllegalArgumentException {
         return METHOD_PARSER.valueOf(valueString);
     }
 
@@ -92,20 +92,20 @@ public final class MethodProperty extends AbstractPackagedProperty<Method> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Packaged<Method, MethodPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Packaged<Method, MethodPBuilder>(Method.class, ValueParserConstants.METHOD_PARSER) {
             @Override
-            protected MethodPBuilder newBuilder(String name) {
+            protected MethodPBuilder newBuilder(final String name) {
                 return new MethodPBuilder(name);
             }
         };
     }
 
 
-    public static MethodPBuilder named(String name) {
+    public static MethodPBuilder named(final String name) {
         return new MethodPBuilder(name);
     }
 
 
     public static final class MethodPBuilder extends SinglePackagedPropertyBuilder<Method, MethodPBuilder> {
-        private MethodPBuilder(String name) {
+        private MethodPBuilder(final String name) {
             super(name);
         }
 

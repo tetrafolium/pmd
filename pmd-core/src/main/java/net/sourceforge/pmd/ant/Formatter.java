@@ -39,23 +39,23 @@ public class Formatter {
     private Writer writer;
     private Renderer renderer;
 
-    public void setShowSuppressed(boolean value) {
+    public void setShowSuppressed(final boolean value) {
         this.showSuppressed = value;
     }
 
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
-    public void setToFile(File toFile) {
+    public void setToFile(final File toFile) {
         this.toFile = toFile;
     }
 
-    public void setToConsole(boolean toConsole) {
+    public void setToConsole(final boolean toConsole) {
         this.toConsole = toConsole;
     }
 
-    public void addConfiguredParam(Parameter parameter) {
+    public void addConfiguredParam(final Parameter parameter) {
         this.parameters.add(parameter);
     }
 
@@ -63,7 +63,7 @@ public class Formatter {
         return renderer;
     }
 
-    public void start(String baseDir) {
+    public void start(final String baseDir) {
 
         Properties properties = createProperties();
 
@@ -110,7 +110,7 @@ public class Formatter {
         }
     }
 
-    public void end(Report errorReport) {
+    public void end(final Report errorReport) {
         try {
             renderer.renderFileReport(errorReport);
             renderer.end();
@@ -138,7 +138,7 @@ public class Formatter {
                 .toArray(new String[RendererFactory.REPORT_FORMAT_TO_RENDERER.size()]);
     }
 
-    private static String unknownRendererMessage(String userSpecifiedType) {
+    private static String unknownRendererMessage(final String userSpecifiedType) {
         String[] typeCodes = validRendererCodes();
         StringBuilder sb = new StringBuilder(100);
         sb.append("Formatter type must be one of: '").append(typeCodes[0]);
@@ -169,7 +169,7 @@ public class Formatter {
         return properties;
     }
 
-    private static Writer getToFileWriter(String baseDir, File toFile, Charset charset) throws IOException {
+    private static Writer getToFileWriter(final String baseDir, final File toFile, final Charset charset) throws IOException {
         final File file;
         if (toFile.isAbsolute()) {
             file = toFile;

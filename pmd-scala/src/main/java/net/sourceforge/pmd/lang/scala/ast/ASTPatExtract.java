@@ -15,12 +15,12 @@ public class ASTPatExtract extends AbstractScalaNode<Pat.Extract> {
 
     @Deprecated
     @InternalApi
-    public ASTPatExtract(Pat.Extract scalaNode) {
+    public ASTPatExtract(final Pat.Extract scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

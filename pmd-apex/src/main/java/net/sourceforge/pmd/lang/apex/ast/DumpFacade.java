@@ -22,7 +22,7 @@ public class DumpFacade {
     private PrintWriter writer;
     private boolean recurse;
 
-    public void initializeWith(Writer writer, String prefix, boolean recurse, ApexNode<?> node) {
+    public void initializeWith(final Writer writer, final String prefix, final boolean recurse, final ApexNode<?> node) {
         this.writer = writer instanceof PrintWriter ? (PrintWriter) writer : new PrintWriter(writer);
         this.recurse = recurse;
         this.dump(node, prefix);
@@ -33,7 +33,7 @@ public class DumpFacade {
         }
     }
 
-    public Object visit(ApexNode<?> node, Object data) {
+    public Object visit(final ApexNode<?> node, final Object data) {
         dump(node, (String) data);
         if (recurse) {
             for (int i = 0; i < node.getNumChildren(); i++) {
@@ -45,7 +45,7 @@ public class DumpFacade {
         }
     }
 
-    private void dump(ApexNode<?> node, String prefix) {
+    private void dump(final ApexNode<?> node, final String prefix) {
         //
         // Dump format is generally composed of the following items...
         //

@@ -28,7 +28,7 @@ public class LanguageFilenameFilter implements FilenameFilter {
      * @param language
      *            The Language.
      */
-    public LanguageFilenameFilter(Language language) {
+    public LanguageFilenameFilter(final Language language) {
         this(Collections.singleton(language));
     }
 
@@ -38,7 +38,7 @@ public class LanguageFilenameFilter implements FilenameFilter {
      * @param languages
      *            The List of Languages.
      */
-    public LanguageFilenameFilter(Set<Language> languages) {
+    public LanguageFilenameFilter(final Set<Language> languages) {
         this.languages = languages;
     }
 
@@ -46,7 +46,7 @@ public class LanguageFilenameFilter implements FilenameFilter {
      * Check if a file should be checked by PMD. {@inheritDoc}
      */
     @Override
-    public boolean accept(File dir, String name) {
+    public boolean accept(final File dir, final String name) {
         // Any source file should have a '.' in its name...
         int lastDotIndex = name.lastIndexOf('.');
         if (lastDotIndex < 0) {

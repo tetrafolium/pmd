@@ -22,7 +22,7 @@ public class MethodScope extends AbstractScope {
 
     private Node node;
 
-    public MethodScope(Node node) {
+    public MethodScope(final Node node) {
         this.node = node;
     }
 
@@ -35,7 +35,7 @@ public class MethodScope extends AbstractScope {
     }
 
     @Override
-    public Set<NameDeclaration> addNameOccurrence(NameOccurrence occ) {
+    public Set<NameDeclaration> addNameOccurrence(final NameOccurrence occ) {
         PLSQLNameOccurrence occurrence = (PLSQLNameOccurrence) occ;
         Set<NameDeclaration> declarations = findVariableHere(occurrence);
         if (!declarations.isEmpty() && !occurrence.isThisOrSuper()) {
@@ -51,14 +51,14 @@ public class MethodScope extends AbstractScope {
     }
 
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         if (declaration instanceof VariableNameDeclaration && getDeclarations().keySet().contains(declaration)) {
             throw new RuntimeException(declaration + " is already in the symbol table");
         }
         super.addDeclaration(declaration);
     }
 
-    public Set<NameDeclaration> findVariableHere(PLSQLNameOccurrence occurrence) {
+    public Set<NameDeclaration> findVariableHere(final PLSQLNameOccurrence occurrence) {
         Set<NameDeclaration> result = new HashSet<>();
         if (occurrence.isThisOrSuper() || occurrence.isMethodOrConstructorInvocation()) {
             return result;

@@ -41,7 +41,7 @@ public abstract class AbstractDelegateRule implements Rule {
      * even though a RuleReference has no business setting its rule after construction
      */
     @Deprecated
-    public void setRule(Rule rule) {
+    public void setRule(final Rule rule) {
         this.rule = rule;
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setLanguage(Language language) {
+    public void setLanguage(final Language language) {
         rule.setLanguage(language);
     }
 
@@ -61,7 +61,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setMinimumLanguageVersion(LanguageVersion minimumlanguageVersion) {
+    public void setMinimumLanguageVersion(final LanguageVersion minimumlanguageVersion) {
         rule.setMinimumLanguageVersion(minimumlanguageVersion);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setMaximumLanguageVersion(LanguageVersion maximumlanguageVersion) {
+    public void setMaximumLanguageVersion(final LanguageVersion maximumlanguageVersion) {
         rule.setMaximumLanguageVersion(maximumlanguageVersion);
     }
 
@@ -81,7 +81,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setDeprecated(boolean deprecated) {
+    public void setDeprecated(final boolean deprecated) {
         rule.setDeprecated(deprecated);
     }
 
@@ -104,7 +104,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         rule.setName(name);
     }
 
@@ -114,7 +114,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setSince(String since) {
+    public void setSince(final String since) {
         rule.setSince(since);
     }
 
@@ -124,7 +124,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setRuleClass(String ruleClass) {
+    public void setRuleClass(final String ruleClass) {
         rule.setRuleClass(ruleClass);
     }
 
@@ -134,7 +134,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setRuleSetName(String name) {
+    public void setRuleSetName(final String name) {
         rule.setRuleSetName(name);
     }
 
@@ -144,7 +144,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         rule.setMessage(message);
     }
 
@@ -154,7 +154,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         rule.setDescription(description);
     }
 
@@ -164,7 +164,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void addExample(String example) {
+    public void addExample(final String example) {
         rule.addExample(example);
     }
 
@@ -174,7 +174,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setExternalInfoUrl(String url) {
+    public void setExternalInfoUrl(final String url) {
         rule.setExternalInfoUrl(url);
     }
 
@@ -184,7 +184,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setPriority(RulePriority priority) {
+    public void setPriority(final RulePriority priority) {
         rule.setPriority(priority);
     }
 
@@ -194,12 +194,12 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void definePropertyDescriptor(PropertyDescriptor<?> propertyDescriptor) throws IllegalArgumentException {
+    public void definePropertyDescriptor(final PropertyDescriptor<?> propertyDescriptor) throws IllegalArgumentException {
         rule.definePropertyDescriptor(propertyDescriptor);
     }
 
     @Override
-    public PropertyDescriptor<?> getPropertyDescriptor(String name) {
+    public PropertyDescriptor<?> getPropertyDescriptor(final String name) {
         return rule.getPropertyDescriptor(name);
     }
 
@@ -209,23 +209,23 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public <T> T getProperty(PropertyDescriptor<T> propertyDescriptor) {
+    public <T> T getProperty(final PropertyDescriptor<T> propertyDescriptor) {
         return rule.getProperty(propertyDescriptor);
     }
 
     @Override
-    public <T> void setProperty(PropertyDescriptor<T> propertyDescriptor, T value) {
+    public <T> void setProperty(final PropertyDescriptor<T> propertyDescriptor, final T value) {
         rule.setProperty(propertyDescriptor, value);
     }
 
 
     @Override
-    public <V> void setProperty(MultiValuePropertyDescriptor<V> propertyDescriptor, V... values) {
+    public <V> void setProperty(final MultiValuePropertyDescriptor<V> propertyDescriptor, final V... values) {
         rule.setProperty(propertyDescriptor, values);
     }
 
     @Override
-    public boolean isPropertyOverridden(PropertyDescriptor<?> propertyDescriptor) {
+    public boolean isPropertyOverridden(final PropertyDescriptor<?> propertyDescriptor) {
         return rule.isPropertyOverridden(propertyDescriptor);
     }
 
@@ -241,7 +241,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setDfa(boolean isDfa) {
+    public void setDfa(final boolean isDfa) {
         rule.setDfa(isDfa);
     }
 
@@ -263,7 +263,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setTypeResolution(boolean usingTypeResolution) {
+    public void setTypeResolution(final boolean usingTypeResolution) {
         rule.setTypeResolution(usingTypeResolution);
     }
 
@@ -285,7 +285,7 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void setMultifile(boolean multifile) {
+    public void setMultifile(final boolean multifile) {
         rule.setMultifile(multifile);
     }
 
@@ -317,27 +317,27 @@ public abstract class AbstractDelegateRule implements Rule {
     }
 
     @Override
-    public void addRuleChainVisit(Class<? extends Node> nodeClass) {
+    public void addRuleChainVisit(final Class<? extends Node> nodeClass) {
         rule.addRuleChainVisit(nodeClass);
     }
 
     @Override
-    public void addRuleChainVisit(String astNodeName) {
+    public void addRuleChainVisit(final String astNodeName) {
         rule.addRuleChainVisit(astNodeName);
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         rule.start(ctx);
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         rule.apply(nodes, ctx);
     }
 
     @Override
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         rule.end(ctx);
     }
 
@@ -345,7 +345,7 @@ public abstract class AbstractDelegateRule implements Rule {
      * @see Rule#hasDescriptor(PropertyDescriptor)
      */
     @Override
-    public boolean hasDescriptor(PropertyDescriptor<?> descriptor) {
+    public boolean hasDescriptor(final PropertyDescriptor<?> descriptor) {
         return rule.hasDescriptor(descriptor);
     }
 }

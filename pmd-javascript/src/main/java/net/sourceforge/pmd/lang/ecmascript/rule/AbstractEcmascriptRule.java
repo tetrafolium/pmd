@@ -90,11 +90,11 @@ public abstract class AbstractEcmascriptRule extends AbstractRule
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Object element : nodes) {
             ASTAstRoot node = (ASTAstRoot) element;
             visit(node, ctx);
@@ -109,253 +109,253 @@ public abstract class AbstractEcmascriptRule extends AbstractRule
     //
 
     @Override
-    public Object visit(EcmascriptNode<?> node, Object data) {
+    public Object visit(final EcmascriptNode<?> node, final Object data) {
         node.childrenAccept(this, data);
         return null;
     }
 
     @Override
-    public Object visit(ASTArrayComprehension node, Object data) {
+    public Object visit(final ASTArrayComprehension node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayComprehensionLoop node, Object data) {
+    public Object visit(final ASTArrayComprehensionLoop node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayLiteral node, Object data) {
+    public Object visit(final ASTArrayLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignment node, Object data) {
+    public Object visit(final ASTAssignment node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAstRoot node, Object data) {
+    public Object visit(final ASTAstRoot node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBlock node, Object data) {
+    public Object visit(final ASTBlock node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTCatchClause node, Object data) {
+    public Object visit(final ASTCatchClause node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTComment node, Object data) {
+    public Object visit(final ASTComment node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDoLoop node, Object data) {
+    public Object visit(final ASTDoLoop node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTElementGet node, Object data) {
+    public Object visit(final ASTElementGet node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTEmptyExpression node, Object data) {
+    public Object visit(final ASTEmptyExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionStatement node, Object data) {
+    public Object visit(final ASTExpressionStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTForInLoop node, Object data) {
+    public Object visit(final ASTForInLoop node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTForLoop node, Object data) {
+    public Object visit(final ASTForLoop node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionCall node, Object data) {
+    public Object visit(final ASTFunctionCall node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionNode node, Object data) {
+    public Object visit(final ASTFunctionNode node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTInfixExpression node, Object data) {
+    public Object visit(final ASTInfixExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTKeywordLiteral node, Object data) {
+    public Object visit(final ASTKeywordLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTLabel node, Object data) {
+    public Object visit(final ASTLabel node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTLabeledStatement node, Object data) {
+    public Object visit(final ASTLabeledStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTLetNode node, Object data) {
+    public Object visit(final ASTLetNode node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewExpression node, Object data) {
+    public Object visit(final ASTNewExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNumberLiteral node, Object data) {
+    public Object visit(final ASTNumberLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTObjectLiteral node, Object data) {
+    public Object visit(final ASTObjectLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTObjectProperty node, Object data) {
+    public Object visit(final ASTObjectProperty node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTParenthesizedExpression node, Object data) {
+    public Object visit(final ASTParenthesizedExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTPropertyGet node, Object data) {
+    public Object visit(final ASTPropertyGet node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTRegExpLiteral node, Object data) {
+    public Object visit(final ASTRegExpLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTScope node, Object data) {
+    public Object visit(final ASTScope node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTStringLiteral node, Object data) {
+    public Object visit(final ASTStringLiteral node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchCase node, Object data) {
+    public Object visit(final ASTSwitchCase node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTTryStatement node, Object data) {
+    public Object visit(final ASTTryStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUnaryExpression node, Object data) {
+    public Object visit(final ASTUnaryExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableInitializer node, Object data) {
+    public Object visit(final ASTVariableInitializer node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTWhileLoop node, Object data) {
+    public Object visit(final ASTWhileLoop node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTWithStatement node, Object data) {
+    public Object visit(final ASTWithStatement node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTXmlDotQuery node, Object data) {
+    public Object visit(final ASTXmlDotQuery node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTXmlExpression node, Object data) {
+    public Object visit(final ASTXmlExpression node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTXmlMemberGet node, Object data) {
+    public Object visit(final ASTXmlMemberGet node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTXmlString node, Object data) {
+    public Object visit(final ASTXmlString node, final Object data) {
         return visit((EcmascriptNode<?>) node, data);
     }
 }

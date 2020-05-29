@@ -31,13 +31,13 @@ import net.sourceforge.pmd.lang.rule.ParametricRuleViolation;
 @InternalApi
 public class ApexRuleViolation<T> extends ParametricRuleViolation<Node> {
 
-    public ApexRuleViolation(Rule rule, RuleContext ctx, Node node, String message, int beginLine, int endLine) {
+    public ApexRuleViolation(final Rule rule, final RuleContext ctx, final Node node, final String message, final int beginLine, final int endLine) {
         this(rule, ctx, node, message);
 
         setLines(beginLine, endLine);
     }
 
-    public ApexRuleViolation(Rule rule, RuleContext ctx, Node node, String message) {
+    public ApexRuleViolation(final Rule rule, final RuleContext ctx, final Node node, final String message) {
         super(rule, ctx, node, message);
 
         if (node != null) {
@@ -54,7 +54,7 @@ public class ApexRuleViolation<T> extends ParametricRuleViolation<Node> {
      * @deprecated Is internal API, not useful, there's a typo. See <a href="https://github.com/pmd/pmd/pull/1927">#1927</a>
      */
     @Deprecated
-    public static boolean isSupressed(Node node, Rule rule) {
+    public static boolean isSupressed(final Node node, final Rule rule) {
         boolean result = suppresses(node, rule);
 
         if (!result) {
@@ -68,7 +68,7 @@ public class ApexRuleViolation<T> extends ParametricRuleViolation<Node> {
         return result;
     }
 
-    private static boolean suppresses(final Node node, Rule rule) {
+    private static boolean suppresses(final Node node, final Rule rule) {
         return node instanceof CanSuppressWarnings
                 && ((CanSuppressWarnings) node).hasSuppressWarningsAnnotationFor(rule);
     }

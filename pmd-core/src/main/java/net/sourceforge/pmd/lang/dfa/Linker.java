@@ -28,8 +28,8 @@ public class Linker {
     private List<StackObject> braceStack;
     private List<StackObject> continueBreakReturnStack;
 
-    public Linker(DataFlowHandler dataFlowHandler, List<StackObject> braceStack,
-            List<StackObject> continueBreakReturnStack) {
+    public Linker(final DataFlowHandler dataFlowHandler, final List<StackObject> braceStack,
+            final List<StackObject> continueBreakReturnStack) {
         this.dataFlowHandler = dataFlowHandler;
         this.braceStack = braceStack;
         this.continueBreakReturnStack = continueBreakReturnStack;
@@ -215,7 +215,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computePaths");
     }
 
-    private DataFlowNode getNodeToBreakStatement(DataFlowNode node) {
+    private DataFlowNode getNodeToBreakStatement(final DataFlowNode node) {
         LOGGER.entering(CLASS_NAME, "getNodeToBreakStatement");
         // What about breaks to labels above if statements?
         List<DataFlowNode> bList = node.getFlow();
@@ -258,7 +258,7 @@ public class Linker {
         return node.getFlow().get(index + 1);
     }
 
-    private void computeDo(int first, int last) {
+    private void computeDo(final int first, final int last) {
         LOGGER.entering(CLASS_NAME, "computeDo");
         DataFlowNode doSt = this.braceStack.get(first).getDataFlowNode();
         DataFlowNode doExpr = this.braceStack.get(last).getDataFlowNode();
@@ -269,7 +269,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computeDo");
     }
 
-    private void computeFor(int firstIndex, int lastIndex) {
+    private void computeFor(final int firstIndex, final int lastIndex) {
         LOGGER.entering(CLASS_NAME, "computeFor");
         DataFlowNode fExpr = null;
         DataFlowNode fUpdate = null;
@@ -320,7 +320,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computeFor");
     }
 
-    private void computeSwitch(int firstIndex, int lastIndex) {
+    private void computeSwitch(final int firstIndex, final int lastIndex) {
         LOGGER.entering(CLASS_NAME, "computeSwitch");
 
         int diff = lastIndex - firstIndex;
@@ -355,7 +355,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computeSwitch");
     }
 
-    private void computeWhile(int first, int last) {
+    private void computeWhile(final int first, final int last) {
         LOGGER.entering(CLASS_NAME, "computeWhile with first and last of" + first + "," + last);
         DataFlowNode wStart = this.braceStack.get(first).getDataFlowNode();
         DataFlowNode wEnd = this.braceStack.get(last).getDataFlowNode();
@@ -369,7 +369,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computeWhile");
     }
 
-    private void computeIf(int first, int second, int last) {
+    private void computeIf(final int first, final int second, final int last) {
         LOGGER.entering(CLASS_NAME, "computeIf(3)", first + "," + second + "," + last);
         DataFlowNode ifStart = this.braceStack.get(first).getDataFlowNode();
         DataFlowNode ifEnd = this.braceStack.get(second).getDataFlowNode();
@@ -379,7 +379,7 @@ public class Linker {
         DataFlowNode end = elseEnd.getFlow().get(elseEnd.getIndex() + 1);
 
         LOGGER.log(Level.FINEST, "If ifstart={0}, ifEnd={1}, elseEnd={2}, elseStart={3}, end={4}",
-                new Object[] { ifStart, ifEnd, elseEnd, elseStart, end });
+                new Object[] {ifStart, ifEnd, elseEnd, elseStart, end });
 
         if (ifStart.getIndex() != ifEnd.getIndex() && ifEnd.getIndex() != elseEnd.getIndex()) {
             // if if-statement and else-statement contains statements or
@@ -396,7 +396,7 @@ public class Linker {
         LOGGER.exiting(CLASS_NAME, "computeIf(3)");
     }
 
-    private void computeIf(int first, int last) {
+    private void computeIf(final int first, final int last) {
         LOGGER.entering(CLASS_NAME, "computeIf(2)");
         DataFlowNode ifStart = this.braceStack.get(first).getDataFlowNode();
         DataFlowNode ifEnd = this.braceStack.get(last).getDataFlowNode();
@@ -413,7 +413,7 @@ public class Linker {
      *
      * @return formatted dump of the StackList
      */
-    private static String dump(String description, List<StackObject> stackList) {
+    private static String dump(final String description, final List<StackObject> stackList) {
         StringBuilder stringDump = new StringBuilder("Stack List (");
         stringDump.append(description).append(") ListDump:\n");
         for (StackObject stackObject : stackList) {

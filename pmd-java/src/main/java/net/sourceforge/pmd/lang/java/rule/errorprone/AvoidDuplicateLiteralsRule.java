@@ -81,11 +81,11 @@ public class AvoidDuplicateLiteralsRule extends AbstractJavaRule {
         private static final char ESCAPE_CHAR = '\\';
         private char delimiter;
 
-        public ExceptionParser(char delimiter) {
+        public ExceptionParser(final char delimiter) {
             this.delimiter = delimiter;
         }
 
-        public Set<String> parse(String s) {
+        public Set<String> parse(final String s) {
             Set<String> result = new HashSet<>();
             StringBuilder currentToken = new StringBuilder();
             boolean inEscapeMode = false;
@@ -132,7 +132,7 @@ public class AvoidDuplicateLiteralsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         literals.clear();
 
         if (getProperty(EXCEPTION_LIST_DESCRIPTOR) != null) {
@@ -167,7 +167,7 @@ public class AvoidDuplicateLiteralsRule extends AbstractJavaRule {
         return data;
     }
 
-    private void processResults(Object data) {
+    private void processResults(final Object data) {
 
         int threshold = getProperty(THRESHOLD_DESCRIPTOR);
 
@@ -183,7 +183,7 @@ public class AvoidDuplicateLiteralsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         if (!node.isStringLiteral()) {
             return data;
         }
@@ -217,7 +217,7 @@ public class AvoidDuplicateLiteralsRule extends AbstractJavaRule {
         return data;
     }
 
-    private static String checkFile(File file) {
+    private static String checkFile(final File file) {
 
         if (!file.exists()) {
             return "File '" + file.getName() + "' does not exist";

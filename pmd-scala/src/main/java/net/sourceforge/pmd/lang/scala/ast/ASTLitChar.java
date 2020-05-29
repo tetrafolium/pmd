@@ -15,12 +15,12 @@ public class ASTLitChar extends AbstractScalaNode<Lit.Char> {
 
     @Deprecated
     @InternalApi
-    public ASTLitChar(Lit.Char scalaNode) {
+    public ASTLitChar(final Lit.Char scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

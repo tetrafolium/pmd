@@ -13,12 +13,12 @@ public class ASTAnnotationParameter extends AbstractApexNode<AnnotationParameter
 
     @Deprecated
     @InternalApi
-    public ASTAnnotationParameter(AnnotationParameter annotationParameter) {
+    public ASTAnnotationParameter(final AnnotationParameter annotationParameter) {
         super(annotationParameter);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

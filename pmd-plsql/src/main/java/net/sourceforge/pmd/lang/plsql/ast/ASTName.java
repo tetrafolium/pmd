@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.symboltable.NameDeclaration;
 public class ASTName extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
     @Deprecated
     @InternalApi
-    public ASTName(int id) {
+    public ASTName(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTName(PLSQLParser p, int id) {
+    public ASTName(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -29,7 +29,7 @@ public class ASTName extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNod
 
     @Deprecated
     @InternalApi
-    public void setNameDeclaration(NameDeclaration nd) {
+    public void setNameDeclaration(final NameDeclaration nd) {
         this.nd = nd;
     }
 

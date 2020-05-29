@@ -12,12 +12,12 @@ public class ASTJavaVariableExpression extends AbstractApexNode<JavaVariableExpr
 
     @Deprecated
     @InternalApi
-    public ASTJavaVariableExpression(JavaVariableExpression javaVariableExpression) {
+    public ASTJavaVariableExpression(final JavaVariableExpression javaVariableExpression) {
         super(javaVariableExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

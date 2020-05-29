@@ -12,12 +12,12 @@ public class ASTNewListInitExpression extends AbstractApexNode<NewListInitExpres
 
     @Deprecated
     @InternalApi
-    public ASTNewListInitExpression(NewListInitExpression newListInitExpression) {
+    public ASTNewListInitExpression(final NewListInitExpression newListInitExpression) {
         super(newListInitExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

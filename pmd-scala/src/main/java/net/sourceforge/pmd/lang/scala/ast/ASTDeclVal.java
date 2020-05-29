@@ -15,12 +15,12 @@ public class ASTDeclVal extends AbstractScalaNode<Decl.Val> {
 
     @Deprecated
     @InternalApi
-    public ASTDeclVal(Decl.Val scalaNode) {
+    public ASTDeclVal(final Decl.Val scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

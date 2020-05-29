@@ -27,7 +27,7 @@ public abstract class MultiValuePropertyBuilder<V, T extends MultiValuePropertyB
     protected char multiValueDelimiter = MultiValuePropertyDescriptor.DEFAULT_DELIMITER;
 
 
-    protected MultiValuePropertyBuilder(String name) {
+    protected MultiValuePropertyBuilder(final String name) {
         super(name);
     }
 
@@ -40,7 +40,7 @@ public abstract class MultiValuePropertyBuilder<V, T extends MultiValuePropertyB
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T defaultValues(Collection<? extends V> val) {
+    public T defaultValues(final Collection<? extends V> val) {
         this.defaultValues = new ArrayList<>(val);
         return (T) this;
     }
@@ -54,7 +54,7 @@ public abstract class MultiValuePropertyBuilder<V, T extends MultiValuePropertyB
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T defaultValues(V... val) {
+    public T defaultValues(final V... val) {
         this.defaultValues = Arrays.asList(val);
         return (T) this;
     }
@@ -69,7 +69,7 @@ public abstract class MultiValuePropertyBuilder<V, T extends MultiValuePropertyB
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T delim(char delim) {
+    public T delim(final char delim) {
         this.multiValueDelimiter = delim;
         return (T) this;
     }

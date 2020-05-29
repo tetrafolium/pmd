@@ -47,7 +47,7 @@ public abstract class AbstractRuleChainVisitor implements RuleChainVisitor {
      * @see RuleChainVisitor#add(RuleSet, Rule)
      */
     @Override
-    public void add(RuleSet ruleSet, Rule rule) {
+    public void add(final RuleSet ruleSet, final Rule rule) {
 
         if (!ruleSetRules.containsKey(ruleSet)) {
             ruleSetRules.put(ruleSet, new ArrayList<Rule>());
@@ -59,7 +59,7 @@ public abstract class AbstractRuleChainVisitor implements RuleChainVisitor {
      * @see RuleChainVisitor#visitAll(List, RuleContext)
      */
     @Override
-    public void visitAll(List<Node> nodes, RuleContext ctx) {
+    public void visitAll(final List<Node> nodes, final RuleContext ctx) {
         initialize();
         clear();
 
@@ -128,7 +128,7 @@ public abstract class AbstractRuleChainVisitor implements RuleChainVisitor {
     /**
      * Index a single node for visitation by rules.
      */
-    protected void indexNode(Node node) {
+    protected void indexNode(final Node node) {
         List<Node> nodes = nodeNameToNodes.get(node.getXPathNodeName());
         if (nodes != null) {
             nodes.add(node);
@@ -182,7 +182,7 @@ public abstract class AbstractRuleChainVisitor implements RuleChainVisitor {
         }
     }
 
-    private void logXPathRuleChainUsage(boolean usesRuleChain, Rule rule) {
+    private void logXPathRuleChainUsage(final boolean usesRuleChain, final Rule rule) {
         if (LOG.isLoggable(Level.FINE)) {
             Rule r;
             if (rule instanceof RuleReference) {

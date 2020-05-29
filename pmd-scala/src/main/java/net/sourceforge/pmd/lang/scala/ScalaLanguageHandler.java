@@ -24,7 +24,7 @@ public class ScalaLanguageHandler extends AbstractLanguageVersionHandler {
      * @param scalaDialect
      *            the language version to use while parsing etc
      */
-    public ScalaLanguageHandler(Dialect scalaDialect) {
+    public ScalaLanguageHandler(final Dialect scalaDialect) {
         this.dialect = scalaDialect;
     }
 
@@ -43,7 +43,7 @@ public class ScalaLanguageHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public ScalaParser getParser(ParserOptions parserOptions) {
+    public ScalaParser getParser(final ParserOptions parserOptions) {
         return new ScalaParser(dialect, parserOptions);
     }
 }

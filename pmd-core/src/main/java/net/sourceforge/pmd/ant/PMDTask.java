@@ -87,62 +87,62 @@ public class PMDTask extends Task {
         return sb.toString();
     }
 
-    public void setShortFilenames(boolean reportShortNames) {
+    public void setShortFilenames(final boolean reportShortNames) {
         this.shortFilenames = reportShortNames;
     }
 
-    public void setSuppressMarker(String suppressMarker) {
+    public void setSuppressMarker(final String suppressMarker) {
         this.suppressMarker = suppressMarker;
     }
 
-    public void setFailOnError(boolean fail) {
+    public void setFailOnError(final boolean fail) {
         this.failOnError = fail;
     }
 
-    public void setFailOnRuleViolation(boolean fail) {
+    public void setFailOnRuleViolation(final boolean fail) {
         this.failOnRuleViolation = fail;
     }
 
-    public void setMaxRuleViolations(int max) {
+    public void setMaxRuleViolations(final int max) {
         if (max >= 0) {
             this.maxRuleViolations = max;
             this.failOnRuleViolation = true;
         }
     }
 
-    public void setRuleSetFiles(String ruleSets) {
+    public void setRuleSetFiles(final String ruleSets) {
         this.rulesetFiles = ruleSets;
     }
 
-    public void setEncoding(String sourceEncoding) {
+    public void setEncoding(final String sourceEncoding) {
         this.encoding = sourceEncoding;
     }
 
-    public void setThreads(int threads) {
+    public void setThreads(final int threads) {
         this.threads = threads;
     }
 
-    public void setFailuresPropertyName(String failuresPropertyName) {
+    public void setFailuresPropertyName(final String failuresPropertyName) {
         this.failuresPropertyName = failuresPropertyName;
     }
 
-    public void setMinimumPriority(int minPriority) {
+    public void setMinimumPriority(final int minPriority) {
         this.minimumPriority = minPriority;
     }
 
-    public void addFileset(FileSet set) {
+    public void addFileset(final FileSet set) {
         filesets.add(set);
     }
 
-    public void addFormatter(Formatter f) {
+    public void addFormatter(final Formatter f) {
         formatters.add(f);
     }
 
-    public void addConfiguredSourceLanguage(SourceLanguage version) {
+    public void addConfiguredSourceLanguage(final SourceLanguage version) {
         this.sourceLanguage = version;
     }
 
-    public void setClasspath(Path classpath) {
+    public void setClasspath(final Path classpath) {
         this.classpath = classpath;
     }
 
@@ -157,11 +157,11 @@ public class PMDTask extends Task {
         return classpath.createPath();
     }
 
-    public void setClasspathRef(Reference r) {
+    public void setClasspathRef(final Reference r) {
         createClasspath().setRefid(r);
     }
 
-    public void setAuxClasspath(Path auxClasspath) {
+    public void setAuxClasspath(final Path auxClasspath) {
         this.auxClasspath = auxClasspath;
     }
 
@@ -176,11 +176,11 @@ public class PMDTask extends Task {
         return auxClasspath.createPath();
     }
 
-    public void setAuxClasspathRef(Reference r) {
+    public void setAuxClasspathRef(final Reference r) {
         createAuxClasspath().setRefid(r);
     }
 
-    public void addRuleset(RuleSetWrapper r) {
+    public void addRuleset(final RuleSetWrapper r) {
         nestedRules.add(r);
     }
 
@@ -244,7 +244,7 @@ public class PMDTask extends Task {
         return noRuleSetCompatibility;
     }
 
-    public void setNoRuleSetCompatibility(boolean noRuleSetCompatibility) {
+    public void setNoRuleSetCompatibility(final boolean noRuleSetCompatibility) {
         this.noRuleSetCompatibility = noRuleSetCompatibility;
     }
 
@@ -252,7 +252,7 @@ public class PMDTask extends Task {
         return cacheLocation;
     }
 
-    public void setCacheLocation(String cacheLocation) {
+    public void setCacheLocation(final String cacheLocation) {
         this.cacheLocation = cacheLocation;
     }
 
@@ -261,7 +261,7 @@ public class PMDTask extends Task {
         return noCache;
     }
 
-    public void setNoCache(boolean noCache) {
+    public void setNoCache(final boolean noCache) {
         this.noCache = noCache;
     }
 }

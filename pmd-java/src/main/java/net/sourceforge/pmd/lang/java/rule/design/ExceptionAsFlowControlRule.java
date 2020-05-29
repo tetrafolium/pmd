@@ -22,7 +22,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class ExceptionAsFlowControlRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         ASTTryStatement parent = node.getFirstParentOfType(ASTTryStatement.class);
         if (parent == null) {
             return data;

@@ -19,7 +19,7 @@ public class FieldNode extends MemberNode<FieldNode, Field> {
 
     private WeakReference<Field> fieldReference;
 
-    public FieldNode(ClassNode classNode, String name, String desc) {
+    public FieldNode(final ClassNode classNode, final String name, final String desc) {
         super(classNode, name, desc);
         getMember();
     }
@@ -35,7 +35,7 @@ public class FieldNode extends MemberNode<FieldNode, Field> {
     }
 
     @Override
-    public int compareTo(FieldNode that) {
+    public int compareTo(final FieldNode that) {
         return this.name.compareTo(that.name);
     }
 }

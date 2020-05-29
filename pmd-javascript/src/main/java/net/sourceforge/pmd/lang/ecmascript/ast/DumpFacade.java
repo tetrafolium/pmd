@@ -22,7 +22,7 @@ public class DumpFacade {
     private PrintWriter writer;
     private boolean recurse;
 
-    public void initializeWith(Writer writer, String prefix, boolean recurse, EcmascriptNode<?> node) {
+    public void initializeWith(final Writer writer, final String prefix, final boolean recurse, final EcmascriptNode<?> node) {
         this.writer = writer instanceof PrintWriter ? (PrintWriter) writer : new PrintWriter(writer);
         this.recurse = recurse;
         this.dump(node, prefix);
@@ -33,7 +33,7 @@ public class DumpFacade {
         }
     }
 
-    public Object visit(EcmascriptNode<?> node, Object data) {
+    public Object visit(final EcmascriptNode<?> node, final Object data) {
         dump(node, (String) data);
         if (recurse) {
             for (int i = 0; i < node.getNumChildren(); i++) {
@@ -45,7 +45,7 @@ public class DumpFacade {
         }
     }
 
-    private void dump(EcmascriptNode<?> node, String prefix) {
+    private void dump(final EcmascriptNode<?> node, final String prefix) {
         //
         // Dump format is generally composed of the following items...
         //

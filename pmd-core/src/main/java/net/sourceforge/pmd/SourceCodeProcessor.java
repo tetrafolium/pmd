@@ -27,7 +27,7 @@ public class SourceCodeProcessor {
 
     private final PMDConfiguration configuration;
 
-    public SourceCodeProcessor(PMDConfiguration configuration) {
+    public SourceCodeProcessor(final PMDConfiguration configuration) {
         this.configuration = configuration;
     }
 
@@ -46,7 +46,7 @@ public class SourceCodeProcessor {
      *             not be parsed, or other error is encountered.
      * @see #processSourceCode(Reader, RuleSets, RuleContext)
      */
-    public void processSourceCode(InputStream sourceCode, RuleSets ruleSets, RuleContext ctx) throws PMDException {
+    public void processSourceCode(final InputStream sourceCode, final RuleSets ruleSets, final RuleContext ctx) throws PMDException {
         try (Reader streamReader = new InputStreamReader(sourceCode, configuration.getSourceEncoding())) {
             processSourceCode(streamReader, ruleSets, ctx);
         } catch (IOException e) {
@@ -75,7 +75,7 @@ public class SourceCodeProcessor {
      *             if the input encoding is unsupported, the input stream could
      *             not be parsed, or other error is encountered.
      */
-    public void processSourceCode(Reader sourceCode, RuleSets ruleSets, RuleContext ctx) throws PMDException {
+    public void processSourceCode(final Reader sourceCode, final RuleSets ruleSets, final RuleContext ctx) throws PMDException {
         determineLanguage(ctx);
 
         // make sure custom XPath functions are initialized
@@ -116,7 +116,7 @@ public class SourceCodeProcessor {
         }
     }
 
-    private Node parse(RuleContext ctx, Reader sourceCode, Parser parser) {
+    private Node parse(final RuleContext ctx, final Reader sourceCode, final Parser parser) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.PARSER)) {
             Node rootNode = parser.parse(String.valueOf(ctx.getSourceCodeFile()), sourceCode);
             ctx.getReport().suppress(parser.getSuppressMap());
@@ -124,13 +124,13 @@ public class SourceCodeProcessor {
         }
     }
 
-    private void symbolFacade(Node rootNode, LanguageVersionHandler languageVersionHandler) {
+    private void symbolFacade(final Node rootNode, final LanguageVersionHandler languageVersionHandler) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.SYMBOL_TABLE)) {
             languageVersionHandler.getSymbolFacade(configuration.getClassLoader()).start(rootNode);
         }
     }
 
-    private void resolveQualifiedNames(Node rootNode, LanguageVersionHandler handler) {
+    private void resolveQualifiedNames(final Node rootNode, final LanguageVersionHandler handler) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.QUALIFIED_NAME_RESOLUTION)) {
             handler.getQualifiedNameResolutionFacade(configuration.getClassLoader()).start(rootNode);
         }
@@ -145,7 +145,7 @@ public class SourceCodeProcessor {
     // return parserOptions;
     // }
 
-    private void usesDFA(LanguageVersion languageVersion, Node rootNode, RuleSets ruleSets, Language language) {
+    private void usesDFA(final LanguageVersion languageVersion, final Node rootNode, final RuleSets ruleSets, final Language language) {
         if (ruleSets.usesDFA(language)) {
             try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.DFA)) {
                 VisitorStarter dataFlowFacade = languageVersion.getLanguageVersionHandler().getDataFlowFacade();
@@ -154,8 +154,8 @@ public class SourceCodeProcessor {
         }
     }
 
-    private void usesTypeResolution(LanguageVersion languageVersion, Node rootNode, RuleSets ruleSets,
-            Language language) {
+    private void usesTypeResolution(final LanguageVersion languageVersion, final Node rootNode, final RuleSets ruleSets,
+            final Language language) {
 
         if (ruleSets.usesTypeResolution(language)) {
             try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.TYPE_RESOLUTION)) {
@@ -166,8 +166,8 @@ public class SourceCodeProcessor {
     }
 
 
-    private void usesMultifile(Node rootNode, LanguageVersionHandler languageVersionHandler, RuleSets ruleSets,
-                               Language language) {
+    private void usesMultifile(final Node rootNode, final LanguageVersionHandler languageVersionHandler, final RuleSets ruleSets,
+                               final Language language) {
 
         if (ruleSets.usesMultifile(language)) {
             try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.MULTIFILE_ANALYSIS)) {
@@ -177,7 +177,7 @@ public class SourceCodeProcessor {
     }
 
 
-    private void processSource(Reader sourceCode, RuleSets ruleSets, RuleContext ctx) {
+    private void processSource(final Reader sourceCode, final RuleSets ruleSets, final RuleContext ctx) {
         LanguageVersion languageVersion = ctx.getLanguageVersion();
         LanguageVersionHandler languageVersionHandler = languageVersion.getLanguageVersionHandler();
         Parser parser = PMD.parserFor(languageVersion, configuration);
@@ -194,7 +194,7 @@ public class SourceCodeProcessor {
         ruleSets.apply(acus, ctx, language);
     }
 
-    private void determineLanguage(RuleContext ctx) {
+    private void determineLanguage(final RuleContext ctx) {
         // If LanguageVersion of the source file is not known, make a
         // determination
         if (ctx.getLanguageVersion() == null) {

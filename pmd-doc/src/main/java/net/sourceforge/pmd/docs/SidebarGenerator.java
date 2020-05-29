@@ -31,27 +31,27 @@ public class SidebarGenerator {
     private final FileWriter writer;
     private final Path sidebarPath;
 
-    public SidebarGenerator(FileWriter writer, Path basePath) {
+    public SidebarGenerator(final FileWriter writer, final Path basePath) {
         this.writer = Objects.requireNonNull(writer, "A file writer must be provided");
         this.sidebarPath = Objects.requireNonNull(basePath, "A base directory must be provided").resolve(SIDEBAR_YML);
     }
 
     @SuppressWarnings("unchecked")
-    private Map<String, Object> extractRuleReference(Map<String, Object> sidebar) {
+    private Map<String, Object> extractRuleReference(final Map<String, Object> sidebar) {
         List<Map<String, Object>> entries = (List<Map<String, Object>>) sidebar.get("entries");
         Map<String, Object> entry = entries.get(0);
         List<Map<String, Object>> folders = (List<Map<String, Object>>) entry.get("folders");
         return folders.get(3);
     }
 
-    public void generateSidebar(Map<Language, List<RuleSet>> sortedRulesets) throws IOException {
+    public void generateSidebar(final Map<Language, List<RuleSet>> sortedRulesets) throws IOException {
         Map<String, Object> sidebar = loadSidebar();
         Map<String, Object> ruleReference = extractRuleReference(sidebar);
         ruleReference.put("folderitems", generateRuleReferenceSection(sortedRulesets));
         writeSidebar(sidebar);
     }
 
-    List<Map<String, Object>> generateRuleReferenceSection(Map<Language, List<RuleSet>> sortedRulesets) {
+    List<Map<String, Object>> generateRuleReferenceSection(final Map<Language, List<RuleSet>> sortedRulesets) {
         List<Map<String, Object>> newFolderItems = new ArrayList<>();
         for (Map.Entry<Language, List<RuleSet>> entry : sortedRulesets.entrySet()) {
             Map<String, Object> newFolderItem = new LinkedHashMap<>();
@@ -94,7 +94,7 @@ public class SidebarGenerator {
         }
     }
 
-    public void writeSidebar(Map<String, Object> sidebar) throws IOException {
+    public void writeSidebar(final Map<String, Object> sidebar) throws IOException {
         DumperOptions options = new DumperOptions();
         options.setDefaultFlowStyle(FlowStyle.BLOCK);
         if (SystemUtils.IS_OS_WINDOWS) {

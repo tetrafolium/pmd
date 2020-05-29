@@ -12,24 +12,24 @@ public class ASTModuleDeclaration extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTModuleDeclaration(int id) {
+    public ASTModuleDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTModuleDeclaration(JavaParser p, int id) {
+    public ASTModuleDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @InternalApi
     @Deprecated
-    public void setOpen(boolean open) {
+    public void setOpen(final boolean open) {
         this.open = open;
     }
 

@@ -49,7 +49,7 @@ public class SourceObject {
 
     String revision;
 
-    SourceObject(String schema, String type, String name, String revision) {
+    SourceObject(final String schema, final String type, final String name, final String revision) {
         this.schema = schema;
         this.type = type;
         this.name = name;
@@ -73,7 +73,7 @@ public class SourceObject {
      * @param schema
      *            the schema to set
      */
-    public void setSchema(String schema) {
+    public void setSchema(final String schema) {
         this.schema = schema;
     }
 
@@ -88,7 +88,7 @@ public class SourceObject {
      * @param name
      *            the name to set
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -103,7 +103,7 @@ public class SourceObject {
      * @param type
      *            the type to set
      */
-    public void setType(String type) {
+    public void setType(final String type) {
         this.type = type;
     }
 
@@ -118,7 +118,7 @@ public class SourceObject {
      * @param revision
      *            the revision to set
      */
-    public void setRevision(String revision) {
+    public void setRevision(final String revision) {
         this.revision = revision;
     }
 

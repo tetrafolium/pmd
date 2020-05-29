@@ -46,7 +46,7 @@ public final class CommentUtil {
      *      turn provide access to the {@link JavadocTag}.
      */
     @Deprecated // will be removed with PMD 7.0.0
-    public static String wordAfter(String text, int position) {
+    public static String wordAfter(final String text, final int position) {
         if (text == null || position >= text.length()) {
             return null;
         }
@@ -75,7 +75,7 @@ public final class CommentUtil {
      *      turn provide access to the {@link JavadocTag}.
      */
     @Deprecated // will be removed with PMD 7.0.0
-    public static String javadocContentAfter(String text, int position) {
+    public static String javadocContentAfter(final String text, final int position) {
         if (text == null || position > text.length()) {
             return null;
         }
@@ -119,7 +119,7 @@ public final class CommentUtil {
      *      turn provide access to the {@link JavadocTag}.
      */
     @Deprecated // will be removed with PMD 7.0.0
-    public static Map<String, Integer> javadocTagsIn(String comment) {
+    public static Map<String, Integer> javadocTagsIn(final String comment) {
         Map<String, Integer> tags = new HashMap<>();
 
         if (comment != null) {
@@ -145,7 +145,7 @@ public final class CommentUtil {
      *      It has been replaced by {@link Comment#getFilteredComment()}.
      */
     @Deprecated // will be removed with PMD 7.0.0
-    public static List<String> multiLinesIn(String comment) {
+    public static List<String> multiLinesIn(final String comment) {
         // temporary createa a Multiline Comment Node
         Token t = new Token();
         t.image = comment;
@@ -165,7 +165,7 @@ public final class CommentUtil {
      *      returns already the filtered and trimmed comment text.
      */
     @Deprecated // will be removed with PMD 7.0.0
-    public static List<String> trim(List<String> lines) {
+    public static List<String> trim(final List<String> lines) {
         return Comment.trim(lines);
     }
 }

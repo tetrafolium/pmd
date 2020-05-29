@@ -19,13 +19,13 @@ import net.sourceforge.pmd.lang.ast.ParseException;
 public class ApexParser extends AbstractParser {
     private net.sourceforge.pmd.lang.apex.ast.ApexParser apexParser;
 
-    public ApexParser(ParserOptions parserOptions) {
+    public ApexParser(final ParserOptions parserOptions) {
         super(parserOptions);
         apexParser = new net.sourceforge.pmd.lang.apex.ast.ApexParser((ApexParserOptions) parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return null;
     }
 
@@ -35,7 +35,7 @@ public class ApexParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         return apexParser.parse(source);
     }
 

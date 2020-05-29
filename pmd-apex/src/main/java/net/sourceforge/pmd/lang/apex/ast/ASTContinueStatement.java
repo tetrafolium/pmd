@@ -12,12 +12,12 @@ public class ASTContinueStatement extends AbstractApexNode<ContinueStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTContinueStatement(ContinueStatement continueStatement) {
+    public ASTContinueStatement(final ContinueStatement continueStatement) {
         super(continueStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -38,7 +38,7 @@ public class ScalaParser extends AbstractParser {
      * @param parserOptions
      *            any additional options for this parser
      */
-    public ScalaParser(Dialect scalaDialect, ParserOptions parserOptions) {
+    public ScalaParser(final Dialect scalaDialect, final ParserOptions parserOptions) {
         super(parserOptions);
         this.dialect = scalaDialect;
     }
@@ -49,7 +49,7 @@ public class ScalaParser extends AbstractParser {
     }
 
     @Override
-    public ASTSource parse(String fileName, Reader source) throws ParseException {
+    public ASTSource parse(final String fileName, final Reader source) throws ParseException {
         Input.VirtualFile virtualFile;
         try {
             String sourceString = IOUtils.toString(source);
@@ -67,7 +67,7 @@ public class ScalaParser extends AbstractParser {
     }
 
     @Override
-    protected TokenManager createTokenManager(Reader source) {
+    protected TokenManager createTokenManager(final Reader source) {
         return null;
     }
 

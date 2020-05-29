@@ -15,7 +15,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class PositionalIteratorRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         if (hasNameAsChild(node.getChild(0))) {
             String exprName = getName(node.getChild(0));
             if (exprName.indexOf(".hasNext") != -1 && node.getNumChildren() > 1) {
@@ -39,11 +39,11 @@ public class PositionalIteratorRule extends AbstractJavaRule {
         return null;
     }
 
-    private String getVariableName(String exprName) {
+    private String getVariableName(final String exprName) {
         return exprName.substring(0, exprName.indexOf('.'));
     }
 
-    private void collectNames(String target, List<String> names, Node node) {
+    private void collectNames(final String target, final List<String> names, final Node node) {
         for (int i = 0; i < node.getNumChildren(); i++) {
             Node child = node.getChild(i);
             if (child.getNumChildren() > 0) {
@@ -57,7 +57,7 @@ public class PositionalIteratorRule extends AbstractJavaRule {
         }
     }
 
-    private boolean hasNameAsChild(Node node) {
+    private boolean hasNameAsChild(final Node node) {
         if (node.getNumChildren() > 0) {
             if (node.getChild(0) instanceof ASTName) {
                 return true;
@@ -68,7 +68,7 @@ public class PositionalIteratorRule extends AbstractJavaRule {
         return false;
     }
 
-    private String getName(Node node) {
+    private String getName(final Node node) {
         if (node.getNumChildren() > 0) {
             if (node.getChild(0) instanceof ASTName) {
                 return ((ASTName) node.getChild(0)).getImage();

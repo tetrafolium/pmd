@@ -25,7 +25,7 @@ public class OccurrenceFinder extends JavaParserVisitorAdapter {
     private final Set<NameDeclaration> additionalDeclarations = new HashSet<>();
 
     @Override
-    public Object visit(ASTResource node, Object data) {
+    public Object visit(final ASTResource node, final Object data) {
         // is this a concise resource reference?
         if (node.getNumChildren() == 1) {
             ASTName nameNode = (ASTName) node.getChild(0);
@@ -39,7 +39,7 @@ public class OccurrenceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         NameFinder nameFinder = new NameFinder(node);
 
         declarations.clear();

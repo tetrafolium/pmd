@@ -14,7 +14,7 @@ public class SequenceException extends Exception {
         super("Sequence error."); // TODO redefinition
     }
 
-    public SequenceException(String message) {
+    public SequenceException(final String message) {
         super(message);
     }
 }

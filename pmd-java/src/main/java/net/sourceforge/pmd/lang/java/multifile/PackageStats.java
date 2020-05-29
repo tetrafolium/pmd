@@ -50,7 +50,7 @@ final class PackageStats implements ProjectMirror {
      *
      * @return The new ClassStats, or the one that was found. Can return null only if createIfNotFound is unset
      */
-    /* default */ ClassStats getClassStats(JavaTypeQualifiedName qname, boolean createIfNotFound) {
+    /* default */ ClassStats getClassStats(final JavaTypeQualifiedName qname, final boolean createIfNotFound) {
         PackageStats container = getSubPackage(qname, createIfNotFound);
 
         if (container == null) {
@@ -91,7 +91,7 @@ final class PackageStats implements ProjectMirror {
      *
      * @return The deepest package that contains this resource. Can only return null if createIfNotFound is unset
      */
-    private PackageStats getSubPackage(JavaTypeQualifiedName qname, boolean createIfNotFound) {
+    private PackageStats getSubPackage(final JavaTypeQualifiedName qname, final boolean createIfNotFound) {
         if (qname.getPackageList().isEmpty()) {
             return this; // the toplevel
         }
@@ -113,7 +113,7 @@ final class PackageStats implements ProjectMirror {
 
 
     @Override
-    public boolean hasMatchingSig(JavaOperationQualifiedName qname, JavaOperationSigMask sigMask) {
+    public boolean hasMatchingSig(final JavaOperationQualifiedName qname, final JavaOperationSigMask sigMask) {
         ClassStats clazz = getClassStats(qname.getClassName(), false);
 
         return clazz != null && clazz.hasMatchingOpSig(qname.getOperation(), sigMask);
@@ -121,7 +121,7 @@ final class PackageStats implements ProjectMirror {
 
 
     @Override
-    public boolean hasMatchingSig(JavaTypeQualifiedName qname, String fieldName, JavaFieldSigMask sigMask) {
+    public boolean hasMatchingSig(final JavaTypeQualifiedName qname, final String fieldName, final JavaFieldSigMask sigMask) {
         ClassStats clazz = getClassStats(qname, false);
 
         return clazz != null && clazz.hasMatchingFieldSig(fieldName, sigMask);
@@ -129,7 +129,7 @@ final class PackageStats implements ProjectMirror {
 
 
     @Override
-    public ClassMirror getClassMirror(JavaTypeQualifiedName className) {
+    public ClassMirror getClassMirror(final JavaTypeQualifiedName className) {
         return getClassStats(className, false);
     }
 

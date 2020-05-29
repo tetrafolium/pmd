@@ -12,12 +12,12 @@ public class ASTIllegalStoreExpression extends AbstractApexNode<IllegalStoreExpr
 
     @Deprecated
     @InternalApi
-    public ASTIllegalStoreExpression(IllegalStoreExpression node) {
+    public ASTIllegalStoreExpression(final IllegalStoreExpression node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

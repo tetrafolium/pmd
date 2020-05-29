@@ -21,7 +21,7 @@ final class DocumentSorter implements Comparator<Node> {
     }
 
     @Override
-    public int compare(Node node1, Node node2) {
+    public int compare(final Node node1, final Node node2) {
         if (node1 == null && node2 == null) {
             return 0;
         } else if (node1 == null) {

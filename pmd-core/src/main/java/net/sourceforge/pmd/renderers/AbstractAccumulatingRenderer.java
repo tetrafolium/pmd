@@ -28,7 +28,7 @@ public abstract class AbstractAccumulatingRenderer extends AbstractRenderer {
      */
     protected Report report;
 
-    public AbstractAccumulatingRenderer(String name, String description) {
+    public AbstractAccumulatingRenderer(final String name, final String description) {
         super(name, description);
     }
 
@@ -38,12 +38,12 @@ public abstract class AbstractAccumulatingRenderer extends AbstractRenderer {
     }
 
     @Override
-    public void startFileAnalysis(DataSource dataSource) {
+    public void startFileAnalysis(final DataSource dataSource) {
         // does nothing - override if necessary
     }
 
     @Override
-    public void renderFileReport(Report report) throws IOException {
+    public void renderFileReport(final Report report) throws IOException {
         this.report.merge(report);
     }
 

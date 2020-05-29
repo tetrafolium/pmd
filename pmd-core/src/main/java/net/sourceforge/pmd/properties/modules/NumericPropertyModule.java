@@ -24,7 +24,7 @@ public class NumericPropertyModule<T extends Number> {
     private final T upperLimit;
 
 
-    public NumericPropertyModule(T lowerLimit, T upperLimit) {
+    public NumericPropertyModule(final T lowerLimit, final T upperLimit) {
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
 
@@ -37,7 +37,7 @@ public class NumericPropertyModule<T extends Number> {
     }
 
 
-    public void checkNumber(T number) {
+    public void checkNumber(final T number) {
         String error = valueErrorFor(number);
         if (error != null) {
             throw new IllegalArgumentException(error);
@@ -45,7 +45,7 @@ public class NumericPropertyModule<T extends Number> {
     }
 
 
-    public String valueErrorFor(T value) {
+    public String valueErrorFor(final T value) {
 
         if (value == null) {
             return "Missing value";
@@ -71,7 +71,7 @@ public class NumericPropertyModule<T extends Number> {
     }
 
 
-    public void addAttributesTo(Map<PropertyDescriptorField, String> attributes) {
+    public void addAttributesTo(final Map<PropertyDescriptorField, String> attributes) {
         attributes.put(MIN, lowerLimit.toString());
         attributes.put(MAX, upperLimit.toString());
     }
@@ -85,7 +85,7 @@ public class NumericPropertyModule<T extends Number> {
      *
      * @return String
      */
-    private static String rangeString(Number low, Number up) {
+    private static String rangeString(final Number low, final Number up) {
         return "(" + low + " -> " + up + ")";
     }
 

@@ -12,11 +12,11 @@ import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 // package private
 abstract class AbstractJavaAnnotatableNode extends AbstractJavaNode implements Annotatable {
 
-    AbstractJavaAnnotatableNode(int i) {
+    AbstractJavaAnnotatableNode(final int i) {
         super(i);
     }
 
-    AbstractJavaAnnotatableNode(JavaParser parser, int i) {
+    AbstractJavaAnnotatableNode(final JavaParser parser, final int i) {
         super(parser, i);
     }
 
@@ -26,7 +26,7 @@ abstract class AbstractJavaAnnotatableNode extends AbstractJavaNode implements A
     }
 
     @Override
-    public ASTAnnotation getAnnotation(String annotQualifiedName) {
+    public ASTAnnotation getAnnotation(final String annotQualifiedName) {
         List<ASTAnnotation> annotations = getDeclaredAnnotations();
         for (ASTAnnotation annotation : annotations) {
             ASTName name = annotation.getFirstDescendantOfType(ASTName.class);
@@ -38,12 +38,12 @@ abstract class AbstractJavaAnnotatableNode extends AbstractJavaNode implements A
     }
 
     @Override
-    public boolean isAnnotationPresent(String annotQualifiedName) {
+    public boolean isAnnotationPresent(final String annotQualifiedName) {
         return getAnnotation(annotQualifiedName) != null;
     }
 
     @Override
-    public boolean isAnyAnnotationPresent(Collection<String> annotQualifiedNames) {
+    public boolean isAnyAnnotationPresent(final Collection<String> annotQualifiedNames) {
         for (String annotQualifiedName : annotQualifiedNames) {
             if (isAnnotationPresent(annotQualifiedName)) {
                 return true;

@@ -61,7 +61,7 @@ public abstract class BaseCLITest {
         System.setErr(originalErr);
     }
 
-    protected void createTestOutputFile(String filename) {
+    protected void createTestOutputFile(final String filename) {
         try {
             @SuppressWarnings("PMD.CloseResource")
             PrintStream out = new PrintStream(Files.newOutputStream(new File(filename).toPath()));
@@ -72,11 +72,11 @@ public abstract class BaseCLITest {
         }
     }
 
-    protected String runTest(String[] args, String testname) {
+    protected String runTest(final String[] args, final String testname) {
         return runTest(args, testname, 0);
     }
 
-    protected String runTest(String[] args, String testname, int expectedExitCode) {
+    protected String runTest(final String[] args, final String testname, final int expectedExitCode) {
         String filename = TEST_OUPUT_DIRECTORY + testname + ".txt";
         long start = System.currentTimeMillis();
         createTestOutputFile(filename);
@@ -87,11 +87,11 @@ public abstract class BaseCLITest {
         return filename;
     }
 
-    protected void runPMDWith(String[] args) {
+    protected void runPMDWith(final String[] args) {
         PMD.main(args);
     }
 
-    protected void checkStatusCode(int expectedExitCode) {
+    protected void checkStatusCode(final int expectedExitCode) {
         int statusCode = getStatusCode();
         if (statusCode != expectedExitCode) {
             fail("PMD failed with status code:" + statusCode);

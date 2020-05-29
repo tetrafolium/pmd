@@ -37,7 +37,7 @@ public class PreserveStackTraceRule extends AbstractJavaRule {
     private static final String FILL_IN_STACKTRACE = ".fillInStackTrace";
 
     @Override
-    public Object visit(ASTCatchStatement catchStmt, Object data) {
+    public Object visit(final ASTCatchStatement catchStmt, final Object data) {
         String target = catchStmt.getChild(0).findChildrenOfType(ASTVariableDeclaratorId.class).get(0).getImage();
         // Inspect all the throw stmt inside the catch stmt
         List<ASTThrowStatement> lstThrowStatements = catchStmt.findDescendantsOfType(ASTThrowStatement.class);
@@ -107,7 +107,7 @@ public class PreserveStackTraceRule extends AbstractJavaRule {
         return astName != null && astName.hasImageEqualTo(target + FILL_IN_STACKTRACE);
     }
 
-    private boolean isInitCauseCalled(String target, List<NameOccurrence> occurrences) {
+    private boolean isInitCauseCalled(final String target, final List<NameOccurrence> occurrences) {
         boolean initCauseCalled = false;
         for (NameOccurrence occurrence : occurrences) {
             String image = null;
@@ -136,7 +136,7 @@ public class PreserveStackTraceRule extends AbstractJavaRule {
      * @param target
      * @param baseNode
      */
-    private boolean checkForTargetUsage(String target, Node baseNode) {
+    private boolean checkForTargetUsage(final String target, final Node baseNode) {
         boolean match = false;
         if (target != null && baseNode != null) {
             List<ASTName> nameNodes = baseNode.findDescendantsOfType(ASTName.class, true);
@@ -159,7 +159,7 @@ public class PreserveStackTraceRule extends AbstractJavaRule {
      * @param baseNode
      * @return
      */
-    private boolean isStringConcat(Node childNode, Node baseNode) {
+    private boolean isStringConcat(final Node childNode, final Node baseNode) {
         Node currentNode = childNode;
         while (!Objects.equals(currentNode, baseNode)) {
             currentNode = currentNode.getParent();
@@ -170,7 +170,7 @@ public class PreserveStackTraceRule extends AbstractJavaRule {
         return false;
     }
 
-    private void ck(Object data, String target, ASTThrowStatement throwStatement, Node baseNode) {
+    private void ck(final Object data, final String target, final ASTThrowStatement throwStatement, final Node baseNode) {
         if (!checkForTargetUsage(target, baseNode)) {
             RuleContext ctx = (RuleContext) data;
             addViolation(ctx, throwStatement);

@@ -36,16 +36,16 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
      * @deprecated Use {@link PropertyFactory#doubleProperty(String)} instead.
      */
     @Deprecated
-    public FloatProperty(String theName, String theDescription, String minStr, String maxStr, String defaultStr,
-                         float theUIOrder) {
+    public FloatProperty(final String theName, final String theDescription, final String minStr, final String maxStr, final String defaultStr,
+                         final float theUIOrder) {
         this(theName, theDescription, FLOAT_PARSER.valueOf(minStr),
                 FLOAT_PARSER.valueOf(maxStr), FLOAT_PARSER.valueOf(defaultStr), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private FloatProperty(String theName, String theDescription, Float min, Float max, Float theDefault,
-                          float theUIOrder, boolean isDefinedExternally) {
+    private FloatProperty(final String theName, final String theDescription, final Float min, final Float max, final Float theDefault,
+                          final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -64,8 +64,8 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
      * @deprecated Use {@link PropertyFactory#doubleProperty(String)} instead.
      */
     @Deprecated
-    public FloatProperty(String theName, String theDescription, Float min, Float max, Float theDefault,
-                         float theUIOrder) {
+    public FloatProperty(final String theName, final String theDescription, final Float min, final Float max, final Float theDefault,
+                         final float theUIOrder) {
         this(theName, theDescription, min, max, theDefault, theUIOrder, false);
     }
 
@@ -77,7 +77,7 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
 
 
     @Override
-    protected Float createFrom(String value) {
+    protected Float createFrom(final String value) {
         return FLOAT_PARSER.valueOf(value);
     }
 
@@ -85,7 +85,7 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Float, FloatPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Float, FloatPBuilder>(Float.class, ValueParserConstants.FLOAT_PARSER) {
             @Override
-            protected FloatPBuilder newBuilder(String name) {
+            protected FloatPBuilder newBuilder(final String name) {
                 return new FloatPBuilder(name);
             }
         };
@@ -93,7 +93,7 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
 
     /** @deprecated Use {@link PropertyFactory#doubleProperty(String)} instead. */
     @Deprecated
-    public static FloatPBuilder named(String name) {
+    public static FloatPBuilder named(final String name) {
         return new FloatPBuilder(name);
     }
 
@@ -103,7 +103,7 @@ public final class FloatProperty extends AbstractNumericProperty<Float> {
      */
     @Deprecated
     public static final class FloatPBuilder extends SingleNumericPropertyBuilder<Float, FloatPBuilder> {
-        private FloatPBuilder(String name) {
+        private FloatPBuilder(final String name) {
             super(name);
         }
 

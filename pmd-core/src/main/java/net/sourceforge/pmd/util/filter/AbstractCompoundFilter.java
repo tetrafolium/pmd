@@ -25,7 +25,7 @@ public abstract class AbstractCompoundFilter<T> implements Filter<T> {
         filters = new ArrayList<>(2);
     }
 
-    public AbstractCompoundFilter(Filter<T>... filters) {
+    public AbstractCompoundFilter(final Filter<T>... filters) {
         this.filters = Arrays.asList(filters);
     }
 
@@ -33,11 +33,11 @@ public abstract class AbstractCompoundFilter<T> implements Filter<T> {
         return filters;
     }
 
-    public void setFilters(List<Filter<T>> filters) {
+    public void setFilters(final List<Filter<T>> filters) {
         this.filters = filters;
     }
 
-    public void addFilter(Filter<T> filter) {
+    public void addFilter(final Filter<T> filter) {
         filters.add(filter);
     }
 

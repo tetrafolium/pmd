@@ -27,7 +27,7 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
     protected List<DataFlowNode> dataFlow;
     protected int line;
 
-    public AbstractDataFlowNode(List<DataFlowNode> dataFlow) {
+    public AbstractDataFlowNode(final List<DataFlowNode> dataFlow) {
         this.dataFlow = dataFlow;
         if (!this.dataFlow.isEmpty()) {
             DataFlowNode parent = this.dataFlow.get(this.dataFlow.size() - 1);
@@ -36,7 +36,7 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
         this.dataFlow.add(this);
     }
 
-    public AbstractDataFlowNode(List<DataFlowNode> dataFlow, Node node) {
+    public AbstractDataFlowNode(final List<DataFlowNode> dataFlow, final Node node) {
         this(dataFlow);
 
         this.node = node;
@@ -45,7 +45,7 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
     }
 
     @Override
-    public void addPathToChild(DataFlowNode child) {
+    public void addPathToChild(final DataFlowNode child) {
         DataFlowNode thisChild = child;
         // TODO - throw an exception if already contained in children list?
         if (!this.children.contains(thisChild) || this.equals(thisChild)) {
@@ -55,14 +55,14 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
     }
 
     @Override
-    public boolean removePathToChild(DataFlowNode child) {
+    public boolean removePathToChild(final DataFlowNode child) {
         DataFlowNode thisChild = child;
         thisChild.getParents().remove(this);
         return this.children.remove(thisChild);
     }
 
     @Override
-    public void reverseParentPathsTo(DataFlowNode destination) {
+    public void reverseParentPathsTo(final DataFlowNode destination) {
         while (!parents.isEmpty()) {
             DataFlowNode parent = parents.get(0);
             parent.removePathToChild(this);
@@ -76,12 +76,12 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
     }
 
     @Override
-    public void setType(NodeType type) {
+    public void setType(final NodeType type) {
         this.type.add(type);
     }
 
     @Override
-    public boolean isType(NodeType type) {
+    public boolean isType(final NodeType type) {
         return this.type.contains(type);
     }
 
@@ -111,7 +111,7 @@ public abstract class AbstractDataFlowNode implements DataFlowNode {
     }
 
     @Override
-    public void setVariableAccess(List<VariableAccess> variableAccess) {
+    public void setVariableAccess(final List<VariableAccess> variableAccess) {
         if (this.variableAccess.isEmpty()) {
             this.variableAccess = variableAccess;
         } else {

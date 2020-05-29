@@ -12,13 +12,13 @@ public class ASTDeclaration extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public ASTDeclaration(int id) {
+    public ASTDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTDeclaration(JspParser p, int id) {
+    public ASTDeclaration(final JspParser p, final int id) {
         super(p, id);
     }
 
@@ -28,12 +28,12 @@ public class ASTDeclaration extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

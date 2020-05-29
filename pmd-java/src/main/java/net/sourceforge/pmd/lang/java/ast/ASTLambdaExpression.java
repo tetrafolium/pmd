@@ -10,14 +10,14 @@ public class ASTLambdaExpression extends AbstractMethodLikeNode {
 
     @InternalApi
     @Deprecated
-    public ASTLambdaExpression(int id) {
+    public ASTLambdaExpression(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTLambdaExpression(JavaParser p, int id) {
+    public ASTLambdaExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -29,7 +29,7 @@ public class ASTLambdaExpression extends AbstractMethodLikeNode {
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

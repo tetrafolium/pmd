@@ -14,13 +14,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTKeywordLiteral extends AbstractEcmascriptNode<KeywordLiteral> {
     @Deprecated
     @InternalApi
-    public ASTKeywordLiteral(KeywordLiteral keywordLiteral) {
+    public ASTKeywordLiteral(final KeywordLiteral keywordLiteral) {
         super(keywordLiteral);
         super.setImage(Token.typeToName(keywordLiteral.getType()).toLowerCase(Locale.ROOT));
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

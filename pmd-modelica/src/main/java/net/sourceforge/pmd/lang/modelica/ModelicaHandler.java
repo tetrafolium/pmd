@@ -22,7 +22,7 @@ public class ModelicaHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new ModelicaParser(parserOptions);
     }
 
@@ -30,14 +30,14 @@ public class ModelicaHandler extends AbstractLanguageVersionHandler {
     public VisitorStarter getSymbolFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new ModelicaSymbolFacade().initializeWith((ASTStoredDefinition) rootNode);
             }
         };
     }
 
     @Override
-    public VisitorStarter getSymbolFacade(ClassLoader classLoader) {
+    public VisitorStarter getSymbolFacade(final ClassLoader classLoader) {
         return getSymbolFacade();
     }
 }

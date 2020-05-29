@@ -49,7 +49,7 @@ public class TokenEntry implements Comparable<TokenEntry> {
      * @param tokenSrcID
      * @param beginLine the linenumber, 1-based.
      */
-    public TokenEntry(String image, String tokenSrcID, int beginLine) {
+    public TokenEntry(final String image, final String tokenSrcID, final int beginLine) {
         this(image, tokenSrcID, beginLine, -1, -1);
     }
 
@@ -61,7 +61,7 @@ public class TokenEntry implements Comparable<TokenEntry> {
      * @param beginColumn the column number, 1-based
      * @param endColumn the column number, 1-based
      */
-    public TokenEntry(String image, String tokenSrcID, int beginLine, int beginColumn, int endColumn) {
+    public TokenEntry(final String image, final String tokenSrcID, final int beginLine, final int beginColumn, final int endColumn) {
         setImage(image);
         this.tokenSrcID = tokenSrcID;
         this.beginLine = beginLine;
@@ -90,7 +90,7 @@ public class TokenEntry implements Comparable<TokenEntry> {
         private Map<String, Integer> tokens;
         private List<TokenEntry> entries;
 
-        public State(List<TokenEntry> entries) {
+        public State(final List<TokenEntry> entries) {
             this.tokenCount = TokenEntry.TOKEN_COUNT.get().intValue();
             this.tokens = new HashMap<>(TokenEntry.TOKENS.get());
             this.entries = new ArrayList<>(entries);
@@ -143,12 +143,12 @@ public class TokenEntry implements Comparable<TokenEntry> {
         return hashCode;
     }
 
-    public void setHashCode(int hashCode) {
+    public void setHashCode(final int hashCode) {
         this.hashCode = hashCode;
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof TokenEntry)) {
             return false;
         }
@@ -157,7 +157,7 @@ public class TokenEntry implements Comparable<TokenEntry> {
     }
 
     @Override
-    public int compareTo(TokenEntry other) {
+    public int compareTo(final TokenEntry other) {
         return getIndex() - other.getIndex();
     }
 
@@ -174,7 +174,7 @@ public class TokenEntry implements Comparable<TokenEntry> {
         return "--unkown--";
     }
 
-    final void setImage(String image) {
+    final void setImage(final String image) {
         Integer i = TOKENS.get().get(image);
         if (i == null) {
             i = TOKENS.get().size() + 1;

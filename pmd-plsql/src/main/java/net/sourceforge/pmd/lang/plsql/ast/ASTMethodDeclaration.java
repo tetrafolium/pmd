@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTMethodDeclaration extends AbstractPLSQLNode implements ExecutableCode {
     @Deprecated
     @InternalApi
-    public ASTMethodDeclaration(int id) {
+    public ASTMethodDeclaration(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTMethodDeclaration(PLSQLParser p, int id) {
+    public ASTMethodDeclaration(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -103,7 +103,7 @@ public class XPathRule extends AbstractRule {
      *
      * @throws NullPointerException If any of the arguments is null
      */
-    public XPathRule(XPathVersion version, String expression) {
+    public XPathRule(final XPathVersion version, final String expression) {
         this();
         Objects.requireNonNull(version, "XPath version is null");
         Objects.requireNonNull(expression, "XPath expression is null");
@@ -153,7 +153,7 @@ public class XPathRule extends AbstractRule {
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Node node : nodes) {
             evaluate(node, ctx);
         }

@@ -33,13 +33,13 @@ public class MultiThreadProcessor extends AbstractPMDProcessor {
     }
 
     @Override
-    protected void runAnalysis(PmdRunnable runnable) {
+    protected void runAnalysis(final PmdRunnable runnable) {
         completionService.submit(runnable);
         submittedTasks++;
     }
 
     @Override
-    protected void collectReports(List<Renderer> renderers) {
+    protected void collectReports(final List<Renderer> renderers) {
         try {
             for (int i = 0; i < submittedTasks; i++) {
                 final Report report = completionService.take().get();

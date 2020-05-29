@@ -18,7 +18,7 @@ abstract class AbstractModelicaScope implements ModelicaScope {
     private final List<ModelicaDeclaration> declarations = new ArrayList<>();
     private final Map<String, ArrayList<ModelicaDeclaration>> declarationsByName = new HashMap<>();
 
-    void setParent(AbstractModelicaScope scope) {
+    void setParent(final AbstractModelicaScope scope) {
         parent = scope;
     }
 
@@ -27,7 +27,7 @@ abstract class AbstractModelicaScope implements ModelicaScope {
         return parent;
     }
 
-    void addDeclaration(ModelicaDeclaration declaration) {
+    void addDeclaration(final ModelicaDeclaration declaration) {
         String name = declaration.getSimpleDeclarationName();
         declarations.add(declaration);
         if (!declarationsByName.containsKey(name)) {
@@ -41,7 +41,7 @@ abstract class AbstractModelicaScope implements ModelicaScope {
         return Collections.unmodifiableList(declarations);
     }
 
-    List<ModelicaDeclaration> getDirectlyDeclared(String simpleName) {
+    List<ModelicaDeclaration> getDirectlyDeclared(final String simpleName) {
         List<ModelicaDeclaration> result = declarationsByName.get(simpleName);
         if (result != null) {
             return result;
@@ -56,7 +56,7 @@ abstract class AbstractModelicaScope implements ModelicaScope {
     abstract void resolveLexically(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException;
 
     @Override
-    public <T extends ResolvableEntity> ResolutionResult<T> safeResolveLexically(Class<T> clazz, ResolutionState state, CompositeName name) {
+    public <T extends ResolvableEntity> ResolutionResult<T> safeResolveLexically(final Class<T> clazz, final ResolutionState state, final CompositeName name) {
         ResolutionContext result = state.createContext();
         try {
             resolveLexically(result, name);

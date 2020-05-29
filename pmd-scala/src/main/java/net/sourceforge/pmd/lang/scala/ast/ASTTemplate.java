@@ -15,12 +15,12 @@ public class ASTTemplate extends AbstractScalaNode<Template> {
 
     @Deprecated
     @InternalApi
-    public ASTTemplate(Template scalaNode) {
+    public ASTTemplate(final Template scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

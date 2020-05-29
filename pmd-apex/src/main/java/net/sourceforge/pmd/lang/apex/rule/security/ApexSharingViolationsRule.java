@@ -30,7 +30,7 @@ public class ApexSharingViolationsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
@@ -53,7 +53,7 @@ public class ApexSharingViolationsRule extends AbstractApexRule {
      * @param node
      * @param data
      */
-    private void checkForDatabaseMethods(ASTUserClass node, Object data, boolean sharingFound) {
+    private void checkForDatabaseMethods(final ASTUserClass node, final Object data, final boolean sharingFound) {
         List<ASTMethodCallExpression> calls = node.findDescendantsOfType(ASTMethodCallExpression.class);
         for (ASTMethodCallExpression call : calls) {
             if (Helper.isMethodName(call, "Database", Helper.ANY_METHOD)) {
@@ -64,7 +64,7 @@ public class ApexSharingViolationsRule extends AbstractApexRule {
         }
     }
 
-    private void reportViolation(ApexNode<?> node, Object data) {
+    private void reportViolation(final ApexNode<?> node, final Object data) {
         ASTModifierNode modifier = node.getFirstChildOfType(ASTModifierNode.class);
         if (modifier != null) {
             if (localCacheOfReportedNodes.put(modifier, data) == null) {
@@ -83,7 +83,7 @@ public class ApexSharingViolationsRule extends AbstractApexRule {
      * @param node
      * @param data
      */
-    private void checkForSharingDeclaration(ApexNode<?> node, Object data, boolean sharingFound) {
+    private void checkForSharingDeclaration(final ApexNode<?> node, final Object data, final boolean sharingFound) {
         final boolean foundAnyDMLorSOQL = Helper.foundAnyDML(node) || Helper.foundAnySOQLorSOSL(node);
         if (!sharingFound && !Helper.isTestMethodOrClass(node) && foundAnyDMLorSOQL) {
             reportViolation(node, data);
@@ -96,7 +96,7 @@ public class ApexSharingViolationsRule extends AbstractApexRule {
      * @param node
      * @return
      */
-    private boolean isSharingPresent(ASTUserClass node) {
+    private boolean isSharingPresent(final ASTUserClass node) {
         return node.getModifiers().isWithoutSharing() || node.getModifiers().isWithSharing()
                 || node.getModifiers().isInheritedSharing();
     }

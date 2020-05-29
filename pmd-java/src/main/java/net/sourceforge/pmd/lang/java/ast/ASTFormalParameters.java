@@ -15,13 +15,13 @@ public class ASTFormalParameters extends AbstractJavaNode implements Iterable<AS
 
     @InternalApi
     @Deprecated
-    public ASTFormalParameters(int id) {
+    public ASTFormalParameters(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTFormalParameters(JavaParser p, int id) {
+    public ASTFormalParameters(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -41,7 +41,7 @@ public class ASTFormalParameters extends AbstractJavaNode implements Iterable<AS
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

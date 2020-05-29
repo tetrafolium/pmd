@@ -37,16 +37,16 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
      * @deprecated Use {@link PropertyFactory#longIntProperty(String)}
      */
     @Deprecated
-    public LongProperty(String theName, String theDescription, String minStr, String maxStr, String defaultStr,
-                        float theUIOrder) {
+    public LongProperty(final String theName, final String theDescription, final String minStr, final String maxStr, final String defaultStr,
+                        final float theUIOrder) {
         this(theName, theDescription, Long.valueOf(minStr), Long.valueOf(maxStr),
                 Long.valueOf(defaultStr), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private LongProperty(String theName, String theDescription, Long min, Long max, Long theDefault,
-                         float theUIOrder, boolean isDefinedExternally) {
+    private LongProperty(final String theName, final String theDescription, final Long min, final Long max, final Long theDefault,
+                         final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -65,7 +65,7 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
      * @deprecated Use {@link PropertyFactory#longIntProperty(String)}
      */
     @Deprecated
-    public LongProperty(String theName, String theDescription, Long min, Long max, Long theDefault, float theUIOrder) {
+    public LongProperty(final String theName, final String theDescription, final Long min, final Long max, final Long theDefault, final float theUIOrder) {
         this(theName, theDescription, min, max, theDefault, theUIOrder, false);
     }
 
@@ -77,7 +77,7 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
 
 
     @Override
-    protected Long createFrom(String toParse) {
+    protected Long createFrom(final String toParse) {
         return Long.valueOf(toParse);
     }
 
@@ -85,7 +85,7 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Long, LongPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Long, LongPBuilder>(Long.class, ValueParserConstants.LONG_PARSER) {
             @Override
-            protected LongPBuilder newBuilder(String name) {
+            protected LongPBuilder newBuilder(final String name) {
                 return new LongPBuilder(name);
             }
         };
@@ -94,7 +94,7 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
 
     /** @deprecated Use {@link PropertyFactory#longIntProperty(String)} */
     @Deprecated
-    public static LongPBuilder named(String name) {
+    public static LongPBuilder named(final String name) {
         return new LongPBuilder(name);
     }
 
@@ -102,7 +102,7 @@ public final class LongProperty extends AbstractNumericProperty<Long> {
     /** @deprecated Use {@link PropertyFactory#longIntProperty(String)} */
     @Deprecated
     public static final class LongPBuilder extends SingleNumericPropertyBuilder<Long, LongPBuilder> {
-        private LongPBuilder(String name) {
+        private LongPBuilder(final String name) {
             super(name);
         }
 

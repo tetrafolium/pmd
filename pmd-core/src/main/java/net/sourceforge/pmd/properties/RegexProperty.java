@@ -24,13 +24,13 @@ import net.sourceforge.pmd.properties.builders.SingleValuePropertyBuilder;
 @Deprecated
 public final class RegexProperty extends AbstractSingleValueProperty<Pattern> {
 
-    RegexProperty(String theName, String theDescription, Pattern theDefault, float theUIOrder, boolean isDefinedExternally) {
+    RegexProperty(final String theName, final String theDescription, final Pattern theDefault, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally);
     }
 
 
     @Override
-    protected Pattern createFrom(String toParse) {
+    protected Pattern createFrom(final String toParse) {
         return Pattern.compile(toParse);
     }
 
@@ -44,7 +44,7 @@ public final class RegexProperty extends AbstractSingleValueProperty<Pattern> {
     static SingleValue<Pattern, RegexPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue<Pattern, RegexPBuilder>(Pattern.class, ValueParserConstants.REGEX_PARSER) {
             @Override
-            protected RegexPBuilder newBuilder(String name) {
+            protected RegexPBuilder newBuilder(final String name) {
                 return new RegexPBuilder(name);
             }
         };
@@ -61,7 +61,7 @@ public final class RegexProperty extends AbstractSingleValueProperty<Pattern> {
      * @deprecated Use {@link PropertyFactory#regexProperty(String)}
      */
     @Deprecated
-    public static RegexPBuilder named(String name) {
+    public static RegexPBuilder named(final String name) {
         return new RegexPBuilder(name);
     }
 
@@ -73,7 +73,7 @@ public final class RegexProperty extends AbstractSingleValueProperty<Pattern> {
      */
     @Deprecated
     public static final class RegexPBuilder extends SingleValuePropertyBuilder<Pattern, RegexProperty.RegexPBuilder> {
-        private RegexPBuilder(String name) {
+        private RegexPBuilder(final String name) {
             super(name);
         }
 
@@ -86,7 +86,7 @@ public final class RegexProperty extends AbstractSingleValueProperty<Pattern> {
          *
          * @return The same builder
          */
-        public RegexPBuilder defaultValue(String val) {
+        public RegexPBuilder defaultValue(final String val) {
             return super.defaultValue(Pattern.compile(val));
         }
 

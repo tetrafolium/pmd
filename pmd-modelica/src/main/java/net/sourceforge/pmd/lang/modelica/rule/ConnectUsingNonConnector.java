@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.modelica.resolver.ResolutionResult;
 import net.sourceforge.pmd.lang.modelica.resolver.ResolvableEntity;
 
 public class ConnectUsingNonConnector extends AbstractModelicaRule {
-    private void reportIfViolated(ASTComponentReference ref, Object data) {
+    private void reportIfViolated(final ASTComponentReference ref, final Object data) {
         ResolutionResult<ResolvableEntity> resolution = ref.getResolutionCandidates();
         if (!resolution.isUnresolved()) { // no false positive if not resolved at all
             ResolvableEntity firstDecl = resolution.getBestCandidates().get(0);
@@ -38,7 +38,7 @@ public class ConnectUsingNonConnector extends AbstractModelicaRule {
     }
 
     @Override
-    public Object visit(ASTConnectClause node, Object data) {
+    public Object visit(final ASTConnectClause node, final Object data) {
         ASTComponentReference lhs = (ASTComponentReference) node.getChild(0);
         ASTComponentReference rhs = (ASTComponentReference) node.getChild(1);
 

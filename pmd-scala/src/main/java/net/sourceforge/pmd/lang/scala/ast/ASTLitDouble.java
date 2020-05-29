@@ -15,12 +15,12 @@ public class ASTLitDouble extends AbstractScalaNode<Lit.Double> {
 
     @Deprecated
     @InternalApi
-    public ASTLitDouble(Lit.Double scalaNode) {
+    public ASTLitDouble(final Lit.Double scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

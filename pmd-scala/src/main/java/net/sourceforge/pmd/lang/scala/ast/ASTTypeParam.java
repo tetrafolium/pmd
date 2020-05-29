@@ -15,12 +15,12 @@ public class ASTTypeParam extends AbstractScalaNode<Type.Param> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeParam(Type.Param scalaNode) {
+    public ASTTypeParam(final Type.Param scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

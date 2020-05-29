@@ -59,7 +59,7 @@ public class VelocimacroProxy extends Directive {
      *
      * @param name
      */
-    public void setName(String name) {
+    public void setName(final String name) {
         macroName = name;
     }
 
@@ -68,7 +68,7 @@ public class VelocimacroProxy extends Directive {
      *
      * @param arr
      */
-    public void setArgArray(String[] arr) {
+    public void setArgArray(final String[] arr) {
         /*
          * get the arg count from the arg array. remember that the arg array has
          * the macro name as it's 0th element

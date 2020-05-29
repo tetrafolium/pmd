@@ -57,7 +57,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @deprecated Use {@link #deepCopy()} to create verbatim copies of rules.
      */
     @Deprecated
-    public void deepCopyValuesTo(AbstractRule otherRule) {
+    public void deepCopyValuesTo(final AbstractRule otherRule) {
         otherRule.language = language;
         otherRule.minimumLanguageVersion = minimumLanguageVersion;
         otherRule.maximumLanguageVersion = maximumLanguageVersion;
@@ -93,7 +93,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setLanguage(Language language) {
+    public void setLanguage(final Language language) {
         if (this.language != null && this instanceof ImmutableLanguage && !this.language.equals(language)) {
             throw new UnsupportedOperationException("The Language for Rule class " + this.getClass().getName()
                     + " is immutable and cannot be changed.");
@@ -107,7 +107,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setMinimumLanguageVersion(LanguageVersion minimumLanguageVersion) {
+    public void setMinimumLanguageVersion(final LanguageVersion minimumLanguageVersion) {
         this.minimumLanguageVersion = minimumLanguageVersion;
     }
 
@@ -117,7 +117,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setMaximumLanguageVersion(LanguageVersion maximumLanguageVersion) {
+    public void setMaximumLanguageVersion(final LanguageVersion maximumLanguageVersion) {
         this.maximumLanguageVersion = maximumLanguageVersion;
     }
 
@@ -127,7 +127,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setDeprecated(boolean deprecated) {
+    public void setDeprecated(final boolean deprecated) {
         this.deprecated = deprecated;
     }
 
@@ -137,7 +137,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -147,7 +147,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setSince(String since) {
+    public void setSince(final String since) {
         this.since = since;
     }
 
@@ -157,7 +157,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setRuleClass(String ruleClass) {
+    public void setRuleClass(final String ruleClass) {
         this.ruleClass = ruleClass;
     }
 
@@ -167,7 +167,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setRuleSetName(String ruleSetName) {
+    public void setRuleSetName(final String ruleSetName) {
         this.ruleSetName = ruleSetName;
     }
 
@@ -177,7 +177,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         this.message = message;
     }
 
@@ -187,7 +187,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -198,7 +198,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void addExample(String example) {
+    public void addExample(final String example) {
         examples.add(example);
     }
 
@@ -208,7 +208,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setExternalInfoUrl(String externalInfoUrl) {
+    public void setExternalInfoUrl(final String externalInfoUrl) {
         this.externalInfoUrl = externalInfoUrl;
     }
 
@@ -218,7 +218,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setPriority(RulePriority priority) {
+    public void setPriority(final RulePriority priority) {
         this.priority = priority;
     }
 
@@ -240,7 +240,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setDfa(boolean isDfa) {
+    public void setDfa(final boolean isDfa) {
         usesDFA = isDfa;
     }
 
@@ -262,7 +262,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setTypeResolution(boolean usingTypeResolution) {
+    public void setTypeResolution(final boolean usingTypeResolution) {
         usesTypeResolution = usingTypeResolution;
     }
 
@@ -284,7 +284,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void setMultifile(boolean multifile) {
+    public void setMultifile(final boolean multifile) {
         usesMultifile = multifile;
     }
 
@@ -316,7 +316,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void addRuleChainVisit(Class<? extends Node> nodeClass) {
+    public void addRuleChainVisit(final Class<? extends Node> nodeClass) {
         if (!nodeClass.getSimpleName().startsWith("AST")) {
             throw new IllegalArgumentException("Node class does not start with 'AST' prefix: " + nodeClass);
         }
@@ -324,19 +324,19 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
     }
 
     @Override
-    public void addRuleChainVisit(String astNodeName) {
+    public void addRuleChainVisit(final String astNodeName) {
         if (!ruleChainVisits.contains(astNodeName)) {
             ruleChainVisits.add(astNodeName);
         }
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         // Override as needed
     }
 
     @Override
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         // Override as needed
     }
 
@@ -344,7 +344,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolation(Object data, Node node) {
+    public void addViolation(final Object data, final Node node) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, this.getMessage(), null);
@@ -354,7 +354,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolation(Object data, Node node, String arg) {
+    public void addViolation(final Object data, final Node node, final String arg) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, this.getMessage(), new Object[]{arg});
@@ -364,7 +364,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolation(Object data, Node node, Object[] args) {
+    public void addViolation(final Object data, final Node node, final Object[] args) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, this.getMessage(), args);
@@ -374,7 +374,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolationWithMessage(Object data, Node node, String message) {
+    public void addViolationWithMessage(final Object data, final Node node, final String message) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, message, null);
@@ -384,7 +384,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolationWithMessage(Object data, Node node, String message, int beginLine, int endLine) {
+    public void addViolationWithMessage(final Object data, final Node node, final String message, final int beginLine, final int endLine) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, message, beginLine, endLine, null);
@@ -394,7 +394,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * @see RuleViolationFactory#addViolation(RuleContext, Rule, Node, String,
      * Object[])
      */
-    public void addViolationWithMessage(Object data, Node node, String message, Object[] args) {
+    public void addViolationWithMessage(final Object data, final Node node, final String message, final Object[] args) {
         RuleContext ruleContext = (RuleContext) data;
         ruleContext.getLanguageVersion().getLanguageVersionHandler().getRuleViolationFactory().addViolation(ruleContext,
                 this, node, message, args);
@@ -410,7 +410,7 @@ public abstract class AbstractRule extends AbstractPropertySource implements Rul
      * </ol>
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o == null) {
             return false; // trivial
         }

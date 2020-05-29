@@ -22,18 +22,18 @@ public class ASTTypeArguments extends AbstractJavaNode implements Iterable<ASTTy
 
     @InternalApi
     @Deprecated
-    public ASTTypeArguments(int id) {
+    public ASTTypeArguments(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTTypeArguments(JavaParser p, int id) {
+    public ASTTypeArguments(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

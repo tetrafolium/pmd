@@ -41,7 +41,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         boolean classHasLombok = hasLombokAnnotation(node);
 
         Map<VariableNameDeclaration, List<NameOccurrence>> vars = node.getScope()
@@ -62,7 +62,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
         return super.visit(node, data);
     }
 
-    private boolean usedInOuterEnum(ASTClassOrInterfaceDeclaration node, NameDeclaration decl) {
+    private boolean usedInOuterEnum(final ASTClassOrInterfaceDeclaration node, final NameDeclaration decl) {
         List<ASTEnumDeclaration> outerEnums = node.getParentsOfType(ASTEnumDeclaration.class);
         for (ASTEnumDeclaration outerEnum : outerEnums) {
             ASTEnumBody enumBody = outerEnum.getFirstChildOfType(ASTEnumBody.class);
@@ -76,7 +76,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
     /**
      * Find out whether the variable is used in an outer class
      */
-    private boolean usedInOuterClass(ASTClassOrInterfaceDeclaration node, NameDeclaration decl) {
+    private boolean usedInOuterClass(final ASTClassOrInterfaceDeclaration node, final NameDeclaration decl) {
         List<ASTClassOrInterfaceDeclaration> outerClasses = node.getParentsOfType(ASTClassOrInterfaceDeclaration.class);
         for (ASTClassOrInterfaceDeclaration outerClass : outerClasses) {
             ASTClassOrInterfaceBody classOrInterfaceBody = outerClass
@@ -88,7 +88,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
         return false;
     }
 
-    private boolean usedInOuter(NameDeclaration decl, JavaNode body) {
+    private boolean usedInOuter(final NameDeclaration decl, final JavaNode body) {
         List<ASTClassOrInterfaceBodyDeclaration> classOrInterfaceBodyDeclarations = body
                 .findChildrenOfType(ASTClassOrInterfaceBodyDeclaration.class);
         List<ASTEnumConstant> enumConstants = body.findChildrenOfType(ASTEnumConstant.class);
@@ -118,7 +118,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
         return false;
     }
 
-    private boolean actuallyUsed(List<NameOccurrence> usages) {
+    private boolean actuallyUsed(final List<NameOccurrence> usages) {
         for (NameOccurrence nameOccurrence : usages) {
             JavaNameOccurrence jNameOccurrence = (JavaNameOccurrence) nameOccurrence;
             if (!jNameOccurrence.isOnLeftHandSide()) {
@@ -129,7 +129,7 @@ public class UnusedPrivateFieldRule extends AbstractLombokAwareRule {
         return false;
     }
 
-    private boolean isOK(String image) {
+    private boolean isOK(final String image) {
         return "serialVersionUID".equals(image) || "serialPersistentFields".equals(image) || "IDENT".equals(image);
     }
 }

@@ -22,7 +22,7 @@ public class MethodWithSameNameAsEnclosingClassRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         String className = node.getImage();
 
         List<ASTMethod> methods = node.findDescendantsOfType(ASTMethod.class);

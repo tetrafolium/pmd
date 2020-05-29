@@ -27,7 +27,7 @@ public abstract class AbstractJavaOperationMetric extends AbstractJavaMetric<Met
      * @return True if the metric can be computed on this operation
      */
     @Override
-    public boolean supports(MethodLikeNode node) {
+    public boolean supports(final MethodLikeNode node) {
         return !node.isAbstract();
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractJavaOperationMetric extends AbstractJavaMetric<Met
      * @deprecated Provided here for backwards binary compatibility with {@link #supports(MethodLikeNode)}.
      *             Please explicitly link your code to that method and recompile your code. Will be remove with 7.0.0
      */
-    public boolean supports(ASTMethodOrConstructorDeclaration node) {
+    public boolean supports(final ASTMethodOrConstructorDeclaration node) {
         return supports((MethodLikeNode) node);
     }
 

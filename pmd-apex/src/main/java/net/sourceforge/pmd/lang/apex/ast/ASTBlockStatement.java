@@ -13,12 +13,12 @@ public class ASTBlockStatement extends AbstractApexNode<BlockStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTBlockStatement(BlockStatement blockStatement) {
+    public ASTBlockStatement(final BlockStatement blockStatement) {
         super(blockStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

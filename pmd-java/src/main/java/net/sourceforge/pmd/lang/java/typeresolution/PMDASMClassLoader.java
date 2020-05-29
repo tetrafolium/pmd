@@ -51,7 +51,7 @@ public final class PMDASMClassLoader extends ClassLoader implements NullableClas
         registerAsParallelCapable();
     }
 
-    private PMDASMClassLoader(ClassLoader parent) {
+    private PMDASMClassLoader(final ClassLoader parent) {
         super(parent);
     }
 
@@ -60,7 +60,7 @@ public final class PMDASMClassLoader extends ClassLoader implements NullableClas
      * allows to reuse the same PMDASMClassLoader across all the compilation
      * units.
      */
-    public static synchronized PMDASMClassLoader getInstance(ClassLoader parent) {
+    public static synchronized PMDASMClassLoader getInstance(final ClassLoader parent) {
         if (parent.equals(cachedClassLoader)) {
             return cachedPMDASMClassLoader;
         }
@@ -70,7 +70,7 @@ public final class PMDASMClassLoader extends ClassLoader implements NullableClas
     }
 
     @Override
-    public Class<?> loadClass(String name) throws ClassNotFoundException {
+    public Class<?> loadClass(final String name) throws ClassNotFoundException {
         Class<?> aClass = loadClassOrNull(name);
         if (aClass == null) {
             throw new ClassNotFoundException(name);
@@ -83,7 +83,7 @@ public final class PMDASMClassLoader extends ClassLoader implements NullableClas
      * difference. Typeres as a whole is 2x faster.
      */
     @Override
-    public Class<?> loadClassOrNull(String name) {
+    public Class<?> loadClassOrNull(final String name) {
         if (dontBother.containsKey(name)) {
             return null;
         }
@@ -106,11 +106,11 @@ public final class PMDASMClassLoader extends ClassLoader implements NullableClas
      *            the name of the class
      * @return whether the class can be resolved
      */
-    public boolean couldResolve(String name) {
+    public boolean couldResolve(final String name) {
         return !dontBother.containsKey(name);
     }
 
-    public synchronized Map<String, String> getImportedClasses(String name) throws ClassNotFoundException {
+    public synchronized Map<String, String> getImportedClasses(final String name) throws ClassNotFoundException {
         if (dontBother.containsKey(name)) {
             throw new ClassNotFoundException(name);
         }

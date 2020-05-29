@@ -22,13 +22,13 @@ public class CSVWriter<T extends Object> {
     private final String lineSeparator; // cr
     private final List<ColumnDescriptor<T>> columns;
 
-    public CSVWriter(List<ColumnDescriptor<T>> theColumns, String theSeparator, String theLineSeparator) {
+    public CSVWriter(final List<ColumnDescriptor<T>> theColumns, final String theSeparator, final String theLineSeparator) {
         columns = theColumns;
         separator = theSeparator;
         lineSeparator = theLineSeparator;
     }
 
-    public void writeTitles(Writer writer) throws IOException {
+    public void writeTitles(final Writer writer) throws IOException {
         StringBuilder buf = new StringBuilder(300);
         for (int i = 0; i < columns.size() - 1; i++) {
             quoteAndCommify(buf, columns.get(i).title);
@@ -40,7 +40,7 @@ public class CSVWriter<T extends Object> {
         writer.write(buf.toString());
     }
 
-    public void writeData(Writer writer, Iterator<T> items) throws IOException {
+    public void writeData(final Writer writer, final Iterator<T> items) throws IOException {
 
         int count = 1;
 
@@ -65,14 +65,14 @@ public class CSVWriter<T extends Object> {
         }
     }
 
-    private void quote(StringBuilder buffer, String s) {
+    private void quote(final StringBuilder buffer, final String s) {
         if (s == null) {
             return;
         }
         buffer.append('"').append(s).append('"');
     }
 
-    private void quoteAndCommify(StringBuilder buffer, String s) {
+    private void quoteAndCommify(final StringBuilder buffer, final String s) {
         quote(buffer, s);
         buffer.append(separator);
     }

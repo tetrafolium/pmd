@@ -118,7 +118,7 @@ public class ReportTree implements Iterable<RuleViolation> {
      * Adds the RuleViolation to the tree. Splits the package name. Each
      * package, class and violation gets there own tree node.
      */
-    public void addRuleViolation(RuleViolation violation) {
+    public void addRuleViolation(final RuleViolation violation) {
         String packageName = violation.getPackageName();
         if (packageName == null) {
             packageName = "";
@@ -170,7 +170,7 @@ public class ReportTree implements Iterable<RuleViolation> {
     /**
      * Checks if node is a child of the level node.
      */
-    private boolean equalsNodeInLevel(AbstractReportNode level, AbstractReportNode node) {
+    private boolean equalsNodeInLevel(final AbstractReportNode level, final AbstractReportNode node) {
         for (int i = 0; i < level.getChildCount(); i++) {
             if (level.getChildAt(i).equalsNode(node)) {
                 return true;
@@ -184,7 +184,7 @@ public class ReportTree implements Iterable<RuleViolation> {
      * (this.level) node. If it's true, the current node changes to the child
      * node.
      */
-    private boolean isStringInLevel(String str) {
+    private boolean isStringInLevel(final String str) {
 
         for (int i = 0; i < level.getChildCount(); i++) {
             final AbstractReportNode child = level.getChildAt(i);

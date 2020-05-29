@@ -11,7 +11,7 @@ import apex.jorje.semantic.ast.statement.TypeWhenBlock;
 public final class ASTTypeWhenBlock extends AbstractApexNode<TypeWhenBlock> {
 
 
-    ASTTypeWhenBlock(TypeWhenBlock node) {
+    ASTTypeWhenBlock(final TypeWhenBlock node) {
         super(node);
     }
 
@@ -31,7 +31,7 @@ public final class ASTTypeWhenBlock extends AbstractApexNode<TypeWhenBlock> {
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

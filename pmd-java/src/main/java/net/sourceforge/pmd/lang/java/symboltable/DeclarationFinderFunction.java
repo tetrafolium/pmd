@@ -14,12 +14,12 @@ public class DeclarationFinderFunction implements SearchFunction<NameDeclaration
     private NameOccurrence occurrence;
     private NameDeclaration decl;
 
-    public DeclarationFinderFunction(NameOccurrence occurrence) {
+    public DeclarationFinderFunction(final NameOccurrence occurrence) {
         this.occurrence = occurrence;
     }
 
     @Override
-    public boolean applyTo(NameDeclaration nameDeclaration) {
+    public boolean applyTo(final NameDeclaration nameDeclaration) {
         // do not match method references
         if (occurrence.getLocation() instanceof ASTMethodReference) {
             return false;
@@ -32,7 +32,7 @@ public class DeclarationFinderFunction implements SearchFunction<NameDeclaration
         return true;
     }
 
-    private boolean isDeclaredBefore(NameDeclaration nameDeclaration) {
+    private boolean isDeclaredBefore(final NameDeclaration nameDeclaration) {
         if (nameDeclaration.getNode() != null && occurrence.getLocation() != null) {
             return nameDeclaration.getNode().getBeginLine() <= occurrence.getLocation().getBeginLine();
         }
@@ -40,7 +40,7 @@ public class DeclarationFinderFunction implements SearchFunction<NameDeclaration
         return true;
     }
 
-    private boolean isSameName(NameDeclaration nameDeclaration) {
+    private boolean isSameName(final NameDeclaration nameDeclaration) {
         return occurrence.getImage().equals(nameDeclaration.getName());
     }
 

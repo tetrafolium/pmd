@@ -33,7 +33,7 @@ public class XMLRenderer extends AbstractIncrementingRenderer {
         definePropertyDescriptor(ENCODING);
     }
 
-    public XMLRenderer(String encoding) {
+    public XMLRenderer(final String encoding) {
         this();
         setProperty(ENCODING, encoding);
     }
@@ -61,7 +61,7 @@ public class XMLRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         StringBuilder buf = new StringBuilder(500);
         String filename = null;
 
@@ -159,7 +159,7 @@ public class XMLRenderer extends AbstractIncrementingRenderer {
         writer.write("</pmd>" + PMD.EOL);
     }
 
-    private void maybeAdd(String attr, String value, StringBuilder buf) {
+    private void maybeAdd(final String attr, final String value, final StringBuilder buf) {
         if (value != null && value.length() > 0) {
             buf.append(' ').append(attr).append("=\"");
             StringUtil.appendXmlEscaped(buf, value, useUTF8);
@@ -167,14 +167,14 @@ public class XMLRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private void createVersionAttr(StringBuilder buffer) {
+    private void createVersionAttr(final StringBuilder buffer) {
         buffer.append("<pmd xmlns=\"http://pmd.sourceforge.net/report/2.0.0\"").append(PMD.EOL)
             .append("    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"").append(PMD.EOL)
             .append("    xsi:schemaLocation=\"http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd\"").append(PMD.EOL)
             .append("    version=\"").append(PMDVersion.VERSION).append('"');
     }
 
-    private void createTimestampAttr(StringBuilder buffer) {
+    private void createTimestampAttr(final StringBuilder buffer) {
         buffer.append(" timestamp=\"").append(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date()))
                 .append('"');
     }

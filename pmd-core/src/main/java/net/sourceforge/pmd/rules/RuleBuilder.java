@@ -56,30 +56,30 @@ public class RuleBuilder {
      * rule implementation class from the class path.
      */
     @Deprecated
-    public RuleBuilder(String name, String clazz, String language) {
+    public RuleBuilder(final String name, final String clazz, final String language) {
         this(name, new ResourceLoader(), clazz, language);
     }
 
-    public RuleBuilder(String name, ResourceLoader resourceLoader, String clazz, String language) {
+    public RuleBuilder(final String name, final ResourceLoader resourceLoader, final String clazz, final String language) {
         this.name = name;
         this.resourceLoader = resourceLoader;
         language(language);
         className(clazz);
     }
 
-    public void usesDFA(boolean usesDFA) {
+    public void usesDFA(final boolean usesDFA) {
         isUsesDfa = usesDFA;
     }
 
-    public void usesMultifile(boolean usesMultifile) {
+    public void usesMultifile(final boolean usesMultifile) {
         isUsesMultifile = usesMultifile;
     }
 
-    public void usesTyperesolution(boolean usesTyperesolution) {
+    public void usesTyperesolution(final boolean usesTyperesolution) {
         isUsesTyperesolution = usesTyperesolution;
     }
 
-    private void language(String languageName) {
+    private void language(final String languageName) {
         if (StringUtils.isBlank(languageName)) {
             // Some languages don't need the attribute because the rule's
             // constructor calls setLanguage, see e.g. AbstractJavaRule
@@ -95,7 +95,7 @@ public class RuleBuilder {
         language = lang;
     }
 
-    private void className(String className) {
+    private void className(final String className) {
         if (StringUtils.isBlank(className)) {
             throw new IllegalArgumentException("The 'class' field of rule can't be null, nor empty.");
         }
@@ -103,15 +103,15 @@ public class RuleBuilder {
         this.clazz = className;
     }
 
-    public void minimumLanguageVersion(String minimum) {
+    public void minimumLanguageVersion(final String minimum) {
         minimumVersion = minimum;
     }
 
-    public void maximumLanguageVersion(String maximum) {
+    public void maximumLanguageVersion(final String maximum) {
         maximumVersion = maximum;
     }
 
-    private void checkLanguageVersionsAreOrdered(Rule rule) {
+    private void checkLanguageVersionsAreOrdered(final Rule rule) {
         if (rule.getMinimumLanguageVersion() != null && rule.getMaximumLanguageVersion() != null
             && rule.getMinimumLanguageVersion().compareTo(rule.getMaximumLanguageVersion()) > 0) {
             throw new IllegalArgumentException(
@@ -122,46 +122,46 @@ public class RuleBuilder {
         }
     }
 
-    public void since(String sinceStr) {
+    public void since(final String sinceStr) {
         if (StringUtils.isNotBlank(sinceStr)) {
             since = sinceStr;
         }
     }
 
-    public void externalInfoUrl(String externalInfoUrl) {
+    public void externalInfoUrl(final String externalInfoUrl) {
         this.externalInfoUrl = externalInfoUrl;
     }
 
-    public void message(String message) {
+    public void message(final String message) {
         this.message = message;
     }
 
-    public void defineProperty(PropertyDescriptor<?> descriptor) {
+    public void defineProperty(final PropertyDescriptor<?> descriptor) {
         definedProperties.add(descriptor);
     }
 
 
-    public void setDeprecated(boolean deprecated) {
+    public void setDeprecated(final boolean deprecated) {
         isDeprecated = deprecated;
     }
 
 
-    public void description(String description) {
+    public void description(final String description) {
         this.description = description;
     }
 
 
-    public void addExample(String example) {
+    public void addExample(final String example) {
         examples.add(example);
     }
 
 
-    public void priority(int priorityString) {
+    public void priority(final int priorityString) {
         this.priority = RulePriority.valueOf(priorityString);
     }
 
     // Must be loaded after rule construction to know the Language
-    private void loadLanguageMinMaxVersions(Rule rule) {
+    private void loadLanguageMinMaxVersions(final Rule rule) {
 
         if (minimumVersion != null) {
             LanguageVersion minimumLanguageVersion = rule.getLanguage().getVersion(minimumVersion);
@@ -184,7 +184,7 @@ public class RuleBuilder {
         checkLanguageVersionsAreOrdered(rule);
     }
 
-    private void throwUnknownLanguageVersionException(String minOrMax, String unknownVersion, Language lang) {
+    private void throwUnknownLanguageVersionException(final String minOrMax, final String unknownVersion, final Language lang) {
         throw new IllegalArgumentException("Unknown " + minOrMax + " Language Version '" + unknownVersion
                                            + "' for Language '" + lang.getTerseName()
                                            + "' for Rule " + name

@@ -34,7 +34,7 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
     private Object userData;
 
 
-    public XmlNodeWrapper(XmlParser parser, org.w3c.dom.Node domNode) {
+    public XmlNodeWrapper(final XmlParser parser, final org.w3c.dom.Node domNode) {
         super(domNode);
         this.parser = parser;
     }
@@ -47,7 +47,7 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void jjtSetParent(Node parent) {
+    public void jjtSetParent(final Node parent) {
         throw new UnsupportedOperationException();
     }
 
@@ -60,13 +60,13 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void jjtAddChild(Node child, int index) {
+    public void jjtAddChild(final Node child, final int index) {
         throw new UnsupportedOperationException();
     }
 
 
     @Override
-    public void jjtSetChildIndex(int index) {
+    public void jjtSetChildIndex(final int index) {
         throw new UnsupportedOperationException();
     }
 
@@ -85,12 +85,12 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public XmlNode jjtGetChild(int index) {
+    public XmlNode jjtGetChild(final int index) {
         return parser.wrapDomNode(node.getChildNodes().item(index));
     }
 
     @Override
-    public Node getChild(int index) {
+    public Node getChild(final int index) {
         return jjtGetChild(index);
     }
 
@@ -118,13 +118,13 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void setImage(String image) {
+    public void setImage(final String image) {
         throw new UnsupportedOperationException();
     }
 
 
     @Override
-    public boolean hasImageEqualTo(String image) {
+    public boolean hasImageEqualTo(final String image) {
         return Objects.equals(image, getImage());
     }
 
@@ -160,7 +160,7 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void setDataFlowNode(DataFlowNode dataFlowNode) {
+    public void setDataFlowNode(final DataFlowNode dataFlowNode) {
         throw new UnsupportedOperationException();
     }
 
@@ -183,7 +183,7 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void setUserData(Object userData) {
+    public void setUserData(final Object userData) {
         this.userData = userData;
     }
 
@@ -195,7 +195,7 @@ public class XmlNodeWrapper extends AbstractDomNodeProxy implements XmlNode {
 
 
     @Override
-    public void removeChildAtIndex(int childIndex) {
+    public void removeChildAtIndex(final int childIndex) {
         throw new UnsupportedOperationException();
     }
 

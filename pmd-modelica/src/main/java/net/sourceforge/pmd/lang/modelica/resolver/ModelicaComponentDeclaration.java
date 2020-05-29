@@ -28,7 +28,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
 
         private String name;
 
-        ComponentKind(String name) {
+        ComponentKind(final String name) {
             this.name = name;
         }
 
@@ -46,7 +46,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
 
         private String name;
 
-        ComponentVariability(String name) {
+        ComponentVariability(final String name) {
             this.name = name;
         }
 
@@ -63,7 +63,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
 
         private String name;
 
-        ComponentCausality(String name) {
+        ComponentCausality(final String name) {
             this.name = name;
         }
 
@@ -82,7 +82,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
     private final String declarationName;
     private final ASTConditionAttribute condition;
 
-    public ModelicaComponentDeclaration(ASTComponentDeclaration node) {
+    public ModelicaComponentDeclaration(final ASTComponentDeclaration node) {
         declarationName = node.getFirstChildOfType(ASTDeclaration.class).getFirstChildOfType(ASTSimpleName.class).getImage();
         condition = node.getFirstChildOfType(ASTConditionAttribute.class);
         ASTComponentClause declarationRoot = node.getFirstParentOfType(ASTComponentClause.class);
@@ -93,7 +93,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
                 .getFirstChildOfType(ASTName.class);
     }
 
-    void setContainingScope(ModelicaClassScope scope) {
+    void setContainingScope(final ModelicaClassScope scope) {
         containingScope = scope;
     }
 
@@ -102,7 +102,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
         return containingScope;
     }
 
-    private void parseTypePrefix(ASTTypePrefix prefix) {
+    private void parseTypePrefix(final ASTTypePrefix prefix) {
         if (prefix.getFirstChildOfType(ASTFlowClause.class) != null) {
             kind = ComponentKind.FLOW;
         } else if (prefix.getFirstChildOfType(ASTStreamClause.class) != null) {
@@ -200,7 +200,7 @@ public class ModelicaComponentDeclaration extends AbstractModelicaDeclaration im
     }
 
     @Override
-    void resolveFurtherNameComponents(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    void resolveFurtherNameComponents(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         if (name.isEmpty()) {
             result.addCandidate(this);
             return;

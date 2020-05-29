@@ -19,12 +19,12 @@ import net.sourceforge.pmd.lang.ast.ParseException;
  */
 public class XmlParser extends AbstractParser {
 
-    public XmlParser(ParserOptions parserOptions) {
+    public XmlParser(final ParserOptions parserOptions) {
         super(parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return null;
     }
 
@@ -34,7 +34,7 @@ public class XmlParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         return new net.sourceforge.pmd.lang.xml.ast.XmlParser((XmlParserOptions) parserOptions).parse(source);
     }
 

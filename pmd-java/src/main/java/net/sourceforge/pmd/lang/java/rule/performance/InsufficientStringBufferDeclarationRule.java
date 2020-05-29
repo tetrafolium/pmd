@@ -54,7 +54,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
     public static final int DEFAULT_BUFFER_SIZE = 16;
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node.getNameDeclaration() == null
                 || !TypeHelper.isExactlyAny(node.getNameDeclaration(), StringBuffer.class, StringBuilder.class)) {
             return data;
@@ -81,7 +81,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
                 }
                 if (constructorLength != -1 && anticipatedLength > constructorLength) {
                     anticipatedLength += processBlocks(blocks);
-                    String[] param = { String.valueOf(constructorLength), String.valueOf(anticipatedLength) };
+                    String[] param = {String.valueOf(constructorLength), String.valueOf(anticipatedLength) };
                     addViolation(data, rootNode, param);
                 }
                 constructorLength = getConstructorLength(n, constructorLength);
@@ -111,7 +111,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         }
         anticipatedLength += processBlocks(blocks);
         if (constructorLength != -1 && anticipatedLength > constructorLength) {
-            String[] param = { String.valueOf(constructorLength), String.valueOf(anticipatedLength) };
+            String[] param = {String.valueOf(constructorLength), String.valueOf(anticipatedLength) };
             addViolation(data, rootNode, param);
         }
         return data;
@@ -129,7 +129,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
      * @param block
      *            The block in question
      */
-    private void storeBlockStatistics(Map<Node, Map<Node, Integer>> blocks, int thisSize, Node block) {
+    private void storeBlockStatistics(final Map<Node, Map<Node, Integer>> blocks, final int thisSize, final Node block) {
         Node statement = block.getParent();
         if (block.getParent() instanceof ASTIfStatement) {
             // Else Ifs are their own subnode in AST. So we have to
@@ -152,7 +152,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         thisBranch.put(statement, thisSize);
     }
 
-    private int processBlocks(Map<Node, Map<Node, Integer>> blocks) {
+    private int processBlocks(final Map<Node, Map<Node, Integer>> blocks) {
         int anticipatedLength = 0;
         int ifLength = 0;
         for (Map.Entry<Node, Map<Node, Integer>> entry : blocks.entrySet()) {
@@ -166,7 +166,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         return anticipatedLength;
     }
 
-    private int processAdditive(Node sn) {
+    private int processAdditive(final Node sn) {
         ASTAdditiveExpression additive = sn.getFirstDescendantOfType(ASTAdditiveExpression.class);
         if (additive == null) {
             return 0;
@@ -183,11 +183,11 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         return anticipatedLength;
     }
 
-    private static boolean isStringOrCharLiteral(ASTLiteral literal) {
+    private static boolean isStringOrCharLiteral(final ASTLiteral literal) {
         return literal.isStringLiteral() || literal.isCharLiteral();
     }
 
-    private int processNode(Node sn) {
+    private int processNode(final Node sn) {
         int anticipatedLength = 0;
         if (sn != null) {
             ASTPrimaryPrefix xn = sn.getFirstDescendantOfType(ASTPrimaryPrefix.class);
@@ -222,7 +222,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         return anticipatedLength;
     }
 
-    private int getConstructorLength(Node node, int constructorLength) {
+    private int getConstructorLength(final Node node, final int constructorLength) {
         int iConstructorLength = constructorLength;
         Node block = node.getFirstParentOfType(ASTBlockStatement.class);
 
@@ -293,7 +293,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         return iConstructorLength;
     }
 
-    private int getInitialLength(Node node) {
+    private int getInitialLength(final Node node) {
 
         Node block = node.getFirstParentOfType(ASTBlockStatement.class);
 
@@ -336,7 +336,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
         return size;
     }
 
-    private boolean isAdditive(Node n) {
+    private boolean isAdditive(final Node n) {
         ASTAdditiveExpression add = n.getFirstDescendantOfType(ASTAdditiveExpression.class);
         // if the first descendant additive expression is deeper than 4 levels,
         // it belongs to a nested method call and not anymore to the append
@@ -352,7 +352,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
      * @return Node - The node that corresponds to any block that may be a
      *         parent of this object
      */
-    private Node getFirstParentBlock(Node node) {
+    private Node getFirstParentBlock(final Node node) {
         Node parentNode = node.getParent();
 
         Node lastNode = node;
@@ -377,7 +377,7 @@ public class InsufficientStringBufferDeclarationRule extends AbstractJavaRule {
      *            The last node processed
      * @return The parent node for the switch statement
      */
-    private static Node getSwitchParent(Node parentNode, Node lastNode) {
+    private static Node getSwitchParent(final Node parentNode, final Node lastNode) {
         int allChildren = parentNode.getNumChildren();
         ASTSwitchLabel label = null;
         for (int ix = 0; ix < allChildren; ix++) {

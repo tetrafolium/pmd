@@ -7,15 +7,15 @@ package net.sourceforge.pmd.lang.plsql.ast;
 public class ASTInlineConstraint extends AbstractPLSQLNode {
     private ConstraintType type;
 
-    ASTInlineConstraint(int id) {
+    ASTInlineConstraint(final int id) {
         super(id);
     }
 
-    ASTInlineConstraint(PLSQLParser p, int id) {
+    ASTInlineConstraint(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setType(ConstraintType type) {
+    void setType(final ConstraintType type) {
         this.type = type;
     }
 
@@ -36,7 +36,7 @@ public class ASTInlineConstraint extends AbstractPLSQLNode {
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

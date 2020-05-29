@@ -27,7 +27,7 @@ public class ObjectiveCTokenManager implements TokenManager {
      * @param source
      *            the source code
      */
-    public ObjectiveCTokenManager(Reader source) {
+    public ObjectiveCTokenManager(final Reader source) {
         tokenManager = new ObjectiveCParserTokenManager(new SimpleCharStream(source));
     }
 
@@ -37,7 +37,7 @@ public class ObjectiveCTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         ObjectiveCParserTokenManager.setFileName(fileName);
     }
 }

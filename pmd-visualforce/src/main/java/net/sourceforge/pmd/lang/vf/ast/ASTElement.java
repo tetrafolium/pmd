@@ -26,13 +26,13 @@ public class ASTElement extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public ASTElement(int id) {
+    public ASTElement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTElement(VfParser p, int id) {
+    public ASTElement(final VfParser p, final int id) {
         super(p, id);
     }
 
@@ -69,7 +69,7 @@ public class ASTElement extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -83,18 +83,18 @@ public class ASTElement extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setUnclosed(boolean unclosed) {
+    public void setUnclosed(final boolean unclosed) {
         this.unclosed = unclosed;
     }
 
     @Deprecated
     @InternalApi
-    public void setEmpty(boolean empty) {
+    public void setEmpty(final boolean empty) {
         this.empty = empty;
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

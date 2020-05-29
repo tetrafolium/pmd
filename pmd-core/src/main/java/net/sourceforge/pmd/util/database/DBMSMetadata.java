@@ -103,7 +103,7 @@ public class DBMSMetadata {
      *            JDBC Connection
      * @throws SQLException
      */
-    public DBMSMetadata(Connection c) throws SQLException {
+    public DBMSMetadata(final Connection c) throws SQLException {
         connection = c;
     }
 
@@ -125,7 +125,7 @@ public class DBMSMetadata {
      * @throws ClassNotFoundException
      *             on failing to locate the JDBC driver class.
      */
-    public DBMSMetadata(String user, String password, DBURI dbURI)
+    public DBMSMetadata(final String user, final String password, final DBURI dbURI)
             throws SQLException, MalformedURLException, ClassNotFoundException {
         String urlString = init(dbURI);
 
@@ -157,7 +157,7 @@ public class DBMSMetadata {
      * @throws ClassNotFoundException
      *             on failing to locate the JDBC driver class.
      */
-    public DBMSMetadata(Properties properties, DBURI dbURI)
+    public DBMSMetadata(final Properties properties, final DBURI dbURI)
             throws SQLException, MalformedURLException, ClassNotFoundException {
         String urlString = init(dbURI);
 
@@ -191,7 +191,7 @@ public class DBMSMetadata {
      * @throws ClassNotFoundException
      *             on failing to locate the JDBC driver class.
      */
-    public DBMSMetadata(DBURI dbURI) throws SQLException, ClassNotFoundException {
+    public DBMSMetadata(final DBURI dbURI) throws SQLException, ClassNotFoundException {
         String urlString = init(dbURI);
 
         Properties dbURIProperties = dbURI.getDbType().getProperties();
@@ -217,7 +217,7 @@ public class DBMSMetadata {
         return connection;
     }
 
-    private String init(DBURI dbURI) throws ClassNotFoundException {
+    private String init(final DBURI dbURI) throws ClassNotFoundException {
         this.dburi = dbURI;
         this.returnSourceCodeObjectsStatement = dbURI.getDbType().getProperties()
                 .getProperty(GET_SOURCE_OBJECTS_STATEMENT);
@@ -246,7 +246,7 @@ public class DBMSMetadata {
      * @return source code
      * @throws SQLException
      */
-    public java.io.Reader getSourceCode(SourceObject sourceObject) throws SQLException {
+    public java.io.Reader getSourceCode(final SourceObject sourceObject) throws SQLException {
         return getSourceCode(sourceObject.getType(), sourceObject.getName(), sourceObject.getSchema());
 
     }
@@ -263,7 +263,7 @@ public class DBMSMetadata {
      * @throws SQLException
      *             on failing to retrieve the source Code text
      */
-    public java.io.Reader getSourceCode(String objectType, String name, String schema) throws SQLException {
+    public java.io.Reader getSourceCode(final String objectType, final String name, final String schema) throws SQLException {
         Object result;
 
         /*
@@ -329,8 +329,8 @@ public class DBMSMetadata {
      * @param sourceCodeNames
      *            Optional list of source code names to search for
      */
-    public List<SourceObject> getSourceObjectList(List<String> languages, List<String> schemas,
-            List<String> sourceCodeTypes, List<String> sourceCodeNames) {
+    public List<SourceObject> getSourceObjectList(final List<String> languages, final List<String> schemas,
+            final List<String> sourceCodeTypes, final List<String> sourceCodeNames) {
 
         List<SourceObject> sourceObjectsList = new ArrayList<>();
 
@@ -422,8 +422,8 @@ public class DBMSMetadata {
         }
     }
 
-    private List<SourceObject> findSourceObjectFromMetaData(DatabaseMetaData metadata,
-            String schema, String sourceCodeName) throws SQLException {
+    private List<SourceObject> findSourceObjectFromMetaData(final DatabaseMetaData metadata,
+            final String schema, final String sourceCodeName) throws SQLException {
         List<SourceObject> sourceObjectsList = new ArrayList<>();
         /*
          * public ResultSet getProcedures(String catalog ,
@@ -497,8 +497,8 @@ public class DBMSMetadata {
         return sourceObjectsList;
     }
 
-    private List<SourceObject> findSourceObjects(PreparedStatement sourceCodeObjectsStatement,
-            String language, String schema, String sourceCodeType, String sourceCodeName) throws SQLException {
+    private List<SourceObject> findSourceObjects(final PreparedStatement sourceCodeObjectsStatement,
+            final String language, final String schema, final String sourceCodeType, final String sourceCodeName) throws SQLException {
         List<SourceObject> sourceObjectsList = new ArrayList<>();
         sourceCodeObjectsStatement.setString(1, language);
         sourceCodeObjectsStatement.setString(2, schema);

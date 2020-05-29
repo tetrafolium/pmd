@@ -16,7 +16,7 @@ public class FormalComment extends Comment {
 
     private static final Pattern JAVADOC_TAG = Pattern.compile("@([A-Za-z0-9]+)");
 
-    public FormalComment(Token t) {
+    public FormalComment(final Token t) {
         super(t);
 
         findJavadocs();

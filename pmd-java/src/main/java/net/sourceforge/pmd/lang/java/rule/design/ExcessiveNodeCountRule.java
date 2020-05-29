@@ -24,12 +24,12 @@ import net.sourceforge.pmd.stat.DataPoint;
 public class ExcessiveNodeCountRule extends AbstractStatisticalJavaRule {
     private Class<?> nodeClass;
 
-    public ExcessiveNodeCountRule(Class<?> nodeClass) {
+    public ExcessiveNodeCountRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         int numNodes = 0;
 
         for (int i = 0; i < node.getNumChildren(); i++) {

@@ -57,7 +57,7 @@ public class TreeExportCli {
     private boolean readStdin;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         TreeExportCli cli = new TreeExportCli();
         JCommander jcommander = JCommander.newBuilder()
                                           .addObject(cli)
@@ -86,7 +86,7 @@ public class TreeExportCli {
         cli.run(descriptor.produceRenderer(bundle));
     }
 
-    public static PropertySource parseProperties(TreeExportCli cli, TreeRendererDescriptor descriptor) {
+    public static PropertySource parseProperties(final TreeExportCli cli, final TreeRendererDescriptor descriptor) {
         PropertySource bundle = descriptor.newPropertyBundle();
 
         for (String key : cli.properties.keySet()) {
@@ -101,7 +101,7 @@ public class TreeExportCli {
     }
 
 
-    private void usage(JCommander commander) {
+    private void usage(final JCommander commander) {
         StringBuilder sb = new StringBuilder();
         commander.setProgramName("ast-dump");
         commander.usage(sb);
@@ -125,7 +125,7 @@ public class TreeExportCli {
         System.err.print(sb);
     }
 
-    private void describeRenderer(int marginWidth, TreeRendererDescriptor descriptor, StringBuilder sb) {
+    private void describeRenderer(final int marginWidth, final TreeRendererDescriptor descriptor, final StringBuilder sb) {
 
 
         sb.append(String.format("%-" + marginWidth + "s%s", descriptor.id(), descriptor.description()))
@@ -149,11 +149,11 @@ public class TreeExportCli {
         }
     }
 
-    private <T> String getDefault(PropertyDescriptor<T> prop) {
+    private <T> String getDefault(final PropertyDescriptor<T> prop) {
         return StringEscapeUtils.escapeJava(prop.asDelimitedString(prop.defaultValue()));
     }
 
-    private void run(TreeRenderer renderer) throws IOException {
+    private void run(final TreeRenderer renderer) throws IOException {
         printWarning();
 
         LanguageVersionHandler languageHandler = LanguageRegistry.findLanguageByTerseName(language)
@@ -202,12 +202,12 @@ public class TreeExportCli {
         System.err.println("-------------------------------------------------------------------------------");
     }
 
-    private static <T> void setProperty(PropertyDescriptor<T> descriptor, PropertySource bundle, String value) {
+    private static <T> void setProperty(final PropertyDescriptor<T> descriptor, final PropertySource bundle, final String value) {
         bundle.setProperty(descriptor, descriptor.valueFrom(value));
     }
 
 
-    private RuntimeException bail(String message) {
+    private RuntimeException bail(final String message) {
         System.err.println(message);
         System.err.println("Use --help for usage information");
         System.exit(1);

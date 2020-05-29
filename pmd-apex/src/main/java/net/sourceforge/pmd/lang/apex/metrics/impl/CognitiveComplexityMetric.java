@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.metrics.MetricOptions;
  */
 public class CognitiveComplexityMetric extends AbstractApexOperationMetric {
     @Override
-    public double computeFor(ASTMethod node, MetricOptions options) {
+    public double computeFor(final ASTMethod node, final MetricOptions options) {
         CognitiveComplexityVisitor.State resultingState = (CognitiveComplexityVisitor.State) node.jjtAccept(new CognitiveComplexityVisitor(), new CognitiveComplexityVisitor.State());
         return resultingState.getComplexity();
     }

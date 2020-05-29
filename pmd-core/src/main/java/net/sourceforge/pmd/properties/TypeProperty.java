@@ -34,15 +34,15 @@ public final class TypeProperty extends AbstractPackagedProperty<Class> {
      * @throws IllegalArgumentException if the default string could not be parsed into a Class
      * @deprecated will be removed in 7.0.0
      */
-    public TypeProperty(String theName, String theDescription, String defaultTypeStr, String[] legalPackageNames,
-                        float theUIOrder) {
+    public TypeProperty(final String theName, final String theDescription, final String defaultTypeStr, final String[] legalPackageNames,
+                        final float theUIOrder) {
         this(theName, theDescription, ValueParserConstants.CLASS_PARSER.valueOf(defaultTypeStr), legalPackageNames, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private TypeProperty(String theName, String theDescription, Class<?> theDefault, String[] legalPackageNames,
-                         float theUIOrder, boolean isDefinedExternally) {
+    private TypeProperty(final String theName, final String theDescription, final Class<?> theDefault, final String[] legalPackageNames,
+                         final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally,
             new TypePropertyModule(legalPackageNames, Collections.<Class>singletonList(theDefault)));
     }
@@ -57,8 +57,8 @@ public final class TypeProperty extends AbstractPackagedProperty<Class> {
      * @param legalPackageNames String[]
      * @param theUIOrder        float
      */
-    public TypeProperty(String theName, String theDescription, Class<?> theDefault, String[] legalPackageNames,
-                        float theUIOrder) {
+    public TypeProperty(final String theName, final String theDescription, final Class<?> theDefault, final String[] legalPackageNames,
+                        final float theUIOrder) {
         this(theName, theDescription, theDefault, legalPackageNames, theUIOrder, false);
     }
 
@@ -70,13 +70,13 @@ public final class TypeProperty extends AbstractPackagedProperty<Class> {
 
 
     @Override
-    protected String asString(Class value) {
+    protected String asString(final Class value) {
         return value == null ? "" : value.getName();
     }
 
 
     @Override
-    public Class<?> createFrom(String valueString) {
+    public Class<?> createFrom(final String valueString) {
         return ValueParserConstants.CLASS_PARSER.valueOf(valueString);
     }
 
@@ -84,20 +84,20 @@ public final class TypeProperty extends AbstractPackagedProperty<Class> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Packaged<Class, TypePBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Packaged<Class, TypePBuilder>(Class.class, ValueParserConstants.CLASS_PARSER) {
             @Override
-            protected TypePBuilder newBuilder(String name) {
+            protected TypePBuilder newBuilder(final String name) {
                 return new TypePBuilder(name);
             }
         };
     }
 
 
-    public static TypePBuilder named(String name) {
+    public static TypePBuilder named(final String name) {
         return new TypePBuilder(name);
     }
 
 
     public static final class TypePBuilder extends SinglePackagedPropertyBuilder<Class, TypePBuilder> {
-        private TypePBuilder(String name) {
+        private TypePBuilder(final String name) {
             super(name);
         }
 

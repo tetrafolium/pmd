@@ -15,12 +15,12 @@ public class ASTPatTuple extends AbstractScalaNode<Pat.Tuple> {
 
     @Deprecated
     @InternalApi
-    public ASTPatTuple(Pat.Tuple scalaNode) {
+    public ASTPatTuple(final Pat.Tuple scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

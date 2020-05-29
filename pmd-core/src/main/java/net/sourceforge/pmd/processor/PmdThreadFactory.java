@@ -12,7 +12,7 @@ public class PmdThreadFactory implements ThreadFactory {
     private final AtomicInteger counter = new AtomicInteger();
 
     @Override
-    public Thread newThread(Runnable r) {
+    public Thread newThread(final Runnable r) {
         return new Thread(r, "PmdThread " + counter.incrementAndGet());
     }
 

@@ -30,7 +30,7 @@ public class LooseCouplingRule extends AbstractJavaRule {
     // });
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         if (methodHasOverride(node)) {
             return data;
         }
@@ -44,7 +44,7 @@ public class LooseCouplingRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean methodHasOverride(Node node) {
+    private boolean methodHasOverride(final Node node) {
         ASTClassOrInterfaceBodyDeclaration method = node.getFirstParentOfType(ASTClassOrInterfaceBodyDeclaration.class);
         if (method != null && method.getNumChildren() > 0 && method.getChild(0) instanceof ASTAnnotation) {
             ASTMarkerAnnotation marker = method.getFirstDescendantOfType(ASTMarkerAnnotation.class);

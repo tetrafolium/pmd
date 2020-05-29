@@ -11,17 +11,17 @@ public class ASTComparisonCondition extends AbstractPLSQLNode {
 
     @Deprecated
     @InternalApi
-    public ASTComparisonCondition(int id) {
+    public ASTComparisonCondition(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTComparisonCondition(PLSQLParser p, int id) {
+    public ASTComparisonCondition(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setOperator(String operator) {
+    void setOperator(final String operator) {
         this.operator = operator;
     }
 
@@ -30,7 +30,7 @@ public class ASTComparisonCondition extends AbstractPLSQLNode {
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

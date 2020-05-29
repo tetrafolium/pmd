@@ -33,7 +33,7 @@ public final class RulesetsFactoryUtils {
      *             if rulesets is empty (means, no rules have been found) or if
      *             a ruleset couldn't be found.
      */
-    public static RuleSets getRuleSets(String rulesets, RuleSetFactory factory) {
+    public static RuleSets getRuleSets(final String rulesets, final RuleSetFactory factory) {
         RuleSets ruleSets = null;
         try {
             ruleSets = factory.createRuleSets(rulesets);
@@ -66,7 +66,7 @@ public final class RulesetsFactoryUtils {
      */
     @InternalApi
     @Deprecated
-    public static RuleSets getRuleSetsWithBenchmark(String rulesets, RuleSetFactory factory) {
+    public static RuleSets getRuleSetsWithBenchmark(final String rulesets, final RuleSetFactory factory) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.LOAD_RULES)) {
             return getRuleSets(rulesets, factory);
         }
@@ -122,7 +122,7 @@ public final class RulesetsFactoryUtils {
      *
      * @see #createFactory(PMDConfiguration)
      */
-    public static RuleSetFactory createFactory(final PMDConfiguration configuration, ClassLoader classLoader) {
+    public static RuleSetFactory createFactory(final PMDConfiguration configuration, final ClassLoader classLoader) {
         return createFactory(classLoader,
                              configuration.getMinimumPriority(),
                              true,
@@ -143,10 +143,10 @@ public final class RulesetsFactoryUtils {
      *
      * @see #createFactory(PMDConfiguration)
      */
-    public static RuleSetFactory createFactory(ClassLoader classLoader,
-                                               RulePriority minimumPriority,
-                                               boolean warnDeprecated,
-                                               boolean enableCompatibility) {
+    public static RuleSetFactory createFactory(final ClassLoader classLoader,
+                                               final RulePriority minimumPriority,
+                                               final boolean warnDeprecated,
+                                               final boolean enableCompatibility) {
 
         return new RuleSetFactory(new ResourceLoader(classLoader), minimumPriority, warnDeprecated, enableCompatibility);
     }
@@ -164,9 +164,9 @@ public final class RulesetsFactoryUtils {
      *
      * @see #createFactory(PMDConfiguration)
      */
-    public static RuleSetFactory createFactory(RulePriority minimumPriority,
-                                               boolean warnDeprecated,
-                                               boolean enableCompatibility) {
+    public static RuleSetFactory createFactory(final RulePriority minimumPriority,
+                                               final boolean warnDeprecated,
+                                               final boolean enableCompatibility) {
 
         return new RuleSetFactory(new ResourceLoader(), minimumPriority, warnDeprecated, enableCompatibility);
     }
@@ -176,7 +176,7 @@ public final class RulesetsFactoryUtils {
      *
      * @param rulesets the RuleSets to print
      */
-    private static void printRuleNamesInDebug(RuleSets rulesets) {
+    private static void printRuleNamesInDebug(final RuleSets rulesets) {
         if (LOG.isLoggable(Level.FINER)) {
             for (Rule r : rulesets.getAllRules()) {
                 LOG.finer("Loaded rule " + r.getName());

@@ -37,7 +37,7 @@ public final class LocalVariableNamingConventionsRule extends AbstractNamingConv
 
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
 
         if (node.isExceptionBlockParameter()) {
             checkMatches(node, exceptionBlockParameterRegex, data);
@@ -56,7 +56,7 @@ public final class LocalVariableNamingConventionsRule extends AbstractNamingConv
 
 
     @Override
-    String kindDisplayName(ASTVariableDeclaratorId node, PropertyDescriptor<Pattern> descriptor) {
+    String kindDisplayName(final ASTVariableDeclaratorId node, final PropertyDescriptor<Pattern> descriptor) {
         if (node.isExceptionBlockParameter()) {
             return "exception block parameter";
         } else if (node.isLocalVariable()) {

@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTLabel extends AbstractEcmascriptNode<Label> {
     @Deprecated
     @InternalApi
-    public ASTLabel(Label label) {
+    public ASTLabel(final Label label) {
         super(label);
         super.setImage(label.getName());
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

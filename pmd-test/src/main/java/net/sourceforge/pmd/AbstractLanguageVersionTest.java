@@ -64,7 +64,7 @@ public class AbstractLanguageVersionTest {
      * @param expected
      *            the expected {@link LanguageVersion} instance
      */
-    public AbstractLanguageVersionTest(String name, String terseName, String version, LanguageVersion expected) {
+    public AbstractLanguageVersionTest(final String name, final String terseName, final String version, final LanguageVersion expected) {
         this.name = name;
         this.version = version;
         this.simpleTerseName = terseName;
@@ -170,7 +170,7 @@ public class AbstractLanguageVersionTest {
                          + " in the language versions of its language", 1, count);
     }
 
-    private void assertRulesetsAndCategoriesProperties(ResourceLoader rl, Properties props)
+    private void assertRulesetsAndCategoriesProperties(final ResourceLoader rl, final Properties props)
             throws IOException, RuleSetNotFoundException {
         String rulesetFilenames = props.getProperty("rulesets.filenames");
         assertNotNull(rulesetFilenames);

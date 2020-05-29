@@ -21,18 +21,18 @@ public class ASTPreDecrementExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTPreDecrementExpression(int id) {
+    public ASTPreDecrementExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTPreDecrementExpression(JavaParser p, int id) {
+    public ASTPreDecrementExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

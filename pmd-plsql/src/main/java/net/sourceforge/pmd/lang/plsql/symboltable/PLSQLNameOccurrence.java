@@ -22,7 +22,7 @@ public class PLSQLNameOccurrence implements NameOccurrence {
     private static final String THIS = "this";
     private static final String SUPER = "super";
 
-    public PLSQLNameOccurrence(PLSQLNode location, String image) {
+    public PLSQLNameOccurrence(final PLSQLNode location, final String image) {
         this.location = location;
         this.image = image;
     }
@@ -31,7 +31,7 @@ public class PLSQLNameOccurrence implements NameOccurrence {
         isMethodOrConstructorInvocation = true;
     }
 
-    public void setArgumentCount(int count) {
+    public void setArgumentCount(final int count) {
         argumentCount = count;
     }
 
@@ -43,7 +43,7 @@ public class PLSQLNameOccurrence implements NameOccurrence {
         return isMethodOrConstructorInvocation;
     }
 
-    public void setNameWhichThisQualifies(PLSQLNameOccurrence qualifiedName) {
+    public void setNameWhichThisQualifies(final PLSQLNameOccurrence qualifiedName) {
         this.qualifiedName = qualifiedName;
     }
 
@@ -187,7 +187,7 @@ public class PLSQLNameOccurrence implements NameOccurrence {
      */
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o instanceof PLSQLNameOccurrence) {
             PLSQLNameOccurrence n = (PLSQLNameOccurrence) o;
             return n.getImage().equals(getImage());

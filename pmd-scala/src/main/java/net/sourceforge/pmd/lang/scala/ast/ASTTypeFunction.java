@@ -15,12 +15,12 @@ public class ASTTypeFunction extends AbstractScalaNode<Type.Function> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeFunction(Type.Function scalaNode) {
+    public ASTTypeFunction(final Type.Function scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -32,7 +32,7 @@ public class TypeMap {
      * @param initialSize
      *            int
      */
-    public TypeMap(int initialSize) {
+    public TypeMap(final int initialSize) {
         typesByName = new HashMap<>(initialSize);
     }
 
@@ -42,7 +42,7 @@ public class TypeMap {
      * @param types
      *            Class[]
      */
-    public TypeMap(Class<?>... types) {
+    public TypeMap(final Class<?>... types) {
         this(types.length);
         add(types);
     }
@@ -57,7 +57,7 @@ public class TypeMap {
      * @throws IllegalArgumentException
      */
     @SuppressWarnings("PMD.CompareObjectsWithEquals")
-    public void add(Class<?> type) {
+    public void add(final Class<?> type) {
         final String shortName = ClassUtil.withoutPackageName(type.getName());
         Class<?> existingType = typesByName.get(shortName);
         if (existingType == null) {
@@ -79,7 +79,7 @@ public class TypeMap {
      *            Class
      * @return boolean
      */
-    public boolean contains(Class<?> type) {
+    public boolean contains(final Class<?> type) {
         return typesByName.containsValue(type);
     }
 
@@ -90,7 +90,7 @@ public class TypeMap {
      *            String
      * @return boolean
      */
-    public boolean contains(String typeName) {
+    public boolean contains(final String typeName) {
         return typesByName.containsKey(typeName);
     }
 
@@ -101,7 +101,7 @@ public class TypeMap {
      *            String
      * @return Class
      */
-    public Class<?> typeFor(String typeName) {
+    public Class<?> typeFor(final String typeName) {
         return typesByName.get(typeName);
     }
 
@@ -111,7 +111,7 @@ public class TypeMap {
      * @param types
      *            Class[]
      */
-    public void add(Class<?>... types) {
+    public void add(final Class<?>... types) {
         for (Class<?> element : types) {
             add(element);
         }
@@ -153,7 +153,7 @@ public class TypeMap {
      * @param key
      * @param value
      */
-    private void storeShortest(Map<Class<?>, String> map, Class<?> key, String value) {
+    private void storeShortest(final Map<Class<?>, String> map, final Class<?> key, final String value) {
         String existingValue = map.get(key);
 
         if (existingValue == null) {

@@ -50,10 +50,10 @@ public class UnusedImportsRule extends AbstractJavaRule {
 
     private static final Pattern THROWS_PATTERN = Pattern.compile("@throws\\s+(\\p{Alpha}\\w*)");
 
-    private static final Pattern[] PATTERNS = { SEE_PATTERN, LINK_PATTERNS, VALUE_PATTERN, THROWS_PATTERN };
+    private static final Pattern[] PATTERNS = {SEE_PATTERN, LINK_PATTERNS, VALUE_PATTERN, THROWS_PATTERN };
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         imports.clear();
         super.visit(node, data);
         visitComments(node);
@@ -72,7 +72,7 @@ public class UnusedImportsRule extends AbstractJavaRule {
         return data;
     }
 
-    private void visitComments(ASTCompilationUnit node) {
+    private void visitComments(final ASTCompilationUnit node) {
         if (imports.isEmpty()) {
             return;
         }
@@ -115,7 +115,7 @@ public class UnusedImportsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         if (node.isImportOnDemand()) {
             ASTName importedType = (ASTName) node.getChild(0);
             imports.add(new ImportWrapper(importedType.getImage(), null, node, node.getType(), node.isStatic()));
@@ -136,18 +136,18 @@ public class UnusedImportsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         check(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         check(node);
         return data;
     }
 
-    protected void check(Node node) {
+    protected void check(final Node node) {
         if (imports.isEmpty()) {
             return;
         }
@@ -184,7 +184,7 @@ public class UnusedImportsRule extends AbstractJavaRule {
         }
     }
 
-    protected ImportWrapper getImportWrapper(Node node) {
+    protected ImportWrapper getImportWrapper(final Node node) {
         String fullName = node.getImage();
 
         String name;
@@ -206,7 +206,7 @@ public class UnusedImportsRule extends AbstractJavaRule {
         return new ImportWrapper(fullName, name);
     }
 
-    private boolean isMethodCall(Node node) {
+    private boolean isMethodCall(final Node node) {
         // PrimaryExpression
         //     PrimaryPrefix
         //         Name

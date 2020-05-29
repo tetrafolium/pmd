@@ -15,12 +15,12 @@ public class ASTModCovariant extends AbstractScalaNode<Mod.Covariant> {
 
     @Deprecated
     @InternalApi
-    public ASTModCovariant(Mod.Covariant scalaNode) {
+    public ASTModCovariant(final Mod.Covariant scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

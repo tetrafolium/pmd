@@ -119,7 +119,7 @@ public class PMDParameters {
         private static final char SEPARATOR = '=';
 
         @Override
-        public Properties convert(String value) {
+        public Properties convert(final String value) {
             int indexOfSeparator = value.indexOf(SEPARATOR);
             if (indexOfSeparator < 0) {
                 throw new ParameterException(
@@ -138,7 +138,7 @@ public class PMDParameters {
     public static class RulePriorityValidator implements IValueValidator<Integer> {
 
         @Override
-        public void validate(String name, Integer value) throws ParameterException {
+        public void validate(final String name, final Integer value) throws ParameterException {
             if (value < 1 || value > 5) {
                 throw new ParameterException("Priority values can only be integer value, between 1 and 5," + value + " is not valid");
             }
@@ -149,7 +149,7 @@ public class PMDParameters {
     @Deprecated
     public static class RulePriorityConverter implements IStringConverter<RulePriority> {
 
-        public int validate(String value) throws ParameterException {
+        public int validate(final String value) throws ParameterException {
             int minPriorityValue = Integer.parseInt(value);
             if (minPriorityValue < 1 || minPriorityValue > 5) {
                 throw new ParameterException(
@@ -159,7 +159,7 @@ public class PMDParameters {
         }
 
         @Override
-        public RulePriority convert(String value) {
+        public RulePriority convert(final String value) {
             return RulePriority.valueOf(validate(value));
         }
     }
@@ -224,7 +224,7 @@ public class PMDParameters {
      * @deprecated To be removed in 7.0.0. Use the instance method {@link #toConfiguration()}.
      */
     @Deprecated
-    public static PMDConfiguration transformParametersIntoConfiguration(PMDParameters params) {
+    public static PMDConfiguration transformParametersIntoConfiguration(final PMDParameters params) {
         return params.toConfiguration();
     }
 
@@ -330,7 +330,7 @@ public class PMDParameters {
      * @param uri
      *            the uri specifying the source directory.
      */
-    public void setUri(String uri) {
+    public void setUri(final String uri) {
         this.uri = uri;
     }
 

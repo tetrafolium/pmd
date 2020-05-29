@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTExpression extends AbstractVFNode {
     @Deprecated
     @InternalApi
-    public ASTExpression(int id) {
+    public ASTExpression(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTExpression(VfParser p, int id) {
+    public ASTExpression(final VfParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

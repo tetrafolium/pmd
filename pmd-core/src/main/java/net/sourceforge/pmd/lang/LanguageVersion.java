@@ -13,7 +13,7 @@ public class LanguageVersion implements Comparable<LanguageVersion> {
     private final String version;
     private final LanguageVersionHandler languageVersionHandler;
 
-    public LanguageVersion(Language language, String version, LanguageVersionHandler languageVersionHandler) {
+    public LanguageVersion(final Language language, final String version, final LanguageVersionHandler languageVersionHandler) {
         this.language = language;
         this.version = version;
         this.languageVersionHandler = languageVersionHandler;
@@ -62,7 +62,7 @@ public class LanguageVersion implements Comparable<LanguageVersion> {
     }
 
     @Override
-    public int compareTo(LanguageVersion o) {
+    public int compareTo(final LanguageVersion o) {
         if (o == null) {
             return 1;
         }

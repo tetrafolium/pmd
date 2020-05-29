@@ -27,7 +27,7 @@ public class Structure {
     private Stack<StackObject> braceStack = new Stack<>();
     private Stack<StackObject> continueBreakReturnStack = new Stack<>();
 
-    public Structure(DataFlowHandler dataFlowHandler) {
+    public Structure(final DataFlowHandler dataFlowHandler) {
         this.dataFlowHandler = dataFlowHandler;
     }
 
@@ -38,15 +38,15 @@ public class Structure {
      * if we did that more "procedurally", i.e., create the object, then add it
      * to the list.
      */
-    public DataFlowNode createNewNode(Node node) {
+    public DataFlowNode createNewNode(final Node node) {
         return dataFlowHandler.createDataFlowNode(dataFlow, node);
     }
 
-    public DataFlowNode createStartNode(int line) {
+    public DataFlowNode createStartNode(final int line) {
         return new StartOrEndDataFlowNode(this.dataFlow, line, true);
     }
 
-    public DataFlowNode createEndNode(int line) {
+    public DataFlowNode createEndNode(final int line) {
         return new StartOrEndDataFlowNode(this.dataFlow, line, false);
     }
 
@@ -66,7 +66,7 @@ public class Structure {
      * flow nodes. The cbrStack contains continue, break, and return nodes.
      * There are 2 Stacks because the have to process differently.
      */
-    public void pushOnStack(NodeType type, DataFlowNode node) {
+    public void pushOnStack(final NodeType type, final DataFlowNode node) {
         StackObject obj = new StackObject(type, node);
         if (type == NodeType.RETURN_STATEMENT || type == NodeType.BREAK_STATEMENT || type == NodeType.CONTINUE_STATEMENT
             || type == NodeType.THROW_STATEMENT) {
@@ -80,7 +80,7 @@ public class Structure {
         node.setType(type);
     }
 
-    protected void tryToLog(String tag, DataFlowNode node) {
+    protected void tryToLog(final String tag, final DataFlowNode node) {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(tag + ": line" + node.getNode().getBeginLine() + ", column "
                 + node.getNode().getBeginColumn() + " - " + node.toString());

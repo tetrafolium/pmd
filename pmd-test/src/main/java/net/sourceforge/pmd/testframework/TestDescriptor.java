@@ -36,12 +36,12 @@ public class TestDescriptor {
         // Empty default descriptor added to please mvn surefire plugin
     }
 
-    public TestDescriptor(String code, String description, int numberOfProblemsExpected, Rule rule) {
+    public TestDescriptor(final String code, final String description, final int numberOfProblemsExpected, final Rule rule) {
         this(code, description, numberOfProblemsExpected, rule, rule.getLanguage().getDefaultVersion());
     }
 
-    public TestDescriptor(String code, String description, int numberOfProblemsExpected, Rule rule,
-            LanguageVersion languageVersion) {
+    public TestDescriptor(final String code, final String description, final int numberOfProblemsExpected, final Rule rule,
+            final LanguageVersion languageVersion) {
         this.rule = rule;
         this.code = code;
         this.description = description;
@@ -53,11 +53,11 @@ public class TestDescriptor {
         return numberInDocument;
     }
 
-    public void setNumberInDocument(int numberInDocument) {
+    public void setNumberInDocument(final int numberInDocument) {
         this.numberInDocument = numberInDocument;
     }
 
-    public void setExpectedMessages(List<String> messages) {
+    public void setExpectedMessages(final List<String> messages) {
         expectedMessages.clear();
         expectedMessages.addAll(messages);
     }
@@ -66,7 +66,7 @@ public class TestDescriptor {
         return expectedMessages;
     }
 
-    public void setExpectedLineNumbers(List<Integer> expectedLineNumbers) {
+    public void setExpectedLineNumbers(final List<Integer> expectedLineNumbers) {
         this.expectedLineNumbers.clear();
         this.expectedLineNumbers.addAll(expectedLineNumbers);
     }
@@ -75,7 +75,7 @@ public class TestDescriptor {
         return expectedLineNumbers;
     }
 
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         this.properties = properties;
     }
 
@@ -107,7 +107,7 @@ public class TestDescriptor {
         return reinitializeRule;
     }
 
-    public void setReinitializeRule(boolean reinitializeRule) {
+    public void setReinitializeRule(final boolean reinitializeRule) {
         this.reinitializeRule = reinitializeRule;
     }
 
@@ -137,11 +137,11 @@ public class TestDescriptor {
         return isRegressionTest;
     }
 
-    public void setRegressionTest(boolean isRegressionTest) {
+    public void setRegressionTest(final boolean isRegressionTest) {
         this.isRegressionTest = isRegressionTest;
     }
 
-    public void setUseAuxClasspath(boolean useAuxClasspath) {
+    public void setUseAuxClasspath(final boolean useAuxClasspath) {
         this.useAuxClasspath = useAuxClasspath;
     }
 

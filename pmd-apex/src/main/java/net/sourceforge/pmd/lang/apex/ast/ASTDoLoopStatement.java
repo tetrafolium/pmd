@@ -12,12 +12,12 @@ public class ASTDoLoopStatement extends AbstractApexNode<DoLoopStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTDoLoopStatement(DoLoopStatement doLoopStatement) {
+    public ASTDoLoopStatement(final DoLoopStatement doLoopStatement) {
         super(doLoopStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

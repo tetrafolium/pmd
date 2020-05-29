@@ -20,7 +20,7 @@ import net.sourceforge.pmd.lang.symboltable.NameDeclaration;
 public class UselessStringValueOfRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
         if (node.getNumChildren() == 0 || !(node.getChild(0) instanceof ASTName)) {
             return super.visit(node, data);
         }
@@ -69,7 +69,7 @@ public class UselessStringValueOfRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private static boolean isPrimitive(Node parent) {
+    private static boolean isPrimitive(final Node parent) {
         boolean result = false;
         if (parent instanceof ASTPrimaryExpression && parent.getNumChildren() == 1) {
             Node child = parent.getChild(0);

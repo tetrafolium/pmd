@@ -15,7 +15,7 @@ public final class JavaFieldSigMask extends JavaSigMask<JavaFieldSignature> {
     private boolean coverStatic = true;
 
     /** Include final fields?. */
-    public void coverFinal(boolean coverFinal) {
+    public void coverFinal(final boolean coverFinal) {
         this.coverFinal = coverFinal;
     }
 
@@ -31,7 +31,7 @@ public final class JavaFieldSigMask extends JavaSigMask<JavaFieldSignature> {
 
 
     /** Include static fields?. */
-    public void coverStatic(boolean coverStatic) {
+    public void coverStatic(final boolean coverStatic) {
         this.coverStatic = coverStatic;
     }
 
@@ -47,7 +47,7 @@ public final class JavaFieldSigMask extends JavaSigMask<JavaFieldSignature> {
 
 
     @Override
-    public boolean covers(JavaFieldSignature sig) {
+    public boolean covers(final JavaFieldSignature sig) {
         return super.covers(sig) && (coverFinal || !sig.isFinal) && (coverStatic || !sig.isStatic);
     }
 }

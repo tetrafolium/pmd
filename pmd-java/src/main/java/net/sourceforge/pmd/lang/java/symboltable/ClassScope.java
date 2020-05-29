@@ -107,7 +107,7 @@ public class ClassScope extends AbstractJavaScope {
         return classDeclaration;
     }
 
-    public void setIsEnum(boolean isEnum) {
+    public void setIsEnum(final boolean isEnum) {
         this.isEnum = isEnum;
     }
 
@@ -124,7 +124,7 @@ public class ClassScope extends AbstractJavaScope {
     }
 
     @Override
-    public Set<NameDeclaration> addNameOccurrence(NameOccurrence occurrence) {
+    public Set<NameDeclaration> addNameOccurrence(final NameOccurrence occurrence) {
         JavaNameOccurrence javaOccurrence = (JavaNameOccurrence) occurrence;
         Set<NameDeclaration> declarations = findVariableHere(javaOccurrence);
         if (!declarations.isEmpty()
@@ -179,7 +179,7 @@ public class ClassScope extends AbstractJavaScope {
     }
 
     @Override
-    protected Set<NameDeclaration> findVariableHere(JavaNameOccurrence occurrence) {
+    protected Set<NameDeclaration> findVariableHere(final JavaNameOccurrence occurrence) {
         if (occurrence.isThisOrSuper() || className.equals(occurrence.getImage())) {
             // Reference to ourselves!
             return Collections.<NameDeclaration>singleton(classDeclaration);
@@ -239,9 +239,9 @@ public class ClassScope extends AbstractJavaScope {
         return result;
     }
 
-    private void matchMethodDeclaration(JavaNameOccurrence occurrence,
-            Set<MethodNameDeclaration> methodDeclarations, final boolean hasAuxclasspath,
-            Set<NameDeclaration> result) {
+    private void matchMethodDeclaration(final JavaNameOccurrence occurrence,
+            final Set<MethodNameDeclaration> methodDeclarations, final boolean hasAuxclasspath,
+            final Set<NameDeclaration> result) {
         for (MethodNameDeclaration mnd : methodDeclarations) {
             if (mnd.getImage().equals(occurrence.getImage())) {
                 List<TypedNameDeclaration> parameterTypes = determineParameterTypes(mnd);
@@ -360,7 +360,7 @@ public class ClassScope extends AbstractJavaScope {
      *            the method declaration.
      * @return List of types
      */
-    private List<TypedNameDeclaration> determineParameterTypes(MethodNameDeclaration mnd) {
+    private List<TypedNameDeclaration> determineParameterTypes(final MethodNameDeclaration mnd) {
         List<ASTFormalParameter> parameters = mnd.getMethodNameDeclaratorNode()
                 .findDescendantsOfType(ASTFormalParameter.class);
         if (parameters.isEmpty()) {
@@ -392,7 +392,7 @@ public class ClassScope extends AbstractJavaScope {
         return parameterTypes;
     }
 
-    private String qualifyTypeName(String typeImage) {
+    private String qualifyTypeName(final String typeImage) {
         if (typeImage == null) {
             return null;
         }
@@ -423,7 +423,7 @@ public class ClassScope extends AbstractJavaScope {
         return typeImage;
     }
 
-    private String findQualifiedName(String typeImage, Set<String> candidates) {
+    private String findQualifiedName(final String typeImage, final Set<String> candidates) {
         int nameLength = typeImage.length();
         for (String qualified : candidates) {
             int fullLength = qualified.length();
@@ -449,8 +449,8 @@ public class ClassScope extends AbstractJavaScope {
      *            the parameter types of the called method
      * @return the list of argument types
      */
-    private List<TypedNameDeclaration> determineArgumentTypes(JavaNameOccurrence occurrence,
-            List<TypedNameDeclaration> parameterTypes) {
+    private List<TypedNameDeclaration> determineArgumentTypes(final JavaNameOccurrence occurrence,
+            final List<TypedNameDeclaration> parameterTypes) {
         ASTArgumentList arguments = null;
         Node nextSibling;
         if (occurrence.getLocation() instanceof ASTPrimarySuffix) {
@@ -561,7 +561,7 @@ public class ClassScope extends AbstractJavaScope {
         return argumentTypes;
     }
 
-    private SimpleTypedNameDeclaration determineSuper(Node declaringNode) {
+    private SimpleTypedNameDeclaration determineSuper(final Node declaringNode) {
         SimpleTypedNameDeclaration result = null;
         if (declaringNode instanceof ASTClassOrInterfaceDeclaration) {
             ASTClassOrInterfaceDeclaration classDeclaration = (ASTClassOrInterfaceDeclaration) declaringNode;
@@ -585,7 +585,7 @@ public class ClassScope extends AbstractJavaScope {
         return result;
     }
 
-    private SimpleTypedNameDeclaration convertToSimpleType(List<ASTClassOrInterfaceType> types) {
+    private SimpleTypedNameDeclaration convertToSimpleType(final List<ASTClassOrInterfaceType> types) {
         SimpleTypedNameDeclaration result = null;
         for (ASTClassOrInterfaceType t : types) {
             SimpleTypedNameDeclaration type = convertToSimpleType(t);
@@ -598,7 +598,7 @@ public class ClassScope extends AbstractJavaScope {
         return result;
     }
 
-    private SimpleTypedNameDeclaration convertToSimpleType(ASTClassOrInterfaceType t) {
+    private SimpleTypedNameDeclaration convertToSimpleType(final ASTClassOrInterfaceType t) {
         String typeImage = t.getImage();
         typeImage = qualifyTypeName(typeImage);
         Node declaringNode = getEnclosingScope(SourceFileScope.class).getQualifiedTypeNames().get(typeImage);
@@ -621,7 +621,7 @@ public class ClassScope extends AbstractJavaScope {
      *            the type as string
      * @return the resolved class or <code>null</code> if nothing was found.
      */
-    private Class<?> resolveGenericType(Node argument, String typeImage) {
+    private Class<?> resolveGenericType(final Node argument, final String typeImage) {
         List<ASTTypeParameter> types = new ArrayList<>();
         // first search only within the same method
         ASTClassOrInterfaceBodyDeclaration firstParentOfType = argument
@@ -642,7 +642,7 @@ public class ClassScope extends AbstractJavaScope {
         return resolveGenericType(typeImage, types);
     }
 
-    private Class<?> resolveGenericType(String typeImage, List<ASTTypeParameter> types) {
+    private Class<?> resolveGenericType(final String typeImage, final List<ASTTypeParameter> types) {
         for (ASTTypeParameter type : types) {
             if (typeImage.equals(type.getImage())) {
                 ASTClassOrInterfaceType bound = type.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
@@ -661,7 +661,7 @@ public class ClassScope extends AbstractJavaScope {
         return null;
     }
 
-    private Node getNextSibling(Node current) {
+    private Node getNextSibling(final Node current) {
         if (current.getParent().getNumChildren() > current.getIndexInParent() + 1) {
             return current.getParent().getChild(current.getIndexInParent() + 1);
         }
@@ -692,7 +692,7 @@ public class ClassScope extends AbstractJavaScope {
         return res.toString();
     }
 
-    private String clipClassName(String s) {
+    private String clipClassName(final String s) {
         return s.substring(s.indexOf('.') + 1);
     }
 }

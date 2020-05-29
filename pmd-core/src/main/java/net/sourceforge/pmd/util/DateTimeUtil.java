@@ -22,7 +22,7 @@ public final class DateTimeUtil {
      * @param milliseconds
      * @return String
      */
-    public static String asHoursMinutesSeconds(long milliseconds) {
+    public static String asHoursMinutesSeconds(final long milliseconds) {
 
         if (milliseconds < 0) {
             throw new IllegalArgumentException();

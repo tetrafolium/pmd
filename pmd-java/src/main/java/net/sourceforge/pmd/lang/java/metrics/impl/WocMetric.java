@@ -20,13 +20,13 @@ import net.sourceforge.pmd.lang.metrics.MetricOptions;
 public class WocMetric extends AbstractJavaClassMetric {
 
     @Override
-    public boolean supports(ASTAnyTypeDeclaration node) {
+    public boolean supports(final ASTAnyTypeDeclaration node) {
         return node.getTypeKind() == TypeKind.CLASS;
     }
 
 
     @Override
-    public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+    public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
 
         JavaOperationSigMask mask = new JavaOperationSigMask();
         mask.forbid(Role.CONSTRUCTOR, Role.GETTER_OR_SETTER);

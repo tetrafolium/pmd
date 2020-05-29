@@ -15,12 +15,12 @@ public class ASTCtorSecondary extends AbstractScalaNode<Ctor.Secondary> {
 
     @Deprecated
     @InternalApi
-    public ASTCtorSecondary(Ctor.Secondary scalaNode) {
+    public ASTCtorSecondary(final Ctor.Secondary scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

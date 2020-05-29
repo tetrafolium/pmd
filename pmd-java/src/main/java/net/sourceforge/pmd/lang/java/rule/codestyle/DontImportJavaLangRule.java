@@ -11,7 +11,7 @@ public class DontImportJavaLangRule extends AbstractJavaRule {
     private static final String IMPORT_JAVA_LANG = "java.lang";
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
 
         if (node.isStatic()) {
             return data;

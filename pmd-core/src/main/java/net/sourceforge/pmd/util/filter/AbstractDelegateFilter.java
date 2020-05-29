@@ -20,7 +20,7 @@ public abstract class AbstractDelegateFilter<T> implements Filter<T> {
         // default constructor
     }
 
-    public AbstractDelegateFilter(Filter<T> filter) {
+    public AbstractDelegateFilter(final Filter<T> filter) {
         this.filter = filter;
     }
 
@@ -28,13 +28,13 @@ public abstract class AbstractDelegateFilter<T> implements Filter<T> {
         return filter;
     }
 
-    public void setFilter(Filter<T> filter) {
+    public void setFilter(final Filter<T> filter) {
         this.filter = filter;
     }
 
     // Subclass should override to do something other the simply delegate.
     @Override
-    public boolean filter(T obj) {
+    public boolean filter(final T obj) {
         return filter.filter(obj);
     }
 

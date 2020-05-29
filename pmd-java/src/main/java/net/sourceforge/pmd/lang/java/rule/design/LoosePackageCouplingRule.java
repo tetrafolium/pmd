@@ -60,7 +60,7 @@ public class LoosePackageCouplingRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         this.thisPackage = "";
 
         // Sort the restricted packages in reverse order. This will ensure the
@@ -72,13 +72,13 @@ public class LoosePackageCouplingRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPackageDeclaration node, Object data) {
+    public Object visit(final ASTPackageDeclaration node, final Object data) {
         this.thisPackage = node.getPackageNameImage();
         return data;
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
 
         String importPackage = node.getPackageName();
 
@@ -95,11 +95,11 @@ public class LoosePackageCouplingRule extends AbstractJavaRule {
                     // On demand imports automatically fail because they include
                     // everything
                     if (node.isImportOnDemand()) {
-                        addViolation(data, node, new Object[] { node.getImportedName(), pkg });
+                        addViolation(data, node, new Object[] {node.getImportedName(), pkg });
                         break;
                     } else {
                         if (!isAllowedClass(node)) {
-                            addViolation(data, node, new Object[] { node.getImportedName(), pkg });
+                            addViolation(data, node, new Object[] {node.getImportedName(), pkg });
                             break;
                         }
                     }
@@ -114,12 +114,12 @@ public class LoosePackageCouplingRule extends AbstractJavaRule {
     }
 
     // Is 1st package a containing package of the 2nd package?
-    protected boolean isContainingPackage(String pkg1, String pkg2) {
+    protected boolean isContainingPackage(final String pkg1, final String pkg2) {
         return pkg1.equals(pkg2)
                 || pkg1.length() < pkg2.length() && pkg2.startsWith(pkg1) && pkg2.charAt(pkg1.length()) == '.';
     }
 
-    protected boolean isAllowedClass(ASTImportDeclaration node) {
+    protected boolean isAllowedClass(final ASTImportDeclaration node) {
         String importedName = node.getImportedName();
         for (String clazz : getProperty(CLASSES_DESCRIPTOR)) {
             if (importedName.equals(clazz)) {

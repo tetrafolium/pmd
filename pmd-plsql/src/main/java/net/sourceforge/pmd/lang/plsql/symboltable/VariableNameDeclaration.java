@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
 public class VariableNameDeclaration extends AbstractNameDeclaration {
     private static final Logger LOGGER = Logger.getLogger(VariableNameDeclaration.class.getName());
 
-    public VariableNameDeclaration(ASTVariableOrConstantDeclaratorId node) {
+    public VariableNameDeclaration(final ASTVariableOrConstantDeclaratorId node) {
         super(node);
     }
 
@@ -36,7 +36,7 @@ public class VariableNameDeclaration extends AbstractNameDeclaration {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof VariableNameDeclaration)) {
             return false;
         }

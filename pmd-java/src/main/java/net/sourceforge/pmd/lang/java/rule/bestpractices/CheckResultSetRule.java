@@ -41,13 +41,13 @@ public class CheckResultSetRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         resultSetVariables.clear();
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         ASTClassOrInterfaceType type = null;
         if (!node.isTypeInferred()) {
             type = node.getFirstChildOfType(ASTType.class).getFirstDescendantOfType(ASTClassOrInterfaceType.class);
@@ -67,7 +67,7 @@ public class CheckResultSetRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         String image = node.getImage();
         String var = getResultSetVariableName(image);
         if (var != null && resultSetVariables.containsKey(var)
@@ -80,7 +80,7 @@ public class CheckResultSetRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private String getResultSetVariableName(String image) {
+    private String getResultSetVariableName(final String image) {
         if (image.contains(".")) {
             for (String method : methods) {
                 if (image.endsWith(method)) {

@@ -18,7 +18,7 @@ public class SourceFileScope extends AbstractScope {
         this("");
     }
 
-    public SourceFileScope(String image) {
+    public SourceFileScope(final String image) {
         this.packageImage = image;
     }
 
@@ -33,7 +33,7 @@ public class SourceFileScope extends AbstractScope {
      *             if declaration is not a {@link ClassNameDeclaration}
      */
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         if (!(declaration instanceof ClassNameDeclaration)) {
             throw new IllegalArgumentException("A SourceFileScope can only contain classes.");
         }
@@ -45,7 +45,7 @@ public class SourceFileScope extends AbstractScope {
         return "SourceFileScope: " + getDeclarations().keySet();
     }
 
-    protected NameDeclaration findVariableHere(NameOccurrence occ) {
+    protected NameDeclaration findVariableHere(final NameOccurrence occ) {
         ImageFinderFunction finder = new ImageFinderFunction(occ.getImage());
         Applier.apply(finder, getDeclarations().keySet().iterator());
         return finder.getDecl();

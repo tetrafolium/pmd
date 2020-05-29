@@ -47,12 +47,12 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionRule<AS
         definePropertyDescriptor(junit4Regex);
     }
 
-    private boolean isJunit4Test(ASTMethodDeclaration node) {
+    private boolean isJunit4Test(final ASTMethodDeclaration node) {
         return node.isAnnotationPresent("org.junit.Test");
     }
 
 
-    private boolean isJunit3Test(ASTMethodDeclaration node) {
+    private boolean isJunit3Test(final ASTMethodDeclaration node) {
         if (!node.getName().startsWith("test")) {
             return false;
         }
@@ -71,7 +71,7 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionRule<AS
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
 
         if (node.isAnnotationPresent("java.lang.Override")) {
             return super.visit(node, data);
@@ -104,12 +104,12 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionRule<AS
 
 
     @Override
-    String nameExtractor(ASTMethodDeclaration node) {
+    String nameExtractor(final ASTMethodDeclaration node) {
         return node.getName();
     }
 
     @Override
-    RegexPropertyBuilder defaultProp(String name, String displayName) {
+    RegexPropertyBuilder defaultProp(final String name, final String displayName) {
         String display = (displayName + " method").trim();
         RegexPropertyBuilder prop = super.defaultProp(name.isEmpty() ? "method" : name, display);
 
@@ -120,7 +120,7 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionRule<AS
 
 
     @Override
-    String kindDisplayName(ASTMethodDeclaration node, PropertyDescriptor<Pattern> descriptor) {
+    String kindDisplayName(final ASTMethodDeclaration node, final PropertyDescriptor<Pattern> descriptor) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(descriptor.name());
     }
 }

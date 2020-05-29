@@ -16,16 +16,16 @@ public class StringBuilderCR {
     private final String cr;
     private final StringBuilder sb = new StringBuilder();
 
-    public StringBuilderCR(String theCR) {
+    public StringBuilderCR(final String theCR) {
         cr = theCR;
     }
 
-    public StringBuilderCR(String initialText, String theCR) {
+    public StringBuilderCR(final String initialText, final String theCR) {
         this(theCR);
         appendLn(initialText);
     }
 
-    public void appendLn(String... chunks) {
+    public void appendLn(final String... chunks) {
 
         for (String chunk : chunks) {
             sb.append(chunk);

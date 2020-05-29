@@ -13,13 +13,13 @@ public class ASTJspDirectiveAttribute extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public ASTJspDirectiveAttribute(int id) {
+    public ASTJspDirectiveAttribute(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTJspDirectiveAttribute(JspParser p, int id) {
+    public ASTJspDirectiveAttribute(final JspParser p, final int id) {
         super(p, id);
     }
 
@@ -29,7 +29,7 @@ public class ASTJspDirectiveAttribute extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -39,12 +39,12 @@ public class ASTJspDirectiveAttribute extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setValue(String value) {
+    public void setValue(final String value) {
         this.value = value;
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

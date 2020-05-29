@@ -38,7 +38,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
      * @return <code>true</code> if there is a field in the type declaration
      *         named varName, <code>false</code> in other case
      */
-    protected final boolean isField(String varName, ASTAnyTypeDeclaration typeDeclaration) {
+    protected final boolean isField(final String varName, final ASTAnyTypeDeclaration typeDeclaration) {
         final List<ASTFieldDeclaration> fds = typeDeclaration.findDescendantsOfType(ASTFieldDeclaration.class);
         if (fds != null) {
             for (ASTFieldDeclaration fd : fds) {
@@ -62,7 +62,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
      * @return the name of the variable associated or <code>null</code> if it
      *         cannot be detected
      */
-    protected final String getReturnedVariableName(ASTReturnStatement ret) {
+    protected final String getReturnedVariableName(final ASTReturnStatement ret) {
         if (hasTernaryCondition(ret) && hasTernaryNullCheck(ret)) {
             return ret.getFirstDescendantOfType(ASTConditionalExpression.class).getChild(0)
                     .getFirstDescendantOfType(ASTName.class).getImage();
@@ -79,7 +79,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
         return null;
     }
 
-    private boolean hasTernaryNullCheck(ASTReturnStatement ret) {
+    private boolean hasTernaryNullCheck(final ASTReturnStatement ret) {
         ASTConditionalExpression condition = ret.getFirstDescendantOfType(ASTConditionalExpression.class);
         return condition.getChild(0) instanceof ASTEqualityExpression
                 && condition.getChild(0).hasImageEqualTo("==")
@@ -87,7 +87,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
                 && condition.getChild(0).getChild(1).hasDescendantOfType(ASTNullLiteral.class);
     }
 
-    private boolean hasTernaryCondition(ASTReturnStatement ret) {
+    private boolean hasTernaryCondition(final ASTReturnStatement ret) {
         return null != ret.getFirstDescendantOfType(ASTConditionalExpression.class);
     }
 
@@ -103,7 +103,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
      * @return <code>true</code> if the method declaration contains any local
      *         variable named vn and <code>false</code> in other case
      */
-    protected boolean isLocalVariable(String vn, Node node) {
+    protected boolean isLocalVariable(final String vn, final Node node) {
         final List<ASTLocalVariableDeclaration> lvars = node.findDescendantsOfType(ASTLocalVariableDeclaration.class);
         if (lvars != null) {
             for (ASTLocalVariableDeclaration lvd : lvars) {
@@ -134,7 +134,7 @@ public abstract class AbstractSunSecureRule extends AbstractJavaRule {
      *            the node to search
      * @return the image of the first ASTName or <code>null</code>
      */
-    protected String getFirstNameImage(Node n) {
+    protected String getFirstNameImage(final Node n) {
         ASTName name = n.getFirstDescendantOfType(ASTName.class);
         if (name != null && name.getNthParent(3) == n) {
             return name.getImage();

@@ -14,13 +14,13 @@ public class ASTSubqueryOperation extends net.sourceforge.pmd.lang.plsql.ast.Abs
 
     @Deprecated
     @InternalApi
-    public ASTSubqueryOperation(int id) {
+    public ASTSubqueryOperation(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTSubqueryOperation(PLSQLParser p, int id) {
+    public ASTSubqueryOperation(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
@@ -28,7 +28,7 @@ public class ASTSubqueryOperation extends net.sourceforge.pmd.lang.plsql.ast.Abs
         return all;
     }
 
-    void setAll(boolean all) {
+    void setAll(final boolean all) {
         this.all = all;
     }
 
@@ -36,7 +36,7 @@ public class ASTSubqueryOperation extends net.sourceforge.pmd.lang.plsql.ast.Abs
         return intersect;
     }
 
-    void setIntersect(boolean intersect) {
+    void setIntersect(final boolean intersect) {
         this.intersect = intersect;
     }
 
@@ -44,7 +44,7 @@ public class ASTSubqueryOperation extends net.sourceforge.pmd.lang.plsql.ast.Abs
         return minus;
     }
 
-    void setMinus(boolean minus) {
+    void setMinus(final boolean minus) {
         this.minus = minus;
     }
 
@@ -52,12 +52,12 @@ public class ASTSubqueryOperation extends net.sourceforge.pmd.lang.plsql.ast.Abs
         return union;
     }
 
-    void setUnion(boolean union) {
+    void setUnion(final boolean union) {
         this.union = union;
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

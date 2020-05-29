@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTLabeledStatement extends AbstractEcmascriptNode<LabeledStatement> {
     @Deprecated
     @InternalApi
-    public ASTLabeledStatement(LabeledStatement labeledStatement) {
+    public ASTLabeledStatement(final LabeledStatement labeledStatement) {
         super(labeledStatement);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -24,7 +24,7 @@ public class ASTLabeledStatement extends AbstractEcmascriptNode<LabeledStatement
         return node.getLabels().size();
     }
 
-    public ASTLabel getLabel(int index) {
+    public ASTLabel getLabel(final int index) {
         return (ASTLabel) getChild(index);
     }
 

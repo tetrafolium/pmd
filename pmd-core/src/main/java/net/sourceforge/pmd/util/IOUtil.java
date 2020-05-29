@@ -35,7 +35,7 @@ public final class IOUtil {
         return new OutputStreamWriter(System.out);
     }
 
-    public static Writer createWriter(String reportFile) {
+    public static Writer createWriter(final String reportFile) {
         try {
             return StringUtils.isBlank(reportFile) ? createWriter()
                     : Files.newBufferedWriter(new File(reportFile).toPath(), Charset.defaultCharset());
@@ -44,7 +44,7 @@ public final class IOUtil {
         }
     }
 
-    public static Reader skipBOM(Reader source) {
+    public static Reader skipBOM(final Reader source) {
         Reader in = new BufferedReader(source);
         try {
             in.mark(1);
@@ -58,7 +58,7 @@ public final class IOUtil {
         return in;
     }
 
-    public static void tryCloseClassLoader(ClassLoader classLoader) {
+    public static void tryCloseClassLoader(final ClassLoader classLoader) {
         if (classLoader instanceof Closeable) {
             IOUtils.closeQuietly((Closeable) classLoader);
         }

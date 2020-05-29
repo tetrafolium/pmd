@@ -15,12 +15,12 @@ public class ASTTypeSingleton extends AbstractScalaNode<Type.Singleton> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeSingleton(Type.Singleton scalaNode) {
+    public ASTTypeSingleton(final Type.Singleton scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

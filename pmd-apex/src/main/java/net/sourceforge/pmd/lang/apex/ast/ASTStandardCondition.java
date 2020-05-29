@@ -12,12 +12,12 @@ public class ASTStandardCondition extends AbstractApexNode<StandardCondition> {
 
     @Deprecated
     @InternalApi
-    public ASTStandardCondition(StandardCondition standardCondition) {
+    public ASTStandardCondition(final StandardCondition standardCondition) {
         super(standardCondition);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -88,7 +88,7 @@ public enum JavaClassMetricKey implements MetricKey<ASTAnyTypeDeclaration> {
     private final JavaClassMetric calculator;
 
 
-    JavaClassMetricKey(JavaClassMetric m) {
+    JavaClassMetricKey(final JavaClassMetric m) {
         calculator = m;
     }
 
@@ -100,7 +100,7 @@ public enum JavaClassMetricKey implements MetricKey<ASTAnyTypeDeclaration> {
 
 
     @Override
-    public boolean supports(ASTAnyTypeDeclaration node) {
+    public boolean supports(final ASTAnyTypeDeclaration node) {
         return calculator.supports(node);
     }
 

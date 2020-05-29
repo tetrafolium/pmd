@@ -21,18 +21,18 @@ public class ASTImplementsList extends AbstractJavaNode implements Iterable<ASTC
 
     @InternalApi
     @Deprecated
-    public ASTImplementsList(int id) {
+    public ASTImplementsList(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTImplementsList(JavaParser p, int id) {
+    public ASTImplementsList(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

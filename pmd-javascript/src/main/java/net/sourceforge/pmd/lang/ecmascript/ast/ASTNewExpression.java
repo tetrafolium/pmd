@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTNewExpression extends AbstractEcmascriptNode<NewExpression> {
     @Deprecated
     @InternalApi
-    public ASTNewExpression(NewExpression newExpression) {
+    public ASTNewExpression(final NewExpression newExpression) {
         super(newExpression);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -28,7 +28,7 @@ public class ASTNewExpression extends AbstractEcmascriptNode<NewExpression> {
         return node.getArguments().size();
     }
 
-    public EcmascriptNode<?> getArgument(int index) {
+    public EcmascriptNode<?> getArgument(final int index) {
         return (EcmascriptNode<?>) getChild(index + 1);
     }
 

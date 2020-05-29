@@ -18,14 +18,14 @@ public class FileExtensionFilter implements Filter<File> {
     /**
      * Matches any files with the given extensions, ignoring case
      */
-    public FileExtensionFilter(String... extensions) {
+    public FileExtensionFilter(final String... extensions) {
         this(true, extensions);
     }
 
     /**
      * Matches any files with the given extensions, optionally ignoring case.
      */
-    public FileExtensionFilter(boolean ignoreCase, String... extensions) {
+    public FileExtensionFilter(final boolean ignoreCase, final String... extensions) {
         this.extensions = extensions;
         this.ignoreCase = ignoreCase;
         if (ignoreCase) {
@@ -36,7 +36,7 @@ public class FileExtensionFilter implements Filter<File> {
     }
 
     @Override
-    public boolean filter(File file) {
+    public boolean filter(final File file) {
         boolean accept = extensions == null;
         if (!accept) {
             for (String extension : extensions) {

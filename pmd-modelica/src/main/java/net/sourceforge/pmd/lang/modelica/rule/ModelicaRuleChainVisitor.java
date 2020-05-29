@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.rule.XPathRule;
 
 public class ModelicaRuleChainVisitor extends AbstractRuleChainVisitor {
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         if (rule instanceof ModelicaParserVisitor) {
             ((ModelicaNode) node).jjtAccept((ModelicaParserVisitor) rule, ctx);
         } else {
@@ -27,10 +27,10 @@ public class ModelicaRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         ModelicaParserVisitorAdapter modelicaParserVisitor = new ModelicaParserVisitorAdapter() {
             @Override
-            public Object visit(ModelicaNode node, Object data) {
+            public Object visit(final ModelicaNode node, final Object data) {
                 indexNode((Node) node);
                 return super.visit(node, data);
             }

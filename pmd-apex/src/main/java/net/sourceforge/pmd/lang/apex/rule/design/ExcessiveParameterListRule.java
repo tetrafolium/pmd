@@ -23,7 +23,7 @@ public class ExcessiveParameterListRule extends ExcessiveNodeCountRule {
     }
 
     @Override
-    public Object visit(ASTParameter node, Object data) {
+    public Object visit(final ASTParameter node, final Object data) {
         return NumericConstants.ONE;
     }
 }

@@ -41,7 +41,7 @@ public class TypeSet {
      *            the class loader to use to search classes (could be an
      *            auxiliary class path)
      */
-    public TypeSet(ClassLoader classLoader) {
+    public TypeSet(final ClassLoader classLoader) {
         ClassLoader cl = classLoader;
         if (cl == null) {
             cl = TypeSet.class.getClassLoader();
@@ -189,7 +189,7 @@ public class TypeSet {
          * @param importStmts
          *            the import statements
          */
-        public ExplicitImportResolver(PMDASMClassLoader pmdClassLoader, Set<String> importStmts) {
+        public ExplicitImportResolver(final PMDASMClassLoader pmdClassLoader, final Set<String> importStmts) {
             super(pmdClassLoader);
 
             // unfold imports, to store both FQ and unqualified names mapped to
@@ -239,7 +239,7 @@ public class TypeSet {
          * @param pkg
          *            the package name
          */
-        public CurrentPackageResolver(PMDASMClassLoader pmdClassLoader, String pkg) {
+        public CurrentPackageResolver(final PMDASMClassLoader pmdClassLoader, final String pkg) {
             super(pmdClassLoader);
             if (pkg == null || pkg.length() == 0) {
                 this.pkg = null;
@@ -249,7 +249,7 @@ public class TypeSet {
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (name == null) {
                 throw new ClassNotFoundException();
             }
@@ -258,7 +258,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             return pmdClassLoader.couldResolve(qualifyName(name));
         }
 
@@ -296,12 +296,12 @@ public class TypeSet {
          * @param pmdClassLoader
          *            the class loader
          */
-        public ImplicitImportResolver(PMDASMClassLoader pmdClassLoader) {
+        public ImplicitImportResolver(final PMDASMClassLoader pmdClassLoader) {
             super(pmdClassLoader);
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (name == null) {
                 throw new ClassNotFoundException();
             }
@@ -322,7 +322,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             /*
              * String.concat is bad in general, but for simple 2 string concatenation, it's the fastest
              * See http://www.rationaljava.com/2015/02/the-optimum-method-to-concatenate.html
@@ -345,7 +345,7 @@ public class TypeSet {
          * @param importStmts
          *            the import statements
          */
-        public ImportOnDemandResolver(PMDASMClassLoader pmdClassLoader, Set<String> importStmts) {
+        public ImportOnDemandResolver(final PMDASMClassLoader pmdClassLoader, final Set<String> importStmts) {
             super(pmdClassLoader);
             this.importStmts = new HashSet<>();
             for (final String stmt : importStmts) {
@@ -356,7 +356,7 @@ public class TypeSet {
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (name == null) {
                 throw new ClassNotFoundException();
             }
@@ -378,7 +378,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             name = name.replace('.', '$');
             for (String importStmt : importStmts) {
                 final String fqClassName = new StringBuilder(importStmt.length() + name.length()).append(importStmt)
@@ -417,7 +417,7 @@ public class TypeSet {
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (!PRIMITIVE_TYPES.containsKey(name)) {
                 throw new ClassNotFoundException(name);
             }
@@ -425,7 +425,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             return PRIMITIVE_TYPES.containsKey(name);
         }
     }
@@ -435,7 +435,7 @@ public class TypeSet {
      */
     public static class VoidResolver implements Resolver {
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if ("void".equals(name)) {
                 return void.class;
             }
@@ -443,7 +443,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             return "void".equals(name);
         }
     }
@@ -459,12 +459,12 @@ public class TypeSet {
          * @param pmdClassLoader
          *            the class loader to use
          */
-        public FullyQualifiedNameResolver(PMDASMClassLoader pmdClassLoader) {
+        public FullyQualifiedNameResolver(final PMDASMClassLoader pmdClassLoader) {
             super(pmdClassLoader);
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (name == null) {
                 throw new ClassNotFoundException();
             }
@@ -479,7 +479,7 @@ public class TypeSet {
         }
 
         @Override
-        public boolean couldResolve(String name) {
+        public boolean couldResolve(final String name) {
             /*
              * We can always try!
              * If a file used an explicit import on A.Inner, the class loader will register
@@ -491,7 +491,7 @@ public class TypeSet {
         }
     }
 
-    public void setASTCompilationUnitPackage(String pkg) {
+    public void setASTCompilationUnitPackage(final String pkg) {
         this.pkg = pkg;
     }
 
@@ -505,7 +505,7 @@ public class TypeSet {
      * @param importString
      *            the import to add
      */
-    public void addImport(String importString) {
+    public void addImport(final String importString) {
         imports.add(importString);
     }
 
@@ -525,7 +525,7 @@ public class TypeSet {
      *            qualified name.
      * @return the class or <code>null</code> if none found
      */
-    public Class<?> findClass(String name) {
+    public Class<?> findClass(final String name) {
         // we don't build the resolvers until now since we first want to get all
         // the imports
         if (resolvers.isEmpty()) {

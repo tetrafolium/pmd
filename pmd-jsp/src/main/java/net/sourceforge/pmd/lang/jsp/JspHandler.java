@@ -29,7 +29,7 @@ public class JspHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new JspParser(parserOptions);
     }
 
@@ -38,7 +38,7 @@ public class JspHandler extends AbstractLanguageVersionHandler {
     public VisitorStarter getDumpFacade(final Writer writer, final String prefix, final boolean recurse) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new DumpFacade().initializeWith(writer, prefix, recurse, (JspNode) rootNode);
             }
         };

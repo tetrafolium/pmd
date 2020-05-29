@@ -5,16 +5,16 @@
 package net.sourceforge.pmd.lang.modelica.ast;
 
 public final class ASTEnumerationShortClassSpecifier extends AbstractModelicaClassSpecifierNode {
-    ASTEnumerationShortClassSpecifier(int id) {
+    ASTEnumerationShortClassSpecifier(final int id) {
         super(id);
     }
 
-    ASTEnumerationShortClassSpecifier(ModelicaParser p, int id) {
+    ASTEnumerationShortClassSpecifier(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -14,11 +14,11 @@ public final class ASTComponentReference extends AbstractModelicaNode implements
     private boolean absolute;
     private ResolutionResult<ResolvableEntity> resolutionCandidates;
 
-    ASTComponentReference(int id) {
+    ASTComponentReference(final int id) {
         super(id);
     }
 
-    ASTComponentReference(ModelicaParser p, int id) {
+    ASTComponentReference(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
@@ -60,7 +60,7 @@ public final class ASTComponentReference extends AbstractModelicaNode implements
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

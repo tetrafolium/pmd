@@ -30,7 +30,7 @@ public final class ShortFilenameUtil {
      * @see PMDConfiguration#isReportShortNames()
      * @see PMDParameters#isShortnames()
      */
-    public static String determineFileName(List<String> inputPathPrefixes, String inputFileName) {
+    public static String determineFileName(final List<String> inputPathPrefixes, final String inputFileName) {
         for (final String prefix : inputPathPrefixes) {
             final Path prefPath = Paths.get(prefix).toAbsolutePath();
             final String prefPathString = prefPath.toString();
@@ -50,7 +50,7 @@ public final class ShortFilenameUtil {
         return inputFileName;
     }
 
-    private static String trimAnyPathSep(String name) {
+    private static String trimAnyPathSep(final String name) {
         return name != null && name.charAt(0) == File.separatorChar ? name.substring(1) : name;
     }
 }

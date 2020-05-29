@@ -58,7 +58,7 @@ package net.sourceforge.pmd.lang.vm.directive;
 public class BlockMacro extends Block {
     private String name;
 
-    public BlockMacro(String name) {
+    public BlockMacro(final String name) {
         this.name = name;
     }
 

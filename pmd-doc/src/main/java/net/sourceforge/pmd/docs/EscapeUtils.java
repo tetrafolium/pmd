@@ -17,7 +17,7 @@ public final class EscapeUtils {
         // This is a utility class
     }
 
-    public static String escapeMarkdown(String unescaped) {
+    public static String escapeMarkdown(final String unescaped) {
         return unescaped.replace("\\", "\\\\")
                 .replace("*", "\\*")
                 .replace("_", "\\_")
@@ -27,7 +27,7 @@ public final class EscapeUtils {
                 .replace("|", "\\|");
     }
 
-    public static String escapeSingleLine(String line) {
+    public static String escapeSingleLine(final String line) {
         StringBuilder escaped = new StringBuilder(line.length() + 16);
 
         String currentLine = line;
@@ -53,7 +53,7 @@ public final class EscapeUtils {
         return escaped.toString();
     }
 
-    private static String escapeBackticks(StringBuilder escaped, String linePart) {
+    private static String escapeBackticks(final StringBuilder escaped, final String linePart) {
         String currentLine = linePart;
         int pos = currentLine.indexOf(BACKTICK);
         boolean needsEscaping = true;
@@ -74,7 +74,7 @@ public final class EscapeUtils {
         return currentLine;
     }
 
-    public static List<String> escapeLines(List<String> lines) {
+    public static List<String> escapeLines(final List<String> lines) {
         boolean needsEscape = true;
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);

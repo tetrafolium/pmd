@@ -12,17 +12,17 @@ public class ASTFetchStatement extends AbstractPLSQLNode {
 
     @Deprecated
     @InternalApi
-    public ASTFetchStatement(int id) {
+    public ASTFetchStatement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTFetchStatement(PLSQLParser p, int id) {
+    public ASTFetchStatement(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setBulkCollect(boolean bulkcollect) {
+    void setBulkCollect(final boolean bulkcollect) {
         this.bulkcollect = bulkcollect;
     }
 
@@ -30,7 +30,7 @@ public class ASTFetchStatement extends AbstractPLSQLNode {
         return this.bulkcollect;
     }
 
-    void setLimit(boolean limit) {
+    void setLimit(final boolean limit) {
         this.limit = limit;
     }
 
@@ -39,7 +39,7 @@ public class ASTFetchStatement extends AbstractPLSQLNode {
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -12,12 +12,12 @@ public class ASTNewKeyValueObjectExpression extends AbstractApexNode<NewKeyValue
 
     @Deprecated
     @InternalApi
-    public ASTNewKeyValueObjectExpression(NewKeyValueObjectExpression node) {
+    public ASTNewKeyValueObjectExpression(final NewKeyValueObjectExpression node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

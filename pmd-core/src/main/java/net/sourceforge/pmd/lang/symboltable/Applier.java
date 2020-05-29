@@ -14,7 +14,7 @@ public final class Applier {
         // utility class
     }
 
-    public static <E> void apply(SearchFunction<E> f, Iterator<? extends E> i) {
+    public static <E> void apply(final SearchFunction<E> f, final Iterator<? extends E> i) {
         while (i.hasNext() && f.applyTo(i.next())) {
             // Nothing to do
         }

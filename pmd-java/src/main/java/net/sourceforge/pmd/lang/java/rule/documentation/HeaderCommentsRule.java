@@ -17,8 +17,8 @@ public class HeaderCommentsRule extends AbstractCommentRule {
 
     // Rule is not used and not implemented, properties won't be converted
 
-    private static final String[] REQUIRED_WORKDS = new String[] { "copyright" };
-    private static final String[] REQUIRED_TAGS = new String[] { "author", "version" };
+    private static final String[] REQUIRED_WORKDS = new String[] {"copyright" };
+    private static final String[] REQUIRED_TAGS = new String[] {"author", "version" };
 
     public static final StringMultiProperty REQUIRED_TERMS_DESCRIPTOR = new StringMultiProperty("requiredTerms",
             "Expected terms or phrases in the code header", REQUIRED_WORKDS, 1.0f, '|');
@@ -34,7 +34,7 @@ public class HeaderCommentsRule extends AbstractCommentRule {
 
         private final String label;
 
-        RequiredHeaderPlacement(String theLabel) {
+        RequiredHeaderPlacement(final String theLabel) {
             label = theLabel;
         }
 
@@ -59,7 +59,7 @@ public class HeaderCommentsRule extends AbstractCommentRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit cUnit, Object data) {
+    public Object visit(final ASTCompilationUnit cUnit, final Object data) {
 
         // SortedMap<Integer, Object> itemsByLineNumber =
         // orderedCommentsAndDeclarations(cUnit);

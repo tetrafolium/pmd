@@ -12,7 +12,7 @@ import net.sourceforge.pmd.lang.apex.ast.ApexParserVisitorAdapter;
  */
 public class ApexMultifileVisitorFacade extends ApexParserVisitorAdapter {
 
-    public void initializeWith(ApexNode<?> rootNode) {
+    public void initializeWith(final ApexNode<?> rootNode) {
         ApexMultifileVisitor visitor = new ApexMultifileVisitor(ApexProjectMirror.INSTANCE);
         rootNode.jjtAccept(visitor, null);
     }

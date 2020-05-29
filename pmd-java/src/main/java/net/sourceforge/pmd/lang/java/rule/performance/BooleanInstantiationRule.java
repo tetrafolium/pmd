@@ -42,7 +42,7 @@ public class BooleanInstantiationRule extends AbstractJavaRule {
     private boolean customBoolean;
 
     @Override
-    public Object visit(ASTCompilationUnit decl, Object data) {
+    public Object visit(final ASTCompilationUnit decl, final Object data) {
         // customBoolean needs to be reset for each new file
         customBoolean = false;
 
@@ -50,7 +50,7 @@ public class BooleanInstantiationRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTImportDeclaration decl, Object data) {
+    public Object visit(final ASTImportDeclaration decl, final Object data) {
         // If the import actually import a Boolean class that overrides
         // java.lang.Boolean
         if (decl.getImportedName().endsWith("Boolean") && !decl.getImportedName().equals("java.lang")) {
@@ -60,7 +60,7 @@ public class BooleanInstantiationRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
 
         if (!customBoolean) {
             if (node.hasDescendantOfType(ASTArrayDimsAndInits.class)) {
@@ -77,7 +77,7 @@ public class BooleanInstantiationRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
 
         if (!customBoolean) {
             if (node.getNumChildren() == 0 || !(node.getChild(0) instanceof ASTName)) {

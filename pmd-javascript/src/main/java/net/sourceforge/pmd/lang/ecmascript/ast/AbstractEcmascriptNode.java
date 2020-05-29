@@ -18,13 +18,13 @@ public abstract class AbstractEcmascriptNode<T extends AstNode> extends Abstract
 
     @Deprecated
     @InternalApi
-    public AbstractEcmascriptNode(T node) {
+    public AbstractEcmascriptNode(final T node) {
         super(node.getType());
         this.node = node;
     }
 
     /* package private */
-    void calculateLineNumbers(SourceCodePositioner positioner) {
+    void calculateLineNumbers(final SourceCodePositioner positioner) {
         int startOffset = node.getAbsolutePosition();
         int endOffset = startOffset + node.getLength();
 
@@ -42,7 +42,7 @@ public abstract class AbstractEcmascriptNode<T extends AstNode> extends Abstract
      * Accept the visitor. *
      */
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -50,7 +50,7 @@ public abstract class AbstractEcmascriptNode<T extends AstNode> extends Abstract
      * Accept the visitor. *
      */
     @Override
-    public Object childrenAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object childrenAccept(final EcmascriptParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 // we know that the children here
@@ -84,7 +84,7 @@ public abstract class AbstractEcmascriptNode<T extends AstNode> extends Abstract
         return node.shortName();
     }
 
-    protected void setTrailingCommaExists(boolean b) {
+    protected void setTrailingCommaExists(final boolean b) {
         // empty. Only needed for ASTArrayLiteral and ASTObjectLiteral
         // This method is protected to not clutter the public API via a interface
     }

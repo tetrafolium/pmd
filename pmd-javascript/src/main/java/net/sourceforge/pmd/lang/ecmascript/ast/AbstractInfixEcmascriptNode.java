@@ -16,13 +16,13 @@ public class AbstractInfixEcmascriptNode<T extends InfixExpression> extends Abst
 
     @Deprecated
     @InternalApi
-    public AbstractInfixEcmascriptNode(T infixExpression) {
+    public AbstractInfixEcmascriptNode(final T infixExpression) {
         this(infixExpression, true);
     }
 
     @Deprecated
     @InternalApi
-    public AbstractInfixEcmascriptNode(T infixExpression, boolean setImage) {
+    public AbstractInfixEcmascriptNode(final T infixExpression, final boolean setImage) {
         super(infixExpression);
         if (setImage) {
             if (infixExpression.getOperator() == Token.ASSIGN_BITXOR) {

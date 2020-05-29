@@ -32,7 +32,7 @@ public class EcmascriptParserOptions extends ParserOptions {
         private final String name;
         private final int version;
 
-        Version(String name, int version) {
+        Version(final String name, final int version) {
             this.name = name;
             this.version = version;
         }
@@ -78,7 +78,7 @@ public class EcmascriptParserOptions extends ParserOptions {
         this.rhinoLanguageVersion = RHINO_LANGUAGE_VERSION.defaultValue();
     }
 
-    public EcmascriptParserOptions(Rule rule) {
+    public EcmascriptParserOptions(final Rule rule) {
         this.recordingComments = rule.getProperty(RECORDING_COMMENTS_DESCRIPTOR);
         this.recordingLocalJsDocComments = rule.getProperty(RECORDING_LOCAL_JSDOC_COMMENTS_DESCRIPTOR);
         this.rhinoLanguageVersion = rule.getProperty(RHINO_LANGUAGE_VERSION);
@@ -88,7 +88,7 @@ public class EcmascriptParserOptions extends ParserOptions {
         return this.recordingComments;
     }
 
-    public void setRecordingComments(boolean recordingComments) {
+    public void setRecordingComments(final boolean recordingComments) {
         this.recordingComments = recordingComments;
     }
 
@@ -96,7 +96,7 @@ public class EcmascriptParserOptions extends ParserOptions {
         return this.recordingLocalJsDocComments;
     }
 
-    public void setRecordingLocalJsDocComments(boolean recordingLocalJsDocComments) {
+    public void setRecordingLocalJsDocComments(final boolean recordingLocalJsDocComments) {
         this.recordingLocalJsDocComments = recordingLocalJsDocComments;
     }
 
@@ -104,7 +104,7 @@ public class EcmascriptParserOptions extends ParserOptions {
         return this.rhinoLanguageVersion;
     }
 
-    public void setRhinoLanguageVersion(Version rhinoLanguageVersion) {
+    public void setRhinoLanguageVersion(final Version rhinoLanguageVersion) {
         this.rhinoLanguageVersion = rhinoLanguageVersion;
     }
 
@@ -119,7 +119,7 @@ public class EcmascriptParserOptions extends ParserOptions {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

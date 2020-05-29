@@ -11,7 +11,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class AvoidFieldNameMatchingTypeNameRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -19,7 +19,7 @@ public class AvoidFieldNameMatchingTypeNameRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         ASTClassOrInterfaceDeclaration cl = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
         if (cl != null && node.getVariableName().equalsIgnoreCase(cl.getImage())) {
             addViolation(data, node);

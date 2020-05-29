@@ -20,13 +20,13 @@ public class ASTDoctypeExternalId extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public ASTDoctypeExternalId(int id) {
+    public ASTDoctypeExternalId(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTDoctypeExternalId(VfParser p, int id) {
+    public ASTDoctypeExternalId(final VfParser p, final int id) {
         super(p, id);
     }
 
@@ -40,7 +40,7 @@ public class ASTDoctypeExternalId extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setUri(String uri) {
+    public void setUri(final String uri) {
         this.uri = uri;
     }
 
@@ -54,12 +54,12 @@ public class ASTDoctypeExternalId extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setPublicId(String publicId) {
+    public void setPublicId(final String publicId) {
         this.publicId = publicId;
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

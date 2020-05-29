@@ -17,7 +17,7 @@ import net.sourceforge.pmd.util.IOUtil;
 public class PythonTokenizer extends JavaCCTokenizer {
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         StringBuilder buffer = sourceCode.getCodeBuffer();
         return new PythonTokenManager(IOUtil.skipBOM(new StringReader(buffer.toString())));
     }

@@ -13,12 +13,12 @@ public class ASTVariableDeclaration extends AbstractApexNode<VariableDeclaration
 
     @Deprecated
     @InternalApi
-    public ASTVariableDeclaration(VariableDeclaration variableDeclaration) {
+    public ASTVariableDeclaration(final VariableDeclaration variableDeclaration) {
         super(variableDeclaration);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -31,7 +31,7 @@ public class ASTVariableDeclaration extends AbstractApexNode<VariableDeclaration
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         ASTVariableDeclarationStatements parent = (ASTVariableDeclarationStatements) getParent();
 
         for (ASTModifierNode modifier : parent.findChildrenOfType(ASTModifierNode.class)) {

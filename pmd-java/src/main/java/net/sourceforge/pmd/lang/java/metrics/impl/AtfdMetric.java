@@ -27,13 +27,13 @@ public final class AtfdMetric {
     public static final class AtfdOperationMetric extends AbstractJavaOperationMetric {
 
         @Override
-        public boolean supports(MethodLikeNode node) {
+        public boolean supports(final MethodLikeNode node) {
             return node instanceof ASTMethodDeclaration && super.supports(node);
         }
 
 
         @Override
-        public double computeFor(MethodLikeNode node, MetricOptions options) {
+        public double computeFor(final MethodLikeNode node, final MetricOptions options) {
             return ((MutableInt) node.jjtAccept(new AtfdBaseVisitor(), new MutableInt(0))).getValue();
         }
 
@@ -42,7 +42,7 @@ public final class AtfdMetric {
     public static final class AtfdClassMetric extends AbstractJavaClassMetric {
 
         @Override
-        public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+        public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
             // TODO maybe consider code outside methods
             return JavaMetrics.get(JavaOperationMetricKey.ATFD, node, options, ResultOption.SUM);
         }

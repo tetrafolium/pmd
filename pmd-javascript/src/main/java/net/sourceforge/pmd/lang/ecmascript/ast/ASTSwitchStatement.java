@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTSwitchStatement extends AbstractEcmascriptNode<SwitchStatement> {
     @Deprecated
     @InternalApi
-    public ASTSwitchStatement(SwitchStatement switchStatement) {
+    public ASTSwitchStatement(final SwitchStatement switchStatement) {
         super(switchStatement);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -28,7 +28,7 @@ public class ASTSwitchStatement extends AbstractEcmascriptNode<SwitchStatement> 
         return node.getCases().size();
     }
 
-    public ASTSwitchCase getSwitchCase(int index) {
+    public ASTSwitchCase getSwitchCase(final int index) {
         return (ASTSwitchCase) getChild(index + 1);
     }
 }

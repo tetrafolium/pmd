@@ -20,12 +20,12 @@ public class ASTUserInterface extends ApexRootNode<UserInterface> implements AST
 
     @Deprecated
     @InternalApi
-    public ASTUserInterface(UserInterface userInterface) {
+    public ASTUserInterface(final UserInterface userInterface) {
         super(userInterface);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -57,7 +57,7 @@ public class ASTUserInterface extends ApexRootNode<UserInterface> implements AST
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (ASTModifierNode modifier : findChildrenOfType(ASTModifierNode.class)) {
             for (ASTAnnotation a : modifier.findChildrenOfType(ASTAnnotation.class)) {
                 if (a.suppresses(rule)) {

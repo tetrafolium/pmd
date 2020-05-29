@@ -33,7 +33,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableInitializer;
 public class MethodReturnsInternalArrayRule extends AbstractSunSecureRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -41,7 +41,7 @@ public class MethodReturnsInternalArrayRule extends AbstractSunSecureRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration method, Object data) {
+    public Object visit(final ASTMethodDeclaration method, final Object data) {
         if (!method.getResultType().returnsArray() || method.isPrivate()) {
             return data;
         }
@@ -83,7 +83,7 @@ public class MethodReturnsInternalArrayRule extends AbstractSunSecureRule {
         return data;
     }
 
-    private boolean hasClone(ASTReturnStatement ret, String varName) {
+    private boolean hasClone(final ASTReturnStatement ret, final String varName) {
         List<ASTPrimaryExpression> expressions = ret.findDescendantsOfType(ASTPrimaryExpression.class);
         for (ASTPrimaryExpression e : expressions) {
             if (e.getChild(0) instanceof ASTPrimaryPrefix && e.getNumChildren() == 2
@@ -99,7 +99,7 @@ public class MethodReturnsInternalArrayRule extends AbstractSunSecureRule {
         return false;
     }
 
-    private boolean hasArraysCopyOf(ASTReturnStatement ret) {
+    private boolean hasArraysCopyOf(final ASTReturnStatement ret) {
         List<ASTPrimaryExpression> expressions = ret.findDescendantsOfType(ASTPrimaryExpression.class);
         for (ASTPrimaryExpression e : expressions) {
             if (e.getNumChildren() == 2 && e.getChild(0) instanceof ASTPrimaryPrefix
@@ -111,7 +111,7 @@ public class MethodReturnsInternalArrayRule extends AbstractSunSecureRule {
         return false;
     }
 
-    private boolean isEmptyArray(String varName, ASTAnyTypeDeclaration typeDeclaration) {
+    private boolean isEmptyArray(final String varName, final ASTAnyTypeDeclaration typeDeclaration) {
         final List<ASTFieldDeclaration> fds = typeDeclaration.findDescendantsOfType(ASTFieldDeclaration.class);
         if (fds != null) {
             for (ASTFieldDeclaration fd : fds) {

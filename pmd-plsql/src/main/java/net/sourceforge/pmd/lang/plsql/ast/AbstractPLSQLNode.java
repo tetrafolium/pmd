@@ -15,11 +15,11 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
     protected PLSQLParser parser;
     protected Scope scope;
 
-    public AbstractPLSQLNode(int i) {
+    public AbstractPLSQLNode(final int i) {
         super(i);
     }
 
-    public AbstractPLSQLNode(PLSQLParser p, int i) {
+    public AbstractPLSQLNode(final PLSQLParser p, final int i) {
         this(i);
         parser = p;
     }
@@ -44,7 +44,7 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
         endColumn = parser.token.endColumn;
     }
 
-    public void jjtSetValue(Object value) {
+    public void jjtSetValue(final Object value) {
         this.value = value;
     }
 
@@ -53,12 +53,12 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @Override
-    public Object childrenAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object childrenAccept(final PLSQLParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 ((PLSQLNode) children[i]).jjtAccept(visitor, data);
@@ -82,7 +82,7 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
 
 
 
-    public String toString(String prefix) {
+    public String toString(final String prefix) {
         return prefix + toString();
     }
 
@@ -91,7 +91,7 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
      * children.
      */
 
-    public void dump(String prefix) {
+    public void dump(final String prefix) {
         System.out.println(toString(prefix));
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
@@ -126,7 +126,7 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
      * @param image
      * @return
      */
-    public static String getCanonicalImage(String image) {
+    public static String getCanonicalImage(final String image) {
         return PLSQLParser.canonicalName(image);
     }
 
@@ -139,7 +139,7 @@ public abstract class AbstractPLSQLNode extends AbstractJjtreeNode<PLSQLNode> im
     }
 
     @Override
-    public void setScope(Scope scope) {
+    public void setScope(final Scope scope) {
         this.scope = scope;
     }
 }

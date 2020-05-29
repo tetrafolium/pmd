@@ -21,7 +21,7 @@ public class UnnecessaryAnnotationValueElementRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAnnotation node, Object data) {
+    public Object visit(final ASTAnnotation node, final Object data) {
 
         final List<ASTMemberValuePair> annotationProperties = node.findDescendantsOfType(ASTMemberValuePair.class);
         // all that needs to be done is check to if there's a single property in the annotation and if if that property is value

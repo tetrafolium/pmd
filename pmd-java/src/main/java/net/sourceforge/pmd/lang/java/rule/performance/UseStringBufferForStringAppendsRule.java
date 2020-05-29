@@ -23,7 +23,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class UseStringBufferForStringAppendsRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (!TypeHelper.isA(node, String.class) || node.isArray()) {
             return data;
         }

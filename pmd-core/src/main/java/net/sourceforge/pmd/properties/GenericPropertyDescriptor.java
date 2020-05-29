@@ -23,14 +23,14 @@ final class GenericPropertyDescriptor<T> extends AbstractSingleValueProperty<T> 
     private final Set<PropertyConstraint<? super T>> constraints;
 
 
-    GenericPropertyDescriptor(String name,
-                              String description,
-                              float uiOrder,
-                              T defaultValue,
-                              Set<PropertyConstraint<? super T>> constraints,
-                              ValueParser<T> parser,
-                              boolean isDefinedExternally,
-                              Class<T> type) {
+    GenericPropertyDescriptor(final String name,
+                              final String description,
+                              final float uiOrder,
+                              final T defaultValue,
+                              final Set<PropertyConstraint<? super T>> constraints,
+                              final ValueParser<T> parser,
+                              final boolean isDefinedExternally,
+                              final Class<T> type) {
 
         super(name, description, defaultValue, uiOrder, isDefinedExternally);
         this.constraints = constraints;
@@ -45,7 +45,7 @@ final class GenericPropertyDescriptor<T> extends AbstractSingleValueProperty<T> 
 
 
     @Override
-    public String errorFor(T value) {
+    public String errorFor(final T value) {
         for (PropertyConstraint<? super T> validator : constraints) {
             String error = validator.validate(value);
             if (error != null) {
@@ -64,7 +64,7 @@ final class GenericPropertyDescriptor<T> extends AbstractSingleValueProperty<T> 
 
 
     @Override
-    protected T createFrom(String toParse) {
+    protected T createFrom(final String toParse) {
         return parser.valueOf(toParse);
     }
 }

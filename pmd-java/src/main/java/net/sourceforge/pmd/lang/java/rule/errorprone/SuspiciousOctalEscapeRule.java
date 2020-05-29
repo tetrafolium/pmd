@@ -10,7 +10,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class SuspiciousOctalEscapeRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         if (node.isStringLiteral()) {
             String image = node.getImage();
             // trim quotes
@@ -80,11 +80,11 @@ public class SuspiciousOctalEscapeRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private boolean isOctal(char c) {
+    private boolean isOctal(final char c) {
         return c >= '0' && c <= '7';
     }
 
-    private boolean isDecimal(char c) {
+    private boolean isDecimal(final char c) {
         return c >= '0' && c <= '9';
     }
 }

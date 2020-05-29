@@ -26,7 +26,7 @@ public class NullAssignmentRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTNullLiteral node, Object data) {
+    public Object visit(final ASTNullLiteral node, final Object data) {
 
         if (node.getNthParent(5) instanceof ASTStatementExpression) {
             ASTStatementExpression n = (ASTStatementExpression) node.getNthParent(5);
@@ -54,13 +54,13 @@ public class NullAssignmentRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isAssignmentToFinalField(ASTStatementExpression n) {
+    private boolean isAssignmentToFinalField(final ASTStatementExpression n) {
         ASTName name = n.getFirstDescendantOfType(ASTName.class);
         return name != null && name.getNameDeclaration() instanceof VariableNameDeclaration
                 && ((AccessNode) ((VariableNameDeclaration) name.getNameDeclaration()).getAccessNodeParent()).isFinal();
     }
 
-    private boolean isBadTernary(ASTConditionalExpression ternary) {
+    private boolean isBadTernary(final ASTConditionalExpression ternary) {
         boolean isInitializer = false;
 
         ASTVariableInitializer variableInitializer = ternary.getFirstParentOfType(ASTVariableInitializer.class);

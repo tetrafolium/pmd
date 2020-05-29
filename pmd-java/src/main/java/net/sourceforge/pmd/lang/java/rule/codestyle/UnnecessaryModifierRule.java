@@ -45,14 +45,14 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
 
-    private void reportUnnecessaryModifiers(Object data, Node node,
-                                            Modifier unnecessaryModifier, String explanation) {
+    private void reportUnnecessaryModifiers(final Object data, final Node node,
+                                            final Modifier unnecessaryModifier, final String explanation) {
         reportUnnecessaryModifiers(data, node, EnumSet.of(unnecessaryModifier), explanation);
     }
 
 
-    private void reportUnnecessaryModifiers(Object data, Node node,
-                                            Set<Modifier> unnecessaryModifiers, String explanation) {
+    private void reportUnnecessaryModifiers(final Object data, final Node node,
+                                            final Set<Modifier> unnecessaryModifiers, final String explanation) {
         if (unnecessaryModifiers.isEmpty()) {
             return;
         }
@@ -66,7 +66,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
 
 
     // TODO this should probably make it into a PrettyPrintingUtil or something.
-    private String getNodeName(Node node) {
+    private String getNodeName(final Node node) {
         // constructors are differentiated by their parameters, while we only use method name for methods
         if (node instanceof ASTMethodDeclaration) {
             return ((ASTMethodDeclaration) node).getName();
@@ -84,7 +84,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
 
 
     // TODO same here
-    private String getPrintableNodeKind(Node node) {
+    private String getPrintableNodeKind(final Node node) {
         if (node instanceof ASTAnyTypeDeclaration) {
             return PrettyPrintingUtil.kindName((ASTAnyTypeDeclaration) node);
         } else if (node instanceof ASTMethodDeclaration || node instanceof ASTAnnotationMethodDeclaration) {
@@ -100,7 +100,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
 
-    private String formatUnnecessaryModifiers(Set<Modifier> set) {
+    private String formatUnnecessaryModifiers(final Set<Modifier> set) {
         // prints in the standard modifier order (sorted by enum constant ordinal),
         // regardless of the actual order in which we checked
         return (set.size() > 1 ? "s" : "") + " '" + StringUtils.join(set, " ") + "'";
@@ -108,7 +108,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
 
         if (node.isPublic()) {
             checkDeclarationInInterfaceType(data, node, EnumSet.of(Modifier.PUBLIC));
@@ -124,7 +124,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         if (node.isAbstract()) {
             // may have several violations, with different explanations
             reportUnnecessaryModifiers(data, node, Modifier.ABSTRACT, "annotations types are implicitly abstract");
@@ -151,7 +151,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
         if (node.isInterface() && node.isAbstract()) {
             // an abstract interface
@@ -183,7 +183,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(final ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         Set<Modifier> unnecessary = EnumSet.noneOf(Modifier.class);
 
         if (node.isSyntacticallyPublic()) {
@@ -225,7 +225,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         Set<Modifier> unnecessary = EnumSet.noneOf(Modifier.class);
         if (node.isSyntacticallyPublic()) {
             unnecessary.add(Modifier.PUBLIC);
@@ -242,7 +242,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAnnotationMethodDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationMethodDeclaration node, final Object data) {
         Set<Modifier> unnecessary = EnumSet.noneOf(Modifier.class);
         if (node.isPublic()) {
             unnecessary.add(Modifier.PUBLIC);
@@ -255,7 +255,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         if (node.getNthParent(2) instanceof ASTEnumBody) {
             if (node.isPrivate()) {
                 reportUnnecessaryModifiers(data, node, Modifier.PRIVATE, "enum constructors are implicitly private");
@@ -270,7 +270,7 @@ public class UnnecessaryModifierRule extends AbstractJavaRule {
     }
 
 
-    private void checkDeclarationInInterfaceType(Object data, Node fieldOrMethod, Set<Modifier> unnecessary) {
+    private void checkDeclarationInInterfaceType(final Object data, final Node fieldOrMethod, final Set<Modifier> unnecessary) {
         // third ancestor could be an AllocationExpression
         // if this is a method in an anonymous inner class
         Node parent = fieldOrMethod.getParent().getParent().getParent();

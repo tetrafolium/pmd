@@ -20,7 +20,7 @@ import groovyjarjarantlr.TokenStreamException;
 public class GroovyTokenizer implements Tokenizer {
 
     @Override
-    public void tokenize(SourceCode sourceCode, Tokens tokenEntries) {
+    public void tokenize(final SourceCode sourceCode, final Tokens tokenEntries) {
         StringBuilder buffer = sourceCode.getCodeBuffer();
 
         GroovyLexer lexer = new GroovyLexer(new StringReader(buffer.toString()));

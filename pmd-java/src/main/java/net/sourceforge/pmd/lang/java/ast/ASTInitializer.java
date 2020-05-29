@@ -12,18 +12,18 @@ public class ASTInitializer extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTInitializer(int id) {
+    public ASTInitializer(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTInitializer(JavaParser p, int id) {
+    public ASTInitializer(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

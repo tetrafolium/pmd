@@ -11,12 +11,12 @@ import net.sourceforge.pmd.stat.DataPoint;
 public class ExcessiveLengthRule extends AbstractStatisticalApexRule {
     private Class<?> nodeClass;
 
-    public ExcessiveLengthRule(Class<?> nodeClass) {
+    public ExcessiveLengthRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(ApexNode<?> node, Object data) {
+    public Object visit(final ApexNode<?> node, final Object data) {
         if (nodeClass.isInstance(node)) {
             DataPoint point = new DataPoint();
             point.setNode(node);

@@ -274,7 +274,7 @@ public final class TimeTracker {
         }
 
         @Override
-        public void close(int extraDataCounter) {
+        public void close(final int extraDataCounter) {
             if (closed) {
                 return;
             }

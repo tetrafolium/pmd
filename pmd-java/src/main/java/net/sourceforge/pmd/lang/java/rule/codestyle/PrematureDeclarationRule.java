@@ -29,7 +29,7 @@ public class PrematureDeclarationRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
 
         // is it part of a for-loop declaration?
         if (node.getParent() instanceof ASTForInit) {
@@ -59,7 +59,7 @@ public class PrematureDeclarationRule extends AbstractJavaRule {
      * Returns whether the block contains a return call or throws an exception.
      * Exclude blocks that have these things as part of an inner class.
      */
-    private boolean hasExit(ASTBlockStatement block) {
+    private boolean hasExit(final ASTBlockStatement block) {
         return block.hasDescendantOfAnyType(ASTThrowStatement.class, ASTReturnStatement.class);
     }
 
@@ -67,7 +67,7 @@ public class PrematureDeclarationRule extends AbstractJavaRule {
     /**
      * Returns whether the variable is mentioned within the statement or not.
      */
-    private static boolean hasReferencesIn(ASTBlockStatement block, String varName) {
+    private static boolean hasReferencesIn(final ASTBlockStatement block, final String varName) {
 
         // allow for closures on the var
         for (ASTName name : block.findDescendantsOfType(ASTName.class, true)) {
@@ -83,7 +83,7 @@ public class PrematureDeclarationRule extends AbstractJavaRule {
      * Return whether the shortName is part of the compound name by itself or as
      * a method call receiver.
      */
-    private static boolean isReference(String shortName, String compoundName) {
+    private static boolean isReference(final String shortName, final String compoundName) {
         int dotPos = compoundName.indexOf('.');
 
         return dotPos < 0 ? shortName.equals(compoundName) : shortName.equals(compoundName.substring(0, dotPos));
@@ -93,7 +93,7 @@ public class PrematureDeclarationRule extends AbstractJavaRule {
     /**
      * Returns all the block statements following the given local var declaration.
      */
-    private static List<ASTBlockStatement> statementsAfter(ASTLocalVariableDeclaration node) {
+    private static List<ASTBlockStatement> statementsAfter(final ASTLocalVariableDeclaration node) {
 
         Node blockOrSwitch = node.getParent().getParent();
 

@@ -12,12 +12,12 @@ public class ASTArrayStoreExpression extends AbstractApexNode<ArrayStoreExpressi
 
     @Deprecated
     @InternalApi
-    public ASTArrayStoreExpression(ArrayStoreExpression arrayStoreExpression) {
+    public ASTArrayStoreExpression(final ArrayStoreExpression arrayStoreExpression) {
         super(arrayStoreExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -18,12 +18,12 @@ public class OrFilter<T> extends AbstractCompoundFilter<T> {
         super();
     }
 
-    public OrFilter(Filter<T>... filters) {
+    public OrFilter(final Filter<T>... filters) {
         super(filters);
     }
 
     @Override
-    public boolean filter(T obj) {
+    public boolean filter(final T obj) {
         boolean match = false;
         for (Filter<T> filter : filters) {
             if (filter.filter(obj)) {

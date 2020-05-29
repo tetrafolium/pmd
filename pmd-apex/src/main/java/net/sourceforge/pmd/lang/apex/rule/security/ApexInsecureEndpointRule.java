@@ -39,24 +39,24 @@ public class ApexInsecureEndpointRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTAssignmentExpression node, Object data) {
+    public Object visit(final ASTAssignmentExpression node, final Object data) {
         findInsecureEndpoints(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         findInsecureEndpoints(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         findInsecureEndpoints(node);
         return data;
     }
 
-    private void findInsecureEndpoints(ApexNode<?> node) {
+    private void findInsecureEndpoints(final ApexNode<?> node) {
         ASTVariableExpression variableNode = node.getFirstChildOfType(ASTVariableExpression.class);
         findInnerInsecureEndpoints(node, variableNode);
 
@@ -67,7 +67,7 @@ public class ApexInsecureEndpointRule extends AbstractApexRule {
 
     }
 
-    private void findInnerInsecureEndpoints(ApexNode<?> node, ASTVariableExpression variableNode) {
+    private void findInnerInsecureEndpoints(final ApexNode<?> node, final ASTVariableExpression variableNode) {
         ASTLiteralExpression literalNode = node.getFirstChildOfType(ASTLiteralExpression.class);
 
         if (literalNode != null && variableNode != null) {
@@ -81,12 +81,12 @@ public class ApexInsecureEndpointRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         processInsecureEndpoint(node, data);
         return data;
     }
 
-    private void processInsecureEndpoint(ASTMethodCallExpression node, Object data) {
+    private void processInsecureEndpoint(final ASTMethodCallExpression node, final Object data) {
         if (!Helper.isMethodName(node, SET_ENDPOINT)) {
             return;
         }
@@ -100,7 +100,7 @@ public class ApexInsecureEndpointRule extends AbstractApexRule {
 
     }
 
-    private void runChecks(ApexNode<?> node, Object data) {
+    private void runChecks(final ApexNode<?> node, final Object data) {
         ASTLiteralExpression literalNode = node.getFirstChildOfType(ASTLiteralExpression.class);
         if (literalNode != null && literalNode.isString()) {
             String literal = literalNode.getImage();

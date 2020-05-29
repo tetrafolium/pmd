@@ -18,25 +18,25 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public abstract class AbstractJavaScope extends AbstractScope {
 
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         checkForDuplicatedNameDeclaration(declaration);
         super.addDeclaration(declaration);
     }
 
-    protected void checkForDuplicatedNameDeclaration(NameDeclaration declaration) {
+    protected void checkForDuplicatedNameDeclaration(final NameDeclaration declaration) {
         if (declaration instanceof VariableNameDeclaration && getDeclarations().keySet().contains(declaration)) {
             throw new RuntimeException(declaration + " is already in the symbol table");
         }
     }
 
     @Override
-    public boolean contains(NameOccurrence occurrence) {
+    public boolean contains(final NameOccurrence occurrence) {
         return !findVariableHere((JavaNameOccurrence) occurrence).isEmpty();
     }
 
     protected abstract Set<NameDeclaration> findVariableHere(JavaNameOccurrence occurrence);
 
-    protected <T> String glomNames(Set<T> s) {
+    protected <T> String glomNames(final Set<T> s) {
         StringBuilder result = new StringBuilder();
         for (T t : s) {
             result.append(t.toString());

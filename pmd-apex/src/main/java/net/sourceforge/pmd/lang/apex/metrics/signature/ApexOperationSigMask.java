@@ -31,7 +31,7 @@ public class ApexOperationSigMask {
      *
      * @param visibilities The visibilities to cover
      */
-    public void restrictVisibilitiesTo(Visibility... visibilities) {
+    public void restrictVisibilitiesTo(final Visibility... visibilities) {
         visMask.clear();
         visMask.addAll(Arrays.asList(visibilities));
     }
@@ -42,7 +42,7 @@ public class ApexOperationSigMask {
      *
      * @param visibilities The visibilities to forbid
      */
-    public void forbid(Visibility... visibilities) {
+    public void forbid(final Visibility... visibilities) {
         visMask.removeAll(Arrays.asList(visibilities));
     }
 
@@ -54,7 +54,7 @@ public class ApexOperationSigMask {
      *
      * @return True if the parameter is covered by this mask
      */
-    public boolean covers(ApexOperationSignature sig) {
+    public boolean covers(final ApexOperationSignature sig) {
         return visMask.contains(sig.visibility);
     }
 

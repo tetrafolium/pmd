@@ -34,7 +34,7 @@ public final class JavaOperationSigMask extends JavaSigMask<JavaOperationSignatu
      *
      * @param roles The roles to cover
      */
-    public void restrictRolesTo(JavaOperationSignature.Role... roles) {
+    public void restrictRolesTo(final JavaOperationSignature.Role... roles) {
         roleMask.clear();
         roleMask.addAll(Arrays.asList(roles));
     }
@@ -45,7 +45,7 @@ public final class JavaOperationSigMask extends JavaSigMask<JavaOperationSignatu
      *
      * @param roles The roles to forbid
      */
-    public void forbid(JavaOperationSignature.Role... roles) {
+    public void forbid(final JavaOperationSignature.Role... roles) {
         roleMask.removeAll(Arrays.asList(roles));
     }
 
@@ -55,7 +55,7 @@ public final class JavaOperationSigMask extends JavaSigMask<JavaOperationSignatu
      *
      * @param coverAbstract The visibilities to forbid
      */
-    public void coverAbstract(boolean coverAbstract) {
+    public void coverAbstract(final boolean coverAbstract) {
         this.coverAbstract = coverAbstract;
     }
 
@@ -71,7 +71,7 @@ public final class JavaOperationSigMask extends JavaSigMask<JavaOperationSignatu
 
 
     @Override
-    public boolean covers(JavaOperationSignature sig) {
+    public boolean covers(final JavaOperationSignature sig) {
         return super.covers(sig) && roleMask.contains(sig.role) && (coverAbstract
             || !sig.isAbstract);
     }

@@ -17,7 +17,7 @@ abstract class TreeRendererDescriptorImpl implements TreeRendererDescriptor {
     private final String description;
 
 
-    protected TreeRendererDescriptorImpl(String id, String description) {
+    protected TreeRendererDescriptorImpl(final String id, final String description) {
         this.id = id;
         this.description = description;
     }
@@ -56,8 +56,8 @@ abstract class TreeRendererDescriptorImpl implements TreeRendererDescriptor {
 
         private final String name;
 
-        PropertyBundle(String name,
-                              Set<PropertyDescriptor<?>> available) {
+        PropertyBundle(final String name,
+                              final Set<PropertyDescriptor<?>> available) {
             this.name = name;
             for (PropertyDescriptor<?> p : available) {
                 definePropertyDescriptor(p);

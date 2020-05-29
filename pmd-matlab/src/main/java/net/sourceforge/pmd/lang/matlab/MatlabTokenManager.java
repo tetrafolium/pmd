@@ -27,7 +27,7 @@ public class MatlabTokenManager implements TokenManager {
      * @param source
      *            the source code
      */
-    public MatlabTokenManager(Reader source) {
+    public MatlabTokenManager(final Reader source) {
         tokenManager = new MatlabParserTokenManager(new SimpleCharStream(source));
     }
 
@@ -37,7 +37,7 @@ public class MatlabTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         MatlabParserTokenManager.setFileName(fileName);
     }
 }

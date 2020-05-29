@@ -28,17 +28,17 @@ public class JavaLanguageHandler extends AbstractJavaHandler {
     private final int jdkVersion;
     private final boolean preview;
 
-    public JavaLanguageHandler(int jdkVersion) {
+    public JavaLanguageHandler(final int jdkVersion) {
         this(jdkVersion, false);
     }
 
-    public JavaLanguageHandler(int jdkVersion, boolean preview) {
+    public JavaLanguageHandler(final int jdkVersion, final boolean preview) {
         this.jdkVersion = jdkVersion;
         this.preview = preview;
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new JavaLanguageParser(jdkVersion, preview, parserOptions);
     }
 
@@ -49,7 +49,7 @@ public class JavaLanguageHandler extends AbstractJavaHandler {
         }
 
         @Override
-        protected List<MethodLikeNode> findOps(ASTAnyTypeDeclaration astAnyTypeDeclaration) {
+        protected List<MethodLikeNode> findOps(final ASTAnyTypeDeclaration astAnyTypeDeclaration) {
             return JavaMetrics.findOps(astAnyTypeDeclaration);
         }
 

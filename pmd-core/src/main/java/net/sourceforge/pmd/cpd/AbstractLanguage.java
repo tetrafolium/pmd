@@ -18,7 +18,7 @@ public abstract class AbstractLanguage implements Language {
     private final FilenameFilter fileFilter;
     private final List<String> extensions;
 
-    public AbstractLanguage(String name, String terseName, Tokenizer tokenizer, String... extensions) {
+    public AbstractLanguage(final String name, final String terseName, final Tokenizer tokenizer, final String... extensions) {
         this.name = name;
         this.terseName = terseName;
         this.tokenizer = tokenizer;
@@ -37,7 +37,7 @@ public abstract class AbstractLanguage implements Language {
     }
 
     @Override
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         // needs to be implemented by subclasses.
     }
 

@@ -44,18 +44,18 @@ public class ASTVariableDeclaratorId extends AbstractJavaTypeNode implements Dim
 
     @InternalApi
     @Deprecated
-    public ASTVariableDeclaratorId(int id) {
+    public ASTVariableDeclaratorId(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTVariableDeclaratorId(JavaParser p, int id) {
+    public ASTVariableDeclaratorId(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -68,7 +68,7 @@ public class ASTVariableDeclaratorId extends AbstractJavaTypeNode implements Dim
 
     @InternalApi
     @Deprecated
-    public void setNameDeclaration(VariableNameDeclaration decl) {
+    public void setNameDeclaration(final VariableNameDeclaration decl) {
         nameDeclaration = decl;
     }
 

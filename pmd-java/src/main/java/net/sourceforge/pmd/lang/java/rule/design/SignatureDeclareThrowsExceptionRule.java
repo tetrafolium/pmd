@@ -49,13 +49,13 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object o) {
+    public Object visit(final ASTCompilationUnit node, final Object o) {
         junitImported = false;
         return super.visit(node, o);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (junitImported) {
             return super.visit(node, data);
         }
@@ -76,7 +76,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private boolean isJUnitTest(ASTClassOrInterfaceType type) {
+    private boolean isJUnitTest(final ASTClassOrInterfaceType type) {
         Class<?> clazz = type.getType();
         if (clazz == null) {
             if ("junit.framework.Test".equals(type.getImage())) {
@@ -97,12 +97,12 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isJUnitTest(Class<?> clazz) {
+    private boolean isJUnitTest(final Class<?> clazz) {
         return clazz.getName().equals("junit.framework.Test");
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object o) {
+    public Object visit(final ASTImportDeclaration node, final Object o) {
         if (node.getImportedName().indexOf("junit") != -1) {
             junitImported = true;
         }
@@ -110,7 +110,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration methodDeclaration, Object o) {
+    public Object visit(final ASTMethodDeclaration methodDeclaration, final Object o) {
         if (junitImported && isAllowedMethod(methodDeclaration)) {
             return super.visit(methodDeclaration, o);
         }
@@ -133,7 +133,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
         return super.visit(methodDeclaration, o);
     }
 
-    private boolean isAllowedMethod(ASTMethodDeclaration methodDeclaration) {
+    private boolean isAllowedMethod(final ASTMethodDeclaration methodDeclaration) {
         if (getProperty(IGNORE_JUNIT_COMPLETELY_DESCRIPTOR)) {
             return true;
         } else {
@@ -143,7 +143,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration constructorDeclaration, Object o) {
+    public Object visit(final ASTConstructorDeclaration constructorDeclaration, final Object o) {
         if (junitImported && getProperty(IGNORE_JUNIT_COMPLETELY_DESCRIPTOR)) {
             return super.visit(constructorDeclaration, o);
         }
@@ -155,7 +155,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
     /**
      * Search the list of thrown exceptions for Exception
      */
-    private void checkExceptions(Node method, Object o) {
+    private void checkExceptions(final Node method, final Object o) {
         List<ASTName> exceptionList = Collections.emptyList();
         ASTNameList nameList = method.getFirstChildOfType(ASTNameList.class);
         if (nameList != null) {
@@ -174,7 +174,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
      *            containing all exception for declaration
      * @param context
      */
-    private void evaluateExceptions(List<ASTName> exceptionList, Object context) {
+    private void evaluateExceptions(final List<ASTName> exceptionList, final Object context) {
         for (ASTName exception : exceptionList) {
             if (hasDeclaredExceptionInSignature(exception)) {
                 addViolation(context, exception);
@@ -190,7 +190,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
      *            to evaluate
      * @return true if <code>Exception</code> is declared and has proper parents
      */
-    private boolean hasDeclaredExceptionInSignature(ASTName exception) {
+    private boolean hasDeclaredExceptionInSignature(final ASTName exception) {
         return exception.hasImageEqualTo("Exception") && isParentSignatureDeclaration(exception);
     }
 
@@ -202,7 +202,7 @@ public class SignatureDeclareThrowsExceptionRule extends AbstractJavaRule {
      *            to evaluate
      * @return true if parent node is either a method or constructor declaration
      */
-    private boolean isParentSignatureDeclaration(ASTName exception) {
+    private boolean isParentSignatureDeclaration(final ASTName exception) {
         Node parent = exception.getParent().getParent();
         return parent instanceof ASTMethodDeclaration || parent instanceof ASTConstructorDeclaration;
     }

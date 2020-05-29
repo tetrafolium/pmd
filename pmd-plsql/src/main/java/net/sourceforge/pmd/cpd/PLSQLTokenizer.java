@@ -25,7 +25,7 @@ public class PLSQLTokenizer extends JavaCCTokenizer {
     private boolean ignoreIdentifiers;
     private boolean ignoreLiterals;
 
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         /*
          * The Tokenizer is derived from PLDoc, in which comments are very
          * important When looking for duplication, we are probably not
@@ -37,20 +37,20 @@ public class PLSQLTokenizer extends JavaCCTokenizer {
     }
 
     @Deprecated
-    public void setIgnoreComments(boolean ignore) {
+    public void setIgnoreComments(final boolean ignore) {
         // This is actually useless, the comments are special tokens, never taken into account by CPD
     }
 
-    public void setIgnoreLiterals(boolean ignore) {
+    public void setIgnoreLiterals(final boolean ignore) {
         this.ignoreLiterals = ignore;
     }
 
-    public void setIgnoreIdentifiers(boolean ignore) {
+    public void setIgnoreIdentifiers(final boolean ignore) {
         this.ignoreIdentifiers = ignore;
     }
 
     @Override
-    protected TokenEntry processToken(Tokens tokenEntries, GenericToken currentToken, String fileName) {
+    protected TokenEntry processToken(final Tokens tokenEntries, final GenericToken currentToken, final String fileName) {
         String image = currentToken.getImage();
 
         Token plsqlToken = (Token) currentToken;
@@ -73,7 +73,7 @@ public class PLSQLTokenizer extends JavaCCTokenizer {
     }
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         StringBuilder stringBuilder = sourceCode.getCodeBuffer();
         return new PLSQLTokenManager(IOUtil.skipBOM(new StringReader(stringBuilder.toString())));
     }

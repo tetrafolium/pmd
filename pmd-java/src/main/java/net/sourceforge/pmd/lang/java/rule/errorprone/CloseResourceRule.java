@@ -106,7 +106,7 @@ public class CloseResourceRule extends AbstractJavaRule {
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         closeTargets.clear();
         simpleTypes.clear();
         types.clear();
@@ -125,7 +125,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         }
     }
 
-    private static String toSimpleType(String fullyQualifiedClassName) {
+    private static String toSimpleType(final String fullyQualifiedClassName) {
         int lastIndexOf = fullyQualifiedClassName.lastIndexOf('.');
         if (lastIndexOf > -1) {
             return fullyQualifiedClassName.substring(lastIndexOf + 1);
@@ -135,18 +135,18 @@ public class CloseResourceRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         checkForResources(node, data);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         checkForResources(node, data);
         return super.visit(node, data);
     }
 
-    private void checkForResources(ASTMethodOrConstructorDeclaration node, Object data) {
+    private void checkForResources(final ASTMethodOrConstructorDeclaration node, final Object data) {
         List<ASTLocalVariableDeclaration> localVars = node.findDescendantsOfType(ASTLocalVariableDeclaration.class);
         List<ASTVariableDeclarator> vars = new ArrayList<>();
         Map<ASTVariableDeclaratorId, TypeNode> ids = new HashMap<>();
@@ -200,7 +200,7 @@ public class CloseResourceRule extends AbstractJavaRule {
      * @return <code>true</code> if the variable is initialized from a method parameter. <code>false</code>
      *         otherwise.
      */
-    private boolean isMethodParameter(ASTVariableDeclarator var, ASTMethodOrConstructorDeclaration methodOrCstor) {
+    private boolean isMethodParameter(final ASTVariableDeclarator var, final ASTMethodOrConstructorDeclaration methodOrCstor) {
         if (!var.hasInitializer()) {
             return false;
         }
@@ -228,7 +228,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         return result;
     }
 
-    private ASTExpression getAllocationFirstArgument(ASTExpression expression) {
+    private ASTExpression getAllocationFirstArgument(final ASTExpression expression) {
         List<ASTAllocationExpression> allocations = expression.findDescendantsOfType(ASTAllocationExpression.class);
         ASTExpression firstArgument = null;
 
@@ -254,14 +254,14 @@ public class CloseResourceRule extends AbstractJavaRule {
         return null;
     }
 
-    private boolean isMethodCall(ASTExpression expression) {
+    private boolean isMethodCall(final ASTExpression expression) {
         return expression != null
              && expression.getNumChildren() > 0
              && expression.getChild(0) instanceof ASTPrimaryExpression
              && expression.getChild(0).getFirstChildOfType(ASTPrimarySuffix.class) != null;
     }
 
-    private boolean isResourceTypeOrSubtype(TypeNode refType) {
+    private boolean isResourceTypeOrSubtype(final TypeNode refType) {
         if (refType.getType() != null) {
             for (String type : types) {
                 if (TypeHelper.isA(refType, type)) {
@@ -282,7 +282,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isAllowedResourceType(TypeNode refType) {
+    private boolean isAllowedResourceType(final TypeNode refType) {
         List<String> allowedResourceTypes = getProperty(ALLOWED_RESOURCE_TYPES);
         if (refType.getType() != null && allowedResourceTypes != null) {
             for (String type : allowedResourceTypes) {
@@ -296,7 +296,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean hasNullInitializer(ASTLocalVariableDeclaration var) {
+    private boolean hasNullInitializer(final ASTLocalVariableDeclaration var) {
         ASTVariableInitializer init = var.getFirstDescendantOfType(ASTVariableInitializer.class);
         if (init != null) {
             try {
@@ -310,7 +310,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         return false;
     }
 
-    private void ensureClosed(ASTLocalVariableDeclaration var, ASTVariableDeclaratorId id, TypeNode type, Object data) {
+    private void ensureClosed(final ASTLocalVariableDeclaration var, final ASTVariableDeclaratorId id, final TypeNode type, final Object data) {
         // What are the chances of a Connection being instantiated in a
         // for-loop init block? Anyway, I'm lazy!
         String variableToClose = id.getImage();
@@ -488,7 +488,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         }
     }
 
-    private boolean variableIsPassedToMethod(ASTPrimaryExpression expr, String variable) {
+    private boolean variableIsPassedToMethod(final ASTPrimaryExpression expr, final String variable) {
         List<ASTName> methodParams = expr.findDescendantsOfType(ASTName.class, true);
         for (ASTName pName : methodParams) {
             String paramName = pName.getImage();
@@ -502,7 +502,7 @@ public class CloseResourceRule extends AbstractJavaRule {
         return false;
     }
 
-    private ASTIfStatement findIfStatement(ASTBlock enclosingBlock, Node node) {
+    private ASTIfStatement findIfStatement(final ASTBlock enclosingBlock, final Node node) {
         ASTIfStatement ifStatement = node.getFirstParentOfType(ASTIfStatement.class);
         List<ASTIfStatement> allIfStatements = enclosingBlock.findDescendantsOfType(ASTIfStatement.class);
         if (ifStatement != null && allIfStatements.contains(ifStatement)) {
@@ -524,7 +524,7 @@ public class CloseResourceRule extends AbstractJavaRule {
      * @return <code>true</code> if no if condition is involved or if the if
      *         condition is a null-check.
      */
-    private boolean nullCheckIfCondition(ASTBlock enclosingBlock, Node node, String varName) {
+    private boolean nullCheckIfCondition(final ASTBlock enclosingBlock, final Node node, final String varName) {
         ASTIfStatement ifStatement = findIfStatement(enclosingBlock, node);
         if (ifStatement != null) {
             try {

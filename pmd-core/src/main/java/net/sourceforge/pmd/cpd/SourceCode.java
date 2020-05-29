@@ -36,7 +36,7 @@ public class SourceCode {
             return code.get();
         }
 
-        public List<String> getCodeSlice(int startLine, int endLine) {
+        public List<String> getCodeSlice(final int startLine, final int endLine) {
             List<String> c = null;
             if (code != null) {
                 c = code.get();
@@ -65,7 +65,7 @@ public class SourceCode {
             }
         }
 
-        protected List<String> load(int startLine, int endLine) {
+        protected List<String> load(final int startLine, final int endLine) {
             try (BufferedReader reader = new BufferedReader(getReader())) {
                 int linesToRead = endLine - startLine;
                 List<String> lines = new ArrayList<>(linesToRead);
@@ -95,7 +95,7 @@ public class SourceCode {
         private File file;
         private String encoding;
 
-        public FileCodeLoader(File file, String encoding) {
+        public FileCodeLoader(final File file, final String encoding) {
             this.file = file;
             this.encoding = encoding;
         }
@@ -128,11 +128,11 @@ public class SourceCode {
 
         private String name;
 
-        public StringCodeLoader(String code) {
+        public StringCodeLoader(final String code) {
             this(code, DEFAULT_NAME);
         }
 
-        public StringCodeLoader(String code, String name) {
+        public StringCodeLoader(final String code, final String name) {
             this.code = code;
             this.name = name;
         }
@@ -155,11 +155,11 @@ public class SourceCode {
 
         private String name;
 
-        public ReaderCodeLoader(Reader code) {
+        public ReaderCodeLoader(final Reader code) {
             this(code, DEFAULT_NAME);
         }
 
-        public ReaderCodeLoader(Reader code, String name) {
+        public ReaderCodeLoader(final Reader code, final String name) {
             this.code = code;
             this.name = name;
         }
@@ -177,7 +177,7 @@ public class SourceCode {
 
     private CodeLoader cl;
 
-    public SourceCode(CodeLoader cl) {
+    public SourceCode(final CodeLoader cl) {
         this.cl = cl;
     }
 
@@ -194,7 +194,7 @@ public class SourceCode {
         return sb;
     }
 
-    public String getSlice(int startLine, int endLine) {
+    public String getSlice(final int startLine, final int endLine) {
         List<String> lines = cl.getCodeSlice(startLine, endLine);
 
         StringBuilder sb = new StringBuilder();

@@ -16,7 +16,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class OnlyOneReturnRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -24,7 +24,7 @@ public class OnlyOneReturnRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (node.isAbstract()) {
             return data;
         }

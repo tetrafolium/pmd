@@ -12,12 +12,12 @@ public class ASTNewMapInitExpression extends AbstractApexNode<NewMapInitExpressi
 
     @Deprecated
     @InternalApi
-    public ASTNewMapInitExpression(NewMapInitExpression newMapInitExpression) {
+    public ASTNewMapInitExpression(final NewMapInitExpression newMapInitExpression) {
         super(newMapInitExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

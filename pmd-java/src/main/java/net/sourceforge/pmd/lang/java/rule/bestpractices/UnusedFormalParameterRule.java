@@ -39,13 +39,13 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         check(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (!node.isPrivate() && !getProperty(CHECKALL_DESCRIPTOR)) {
             return data;
         }
@@ -55,7 +55,7 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isSerializationMethod(ASTMethodDeclaration node) {
+    private boolean isSerializationMethod(final ASTMethodDeclaration node) {
         ASTMethodDeclarator declarator = node.getFirstDescendantOfType(ASTMethodDeclarator.class);
         List<ASTFormalParameter> parameters = declarator.findDescendantsOfType(ASTFormalParameter.class);
         if (node.isPrivate() && "readObject".equals(node.getName()) && parameters.size() == 1
@@ -70,7 +70,7 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean throwsOneException(ASTMethodDeclaration node, Class<? extends Throwable> exception) {
+    private boolean throwsOneException(final ASTMethodDeclaration node, final Class<? extends Throwable> exception) {
         ASTNameList throwsList = node.getThrows();
         if (throwsList != null && throwsList.getNumChildren() == 1) {
             ASTName n = (ASTName) throwsList.getChild(0);
@@ -82,7 +82,7 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
         return false;
     }
 
-    private void check(Node node, Object data) {
+    private void check(final Node node, final Object data) {
         Node parent = node.getParent().getParent().getParent();
         if (parent instanceof ASTClassOrInterfaceDeclaration
                 && !((ASTClassOrInterfaceDeclaration) parent).isInterface()) {
@@ -105,7 +105,7 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
         }
     }
 
-    private boolean actuallyUsed(VariableNameDeclaration nameDecl, List<NameOccurrence> usages) {
+    private boolean actuallyUsed(final VariableNameDeclaration nameDecl, final List<NameOccurrence> usages) {
         for (NameOccurrence occ : usages) {
             JavaNameOccurrence jocc = (JavaNameOccurrence) occ;
             if (jocc.isOnLeftHandSide()) {
@@ -121,7 +121,7 @@ public class UnusedFormalParameterRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean hasOverrideAnnotation(ASTMethodDeclaration node) {
+    private boolean hasOverrideAnnotation(final ASTMethodDeclaration node) {
         int childIndex = node.getIndexInParent();
         for (int i = 0; i < childIndex; i++) {
             Node previousSibling = node.getParent().getChild(i);

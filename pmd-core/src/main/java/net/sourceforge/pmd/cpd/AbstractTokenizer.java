@@ -41,7 +41,7 @@ public abstract class AbstractTokenizer implements Tokenizer {
     private boolean downcaseString = true;
 
     @Override
-    public void tokenize(SourceCode tokens, Tokens tokenEntries) {
+    public void tokenize(final SourceCode tokens, final Tokens tokenEntries) {
         code = tokens.getCode();
 
         for (lineNumber = 0; lineNumber < code.size(); lineNumber++) {
@@ -65,7 +65,7 @@ public abstract class AbstractTokenizer implements Tokenizer {
         tokenEntries.add(TokenEntry.getEOF());
     }
 
-    private int getTokenFromLine(StringBuilder token, int loc) {
+    private int getTokenFromLine(final StringBuilder token, final int loc) {
         for (int j = loc; j < currentLine.length(); j++) {
             char tok = currentLine.charAt(j);
             if (!Character.isWhitespace(tok) && !ignoreCharacter(tok)) {
@@ -96,7 +96,7 @@ public abstract class AbstractTokenizer implements Tokenizer {
         return loc + 1;
     }
 
-    private int parseString(StringBuilder token, int loc, char stringDelimiter) {
+    private int parseString(final StringBuilder token, final int loc, final char stringDelimiter) {
         boolean escaped = false;
         boolean done = false;
         char tok;
@@ -135,26 +135,26 @@ public abstract class AbstractTokenizer implements Tokenizer {
         return loc + 1;
     }
 
-    private boolean ignoreCharacter(char tok) {
+    private boolean ignoreCharacter(final char tok) {
         return ignorableCharacter.contains(String.valueOf(tok));
     }
 
-    private boolean isString(char tok) {
+    private boolean isString(final char tok) {
         return stringToken.contains(String.valueOf(tok));
     }
 
-    private boolean isComment(char tok) {
+    private boolean isComment(final char tok) {
         return tok == oneLineCommentChar;
     }
 
-    private int getCommentToken(StringBuilder token, int loc) {
+    private int getCommentToken(final StringBuilder token, final int loc) {
         while (loc < currentLine.length()) {
             token.append(currentLine.charAt(loc++));
         }
         return loc;
     }
 
-    private boolean isIgnorableString(String token) {
+    private boolean isIgnorableString(final String token) {
         return ignorableStmt.contains(token);
     }
 }

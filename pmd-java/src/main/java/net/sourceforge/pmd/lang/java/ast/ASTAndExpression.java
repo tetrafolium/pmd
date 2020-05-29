@@ -25,18 +25,18 @@ public class ASTAndExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTAndExpression(int id) {
+    public ASTAndExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAndExpression(JavaParser p, int id) {
+    public ASTAndExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

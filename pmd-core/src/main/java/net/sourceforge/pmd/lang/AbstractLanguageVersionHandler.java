@@ -45,12 +45,12 @@ public abstract class AbstractLanguageVersionHandler implements LanguageVersionH
     }
 
     @Override
-    public VisitorStarter getSymbolFacade(ClassLoader classLoader) {
+    public VisitorStarter getSymbolFacade(final ClassLoader classLoader) {
         return getSymbolFacade();
     }
 
     @Override
-    public VisitorStarter getTypeResolutionFacade(ClassLoader classLoader) {
+    public VisitorStarter getTypeResolutionFacade(final ClassLoader classLoader) {
         return VisitorStarter.DUMMY;
     }
 
@@ -67,7 +67,7 @@ public abstract class AbstractLanguageVersionHandler implements LanguageVersionH
 
 
     @Override
-    public VisitorStarter getQualifiedNameResolutionFacade(ClassLoader classLoader) {
+    public VisitorStarter getQualifiedNameResolutionFacade(final ClassLoader classLoader) {
         return VisitorStarter.DUMMY;
     }
 

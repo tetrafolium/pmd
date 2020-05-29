@@ -29,7 +29,7 @@ import net.sourceforge.pmd.lang.xml.ast.XmlNode;
 public class AbstractDomXmlRule extends AbstractXmlRule {
 
     @Override
-    protected void visit(XmlNode node, RuleContext ctx) {
+    protected void visit(final XmlNode node, final RuleContext ctx) {
         final Node domNode = node.getNode();
 
         // Visit the node
@@ -39,7 +39,7 @@ public class AbstractDomXmlRule extends AbstractXmlRule {
         visitAttributeNodes(node, domNode, ctx);
     }
 
-    protected void visitDomNode(XmlNode node, Node domNode, RuleContext ctx) {
+    protected void visitDomNode(final XmlNode node, final Node domNode, final RuleContext ctx) {
         switch (domNode.getNodeType()) {
         case Node.CDATA_SECTION_NODE:
             visit(node, (CharacterData) domNode, ctx);
@@ -76,7 +76,7 @@ public class AbstractDomXmlRule extends AbstractXmlRule {
         }
     }
 
-    protected void visitAttributeNodes(XmlNode node, Node domNode, RuleContext ctx) {
+    protected void visitAttributeNodes(final XmlNode node, final Node domNode, final RuleContext ctx) {
         NamedNodeMap attributes = domNode.getAttributes();
         if (attributes != null) {
             for (int i = 0; i < attributes.getLength(); i++) {
@@ -85,47 +85,47 @@ public class AbstractDomXmlRule extends AbstractXmlRule {
         }
     }
 
-    protected void visit(XmlNode node, Attr attr, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Attr attr, final RuleContext ctx) {
         // does nothing by default since attributes are leaf nodes
     }
 
-    protected void visit(XmlNode node, CharacterData characterData, RuleContext ctx) {
+    protected void visit(final XmlNode node, final CharacterData characterData, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Comment comment, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Comment comment, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Document document, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Document document, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, DocumentType documentType, RuleContext ctx) {
+    protected void visit(final XmlNode node, final DocumentType documentType, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Element element, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Element element, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Entity entity, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Entity entity, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, EntityReference entityReference, RuleContext ctx) {
+    protected void visit(final XmlNode node, final EntityReference entityReference, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Notation notation, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Notation notation, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, ProcessingInstruction processingInstruction, RuleContext ctx) {
+    protected void visit(final XmlNode node, final ProcessingInstruction processingInstruction, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 
-    protected void visit(XmlNode node, Text text, RuleContext ctx) {
+    protected void visit(final XmlNode node, final Text text, final RuleContext ctx) {
         super.visit(node, ctx);
     }
 }

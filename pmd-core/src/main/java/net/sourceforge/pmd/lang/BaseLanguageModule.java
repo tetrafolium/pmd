@@ -25,8 +25,8 @@ public abstract class BaseLanguageModule implements Language {
     protected Map<String, LanguageVersion> versions;
     protected LanguageVersion defaultVersion;
 
-    public BaseLanguageModule(String name, String shortName, String terseName, Class<?> ruleChainVisitorClass,
-            String... extensions) {
+    public BaseLanguageModule(final String name, final String shortName, final String terseName, final Class<?> ruleChainVisitorClass,
+            final String... extensions) {
         this.name = name;
         this.shortName = shortName;
         this.terseName = terseName;
@@ -34,7 +34,7 @@ public abstract class BaseLanguageModule implements Language {
         this.extensions = Arrays.asList(extensions);
     }
 
-    private void addVersion(String version, LanguageVersionHandler languageVersionHandler, boolean isDefault, String... versionAliases) {
+    private void addVersion(final String version, final LanguageVersionHandler languageVersionHandler, final boolean isDefault, final String... versionAliases) {
         if (versions == null) {
             versions = new HashMap<>();
         }
@@ -59,7 +59,7 @@ public abstract class BaseLanguageModule implements Language {
         }
     }
 
-    private void checkNotPresent(String alias) {
+    private void checkNotPresent(final String alias) {
         if (versions.containsKey(alias)) {
             throw new IllegalArgumentException("Version key '" + alias + "' is duplicated");
         }
@@ -73,7 +73,7 @@ public abstract class BaseLanguageModule implements Language {
      *                                  aliases conflict with other already
      *                                  recorded versions
      */
-    protected void addVersion(String version, LanguageVersionHandler languageVersionHandler, String... versionAliases) {
+    protected void addVersion(final String version, final LanguageVersionHandler languageVersionHandler, final String... versionAliases) {
         addVersion(version, languageVersionHandler, false, versionAliases);
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseLanguageModule implements Language {
      *                                  aliases conflict with other already
      *                                  recorded versions
      */
-    protected void addDefaultVersion(String version, LanguageVersionHandler languageVersionHandler, String... versionAliases) {
+    protected void addDefaultVersion(final String version, final LanguageVersionHandler languageVersionHandler, final String... versionAliases) {
         addVersion(version, languageVersionHandler, true, versionAliases);
     }
 
@@ -93,7 +93,7 @@ public abstract class BaseLanguageModule implements Language {
      * @deprecated use {@link #addVersion(String, LanguageVersionHandler, String...)} or {@link #addDefaultVersion(String, LanguageVersionHandler, String...)}
      */
     @Deprecated
-    protected void addVersion(String version, LanguageVersionHandler languageVersionHandler, boolean isDefault) {
+    protected void addVersion(final String version, final LanguageVersionHandler languageVersionHandler, final boolean isDefault) {
         addVersion(version, languageVersionHandler, isDefault, new String[0]);
     }
 
@@ -123,7 +123,7 @@ public abstract class BaseLanguageModule implements Language {
     }
 
     @Override
-    public boolean hasExtension(String extension) {
+    public boolean hasExtension(final String extension) {
         return extensions != null && extensions.contains(extension);
     }
 
@@ -133,12 +133,12 @@ public abstract class BaseLanguageModule implements Language {
     }
 
     @Override
-    public boolean hasVersion(String version) {
+    public boolean hasVersion(final String version) {
         return versions != null && versions.containsKey(version);
     }
 
     @Override
-    public LanguageVersion getVersion(String versionName) {
+    public LanguageVersion getVersion(final String versionName) {
         if (versions != null) {
             return versions.get(versionName);
         }
@@ -162,7 +162,7 @@ public abstract class BaseLanguageModule implements Language {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj == null) {
             return false;
         }
@@ -174,7 +174,7 @@ public abstract class BaseLanguageModule implements Language {
     }
 
     @Override
-    public int compareTo(Language o) {
+    public int compareTo(final Language o) {
         return getName().compareTo(o.getName());
     }
 }

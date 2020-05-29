@@ -116,7 +116,7 @@ public class TestAccessEvaluator implements AccessEvaluator {
     }
 
     @Override
-    public boolean isTrustedApplication(TypeInfo arg0) {
+    public boolean isTrustedApplication(final TypeInfo arg0) {
         return isTrustedApplication;
     }
 
@@ -344,7 +344,7 @@ public class TestAccessEvaluator implements AccessEvaluator {
     }
 
     @Override
-    public boolean isSecondGenerationPackagingNamespace(Namespace namespace) {
+    public boolean isSecondGenerationPackagingNamespace(final Namespace namespace) {
         return false;
     }
 
@@ -354,7 +354,7 @@ public class TestAccessEvaluator implements AccessEvaluator {
     }
 
     @Override
-    public boolean hasNamespaceGuardedAccess(Namespace namespace, String arg1) {
+    public boolean hasNamespaceGuardedAccess(final Namespace namespace, final String arg1) {
         return false;
     }
 }

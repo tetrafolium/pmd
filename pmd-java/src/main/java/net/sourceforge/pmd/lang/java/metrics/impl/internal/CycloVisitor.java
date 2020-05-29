@@ -38,7 +38,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
     private final JavaNode topNode;
 
 
-    public CycloVisitor(MetricOptions options, JavaNode topNode) {
+    public CycloVisitor(final MetricOptions options, final JavaNode topNode) {
         considerBooleanPaths = !options.getOptions().contains(CycloOption.IGNORE_BOOLEAN_PATHS);
         considerAssert = options.getOptions().contains(CycloOption.CONSIDER_ASSERT);
         this.topNode = topNode;
@@ -46,13 +46,13 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public final Object visit(JavaNode localNode, Object data) {
+    public final Object visit(final JavaNode localNode, final Object data) {
         return localNode.isFindBoundary() && !localNode.equals(topNode) ? data : super.visit(localNode, data);
     }
 
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
 
         if (considerBooleanPaths) {
             ((MutableInt) data).add(CycloMetric.booleanExpressionComplexity(node.getTestedExpression()));
@@ -77,7 +77,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         ((MutableInt) data).increment();
         if (considerBooleanPaths) {
             ((MutableInt) data).add(CycloMetric.booleanExpressionComplexity(node.getCondition()));
@@ -87,7 +87,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         ((MutableInt) data).increment();
         if (considerBooleanPaths) {
             ((MutableInt) data).add(CycloMetric.booleanExpressionComplexity(node.getCondition()));
@@ -97,7 +97,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         ((MutableInt) data).increment();
         if (considerBooleanPaths) {
             ((MutableInt) data).add(CycloMetric.booleanExpressionComplexity(node.getCondition()));
@@ -108,7 +108,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         ((MutableInt) data).increment();
 
         if (considerBooleanPaths && !node.isForeach()) {
@@ -120,7 +120,7 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         ((MutableInt) data).increment();
         if (considerBooleanPaths) {
             ((MutableInt) data).add(CycloMetric.booleanExpressionComplexity(node.getCondition()));
@@ -131,21 +131,21 @@ public class CycloVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTAssertStatement node, Object data) {
+    public Object visit(final ASTAssertStatement node, final Object data) {
         if (considerAssert) {
             ((MutableInt) data).add(2); // equivalent to if (condition) { throw .. }
 

@@ -15,13 +15,13 @@ public class ASTModOverride extends AbstractScalaNode<Mod.Override> {
 
     @Deprecated
     @InternalApi
-    public ASTModOverride(Mod.Override scalaNode) {
+    public ASTModOverride(final Mod.Override scalaNode) {
         super(scalaNode);
     }
 
     // java.lang package is required or else PMD can't see this Override
     @java.lang.Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

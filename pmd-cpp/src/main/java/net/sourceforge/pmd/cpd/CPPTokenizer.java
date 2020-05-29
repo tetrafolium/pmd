@@ -32,7 +32,7 @@ public class CPPTokenizer extends JavaCCTokenizer {
      * @see #OPTION_SKIP_BLOCKS
      * @see #OPTION_SKIP_BLOCKS_PATTERN
      */
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         skipBlocks = Boolean.parseBoolean(properties.getProperty(OPTION_SKIP_BLOCKS, Boolean.TRUE.toString()));
         if (skipBlocks) {
             String skipBlocksPattern = properties.getProperty(OPTION_SKIP_BLOCKS_PATTERN, DEFAULT_SKIP_BLOCKS_PATTERN);
@@ -46,7 +46,7 @@ public class CPPTokenizer extends JavaCCTokenizer {
         }
     }
 
-    private String maybeSkipBlocks(String test) throws IOException {
+    private String maybeSkipBlocks(final String test) throws IOException {
         if (!skipBlocks) {
             return test;
         }
@@ -72,7 +72,7 @@ public class CPPTokenizer extends JavaCCTokenizer {
     }
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         try {
             StringBuilder buffer = sourceCode.getCodeBuffer();
             return new CppTokenManager(IOUtil.skipBOM(new StringReader(maybeSkipBlocks(buffer.toString()))));

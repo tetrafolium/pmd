@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTPackageBody extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode implements OracleObject {
     @Deprecated
     @InternalApi
-    public ASTPackageBody(int id) {
+    public ASTPackageBody(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTPackageBody(PLSQLParser p, int id) {
+    public ASTPackageBody(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

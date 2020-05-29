@@ -18,17 +18,17 @@ import net.sourceforge.pmd.dcd.DCD;
 public class NodeVisitorAdapter implements NodeVisitor {
 
     @Override
-    public Object visit(UsageGraph usageGraph, Object data) {
+    public Object visit(final UsageGraph usageGraph, final Object data) {
         return usageGraph.accept(this, data);
     }
 
     @Override
-    public Object visit(ClassNode classNode, Object data) {
+    public Object visit(final ClassNode classNode, final Object data) {
         return classNode.accept(this, data);
     }
 
     @Override
-    public Object visitFields(ClassNode classNode, Object data) {
+    public Object visitFields(final ClassNode classNode, final Object data) {
         for (FieldNode fieldNode : classNode.getFieldNodes()) {
             visit(fieldNode, data);
         }
@@ -36,12 +36,12 @@ public class NodeVisitorAdapter implements NodeVisitor {
     }
 
     @Override
-    public Object visit(FieldNode fieldNode, Object data) {
+    public Object visit(final FieldNode fieldNode, final Object data) {
         return fieldNode.accept(this, data);
     }
 
     @Override
-    public Object visitConstructors(ClassNode classNode, Object data) {
+    public Object visitConstructors(final ClassNode classNode, final Object data) {
         for (ConstructorNode constructorNode : classNode.getConstructorNodes()) {
             visit(constructorNode, data);
         }
@@ -49,12 +49,12 @@ public class NodeVisitorAdapter implements NodeVisitor {
     }
 
     @Override
-    public Object visit(ConstructorNode constructorNode, Object data) {
+    public Object visit(final ConstructorNode constructorNode, final Object data) {
         return constructorNode.accept(this, data);
     }
 
     @Override
-    public Object visitMethods(ClassNode classNode, Object data) {
+    public Object visitMethods(final ClassNode classNode, final Object data) {
         for (MethodNode methodNode : classNode.getMethodNodes()) {
             visit(methodNode, data);
         }
@@ -62,12 +62,12 @@ public class NodeVisitorAdapter implements NodeVisitor {
     }
 
     @Override
-    public Object visit(MethodNode methodNode, Object data) {
+    public Object visit(final MethodNode methodNode, final Object data) {
         return methodNode.accept(this, data);
     }
 
     @Override
-    public Object visitUses(MemberNode memberNode, Object data) {
+    public Object visitUses(final MemberNode memberNode, final Object data) {
         for (MemberNode use : (List<MemberNode>) memberNode.getUses()) {
             this.visitUse(use, data);
         }
@@ -75,12 +75,12 @@ public class NodeVisitorAdapter implements NodeVisitor {
     }
 
     @Override
-    public Object visitUse(MemberNode memberNode, Object data) {
+    public Object visitUse(final MemberNode memberNode, final Object data) {
         return data;
     }
 
     @Override
-    public Object visitUsers(MemberNode memberNode, Object data) {
+    public Object visitUsers(final MemberNode memberNode, final Object data) {
         for (MemberNode user : (List<MemberNode>) memberNode.getUsers()) {
             this.visitUser(user, data);
         }
@@ -88,7 +88,7 @@ public class NodeVisitorAdapter implements NodeVisitor {
     }
 
     @Override
-    public Object visitUser(MemberNode memberNode, Object data) {
+    public Object visitUser(final MemberNode memberNode, final Object data) {
         return data;
     }
 }

@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTIfStatement extends AbstractEcmascriptNode<IfStatement> {
     @Deprecated
     @InternalApi
-    public ASTIfStatement(IfStatement ifStatement) {
+    public ASTIfStatement(final IfStatement ifStatement) {
         super(ifStatement);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

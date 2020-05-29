@@ -60,7 +60,7 @@ public class CommentContentRule extends AbstractCommentRule {
      * Capture values and perform all the case-conversions once per run
      */
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         originalBadWords = getProperty(DISSALLOWED_TERMS_DESCRIPTOR);
         caseSensitive = getProperty(CASE_SENSITIVE_DESCRIPTOR);
         if (caseSensitive) {
@@ -78,11 +78,11 @@ public class CommentContentRule extends AbstractCommentRule {
      * @see Rule#end(RuleContext)
      */
     @Override
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         // Override as needed
     }
 
-    private List<String> illegalTermsIn(Comment comment) {
+    private List<String> illegalTermsIn(final Comment comment) {
 
         if (currentBadWords.isEmpty()) {
             return Collections.emptyList();
@@ -108,7 +108,7 @@ public class CommentContentRule extends AbstractCommentRule {
         return foundWords;
     }
 
-    private String errorMsgFor(List<String> badWords) {
+    private String errorMsgFor(final List<String> badWords) {
         StringBuilder msg = new StringBuilder(this.getMessage()).append(": ");
         if (badWords.size() == 1) {
             msg.append("Invalid term: '").append(badWords.get(0)).append('\'');
@@ -124,7 +124,7 @@ public class CommentContentRule extends AbstractCommentRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit cUnit, Object data) {
+    public Object visit(final ASTCompilationUnit cUnit, final Object data) {
 
         // NPE patch: Eclipse plugin doesn't call start() at onset?
         if (currentBadWords == null) {

@@ -249,11 +249,11 @@ public abstract class AbstractPLSQLRule extends AbstractRule implements PLSQLPar
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         LOGGER.entering(CLASS_NAME, "visitAll");
         for (Object element : nodes) {
             ASTInput node = (ASTInput) element;
@@ -269,7 +269,7 @@ public abstract class AbstractPLSQLRule extends AbstractRule implements PLSQLPar
      * @param node
      *            the node which will be searched
      */
-    protected final String getDeclaringType(Node node) {
+    protected final String getDeclaringType(final Node node) {
         Node c;
 
         /*
@@ -304,11 +304,11 @@ public abstract class AbstractPLSQLRule extends AbstractRule implements PLSQLPar
         return null;
     }
 
-    public static boolean isQualifiedName(Node node) {
+    public static boolean isQualifiedName(final Node node) {
         return node.getImage().indexOf('.') != -1;
     }
 
-    public static boolean importsPackage(ASTInput node, String packageName) {
+    public static boolean importsPackage(final ASTInput node, final String packageName) {
         return false;
     }
 
@@ -316,7 +316,7 @@ public abstract class AbstractPLSQLRule extends AbstractRule implements PLSQLPar
      * Duplicate PLSQLParserVisitor API
      */
     @Override
-    public Object visit(PLSQLNode node, Object data) {
+    public Object visit(final PLSQLNode node, final Object data) {
         for (PLSQLNode child : node.children()) {
             child.jjtAccept(this, data);
         }
@@ -324,1121 +324,1121 @@ public abstract class AbstractPLSQLRule extends AbstractRule implements PLSQLPar
     }
 
     @Override
-    public Object visit(ASTInput node, Object data) {
+    public Object visit(final ASTInput node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDDLCommand node, Object data) {
+    public Object visit(final ASTDDLCommand node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSqlPlusCommand node, Object data) {
+    public Object visit(final ASTSqlPlusCommand node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTGlobal node, Object data) {
+    public Object visit(final ASTGlobal node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBlock node, Object data) {
+    public Object visit(final ASTBlock node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPackageSpecification node, Object data) {
+    public Object visit(final ASTPackageSpecification node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTPackageSpecification)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPackageBody node, Object data) {
+    public Object visit(final ASTPackageBody node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTPackageBody)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeclarativeUnit node, Object data) {
+    public Object visit(final ASTDeclarativeUnit node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeclarativeSection node, Object data) {
+    public Object visit(final ASTDeclarativeSection node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCompilationDeclarationFragment node, Object data) {
+    public Object visit(final ASTCompilationDeclarationFragment node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTProgramUnit node, Object data) {
+    public Object visit(final ASTProgramUnit node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTProgramUnit)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTObjectNameDeclaration node, Object data) {
+    public Object visit(final ASTObjectNameDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFormalParameter node, Object data) {
+    public Object visit(final ASTFormalParameter node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFormalParameters node, Object data) {
+    public Object visit(final ASTFormalParameters node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableOrConstantDeclarator node, Object data) {
+    public Object visit(final ASTVariableOrConstantDeclarator node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableOrConstantDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableOrConstantDeclaratorId node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableOrConstantInitializer node, Object data) {
+    public Object visit(final ASTVariableOrConstantInitializer node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDatatype node, Object data) {
+    public Object visit(final ASTDatatype node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCompilationDataType node, Object data) {
+    public Object visit(final ASTCompilationDataType node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCollectionTypeName node, Object data) {
+    public Object visit(final ASTCollectionTypeName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTScalarDataTypeName node, Object data) {
+    public Object visit(final ASTScalarDataTypeName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDateTimeLiteral node, Object data) {
+    public Object visit(final ASTDateTimeLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExceptionHandler node, Object data) {
+    public Object visit(final ASTExceptionHandler node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSkip2NextTerminator node, Object data) {
+    public Object visit(final ASTSkip2NextTerminator node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSkip2NextOccurrence node, Object data) {
+    public Object visit(final ASTSkip2NextOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSkipPastNextOccurrence node, Object data) {
+    public Object visit(final ASTSkipPastNextOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSkip2NextTokenOccurrence node, Object data) {
+    public Object visit(final ASTSkip2NextTokenOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSkipPastNextTokenOccurrence node, Object data) {
+    public Object visit(final ASTSkipPastNextTokenOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRead2NextOccurrence node, Object data) {
+    public Object visit(final ASTRead2NextOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReadPastNextOccurrence node, Object data) {
+    public Object visit(final ASTReadPastNextOccurrence node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSqlStatement node, Object data) {
+    public Object visit(final ASTSqlStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWrappedObject node, Object data) {
+    public Object visit(final ASTWrappedObject node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnlabelledStatement node, Object data) {
+    public Object visit(final ASTUnlabelledStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLabelledStatement node, Object data) {
+    public Object visit(final ASTLabelledStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCaseStatement node, Object data) {
+    public Object visit(final ASTCaseStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCaseWhenClause node, Object data) {
+    public Object visit(final ASTCaseWhenClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElseClause node, Object data) {
+    public Object visit(final ASTElseClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElsifClause node, Object data) {
+    public Object visit(final ASTElsifClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLoopStatement node, Object data) {
+    public Object visit(final ASTLoopStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForIndex node, Object data) {
+    public Object visit(final ASTForIndex node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForAllIndex node, Object data) {
+    public Object visit(final ASTForAllIndex node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForAllStatement node, Object data) {
+    public Object visit(final ASTForAllStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTGotoStatement node, Object data) {
+    public Object visit(final ASTGotoStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExitStatement node, Object data) {
+    public Object visit(final ASTExitStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRaiseStatement node, Object data) {
+    public Object visit(final ASTRaiseStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCloseStatement node, Object data) {
+    public Object visit(final ASTCloseStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOpenStatement node, Object data) {
+    public Object visit(final ASTOpenStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFetchStatement node, Object data) {
+    public Object visit(final ASTFetchStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEmbeddedSqlStatement node, Object data) {
+    public Object visit(final ASTEmbeddedSqlStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPipelineStatement node, Object data) {
+    public Object visit(final ASTPipelineStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalCompilationStatement node, Object data) {
+    public Object visit(final ASTConditionalCompilationStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubTypeDefinition node, Object data) {
+    public Object visit(final ASTSubTypeDefinition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCollectionTypeDefinition node, Object data) {
+    public Object visit(final ASTCollectionTypeDefinition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCollectionDeclaration node, Object data) {
+    public Object visit(final ASTCollectionDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTObjectDeclaration node, Object data) {
+    public Object visit(final ASTObjectDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCallSpecTail node, Object data) {
+    public Object visit(final ASTCallSpecTail node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCursorUnit node, Object data) {
+    public Object visit(final ASTCursorUnit node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCompilationExpression node, Object data) {
+    public Object visit(final ASTCompilationExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignment node, Object data) {
+    public Object visit(final ASTAssignment node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCaseExpression node, Object data) {
+    public Object visit(final ASTCaseExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLikeExpression node, Object data) {
+    public Object visit(final ASTLikeExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTrimExpression node, Object data) {
+    public Object visit(final ASTTrimExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTObjectExpression node, Object data) {
+    public Object visit(final ASTObjectExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalOrExpression node, Object data) {
+    public Object visit(final ASTConditionalOrExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalAndExpression node, Object data) {
+    public Object visit(final ASTConditionalAndExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEqualityExpression node, Object data) {
+    public Object visit(final ASTEqualityExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRelationalExpression node, Object data) {
+    public Object visit(final ASTRelationalExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAdditiveExpression node, Object data) {
+    public Object visit(final ASTAdditiveExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStringExpression node, Object data) {
+    public Object visit(final ASTStringExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMultiplicativeExpression node, Object data) {
+    public Object visit(final ASTMultiplicativeExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnaryExpression node, Object data) {
+    public Object visit(final ASTUnaryExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExtractExpression node, Object data) {
+    public Object visit(final ASTExtractExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnaryExpressionNotPlusMinus node, Object data) {
+    public Object visit(final ASTUnaryExpressionNotPlusMinus node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimarySuffix node, Object data) {
+    public Object visit(final ASTPrimarySuffix node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStringLiteral node, Object data) {
+    public Object visit(final ASTStringLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBooleanLiteral node, Object data) {
+    public Object visit(final ASTBooleanLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNullLiteral node, Object data) {
+    public Object visit(final ASTNullLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMultiSetCondition node, Object data) {
+    public Object visit(final ASTMultiSetCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNumericLiteral node, Object data) {
+    public Object visit(final ASTNumericLiteral node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLabel node, Object data) {
+    public Object visit(final ASTLabel node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTQualifiedName node, Object data) {
+    public Object visit(final ASTQualifiedName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArguments node, Object data) {
+    public Object visit(final ASTArguments node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArgumentList node, Object data) {
+    public Object visit(final ASTArgumentList node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArgument node, Object data) {
+    public Object visit(final ASTArgument node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableOrConstantDeclaration node, Object data) {
+    public Object visit(final ASTVariableOrConstantDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDatatypeDeclaration node, Object data) {
+    public Object visit(final ASTDatatypeDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPragma node, Object data) {
+    public Object visit(final ASTPragma node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExceptionDeclaration node, Object data) {
+    public Object visit(final ASTExceptionDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTParallelClause node, Object data) {
+    public Object visit(final ASTParallelClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTable node, Object data) {
+    public Object visit(final ASTTable node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInlineConstraint node, Object data) {
+    public Object visit(final ASTInlineConstraint node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTableColumn node, Object data) {
+    public Object visit(final ASTTableColumn node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTView node, Object data) {
+    public Object visit(final ASTView node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSynonym node, Object data) {
+    public Object visit(final ASTSynonym node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDirectory node, Object data) {
+    public Object visit(final ASTDirectory node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDatabaseLink node, Object data) {
+    public Object visit(final ASTDatabaseLink node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTViewColumn node, Object data) {
+    public Object visit(final ASTViewColumn node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComment node, Object data) {
+    public Object visit(final ASTComment node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeMethod node, Object data) {
+    public Object visit(final ASTTypeMethod node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTTypeMethod)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeSpecification node, Object data) {
+    public Object visit(final ASTTypeSpecification node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTTypeSpecification)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAlterTypeSpec node, Object data) {
+    public Object visit(final ASTAlterTypeSpec node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttributeDeclaration node, Object data) {
+    public Object visit(final ASTAttributeDeclaration node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttribute node, Object data) {
+    public Object visit(final ASTAttribute node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPragmaClause node, Object data) {
+    public Object visit(final ASTPragmaClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInlinePragma node, Object data) {
+    public Object visit(final ASTInlinePragma node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTriggerUnit node, Object data) {
+    public Object visit(final ASTTriggerUnit node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTTriggerUnit)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTriggerTimingPointSection node, Object data) {
+    public Object visit(final ASTTriggerTimingPointSection node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTTriggerTimingPointSection)");
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCompoundTriggerBlock node, Object data) {
+    public Object visit(final ASTCompoundTriggerBlock node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNonDMLTrigger node, Object data) {
+    public Object visit(final ASTNonDMLTrigger node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDDLEvent node, Object data) {
+    public Object visit(final ASTDDLEvent node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDatabaseEvent node, Object data) {
+    public Object visit(final ASTDatabaseEvent node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNonDMLEvent node, Object data) {
+    public Object visit(final ASTNonDMLEvent node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAlterTrigger node, Object data) {
+    public Object visit(final ASTAlterTrigger node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTKEYWORD_UNRESERVED node, Object data) {
+    public Object visit(final ASTKEYWORD_UNRESERVED node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTID node, Object data) {
+    public Object visit(final ASTID node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnqualifiedID node, Object data) {
+    public Object visit(final ASTUnqualifiedID node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTQualifiedID node, Object data) {
+    public Object visit(final ASTQualifiedID node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeKeyword node, Object data) {
+    public Object visit(final ASTTypeKeyword node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJavaInterfaceClass node, Object data) {
+    public Object visit(final ASTJavaInterfaceClass node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAccessibleByClause node, Object data) {
+    public Object visit(final ASTAccessibleByClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIsOfTypeCondition node, Object data) {
+    public Object visit(final ASTIsOfTypeCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIsNullCondition node, Object data) {
+    public Object visit(final ASTIsNullCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOutOfLineConstraint node, Object data) {
+    public Object visit(final ASTOutOfLineConstraint node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSelectIntoStatement node, Object data) {
+    public Object visit(final ASTSelectIntoStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReferencesClause node, Object data) {
+    public Object visit(final ASTReferencesClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCrossOuterApplyClause node, Object data) {
+    public Object visit(final ASTCrossOuterApplyClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCursorForLoopStatement node, Object data) {
+    public Object visit(final ASTCursorForLoopStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInnerCrossJoinClause node, Object data) {
+    public Object visit(final ASTInnerCrossJoinClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJoinClause node, Object data) {
+    public Object visit(final ASTJoinClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOuterJoinClause node, Object data) {
+    public Object visit(final ASTOuterJoinClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOuterJoinType node, Object data) {
+    public Object visit(final ASTOuterJoinType node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTableReference node, Object data) {
+    public Object visit(final ASTTableReference node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSelectList node, Object data) {
+    public Object visit(final ASTSelectList node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBulkCollectIntoClause node, Object data) {
+    public Object visit(final ASTBulkCollectIntoClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIntoClause node, Object data) {
+    public Object visit(final ASTIntoClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTColumnAlias node, Object data) {
+    public Object visit(final ASTColumnAlias node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTableAlias node, Object data) {
+    public Object visit(final ASTTableAlias node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCollectionName node, Object data) {
+    public Object visit(final ASTCollectionName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTHostArrayName node, Object data) {
+    public Object visit(final ASTHostArrayName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTQueryBlock node, Object data) {
+    public Object visit(final ASTQueryBlock node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSchemaName node, Object data) {
+    public Object visit(final ASTSchemaName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTableName node, Object data) {
+    public Object visit(final ASTTableName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComparisonCondition node, Object data) {
+    public Object visit(final ASTComparisonCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCondition node, Object data) {
+    public Object visit(final ASTCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionList node, Object data) {
+    public Object visit(final ASTExpressionList node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhereClause node, Object data) {
+    public Object visit(final ASTWhereClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSqlExpression node, Object data) {
+    public Object visit(final ASTSqlExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInCondition node, Object data) {
+    public Object visit(final ASTInCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionListMultiple node, Object data) {
+    public Object visit(final ASTExpressionListMultiple node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionListSingle node, Object data) {
+    public Object visit(final ASTExpressionListSingle node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCompoundCondition node, Object data) {
+    public Object visit(final ASTCompoundCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTColumn node, Object data) {
+    public Object visit(final ASTColumn node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOrderByClause node, Object data) {
+    public Object visit(final ASTOrderByClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRowLimitingClause node, Object data) {
+    public Object visit(final ASTRowLimitingClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableName node, Object data) {
+    public Object visit(final ASTVariableName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFromClause node, Object data) {
+    public Object visit(final ASTFromClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubqueryOperation node, Object data) {
+    public Object visit(final ASTSubqueryOperation node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTQueryPartitionClause node, Object data) {
+    public Object visit(final ASTQueryPartitionClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTGroupByClause node, Object data) {
+    public Object visit(final ASTGroupByClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTGroupingExpressionList node, Object data) {
+    public Object visit(final ASTGroupingExpressionList node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTGroupingSetsClause node, Object data) {
+    public Object visit(final ASTGroupingSetsClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRollupCubeClause node, Object data) {
+    public Object visit(final ASTRollupCubeClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSelectStatement node, Object data) {
+    public Object visit(final ASTSelectStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLikeCondition node, Object data) {
+    public Object visit(final ASTLikeCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBetweenCondition node, Object data) {
+    public Object visit(final ASTBetweenCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFloatingPointCondition node, Object data) {
+    public Object visit(final ASTFloatingPointCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionCall node, Object data) {
+    public Object visit(final ASTFunctionCall node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUpdateStatement node, Object data) {
+    public Object visit(final ASTUpdateStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUpdateSetClause node, Object data) {
+    public Object visit(final ASTUpdateSetClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeleteStatement node, Object data) {
+    public Object visit(final ASTDeleteStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubqueryRestrictionClause node, Object data) {
+    public Object visit(final ASTSubqueryRestrictionClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTableCollectionExpression node, Object data) {
+    public Object visit(final ASTTableCollectionExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDMLTableExpressionClause node, Object data) {
+    public Object visit(final ASTDMLTableExpressionClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalInsertClause node, Object data) {
+    public Object visit(final ASTConditionalInsertClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInsertIntoClause node, Object data) {
+    public Object visit(final ASTInsertIntoClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInsertStatement node, Object data) {
+    public Object visit(final ASTInsertStatement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMultiTableInsert node, Object data) {
+    public Object visit(final ASTMultiTableInsert node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSingleTableInsert node, Object data) {
+    public Object visit(final ASTSingleTableInsert node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTValuesClause node, Object data) {
+    public Object visit(final ASTValuesClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExistsCondition node, Object data) {
+    public Object visit(final ASTExistsCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTHierarchicalQueryClause node, Object data) {
+    public Object visit(final ASTHierarchicalQueryClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIsASetCondition node, Object data) {
+    public Object visit(final ASTIsASetCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIsEmptyCondition node, Object data) {
+    public Object visit(final ASTIsEmptyCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberCondition node, Object data) {
+    public Object visit(final ASTMemberCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubmultisetCondition node, Object data) {
+    public Object visit(final ASTSubmultisetCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRegexpLikeCondition node, Object data) {
+    public Object visit(final ASTRegexpLikeCondition node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionName node, Object data) {
+    public Object visit(final ASTFunctionName node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnalyticClause node, Object data) {
+    public Object visit(final ASTAnalyticClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWindowingClause node, Object data) {
+    public Object visit(final ASTWindowingClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWithinClause node, Object data) {
+    public Object visit(final ASTWithinClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTListaggOverflowClause node, Object data) {
+    public Object visit(final ASTListaggOverflowClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPartitionExtensionClause node, Object data) {
+    public Object visit(final ASTPartitionExtensionClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReturningClause node, Object data) {
+    public Object visit(final ASTReturningClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTErrorLoggingClause node, Object data) {
+    public Object visit(final ASTErrorLoggingClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSimpleExpression node, Object data) {
+    public Object visit(final ASTSimpleExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLTable node, Object data) {
+    public Object visit(final ASTXMLTable node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLNamespacesClause node, Object data) {
+    public Object visit(final ASTXMLNamespacesClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLTableOptions node, Object data) {
+    public Object visit(final ASTXMLTableOptions node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLPassingClause node, Object data) {
+    public Object visit(final ASTXMLPassingClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLTableColum node, Object data) {
+    public Object visit(final ASTXMLTableColum node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLExists node, Object data) {
+    public Object visit(final ASTXMLExists node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLAttributesClause node, Object data) {
+    public Object visit(final ASTXMLAttributesClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTXMLElement node, Object data) {
+    public Object visit(final ASTXMLElement node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOuterJoinExpression node, Object data) {
+    public Object visit(final ASTOuterJoinExpression node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForUpdateClause node, Object data) {
+    public Object visit(final ASTForUpdateClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWithClause node, Object data) {
+    public Object visit(final ASTWithClause node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCursorSpecification node, Object data) {
+    public Object visit(final ASTCursorSpecification node, final Object data) {
         return visit((PLSQLNode) node, data);
     }
 
     /*
      * Treat all Executable Code
      */
-    public Object visit(ExecutableCode node, Object data) {
+    public Object visit(final ExecutableCode node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ExecutableCode)");
         return visit((PLSQLNode) node, data);
     }

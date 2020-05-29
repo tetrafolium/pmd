@@ -28,7 +28,7 @@ public class CompoundIterator<T> implements Iterator<T> {
      * @param iterators
      *            The iterators use.
      */
-    public CompoundIterator(Iterator<T>... iterators) {
+    public CompoundIterator(final Iterator<T>... iterators) {
         this.iterators = iterators;
         this.index = 0;
     }

@@ -17,12 +17,12 @@ public class NotFilter<T> extends AbstractDelegateFilter<T> {
         super();
     }
 
-    public NotFilter(Filter<T> filter) {
+    public NotFilter(final Filter<T> filter) {
         super(filter);
     }
 
     @Override
-    public boolean filter(T obj) {
+    public boolean filter(final T obj) {
         return !filter.filter(obj);
     }
 

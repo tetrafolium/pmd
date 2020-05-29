@@ -11,18 +11,18 @@ public class ASTTypeDeclaration extends AbstractJavaTypeNode implements CanSuppr
 
     @InternalApi
     @Deprecated
-    public ASTTypeDeclaration(int id) {
+    public ASTTypeDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTTypeDeclaration(JavaParser p, int id) {
+    public ASTTypeDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (int i = 0; i < getNumChildren(); i++) {
             if (getChild(i) instanceof ASTAnnotation) {
                 ASTAnnotation a = (ASTAnnotation) getChild(i);
@@ -35,7 +35,7 @@ public class ASTTypeDeclaration extends AbstractJavaTypeNode implements CanSuppr
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

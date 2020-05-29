@@ -39,7 +39,7 @@ public final class JavadocTag {
         public static final JavadocTag GENERATED    = new JavadocTag("generated",  " ");
         public static final JavadocTag GENERATED_BY = new JavadocTag("generatedBy"," ");  */
 
-    private JavadocTag(String theLabel, String theDescription) {
+    private JavadocTag(final String theLabel, final String theDescription) {
         label = theLabel;
         description = theDescription;
 
@@ -50,7 +50,7 @@ public final class JavadocTag {
         TAGS_BY_ID.put(theLabel, this);
     }
 
-    public static JavadocTag tagFor(String id) {
+    public static JavadocTag tagFor(final String id) {
         return TAGS_BY_ID.get(id);
     }
 

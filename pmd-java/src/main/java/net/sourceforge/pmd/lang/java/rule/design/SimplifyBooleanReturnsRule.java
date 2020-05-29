@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         // only boolean methods should be inspected
         ASTResultType r = node.getResultType();
 
@@ -36,7 +36,7 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         // that's the case: if..then..return; return;
         if (!node.hasElse() && isIfJustReturnsBoolean(node) && isJustReturnsBooleanAfter(node)) {
             addViolation(data, node);
@@ -161,7 +161,7 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
      *            the if statement
      * @return
      */
-    private boolean isJustReturnsBooleanAfter(ASTIfStatement ifNode) {
+    private boolean isJustReturnsBooleanAfter(final ASTIfStatement ifNode) {
         Node blockStatement = ifNode.getParent().getParent();
         Node block = blockStatement.getParent();
         if (block.getNumChildren() != blockStatement.getIndexInParent() + 1 + 1) {
@@ -180,13 +180,13 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
      *            the if statement
      * @return
      */
-    private boolean isIfJustReturnsBoolean(ASTIfStatement ifNode) {
+    private boolean isIfJustReturnsBoolean(final ASTIfStatement ifNode) {
         Node node = ifNode.getChild(1);
         return node.getNumChildren() == 1
                 && (hasOneBlockStmt(node) || terminatesInBooleanLiteral(node.getChild(0)));
     }
 
-    private boolean hasOneBlockStmt(Node node) {
+    private boolean hasOneBlockStmt(final Node node) {
         return node.getChild(0) instanceof ASTBlock && node.getChild(0).getNumChildren() == 1
                 && terminatesInBooleanLiteral(node.getChild(0).getChild(0));
     }
@@ -195,7 +195,7 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
      * Returns the first child node going down 'level' levels or null if level
      * is invalid
      */
-    private Node getDescendant(Node node, int level) {
+    private Node getDescendant(final Node node, final int level) {
         Node n = node;
         for (int i = 0; i < level; i++) {
             if (n.getNumChildren() == 0) {
@@ -206,11 +206,11 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
         return n;
     }
 
-    private boolean terminatesInBooleanLiteral(Node node) {
+    private boolean terminatesInBooleanLiteral(final Node node) {
         return eachNodeHasOneChild(node) && getLastChild(node) instanceof ASTBooleanLiteral;
     }
 
-    private boolean eachNodeHasOneChild(Node node) {
+    private boolean eachNodeHasOneChild(final Node node) {
         if (node.getNumChildren() > 1) {
             return false;
         }
@@ -220,14 +220,14 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
         return eachNodeHasOneChild(node.getChild(0));
     }
 
-    private Node getLastChild(Node node) {
+    private Node getLastChild(final Node node) {
         if (node.getNumChildren() == 0) {
             return node;
         }
         return getLastChild(node.getChild(0));
     }
 
-    private boolean isNodesEqualWithUnaryExpression(Node n1, Node n2) {
+    private boolean isNodesEqualWithUnaryExpression(final Node n1, final Node n2) {
         Node node1;
         Node node2;
         if (n1 instanceof ASTUnaryExpressionNotPlusMinus) {
@@ -243,7 +243,7 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
         return isNodesEquals(node1, node2);
     }
 
-    private boolean isNodesEquals(Node n1, Node n2) {
+    private boolean isNodesEquals(final Node n1, final Node n2) {
         int numberChild1 = n1.getNumChildren();
         int numberChild2 = n2.getNumChildren();
         if (numberChild1 != numberChild2) {
@@ -263,7 +263,7 @@ public class SimplifyBooleanReturnsRule extends AbstractJavaRule {
         return true;
     }
 
-    private boolean isSimpleReturn(Node node) {
+    private boolean isSimpleReturn(final Node node) {
         return node instanceof ASTReturnStatement && node.getNumChildren() == 0;
     }
 

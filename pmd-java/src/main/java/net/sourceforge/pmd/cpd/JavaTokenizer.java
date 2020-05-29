@@ -30,31 +30,31 @@ public class JavaTokenizer extends JavaCCTokenizer {
 
     private ConstructorDetector constructorDetector;
 
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         ignoreAnnotations = Boolean.parseBoolean(properties.getProperty(IGNORE_ANNOTATIONS, "false"));
         ignoreLiterals = Boolean.parseBoolean(properties.getProperty(IGNORE_LITERALS, "false"));
         ignoreIdentifiers = Boolean.parseBoolean(properties.getProperty(IGNORE_IDENTIFIERS, "false"));
     }
 
     @Override
-    public void tokenize(SourceCode sourceCode, Tokens tokenEntries) throws IOException {
+    public void tokenize(final SourceCode sourceCode, final Tokens tokenEntries) throws IOException {
         constructorDetector = new ConstructorDetector(ignoreIdentifiers);
         super.tokenize(sourceCode, tokenEntries);
     }
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         final StringBuilder stringBuilder = sourceCode.getCodeBuffer();
         return new JavaTokenManager(new StringReader(stringBuilder.toString()));
     }
 
     @Override
-    protected TokenFilter getTokenFilter(TokenManager tokenManager) {
+    protected TokenFilter getTokenFilter(final TokenManager tokenManager) {
         return new JavaTokenFilter(tokenManager, ignoreAnnotations);
     }
 
     @Override
-    protected TokenEntry processToken(Tokens tokenEntries, GenericToken currentToken, String fileName) {
+    protected TokenEntry processToken(final Tokens tokenEntries, final GenericToken currentToken, final String fileName) {
         String image = currentToken.getImage();
         Token javaToken = (Token) currentToken;
 
@@ -75,15 +75,15 @@ public class JavaTokenizer extends JavaCCTokenizer {
         return new TokenEntry(image, fileName, currentToken.getBeginLine(), currentToken.getBeginColumn(), currentToken.getEndColumn());
     }
 
-    public void setIgnoreLiterals(boolean ignore) {
+    public void setIgnoreLiterals(final boolean ignore) {
         this.ignoreLiterals = ignore;
     }
 
-    public void setIgnoreIdentifiers(boolean ignore) {
+    public void setIgnoreIdentifiers(final boolean ignore) {
         this.ignoreIdentifiers = ignore;
     }
 
-    public void setIgnoreAnnotations(boolean ignoreAnnotations) {
+    public void setIgnoreAnnotations(final boolean ignoreAnnotations) {
         this.ignoreAnnotations = ignoreAnnotations;
     }
 
@@ -166,7 +166,7 @@ public class JavaTokenizer extends JavaCCTokenizer {
                     || discardingSuppressing;
         }
 
-        private void detectAnnotations(Token currentToken) {
+        private void detectAnnotations(final Token currentToken) {
             if (isAnnotation && nextTokenEndsAnnotation) {
                 isAnnotation = false;
                 nextTokenEndsAnnotation = false;
@@ -204,14 +204,14 @@ public class JavaTokenizer extends JavaCCTokenizer {
         private boolean storeNextIdentifier;
         private String prevIdentifier;
 
-        ConstructorDetector(boolean ignoreIdentifiers) {
+        ConstructorDetector(final boolean ignoreIdentifiers) {
             this.ignoreIdentifiers = ignoreIdentifiers;
 
             currentNestingLevel = 0;
             classMembersIndentations = new LinkedList<>();
         }
 
-        public void processToken(Token currentToken) {
+        public void processToken(final Token currentToken) {
             if (!ignoreIdentifiers) {
                 return;
             }
@@ -271,7 +271,7 @@ public class JavaTokenizer extends JavaCCTokenizer {
             storeNextIdentifier = true;
         }
 
-        public void restoreConstructorToken(Tokens tokenEntries, Token currentToken) {
+        public void restoreConstructorToken(final Tokens tokenEntries, final Token currentToken) {
             if (!ignoreIdentifiers) {
                 return;
             }
@@ -293,7 +293,7 @@ public class JavaTokenizer extends JavaCCTokenizer {
         int indentationLevel;
         String name;
 
-        TypeDeclaration(int indentationLevel) {
+        TypeDeclaration(final int indentationLevel) {
             this.indentationLevel = indentationLevel;
         }
     }

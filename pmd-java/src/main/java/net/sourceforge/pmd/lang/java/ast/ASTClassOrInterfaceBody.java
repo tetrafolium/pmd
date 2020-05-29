@@ -20,18 +20,18 @@ public class ASTClassOrInterfaceBody extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTClassOrInterfaceBody(int id) {
+    public ASTClassOrInterfaceBody(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTClassOrInterfaceBody(JavaParser p, int id) {
+    public ASTClassOrInterfaceBody(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

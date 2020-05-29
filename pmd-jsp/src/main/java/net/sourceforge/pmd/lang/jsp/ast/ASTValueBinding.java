@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTValueBinding extends AbstractJspNode {
     @InternalApi
     @Deprecated
-    public ASTValueBinding(int id) {
+    public ASTValueBinding(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTValueBinding(JspParser p, int id) {
+    public ASTValueBinding(final JspParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

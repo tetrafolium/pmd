@@ -12,7 +12,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class AvoidDollarSignsRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.getImage().indexOf('$') != -1) {
             addViolation(data, node);
             return data;
@@ -21,7 +21,7 @@ public class AvoidDollarSignsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node.getImage().indexOf('$') != -1) {
             addViolation(data, node);
             return data;
@@ -30,7 +30,7 @@ public class AvoidDollarSignsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         if (node.getImage().indexOf('$') != -1) {
             addViolation(data, node);
             return data;

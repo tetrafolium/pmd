@@ -27,7 +27,7 @@ import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 public class BigIntegerInstantiationRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         Node type = node.getChild(0);
 
         if (!(type instanceof ASTClassOrInterfaceType)) {

@@ -5,7 +5,7 @@
 package net.sourceforge.pmd.cpd;
 
 public class AnyLanguage extends AbstractLanguage {
-    public AnyLanguage(String... extensions) {
+    public AnyLanguage(final String... extensions) {
         super("Any Language", "any", new AnyTokenizer(), extensions);
     }
 }

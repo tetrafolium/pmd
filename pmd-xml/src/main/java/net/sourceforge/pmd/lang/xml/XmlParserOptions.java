@@ -44,7 +44,7 @@ public class XmlParserOptions extends ParserOptions {
 
     public static final EntityResolver SILENT_ENTITY_RESOLVER = new EntityResolver() {
         @Override
-        public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        public InputSource resolveEntity(final String publicId, final String systemId) throws SAXException, IOException {
             return new InputSource(new ByteArrayInputStream("".getBytes()));
         }
     };
@@ -70,7 +70,7 @@ public class XmlParserOptions extends ParserOptions {
         this.lookupDescriptorDoc = LOOKUP_DESCRIPTOR_DTD.defaultValue().booleanValue();
     }
 
-    public XmlParserOptions(Rule rule) {
+    public XmlParserOptions(final Rule rule) {
         this.coalescing = rule.getProperty(COALESCING_DESCRIPTOR);
         this.expandEntityReferences = rule.getProperty(EXPAND_ENTITY_REFERENCES_DESCRIPTOR);
         this.ignoringComments = rule.getProperty(IGNORING_COMMENTS_DESCRIPTOR);
@@ -99,7 +99,7 @@ public class XmlParserOptions extends ParserOptions {
         return lookupDescriptorDoc;
     }
 
-    public void setLookupDescriptorDoc(boolean lookupDescriptorDoc) {
+    public void setLookupDescriptorDoc(final boolean lookupDescriptorDoc) {
         this.lookupDescriptorDoc = lookupDescriptorDoc;
     }
 
@@ -107,7 +107,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.coalescing;
     }
 
-    public void setCoalescing(boolean coalescing) {
+    public void setCoalescing(final boolean coalescing) {
         this.coalescing = coalescing;
     }
 
@@ -115,7 +115,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.expandEntityReferences;
     }
 
-    public void setExpandEntityReferences(boolean expandEntityReferences) {
+    public void setExpandEntityReferences(final boolean expandEntityReferences) {
         this.expandEntityReferences = expandEntityReferences;
     }
 
@@ -123,7 +123,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.ignoringComments;
     }
 
-    public void setIgnoringComments(boolean ignoringComments) {
+    public void setIgnoringComments(final boolean ignoringComments) {
         this.ignoringComments = ignoringComments;
     }
 
@@ -131,7 +131,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.ignoringElementContentWhitespace;
     }
 
-    public void setIgnoringElementContentWhitespace(boolean ignoringElementContentWhitespace) {
+    public void setIgnoringElementContentWhitespace(final boolean ignoringElementContentWhitespace) {
         this.ignoringElementContentWhitespace = ignoringElementContentWhitespace;
     }
 
@@ -139,7 +139,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.namespaceAware;
     }
 
-    public void setNamespaceAware(boolean namespaceAware) {
+    public void setNamespaceAware(final boolean namespaceAware) {
         this.namespaceAware = namespaceAware;
     }
 
@@ -147,7 +147,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.validating;
     }
 
-    public void setValidating(boolean validating) {
+    public void setValidating(final boolean validating) {
         this.validating = validating;
     }
 
@@ -155,7 +155,7 @@ public class XmlParserOptions extends ParserOptions {
         return this.xincludeAware;
     }
 
-    public void setXincludeAware(boolean xincludeAware) {
+    public void setXincludeAware(final boolean xincludeAware) {
         this.xincludeAware = xincludeAware;
     }
 
@@ -174,7 +174,7 @@ public class XmlParserOptions extends ParserOptions {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

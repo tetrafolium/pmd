@@ -10,18 +10,18 @@ public class ASTNameList extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTNameList(int id) {
+    public ASTNameList(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTNameList(JavaParser p, int id) {
+    public ASTNameList(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

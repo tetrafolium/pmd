@@ -51,7 +51,7 @@ public class RuleContext {
      * @param ruleContext
      *            the context from which the values are shared
      */
-    public RuleContext(RuleContext ruleContext) {
+    public RuleContext(final RuleContext ruleContext) {
         this.attributes = ruleContext.attributes;
         this.report.addListeners(ruleContext.getReport().getListeners());
     }
@@ -71,7 +71,7 @@ public class RuleContext {
      * @param report
      *            The Report.
      */
-    public void setReport(Report report) {
+    public void setReport(final Report report) {
         this.report = report;
     }
 
@@ -92,7 +92,7 @@ public class RuleContext {
      * @param sourceCodeFile
      *            The File.
      */
-    public void setSourceCodeFile(File sourceCodeFile) {
+    public void setSourceCodeFile(final File sourceCodeFile) {
         this.sourceCodeFile = sourceCodeFile;
     }
 
@@ -119,7 +119,7 @@ public class RuleContext {
      * has no effect.
      */
     @Deprecated
-    public void setSourceCodeFilename(String filename) {
+    public void setSourceCodeFilename(final String filename) {
         // ignored, does nothing.
         LOG.warning("The method RuleContext::setSourceCodeFilename(String) has been deprecated and will be removed."
                 + "Setting the filename here has no effect. Use RuleContext::setSourceCodeFile(File) instead.");
@@ -142,7 +142,7 @@ public class RuleContext {
      * @param languageVersion
      *            The LanguageVersion.
      */
-    public void setLanguageVersion(LanguageVersion languageVersion) {
+    public void setLanguageVersion(final LanguageVersion languageVersion) {
         this.languageVersion = languageVersion;
     }
 
@@ -168,7 +168,7 @@ public class RuleContext {
      * @return <code>true</code> if the attribute was set, <code>false</code>
      *         otherwise.
      */
-    public boolean setAttribute(String name, Object value) {
+    public boolean setAttribute(final String name, final Object value) {
         if (name == null) {
             throw new IllegalArgumentException("Parameter 'name' cannot be null.");
         }
@@ -195,7 +195,7 @@ public class RuleContext {
      * @return The current attribute value, or <code>null</code> if the
      *         attribute does not exist.
      */
-    public Object getAttribute(String name) {
+    public Object getAttribute(final String name) {
         return this.attributes.get(name);
     }
 
@@ -216,7 +216,7 @@ public class RuleContext {
      * @return The current attribute value, or <code>null</code> if the
      *         attribute does not exist.
      */
-    public Object removeAttribute(String name) {
+    public Object removeAttribute(final String name) {
         return this.attributes.remove(name);
     }
 
@@ -232,7 +232,7 @@ public class RuleContext {
      * @param ignoreExceptions
      *            if <code>true</code> simply skip failing rules (default).
      */
-    public void setIgnoreExceptions(boolean ignoreExceptions) {
+    public void setIgnoreExceptions(final boolean ignoreExceptions) {
         this.ignoreExceptions = ignoreExceptions;
     }
 

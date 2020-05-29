@@ -26,7 +26,7 @@ public final class JavaOperationQualifiedName extends JavaQualifiedName {
     private final boolean isLambda;
 
 
-    JavaOperationQualifiedName(JavaTypeQualifiedName parent, String operation, boolean isLambda) {
+    JavaOperationQualifiedName(final JavaTypeQualifiedName parent, final String operation, final boolean isLambda) {
         Objects.requireNonNull(operation);
         Objects.requireNonNull(parent);
 
@@ -76,7 +76,7 @@ public final class JavaOperationQualifiedName extends JavaQualifiedName {
 
 
     @Override
-    protected boolean structurallyEquals(JavaQualifiedName qname) {
+    protected boolean structurallyEquals(final JavaQualifiedName qname) {
         JavaOperationQualifiedName that = (JavaOperationQualifiedName) qname;
         return isLambda == that.isLambda
                 && this.operation.equals(that.operation)

@@ -187,14 +187,14 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         this(ClassTypeResolver.class.getClassLoader());
     }
 
-    public ClassTypeResolver(ClassLoader classLoader) {
+    public ClassTypeResolver(final ClassLoader classLoader) {
         pmdClassLoader = PMDASMClassLoader.getInstance(classLoader);
     }
 
     // FUTURE ASTCompilationUnit should not be a TypeNode. Clean this up
     // accordingly.
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         String className = null;
         try {
             currentAcu = node;
@@ -225,13 +225,13 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTPackageDeclaration node, Object data) {
+    public Object visit(final ASTPackageDeclaration node, final Object data) {
         // no need to visit children, the only child, ASTName, will have no type
         return data;
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         ASTName importedType = (ASTName) node.getChild(0);
 
         if (importedType.getType() != null) {
@@ -249,14 +249,14 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTTypeDeclaration node, Object data) {
+    public Object visit(final ASTTypeDeclaration node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         super.visit(node, data);
 
         String typeName = node.getImage();
@@ -294,7 +294,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      * @return The index in the array produced by splitting the node's name by '.', which is not part of the
      * class name found. Example: com.package.SomeClass.staticField.otherField, return would be 3
      */
-    private int searchNodeNameForClass(TypeNode node) {
+    private int searchNodeNameForClass(final TypeNode node) {
         // this is the index from which field/method names start in the dotSplitImage array
         int startIndex = node.getImage().split("\\.").length;
 
@@ -323,7 +323,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return startIndex;
     }
 
-    private ASTArgumentList getArgumentList(ASTArguments args) {
+    private ASTArgumentList getArgumentList(final ASTArguments args) {
         if (args != null) {
             return args.getFirstChildOfType(ASTArgumentList.class);
         }
@@ -331,7 +331,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return null;
     }
 
-    private int getArgumentListArity(ASTArgumentList argList) {
+    private int getArgumentListArity(final ASTArgumentList argList) {
         if (argList != null) {
             return argList.getNumChildren();
         }
@@ -340,7 +340,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         Class<?> accessingClass = getEnclosingTypeDeclarationClass(node);
         String[] dotSplitImage = node.getImage().split("\\.");
 
@@ -418,10 +418,10 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      * Compiles a list of potentially applicable methods.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.1
      */
-    private List<MethodType> getLocalApplicableMethods(TypeNode node, String methodName,
-                                                       List<JavaTypeDefinition> typeArguments,
-                                                       int argArity,
-                                                       Class<?> accessingClass) {
+    private List<MethodType> getLocalApplicableMethods(final TypeNode node, final String methodName,
+                                                       final List<JavaTypeDefinition> typeArguments,
+                                                       final int argArity,
+                                                       final Class<?> accessingClass) {
         List<MethodType> foundMethods = new ArrayList<>();
 
         if (accessingClass == null) {
@@ -441,10 +441,10 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return foundMethods;
     }
 
-    private List<MethodType> searchImportedStaticMethods(String methodName,
-                                                         List<JavaTypeDefinition> typeArguments,
-                                                         int argArity,
-                                                         Class<?> accessingClass) {
+    private List<MethodType> searchImportedStaticMethods(final String methodName,
+                                                         final List<JavaTypeDefinition> typeArguments,
+                                                         final int argArity,
+                                                         final Class<?> accessingClass) {
         List<MethodType> foundMethods = new ArrayList<>();
 
         // TODO: member methods must not be looked at in the code below
@@ -476,7 +476,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     /**
      * This method can be called on a prefix
      */
-    private ASTArguments getSuffixMethodArgs(Node node) {
+    private ASTArguments getSuffixMethodArgs(final Node node) {
         Node prefix = node.getParent();
 
         if (prefix instanceof ASTPrimaryPrefix
@@ -498,7 +498,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      *
      * @return JavaTypeDefinition of the resolved field or null if it could not be found.
      */
-    private JavaTypeDefinition getFieldType(JavaTypeDefinition typeToSearch, String fieldImage, Class<?>
+    private JavaTypeDefinition getFieldType(final JavaTypeDefinition typeToSearch, final String fieldImage, final Class<?>
             accessingClass) {
         while (typeToSearch != null && typeToSearch.getType() != Object.class) {
             try {
@@ -535,7 +535,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      *
      * @return Type def. of the field, or null if it could not be resolved.
      */
-    private JavaTypeDefinition getTypeDefinitionOfVariableFromScope(Scope scope, String image, Class<?>
+    private JavaTypeDefinition getTypeDefinitionOfVariableFromScope(final Scope scope, final String image, final Class<?>
             accessingClass) {
         if (accessingClass == null) {
             return null;
@@ -586,7 +586,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return searchImportedStaticFields(image); // will return null if not found
     }
 
-    private JavaTypeDefinition searchImportedStaticFields(String fieldName) {
+    private JavaTypeDefinition searchImportedStaticFields(final String fieldName) {
         if (staticFieldImageToTypeDef.containsKey(fieldName)) {
             return staticFieldImageToTypeDef.get(fieldName);
         }
@@ -604,21 +604,21 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableDeclarator node, Object data) {
+    public Object visit(final ASTVariableDeclarator node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node == null || node.isTypeInferred()) {
             return super.visit(node, data);
         }
@@ -634,13 +634,13 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTType node, Object data) {
+    public Object visit(final ASTType node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
-    private void populateVariableDeclaratorFromType(ASTLocalVariableDeclaration node, JavaTypeDefinition typeDefinition) {
+    private void populateVariableDeclaratorFromType(final ASTLocalVariableDeclaration node, final JavaTypeDefinition typeDefinition) {
         // assign this type to VariableDeclarator and VariableDeclaratorId
         TypeNode var = node.getFirstChildOfType(ASTVariableDeclarator.class);
         if (var != null) {
@@ -653,7 +653,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         super.visit(node, data);
         // resolve "var" types: Upward projection of the type of the initializer expression
         ASTType type = node.getTypeNode();
@@ -670,7 +670,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         super.visit(node, data);
         // resolve potential "var" type
         if (node.getChild(0) instanceof ASTLocalVariableDeclaration) {
@@ -701,7 +701,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTResource node, Object data) {
+    public Object visit(final ASTResource node, final Object data) {
         super.visit(node, data);
         // resolve "var" types: the type of the initializer expression
         ASTType type = node.getTypeNode();
@@ -717,7 +717,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTReferenceType node, Object data) {
+    public Object visit(final ASTReferenceType node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
 
@@ -732,20 +732,20 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTPrimitiveType node, Object data) {
+    public Object visit(final ASTPrimitiveType node, final Object data) {
         populateType(node, node.getImage());
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         super.visit(node, data);
 
         // TODO Rules for Ternary are complex
@@ -756,58 +756,58 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTConditionalOrExpression node, Object data) {
+    public Object visit(final ASTConditionalOrExpression node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalAndExpression node, Object data) {
+    public Object visit(final ASTConditionalAndExpression node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTInclusiveOrExpression node, Object data) {
+    public Object visit(final ASTInclusiveOrExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeBinaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTExclusiveOrExpression node, Object data) {
+    public Object visit(final ASTExclusiveOrExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeBinaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTAndExpression node, Object data) {
+    public Object visit(final ASTAndExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeBinaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTEqualityExpression node, Object data) {
+    public Object visit(final ASTEqualityExpression node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTInstanceOfExpression node, Object data) {
+    public Object visit(final ASTInstanceOfExpression node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTRelationalExpression node, Object data) {
+    public Object visit(final ASTRelationalExpression node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTShiftExpression node, Object data) {
+    public Object visit(final ASTShiftExpression node, final Object data) {
         super.visit(node, data);
         // Unary promotion on LHS is type of a shift operation
         rollupTypeUnaryNumericPromotion(node);
@@ -815,42 +815,42 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTAdditiveExpression node, Object data) {
+    public Object visit(final ASTAdditiveExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeBinaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTMultiplicativeExpression node, Object data) {
+    public Object visit(final ASTMultiplicativeExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeBinaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTUnaryExpression node, Object data) {
+    public Object visit(final ASTUnaryExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnaryNumericPromotion(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTPreIncrementExpression node, Object data) {
+    public Object visit(final ASTPreIncrementExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTPreDecrementExpression node, Object data) {
+    public Object visit(final ASTPreDecrementExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTUnaryExpressionNotPlusMinus node, Object data) {
+    public Object visit(final ASTUnaryExpressionNotPlusMinus node, final Object data) {
         super.visit(node, data);
         if ("!".equals(node.getImage())) {
             populateType(node, "boolean");
@@ -861,14 +861,14 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTPostfixExpression node, Object data) {
+    public Object visit(final ASTPostfixExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTCastExpression node, Object data) {
+    public Object visit(final ASTCastExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
@@ -876,7 +876,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
 
     @Override
-    public Object visit(ASTPrimaryExpression primaryNode, Object data) {
+    public Object visit(final ASTPrimaryExpression primaryNode, final Object data) {
         // visit method arguments in reverse
         for (int i = primaryNode.getNumChildren() - 1; i >= 0; --i) {
             ((JavaNode) primaryNode.getChild(i)).jjtAccept(this, data);
@@ -1001,7 +1001,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      *
      * @return The JavaTypeDefinition of the enclosing Class declaration.
      */
-    private TypeNode getEnclosingTypeDeclaration(Node node) {
+    private TypeNode getEnclosingTypeDeclaration(final Node node) {
         Node previousNode = null;
 
         while (node != null) {
@@ -1021,7 +1021,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return null;
     }
 
-    private Class<?> getEnclosingTypeDeclarationClass(Node node) {
+    private Class<?> getEnclosingTypeDeclarationClass(final Node node) {
         TypeNode typeDecl = getEnclosingTypeDeclaration(node);
 
         if (typeDecl == null) {
@@ -1042,7 +1042,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      *
      * @return The TypeDefinition of the superclass.
      */
-    private JavaTypeDefinition getSuperClassTypeDefinition(Node node, Class<?> clazz) {
+    private JavaTypeDefinition getSuperClassTypeDefinition(final Node node, final Class<?> clazz) {
         Node previousNode = null;
         for (; node != null; previousNode = node, node = node.getParent()) {
             if (node instanceof ASTClassOrInterfaceDeclaration // class declaration
@@ -1070,7 +1070,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
 
@@ -1078,7 +1078,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTPrimarySuffix node, Object data) {
+    public Object visit(final ASTPrimarySuffix node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
 
@@ -1086,7 +1086,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTTypeArgument node, Object data) {
+    public Object visit(final ASTTypeArgument node, final Object data) {
         if (node.getNumChildren() == 0) { // if type argument is '?'
             node.setTypeDefinition(JavaTypeDefinition.forClass(UPPER_WILDCARD, Object.class));
         } else {
@@ -1098,7 +1098,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTWildcardBounds node, Object data) {
+    public Object visit(final ASTWildcardBounds node, final Object data) {
         super.visit(node, data);
 
         JavaTypeDefinition childType = node.getTypeBoundNode().getTypeDefinition();
@@ -1113,7 +1113,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTTypeParameters node, Object data) {
+    public Object visit(final ASTTypeParameters node, final Object data) {
         super.visit(node, data);
 
         if (node.getParent() instanceof ASTClassOrInterfaceDeclaration) {
@@ -1132,7 +1132,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTTypeParameter node, Object data) {
+    public Object visit(final ASTTypeParameter node, final Object data) {
         if (!node.hasTypeBound()) { // type parameter doesn't have declared upper bounds
             node.setTypeDefinition(JavaTypeDefinition.forClass(UPPER_BOUND, Object.class));
         } else {
@@ -1144,7 +1144,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTTypeBound node, Object data) {
+    public Object visit(final ASTTypeBound node, final Object data) {
         super.visit(node, data);
 
         List<ASTClassOrInterfaceType> typeNodes = node.getBoundTypeNodes();
@@ -1162,19 +1162,19 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTNullLiteral node, Object data) {
+    public Object visit(final ASTNullLiteral node, final Object data) {
         // No explicit type
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTBooleanLiteral node, Object data) {
+    public Object visit(final ASTBooleanLiteral node, final Object data) {
         populateType(node, "boolean");
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         super.visit(node, data);
         if (node.getNumChildren() != 0) {
             rollupTypeUnary(node);
@@ -1199,7 +1199,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         super.visit(node, data);
 
         final ASTArrayDimsAndInits dims = node.getFirstChildOfType(ASTArrayDimsAndInits.class);
@@ -1215,14 +1215,14 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTSwitchExpression node, Object data) {
+    public Object visit(final ASTSwitchExpression node, final Object data) {
         super.visit(node, data);
 
         JavaTypeDefinition type = null;
@@ -1283,7 +1283,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
 
     @Override
-    public Object visit(ASTFormalParameter node, Object data) {
+    public Object visit(final ASTFormalParameter node, final Object data) {
         super.visit(node, data);
         JavaTypeDefinition varType = node.getVariableDeclaratorId().getTypeDefinition();
 
@@ -1299,42 +1299,42 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
 
     @Override
-    public Object visit(ASTAnnotation node, Object data) {
+    public Object visit(final ASTAnnotation node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTNormalAnnotation node, Object data) {
+    public Object visit(final ASTNormalAnnotation node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTMarkerAnnotation node, Object data) {
+    public Object visit(final ASTMarkerAnnotation node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTSingleMemberAnnotation node, Object data) {
+    public Object visit(final ASTSingleMemberAnnotation node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTYieldStatement node, Object data) {
+    public Object visit(final ASTYieldStatement node, final Object data) {
         super.visit(node, data);
         rollupTypeUnary(node);
         return data;
     }
 
     // Roll up the type based on type of the first child node.
-    private void rollupTypeUnary(TypeNode typeNode) {
+    private void rollupTypeUnary(final TypeNode typeNode) {
         if (typeNode.getNumChildren() >= 1) {
             Node child = typeNode.getChild(0);
             if (child instanceof TypeNode) {
@@ -1345,7 +1345,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
     // Roll up the type based on type of the first child node using Unary
     // Numeric Promotion per JLS 5.6.1
-    private void rollupTypeUnaryNumericPromotion(TypeNode typeNode) {
+    private void rollupTypeUnaryNumericPromotion(final TypeNode typeNode) {
         Node node = typeNode;
         if (node.getNumChildren() >= 1) {
             Node child = node.getChild(0);
@@ -1365,7 +1365,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
 
     // Roll up the type based on type of the first and second child nodes using
     // Binary Numeric Promotion per JLS 5.6.2
-    private void rollupTypeBinaryNumericPromotion(TypeNode typeNode) {
+    private void rollupTypeBinaryNumericPromotion(final TypeNode typeNode) {
         Node node = typeNode;
         if (node.getNumChildren() >= 2) {
             Node child1 = node.getChild(0);
@@ -1403,11 +1403,11 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         }
     }
 
-    private void populateType(TypeNode node, String className) {
+    private void populateType(final TypeNode node, final String className) {
         populateType(node, className, 0);
     }
 
-    private void populateType(TypeNode node, String className, int arrayDimens) {
+    private void populateType(final TypeNode node, final String className, final int arrayDimens) {
 
         String qualifiedName = className;
         Class<?> myType = PRIMITIVE_TYPES.get(className);
@@ -1456,7 +1456,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         }
     }
 
-    private ASTTypeParameter getTypeParameterDeclaration(Node startNode, String image) {
+    private ASTTypeParameter getTypeParameterDeclaration(final Node startNode, final String image) {
         for (Node parent = startNode.getParent(); parent != null; parent = parent.getParent()) {
             ASTTypeParameters typeParameters = null;
 
@@ -1484,20 +1484,20 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     /**
      * Check whether the supplied class name exists.
      */
-    public boolean classNameExists(String fullyQualifiedClassName) {
+    public boolean classNameExists(final String fullyQualifiedClassName) {
         return pmdClassLoader.loadClassOrNull(fullyQualifiedClassName) != null;
     }
 
     @Override
-    public Class<?> loadClassOrNull(String fullyQualifiedClassName) {
+    public Class<?> loadClassOrNull(final String fullyQualifiedClassName) {
         return pmdClassLoader.loadClassOrNull(fullyQualifiedClassName);
     }
 
-    public Class<?> loadClass(String fullyQualifiedClassName) {
+    public Class<?> loadClass(final String fullyQualifiedClassName) {
         return loadClassOrNull(fullyQualifiedClassName);
     }
 
-    private Class<?> processOnDemand(String qualifiedName) {
+    private Class<?> processOnDemand(final String qualifiedName) {
         for (String entry : importedOnDemand) {
             String fullClassName = entry + "." + qualifiedName;
             Class<?> aClass = pmdClassLoader.loadClassOrNull(fullClassName);
@@ -1509,7 +1509,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
         return null;
     }
 
-    private String getClassName(ASTCompilationUnit node) {
+    private String getClassName(final ASTCompilationUnit node) {
         ASTAnyTypeDeclaration classDecl = node.getFirstDescendantOfType(ASTAnyTypeDeclaration.class);
         if (classDecl == null) {
             // package-info.java?
@@ -1529,7 +1529,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
      *
      * @param node
      */
-    private void populateImports(ASTCompilationUnit node) {
+    private void populateImports(final ASTCompilationUnit node) {
         List<ASTImportDeclaration> theImportDeclarations = node.findChildrenOfType(ASTImportDeclaration.class);
 
         importedClasses.putAll(JAVA_LANG);
@@ -1574,7 +1574,7 @@ public class ClassTypeResolver extends JavaParserVisitorAdapter implements Nulla
     }
 
 
-    private void populateClassName(ASTCompilationUnit node, String className) throws ClassNotFoundException {
+    private void populateClassName(final ASTCompilationUnit node, final String className) throws ClassNotFoundException {
         Class<?> type = pmdClassLoader.loadClassOrNull(className);
         if (type != null) {
             node.setType(type);

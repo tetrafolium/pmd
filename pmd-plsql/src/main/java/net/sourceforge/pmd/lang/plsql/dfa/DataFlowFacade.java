@@ -30,14 +30,14 @@ public class DataFlowFacade extends PLSQLParserVisitorAdapter {
     private StatementAndBraceFinder sbf;
     private VariableAccessVisitor vav;
 
-    public void initializeWith(DataFlowHandler dataFlowHandler, ASTInput node) {
+    public void initializeWith(final DataFlowHandler dataFlowHandler, final ASTInput node) {
         sbf = new StatementAndBraceFinder(dataFlowHandler);
         vav = new VariableAccessVisitor();
         node.jjtAccept(this, null);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         LOGGER.entering(CLASS_PATH, "visit(ASTMethodDeclaration)");
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("visit(ASTMethodDeclaration): " + node.getClass().getCanonicalName() + " @ line "
@@ -53,7 +53,7 @@ public class DataFlowFacade extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTTriggerUnit node, Object data) {
+    public Object visit(final ASTTriggerUnit node, final Object data) {
         LOGGER.entering(CLASS_PATH, "visit(ASTTriggerUnit)");
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(
@@ -83,7 +83,7 @@ public class DataFlowFacade extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTTriggerTimingPointSection node, Object data) {
+    public Object visit(final ASTTriggerTimingPointSection node, final Object data) {
         LOGGER.entering(CLASS_PATH, "visit(ASTTriggerTimingPointSection)");
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("visit(ASTTriggerTimingPointSection): " + node.getClass().getCanonicalName() + " @ line "
@@ -97,7 +97,7 @@ public class DataFlowFacade extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTProgramUnit node, Object data) {
+    public Object visit(final ASTProgramUnit node, final Object data) {
         LOGGER.entering(CLASS_PATH, "visit(ASTProgramUnit)");
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(
@@ -111,7 +111,7 @@ public class DataFlowFacade extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTTypeMethod node, Object data) {
+    public Object visit(final ASTTypeMethod node, final Object data) {
         LOGGER.entering(CLASS_PATH, "visit(ASTTypeMethod)");
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(

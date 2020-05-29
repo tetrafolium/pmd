@@ -31,13 +31,13 @@ public class JavaDFAGraphRule extends AbstractJavaRule implements DFAGraphRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         methods.add(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTCompilationUnit acu, Object data) {
+    public Object visit(final ASTCompilationUnit acu, final Object data) {
         methods = new ArrayList<>();
         return super.visit(acu, data);
     }

@@ -18,7 +18,7 @@ public final class Viewer {
 
     private Viewer() { }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Initializer.initialize();
         new MainFrame();
     }

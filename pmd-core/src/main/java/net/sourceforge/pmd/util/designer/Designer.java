@@ -140,7 +140,7 @@ public class Designer implements ClipboardOwner {
     private static final String SETTINGS_FILE_NAME = System.getProperty("user.home")
             + System.getProperty("file.separator") + ".pmd_designer.xml";
 
-    public Designer(String[] args) {
+    public Designer(final String[] args) {
         if (args.length > 0) {
             exitOnClose = !args[0].equals("-noexitonclose");
         }
@@ -198,7 +198,7 @@ public class Designer implements ClipboardOwner {
         return getCompilationUnit(languageVersionHandler);
     }
 
-    static Node getCompilationUnit(LanguageVersionHandler languageVersionHandler, String code) {
+    static Node getCompilationUnit(final LanguageVersionHandler languageVersionHandler, final String code) {
         Parser parser = languageVersionHandler.getParser(languageVersionHandler.getDefaultParserOptions());
         Node node = parser.parse(null, new StringReader(code));
         languageVersionHandler.getSymbolFacade().start(node);
@@ -206,7 +206,7 @@ public class Designer implements ClipboardOwner {
         return node;
     }
 
-    private Node getCompilationUnit(LanguageVersionHandler languageVersionHandler) {
+    private Node getCompilationUnit(final LanguageVersionHandler languageVersionHandler) {
         return getCompilationUnit(languageVersionHandler, codeEditorPane.getText());
     }
 
@@ -228,7 +228,7 @@ public class Designer implements ClipboardOwner {
         return getSupportedLanguageVersions()[selectedLanguageVersionIndex()];
     }
 
-    private void setLanguageVersion(LanguageVersion languageVersion) {
+    private void setLanguageVersion(final LanguageVersion languageVersion) {
         if (languageVersion != null) {
             LanguageVersion[] versions = getSupportedLanguageVersions();
             for (int i = 0; i < versions.length; i++) {
@@ -260,7 +260,7 @@ public class Designer implements ClipboardOwner {
         private Object item;
         private ExceptionNode[] kids;
 
-        ExceptionNode(Object theItem) {
+        ExceptionNode(final Object theItem) {
             item = theItem;
 
             if (item instanceof ParseException) {
@@ -301,7 +301,7 @@ public class Designer implements ClipboardOwner {
         }
 
         @Override
-        public TreeNode getChildAt(int childIndex) {
+        public TreeNode getChildAt(final int childIndex) {
             return kids[childIndex];
         }
 
@@ -327,7 +327,7 @@ public class Designer implements ClipboardOwner {
         }
 
         @Override
-        public int getIndex(TreeNode node) {
+        public int getIndex(final TreeNode node) {
             for (int i = 0; i < kids.length; i++) {
                 if (kids[i] == node) {
                     return i;
@@ -345,7 +345,7 @@ public class Designer implements ClipboardOwner {
         private ASTTreeNode parent;
         private ASTTreeNode[] kids;
 
-        ASTTreeNode(Node theNode) {
+        ASTTreeNode(final Node theNode) {
             node = theNode;
 
             Node parent = node.getParent();
@@ -354,7 +354,7 @@ public class Designer implements ClipboardOwner {
             }
         }
 
-        private ASTTreeNode(ASTTreeNode parent, Node theNode) {
+        private ASTTreeNode(final ASTTreeNode parent, final Node theNode) {
             node = theNode;
             this.parent = parent;
         }
@@ -409,7 +409,7 @@ public class Designer implements ClipboardOwner {
         }
 
         @Override
-        public TreeNode getChildAt(int childIndex) {
+        public TreeNode getChildAt(final int childIndex) {
 
             if (kids == null) {
                 kids = new ASTTreeNode[node.getNumChildren()];
@@ -421,7 +421,7 @@ public class Designer implements ClipboardOwner {
         }
 
         @Override
-        public int getIndex(TreeNode node) {
+        public int getIndex(final TreeNode node) {
 
             for (int i = 0; i < kids.length; i++) {
                 if (kids[i] == node) {
@@ -469,14 +469,14 @@ public class Designer implements ClipboardOwner {
 
         private static final long serialVersionUID = 1L;
 
-        TreeWidget(Object[] items) {
+        TreeWidget(final Object[] items) {
             super(items);
             setToolTipText("");
         }
 
         @Override
-        public String convertValueToText(Object value, boolean selected, boolean expanded, boolean leaf, int row,
-                boolean hasFocus) {
+        public String convertValueToText(final Object value, final boolean selected, final boolean expanded, final boolean leaf, final int row,
+                final boolean hasFocus) {
             if (value == null) {
                 return "";
             }
@@ -490,7 +490,7 @@ public class Designer implements ClipboardOwner {
         }
 
         @Override
-        public String getToolTipText(MouseEvent e) {
+        public String getToolTipText(final MouseEvent e) {
             if (getRowForLocation(e.getX(), e.getY()) == -1) {
                 return null;
             }
@@ -502,12 +502,12 @@ public class Designer implements ClipboardOwner {
             }
         }
 
-        public void expandAll(boolean expand) {
+        public void expandAll(final boolean expand) {
             TreeNode root = (TreeNode) getModel().getRoot();
             expandAll(new TreePath(root), expand);
         }
 
-        private void expandAll(TreePath parent, boolean expand) {
+        private void expandAll(final TreePath parent, final boolean expand) {
             // Traverse children
             TreeNode node = (TreeNode) parent.getLastPathComponent();
             if (node.getChildCount() >= 0) {
@@ -526,13 +526,13 @@ public class Designer implements ClipboardOwner {
         }
     }
 
-    private void loadASTTreeData(TreeNode rootNode) {
+    private void loadASTTreeData(final TreeNode rootNode) {
         astTreeWidget.setModel(new DefaultTreeModel(rootNode));
         astTreeWidget.setRootVisible(true);
         astTreeWidget.expandAll(true);
     }
 
-    private void loadSymbolTableTreeData(TreeNode rootNode) {
+    private void loadSymbolTableTreeData(final TreeNode rootNode) {
         if (rootNode != null) {
             symbolTableTreeWidget.setModel(new DefaultTreeModel(rootNode));
             symbolTableTreeWidget.expandAll(true);
@@ -543,7 +543,7 @@ public class Designer implements ClipboardOwner {
 
     private class ShowListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(final ActionEvent ae) {
             TreeNode tn;
             try {
                 Node lastCompilationUnit = getCompilationUnit();
@@ -559,7 +559,7 @@ public class Designer implements ClipboardOwner {
 
     private class DFAListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(final ActionEvent ae) {
 
             LanguageVersion languageVersion = getLanguageVersion();
             DFAGraphRule dfaGraphRule = languageVersion.getLanguageVersionHandler().getDFAGraphRule();
@@ -589,7 +589,7 @@ public class Designer implements ClipboardOwner {
 
     private class XPathListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(final ActionEvent ae) {
             xpathResults.clear();
             if (StringUtils.isBlank(xpathQueryArea.getText())) {
                 xpathResults.addElement("XPath query field is empty.");
@@ -601,7 +601,7 @@ public class Designer implements ClipboardOwner {
             try {
                 XPathRule xpathRule = new XPathRule() {
                     @Override
-                    public void addViolation(Object data, Node node, String arg) {
+                    public void addViolation(final Object data, final Node node, final String arg) {
                         xpathResults.addElement(node);
                     }
                 };
@@ -634,7 +634,7 @@ public class Designer implements ClipboardOwner {
 
     private class SymbolTableListener implements TreeSelectionListener {
         @Override
-        public void valueChanged(TreeSelectionEvent e) {
+        public void valueChanged(final TreeSelectionEvent e) {
             if (e.getNewLeadSelectionPath() != null) {
                 ASTTreeNode astTreeNode = (ASTTreeNode) e.getNewLeadSelectionPath().getLastPathComponent();
 
@@ -682,7 +682,7 @@ public class Designer implements ClipboardOwner {
 
     private class CodeHighlightListener implements TreeSelectionListener {
         @Override
-        public void valueChanged(TreeSelectionEvent e) {
+        public void valueChanged(final TreeSelectionEvent e) {
             if (e.getNewLeadSelectionPath() != null) {
                 ASTTreeNode selected = (ASTTreeNode) e.getNewLeadSelectionPath().getLastPathComponent();
                 if (selected != null) {
@@ -696,8 +696,8 @@ public class Designer implements ClipboardOwner {
         private static final long serialVersionUID = 1L;
 
         @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
-                boolean cellHasFocus) {
+        public Component getListCellRendererComponent(final JList list, final Object value, final int index, final boolean isSelected,
+                final boolean cellHasFocus) {
 
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
@@ -728,7 +728,7 @@ public class Designer implements ClipboardOwner {
 
     private class ASTSelectionListener implements ListSelectionListener {
         @Override
-        public void valueChanged(ListSelectionEvent e) {
+        public void valueChanged(final ListSelectionEvent e) {
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
             if (!lsm.isSelectionEmpty()) {
                 Object o = xpathResults.get(lsm.getMinSelectionIndex());
@@ -759,7 +759,7 @@ public class Designer implements ClipboardOwner {
         JMenuItem copyXMLItem = new JMenuItem("Copy xml to clipboard");
         copyXMLItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 copyXmlToClipboard();
             }
         });
@@ -767,7 +767,7 @@ public class Designer implements ClipboardOwner {
         JMenuItem createRuleXMLItem = new JMenuItem("Create rule XML");
         createRuleXMLItem.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 createRuleXML();
             }
         });
@@ -785,7 +785,7 @@ public class Designer implements ClipboardOwner {
         xmlframe.setSize(new Dimension(600, 700));
         xmlframe.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
-            public void componentResized(ComponentEvent e) {
+            public void componentResized(final ComponentEvent e) {
                 JFrame tmp = (JFrame) e.getSource();
                 if (tmp.getWidth() < 600 || tmp.getHeight() < 700) {
                     tmp.setSize(600, 700);
@@ -883,18 +883,18 @@ public class Designer implements ClipboardOwner {
         b.addActionListener(new DFAListener());
         b.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 saveSettings();
             }
         });
         return b;
     }
 
-    private static void makeTextComponentUndoable(JTextComponent textConponent) {
+    private static void makeTextComponentUndoable(final JTextComponent textConponent) {
         final UndoManager undoManager = new UndoManager();
         textConponent.getDocument().addUndoableEditListener(new UndoableEditListener() {
             @Override
-            public void undoableEditHappened(UndoableEditEvent evt) {
+            public void undoableEditHappened(final UndoableEditEvent evt) {
                 undoManager.addEdit(evt.getEdit());
             }
         });
@@ -902,7 +902,7 @@ public class Designer implements ClipboardOwner {
         InputMap inputMap = textConponent.getInputMap();
         actionMap.put("Undo", new AbstractAction("Undo") {
             @Override
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(final ActionEvent evt) {
                 try {
                     if (undoManager.canUndo()) {
                         undoManager.undo();
@@ -916,7 +916,7 @@ public class Designer implements ClipboardOwner {
 
         actionMap.put("Redo", new AbstractAction("Redo") {
             @Override
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(final ActionEvent evt) {
                 try {
                     if (undoManager.canRedo()) {
                         undoManager.redo();
@@ -929,11 +929,11 @@ public class Designer implements ClipboardOwner {
         inputMap.put(KeyStroke.getKeyStroke("control Y"), "Redo");
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new Designer(args);
     }
 
-    final void setCodeEditPaneText(String text) {
+    final void setCodeEditPaneText(final String text) {
         codeEditorPane.setText(text);
     }
 
@@ -945,7 +945,7 @@ public class Designer implements ClipboardOwner {
         return null;
     }
 
-    static final String getXmlTreeCode(Node cu) {
+    static final String getXmlTreeCode(final Node cu) {
         String xml = null;
         if (cu != null) {
             try {
@@ -971,7 +971,7 @@ public class Designer implements ClipboardOwner {
      * @throws TransformerException
      *             if the XML cannot be converted to a string
      */
-    private static String getXmlString(Node node) throws TransformerException {
+    private static String getXmlString(final Node node) throws TransformerException {
         StringWriter writer = new StringWriter();
 
         Source source = new DOMSource(node.getAsDocument());
@@ -985,7 +985,7 @@ public class Designer implements ClipboardOwner {
     }
 
     @Override
-    public void lostOwnership(Clipboard clipboard, Transferable contents) {
+    public void lostOwnership(final Clipboard clipboard, final Transferable contents) {
         // ignored
     }
 
@@ -1057,7 +1057,7 @@ public class Designer implements ClipboardOwner {
         }
     }
 
-    private String getTextContext(Element element) {
+    private String getTextContext(final Element element) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < element.getChildNodes().getLength(); i++) {
             org.w3c.dom.Node child = element.getChildNodes().item(i);

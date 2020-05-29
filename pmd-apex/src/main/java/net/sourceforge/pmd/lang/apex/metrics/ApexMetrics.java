@@ -54,7 +54,7 @@ public final class ApexMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTUserClassOrInterface<?>> key, ASTUserClass node) {
+    public static double get(final MetricKey<ASTUserClassOrInterface<?>> key, final ASTUserClass node) {
         return get(key, node, MetricOptions.emptyOptions());
     }
 
@@ -69,7 +69,7 @@ public final class ApexMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTUserClassOrInterface<?>> key, ASTUserClass node, MetricOptions options) {
+    public static double get(final MetricKey<ASTUserClassOrInterface<?>> key, final ASTUserClass node, final MetricOptions options) {
         return MetricsUtil.computeMetricOrNaN(key, node, options);
     }
 
@@ -82,7 +82,7 @@ public final class ApexMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTMethod> key, ASTMethod node) {
+    public static double get(final MetricKey<ASTMethod> key, final ASTMethod node) {
         return get(key, node, MetricOptions.emptyOptions());
     }
 
@@ -97,7 +97,7 @@ public final class ApexMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTMethod> key, ASTMethod node, MetricOptions options) {
+    public static double get(final MetricKey<ASTMethod> key, final ASTMethod node, final MetricOptions options) {
         return MetricsUtil.computeMetricOrNaN(key, node, options);
     }
 
@@ -113,7 +113,7 @@ public final class ApexMetrics {
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed or {@code option} is
      *     {@code null}
      */
-    public static double get(MetricKey<ASTMethod> key, ASTUserClassOrInterface<?> node, ResultOption resultOption) {
+    public static double get(final MetricKey<ASTMethod> key, final ASTUserClassOrInterface<?> node, final ResultOption resultOption) {
         return MetricsUtil.computeAggregate(key, findOps(node), resultOption);
     }
 
@@ -130,14 +130,14 @@ public final class ApexMetrics {
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed or {@code option} is
      *     {@code null}
      */
-    public static double get(MetricKey<ASTMethod> key, ASTUserClassOrInterface<?> node, MetricOptions options,
-                             ResultOption resultOption) {
+    public static double get(final MetricKey<ASTMethod> key, final ASTUserClassOrInterface<?> node, final MetricOptions options,
+                             final ResultOption resultOption) {
         return MetricsUtil.computeAggregate(key, findOps(node), options, resultOption);
     }
 
 
     @NonNull
-    public static List<ASTMethod> findOps(ASTUserClassOrInterface<?> node) {
+    public static List<ASTMethod> findOps(final ASTUserClassOrInterface<?> node) {
         List<ASTMethod> candidates = node.findChildrenOfType(ASTMethod.class);
         List<ASTMethod> result = new ArrayList<>(candidates);
         for (ASTMethod method : candidates) {

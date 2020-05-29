@@ -54,7 +54,7 @@ public class PMDTestRunner extends Runner implements Filterable, Sortable {
     }
 
     @Override
-    public void filter(Filter filter) throws NoTestsRemainException {
+    public void filter(final Filter filter) throws NoTestsRemainException {
         boolean noRuleTests = false;
         try {
             ruleTests.filter(filter);
@@ -84,7 +84,7 @@ public class PMDTestRunner extends Runner implements Filterable, Sortable {
         return description;
     }
 
-    private Description createChildrenDescriptions(Runner runner, String suiteName) {
+    private Description createChildrenDescriptions(final Runner runner, final String suiteName) {
         Description suite = Description.createSuiteDescription(suiteName);
         for (Description child : runner.getDescription().getChildren()) {
             suite.addChild(child);
@@ -93,19 +93,19 @@ public class PMDTestRunner extends Runner implements Filterable, Sortable {
     }
 
     @Override
-    public void run(RunNotifier notifier) {
+    public void run(final RunNotifier notifier) {
         ruleTests.run(notifier);
         unitTests.run(notifier);
     }
 
     @Override
-    public void sort(Sorter sorter) {
+    public void sort(final Sorter sorter) {
         ruleTests.sort(sorter);
         unitTests.sort(sorter);
     }
 
     private static class EmptyRunner extends ParentRunner<Object> {
-        protected EmptyRunner(Class<?> testClass) throws InitializationError {
+        protected EmptyRunner(final Class<?> testClass) throws InitializationError {
             super(testClass);
         }
 
@@ -120,12 +120,12 @@ public class PMDTestRunner extends Runner implements Filterable, Sortable {
         }
 
         @Override
-        protected Description describeChild(Object child) {
+        protected Description describeChild(final Object child) {
             return Description.EMPTY;
         }
 
         @Override
-        protected void runChild(Object child, RunNotifier notifier) {
+        protected void runChild(final Object child, final RunNotifier notifier) {
             // there are no tests - nothing to execute
         }
     }

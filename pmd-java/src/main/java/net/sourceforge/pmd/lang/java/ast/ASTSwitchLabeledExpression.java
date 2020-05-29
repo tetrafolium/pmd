@@ -10,18 +10,18 @@ public class ASTSwitchLabeledExpression extends AbstractJavaNode implements ASTS
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledExpression(int id) {
+    ASTSwitchLabeledExpression(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledExpression(JavaParser p, int id) {
+    ASTSwitchLabeledExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

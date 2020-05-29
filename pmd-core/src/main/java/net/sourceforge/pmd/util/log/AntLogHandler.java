@@ -46,7 +46,7 @@ public class AntLogHandler extends Handler {
         Level.FINEST,   // Project.MSG_DEBUG=4
     };
 
-    public AntLogHandler(Project project) {
+    public AntLogHandler(final Project project) {
         this.project = project;
     }
 
@@ -91,7 +91,7 @@ public class AntLogHandler extends Handler {
     }
 
     @Override
-    public void publish(LogRecord logRecord) {
+    public void publish(final LogRecord logRecord) {
         // Map the log levels from java.util.logging to Ant
         int antLevel;
         Level level = logRecord.getLevel();
@@ -132,7 +132,7 @@ public class AntLogHandler extends Handler {
         // nothing to do
     }
 
-    private Level determineGradleLogLevel(BuildListener l) {
+    private Level determineGradleLogLevel(final BuildListener l) {
         try {
             project.log("Detected gradle AntLoggingAdapter", Project.MSG_DEBUG);
             Field loggerField = l.getClass().getDeclaredField("logger");

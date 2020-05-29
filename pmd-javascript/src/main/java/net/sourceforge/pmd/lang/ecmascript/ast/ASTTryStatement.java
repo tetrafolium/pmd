@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTTryStatement extends AbstractEcmascriptNode<TryStatement> {
     @Deprecated
     @InternalApi
-    public ASTTryStatement(TryStatement tryStatement) {
+    public ASTTryStatement(final TryStatement tryStatement) {
         super(tryStatement);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -37,7 +37,7 @@ public class ASTTryStatement extends AbstractEcmascriptNode<TryStatement> {
         return node.getCatchClauses().size();
     }
 
-    public ASTCatchClause getCatchClause(int index) {
+    public ASTCatchClause getCatchClause(final int index) {
         if (index >= getNumCatchClause()) {
             return null;
         }

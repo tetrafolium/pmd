@@ -45,7 +45,7 @@ public final class LanguageRegistry {
         // across JVM versions / OS.
         Collections.sort(languagesList, new Comparator<Language>() {
             @Override
-            public int compare(Language o1, Language o2) {
+            public int compare(final Language o1, final Language o2) {
                 return o1.getTerseName().compareToIgnoreCase(o2.getTerseName());
             }
         });
@@ -78,7 +78,7 @@ public final class LanguageRegistry {
         return languages;
     }
 
-    public static Language getLanguage(String languageName) {
+    public static Language getLanguage(final String languageName) {
         return getInstance().languages.get(languageName);
     }
 
@@ -93,7 +93,7 @@ public final class LanguageRegistry {
         return defaultLanguage;
     }
 
-    public static Language findLanguageByTerseName(String terseName) {
+    public static Language findLanguageByTerseName(final String terseName) {
         for (Language language : getInstance().languages.values()) {
             if (language.getTerseName().equals(terseName)) {
                 return language;
@@ -106,7 +106,7 @@ public final class LanguageRegistry {
      * @deprecated This is not useful, will be removed with 7.0.0
      */
     @Deprecated
-    public static LanguageVersion findLanguageVersionByTerseName(String terseNameAndVersion) {
+    public static LanguageVersion findLanguageVersionByTerseName(final String terseNameAndVersion) {
         String version;
         String terseName;
         if (terseNameAndVersion.contains(" ")) {
@@ -127,7 +127,7 @@ public final class LanguageRegistry {
         return null;
     }
 
-    public static List<Language> findByExtension(String extension) {
+    public static List<Language> findByExtension(final String extension) {
         List<Language> languages = new ArrayList<>();
         for (Language language : getInstance().languages.values()) {
             if (language.hasExtension(extension)) {
@@ -165,7 +165,7 @@ public final class LanguageRegistry {
      * @deprecated This is too specific, will be removed with 7.0.0
      */
     @Deprecated
-    public static String commaSeparatedTerseNamesForLanguage(List<Language> languages) {
+    public static String commaSeparatedTerseNamesForLanguage(final List<Language> languages) {
         StringBuilder builder = new StringBuilder();
         for (Language language : languages) {
             if (builder.length() > 0) {
@@ -180,7 +180,7 @@ public final class LanguageRegistry {
      * @deprecated This is too specific, will be removed with 7.0.0
      */
     @Deprecated
-    public static String commaSeparatedTerseNamesForLanguageVersion(List<LanguageVersion> languageVersions) {
+    public static String commaSeparatedTerseNamesForLanguageVersion(final List<LanguageVersion> languageVersions) {
         if (languageVersions == null || languageVersions.isEmpty()) {
             return "";
         }

@@ -60,7 +60,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void addScope(Scope newScope, PLSQLNode node) {
+    private void addScope(final Scope newScope, final PLSQLNode node) {
         newScope.setParent(scopes.peek());
         scopes.push(newScope);
         node.setScope(newScope);
@@ -76,7 +76,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createLocalScope(PLSQLNode node) {
+    private void createLocalScope(final PLSQLNode node) {
         addScope(new LocalScope(), node);
     }
 
@@ -90,7 +90,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createMethodScope(PLSQLNode node) {
+    private void createMethodScope(final PLSQLNode node) {
         addScope(new MethodScope(node), node);
     }
 
@@ -104,7 +104,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createClassScope(PLSQLNode node) {
+    private void createClassScope(final PLSQLNode node) {
         if (node instanceof ASTDeclarativeUnit) {
             addScope(new ClassScope(), node);
         } else {
@@ -119,7 +119,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      * @param node
      *            the AST node for which the scope has to be created.
      */
-    private void createSourceFileScope(ASTInput node) {
+    private void createSourceFileScope(final ASTInput node) {
         // When we do full symbol resolution, we'll need to add a truly
         // top-level GlobalScope.
         Scope scope;
@@ -136,14 +136,14 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTInput node, Object data) {
+    public Object visit(final ASTInput node, final Object data) {
         createSourceFileScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTPackageSpecification node, Object data) {
+    public Object visit(final ASTPackageSpecification node, final Object data) {
         createClassScope(node);
         Scope s = ((PLSQLNode) node.getParent()).getScope();
         s.addDeclaration(new ClassNameDeclaration(node));
@@ -152,7 +152,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTPackageBody node, Object data) {
+    public Object visit(final ASTPackageBody node, final Object data) {
         createClassScope(node);
         Scope s = ((PLSQLNode) node.getParent()).getScope();
         s.addDeclaration(new ClassNameDeclaration(node));
@@ -161,7 +161,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTTypeSpecification node, Object data) {
+    public Object visit(final ASTTypeSpecification node, final Object data) {
         createClassScope(node);
         Scope s = ((PLSQLNode) node.getParent()).getScope();
         s.addDeclaration(new ClassNameDeclaration(node));
@@ -170,7 +170,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTTriggerUnit node, Object data) {
+    public Object visit(final ASTTriggerUnit node, final Object data) {
         createClassScope(node);
         Scope s = ((PLSQLNode) node.getParent()).getScope();
         s.addDeclaration(new ClassNameDeclaration(node));
@@ -187,7 +187,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      */
 
     @Override
-    public Object visit(ASTTriggerTimingPointSection node, Object data) {
+    public Object visit(final ASTTriggerTimingPointSection node, final Object data) {
         createMethodScope(node);
         // Treat a Timing Point Section like a packaged FUNCTION or PROCEDURE
         node.getScope().getEnclosingScope(ClassScope.class).addDeclaration(new MethodNameDeclaration(node));
@@ -210,13 +210,13 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     // }
 
     @Override
-    public Object visit(ASTObjectDeclaration node, Object data) {
+    public Object visit(final ASTObjectDeclaration node, final Object data) {
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTBlock node, Object data) {
+    public Object visit(final ASTBlock node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
@@ -261,7 +261,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
      */
 
     @Override
-    public Object visit(ASTTypeMethod node, Object data) {
+    public Object visit(final ASTTypeMethod node, final Object data) {
         createMethodScope(node);
         ASTMethodDeclarator md = node.getFirstChildOfType(ASTMethodDeclarator.class);
         // A PLSQL Method (FUNCTION|PROCEDURE) may be schema-level
@@ -297,7 +297,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTProgramUnit node, Object data) {
+    public Object visit(final ASTProgramUnit node, final Object data) {
         createMethodScope(node);
         ASTMethodDeclarator md = node.getFirstChildOfType(ASTMethodDeclarator.class);
         // A PLSQL Method (FUNCTION|PROCEDURE) may be schema-level
@@ -334,21 +334,21 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
 
     // TODO - what about while loops and do loops?
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTForAllStatement node, Object data) {
+    public Object visit(final ASTForAllStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableOrConstantDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableOrConstantDeclaratorId node, final Object data) {
         VariableNameDeclaration decl = new VariableNameDeclaration(node);
         node.getScope().addDeclaration(decl);
         node.setNameDeclaration(decl);
@@ -362,7 +362,7 @@ public class ScopeAndDeclarationFinder extends PLSQLParserVisitorAdapter {
     // return data;
     // }
 
-    private void cont(PLSQLNode node) {
+    private void cont(final PLSQLNode node) {
         super.visit(node, null);
         scopes.pop();
     }

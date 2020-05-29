@@ -43,47 +43,47 @@ public class CSVRenderer extends AbstractIncrementingRenderer {
     private final ColumnDescriptor<RuleViolation>[] allColumns = new ColumnDescriptor[] {
         new ColumnDescriptor<>("problem", "Problem", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return Integer.toString(idx);
             }
         }), new ColumnDescriptor<>("package", "Package", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return rv.getPackageName();
             }
         }), new ColumnDescriptor<>("file", "File", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return CSVRenderer.this.determineFileName(rv.getFilename());
             }
         }), new ColumnDescriptor<>("priority", "Priority", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return Integer.toString(rv.getRule().getPriority().getPriority());
             }
         }), new ColumnDescriptor<>("line", "Line", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return Integer.toString(rv.getBeginLine());
             }
         }), new ColumnDescriptor<>("desc", "Description", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return StringUtils.replaceChars(rv.getDescription(), '\"', '\'');
             }
         }), new ColumnDescriptor<>("ruleSet", "Rule set", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return rv.getRule().getRuleSetName();
             }
         }), new ColumnDescriptor<>("rule", "Rule", new Accessor<RuleViolation>() {
             @Override
-            public String get(int idx, RuleViolation rv, String cr) {
+            public String get(final int idx, final RuleViolation rv, final String cr) {
                 return rv.getRule().getName();
             }
         }), };
 
-    public CSVRenderer(ColumnDescriptor<RuleViolation>[] columns, String theSeparator, String theCR) {
+    public CSVRenderer(final ColumnDescriptor<RuleViolation>[] columns, final String theSeparator, final String theCR) {
         super(NAME, "Comma-separated values tabular format.");
 
         separator = theSeparator;
@@ -105,7 +105,7 @@ public class CSVRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private static PropertyDescriptor<Boolean> booleanPropertyFor(String id, String label) {
+    private static PropertyDescriptor<Boolean> booleanPropertyFor(final String id, final String label) {
 
         PropertyDescriptor<Boolean> prop = PROPERTY_DESCRIPTORS_BY_ID.get(id);
         if (prop != null) {
@@ -151,7 +151,7 @@ public class CSVRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         csvWriter().writeData(getWriter(), violations);
     }
 

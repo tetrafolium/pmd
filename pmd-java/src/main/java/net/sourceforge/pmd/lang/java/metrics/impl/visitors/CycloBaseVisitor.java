@@ -35,7 +35,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
     public static final CycloBaseVisitor INSTANCE = new CycloBaseVisitor();
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         int childCount = node.getNumChildren();
         int lastIndex = childCount - 1;
 
@@ -58,7 +58,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -66,7 +66,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -74,7 +74,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -82,7 +82,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -90,7 +90,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -98,7 +98,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -106,7 +106,7 @@ public class CycloBaseVisitor extends JavaParserControllessVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;

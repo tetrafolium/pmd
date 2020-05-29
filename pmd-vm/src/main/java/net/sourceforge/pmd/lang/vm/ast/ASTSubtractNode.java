@@ -49,7 +49,7 @@ public class ASTSubtractNode extends ASTMathNode {
     }
 
     @Override
-    public Object jjtAccept(VmParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VmParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

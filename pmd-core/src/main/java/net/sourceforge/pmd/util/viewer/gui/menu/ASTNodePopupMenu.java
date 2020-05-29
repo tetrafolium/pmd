@@ -20,7 +20,7 @@ public class ASTNodePopupMenu extends JPopupMenu {
     private ViewerModel model;
     private Node node;
 
-    public ASTNodePopupMenu(ViewerModel model, Node node) {
+    public ASTNodePopupMenu(final ViewerModel model, final Node node) {
         this.model = model;
         this.node = node;
         init();

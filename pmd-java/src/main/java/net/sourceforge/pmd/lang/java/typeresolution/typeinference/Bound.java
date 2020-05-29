@@ -13,21 +13,21 @@ import net.sourceforge.pmd.lang.java.typeresolution.typedefinition.JavaTypeDefin
 @Deprecated
 @InternalApi
 public class Bound extends BoundOrConstraint {
-    public Bound(JavaTypeDefinition leftProperType, JavaTypeDefinition rightProperType, InferenceRuleType ruleType) {
+    public Bound(final JavaTypeDefinition leftProperType, final JavaTypeDefinition rightProperType, final InferenceRuleType ruleType) {
         super(leftProperType, rightProperType, ruleType);
     }
 
-    public Bound(JavaTypeDefinition leftProperType, Variable rightTypeVariable, InferenceRuleType
+    public Bound(final JavaTypeDefinition leftProperType, final Variable rightTypeVariable, final InferenceRuleType
             ruleType) {
         super(leftProperType, rightTypeVariable, ruleType);
     }
 
-    public Bound(Variable leftTypeVariable, JavaTypeDefinition rightProperType, InferenceRuleType
+    public Bound(final Variable leftTypeVariable, final JavaTypeDefinition rightProperType, final InferenceRuleType
             ruleType) {
         super(leftTypeVariable, rightProperType, ruleType);
     }
 
-    public Bound(Variable leftTypeVariable, Variable rightTypeVariable, InferenceRuleType
+    public Bound(final Variable leftTypeVariable, final Variable rightTypeVariable, final InferenceRuleType
             ruleType) {
         super(leftTypeVariable, rightTypeVariable, ruleType);
     }

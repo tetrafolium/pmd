@@ -46,7 +46,7 @@ public class ScalaTokenizer implements Tokenizer {
      * @param properties
      *            the {@linkplain Properties} object to use
      */
-    public ScalaTokenizer(Properties properties) {
+    public ScalaTokenizer(final Properties properties) {
         String scalaVersion = properties.getProperty(SCALA_VERSION_PROPERTY);
         LanguageVersion langVer;
         if (scalaVersion == null) {
@@ -58,7 +58,7 @@ public class ScalaTokenizer implements Tokenizer {
     }
 
     @Override
-    public void tokenize(SourceCode sourceCode, Tokens tokenEntries) throws IOException {
+    public void tokenize(final SourceCode sourceCode, final Tokens tokenEntries) throws IOException {
         String filename = sourceCode.getFileName();
         // create the full code file
         String fullCode = StringUtils.join(sourceCode.getCode(), "\n");
@@ -92,10 +92,10 @@ public class ScalaTokenizer implements Tokenizer {
      */
     private static class ScalaTokenFilter {
         Iterator<Token> tokenIter;
-        Class<?>[] skippableTokens = new Class<?>[] { Token.Space.class, Token.Tab.class, Token.CR.class,
+        Class<?>[] skippableTokens = new Class<?>[] {Token.Space.class, Token.Tab.class, Token.CR.class,
             Token.LF.class, Token.FF.class, Token.LFLF.class, Token.EOF.class };
 
-        ScalaTokenFilter(Iterator<Token> iterator) {
+        ScalaTokenFilter(final Iterator<Token> iterator) {
             this.tokenIter = iterator.iterator();
         }
 
@@ -112,7 +112,7 @@ public class ScalaTokenizer implements Tokenizer {
             return token;
         }
 
-        private boolean skipToken(Token token) {
+        private boolean skipToken(final Token token) {
             boolean skip = false;
             if (token.text() != null) {
                 for (Class<?> skipTokenClazz : skippableTokens) {

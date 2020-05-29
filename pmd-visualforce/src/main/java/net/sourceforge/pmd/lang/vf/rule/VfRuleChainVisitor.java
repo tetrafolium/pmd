@@ -19,7 +19,7 @@ import net.sourceforge.pmd.lang.vf.ast.VfParserVisitorAdapter;
 public class VfRuleChainVisitor extends AbstractRuleChainVisitor {
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         VfParserVisitor vfParserVisitor = new VfParserVisitorAdapter();
 
         for (int i = 0; i < nodes.size(); i++) {
@@ -28,7 +28,7 @@ public class VfRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         // Rule better either be a vfParserVisitor, or a XPathRule
         if (rule instanceof VfParserVisitor) {
             ((VfNode) node).jjtAccept((VfParserVisitor) rule, ctx);

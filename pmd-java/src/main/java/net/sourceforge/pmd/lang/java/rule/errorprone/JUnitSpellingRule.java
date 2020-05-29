@@ -11,7 +11,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 public class JUnitSpellingRule extends AbstractJUnitRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (isJUnit5Class || isJUnit4Class) {
             return super.visit(node, data);
         }

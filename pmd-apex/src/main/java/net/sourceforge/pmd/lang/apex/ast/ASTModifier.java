@@ -12,12 +12,12 @@ public class ASTModifier extends AbstractApexNode<Modifier> {
 
     @Deprecated
     @InternalApi
-    public ASTModifier(Modifier node) {
+    public ASTModifier(final Modifier node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

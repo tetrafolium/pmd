@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTConditionalExpression extends AbstractEcmascriptNode<ConditionalExpression> {
     @Deprecated
     @InternalApi
-    public ASTConditionalExpression(ConditionalExpression conditionalExpression) {
+    public ASTConditionalExpression(final ConditionalExpression conditionalExpression) {
         super(conditionalExpression);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -29,12 +29,12 @@ public class XmlParser {
     protected Map<org.w3c.dom.Node, XmlNode> nodeCache = new HashMap<>();
 
 
-    public XmlParser(XmlParserOptions parserOptions) {
+    public XmlParser(final XmlParserOptions parserOptions) {
         this.parserOptions = parserOptions;
     }
 
 
-    protected Document parseDocument(Reader reader) throws ParseException {
+    protected Document parseDocument(final Reader reader) throws ParseException {
         nodeCache.clear();
         try {
             String xmlData = IOUtils.toString(reader);
@@ -61,7 +61,7 @@ public class XmlParser {
     }
 
 
-    public XmlNode parse(Reader reader) {
+    public XmlNode parse(final Reader reader) {
         Document document = parseDocument(reader);
         XmlNode root = new RootXmlNode(this, document);
         nodeCache.put(document, root);
@@ -76,7 +76,7 @@ public class XmlParser {
      *
      * @return The wrapper
      */
-    XmlNode wrapDomNode(Node domNode) {
+    XmlNode wrapDomNode(final Node domNode) {
         XmlNode wrapper = nodeCache.get(domNode);
         if (wrapper == null) {
             wrapper = new XmlNodeWrapper(this, domNode);
@@ -90,7 +90,7 @@ public class XmlParser {
      * The root should implement {@link RootNode}.
      */
     public static class RootXmlNode extends XmlNodeWrapper implements RootNode {
-        RootXmlNode(XmlParser parser, Node domNode) {
+        RootXmlNode(final XmlParser parser, final Node domNode) {
             super(parser, domNode);
         }
     }

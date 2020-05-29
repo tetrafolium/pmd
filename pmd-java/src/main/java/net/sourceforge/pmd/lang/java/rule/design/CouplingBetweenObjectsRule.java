@@ -50,7 +50,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit cu, Object data) {
+    public Object visit(final ASTCompilationUnit cu, final Object data) {
         typesFoundSoFar = new HashSet<>();
         couplingCount = 0;
 
@@ -65,7 +65,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -73,7 +73,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTResultType node, Object data) {
+    public Object visit(final ASTResultType node, final Object data) {
         for (int x = 0; x < node.getNumChildren(); x++) {
             Node tNode = node.getChild(x);
             if (tNode instanceof ASTType) {
@@ -91,19 +91,19 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         handleASTTypeChildren(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTFormalParameter node, Object data) {
+    public Object visit(final ASTFormalParameter node, final Object data) {
         handleASTTypeChildren(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         for (int x = 0; x < node.getNumChildren(); ++x) {
             Node firstStmt = node.getChild(x);
             if (firstStmt instanceof ASTType) {
@@ -120,7 +120,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
      * convience method to handle hierarchy. This is probably too much work and
      * will go away once I figure out the framework
      */
-    private void handleASTTypeChildren(Node node) {
+    private void handleASTTypeChildren(final Node node) {
         for (int x = 0; x < node.getNumChildren(); x++) {
             Node sNode = node.getChild(x);
             if (sNode instanceof ASTType) {
@@ -137,7 +137,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
      * @param variableType
      *            The variable type.
      */
-    private void checkVariableType(Node nameNode, String variableType) {
+    private void checkVariableType(final Node nameNode, final String variableType) {
         // TODO - move this into the symbol table somehow?
         if (nameNode.getParentsOfType(ASTClassOrInterfaceDeclaration.class).isEmpty()) {
             return;
@@ -161,7 +161,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
      *            The variable type.
      * @return boolean true if variableType is not what we care about
      */
-    private boolean filterTypes(String variableType) {
+    private boolean filterTypes(final String variableType) {
         return variableType != null && (variableType.startsWith("java.lang.") || "String".equals(variableType)
                 || filterPrimitivesAndWrappers(variableType));
     }
@@ -171,7 +171,7 @@ public class CouplingBetweenObjectsRule extends AbstractJavaRule {
      *            The variable type.
      * @return boolean true if variableType is a primitive or wrapper
      */
-    private boolean filterPrimitivesAndWrappers(String variableType) {
+    private boolean filterPrimitivesAndWrappers(final String variableType) {
         return "int".equals(variableType) || "Integer".equals(variableType) || "char".equals(variableType)
                 || "Character".equals(variableType) || "double".equals(variableType) || "long".equals(variableType)
                 || "short".equals(variableType) || "float".equals(variableType) || "byte".equals(variableType)

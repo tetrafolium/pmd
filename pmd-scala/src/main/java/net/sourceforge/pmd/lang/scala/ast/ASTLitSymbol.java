@@ -15,12 +15,12 @@ public class ASTLitSymbol extends AbstractScalaNode<Lit.Symbol> {
 
     @Deprecated
     @InternalApi
-    public ASTLitSymbol(Lit.Symbol scalaNode) {
+    public ASTLitSymbol(final Lit.Symbol scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

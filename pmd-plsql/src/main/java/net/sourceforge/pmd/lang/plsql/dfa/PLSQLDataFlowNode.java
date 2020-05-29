@@ -15,7 +15,7 @@ import net.sourceforge.pmd.lang.plsql.ast.ASTTypeMethod;
 
 public class PLSQLDataFlowNode extends AbstractDataFlowNode {
 
-    public PLSQLDataFlowNode(List<DataFlowNode> dataFlow, Node node) {
+    public PLSQLDataFlowNode(final List<DataFlowNode> dataFlow, final Node node) {
         super(dataFlow, node);
     }
 

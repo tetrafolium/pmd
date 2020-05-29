@@ -12,7 +12,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTForStatement;
 public class StringConcatenationRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         Node forLoopStmt = null;
         for (int i = 0; i < 4; i++) {
             forLoopStmt = node.getChild(i);

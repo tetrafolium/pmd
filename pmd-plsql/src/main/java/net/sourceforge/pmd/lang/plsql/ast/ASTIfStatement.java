@@ -9,13 +9,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTIfStatement extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
     @Deprecated
     @InternalApi
-    public ASTIfStatement(int id) {
+    public ASTIfStatement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTIfStatement(PLSQLParser p, int id) {
+    public ASTIfStatement(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
@@ -32,7 +32,7 @@ public class ASTIfStatement extends net.sourceforge.pmd.lang.plsql.ast.AbstractP
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

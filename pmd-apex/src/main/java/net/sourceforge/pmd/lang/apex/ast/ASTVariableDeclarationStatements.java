@@ -12,12 +12,12 @@ public class ASTVariableDeclarationStatements extends AbstractApexNode<VariableD
 
     @Deprecated
     @InternalApi
-    public ASTVariableDeclarationStatements(VariableDeclarationStatements variableDeclarationStatements) {
+    public ASTVariableDeclarationStatements(final VariableDeclarationStatements variableDeclarationStatements) {
         super(variableDeclarationStatements);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

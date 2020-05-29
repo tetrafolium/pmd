@@ -52,7 +52,7 @@ public class JsonRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         String filename = null;
 
         while (violations.hasNext()) {
@@ -77,11 +77,11 @@ public class JsonRenderer extends AbstractIncrementingRenderer {
         jsonWriter.endObject(); // file object
     }
 
-    private void renderSingleViolation(RuleViolation rv) throws IOException {
+    private void renderSingleViolation(final RuleViolation rv) throws IOException {
         renderSingleViolation(rv, null, null);
     }
 
-    private void renderSingleViolation(RuleViolation rv, String suppressionType, String userMsg) throws IOException {
+    private void renderSingleViolation(final RuleViolation rv, final String suppressionType, final String userMsg) throws IOException {
         jsonWriter.beginObject();
         jsonWriter.name("beginline").value(rv.getBeginLine());
         jsonWriter.name("begincolumn").value(rv.getBeginColumn());

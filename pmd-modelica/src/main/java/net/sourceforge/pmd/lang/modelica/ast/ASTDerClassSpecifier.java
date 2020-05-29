@@ -5,16 +5,16 @@
 package net.sourceforge.pmd.lang.modelica.ast;
 
 public final class ASTDerClassSpecifier extends AbstractModelicaClassSpecifierNode {
-    ASTDerClassSpecifier(int id) {
+    ASTDerClassSpecifier(final int id) {
         super(id);
     }
 
-    ASTDerClassSpecifier(ModelicaParser p, int id) {
+    ASTDerClassSpecifier(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

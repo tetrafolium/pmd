@@ -42,13 +42,13 @@ final class ConstraintFactory {
         return new PropertyConstraint<U>() {
 
             @Override
-            public boolean test(U value) {
+            public boolean test(final U value) {
                 return pred.test(value);
             }
 
             // TODO message could be better, eg include name of the property
             @Override
-            public String validate(U value) {
+            public String validate(final U value) {
                 return pred.test(value) ? null : "Constraint violated on property value '" + value + "' (" + constraintDescription + ")";
             }
 
@@ -65,7 +65,7 @@ final class ConstraintFactory {
                 return ConstraintFactory.<Iterable<? extends U>>fromPredicate(
                         new Predicate<Iterable<? extends U>>() {
                             @Override
-                            public boolean test(Iterable<? extends U> us) {
+                            public boolean test(final Iterable<? extends U> us) {
                                 for (U u : us) {
                                     if (!thisValidator.test(u)) {
                                         return false;

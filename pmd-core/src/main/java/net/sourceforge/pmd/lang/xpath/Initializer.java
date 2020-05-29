@@ -36,7 +36,7 @@ public final class Initializer {
     /**
      * Perform all initialization.
      */
-    public static void initialize(IndependentContext context) {
+    public static void initialize(final IndependentContext context) {
         context.declareNamespace("pmd", "java:" + PMDFunctions.class.getName());
         for (Language language : LanguageRegistry.getLanguages()) {
             for (LanguageVersion languageVersion : language.getVersions()) {

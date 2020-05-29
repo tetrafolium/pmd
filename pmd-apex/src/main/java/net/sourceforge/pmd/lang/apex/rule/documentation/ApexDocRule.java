@@ -40,19 +40,19 @@ public class ApexDocRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         handleClassOrInterface(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         handleClassOrInterface(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (node.getParent() instanceof ASTProperty) {
             // Skip property methods, doc is required on the property itself
             return data;
@@ -91,7 +91,7 @@ public class ApexDocRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTProperty node, Object data) {
+    public Object visit(final ASTProperty node, final Object data) {
         ApexDocComment comment = getApexDocComment(node);
         if (comment == null) {
             if (shouldHaveApexDocs(node)) {
@@ -106,7 +106,7 @@ public class ApexDocRule extends AbstractApexRule {
         return data;
     }
 
-    private void handleClassOrInterface(ApexNode<?> node, Object data) {
+    private void handleClassOrInterface(final ApexNode<?> node, final Object data) {
         ApexDocComment comment = getApexDocComment(node);
         if (comment == null) {
             if (shouldHaveApexDocs(node)) {
@@ -119,7 +119,7 @@ public class ApexDocRule extends AbstractApexRule {
         }
     }
 
-    private boolean shouldHaveApexDocs(ApexNode<?> node) {
+    private boolean shouldHaveApexDocs(final ApexNode<?> node) {
         if (!node.hasRealLoc()) {
             return false;
         }
@@ -138,7 +138,7 @@ public class ApexDocRule extends AbstractApexRule {
         return false;
     }
 
-    private ApexDocComment getApexDocComment(ApexNode<?> node) {
+    private ApexDocComment getApexDocComment(final ApexNode<?> node) {
         ASTFormalComment comment = node.getFirstChildOfType(ASTFormalComment.class);
         if (comment != null) {
             String token = comment.getToken();
@@ -162,7 +162,7 @@ public class ApexDocRule extends AbstractApexRule {
         boolean hasReturn;
         List<String> params;
 
-        ApexDocComment(boolean hasDescription, boolean hasReturn, List<String> params) {
+        ApexDocComment(final boolean hasDescription, final boolean hasReturn, final List<String> params) {
             this.hasDescription = hasDescription;
             this.hasReturn = hasReturn;
             this.params = params;

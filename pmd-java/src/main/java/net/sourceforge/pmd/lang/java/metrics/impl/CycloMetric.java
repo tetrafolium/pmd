@@ -30,7 +30,7 @@ public final class CycloMetric extends AbstractJavaOperationMetric {
 
 
     @Override
-    public double computeFor(MethodLikeNode node, MetricOptions options) {
+    public double computeFor(final MethodLikeNode node, final MetricOptions options) {
         MutableInt cyclo = (MutableInt) node.jjtAccept(new CycloVisitor(options, node), new MutableInt(1));
         return (double) cyclo.getValue();
     }
@@ -44,7 +44,7 @@ public final class CycloMetric extends AbstractJavaOperationMetric {
      *
      * @return The number of paths through the expression
      */
-    public static int booleanExpressionComplexity(Node expr) {
+    public static int booleanExpressionComplexity(final Node expr) {
         if (expr == null) {
             return 0;
         }
@@ -80,7 +80,7 @@ public final class CycloMetric extends AbstractJavaOperationMetric {
         private final String vName;
 
 
-        CycloOption(String valueName) {
+        CycloOption(final String valueName) {
             this.vName = valueName;
         }
 

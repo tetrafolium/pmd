@@ -19,13 +19,13 @@ public abstract class AbstractJavaNode extends AbstractJjtreeNode<JavaNode> impl
 
     @InternalApi
     @Deprecated
-    public AbstractJavaNode(int id) {
+    public AbstractJavaNode(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public AbstractJavaNode(JavaParser parser, int id) {
+    public AbstractJavaNode(final JavaParser parser, final int id) {
         super(id);
         this.parser = parser;
     }
@@ -51,12 +51,12 @@ public abstract class AbstractJavaNode extends AbstractJjtreeNode<JavaNode> impl
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @Override
-    public Object childrenAccept(JavaParserVisitor visitor, Object data) {
+    public Object childrenAccept(final JavaParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 ((JavaNode) children[i]).jjtAccept(visitor, data);
@@ -84,13 +84,13 @@ public abstract class AbstractJavaNode extends AbstractJjtreeNode<JavaNode> impl
     @InternalApi
     @Deprecated
     @Override
-    public void setScope(Scope scope) {
+    public void setScope(final Scope scope) {
         this.scope = scope;
     }
 
     @InternalApi
     @Deprecated
-    public void comment(Comment theComment) {
+    public void comment(final Comment theComment) {
         comment = theComment;
     }
 

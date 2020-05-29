@@ -54,7 +54,7 @@ public final class Benchmarker {
      *            String
      * @return boolean
      */
-    private static boolean findBooleanSwitch(String[] args, String name) {
+    private static boolean findBooleanSwitch(final String[] args, final String name) {
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals(name)) {
                 return true;
@@ -73,7 +73,7 @@ public final class Benchmarker {
      *            String
      * @return String
      */
-    private static String findOptionalStringValue(String[] args, String name, String defaultValue) {
+    private static String findOptionalStringValue(final String[] args, final String name, final String defaultValue) {
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals(name)) {
                 return args[i + 1];
@@ -90,7 +90,7 @@ public final class Benchmarker {
      * @throws IOException
      * @throws PMDException
      */
-    public static void main(String[] args) throws RuleSetNotFoundException, IOException, PMDException {
+    public static void main(final String[] args) throws RuleSetNotFoundException, IOException, PMDException {
 
         String targetjdk = findOptionalStringValue(args, "--targetjdk", "1.4");
         Language language = LanguageRegistry.getLanguage("Java");
@@ -141,7 +141,7 @@ public final class Benchmarker {
      *            boolean
      * @throws IOException
      */
-    private static void parseStress(Parser parser, List<DataSource> dataSources, boolean debug) throws IOException {
+    private static void parseStress(final Parser parser, final List<DataSource> dataSources, final boolean debug) throws IOException {
 
         long start = System.currentTimeMillis();
 
@@ -172,8 +172,8 @@ public final class Benchmarker {
      * @throws PMDException
      * @throws IOException
      */
-    private static void stress(LanguageVersion languageVersion, RuleSet ruleSet, List<DataSource> dataSources,
-            Set<RuleDuration> results, boolean debug) throws PMDException, IOException {
+    private static void stress(final LanguageVersion languageVersion, final RuleSet ruleSet, final List<DataSource> dataSources,
+            final Set<RuleDuration> results, final boolean debug) throws PMDException, IOException {
 
         final RuleSetFactory factory = RulesetsFactoryUtils.defaultFactory();
         for (Rule rule: ruleSet.getRules()) {
@@ -212,7 +212,7 @@ public final class Benchmarker {
      * @param count
      *            long
      */
-    public static void mark(Benchmark type, long time, long count) {
+    public static void mark(final Benchmark type, final long time, final long count) {
         mark(type, null, time, count);
     }
 
@@ -227,7 +227,7 @@ public final class Benchmarker {
      * @param count
      *            long
      */
-    public static synchronized void mark(Benchmark type, String name, long time, long count) {
+    public static synchronized void mark(final Benchmark type, final String name, final long time, final long count) {
         String typeName = type.name;
         if (typeName != null && name != null) {
             throw new IllegalArgumentException("Name cannot be given for type: " + type);

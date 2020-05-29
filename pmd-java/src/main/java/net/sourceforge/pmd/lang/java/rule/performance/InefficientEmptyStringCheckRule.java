@@ -44,7 +44,7 @@ import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 public class InefficientEmptyStringCheckRule extends AbstractInefficientZeroCheck {
 
     @Override
-    public boolean isTargetMethod(JavaNameOccurrence occ) {
+    public boolean isTargetMethod(final JavaNameOccurrence occ) {
         if (occ.getNameForWhichThisIsAQualifier() != null
                 && occ.getNameForWhichThisIsAQualifier().getImage().indexOf("trim") != -1) {
             Node pExpression = occ.getLocation().getParent().getParent();
@@ -56,12 +56,12 @@ public class InefficientEmptyStringCheckRule extends AbstractInefficientZeroChec
     }
 
     @Override
-    public boolean appliesToClassName(String name) {
+    public boolean appliesToClassName(final String name) {
         return "String".equals(name);
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
 
         if (node.getNumChildren() > 3) {
             // Check last suffix

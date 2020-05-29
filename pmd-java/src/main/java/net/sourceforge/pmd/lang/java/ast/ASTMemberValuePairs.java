@@ -22,26 +22,26 @@ public class ASTMemberValuePairs extends AbstractJavaNode implements Iterable<AS
 
     @InternalApi
     @Deprecated
-    public ASTMemberValuePairs(int id) {
+    public ASTMemberValuePairs(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTMemberValuePairs(JavaParser p, int id) {
+    public ASTMemberValuePairs(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
 
     @Override
-    public ASTMemberValuePair getChild(int index) {
+    public ASTMemberValuePair getChild(final int index) {
         return (ASTMemberValuePair) super.getChild(index);
     }
 

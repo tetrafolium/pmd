@@ -29,7 +29,7 @@ public class DataClassRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
 
         if (!MetricsUtil.supportsAll(node, NOAM, NOPA, WMC, WOC)) {
             return super.visit(node, data);
@@ -52,12 +52,12 @@ public class DataClassRule extends AbstractJavaMetricsRule {
     }
 
 
-    private boolean interfaceRevealsData(ASTAnyTypeDeclaration node) {
+    private boolean interfaceRevealsData(final ASTAnyTypeDeclaration node) {
         double woc = MetricsUtil.computeMetric(WOC, node);
         return woc < WOC_LEVEL;
     }
 
-    private boolean classRevealsDataAndLacksComplexity(ASTAnyTypeDeclaration node) {
+    private boolean classRevealsDataAndLacksComplexity(final ASTAnyTypeDeclaration node) {
 
         int nopa = (int) MetricsUtil.computeMetric(NOPA, node);
         int noam = (int) MetricsUtil.computeMetric(NOAM, node);

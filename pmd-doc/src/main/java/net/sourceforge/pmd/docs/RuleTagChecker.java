@@ -35,7 +35,7 @@ public class RuleTagChecker {
     private final List<String> issues = new ArrayList<>();
     private final Map<Path, Set<String>> rulesCache = new HashMap<>();
 
-    public RuleTagChecker(Path rootDirectory) {
+    public RuleTagChecker(final Path rootDirectory) {
         final Path pagesDirectory = rootDirectory.resolve("docs/pages");
 
         if (!Files.isDirectory(pagesDirectory)) {
@@ -49,7 +49,7 @@ public class RuleTagChecker {
     public List<String> check() throws IOException {
         Files.walkFileTree(pagesDirectory, new SimpleFileVisitor<Path>() {
             @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
                 checkFile(file);
                 return super.visitFile(file, attrs);
             }
@@ -57,7 +57,7 @@ public class RuleTagChecker {
         return issues;
     }
 
-    private void checkFile(Path file) throws IOException {
+    private void checkFile(final Path file) throws IOException {
         if (file == null || !file.getFileName().toString().toLowerCase(Locale.ROOT).endsWith(".md")) {
             return;
         }
@@ -79,7 +79,7 @@ public class RuleTagChecker {
         }
     }
 
-    private boolean ruleReferenceTargetExists(String ruleReference) {
+    private boolean ruleReferenceTargetExists(final String ruleReference) {
         Matcher ruleRefMatcher = RULE_REFERENCE.matcher(ruleReference);
         if (ruleRefMatcher.matches()) {
             String language = ruleRefMatcher.group(1);
@@ -93,7 +93,7 @@ public class RuleTagChecker {
         return false;
     }
 
-    private Set<String> getRules(Path ruleDocPage) {
+    private Set<String> getRules(final Path ruleDocPage) {
         Set<String> result = rulesCache.get(ruleDocPage);
 
         if (result == null) {
@@ -115,11 +115,11 @@ public class RuleTagChecker {
         return result;
     }
 
-    private void addIssue(Path file, int lineNo, String message) {
+    private void addIssue(final Path file, final int lineNo, final String message) {
         issues.add(String.format("%s:%2d: %s", pagesDirectory.relativize(file).toString(), lineNo, message));
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         if (args.length != 1) {
             System.err.println("Wrong arguments!");
             System.err.println();

@@ -15,13 +15,13 @@ public class ASTDoctypeDeclaration extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public ASTDoctypeDeclaration(int id) {
+    public ASTDoctypeDeclaration(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTDoctypeDeclaration(VfParser p, int id) {
+    public ASTDoctypeDeclaration(final VfParser p, final int id) {
         super(p, id);
     }
 
@@ -31,12 +31,12 @@ public class ASTDoctypeDeclaration extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -35,7 +35,7 @@ public class VBHTMLRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         if (!violations.hasNext()) {
             return;
         }

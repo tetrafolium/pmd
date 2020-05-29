@@ -12,12 +12,12 @@ public class ASTAnonymousClass extends ApexRootNode<AnonymousClass> {
 
     @Deprecated
     @InternalApi
-    public ASTAnonymousClass(AnonymousClass anonymousClass) {
+    public ASTAnonymousClass(final AnonymousClass anonymousClass) {
         super(anonymousClass);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -29,7 +29,7 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
     protected boolean isJUnit5Class;
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
 
         isJUnit3Class = false;
         isJUnit4Class = false;
@@ -50,7 +50,7 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isTestNgClass(ASTCompilationUnit node) {
+    private boolean isTestNgClass(final ASTCompilationUnit node) {
         List<ASTImportDeclaration> imports = node.findDescendantsOfType(ASTImportDeclaration.class);
         for (ASTImportDeclaration i : imports) {
             if (i.getImportedName() != null && i.getImportedName().startsWith("org.testng")) {
@@ -60,7 +60,7 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
         return false;
     }
 
-    public boolean isJUnitMethod(ASTMethodDeclaration method, Object data) {
+    public boolean isJUnitMethod(final ASTMethodDeclaration method, final Object data) {
         if (method.isAbstract() || method.isNative() || method.isStatic()) {
             return false; // skip various inapplicable method variations
         }
@@ -77,19 +77,19 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
         return result;
     }
 
-    private boolean isJUnit4Method(ASTMethodDeclaration method) {
+    private boolean isJUnit4Method(final ASTMethodDeclaration method) {
         return isJUnit4Class && doesNodeContainJUnitAnnotation(method.getParent(), JUNIT4_CLASS_NAME);
     }
 
-    private boolean isJUnit5Method(ASTMethodDeclaration method) {
+    private boolean isJUnit5Method(final ASTMethodDeclaration method) {
         return isJUnit5Class && doesNodeContainJUnitAnnotation(method.getParent(), JUNIT5_CLASS_NAME);
     }
 
-    private boolean isJUnit3Method(ASTMethodDeclaration method) {
+    private boolean isJUnit3Method(final ASTMethodDeclaration method) {
         return isJUnit3Class && method.isVoid() && method.getName().startsWith("test");
     }
 
-    private boolean isJUnit3Class(ASTCompilationUnit node) {
+    private boolean isJUnit3Class(final ASTCompilationUnit node) {
         ASTClassOrInterfaceDeclaration cid = node.getFirstDescendantOfType(ASTClassOrInterfaceDeclaration.class);
         if (cid == null) {
             return false;
@@ -113,15 +113,15 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isJUnit4Class(ASTCompilationUnit node) {
+    private boolean isJUnit4Class(final ASTCompilationUnit node) {
         return doesNodeContainJUnitAnnotation(node, JUNIT4_CLASS_NAME);
     }
 
-    private boolean isJUnit5Class(ASTCompilationUnit node) {
+    private boolean isJUnit5Class(final ASTCompilationUnit node) {
         return doesNodeContainJUnitAnnotation(node, JUNIT5_CLASS_NAME);
     }
 
-    private boolean doesNodeContainJUnitAnnotation(Node node, String annotationTypeClassName) {
+    private boolean doesNodeContainJUnitAnnotation(final Node node, final String annotationTypeClassName) {
         List<ASTAnnotation> annotations = node.findDescendantsOfType(ASTAnnotation.class);
         for (ASTAnnotation annotation : annotations) {
             Node annotationTypeNode = annotation.getChild(0);
@@ -138,7 +138,7 @@ public abstract class AbstractJUnitRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean hasImports(ASTCompilationUnit cu, String className) {
+    private boolean hasImports(final ASTCompilationUnit cu, final String className) {
         List<ASTImportDeclaration> imports = cu.findDescendantsOfType(ASTImportDeclaration.class);
         for (ASTImportDeclaration importDeclaration : imports) {
             ASTName name = importDeclaration.getFirstChildOfType(ASTName.class);

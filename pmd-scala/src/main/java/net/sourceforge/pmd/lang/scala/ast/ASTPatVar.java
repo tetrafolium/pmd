@@ -15,12 +15,12 @@ public class ASTPatVar extends AbstractScalaNode<Pat.Var> {
 
     @Deprecated
     @InternalApi
-    public ASTPatVar(Pat.Var scalaNode) {
+    public ASTPatVar(final Pat.Var scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

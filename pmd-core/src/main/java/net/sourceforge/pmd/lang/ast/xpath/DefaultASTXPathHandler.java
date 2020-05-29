@@ -19,7 +19,7 @@ public class DefaultASTXPathHandler extends AbstractASTXPathHandler {
     }
 
     @Override
-    public void initialize(IndependentContext context) {
+    public void initialize(final IndependentContext context) {
         // override if needed
     }
 }

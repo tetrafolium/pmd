@@ -30,23 +30,23 @@ public class ASTLocalVariableDeclaration extends AbstractJavaAccessNode implemen
 
     @InternalApi
     @Deprecated
-    public ASTLocalVariableDeclaration(int id) {
+    public ASTLocalVariableDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTLocalVariableDeclaration(JavaParser p, int id) {
+    public ASTLocalVariableDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (int i = 0; i < getNumChildren(); i++) {
             if (getChild(i) instanceof ASTAnnotation) {
                 ASTAnnotation a = (ASTAnnotation) getChild(i);

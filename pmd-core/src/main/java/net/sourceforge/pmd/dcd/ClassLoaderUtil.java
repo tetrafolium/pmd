@@ -22,15 +22,15 @@ public final class ClassLoaderUtil {
 
     private ClassLoaderUtil() { }
 
-    public static String fromInternalForm(String internalForm) {
+    public static String fromInternalForm(final String internalForm) {
         return internalForm.replace('/', '.');
     }
 
-    public static String toInternalForm(String internalForm) {
+    public static String toInternalForm(final String internalForm) {
         return internalForm.replace('.', '/');
     }
 
-    public static Class<?> getClass(String name) {
+    public static Class<?> getClass(final String name) {
         try {
             return ClassLoaderUtil.class.getClassLoader().loadClass(name);
         } catch (ClassNotFoundException | NoClassDefFoundError e) {
@@ -38,7 +38,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    public static Field getField(Class<?> type, String name) {
+    public static Field getField(final Class<?> type, final String name) {
         try {
             return myGetField(type, name);
         } catch (NoSuchFieldException e) {
@@ -46,7 +46,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    private static Field myGetField(Class<?> type, String name) throws NoSuchFieldException {
+    private static Field myGetField(final Class<?> type, final String name) throws NoSuchFieldException {
         // Scan the type hierarchy just like Class.getField(String) using
         // Class.getDeclaredField(String)
         try {
@@ -69,7 +69,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    public static Method getMethod(Class<?> type, String name, Class<?>... parameterTypes) {
+    public static Method getMethod(final Class<?> type, final String name, final Class<?>... parameterTypes) {
         try {
             return myGetMethod(type, name, parameterTypes);
         } catch (NoSuchMethodException e) {
@@ -77,7 +77,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    private static Method myGetMethod(Class<?> type, String name, Class<?>... parameterTypes)
+    private static Method myGetMethod(final Class<?> type, final String name, final Class<?>... parameterTypes)
             throws NoSuchMethodException {
         // Scan the type hierarchy just like Class.getMethod(String, Class[])
         // using Class.getDeclaredMethod(String, Class[])
@@ -116,7 +116,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    public static Constructor<?> getConstructor(Class<?> type, String name, Class<?>... parameterTypes) {
+    public static Constructor<?> getConstructor(final Class<?> type, final String name, final Class<?>... parameterTypes) {
         try {
             return type.getDeclaredConstructor(parameterTypes);
         } catch (NoSuchMethodException e) {
@@ -124,7 +124,7 @@ public final class ClassLoaderUtil {
         }
     }
 
-    public static String getMethodSignature(String name, Class<?>... parameterTypes) {
+    public static String getMethodSignature(final String name, final Class<?>... parameterTypes) {
         StringBuilder builder = new StringBuilder(name);
         if (!(name.equals(CLINIT) || name.equals(INIT))) {
             builder.append('(');
@@ -139,7 +139,7 @@ public final class ClassLoaderUtil {
         return builder.toString();
     }
 
-    public static Class<?>[] getParameterTypes(String... parameterTypeNames) {
+    public static Class<?>[] getParameterTypes(final String... parameterTypeNames) {
         Class<?>[] parameterTypes = new Class[parameterTypeNames.length];
         for (int i = 0; i < parameterTypeNames.length; i++) {
             parameterTypes[i] = getClass(parameterTypeNames[i]);
@@ -147,7 +147,7 @@ public final class ClassLoaderUtil {
         return parameterTypes;
     }
 
-    public static boolean isOverridenMethod(Class<?> clazz, Method method, boolean checkThisClass) {
+    public static boolean isOverridenMethod(final Class<?> clazz, final Method method, final boolean checkThisClass) {
         try {
             if (checkThisClass) {
                 clazz.getDeclaredMethod(method.getName(), method.getParameterTypes());

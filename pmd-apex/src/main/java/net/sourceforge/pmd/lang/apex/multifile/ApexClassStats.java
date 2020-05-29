@@ -23,7 +23,7 @@ class ApexClassStats {
     private Map<ApexOperationSignature, Set<String>> operations = new HashMap<>();
 
 
-    void addOperation(String name, ApexOperationSignature sig) {
+    void addOperation(final String name, final ApexOperationSignature sig) {
         if (!operations.containsKey(sig)) {
             operations.put(sig, new HashSet<>());
         }
@@ -31,7 +31,7 @@ class ApexClassStats {
     }
 
 
-    public boolean hasMatchingSig(String operation, ApexOperationSigMask mask) {
+    public boolean hasMatchingSig(final String operation, final ApexOperationSigMask mask) {
         for (Entry<ApexOperationSignature, Set<String>> entry : operations.entrySet()) {
             if (mask.covers(entry.getKey())) {
                 if (entry.getValue().contains(operation)) {

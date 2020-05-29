@@ -21,7 +21,7 @@ public class ExcessiveClassLengthRule extends ExcessiveLengthRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (!node.getModifiers().isTest()) {
             return super.visit(node, data);
         }

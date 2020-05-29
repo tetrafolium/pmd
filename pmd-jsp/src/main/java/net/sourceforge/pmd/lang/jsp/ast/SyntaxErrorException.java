@@ -25,7 +25,7 @@ public abstract class SyntaxErrorException extends ParseException {
      * @param line
      * @param ruleName
      */
-    public SyntaxErrorException(int line, String ruleName) {
+    public SyntaxErrorException(final int line, final String ruleName) {
         super();
         this.line = line;
         this.ruleName = ruleName;

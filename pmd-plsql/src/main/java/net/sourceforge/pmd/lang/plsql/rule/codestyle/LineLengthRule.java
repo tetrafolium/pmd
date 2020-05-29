@@ -33,7 +33,7 @@ public class LineLengthRule extends AbstractPLSQLRule {
     }
 
     @Override
-    public Object visit(ASTInput node, Object data) {
+    public Object visit(final ASTInput node, final Object data) {
         boolean eachLine = getProperty(EACH_LINE);
         int maxLineLength = getProperty(MAX_LINE_LENGTH);
 

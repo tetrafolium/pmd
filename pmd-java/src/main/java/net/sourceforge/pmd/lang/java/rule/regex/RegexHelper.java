@@ -31,7 +31,7 @@ public final class RegexHelper {
      *            the regex list
      * @return the pattern list
      */
-    public static List<Pattern> compilePatternsFromList(List<String> list) {
+    public static List<Pattern> compilePatternsFromList(final List<String> list) {
         List<Pattern> patterns;
         if (list != null && !list.isEmpty()) {
             patterns = new ArrayList<>(list.size());
@@ -57,7 +57,7 @@ public final class RegexHelper {
      *            a String to match
      * @return {@code true} if there is a match; {@code false} otherwise
      */
-    public static boolean isMatch(Pattern pattern, String subject) {
+    public static boolean isMatch(final Pattern pattern, final String subject) {
         if (subject != null && !"".equals(subject)) {
             Matcher matcher = pattern.matcher(subject);
             if (matcher.find()) {

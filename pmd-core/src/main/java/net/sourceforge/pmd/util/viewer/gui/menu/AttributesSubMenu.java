@@ -25,7 +25,7 @@ public class AttributesSubMenu extends JMenu {
     private ViewerModel model;
     private Node node;
 
-    public AttributesSubMenu(ViewerModel model, Node node) {
+    public AttributesSubMenu(final ViewerModel model, final Node node) {
         super(MessageFormat.format(NLS.nls("AST.MENU.ATTRIBUTES"), node.toString()));
         this.model = model;
         this.node = node;

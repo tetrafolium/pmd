@@ -38,7 +38,7 @@ public class ApexUnitTestShouldNotUseSeeAllDataTrueRule extends AbstractApexUnit
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!isTestMethodOrClass(node)) {
             return data;
         }

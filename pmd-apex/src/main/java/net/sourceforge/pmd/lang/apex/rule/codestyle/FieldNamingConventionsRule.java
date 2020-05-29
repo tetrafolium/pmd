@@ -48,7 +48,7 @@ public class FieldNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    public Object visit(ASTField node, Object data) {
+    public Object visit(final ASTField node, final Object data) {
         if (node.getFirstParentOfType(ASTProperty.class) != null) {
             return data;
         }
@@ -71,7 +71,7 @@ public class FieldNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    protected String displayName(String name) {
+    protected String displayName(final String name) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(name);
     }
 }

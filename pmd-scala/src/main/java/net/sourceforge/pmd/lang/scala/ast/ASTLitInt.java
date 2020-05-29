@@ -15,12 +15,12 @@ public class ASTLitInt extends AbstractScalaNode<Lit.Int> {
 
     @Deprecated
     @InternalApi
-    public ASTLitInt(Lit.Int scalaNode) {
+    public ASTLitInt(final Lit.Int scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

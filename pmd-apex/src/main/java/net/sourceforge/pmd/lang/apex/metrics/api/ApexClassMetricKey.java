@@ -20,7 +20,7 @@ public enum ApexClassMetricKey implements MetricKey<ASTUserClassOrInterface<?>> 
     private final ApexClassMetric calculator;
 
 
-    ApexClassMetricKey(ApexClassMetric m) {
+    ApexClassMetricKey(final ApexClassMetric m) {
         calculator = m;
     }
 
@@ -32,7 +32,7 @@ public enum ApexClassMetricKey implements MetricKey<ASTUserClassOrInterface<?>> 
 
 
     @Override
-    public boolean supports(ASTUserClassOrInterface<?> node) {
+    public boolean supports(final ASTUserClassOrInterface<?> node) {
         return calculator.supports(node);
     }
 

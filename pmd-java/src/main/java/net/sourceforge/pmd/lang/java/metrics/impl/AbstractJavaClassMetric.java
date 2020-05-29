@@ -36,7 +36,7 @@ public abstract class AbstractJavaClassMetric extends AbstractJavaMetric<ASTAnyT
      * @return True if the metric can be computed on this type declaration
      */
     @Override
-    public boolean supports(ASTAnyTypeDeclaration node) {
+    public boolean supports(final ASTAnyTypeDeclaration node) {
         return node.getTypeKind() != TypeKind.ANNOTATION && node.getTypeKind() != TypeKind.INTERFACE;
     }
 
@@ -49,7 +49,7 @@ public abstract class AbstractJavaClassMetric extends AbstractJavaMetric<ASTAnyT
      *
      * @return The number of operations matching the signature mask
      */
-    protected int countMatchingOpSigs(ASTAnyTypeDeclaration classNode, JavaOperationSigMask mask) {
+    protected int countMatchingOpSigs(final ASTAnyTypeDeclaration classNode, final JavaOperationSigMask mask) {
         int count = 0;
         List<ASTMethodOrConstructorDeclaration> decls = getMethodsAndConstructors(classNode);
 
@@ -71,7 +71,7 @@ public abstract class AbstractJavaClassMetric extends AbstractJavaMetric<ASTAnyT
      *
      * @return The number of fields matching the signature mask
      */
-    protected int countMatchingFieldSigs(ASTAnyTypeDeclaration classNode, JavaFieldSigMask mask) {
+    protected int countMatchingFieldSigs(final ASTAnyTypeDeclaration classNode, final JavaFieldSigMask mask) {
         int count = 0;
         List<ASTFieldDeclaration> decls = getFields(classNode);
 
@@ -92,7 +92,7 @@ public abstract class AbstractJavaClassMetric extends AbstractJavaMetric<ASTAnyT
      *
      * @return The list of all methods and constructors
      */
-    protected List<ASTMethodOrConstructorDeclaration> getMethodsAndConstructors(ASTAnyTypeDeclaration node) {
+    protected List<ASTMethodOrConstructorDeclaration> getMethodsAndConstructors(final ASTAnyTypeDeclaration node) {
         return getDeclarationsOfType(node, ASTMethodOrConstructorDeclaration.class);
     }
 
@@ -104,12 +104,12 @@ public abstract class AbstractJavaClassMetric extends AbstractJavaMetric<ASTAnyT
      *
      * @return The list of all fields
      */
-    protected List<ASTFieldDeclaration> getFields(ASTAnyTypeDeclaration node) {
+    protected List<ASTFieldDeclaration> getFields(final ASTAnyTypeDeclaration node) {
         return getDeclarationsOfType(node, ASTFieldDeclaration.class);
     }
 
 
-    private <T extends Node> List<T> getDeclarationsOfType(ASTAnyTypeDeclaration node, Class<T> tClass) {
+    private <T extends Node> List<T> getDeclarationsOfType(final ASTAnyTypeDeclaration node, final Class<T> tClass) {
 
         List<T> result = new ArrayList<>();
         List<ASTAnyTypeBodyDeclaration> decls = node.getDeclarations();

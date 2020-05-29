@@ -30,12 +30,12 @@ public class EmptyRenderer extends AbstractRenderer {
     }
 
     @Override
-    public void startFileAnalysis(DataSource dataSource) {
+    public void startFileAnalysis(final DataSource dataSource) {
         // deliberately does nothing
     }
 
     @Override
-    public void renderFileReport(Report report) throws IOException {
+    public void renderFileReport(final Report report) throws IOException {
         // deliberately does nothing
     }
 

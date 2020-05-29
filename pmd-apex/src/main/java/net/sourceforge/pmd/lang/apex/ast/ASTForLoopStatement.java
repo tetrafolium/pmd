@@ -12,12 +12,12 @@ public class ASTForLoopStatement extends AbstractApexNode<ForLoopStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTForLoopStatement(ForLoopStatement forLoopStatement) {
+    public ASTForLoopStatement(final ForLoopStatement forLoopStatement) {
         super(forLoopStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

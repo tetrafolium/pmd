@@ -23,13 +23,13 @@ public class NcssMethodCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ExecutableCode node, Object data) {
+    public Object visit(final ExecutableCode node, final Object data) {
         return super.visit(node, data);
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
-        return new String[] { ((ExecutableCode) point.getNode()).getMethodName(),
+    public Object[] getViolationParameters(final DataPoint point) {
+        return new String[] {((ExecutableCode) point.getNode()).getMethodName(),
             String.valueOf((int) point.getScore()), };
     }
 }

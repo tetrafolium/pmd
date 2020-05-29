@@ -12,12 +12,12 @@ import net.sourceforge.pmd.lang.ast.RootNode;
 public class ASTAstRoot extends AbstractEcmascriptNode<AstRoot> implements RootNode {
     @Deprecated
     @InternalApi
-    public ASTAstRoot(AstRoot astRoot) {
+    public ASTAstRoot(final AstRoot astRoot) {
         super(astRoot);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -25,7 +25,7 @@ public class ASTAstRoot extends AbstractEcmascriptNode<AstRoot> implements RootN
         return node.getComments() != null ? node.getComments().size() : 0;
     }
 
-    public ASTComment getComment(int index) {
+    public ASTComment getComment(final int index) {
         return (ASTComment) getChild(getNumChildren() - 1 - getNumComments() + index);
     }
 }

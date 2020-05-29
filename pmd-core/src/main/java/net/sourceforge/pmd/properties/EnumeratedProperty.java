@@ -47,8 +47,8 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
      * @deprecated Use {@link PropertyFactory#enumProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedProperty(String theName, String theDescription, String[] theLabels, E[] theChoices,
-                              int defaultIndex, Class<E> valueType, float theUIOrder) {
+    public EnumeratedProperty(final String theName, final String theDescription, final String[] theLabels, final E[] theChoices,
+                              final int defaultIndex, final Class<E> valueType, final float theUIOrder) {
         this(theName, theDescription, CollectionUtil.mapFrom(theLabels, theChoices),
                 theChoices[defaultIndex], valueType, theUIOrder, false);
     }
@@ -68,8 +68,8 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
      * @deprecated Use {@link PropertyFactory#enumProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedProperty(String theName, String theDescription, String[] theLabels, E[] theChoices,
-                              int defaultIndex, float theUIOrder) {
+    public EnumeratedProperty(final String theName, final String theDescription, final String[] theLabels, final E[] theChoices,
+                              final int defaultIndex, final float theUIOrder) {
         this(theName, theDescription, CollectionUtil.mapFrom(theLabels, theChoices),
                 theChoices[defaultIndex], null, theUIOrder, false);
     }
@@ -87,15 +87,15 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
      * @deprecated Use {@link PropertyFactory#enumProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedProperty(String theName, String theDescription, Map<String, E> labelsToChoices,
-                              E defaultValue, Class<E> valueType, float theUIOrder) {
+    public EnumeratedProperty(final String theName, final String theDescription, final Map<String, E> labelsToChoices,
+                              final E defaultValue, final Class<E> valueType, final float theUIOrder) {
         this(theName, theDescription, labelsToChoices, defaultValue, valueType, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private EnumeratedProperty(String theName, String theDescription, Map<String, E> labelsToChoices,
-                               E defaultValue, Class<E> valueType, float theUIOrder, boolean isDefinedExternally) {
+    private EnumeratedProperty(final String theName, final String theDescription, final Map<String, E> labelsToChoices,
+                               final E defaultValue, final Class<E> valueType, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValue, theUIOrder, isDefinedExternally);
 
         module = new EnumeratedPropertyModule<>(labelsToChoices, valueType);
@@ -110,19 +110,19 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
 
 
     @Override
-    public String errorFor(E value) {
+    public String errorFor(final E value) {
         return module.errorFor(value);
     }
 
 
     @Override
-    public E createFrom(String value) throws IllegalArgumentException {
+    public E createFrom(final String value) throws IllegalArgumentException {
         return module.choiceFrom(value);
     }
 
 
     @Override
-    public String asString(E value) {
+    public String asString(final E value) {
         return module.getLabelsByChoice().get(value);
     }
 
@@ -137,7 +137,7 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
      * @deprecated Use {@link PropertyFactory#enumProperty(String, Map)}
      */
     @Deprecated
-    public static <E> EnumPBuilder<E> named(String name) {
+    public static <E> EnumPBuilder<E> named(final String name) {
         return new EnumPBuilder<>(name);
     }
 
@@ -152,16 +152,16 @@ public final class EnumeratedProperty<E> extends AbstractSingleValueProperty<E>
         private Map<String, E> mappings;
 
 
-        private EnumPBuilder(String name) {
+        private EnumPBuilder(final String name) {
             super(name);
         }
 
-        public EnumPBuilder<E> type(Class<E> type) {
+        public EnumPBuilder<E> type(final Class<E> type) {
             this.valueType = type;
             return this;
         }
 
-        public EnumPBuilder<E> mappings(Map<String, E> map) {
+        public EnumPBuilder<E> mappings(final Map<String, E> map) {
             this.mappings = map;
             return this;
         }

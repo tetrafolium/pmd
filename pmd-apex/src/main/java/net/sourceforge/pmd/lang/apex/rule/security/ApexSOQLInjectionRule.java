@@ -57,7 +57,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
@@ -105,7 +105,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
         return data;
     }
 
-    private void findSafeVariablesInSignature(ASTMethod m) {
+    private void findSafeVariablesInSignature(final ASTMethod m) {
         for (ASTParameter p : m.findChildrenOfType(ASTParameter.class)) {
             switch (p.getType().toLowerCase(Locale.ROOT)) {
             case ID:
@@ -124,7 +124,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
 
     }
 
-    private void findSanitizedVariables(ApexNode<?> node) {
+    private void findSanitizedVariables(final ApexNode<?> node) {
         final ASTVariableExpression left = node.getFirstChildOfType(ASTVariableExpression.class);
         final ASTLiteralExpression literal = node.getFirstChildOfType(ASTLiteralExpression.class);
         final ASTMethodCallExpression right = node.getFirstChildOfType(ASTMethodCallExpression.class);
@@ -171,7 +171,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
         }
     }
 
-    private void findSelectContainingVariables(ApexNode<?> node) {
+    private void findSelectContainingVariables(final ApexNode<?> node) {
         final ASTVariableExpression left = node.getFirstChildOfType(ASTVariableExpression.class);
         final ASTBinaryExpression right = node.getFirstChildOfType(ASTBinaryExpression.class);
         if (left != null && right != null) {
@@ -221,7 +221,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
 
     }
 
-    private void reportStrings(ASTMethodCallExpression m, Object data) {
+    private void reportStrings(final ASTMethodCallExpression m, final Object data) {
         final HashSet<ASTVariableExpression> setOfSafeVars = new HashSet<>();
         final List<ASTStandardCondition> conditions = m.findDescendantsOfType(ASTStandardCondition.class);
         for (ASTStandardCondition c : conditions) {
@@ -257,7 +257,7 @@ public class ApexSOQLInjectionRule extends AbstractApexRule {
         }
     }
 
-    private void reportVariables(final ASTMethodCallExpression m, Object data) {
+    private void reportVariables(final ASTMethodCallExpression m, final Object data) {
         final ASTVariableExpression var = m.getFirstChildOfType(ASTVariableExpression.class);
         if (var != null) {
             String nameFQ = Helper.getFQVariableName(var);

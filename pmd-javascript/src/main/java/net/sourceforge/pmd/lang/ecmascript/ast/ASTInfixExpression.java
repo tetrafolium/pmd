@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTInfixExpression extends AbstractInfixEcmascriptNode<InfixExpression> {
     @Deprecated
     @InternalApi
-    public ASTInfixExpression(InfixExpression infixExpression) {
+    public ASTInfixExpression(final InfixExpression infixExpression) {
         super(infixExpression);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -67,7 +67,7 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
             decisionPoints++;
         }
 
-        public void bumpDecisionPoints(int size) {
+        public void bumpDecisionPoints(final int size) {
             decisionPoints += size;
         }
 
@@ -89,7 +89,7 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         reportLevel = getProperty(REPORT_LEVEL_DESCRIPTOR);
         showClassesComplexity = getProperty(SHOW_CLASSES_COMPLEXITY_DESCRIPTOR);
         showMethodsComplexity = getProperty(SHOW_METHODS_COMPLEXITY_DESCRIPTOR);
@@ -98,7 +98,7 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
         Entry classEntry = entryStack.pop();
         if (showClassesComplexity) {
             if (classEntry.getComplexityAverage() >= reportLevel || classEntry.highestDecisionPoints >= reportLevel) {
-                addViolation(data, node, new String[] { "class", node.getImage(),
+                addViolation(data, node, new String[] {"class", node.getImage(),
                     classEntry.getComplexityAverage() + " (Highest = " + classEntry.highestDecisionPoints + ')', });
             }
         }
@@ -106,7 +106,7 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserTrigger node, Object data) {
+    public Object visit(final ASTUserTrigger node, final Object data) {
         reportLevel = getProperty(REPORT_LEVEL_DESCRIPTOR);
         showClassesComplexity = getProperty(SHOW_CLASSES_COMPLEXITY_DESCRIPTOR);
         showMethodsComplexity = getProperty(SHOW_METHODS_COMPLEXITY_DESCRIPTOR);
@@ -115,7 +115,7 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
         Entry classEntry = entryStack.pop();
         if (showClassesComplexity) {
             if (classEntry.getComplexityAverage() >= reportLevel || classEntry.highestDecisionPoints >= reportLevel) {
-                addViolation(data, node, new String[] { "trigger", node.getImage(),
+                addViolation(data, node, new String[] {"trigger", node.getImage(),
                     classEntry.getComplexityAverage() + " (Highest = " + classEntry.highestDecisionPoints + ')', });
             }
         }
@@ -123,24 +123,24 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         return data;
     }
 
     @Override
-    public Object visit(ASTUserEnum node, Object data) {
+    public Object visit(final ASTUserEnum node, final Object data) {
         entryStack.push(new Entry());
         super.visit(node, data);
         Entry classEntry = entryStack.pop();
         if (classEntry.getComplexityAverage() >= reportLevel || classEntry.highestDecisionPoints >= reportLevel) {
-            addViolation(data, node, new String[] { "class", node.getImage(),
+            addViolation(data, node, new String[] {"class", node.getImage(),
                 classEntry.getComplexityAverage() + "(Highest = " + classEntry.highestDecisionPoints + ')', });
         }
         return data;
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!node.getImage().matches("<clinit>|<init>|clone")) {
             entryStack.push(new Entry());
             super.visit(node, data);
@@ -157,63 +157,63 @@ public class StdCyclomaticComplexityRule extends AbstractApexRule {
             if (showMethodsComplexity && methodEntry.decisionPoints >= reportLevel) {
                 String methodType = node.isConstructor() ? "constructor" : "method";
                 addViolation(data, node,
-                        new String[] { methodType, node.getImage(), String.valueOf(methodEntry.decisionPoints) });
+                        new String[] {methodType, node.getImage(), String.valueOf(methodEntry.decisionPoints) });
             }
         }
         return data;
     }
 
     @Override
-    public Object visit(ASTIfBlockStatement node, Object data) {
+    public Object visit(final ASTIfBlockStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTTryCatchFinallyBlockStatement node, Object data) {
+    public Object visit(final ASTTryCatchFinallyBlockStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTForLoopStatement node, Object data) {
+    public Object visit(final ASTForLoopStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTForEachStatement node, Object data) {
+    public Object visit(final ASTForEachStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTWhileLoopStatement node, Object data) {
+    public Object visit(final ASTWhileLoopStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTDoLoopStatement node, Object data) {
+    public Object visit(final ASTDoLoopStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTTernaryExpression node, Object data) {
+    public Object visit(final ASTTernaryExpression node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTBooleanExpression node, Object data) {
+    public Object visit(final ASTBooleanExpression node, final Object data) {
         return data;
     }
 }

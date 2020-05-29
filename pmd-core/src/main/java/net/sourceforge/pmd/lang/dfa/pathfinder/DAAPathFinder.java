@@ -32,21 +32,21 @@ public class DAAPathFinder {
     private int maxPaths;
     private int maxLoops;
 
-    public DAAPathFinder(DataFlowNode rootNode, Executable shim) {
+    public DAAPathFinder(final DataFlowNode rootNode, final Executable shim) {
         this.rootNode = rootNode;
         this.shim = shim;
         this.maxPaths = MAX_PATHS;
         this.maxLoops = MAX_LOOPS;
     }
 
-    public DAAPathFinder(DataFlowNode rootNode, Executable shim, int maxPaths) {
+    public DAAPathFinder(final DataFlowNode rootNode, final Executable shim, final int maxPaths) {
         this.rootNode = rootNode;
         this.shim = shim;
         this.maxPaths = maxPaths;
         this.maxLoops = MAX_LOOPS;
     }
 
-    public DAAPathFinder(DataFlowNode rootNode, Executable shim, int maxPaths, int maxLoops) {
+    public DAAPathFinder(final DataFlowNode rootNode, final Executable shim, final int maxPaths, final int maxLoops) {
         this.rootNode = rootNode;
         this.shim = shim;
         this.maxPaths = maxPaths;
@@ -77,7 +77,7 @@ public class DAAPathFinder {
     /*
      * Builds up the path.
      */
-    private void phase2(boolean flag) {
+    private void phase2(final boolean flag) {
         int i = 0;
         while (!currentPath.isEndNode() && i < this.maxLoops) {
             i++;
@@ -248,25 +248,25 @@ public class DAAPathFinder {
         }
     }
 
-    private void addNewPathElement(DefaultMutableTreeNode level) {
+    private void addNewPathElement(final DefaultMutableTreeNode level) {
         addNode(level, new PathElement(currentPath.getLast()));
     }
 
     /*
      * Needed for do loops
      */
-    private void addNewPseudoPathElement(DefaultMutableTreeNode level, DataFlowNode ref) {
+    private void addNewPseudoPathElement(final DefaultMutableTreeNode level, final DataFlowNode ref) {
         addNode(level, new PathElement(currentPath.getLast(), ref));
     }
 
     /*
      * Needed for do loops
      */
-    private void addRefPseudoPathElement(DefaultMutableTreeNode level, PathElement ref) {
+    private void addRefPseudoPathElement(final DefaultMutableTreeNode level, final PathElement ref) {
         addNode(level, ref);
     }
 
-    private boolean equalsPseudoPathElementWithDoBranchNodeInLevel(DefaultMutableTreeNode level) {
+    private boolean equalsPseudoPathElementWithDoBranchNodeInLevel(final DefaultMutableTreeNode level) {
         DataFlowNode inode = currentPath.getLast();
 
         if (!inode.isType(NodeType.DO_EXPR)) {
@@ -286,7 +286,7 @@ public class DAAPathFinder {
         return false;
     }
 
-    private PathElement getDoBranchNodeInLevel(DefaultMutableTreeNode level) {
+    private PathElement getDoBranchNodeInLevel(final DefaultMutableTreeNode level) {
         DataFlowNode inode = currentPath.getLast();
         if (!inode.isType(NodeType.DO_EXPR)) {
             return null;
@@ -305,13 +305,13 @@ public class DAAPathFinder {
         return null;
     }
 
-    private void addNode(DefaultMutableTreeNode level, PathElement element) {
+    private void addNode(final DefaultMutableTreeNode level, final PathElement element) {
         DefaultMutableTreeNode node = new DefaultMutableTreeNode();
         node.setUserObject(element);
         level.add(node);
     }
 
-    private PathElement isNodeInLevel(DefaultMutableTreeNode level) {
+    private PathElement isNodeInLevel(final DefaultMutableTreeNode level) {
         DataFlowNode inode = currentPath.getLast();
         DefaultMutableTreeNode child = (DefaultMutableTreeNode) level.getFirstChild();
 
@@ -324,7 +324,7 @@ public class DAAPathFinder {
         return null;
     }
 
-    private DefaultMutableTreeNode getLastChildNode(DefaultMutableTreeNode node) {
+    private DefaultMutableTreeNode getLastChildNode(final DefaultMutableTreeNode node) {
         if (node.getChildCount() != 0) {
             return (DefaultMutableTreeNode) node.getLastChild();
         }

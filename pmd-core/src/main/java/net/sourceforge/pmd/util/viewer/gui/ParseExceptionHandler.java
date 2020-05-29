@@ -37,7 +37,7 @@ public class ParseExceptionHandler extends JDialog implements ActionListener {
      * @param exc
      *            exception to be handled
      */
-    public ParseExceptionHandler(JFrame parent, Exception exc) {
+    public ParseExceptionHandler(final JFrame parent, final Exception exc) {
         super(parent, NLS.nls("COMPILE_ERROR.DIALOG.TITLE"), true);
         this.exc = exc;
         init();
@@ -68,7 +68,7 @@ public class ParseExceptionHandler extends JDialog implements ActionListener {
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         if (e.getSource() == okBtn) {
             dispose();
         }

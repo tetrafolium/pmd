@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.ast.SimpleCharStream;
  */
 public class VfSimpleCharStream extends SimpleCharStream {
 
-    public VfSimpleCharStream(Reader dstream) {
+    public VfSimpleCharStream(final Reader dstream) {
         super(dstream);
         tabSize = 4;
     }

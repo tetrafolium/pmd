@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTCatchClause extends AbstractEcmascriptNode<CatchClause> {
     @Deprecated
     @InternalApi
-    public ASTCatchClause(CatchClause catchClause) {
+    public ASTCatchClause(final CatchClause catchClause) {
         super(catchClause);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -24,7 +24,7 @@ public class TccMetric extends AbstractJavaClassMetric {
 
 
     @Override
-    public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+    public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
         Map<String, Set<String>> usagesByMethod = new TccAttributeAccessCollector(node).start();
 
         int numPairs = numMethodsRelatedByAttributeAccess(usagesByMethod);
@@ -41,7 +41,7 @@ public class TccMetric extends AbstractJavaClassMetric {
      *
      * @return The number of pairs
      */
-    private int numMethodsRelatedByAttributeAccess(Map<String, Set<String>> usagesByMethod) {
+    private int numMethodsRelatedByAttributeAccess(final Map<String, Set<String>> usagesByMethod) {
         List<String> methods = new ArrayList<>(usagesByMethod.keySet());
         int methodCount = methods.size();
         int pairs = 0;
@@ -70,7 +70,7 @@ public class TccMetric extends AbstractJavaClassMetric {
      *
      * @return Number of possible method pairs
      */
-    private int maxMethodPairs(int methods) {
+    private int maxMethodPairs(final int methods) {
         return methods * (methods - 1) / 2;
     }
 

@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTWhileLoop extends AbstractEcmascriptNode<WhileLoop> {
     @Deprecated
     @InternalApi
-    public ASTWhileLoop(WhileLoop whileLoop) {
+    public ASTWhileLoop(final WhileLoop whileLoop) {
         super(whileLoop);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

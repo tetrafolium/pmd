@@ -23,18 +23,18 @@ public class ASTExtendsList extends AbstractJavaNode implements Iterable<ASTClas
 
     @InternalApi
     @Deprecated
-    public ASTExtendsList(int id) {
+    public ASTExtendsList(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTExtendsList(JavaParser p, int id) {
+    public ASTExtendsList(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

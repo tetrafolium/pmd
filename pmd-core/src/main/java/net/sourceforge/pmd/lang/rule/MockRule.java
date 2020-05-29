@@ -34,12 +34,12 @@ public class MockRule extends AbstractRule {
         definePropertyDescriptor(PropertyFactory.intProperty("testIntProperty").desc("testIntProperty").require(inRange(1, 100)).defaultValue(1).build());
     }
 
-    public MockRule(String name, String description, String message, String ruleSetName, RulePriority priority) {
+    public MockRule(final String name, final String description, final String message, final String ruleSetName, final RulePriority priority) {
         this(name, description, message, ruleSetName);
         setPriority(priority);
     }
 
-    public MockRule(String name, String description, String message, String ruleSetName) {
+    public MockRule(final String name, final String description, final String message, final String ruleSetName) {
         this();
         setName(name);
         setDescription(description);
@@ -48,7 +48,7 @@ public class MockRule extends AbstractRule {
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         // the mock rule does nothing. Usually you would start here to analyze the AST.
     }
 }

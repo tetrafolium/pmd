@@ -27,7 +27,7 @@ public class Ecmascript5TokenManager implements TokenManager {
      * @param source
      *            the source code
      */
-    public Ecmascript5TokenManager(Reader source) {
+    public Ecmascript5TokenManager(final Reader source) {
         tokenManager = new Ecmascript5ParserTokenManager(new SimpleCharStream(source));
     }
 
@@ -37,7 +37,7 @@ public class Ecmascript5TokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         Ecmascript5ParserTokenManager.setFileName(fileName);
     }
 }

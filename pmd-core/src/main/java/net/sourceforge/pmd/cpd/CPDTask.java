@@ -126,7 +126,7 @@ public class CPDTask extends Task {
         return LanguageFactory.createLanguage(language, p);
     }
 
-    private void report(CPD cpd) throws ReportException {
+    private void report(final CPD cpd) throws ReportException {
         if (!cpd.getMatches().hasNext()) {
             log("No duplicates over " + minimumTokenCount + " tokens found", Project.MSG_INFO);
         }
@@ -155,7 +155,7 @@ public class CPDTask extends Task {
         }
     }
 
-    private void tokenizeFiles(CPD cpd) throws IOException {
+    private void tokenizeFiles(final CPD cpd) throws IOException {
         for (FileSet fileSet : filesets) {
             DirectoryScanner directoryScanner = fileSet.getDirectoryScanner(getProject());
             String[] includedFiles = directoryScanner.getIncludedFiles();
@@ -168,7 +168,7 @@ public class CPDTask extends Task {
         }
     }
 
-    private long analyzeCode(CPD cpd) {
+    private long analyzeCode(final CPD cpd) {
         long start = System.currentTimeMillis();
         cpd.go();
         long stop = System.currentTimeMillis();
@@ -199,64 +199,64 @@ public class CPDTask extends Task {
         }
     }
 
-    public void addFileset(FileSet set) {
+    public void addFileset(final FileSet set) {
         filesets.add(set);
     }
 
-    public void setMinimumTokenCount(int minimumTokenCount) {
+    public void setMinimumTokenCount(final int minimumTokenCount) {
         this.minimumTokenCount = minimumTokenCount;
     }
 
-    public void setIgnoreLiterals(boolean value) {
+    public void setIgnoreLiterals(final boolean value) {
         this.ignoreLiterals = value;
     }
 
-    public void setIgnoreIdentifiers(boolean value) {
+    public void setIgnoreIdentifiers(final boolean value) {
         this.ignoreIdentifiers = value;
     }
 
-    public void setIgnoreAnnotations(boolean value) {
+    public void setIgnoreAnnotations(final boolean value) {
         this.ignoreAnnotations = value;
     }
 
-    public void setIgnoreUsings(boolean value) {
+    public void setIgnoreUsings(final boolean value) {
         this.ignoreUsings = value;
     }
 
-    public void setSkipLexicalErrors(boolean skipLexicalErrors) {
+    public void setSkipLexicalErrors(final boolean skipLexicalErrors) {
         this.skipLexicalErrors = skipLexicalErrors;
     }
 
-    public void setSkipDuplicateFiles(boolean skipDuplicateFiles) {
+    public void setSkipDuplicateFiles(final boolean skipDuplicateFiles) {
         this.skipDuplicateFiles = skipDuplicateFiles;
     }
 
-    public void setOutputFile(File outputFile) {
+    public void setOutputFile(final File outputFile) {
         this.outputFile = outputFile;
     }
 
-    public void setFormat(FormatAttribute formatAttribute) {
+    public void setFormat(final FormatAttribute formatAttribute) {
         this.format = formatAttribute.getValue();
     }
 
-    public void setLanguage(String language) {
+    public void setLanguage(final String language) {
         this.language = language;
     }
 
-    public void setEncoding(String encoding) {
+    public void setEncoding(final String encoding) {
         this.encoding = encoding;
     }
 
-    public void setSkipBlocks(boolean skipBlocks) {
+    public void setSkipBlocks(final boolean skipBlocks) {
         this.skipBlocks = skipBlocks;
     }
 
-    public void setSkipBlocksPattern(String skipBlocksPattern) {
+    public void setSkipBlocksPattern(final String skipBlocksPattern) {
         this.skipBlocksPattern = skipBlocksPattern;
     }
 
     public static class FormatAttribute extends EnumeratedAttribute {
-        private static final String[] FORMATS = new String[] { XML_FORMAT, TEXT_FORMAT, CSV_FORMAT };
+        private static final String[] FORMATS = new String[] {XML_FORMAT, TEXT_FORMAT, CSV_FORMAT };
 
         @Override
         public String[] getValues() {

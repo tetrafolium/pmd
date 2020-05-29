@@ -15,12 +15,12 @@ import apex.jorje.semantic.ast.expression.MethodCallExpression;
 public class ASTMethodCallExpression extends AbstractApexNode<MethodCallExpression> {
     @Deprecated
     @InternalApi
-    public ASTMethodCallExpression(MethodCallExpression methodCallExpression) {
+    public ASTMethodCallExpression(final MethodCallExpression methodCallExpression) {
         super(methodCallExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -236,7 +236,7 @@ public abstract class AbstractNode implements Node {
      */
     @Deprecated
     @InternalApi
-    public void testingOnlySetBeginLine(int i) {
+    public void testingOnlySetBeginLine(final int i) {
         this.beginLine = i;
     }
 

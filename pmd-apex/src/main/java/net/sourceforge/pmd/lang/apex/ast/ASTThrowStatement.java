@@ -12,12 +12,12 @@ public class ASTThrowStatement extends AbstractApexNode<ThrowStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTThrowStatement(ThrowStatement throwStatement) {
+    public ASTThrowStatement(final ThrowStatement throwStatement) {
         super(throwStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -15,12 +15,12 @@ public class ASTImporteeWildcard extends AbstractScalaNode<Importee.Wildcard> {
 
     @Deprecated
     @InternalApi
-    public ASTImporteeWildcard(Importee.Wildcard scalaNode) {
+    public ASTImporteeWildcard(final Importee.Wildcard scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

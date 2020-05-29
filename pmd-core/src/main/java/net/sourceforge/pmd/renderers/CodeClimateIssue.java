@@ -36,7 +36,7 @@ public class CodeClimateIssue {
             public int end;
         }
 
-        public Location(String path, int beginLine, int endLine) {
+        public Location(final String path, final int beginLine, final int endLine) {
             this.path = path;
             this.lines = new Lines();
             lines.begin = beginLine;
@@ -55,7 +55,7 @@ public class CodeClimateIssue {
          *
          * @param body The text to compose the content from
          */
-        public Content(String body) {
+        public Content(final String body) {
             this.body = body.replace(PMD.EOL, " ");
         }
     }

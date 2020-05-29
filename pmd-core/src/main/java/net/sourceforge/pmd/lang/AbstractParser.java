@@ -14,7 +14,7 @@ import java.io.Reader;
 public abstract class AbstractParser implements Parser {
     protected final ParserOptions parserOptions;
 
-    public AbstractParser(ParserOptions parserOptions) {
+    public AbstractParser(final ParserOptions parserOptions) {
         this.parserOptions = parserOptions;
     }
 
@@ -24,7 +24,7 @@ public abstract class AbstractParser implements Parser {
     }
 
     @Override
-    public TokenManager getTokenManager(String fileName, Reader source) {
+    public TokenManager getTokenManager(final String fileName, final Reader source) {
         TokenManager tokenManager = createTokenManager(source);
         tokenManager.setFileName(fileName);
         return tokenManager;

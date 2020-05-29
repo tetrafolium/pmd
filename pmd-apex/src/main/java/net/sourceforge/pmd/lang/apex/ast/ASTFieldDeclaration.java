@@ -12,12 +12,12 @@ public class ASTFieldDeclaration extends AbstractApexNode<FieldDeclaration> {
 
     @Deprecated
     @InternalApi
-    public ASTFieldDeclaration(FieldDeclaration fieldDeclaration) {
+    public ASTFieldDeclaration(final FieldDeclaration fieldDeclaration) {
         super(fieldDeclaration);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

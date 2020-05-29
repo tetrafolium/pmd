@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class AvoidCatchingThrowableRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         ASTType type = node.getFirstDescendantOfType(ASTType.class);
         ASTClassOrInterfaceType name = type.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
         if (name.hasImageEqualTo("Throwable")) {

@@ -17,14 +17,14 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class AvoidReassigningParametersRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         Map<VariableNameDeclaration, List<NameOccurrence>> params = node.getScope()
                 .getDeclarations(VariableNameDeclaration.class);
         this.lookForViolation(params, data);
         return super.visit(node, data);
     }
 
-    private void lookForViolation(Map<VariableNameDeclaration, List<NameOccurrence>> params, Object data) {
+    private void lookForViolation(final Map<VariableNameDeclaration, List<NameOccurrence>> params, final Object data) {
         for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry : params.entrySet()) {
             VariableNameDeclaration decl = entry.getKey();
             List<NameOccurrence> usages = entry.getValue();
@@ -49,7 +49,7 @@ public class AvoidReassigningParametersRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         Map<VariableNameDeclaration, List<NameOccurrence>> params = node.getScope()
                 .getDeclarations(VariableNameDeclaration.class);
         this.lookForViolation(params, data);

@@ -41,7 +41,7 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTAnyTypeDeclaration> key, ASTAnyTypeDeclaration node) {
+    public static double get(final MetricKey<ASTAnyTypeDeclaration> key, final ASTAnyTypeDeclaration node) {
         return get(key, node, MetricOptions.emptyOptions());
     }
 
@@ -56,7 +56,7 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<ASTAnyTypeDeclaration> key, ASTAnyTypeDeclaration node, MetricOptions options) {
+    public static double get(final MetricKey<ASTAnyTypeDeclaration> key, final ASTAnyTypeDeclaration node, final MetricOptions options) {
         return MetricsUtil.computeMetricOrNaN(key, node, options);
     }
 
@@ -69,7 +69,7 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<MethodLikeNode> key, MethodLikeNode node) {
+    public static double get(final MetricKey<MethodLikeNode> key, final MethodLikeNode node) {
         return get(key, node, MetricOptions.emptyOptions());
     }
 
@@ -79,7 +79,7 @@ public final class JavaMetrics {
      * @deprecated Provided here for backwards binary compatibility with {@link #get(MetricKey, MethodLikeNode)}.
      *     Please explicitly link your code to that method and recompile your code. Will be remove with 7.0.0
      */
-    public static double get(MetricKey<MethodLikeNode> key, ASTMethodOrConstructorDeclaration node) {
+    public static double get(final MetricKey<MethodLikeNode> key, final ASTMethodOrConstructorDeclaration node) {
         return get(key, (MethodLikeNode) node);
     }
 
@@ -90,7 +90,7 @@ public final class JavaMetrics {
      *     Please explicitly link your code to that method and recompile your code. Will be remove with 7.0.0
      */
     @Deprecated
-    public static double get(MetricKey<MethodLikeNode> key, ASTMethodOrConstructorDeclaration node, MetricOptions options) {
+    public static double get(final MetricKey<MethodLikeNode> key, final ASTMethodOrConstructorDeclaration node, final MetricOptions options) {
         return get(key, (MethodLikeNode) node, options);
     }
 
@@ -103,7 +103,7 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<MethodLikeNode> key, MethodLikeNode node, MetricOptions options) {
+    public static double get(final MetricKey<MethodLikeNode> key, final MethodLikeNode node, final MetricOptions options) {
         return MetricsUtil.computeMetricOrNaN(key, node, options);
     }
 
@@ -118,7 +118,7 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<MethodLikeNode> key, ASTAnyTypeDeclaration node, ResultOption resultOption) {
+    public static double get(final MetricKey<MethodLikeNode> key, final ASTAnyTypeDeclaration node, final ResultOption resultOption) {
         return MetricsUtil.computeAggregate(key, findOps(node), resultOption);
     }
 
@@ -134,12 +134,12 @@ public final class JavaMetrics {
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public static double get(MetricKey<MethodLikeNode> key, ASTAnyTypeDeclaration node,
-                             MetricOptions options, ResultOption resultOption) {
+    public static double get(final MetricKey<MethodLikeNode> key, final ASTAnyTypeDeclaration node,
+                             final MetricOptions options, final ResultOption resultOption) {
         return MetricsUtil.computeAggregate(key, findOps(node), options, resultOption);
     }
 
-    public static List<MethodLikeNode> findOps(ASTAnyTypeDeclaration node) {
+    public static List<MethodLikeNode> findOps(final ASTAnyTypeDeclaration node) {
         List<MethodLikeNode> operations = new ArrayList<>();
 
         for (ASTAnyTypeBodyDeclaration decl : node.getDeclarations()) {

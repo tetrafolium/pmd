@@ -21,7 +21,7 @@ import net.sourceforge.pmd.lang.jsp.ast.JspParserTokenManager;
 public class JspTokenManager implements TokenManager {
     private final JspParserTokenManager tokenManager;
 
-    public JspTokenManager(Reader source) {
+    public JspTokenManager(final Reader source) {
         tokenManager = new JspParserTokenManager(new JavaCharStream(source));
     }
 
@@ -31,7 +31,7 @@ public class JspTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         JspParserTokenManager.setFileName(fileName);
     }
 }

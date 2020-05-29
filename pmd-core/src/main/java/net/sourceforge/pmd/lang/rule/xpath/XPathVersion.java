@@ -41,7 +41,7 @@ public enum XPathVersion {
     }
 
 
-    XPathVersion(String version) {
+    XPathVersion(final String version) {
         this.version = version;
     }
 
@@ -64,7 +64,7 @@ public enum XPathVersion {
      *
      * @return An XPath version, or null if the argument is not a valid version
      */
-    public static XPathVersion ofId(String version) {
+    public static XPathVersion ofId(final String version) {
         return BY_NAME.get(version);
     }
 }

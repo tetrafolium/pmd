@@ -7,7 +7,7 @@ package net.sourceforge.pmd.test.lang.ast;
 import net.sourceforge.pmd.lang.ast.AbstractNode;
 
 public class DummyNode extends AbstractNode {
-    public DummyNode(int id) {
+    public DummyNode(final int id) {
         super(id);
     }
 

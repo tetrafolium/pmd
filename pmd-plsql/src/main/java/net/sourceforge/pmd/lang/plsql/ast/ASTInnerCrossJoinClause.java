@@ -12,13 +12,13 @@ public class ASTInnerCrossJoinClause extends net.sourceforge.pmd.lang.plsql.ast.
 
     @Deprecated
     @InternalApi
-    public ASTInnerCrossJoinClause(int id) {
+    public ASTInnerCrossJoinClause(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTInnerCrossJoinClause(PLSQLParser p, int id) {
+    public ASTInnerCrossJoinClause(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
@@ -30,16 +30,16 @@ public class ASTInnerCrossJoinClause extends net.sourceforge.pmd.lang.plsql.ast.
         return natural;
     }
 
-    void setCross(boolean cross) {
+    void setCross(final boolean cross) {
         this.cross = cross;
     }
 
-    void setNatural(boolean natural) {
+    void setNatural(final boolean natural) {
         this.natural = natural;
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

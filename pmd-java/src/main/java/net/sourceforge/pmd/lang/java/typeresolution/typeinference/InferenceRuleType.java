@@ -21,7 +21,7 @@ public enum InferenceRuleType {
      */
     EQUALITY {
         @Override
-        public List<BoundOrConstraint> reduce(BoundOrConstraint val) {
+        public List<BoundOrConstraint> reduce(final BoundOrConstraint val) {
             // A constraint formula of the form ‹S = T›, where S and T are types, is reduced as follows:
 
             if (val.isLeftType() && val.isRightType()) {
@@ -94,7 +94,7 @@ public enum InferenceRuleType {
 
     SUBTYPE {
         @Override
-        public List<BoundOrConstraint> reduce(BoundOrConstraint val) {
+        public List<BoundOrConstraint> reduce(final BoundOrConstraint val) {
             // A constraint formula of the form ‹S <: T› is reduced as follows:
 
             List<BoundOrConstraint> newConstraints = new ArrayList<>();
@@ -141,7 +141,7 @@ public enum InferenceRuleType {
 
     LOOSE_INVOCATION {
         @Override
-        public List<BoundOrConstraint> reduce(BoundOrConstraint val) {
+        public List<BoundOrConstraint> reduce(final BoundOrConstraint val) {
             List<BoundOrConstraint> newConstraints = new ArrayList<>();
 
             // TODO: expression loose invocation rules
@@ -202,7 +202,7 @@ public enum InferenceRuleType {
 
     CONTAINS {
         @Override
-        public List<BoundOrConstraint> reduce(BoundOrConstraint val) {
+        public List<BoundOrConstraint> reduce(final BoundOrConstraint val) {
             List<BoundOrConstraint> newConstraints = new ArrayList<>();
 
             // A constraint formula of the form ‹S <= T›, where S and T are type arguments (§4.5.1), is reduced as
@@ -234,7 +234,7 @@ public enum InferenceRuleType {
     };
 
 
-    private static Bound copyBound(BoundOrConstraint val, InferenceRuleType rule) {
+    private static Bound copyBound(final BoundOrConstraint val, final InferenceRuleType rule) {
         if (val.leftProper() != null) {
             if (val.rightProper() != null) {
                 return new Bound(val.leftProper(), val.rightProper(), rule);
@@ -250,7 +250,7 @@ public enum InferenceRuleType {
         }
     }
 
-    private static Constraint copyConstraint(BoundOrConstraint val, InferenceRuleType rule) {
+    private static Constraint copyConstraint(final BoundOrConstraint val, final InferenceRuleType rule) {
         if (val.leftProper() != null) {
             if (val.rightProper() != null) {
                 return new Constraint(val.leftProper(), val.rightProper(), rule);

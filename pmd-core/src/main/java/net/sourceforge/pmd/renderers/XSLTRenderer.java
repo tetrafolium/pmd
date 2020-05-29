@@ -99,7 +99,7 @@ public class XSLTRenderer extends XMLRenderer {
      * @param xslt
      *            The stylesheet provided as an InputStream
      */
-    private void prepareTransformer(InputStream xslt) {
+    private void prepareTransformer(final InputStream xslt) {
         if (xslt != null) {
             try {
                 // Get a TransformerFactory object
@@ -129,7 +129,7 @@ public class XSLTRenderer extends XMLRenderer {
 
     }
 
-    private void transform(Document doc) {
+    private void transform(final Document doc) {
         DOMSource source = new DOMSource(doc);
         this.setWriter(new StringWriter());
         StreamResult result = new StreamResult(this.outputWriter);
@@ -140,7 +140,7 @@ public class XSLTRenderer extends XMLRenderer {
         }
     }
 
-    private Document getDocument(String xml) {
+    private Document getDocument(final String xml) {
         try {
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             return parser.parse(new InputSource(new StringReader(xml)));

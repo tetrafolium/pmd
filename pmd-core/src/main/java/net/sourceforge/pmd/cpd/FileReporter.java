@@ -23,20 +23,20 @@ public class FileReporter {
     private File reportFile;
     private String encoding;
 
-    public FileReporter(String encoding) {
+    public FileReporter(final String encoding) {
         this(null, encoding);
     }
 
-    public FileReporter(File reportFile) {
+    public FileReporter(final File reportFile) {
         this(reportFile, System.getProperty("file.encoding"));
     }
 
-    public FileReporter(File reportFile, String encoding) {
+    public FileReporter(final File reportFile, final String encoding) {
         this.reportFile = reportFile;
         this.encoding = encoding;
     }
 
-    public void report(String content) throws ReportException {
+    public void report(final String content) throws ReportException {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(getOutputStream(), encoding))) {
             writer.write(content);
         } catch (IOException ioe) {

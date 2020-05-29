@@ -37,7 +37,7 @@ public abstract class AbstractPMDProcessor {
 
     protected final PMDConfiguration configuration;
 
-    public AbstractPMDProcessor(PMDConfiguration configuration) {
+    public AbstractPMDProcessor(final PMDConfiguration configuration) {
         this.configuration = configuration;
     }
 
@@ -59,7 +59,7 @@ public abstract class AbstractPMDProcessor {
      * been moved to the renderers.
      */
     @Deprecated
-    protected String filenameFrom(DataSource dataSource) {
+    protected String filenameFrom(final DataSource dataSource) {
         return dataSource.getNiceFileName(configuration.isReportShortNames(), configuration.getInputPaths());
     }
 
@@ -73,7 +73,7 @@ public abstract class AbstractPMDProcessor {
      * @param report The base report on which to report any configuration errors
      * @return the rules within a rulesets
      */
-    protected RuleSets createRuleSets(RuleSetFactory factory, Report report) {
+    protected RuleSets createRuleSets(final RuleSetFactory factory, final Report report) {
         final RuleSets rs = RulesetsFactoryUtils.getRuleSets(configuration.getRuleSets(), factory);
 
         final Set<Rule> brokenRules = removeBrokenRules(rs);
@@ -108,8 +108,8 @@ public abstract class AbstractPMDProcessor {
     @SuppressWarnings("PMD.CloseResource")
     // the data sources must only be closed after the threads are finished
     // this is done manually without a try-with-resources
-    public void processFiles(RuleSetFactory ruleSetFactory, List<DataSource> files, RuleContext ctx,
-            List<Renderer> renderers) {
+    public void processFiles(final RuleSetFactory ruleSetFactory, final List<DataSource> files, final RuleContext ctx,
+            final List<Renderer> renderers) {
         try {
             final RuleSets rs = createRuleSets(ruleSetFactory, ctx.getReport());
             configuration.getAnalysisCache().checkValidity(rs, configuration.getClassLoader());

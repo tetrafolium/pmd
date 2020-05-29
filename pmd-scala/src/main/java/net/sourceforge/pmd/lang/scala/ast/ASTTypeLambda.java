@@ -15,12 +15,12 @@ public class ASTTypeLambda extends AbstractScalaNode<Type.Lambda> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeLambda(Type.Lambda scalaNode) {
+    public ASTTypeLambda(final Type.Lambda scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

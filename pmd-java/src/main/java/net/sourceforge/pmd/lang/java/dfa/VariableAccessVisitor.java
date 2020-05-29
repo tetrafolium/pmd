@@ -39,17 +39,17 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  */
 public class VariableAccessVisitor extends JavaParserVisitorAdapter {
 
-    public void compute(ASTMethodDeclaration node) {
+    public void compute(final ASTMethodDeclaration node) {
         if (node.getParent() instanceof ASTClassOrInterfaceBodyDeclaration) {
             this.computeNow(node);
         }
     }
 
-    public void compute(ASTConstructorDeclaration node) {
+    public void compute(final ASTConstructorDeclaration node) {
         this.computeNow(node);
     }
 
-    private void computeNow(Node node) {
+    private void computeNow(final Node node) {
 
 
         DataFlowNode inode = node.getDataFlowNode();
@@ -65,7 +65,7 @@ public class VariableAccessVisitor extends JavaParserVisitorAdapter {
         lastINode.setVariableAccess(undefinitions);
     }
 
-    private List<VariableAccess> markUsages(DataFlowNode inode) {
+    private List<VariableAccess> markUsages(final DataFlowNode inode) {
         // undefinitions was once a field... seems like it works fine as a local
         List<VariableAccess> undefinitions = new ArrayList<>();
         Set<Map<VariableNameDeclaration, List<NameOccurrence>>> variableDeclarations = collectDeclarations(inode);
@@ -119,7 +119,7 @@ public class VariableAccessVisitor extends JavaParserVisitorAdapter {
         return undefinitions;
     }
 
-    private Set<Map<VariableNameDeclaration, List<NameOccurrence>>> collectDeclarations(DataFlowNode inode) {
+    private Set<Map<VariableNameDeclaration, List<NameOccurrence>>> collectDeclarations(final DataFlowNode inode) {
         Set<Map<VariableNameDeclaration, List<NameOccurrence>>> decls = new HashSet<>();
         Map<VariableNameDeclaration, List<NameOccurrence>> varDecls;
         for (int i = 0; i < inode.getFlow().size(); i++) {
@@ -135,7 +135,7 @@ public class VariableAccessVisitor extends JavaParserVisitorAdapter {
         return decls;
     }
 
-    private void addAccess(JavaNameOccurrence occurrence, DataFlowNode inode) {
+    private void addAccess(final JavaNameOccurrence occurrence, final DataFlowNode inode) {
         if (occurrence.isOnLeftHandSide()) {
             this.addVariableAccess(occurrence.getLocation(),
                     new VariableAccess(VariableAccess.DEFINITION, occurrence.getImage()), inode.getFlow());
@@ -156,7 +156,7 @@ public class VariableAccessVisitor extends JavaParserVisitorAdapter {
      * @param flow
      *            dataflownodes that can contain the node.
      */
-    private void addVariableAccess(Node node, VariableAccess va, List<DataFlowNode> flow) {
+    private void addVariableAccess(final Node node, final VariableAccess va, final List<DataFlowNode> flow) {
         // backwards to find the right inode (not a method declaration)
         for (int i = flow.size() - 1; i > 0; i--) {
             DataFlowNode inode = flow.get(i);

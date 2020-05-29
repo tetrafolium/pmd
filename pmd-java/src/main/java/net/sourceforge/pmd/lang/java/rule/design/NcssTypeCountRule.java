@@ -33,7 +33,7 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
         if (!node.isNested()) {
             return super.visit(node, data);
@@ -43,17 +43,17 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTExplicitConstructorInvocation node, Object data) {
+    public Object visit(final ASTExplicitConstructorInvocation node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         /*
          * If the enum is a type in and of itself, don't count its declaration
          * twice.
@@ -67,22 +67,22 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTInitializer node, Object data) {
+    public Object visit(final ASTInitializer node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
-        return new String[] { String.valueOf((int) point.getScore()) };
+    public Object[] getViolationParameters(final DataPoint point) {
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 }

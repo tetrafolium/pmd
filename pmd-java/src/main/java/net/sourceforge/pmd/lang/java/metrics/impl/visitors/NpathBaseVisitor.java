@@ -40,7 +40,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     /* Multiplies the complexity of the children of this node. */
-    private int multiplyChildrenComplexities(JavaNode node, Object data) {
+    private int multiplyChildrenComplexities(final JavaNode node, final Object data) {
         int product = 1;
 
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -62,7 +62,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     /* Sums the complexity of the children of the node. */
-    private int sumChildrenComplexities(JavaNode node, Object data) {
+    private int sumChildrenComplexities(final JavaNode node, final Object data) {
         int sum = 0;
 
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -84,19 +84,19 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
         return multiplyChildrenComplexities(node, data);
     }
 
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         return multiplyChildrenComplexities(node, data);
     }
 
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         // (npath of if + npath of else (or 1) + bool_comp of if) * npath of next
 
         List<ASTStatement> statementChildren = node.findChildrenOfType(ASTStatement.class);
@@ -114,7 +114,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         // (npath of while + bool_comp of while + 1) * npath of next
 
         int boolCompWhile = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -126,7 +126,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         // (npath of do + bool_comp of do + 1) * npath of next
 
         int boolCompDo = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -138,7 +138,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         // (npath of for + bool_comp of for + 1) * npath of next
 
         int boolCompFor = CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTExpression.class));
@@ -150,7 +150,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         // return statements are valued at 1, or the value of the boolean expression
 
         ASTExpression expr = node.getFirstChildOfType(ASTExpression.class);
@@ -171,7 +171,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         // bool_comp of switch + sum(npath(case_range))
 
         int boolCompSwitch = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -197,7 +197,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         // bool comp of guard clause + complexity of last two children (= total - 1)
 
         ASTExpression wrapper = new ASTExpression(Integer.MAX_VALUE);
@@ -209,7 +209,7 @@ public class NpathBaseVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTTryStatement node, Object data) {
+    public Object visit(final ASTTryStatement node, final Object data) {
         /*
          * This scenario was not addressed by the original paper. Based on the
          * principles outlined in the paper, as well as the Checkstyle NPath

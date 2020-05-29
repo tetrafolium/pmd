@@ -37,7 +37,7 @@ import net.sourceforge.pmd.lang.java.typeresolution.typeinference.Variable;
 @Deprecated
 @InternalApi
 public final class MethodTypeResolution {
-    private MethodTypeResolution() {}
+    private MethodTypeResolution() { }
 
     private static final Logger LOG = Logger.getLogger(MethodTypeResolution.class.getName());
 
@@ -89,7 +89,7 @@ public final class MethodTypeResolution {
         PRIMITIVE_BOXING_RULES = Collections.unmodifiableMap(boxingRules);
     }
 
-    public static boolean checkSubtypeability(MethodType method, MethodType subtypeableMethod) {
+    public static boolean checkSubtypeability(final MethodType method, final MethodType subtypeableMethod) {
         List<JavaTypeDefinition> subtypeableParams = subtypeableMethod.getParameterTypes();
         List<JavaTypeDefinition> methodParams = method.getParameterTypes();
 
@@ -117,8 +117,8 @@ public final class MethodTypeResolution {
      * Look for methods be subtypeability.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.2
      */
-    public static List<MethodType> selectMethodsFirstPhase(JavaTypeDefinition context,
-                                                           List<MethodType> methodsToSearch, ASTArgumentList argList) {
+    public static List<MethodType> selectMethodsFirstPhase(final JavaTypeDefinition context,
+                                                           final List<MethodType> methodsToSearch, final ASTArgumentList argList) {
         // TODO: check if explicit type arguments are applicable to the type parameter bounds
         List<MethodType> selectedMethods = new ArrayList<>();
         final int argCount = argList == null ? 0 : argList.getNumChildren();
@@ -181,8 +181,8 @@ public final class MethodTypeResolution {
         return selectedMethods;
     }
 
-    public static MethodType parameterizeInvocation(JavaTypeDefinition context, Method method,
-                                                    ASTArgumentList argList) {
+    public static MethodType parameterizeInvocation(final JavaTypeDefinition context, final Method method,
+                                                    final ASTArgumentList argList) {
 
         // variables are set up by the call to produceInitialBounds
         List<Variable> variables = new ArrayList<>();
@@ -200,8 +200,8 @@ public final class MethodTypeResolution {
         return getTypeDefOfMethod(context, method, resolvedTypeParameters);
     }
 
-    public static List<Constraint> produceInitialConstraints(Method method, ASTArgumentList argList,
-                                                             List<Variable> variables) {
+    public static List<Constraint> produceInitialConstraints(final Method method, final ASTArgumentList argList,
+                                                             final List<Variable> variables) {
         List<Constraint> result = new ArrayList<>();
 
         Type[] methodParameters = method.getGenericParameterTypes();
@@ -226,8 +226,8 @@ public final class MethodTypeResolution {
     }
 
 
-    public static void produceInitialBounds(Method method, JavaTypeDefinition context,
-                                            List<Variable> variables, List<Bound> initialBounds) {
+    public static void produceInitialBounds(final Method method, final JavaTypeDefinition context,
+                                            final List<Variable> variables, final List<Bound> initialBounds) {
         // https://docs.oracle.com/javase/specs/jls/se8/html/jls-18.html#jls-18.1.3
         // When inference begins, a bound set is typically generated from a list of type parameter declarations P1,
         // ..., Pp and associated inference variables α1, ..., αp. Such a bound set is constructed as follows. For
@@ -277,7 +277,7 @@ public final class MethodTypeResolution {
      * Look for methods be method conversion.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.3
      */
-    public static List<MethodType> selectMethodsSecondPhase(List<MethodType> methodsToSearch, ASTArgumentList argList) {
+    public static List<MethodType> selectMethodsSecondPhase(final List<MethodType> methodsToSearch, final ASTArgumentList argList) {
         // TODO: check if explicit type arguments are applicable to the type parameter bounds
         List<MethodType> selectedMethods = new ArrayList<>();
         final int argCount = argList == null ? 0 : argList.getNumChildren();
@@ -318,7 +318,7 @@ public final class MethodTypeResolution {
      * Look for methods considering varargs as well.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.4
      */
-    public static List<MethodType> selectMethodsThirdPhase(List<MethodType> methodsToSearch, ASTArgumentList argList) {
+    public static List<MethodType> selectMethodsThirdPhase(final List<MethodType> methodsToSearch, final ASTArgumentList argList) {
         // TODO: check if explicit type arguments are applicable to the type parameter bounds
         List<MethodType> selectedMethods = new ArrayList<>();
 
@@ -374,8 +374,8 @@ public final class MethodTypeResolution {
      * Searches a list of methods by trying the three phases of method overload resolution.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2
      */
-    public static JavaTypeDefinition getBestMethodReturnType(JavaTypeDefinition context, List<MethodType> methods,
-                                                             ASTArgumentList arguments) {
+    public static JavaTypeDefinition getBestMethodReturnType(final JavaTypeDefinition context, final List<MethodType> methods,
+                                                             final ASTArgumentList arguments) {
 
         try {
             List<MethodType> selectedMethods = selectMethodsFirstPhase(context, methods, arguments);
@@ -403,7 +403,7 @@ public final class MethodTypeResolution {
      * Most specific method selection.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.5
      */
-    public static MethodType selectMostSpecificMethod(List<MethodType> selectedMethods) {
+    public static MethodType selectMostSpecificMethod(final List<MethodType> selectedMethods) {
 
         MethodType mostSpecific = selectedMethods.get(0);
 
@@ -427,7 +427,7 @@ public final class MethodTypeResolution {
      * Select maximally specific method.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.5
      */
-    public static MethodType selectAmongMaximallySpecific(MethodType first, MethodType second) {
+    public static MethodType selectAmongMaximallySpecific(final MethodType first, final MethodType second) {
         if (first.isAbstract()) {
             if (second.isAbstract()) {
                 // https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.5
@@ -452,11 +452,11 @@ public final class MethodTypeResolution {
     /**
      * Looks for potentially applicable methods in a given type definition.
      */
-    public static List<MethodType> getApplicableMethods(JavaTypeDefinition context,
-                                                        String methodName,
-                                                        List<JavaTypeDefinition> typeArguments,
-                                                        int argArity,
-                                                        Class<?> accessingClass) {
+    public static List<MethodType> getApplicableMethods(final JavaTypeDefinition context,
+                                                        final String methodName,
+                                                        final List<JavaTypeDefinition> typeArguments,
+                                                        final int argArity,
+                                                        final Class<?> accessingClass) {
         List<MethodType> result = new ArrayList<>();
 
         if (context == null) {
@@ -503,8 +503,8 @@ public final class MethodTypeResolution {
     }
 
 
-    public static MethodType getTypeDefOfMethod(JavaTypeDefinition context, Method method,
-                                                List<JavaTypeDefinition> typeArguments) {
+    public static MethodType getTypeDefOfMethod(final JavaTypeDefinition context, final Method method,
+                                                final List<JavaTypeDefinition> typeArguments) {
         if (typeArguments.isEmpty() && isGeneric(method)) {
             return MethodType.build(method);
         }
@@ -525,8 +525,8 @@ public final class MethodTypeResolution {
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.12.2.1
      * Potential applicability.
      */
-    public static boolean isMethodApplicable(Method method, String methodName, int argArity,
-                                             Class<?> accessingClass, List<JavaTypeDefinition> typeArguments) {
+    public static boolean isMethodApplicable(final Method method, final String methodName, final int argArity,
+                                             final Class<?> accessingClass, final List<JavaTypeDefinition> typeArguments) {
 
         return method.getName().equals(methodName) // name matches
                 // is visible
@@ -550,7 +550,7 @@ public final class MethodTypeResolution {
      * @param accessingClass  The Class trying to access the member.
      * @return True if the member is visible from the accessingClass Class.
      */
-    public static boolean isMemberVisibleFromClass(Class<?> classWithMember, int modifiers, Class<?> accessingClass) {
+    public static boolean isMemberVisibleFromClass(final Class<?> classWithMember, final int modifiers, final Class<?> accessingClass) {
         if (accessingClass == null) {
             return false;
         }
@@ -586,19 +586,19 @@ public final class MethodTypeResolution {
         return false;
     }
 
-    public static boolean isGeneric(Method method) {
+    public static boolean isGeneric(final Method method) {
         return method.getTypeParameters().length != 0;
     }
 
-    public static boolean isGeneric(Class<?> clazz) {
+    public static boolean isGeneric(final Class<?> clazz) {
         return clazz.getTypeParameters().length != 0;
     }
 
-    public static int getArity(Method method) {
+    public static int getArity(final Method method) {
         return method.getParameterTypes().length;
     }
 
-    public static boolean isMethodConvertible(JavaTypeDefinition parameter, ASTExpression argument) {
+    public static boolean isMethodConvertible(final JavaTypeDefinition parameter, final ASTExpression argument) {
         if (argument.getTypeDefinition() == null) {
             LOG.log(Level.FINE, "No type information for node {0}", argument.toString());
             return true;
@@ -610,7 +610,7 @@ public final class MethodTypeResolution {
      * Method invocation conversion rules.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-5.html#jls-5.3
      */
-    public static boolean isMethodConvertible(JavaTypeDefinition parameter, JavaTypeDefinition argument) {
+    public static boolean isMethodConvertible(final JavaTypeDefinition parameter, final JavaTypeDefinition argument) {
         // covers identity conversion, widening primitive conversion, widening reference conversion, null
         // covers if both are primitive or bot are boxed primitive
         if (isSubtypeable(parameter, argument)) {
@@ -635,7 +635,7 @@ public final class MethodTypeResolution {
         // TODO: add raw unchecked conversion part
     }
 
-    public static boolean isSubtypeable(JavaTypeDefinition parameter, ASTExpression argument) {
+    public static boolean isSubtypeable(final JavaTypeDefinition parameter, final ASTExpression argument) {
         if (argument.getTypeDefinition() == null) {
             LOG.log(Level.FINE, "No type information for node {0}", argument.toString());
             return true;
@@ -643,7 +643,7 @@ public final class MethodTypeResolution {
         return isSubtypeable(parameter, argument.getTypeDefinition());
     }
 
-    public static boolean isSubtypeable(Class<?> parameter, Class<?> argument) {
+    public static boolean isSubtypeable(final Class<?> parameter, final Class<?> argument) {
         return isSubtypeable(JavaTypeDefinition.forClass(parameter), JavaTypeDefinition.forClass(argument));
     }
 
@@ -651,7 +651,7 @@ public final class MethodTypeResolution {
      * Subtypeability rules.
      * https://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.10
      */
-    public static boolean isSubtypeable(JavaTypeDefinition parameter, JavaTypeDefinition argument) {
+    public static boolean isSubtypeable(final JavaTypeDefinition parameter, final JavaTypeDefinition argument) {
         // null types are always applicable
         if (argument.getType() == null) {
             return true;
@@ -697,11 +697,11 @@ public final class MethodTypeResolution {
         return false;
     }
 
-    public static JavaTypeDefinition boxPrimitive(JavaTypeDefinition def) {
+    public static JavaTypeDefinition boxPrimitive(final JavaTypeDefinition def) {
         return JavaTypeDefinition.forClass(PRIMITIVE_BOXING_RULES.get(def.getType()));
     }
 
-    public static List<JavaTypeDefinition> getMethodExplicitTypeArugments(Node node) {
+    public static List<JavaTypeDefinition> getMethodExplicitTypeArugments(final Node node) {
         ASTMemberSelector memberSelector = node.getFirstChildOfType(ASTMemberSelector.class);
         if (memberSelector == null) {
             return Collections.emptyList();

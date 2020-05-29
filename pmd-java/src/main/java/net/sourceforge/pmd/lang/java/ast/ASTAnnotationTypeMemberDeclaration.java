@@ -10,18 +10,18 @@ public class ASTAnnotationTypeMemberDeclaration extends AbstractTypeBodyDeclarat
 
     @InternalApi
     @Deprecated
-    public ASTAnnotationTypeMemberDeclaration(int id) {
+    public ASTAnnotationTypeMemberDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAnnotationTypeMemberDeclaration(JavaParser p, int id) {
+    public ASTAnnotationTypeMemberDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

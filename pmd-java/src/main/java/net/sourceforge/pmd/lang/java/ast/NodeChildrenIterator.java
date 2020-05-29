@@ -22,7 +22,7 @@ class NodeChildrenIterator<T extends Node> implements Iterator<T> {
     private int i = 0;
 
 
-    NodeChildrenIterator(Node parent, Class<T> targetChildType) {
+    NodeChildrenIterator(final Node parent, final Class<T> targetChildType) {
         this.parent = parent;
         this.targetChildType = targetChildType;
     }

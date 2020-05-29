@@ -19,7 +19,7 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
 
 public class VariableNameDeclaration extends AbstractNameDeclaration implements TypedNameDeclaration {
 
-    public VariableNameDeclaration(ASTVariableDeclaratorId node) {
+    public VariableNameDeclaration(final ASTVariableDeclaratorId node) {
         super(node);
     }
 
@@ -136,7 +136,7 @@ public class VariableNameDeclaration extends AbstractNameDeclaration implements 
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof VariableNameDeclaration)) {
             return false;
         }

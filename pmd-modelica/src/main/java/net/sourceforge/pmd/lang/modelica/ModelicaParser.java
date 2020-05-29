@@ -29,7 +29,7 @@ public class ModelicaParser extends AbstractParser {
     }
 
     @Override
-    protected TokenManager createTokenManager(Reader source) {
+    protected TokenManager createTokenManager(final Reader source) {
         return new ModelicaTokenManager(source);
     }
 
@@ -39,7 +39,7 @@ public class ModelicaParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         AbstractTokenManager.setFileName(fileName);
         return new net.sourceforge.pmd.lang.modelica.ast.ModelicaParser(new SimpleCharStream(source)).StoredDefinition();
     }

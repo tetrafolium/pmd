@@ -16,7 +16,7 @@ public class Watchdog {
         // no specific logic, just kind of marker
     }
 
-    Watchdog(int initial) {
+    Watchdog(final int initial) {
         counter = initial;
     }
 

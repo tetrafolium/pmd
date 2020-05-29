@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTVariableInitializer extends AbstractEcmascriptNode<VariableInitializer> implements DestructuringNode {
     @Deprecated
     @InternalApi
-    public ASTVariableInitializer(VariableInitializer variableInitializer) {
+    public ASTVariableInitializer(final VariableInitializer variableInitializer) {
         super(variableInitializer);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

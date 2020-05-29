@@ -29,7 +29,7 @@ public class MatchesFunction implements Function {
     }
 
     @Override
-    public Object call(Context context, List args) throws FunctionCallException {
+    public Object call(final Context context, final List args) throws FunctionCallException {
         if (args.isEmpty()) {
             return Boolean.FALSE;
         }
@@ -46,7 +46,7 @@ public class MatchesFunction implements Function {
         return Boolean.FALSE;
     }
 
-    public static boolean matches(String s, String... patterns) {
+    public static boolean matches(final String s, final String... patterns) {
         for (String pattern : patterns) {
             Pattern check = Pattern.compile(pattern);
             Matcher matcher = check.matcher(s);

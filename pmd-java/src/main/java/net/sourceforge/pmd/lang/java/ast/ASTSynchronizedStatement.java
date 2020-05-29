@@ -10,18 +10,18 @@ public class ASTSynchronizedStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTSynchronizedStatement(int id) {
+    public ASTSynchronizedStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTSynchronizedStatement(JavaParser p, int id) {
+    public ASTSynchronizedStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

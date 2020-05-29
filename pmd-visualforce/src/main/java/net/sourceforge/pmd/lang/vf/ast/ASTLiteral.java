@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTLiteral extends AbstractVFNode {
     @Deprecated
     @InternalApi
-    public ASTLiteral(int id) {
+    public ASTLiteral(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTLiteral(VfParser p, int id) {
+    public ASTLiteral(final VfParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

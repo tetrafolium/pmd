@@ -165,7 +165,7 @@ public class RuleSetFactory {
      * @throws RuleSetNotFoundException
      *             if unable to find a resource.
      */
-    public RuleSets createRuleSets(String referenceString) throws RuleSetNotFoundException {
+    public RuleSets createRuleSets(final String referenceString) throws RuleSetNotFoundException {
         return createRuleSets(RuleSetReferenceId.parse(referenceString));
     }
 
@@ -179,7 +179,7 @@ public class RuleSetFactory {
      * @throws RuleSetNotFoundException
      *             if unable to find a resource.
      */
-    public RuleSets createRuleSets(List<RuleSetReferenceId> ruleSetReferenceIds) throws RuleSetNotFoundException {
+    public RuleSets createRuleSets(final List<RuleSetReferenceId> ruleSetReferenceIds) throws RuleSetNotFoundException {
         RuleSets ruleSets = new RuleSets();
         for (RuleSetReferenceId ruleSetReferenceId : ruleSetReferenceIds) {
             RuleSet ruleSet = createRuleSet(ruleSetReferenceId);
@@ -201,7 +201,7 @@ public class RuleSetFactory {
      * @throws RuleSetNotFoundException
      *             if unable to find a resource.
      */
-    public RuleSet createRuleSet(String referenceString) throws RuleSetNotFoundException {
+    public RuleSet createRuleSet(final String referenceString) throws RuleSetNotFoundException {
         List<RuleSetReferenceId> references = RuleSetReferenceId.parse(referenceString);
         if (references.isEmpty()) {
             throw new RuleSetNotFoundException(
@@ -220,11 +220,11 @@ public class RuleSetFactory {
      * @throws RuleSetNotFoundException
      *             if unable to find a resource.
      */
-    public RuleSet createRuleSet(RuleSetReferenceId ruleSetReferenceId) throws RuleSetNotFoundException {
+    public RuleSet createRuleSet(final RuleSetReferenceId ruleSetReferenceId) throws RuleSetNotFoundException {
         return createRuleSet(ruleSetReferenceId, false);
     }
 
-    private RuleSet createRuleSet(RuleSetReferenceId ruleSetReferenceId, boolean withDeprecatedRuleReferences)
+    private RuleSet createRuleSet(final RuleSetReferenceId ruleSetReferenceId, final boolean withDeprecatedRuleReferences)
             throws RuleSetNotFoundException {
         return parseRuleSetNode(ruleSetReferenceId, withDeprecatedRuleReferences);
     }
@@ -241,7 +241,7 @@ public class RuleSetFactory {
      * @param original the original rule set to copy from
      * @return the copy
      */
-    public RuleSet createRuleSetCopy(RuleSet original) {
+    public RuleSet createRuleSetCopy(final RuleSet original) {
         RuleSetBuilder builder = new RuleSetBuilder(original);
         return builder.build();
     }
@@ -265,12 +265,12 @@ public class RuleSetFactory {
      * @param rules the collection with the rules to add to the new ruleset
      * @return the new ruleset
      */
-    public RuleSet createNewRuleSet(String name,
-                                    String description,
-                                    String fileName,
-                                    Collection<String> excludePatterns,
-                                    Collection<String> includePatterns,
-                                    Collection<Rule> rules) {
+    public RuleSet createNewRuleSet(final String name,
+                                    final String description,
+                                    final String fileName,
+                                    final Collection<String> excludePatterns,
+                                    final Collection<String> includePatterns,
+                                    final Collection<Rule> rules) {
         RuleSetBuilder builder = new RuleSetBuilder(0L); // TODO: checksum missing
         builder.withName(name)
                .withDescription(description)
@@ -283,7 +283,7 @@ public class RuleSetFactory {
         return builder.build();
     }
 
-    private Collection<Pattern> toPatterns(Collection<String> sources) {
+    private Collection<Pattern> toPatterns(final Collection<String> sources) {
         List<Pattern> result = new ArrayList<>();
         for (String s : sources) {
             try {
@@ -335,7 +335,7 @@ public class RuleSetFactory {
      * @throws RuleSetNotFoundException
      *             if unable to find a resource.
      */
-    private Rule createRule(RuleSetReferenceId ruleSetReferenceId, boolean withDeprecatedRuleReferences)
+    private Rule createRule(final RuleSetReferenceId ruleSetReferenceId, final boolean withDeprecatedRuleReferences)
             throws RuleSetNotFoundException {
         if (ruleSetReferenceId.isAllRules()) {
             throw new IllegalArgumentException(
@@ -355,7 +355,7 @@ public class RuleSetFactory {
      *            or not
      * @return The new RuleSet.
      */
-    private RuleSet parseRuleSetNode(RuleSetReferenceId ruleSetReferenceId, boolean withDeprecatedRuleReferences)
+    private RuleSet parseRuleSetNode(final RuleSetReferenceId ruleSetReferenceId, final boolean withDeprecatedRuleReferences)
             throws RuleSetNotFoundException {
         try (CheckedInputStream inputStream = new CheckedInputStream(
                 ruleSetReferenceId.getInputStream(resourceLoader), new Adler32());) {
@@ -431,7 +431,7 @@ public class RuleSetFactory {
         }
     }
 
-    private Pattern parseRegex(String text) {
+    private Pattern parseRegex(final String text) {
         final Pattern pattern;
         try {
             pattern = Pattern.compile(text);
@@ -494,8 +494,8 @@ public class RuleSetFactory {
      *            or not
      * @param rulesetReferences keeps track of already processed complete ruleset references in order to log a warning
      */
-    private void parseRuleNode(RuleSetReferenceId ruleSetReferenceId, RuleSetBuilder ruleSetBuilder, Node ruleNode,
-            boolean withDeprecatedRuleReferences, Set<String> rulesetReferences)
+    private void parseRuleNode(final RuleSetReferenceId ruleSetReferenceId, final RuleSetBuilder ruleSetBuilder, final Node ruleNode,
+            final boolean withDeprecatedRuleReferences, final Set<String> rulesetReferences)
             throws ClassNotFoundException, InstantiationException, IllegalAccessException, RuleSetNotFoundException {
         Element ruleElement = (Element) ruleNode;
         String ref = ruleElement.getAttribute("ref");
@@ -522,7 +522,7 @@ public class RuleSetFactory {
      *            The RuleSet reference.
      * @param rulesetReferences keeps track of already processed complete ruleset references in order to log a warning
      */
-    private void parseRuleSetReferenceNode(RuleSetBuilder ruleSetBuilder, Element ruleElement, String ref, Set<String> rulesetReferences)
+    private void parseRuleSetReferenceNode(final RuleSetBuilder ruleSetBuilder, final Element ruleElement, final String ref, final Set<String> rulesetReferences)
             throws RuleSetNotFoundException {
         String priority = null;
         NodeList childNodes = ruleElement.getChildNodes();
@@ -603,8 +603,8 @@ public class RuleSetFactory {
      * @param ruleNode
      *            Must be a rule element node.
      */
-    private void parseSingleRuleNode(RuleSetReferenceId ruleSetReferenceId, RuleSetBuilder ruleSetBuilder,
-            Node ruleNode) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    private void parseSingleRuleNode(final RuleSetReferenceId ruleSetReferenceId, final RuleSetBuilder ruleSetBuilder,
+            final Node ruleNode) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Element ruleElement = (Element) ruleNode;
 
         // Stop if we're looking for a particular Rule, and this element is not
@@ -637,8 +637,8 @@ public class RuleSetFactory {
      *            whether rule references that are deprecated should be ignored
      *            or not
      */
-    private void parseRuleReferenceNode(RuleSetReferenceId ruleSetReferenceId, RuleSetBuilder ruleSetBuilder,
-            Node ruleNode, String ref, boolean withDeprecatedRuleReferences) throws RuleSetNotFoundException {
+    private void parseRuleReferenceNode(final RuleSetReferenceId ruleSetReferenceId, final RuleSetBuilder ruleSetBuilder,
+            final Node ruleNode, final String ref, final boolean withDeprecatedRuleReferences) throws RuleSetNotFoundException {
         Element ruleElement = (Element) ruleNode;
 
         // Stop if we're looking for a particular Rule, and this element is not
@@ -739,7 +739,7 @@ public class RuleSetFactory {
      *
      * @return {@code true} if the ruleName exists
      */
-    private boolean containsRule(RuleSetReferenceId ruleSetReferenceId, String ruleName) {
+    private boolean containsRule(final RuleSetReferenceId ruleSetReferenceId, final String ruleName) {
         boolean found = false;
         try (InputStream ruleSet = ruleSetReferenceId.getInputStream(resourceLoader)) {
             DocumentBuilder builder = createDocumentBuilder();
@@ -761,7 +761,7 @@ public class RuleSetFactory {
         return found;
     }
 
-    private static boolean isElementNode(Node node, String name) {
+    private static boolean isElementNode(final Node node, final String name) {
         return node.getNodeType() == Node.ELEMENT_NODE && node.getNodeName().equals(name);
     }
 
@@ -772,7 +772,7 @@ public class RuleSetFactory {
      *            The node.
      * @return The String.
      */
-    private static String parseTextNode(Node node) {
+    private static String parseTextNode(final Node node) {
 
         final int nodeCount = node.getChildNodes().getLength();
         if (nodeCount == 0) {
@@ -800,7 +800,7 @@ public class RuleSetFactory {
      *
      * @return {@code true} if the Rule would have the given name, {@code false} otherwise.
      */
-    private boolean isRuleName(Element ruleElement, String ruleName) {
+    private boolean isRuleName(final Element ruleElement, final String ruleName) {
         if (ruleElement.hasAttribute("name")) {
             return ruleElement.getAttribute("name").equals(ruleName);
         } else if (ruleElement.hasAttribute("ref")) {

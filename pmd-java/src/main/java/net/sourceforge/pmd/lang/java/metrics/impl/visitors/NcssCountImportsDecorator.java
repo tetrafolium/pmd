@@ -28,7 +28,7 @@ public class NcssCountImportsDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
         ASTCompilationUnit acu = node.getFirstParentOfType(ASTCompilationUnit.class);
         List<ASTImportDeclaration> imports = acu.findChildrenOfType(ASTImportDeclaration.class);

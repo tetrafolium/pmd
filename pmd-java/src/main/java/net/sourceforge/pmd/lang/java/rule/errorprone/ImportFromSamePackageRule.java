@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.java.symboltable.SourceFileScope;
 public class ImportFromSamePackageRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTImportDeclaration importDecl, Object data) {
+    public Object visit(final ASTImportDeclaration importDecl, final Object data) {
         String packageName = importDecl.getScope().getEnclosingScope(SourceFileScope.class).getPackageName();
 
         if (packageName != null && packageName.equals(importDecl.getPackageName())) {

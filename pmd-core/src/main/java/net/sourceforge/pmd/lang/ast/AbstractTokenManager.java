@@ -23,7 +23,7 @@ public abstract class AbstractTokenManager {
      * @deprecated For removal in 7.0.0
      */
     @Deprecated
-    public static void setFileName(String fileName) {
+    public static void setFileName(final String fileName) {
         AbstractTokenManager.fileName.set(fileName);
     }
 
@@ -36,7 +36,7 @@ public abstract class AbstractTokenManager {
         return fileName == null ? "(no file name provided)" : fileName;
     }
 
-    public void setSuppressMarker(String marker) {
+    public void setSuppressMarker(final String marker) {
         this.suppressMarker = marker;
     }
 

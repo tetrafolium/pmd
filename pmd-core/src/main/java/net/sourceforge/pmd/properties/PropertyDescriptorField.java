@@ -49,7 +49,7 @@ public enum PropertyDescriptorField {
     private final String attributeName;
 
 
-    PropertyDescriptorField(String attributeName) {
+    PropertyDescriptorField(final String attributeName) {
         this.attributeName = attributeName;
     }
 
@@ -70,7 +70,7 @@ public enum PropertyDescriptorField {
     }
 
 
-    public static PropertyDescriptorField getConstant(String name) {
+    public static PropertyDescriptorField getConstant(final String name) {
         for (PropertyDescriptorField f : values()) {
             if (Objects.equals(f.attributeName, name)) {
                 return f;

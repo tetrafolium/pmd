@@ -95,7 +95,7 @@ public class TextTreeRenderer implements TreeRenderer {
         }
 
         @Override
-        public TreeRenderer produceRenderer(PropertySource properties) {
+        public TreeRenderer produceRenderer(final PropertySource properties) {
             return new TextTreeRenderer(properties.getProperty(onlyAscii), properties.getProperty(maxLevel));
         }
     };
@@ -114,22 +114,22 @@ public class TextTreeRenderer implements TreeRenderer {
      *                  is dumped, like "1 child is not shown". This is
      *                  controlled by {@link #appendBoundaryForNodeLn(Node, Appendable, String)}.
      */
-    public TextTreeRenderer(boolean onlyAscii, int maxLevel) {
+    public TextTreeRenderer(final boolean onlyAscii, final int maxLevel) {
         this.str = onlyAscii ? Strings.ASCII : Strings.UNICODE;
         this.maxLevel = maxLevel;
     }
 
     @Override
-    public void renderSubtree(Node node, Appendable out) throws IOException {
+    public void renderSubtree(final Node node, final Appendable out) throws IOException {
         printInnerNode(node, out, 0, "", true);
     }
 
-    private String childPrefix(String prefix, boolean isTail) {
+    private String childPrefix(final String prefix, final boolean isTail) {
         return prefix + (isTail ? str.gap : str.verticalEdge);
     }
 
 
-    protected final void appendIndent(Appendable out, String prefix, boolean isTail) throws IOException {
+    protected final void appendIndent(final Appendable out, final String prefix, final boolean isTail) throws IOException {
         out.append(prefix).append(isTail ? str.tailFork : str.fork);
     }
 
@@ -138,16 +138,16 @@ public class TextTreeRenderer implements TreeRenderer {
      * This should end with a newline. The default just appends the name
      * of the node, and no other information.
      */
-    protected void appendNodeInfoLn(Appendable out, Node node) throws IOException {
+    protected void appendNodeInfoLn(final Appendable out, final Node node) throws IOException {
         out.append(node.getXPathNodeName()).append("\n");
     }
 
 
-    private void printInnerNode(Node node,
-                                Appendable out,
-                                int level,
-                                String prefix,
-                                boolean isTail) throws IOException {
+    private void printInnerNode(final Node node,
+                                final Appendable out,
+                                final int level,
+                                final String prefix,
+                                final boolean isTail) throws IOException {
 
         appendIndent(out, prefix, isTail);
         appendNodeInfoLn(out, node);
@@ -166,7 +166,7 @@ public class TextTreeRenderer implements TreeRenderer {
         }
     }
 
-    protected void appendBoundaryForNodeLn(Node node, Appendable out, String indentStr) throws IOException {
+    protected void appendBoundaryForNodeLn(final Node node, final Appendable out, final String indentStr) throws IOException {
         appendIndent(out, indentStr, true);
 
         if (node.getNumChildren() == 1) {
@@ -199,7 +199,7 @@ public class TextTreeRenderer implements TreeRenderer {
         private final String gap;
 
 
-        private Strings(String tailFork, String fork, String verticalEdge, String gap) {
+        private Strings(final String tailFork, final String fork, final String verticalEdge, final String gap) {
             this.tailFork = tailFork;
             this.fork = fork;
             this.verticalEdge = verticalEdge;

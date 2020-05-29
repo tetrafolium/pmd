@@ -37,15 +37,15 @@ public final class IntegerProperty extends AbstractNumericProperty<Integer> {
      * @deprecated Use {@link PropertyFactory#intProperty(String)}
      */
     @Deprecated
-    public IntegerProperty(String theName, String theDescription, Integer min, Integer max, Integer theDefault,
-                           float theUIOrder) {
+    public IntegerProperty(final String theName, final String theDescription, final Integer min, final Integer max, final Integer theDefault,
+                           final float theUIOrder) {
         this(theName, theDescription, min, max, theDefault, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private IntegerProperty(String theName, String theDescription, Integer min, Integer max, Integer theDefault,
-                            float theUIOrder, boolean isDefinedExternally) {
+    private IntegerProperty(final String theName, final String theDescription, final Integer min, final Integer max, final Integer theDefault,
+                            final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -57,7 +57,7 @@ public final class IntegerProperty extends AbstractNumericProperty<Integer> {
 
 
     @Override
-    protected Integer createFrom(String value) {
+    protected Integer createFrom(final String value) {
         return INTEGER_PARSER.valueOf(value);
     }
 
@@ -65,7 +65,7 @@ public final class IntegerProperty extends AbstractNumericProperty<Integer> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Integer, IntegerPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Integer, IntegerPBuilder>(Integer.class, ValueParserConstants.INTEGER_PARSER) {
             @Override
-            protected IntegerPBuilder newBuilder(String name) {
+            protected IntegerPBuilder newBuilder(final String name) {
                 return new IntegerPBuilder(name);
             }
         };
@@ -76,7 +76,7 @@ public final class IntegerProperty extends AbstractNumericProperty<Integer> {
      * @deprecated Use {@link PropertyFactory#intProperty(String)}
      */
     @Deprecated
-    public static IntegerPBuilder named(String name) {
+    public static IntegerPBuilder named(final String name) {
         return new IntegerPBuilder(name);
     }
 
@@ -86,7 +86,7 @@ public final class IntegerProperty extends AbstractNumericProperty<Integer> {
      */
     @Deprecated
     public static final class IntegerPBuilder extends SingleNumericPropertyBuilder<Integer, IntegerPBuilder> {
-        private IntegerPBuilder(String name) {
+        private IntegerPBuilder(final String name) {
             super(name);
         }
 

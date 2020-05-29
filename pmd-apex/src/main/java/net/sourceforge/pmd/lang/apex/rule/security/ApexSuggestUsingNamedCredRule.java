@@ -41,7 +41,7 @@ public class ApexSuggestUsingNamedCredRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node)) {
             return data;
         }
@@ -72,7 +72,7 @@ public class ApexSuggestUsingNamedCredRule extends AbstractApexRule {
         }
     }
 
-    private void flagAuthorizationHeaders(final ASTMethodCallExpression node, Object data) {
+    private void flagAuthorizationHeaders(final ASTMethodCallExpression node, final Object data) {
         if (!Helper.isMethodName(node, SET_HEADER)) {
             return;
         }
@@ -98,7 +98,7 @@ public class ApexSuggestUsingNamedCredRule extends AbstractApexRule {
         }
     }
 
-    private void runChecks(final ApexNode<?> node, Object data) {
+    private void runChecks(final ApexNode<?> node, final Object data) {
         ASTLiteralExpression literalNode = node.getFirstChildOfType(ASTLiteralExpression.class);
         if (literalNode != null) {
             if (isAuthorizationLiteral(literalNode)) {

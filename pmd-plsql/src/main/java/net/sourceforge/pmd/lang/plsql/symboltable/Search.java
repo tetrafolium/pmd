@@ -18,7 +18,7 @@ public class Search {
     private PLSQLNameOccurrence occ;
     private Set<NameDeclaration> declarations = new HashSet<>();
 
-    public Search(PLSQLNameOccurrence occ) {
+    public Search(final PLSQLNameOccurrence occ) {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest(
                     "new search for " + (occ.isMethodOrConstructorInvocation() ? "method" : "variable") + " " + occ);
@@ -34,7 +34,7 @@ public class Search {
         declarations.addAll(found);
     }
 
-    public void execute(Scope startingScope) {
+    public void execute(final Scope startingScope) {
         Set<NameDeclaration> found = searchUpward(occ, startingScope);
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("found " + found);
@@ -46,7 +46,7 @@ public class Search {
         return declarations;
     }
 
-    private Set<NameDeclaration> searchUpward(PLSQLNameOccurrence nameOccurrence, Scope scope) {
+    private Set<NameDeclaration> searchUpward(final PLSQLNameOccurrence nameOccurrence, final Scope scope) {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("checking scope " + scope + " for name occurrence " + nameOccurrence);
         }

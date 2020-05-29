@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class SymbolTableTestRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         for (ASTVariableDeclaratorId declaration : node.findDescendantsOfType(ASTVariableDeclaratorId.class)) {
             for (NameOccurrence no : declaration.getUsages()) {
                 Node location = no.getLocation();

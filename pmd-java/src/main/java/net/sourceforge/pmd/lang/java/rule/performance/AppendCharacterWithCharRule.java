@@ -26,7 +26,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class AppendCharacterWithCharRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         ASTBlockStatement bs = node.getFirstParentOfType(ASTBlockStatement.class);
         if (bs == null) {
             return data;

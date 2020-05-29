@@ -19,11 +19,11 @@ public class SourceCodePositioner {
     private int[] lineOffsets;
     private int sourceCodeLength;
 
-    public SourceCodePositioner(String sourceCode) {
+    public SourceCodePositioner(final String sourceCode) {
         analyzeLineOffsets(sourceCode);
     }
 
-    private void analyzeLineOffsets(String sourceCode) {
+    private void analyzeLineOffsets(final String sourceCode) {
         String[] lines = sourceCode.split("\n");
         sourceCodeLength = sourceCode.length();
 
@@ -39,7 +39,7 @@ public class SourceCodePositioner {
         }
     }
 
-    public int lineNumberFromOffset(int offset) {
+    public int lineNumberFromOffset(final int offset) {
         int search = Arrays.binarySearch(lineOffsets, offset);
         int lineNumber;
         if (search >= 0) {
@@ -54,7 +54,7 @@ public class SourceCodePositioner {
         return lineNumber + 1; // 1-based line numbers
     }
 
-    public int columnFromOffset(int lineNumber, int offset) {
+    public int columnFromOffset(final int lineNumber, final int offset) {
         int lineIndex = lineNumber - 1;
         if (lineIndex < 0 || lineIndex >= lineOffsets.length) {
             // no line number found...

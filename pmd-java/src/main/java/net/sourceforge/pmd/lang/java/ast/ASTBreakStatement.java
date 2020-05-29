@@ -10,18 +10,18 @@ public class ASTBreakStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTBreakStatement(int id) {
+    public ASTBreakStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTBreakStatement(JavaParser p, int id) {
+    public ASTBreakStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

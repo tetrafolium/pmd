@@ -25,18 +25,18 @@ public class ASTEnumConstant extends AbstractJavaNode implements JavaQualifiable
 
     @InternalApi
     @Deprecated
-    public ASTEnumConstant(int id) {
+    public ASTEnumConstant(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTEnumConstant(JavaParser p, int id) {
+    public ASTEnumConstant(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -56,7 +56,7 @@ public class ASTEnumConstant extends AbstractJavaNode implements JavaQualifiable
 
     @InternalApi
     @Deprecated
-    public void setQualifiedName(JavaTypeQualifiedName qname) {
+    public void setQualifiedName(final JavaTypeQualifiedName qname) {
         this.qualifiedName = qname;
     }
 

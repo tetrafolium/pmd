@@ -39,7 +39,7 @@ public class PMDASMVisitor extends ClassVisitor {
 
     public List<String> innerClasses;
 
-    public PMDASMVisitor(String outerName) {
+    public PMDASMVisitor(final String outerName) {
         super(Opcodes.ASM7);
         this.outerName = outerName;
     }
@@ -52,7 +52,7 @@ public class PMDASMVisitor extends ClassVisitor {
         return innerClasses;
     }
 
-    private String parseClassName(String name) {
+    private String parseClassName(final String name) {
         if (name == null) {
             return null;
         }
@@ -75,7 +75,7 @@ public class PMDASMVisitor extends ClassVisitor {
         return name;
     }
 
-    private void parseClassName(String[] names) {
+    private void parseClassName(final String[] names) {
         if (names != null) {
             for (String s : names) {
                 parseClassName(s);
@@ -83,7 +83,7 @@ public class PMDASMVisitor extends ClassVisitor {
         }
     }
 
-    private void extractSignature(String sig) {
+    private void extractSignature(final String sig) {
         if (sig != null) {
             new SignatureReader(sig).accept(sigVisitor);
         }
@@ -92,7 +92,7 @@ public class PMDASMVisitor extends ClassVisitor {
     /* Start ClassVisitor implementations */
 
     @Override
-    public void visit(int version, int access, String name, String sig, String superName, String[] interfaces) {
+    public void visit(final int version, final int access, final String name, final String sig, final String superName, final String[] interfaces) {
         parseClassName(name);
         parseClassName(interfaces);
         if (sig != null) {
@@ -101,13 +101,13 @@ public class PMDASMVisitor extends ClassVisitor {
     }
 
     @Override
-    public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+    public AnnotationVisitor visitAnnotation(final String desc, final boolean visible) {
         addType(Type.getType(desc));
         return annotationVisitor;
     }
 
     @Override
-    public FieldVisitor visitField(int access, String name, String desc, String sig, Object value) {
+    public FieldVisitor visitField(final int access, final String name, final String desc, final String sig, final Object value) {
         if (sig != null) {
             extractSignature(sig);
         }
@@ -120,7 +120,7 @@ public class PMDASMVisitor extends ClassVisitor {
     }
 
     @Override
-    public MethodVisitor visitMethod(int access, String name, String desc, String sig, String[] exceptions) {
+    public MethodVisitor visitMethod(final int access, final String name, final String desc, final String sig, final String[] exceptions) {
         if (sig != null) {
             extractSignature(sig);
         }
@@ -130,7 +130,7 @@ public class PMDASMVisitor extends ClassVisitor {
     }
 
     @Override
-    public void visitInnerClass(String name, String outerName, String innerName, int access) {
+    public void visitInnerClass(final String name, final String outerName, final String innerName, final int access) {
         if (!this.outerName.replace('.', '/').equals(outerName)) {
             // do not consider the inner class if it is not a member of our
             // outer class
@@ -146,19 +146,19 @@ public class PMDASMVisitor extends ClassVisitor {
         packages.put(innerName, name.replace('/', '.'));
     }
 
-    private void addMethodDesc(String desc) {
+    private void addMethodDesc(final String desc) {
         addTypes(desc);
         addType(Type.getReturnType(desc));
     }
 
-    private void addTypes(String desc) {
+    private void addTypes(final String desc) {
         Type[] types = Type.getArgumentTypes(desc);
         for (Type type : types) {
             addType(type);
         }
     }
 
-    private void addType(Type t) {
+    private void addType(final Type t) {
         switch (t.getSort()) {
         case Type.ARRAY:
             addType(t.getElementType());
@@ -180,13 +180,13 @@ public class PMDASMVisitor extends ClassVisitor {
 
         private PMDASMVisitor parent;
 
-        PMDFieldVisitor(PMDASMVisitor visitor) {
+        PMDFieldVisitor(final PMDASMVisitor visitor) {
             super(Opcodes.ASM5);
             parent = visitor;
         }
 
         @Override
-        public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+        public AnnotationVisitor visitAnnotation(final String desc, final boolean visible) {
             parent.addType(Type.getType(desc));
             return parent.annotationVisitor;
         }
@@ -195,29 +195,29 @@ public class PMDASMVisitor extends ClassVisitor {
     private static class PMDAnnotationVisitor extends AnnotationVisitor {
         private PMDASMVisitor parent;
 
-        PMDAnnotationVisitor(PMDASMVisitor visitor) {
+        PMDAnnotationVisitor(final PMDASMVisitor visitor) {
             super(Opcodes.ASM5);
             parent = visitor;
         }
 
         @Override
-        public AnnotationVisitor visitAnnotation(String name, String desc) {
+        public AnnotationVisitor visitAnnotation(final String name, final String desc) {
             parent.addType(Type.getType(desc));
             return this;
         }
 
         @Override
-        public void visitEnum(String name, String desc, String value) {
+        public void visitEnum(final String name, final String desc, final String value) {
             parent.addType(Type.getType(desc));
         }
 
         @Override
-        public AnnotationVisitor visitArray(String name) {
+        public AnnotationVisitor visitArray(final String name) {
             return this;
         }
 
         @Override
-        public void visit(String name, Object value) {
+        public void visit(final String name, final Object value) {
             if (value instanceof Type) {
                 parent.addType((Type) value);
             }
@@ -227,7 +227,7 @@ public class PMDASMVisitor extends ClassVisitor {
     private static class PMDSignatureVisitor extends SignatureVisitor {
         private PMDASMVisitor parent;
 
-        PMDSignatureVisitor(PMDASMVisitor visitor) {
+        PMDSignatureVisitor(final PMDASMVisitor visitor) {
             super(Opcodes.ASM5);
             this.parent = visitor;
         }
@@ -273,17 +273,17 @@ public class PMDASMVisitor extends ClassVisitor {
         }
 
         @Override
-        public void visitClassType(String name) {
+        public void visitClassType(final String name) {
             parent.parseClassName(name);
         }
 
         @Override
-        public void visitInnerClassType(String name) {
+        public void visitInnerClassType(final String name) {
             // parent.parseClassName(name);
         }
 
         @Override
-        public SignatureVisitor visitTypeArgument(char wildcard) {
+        public SignatureVisitor visitTypeArgument(final char wildcard) {
             return this;
         }
     }
@@ -291,19 +291,19 @@ public class PMDASMVisitor extends ClassVisitor {
     private static class PMDMethodVisitor extends MethodVisitor {
         private PMDASMVisitor parent;
 
-        PMDMethodVisitor(PMDASMVisitor visitor) {
+        PMDMethodVisitor(final PMDASMVisitor visitor) {
             super(Opcodes.ASM5);
             parent = visitor;
         }
 
         @Override
-        public AnnotationVisitor visitParameterAnnotation(int parameter, String desc, boolean visible) {
+        public AnnotationVisitor visitParameterAnnotation(final int parameter, final String desc, final boolean visible) {
             parent.addType(Type.getType(desc));
             return parent.annotationVisitor;
         }
 
         @Override
-        public void visitTypeInsn(int opcode, String desc) {
+        public void visitTypeInsn(final int opcode, final String desc) {
             if (desc.charAt(0) == '[') {
                 parent.addType(Type.getType(desc));
             } else {
@@ -312,13 +312,13 @@ public class PMDASMVisitor extends ClassVisitor {
         }
 
         @Override
-        public void visitFieldInsn(int opcode, String owner, String name, String desc) {
+        public void visitFieldInsn(final int opcode, final String owner, final String name, final String desc) {
             parent.parseClassName(owner);
             parent.addType(Type.getType(desc));
         }
 
         @Override
-        public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
+        public void visitMethodInsn(final int opcode, final String owner, final String name, final String desc, final boolean itf) {
             parent.parseClassName(owner);
             parent.addMethodDesc(desc);
         }
@@ -331,7 +331,7 @@ public class PMDASMVisitor extends ClassVisitor {
          * @see org.objectweb.asm.MethodVisitor#visitLdcInsn(java.lang.Object)
          */
         @Override
-        public void visitLdcInsn(Object cst) {
+        public void visitLdcInsn(final Object cst) {
             if (cst instanceof Type) {
                 parent.addType((Type) cst);
             } else if (cst instanceof String) {
@@ -340,17 +340,17 @@ public class PMDASMVisitor extends ClassVisitor {
         }
 
         @Override
-        public void visitMultiANewArrayInsn(String desc, int dims) {
+        public void visitMultiANewArrayInsn(final String desc, final int dims) {
             parent.addType(Type.getType(desc));
         }
 
         @Override
-        public void visitLocalVariable(String name, String desc, String sig, Label start, Label end, int index) {
+        public void visitLocalVariable(final String name, final String desc, final String sig, final Label start, final Label end, final int index) {
             parent.extractSignature(sig);
         }
 
         @Override
-        public void visitTryCatchBlock(Label start, Label end, Label handler, String type) {
+        public void visitTryCatchBlock(final Label start, final Label end, final Label handler, final String type) {
             parent.parseClassName(type);
         }
 
@@ -360,7 +360,7 @@ public class PMDASMVisitor extends ClassVisitor {
         }
 
         @Override
-        public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+        public AnnotationVisitor visitAnnotation(final String desc, final boolean visible) {
             parent.addType(Type.getType(desc));
             return parent.annotationVisitor;
         }

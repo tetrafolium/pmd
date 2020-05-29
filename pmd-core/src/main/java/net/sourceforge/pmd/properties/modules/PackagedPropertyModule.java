@@ -32,7 +32,7 @@ public abstract class PackagedPropertyModule<T> {
     private final String[] legalPackageNames;
 
 
-    public PackagedPropertyModule(String[] legalPackageNames, List<T> defaults) {
+    public PackagedPropertyModule(final String[] legalPackageNames, final List<T> defaults) {
 
         checkValidPackages(legalPackageNames);
         checkValidDefaults(defaults, legalPackageNames);
@@ -49,7 +49,7 @@ public abstract class PackagedPropertyModule<T> {
      * @throws IllegalArgumentException If the prefixes contain null
      * @throws IllegalArgumentException If one name that does not look like a package name
      */
-    private void checkValidPackages(String[] legalNamePrefixes) throws IllegalArgumentException {
+    private void checkValidPackages(final String[] legalNamePrefixes) throws IllegalArgumentException {
         if (legalNamePrefixes == null) {
             return;
         }
@@ -75,7 +75,7 @@ public abstract class PackagedPropertyModule<T> {
      *
      * @throws IllegalArgumentException if some items are not allowed
      */
-    private void checkValidDefaults(List<T> items, String[] legalNamePrefixes) {
+    private void checkValidDefaults(final List<T> items, final String[] legalNamePrefixes) {
 
         if (legalNamePrefixes == null) { // valid value, matches everything
             return;
@@ -120,7 +120,7 @@ public abstract class PackagedPropertyModule<T> {
     protected abstract String packageNameOf(T item);
 
 
-    public String valueErrorFor(T value) {
+    public String valueErrorFor(final T value) {
 
         if (legalPackageNames == null) {
             return null; // no restriction
@@ -151,7 +151,7 @@ public abstract class PackagedPropertyModule<T> {
     }
 
 
-    public void addAttributesTo(Map<PropertyDescriptorField, String> attributes) {
+    public void addAttributesTo(final Map<PropertyDescriptorField, String> attributes) {
         attributes.put(LEGAL_PACKAGES, delimitedPackageNames());
     }
 
@@ -174,7 +174,7 @@ public abstract class PackagedPropertyModule<T> {
     }
 
 
-    public String[] packageNamesIn(Map<PropertyDescriptorField, String> params) {
+    public String[] packageNamesIn(final Map<PropertyDescriptorField, String> params) {
         return StringUtils.split(params.get(LEGAL_PACKAGES), PACKAGE_NAME_DELIMITER);
     }
 

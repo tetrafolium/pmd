@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.kotlin.antlr4.Kotlin;
 public class KotlinTokenizer extends AntlrTokenizer {
 
     @Override
-    protected AntlrTokenManager getLexerForSource(SourceCode sourceCode) {
+    protected AntlrTokenManager getLexerForSource(final SourceCode sourceCode) {
         CharStream charStream = AntlrTokenizer.getCharStreamFromSourceCode(sourceCode);
         return new AntlrTokenManager(new Kotlin(charStream), sourceCode.getFileName());
     }

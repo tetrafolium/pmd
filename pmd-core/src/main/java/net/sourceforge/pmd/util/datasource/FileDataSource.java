@@ -24,7 +24,7 @@ public class FileDataSource extends AbstractDataSource {
      * @param file
      *            the file to read
      */
-    public FileDataSource(File file) {
+    public FileDataSource(final File file) {
         this.file = file;
     }
 
@@ -34,11 +34,11 @@ public class FileDataSource extends AbstractDataSource {
     }
 
     @Override
-    public String getNiceFileName(boolean shortNames, String inputPaths) {
+    public String getNiceFileName(final boolean shortNames, final String inputPaths) {
         return glomName(shortNames, inputPaths, file);
     }
 
-    private String glomName(boolean shortNames, String inputPaths, File file) {
+    private String glomName(final boolean shortNames, final String inputPaths, final File file) {
         if (shortNames) {
             if (inputPaths != null) {
                 List<String> inputPathPrefixes = Arrays.asList(inputPaths.split(","));
@@ -75,7 +75,7 @@ public class FileDataSource extends AbstractDataSource {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

@@ -23,7 +23,7 @@ public class NameFinder {
 
     private List<JavaNameOccurrence> names = new ArrayList<>();
 
-    public NameFinder(ASTPrimaryExpression node) {
+    public NameFinder(final ASTPrimaryExpression node) {
         ASTPrimaryPrefix prefix = (ASTPrimaryPrefix) node.getChild(0);
         if (prefix.usesSuperModifier()) {
             add(new JavaNameOccurrence(prefix, "super"));
@@ -39,7 +39,7 @@ public class NameFinder {
         return names;
     }
 
-    private void checkForNameChild(JavaNode node) {
+    private void checkForNameChild(final JavaNode node) {
         if (node.getImage() != null) {
             add(new JavaNameOccurrence(node, node.getImage()));
         }
@@ -72,7 +72,7 @@ public class NameFinder {
         }
     }
 
-    private void add(JavaNameOccurrence name) {
+    private void add(final JavaNameOccurrence name) {
         names.add(name);
         if (names.size() > 1) {
             JavaNameOccurrence qualifiedName = names.get(names.size() - 2);

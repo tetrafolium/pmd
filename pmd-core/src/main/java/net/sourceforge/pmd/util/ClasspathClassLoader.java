@@ -39,15 +39,15 @@ public class ClasspathClassLoader extends URLClassLoader {
         registerAsParallelCapable();
     }
 
-    public ClasspathClassLoader(List<File> files, ClassLoader parent) throws IOException {
+    public ClasspathClassLoader(final List<File> files, final ClassLoader parent) throws IOException {
         super(fileToURL(files), parent);
     }
 
-    public ClasspathClassLoader(String classpath, ClassLoader parent) throws IOException {
+    public ClasspathClassLoader(final String classpath, final ClassLoader parent) throws IOException {
         super(initURLs(classpath), parent);
     }
 
-    private static URL[] fileToURL(List<File> files) throws IOException {
+    private static URL[] fileToURL(final List<File> files) throws IOException {
 
         List<URL> urlList = new ArrayList<>();
 
@@ -57,7 +57,7 @@ public class ClasspathClassLoader extends URLClassLoader {
         return urlList.toArray(new URL[0]);
     }
 
-    private static URL[] initURLs(String classpath) throws IOException {
+    private static URL[] initURLs(final String classpath) throws IOException {
         if (classpath == null) {
             throw new IllegalArgumentException("classpath argument cannot be null");
         }
@@ -81,7 +81,7 @@ public class ClasspathClassLoader extends URLClassLoader {
         }
     }
 
-    private static void addFileURLs(List<URL> urls, URL fileURL) throws IOException {
+    private static void addFileURLs(final List<URL> urls, final URL fileURL) throws IOException {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(fileURL.openStream()))) {
             String line;
             while ((line = in.readLine()) != null) {
@@ -95,7 +95,7 @@ public class ClasspathClassLoader extends URLClassLoader {
         }
     }
 
-    private static URL createURLFromPath(String path) throws MalformedURLException {
+    private static URL createURLFromPath(final String path) throws MalformedURLException {
         File file = new File(path);
         return file.getAbsoluteFile().toURI().toURL();
     }

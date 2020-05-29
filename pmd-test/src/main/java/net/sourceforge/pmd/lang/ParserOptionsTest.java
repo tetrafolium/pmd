@@ -52,8 +52,8 @@ public class ParserOptionsTest {
      * @param options4
      *            fourth option instance - equals second
      */
-    public static void verifyOptionsEqualsHashcode(ParserOptions options1, ParserOptions options2,
-            ParserOptions options3, ParserOptions options4) {
+    public static void verifyOptionsEqualsHashcode(final ParserOptions options1, final ParserOptions options2,
+            final ParserOptions options3, final ParserOptions options4) {
         // Objects should be different
         Assert.assertNotSame(options1, options2);
         Assert.assertNotSame(options1, options2);

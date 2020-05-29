@@ -13,23 +13,23 @@ import net.sourceforge.pmd.lang.symboltable.AbstractNameDeclaration;
 
 public class ClassNameDeclaration extends AbstractNameDeclaration {
 
-    public ClassNameDeclaration(ASTQualifiedName node) {
+    public ClassNameDeclaration(final ASTQualifiedName node) {
         super(node);
     }
 
-    public ClassNameDeclaration(ASTPackageSpecification node) {
+    public ClassNameDeclaration(final ASTPackageSpecification node) {
         super(node);
     }
 
-    public ClassNameDeclaration(ASTPackageBody node) {
+    public ClassNameDeclaration(final ASTPackageBody node) {
         super(node);
     }
 
-    public ClassNameDeclaration(ASTTriggerUnit node) {
+    public ClassNameDeclaration(final ASTTriggerUnit node) {
         super(node);
     }
 
-    public ClassNameDeclaration(ASTTypeSpecification node) {
+    public ClassNameDeclaration(final ASTTypeSpecification node) {
         super(node);
     }
 

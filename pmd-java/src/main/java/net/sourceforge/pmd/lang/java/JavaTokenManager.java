@@ -25,7 +25,7 @@ import net.sourceforge.pmd.lang.java.ast.JavaParserTokenManager;
 public class JavaTokenManager implements TokenManager {
     private final JavaParserTokenManager tokenManager;
 
-    public JavaTokenManager(Reader source) {
+    public JavaTokenManager(final Reader source) {
         tokenManager = new JavaParserTokenManager(new JavaCharStream(source));
     }
 
@@ -35,7 +35,7 @@ public class JavaTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         tokenManager.setFileName(fileName);
     }
 }

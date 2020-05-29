@@ -21,18 +21,18 @@ public class ASTPostfixExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTPostfixExpression(int id) {
+    public ASTPostfixExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTPostfixExpression(JavaParser p, int id) {
+    public ASTPostfixExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

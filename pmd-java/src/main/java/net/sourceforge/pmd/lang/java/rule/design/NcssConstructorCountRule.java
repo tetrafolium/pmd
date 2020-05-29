@@ -26,14 +26,14 @@ public class NcssConstructorCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTExplicitConstructorInvocation node, Object data) {
+    public Object visit(final ASTExplicitConstructorInvocation node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         // TODO need to put class name or constructor ID in string
-        return new String[] { String.valueOf(((ASTConstructorDeclaration) point.getNode()).getArity()),
+        return new String[] {String.valueOf(((ASTConstructorDeclaration) point.getNode()).getArity()),
             String.valueOf((int) point.getScore()), };
     }
 }

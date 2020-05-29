@@ -20,13 +20,13 @@ public abstract class MultiPackagedPropertyBuilder<V, T extends MultiPackagedPro
     protected String[] legalPackageNames;
 
 
-    protected MultiPackagedPropertyBuilder(String name) {
+    protected MultiPackagedPropertyBuilder(final String name) {
         super(name);
     }
 
 
     @SuppressWarnings("unchecked")
-    public T legalPackages(String[] packs) {
+    public T legalPackages(final String[] packs) {
         if (packs != null) {
             this.legalPackageNames = Arrays.copyOf(packs, packs.length);
         }

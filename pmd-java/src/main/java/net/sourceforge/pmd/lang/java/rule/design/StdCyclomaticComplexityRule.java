@@ -65,7 +65,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
         public int highestDecisionPoints;
         public int methodCount;
 
-        private Entry(Node node) {
+        private Entry(final Node node) {
             this.node = node;
         }
 
@@ -73,7 +73,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
             decisionPoints++;
         }
 
-        public void bumpDecisionPoints(int size) {
+        public void bumpDecisionPoints(final int size) {
             decisionPoints += size;
         }
 
@@ -91,7 +91,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         reportLevel = getProperty(REPORT_LEVEL_DESCRIPTOR);
         showClassesComplexity = getProperty(SHOW_CLASSES_COMPLEXITY_DESCRIPTOR);
         showMethodsComplexity = getProperty(SHOW_METHODS_COMPLEXITY_DESCRIPTOR);
@@ -100,35 +100,35 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         Entry entry = entryStack.peek();
 
         int childCount = node.getNumChildren();
@@ -152,21 +152,21 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -176,7 +176,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
         Entry classEntry = entryStack.pop();
         if (showClassesComplexity) {
             if (classEntry.getComplexityAverage() >= reportLevel || classEntry.highestDecisionPoints >= reportLevel) {
-                addViolation(data, node, new String[] { "class", node.getImage(),
+                addViolation(data, node, new String[] {"class", node.getImage(),
                     classEntry.getComplexityAverage() + " (Highest = " + classEntry.highestDecisionPoints + ')', });
             }
         }
@@ -184,7 +184,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         entryStack.push(new Entry(node));
         super.visit(node, data);
         Entry methodEntry = entryStack.pop();
@@ -209,7 +209,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
 
             if (showMethodsComplexity && methodEntry.decisionPoints >= reportLevel) {
                 addViolation(data, node,
-                        new String[] { "method", methodDeclarator == null ? "" : methodDeclarator.getImage(),
+                        new String[] {"method", methodDeclarator == null ? "" : methodDeclarator.getImage(),
                             String.valueOf(methodEntry.decisionPoints), });
             }
         }
@@ -217,19 +217,19 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         entryStack.push(new Entry(node));
         super.visit(node, data);
         Entry classEntry = entryStack.pop();
         if (classEntry.getComplexityAverage() >= reportLevel || classEntry.highestDecisionPoints >= reportLevel) {
-            addViolation(data, node, new String[] { "class", node.getImage(),
+            addViolation(data, node, new String[] {"class", node.getImage(),
                 classEntry.getComplexityAverage() + "(Highest = " + classEntry.highestDecisionPoints + ')', });
         }
         return data;
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         entryStack.push(new Entry(node));
         super.visit(node, data);
         Entry constructorEntry = entryStack.pop();
@@ -242,7 +242,7 @@ public class StdCyclomaticComplexityRule extends AbstractJavaRule {
                 classEntry.highestDecisionPoints = constructorDecisionPointCount;
             }
             if (showMethodsComplexity && constructorEntry.decisionPoints >= reportLevel) {
-                addViolation(data, node, new String[] { "constructor", classEntry.node.getImage(),
+                addViolation(data, node, new String[] {"constructor", classEntry.node.getImage(),
                     String.valueOf(constructorDecisionPointCount), });
             }
         }

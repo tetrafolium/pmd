@@ -11,7 +11,7 @@ public abstract class AbstractNameDeclaration implements NameDeclaration {
 
     protected ScopedNode node;
 
-    public AbstractNameDeclaration(ScopedNode node) {
+    public AbstractNameDeclaration(final ScopedNode node) {
         this.node = node;
     }
 

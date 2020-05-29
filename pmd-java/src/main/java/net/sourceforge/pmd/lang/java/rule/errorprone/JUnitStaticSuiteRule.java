@@ -11,7 +11,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 public class JUnitStaticSuiteRule extends AbstractJUnitRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (node.getArity() != 0) {
             return super.visit(node, data);
         }

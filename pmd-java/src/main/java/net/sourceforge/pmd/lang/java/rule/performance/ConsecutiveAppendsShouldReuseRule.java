@@ -27,7 +27,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class ConsecutiveAppendsShouldReuseRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTBlockStatement node, Object data) {
+    public Object visit(final ASTBlockStatement node, final Object data) {
         String variable = getVariableAppended(node);
         if (variable != null) {
             ASTBlockStatement nextSibling = getNextBlockStatementSibling(node);
@@ -41,7 +41,7 @@ public class ConsecutiveAppendsShouldReuseRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private ASTBlockStatement getNextBlockStatementSibling(Node node) {
+    private ASTBlockStatement getNextBlockStatementSibling(final Node node) {
         Node parent = node.getParent();
         int childIndex = -1;
         for (int i = 0; i < parent.getNumChildren(); i++) {
@@ -59,7 +59,7 @@ public class ConsecutiveAppendsShouldReuseRule extends AbstractJavaRule {
         return null;
     }
 
-    private String getVariableAppended(ASTBlockStatement node) {
+    private String getVariableAppended(final ASTBlockStatement node) {
         if (isFirstChild(node, ASTStatement.class)) {
             ASTStatement statement = (ASTStatement) node.getChild(0);
             if (isFirstChild(statement, ASTStatementExpression.class)) {
@@ -125,7 +125,7 @@ public class ConsecutiveAppendsShouldReuseRule extends AbstractJavaRule {
         return null;
     }
 
-    private boolean isAStringBuilderBuffer(AbstractJavaNode node, String name) {
+    private boolean isAStringBuilderBuffer(final AbstractJavaNode node, final String name) {
         Map<VariableNameDeclaration, List<NameOccurrence>> declarations = node.getScope()
                 .getDeclarations(VariableNameDeclaration.class);
         for (VariableNameDeclaration decl : declarations.keySet()) {
@@ -136,7 +136,7 @@ public class ConsecutiveAppendsShouldReuseRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isFirstChild(Node node, Class<?> clazz) {
+    private boolean isFirstChild(final Node node, final Class<?> clazz) {
         return node.getNumChildren() == 1 && clazz.isAssignableFrom(node.getChild(0).getClass());
     }
 }

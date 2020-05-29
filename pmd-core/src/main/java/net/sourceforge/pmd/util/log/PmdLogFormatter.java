@@ -17,7 +17,7 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class PmdLogFormatter extends Formatter {
 
     @Override
-    public String format(LogRecord record) {
+    public String format(final LogRecord record) {
         return formatMessage(record);
     }
 

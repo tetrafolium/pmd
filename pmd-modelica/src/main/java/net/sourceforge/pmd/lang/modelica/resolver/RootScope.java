@@ -16,11 +16,11 @@ import java.util.List;
 public final class RootScope extends AbstractModelicaScope {
     private final List<ModelicaSourceFileScope> sourceFiles = new ArrayList<>();
 
-    void addSourceFile(ModelicaSourceFileScope sourceFile) {
+    void addSourceFile(final ModelicaSourceFileScope sourceFile) {
         sourceFiles.add(sourceFile);
     }
 
-    void resolveBuiltin(ResolutionContext result, CompositeName name) {
+    void resolveBuiltin(final ResolutionContext result, final CompositeName name) {
         if (!name.isEmpty() && name.getTail().isEmpty()) {
             String simpleName = name.getHead();
             for (ModelicaBuiltinType.BaseType tpe: ModelicaBuiltinType.BaseType.values()) {
@@ -32,7 +32,7 @@ public final class RootScope extends AbstractModelicaScope {
     }
 
     @Override
-    public void resolveLexically(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    public void resolveLexically(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         CompositeName nameToLookup = CompositeName.ROOT_PSEUDO_NAME.equals(name.getHead()) ? name.getTail() : name;
         resolveBuiltin(result, name);
         for (ModelicaSourceFileScope sourceFile: sourceFiles) {

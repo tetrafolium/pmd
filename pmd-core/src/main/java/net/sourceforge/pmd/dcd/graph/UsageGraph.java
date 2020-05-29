@@ -54,24 +54,24 @@ public class UsageGraph implements NodeVisitorAcceptor {
 
     protected final Filter<String> classFilter;
 
-    public UsageGraph(Filter<String> classFilter) {
+    public UsageGraph(final Filter<String> classFilter) {
         this.classFilter = classFilter;
     }
 
     @Override
-    public Object accept(NodeVisitor visitor, Object data) {
+    public Object accept(final NodeVisitor visitor, final Object data) {
         for (ClassNode classNode : classNodes) {
             visitor.visit(classNode, data);
         }
         return data;
     }
 
-    public boolean isClass(String className) {
+    public boolean isClass(final String className) {
         checkClassName(className);
         return Collections.binarySearch(classNodes, className, ClassNodeComparator.INSTANCE) >= 0;
     }
 
-    public ClassNode defineClass(String className) {
+    public ClassNode defineClass(final String className) {
         checkClassName(className);
         int index = Collections.binarySearch(classNodes, className, ClassNodeComparator.INSTANCE);
         ClassNode classNode;
@@ -84,17 +84,17 @@ public class UsageGraph implements NodeVisitorAcceptor {
         return classNode;
     }
 
-    public FieldNode defineField(String className, String name, String desc) {
+    public FieldNode defineField(final String className, final String name, final String desc) {
         ClassNode classNode = defineClass(className);
         return classNode.defineField(name, desc);
     }
 
-    public MemberNode defineConstructor(String className, String name, String desc) {
+    public MemberNode defineConstructor(final String className, final String name, final String desc) {
         ClassNode classNode = defineClass(className);
         return classNode.defineConstructor(name, desc);
     }
 
-    public MemberNode defineMethod(String className, String name, String desc) {
+    public MemberNode defineMethod(final String className, final String name, final String desc) {
         ClassNode classNode = defineClass(className);
         if (ClassLoaderUtil.CLINIT.equals(name) || ClassLoaderUtil.INIT.equals(name)) {
             return classNode.defineConstructor(name, desc);
@@ -103,7 +103,7 @@ public class UsageGraph implements NodeVisitorAcceptor {
         }
     }
 
-    public void usageField(String className, String name, String desc, MemberNode usingMemberNode) {
+    public void usageField(final String className, final String name, final String desc, final MemberNode usingMemberNode) {
         checkClassName(className);
         if (classFilter.filter(className)) {
             FieldNode fieldNode = defineField(className, name, desc);
@@ -111,7 +111,7 @@ public class UsageGraph implements NodeVisitorAcceptor {
         }
     }
 
-    public void usageMethod(String className, String name, String desc, MemberNode usingMemberNode) {
+    public void usageMethod(final String className, final String name, final String desc, final MemberNode usingMemberNode) {
         checkClassName(className);
         if (classFilter.filter(className)) {
             MemberNode memberNode;
@@ -124,12 +124,12 @@ public class UsageGraph implements NodeVisitorAcceptor {
         }
     }
 
-    private void usage(MemberNode use, MemberNode user) {
+    private void usage(final MemberNode use, final MemberNode user) {
         use.addUser(user);
         user.addUse(use);
     }
 
-    private void checkClassName(String className) {
+    private void checkClassName(final String className) {
         // Make sure it's not in byte code internal format, or file system path.
         if (className.indexOf('/') >= 0 || className.indexOf('\\') >= 0) {
             throw new IllegalArgumentException("Invalid class name: " + className);

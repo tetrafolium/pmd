@@ -12,12 +12,12 @@ public class ASTBreakStatement extends AbstractApexNode<BreakStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTBreakStatement(BreakStatement breakStatement) {
+    public ASTBreakStatement(final BreakStatement breakStatement) {
         super(breakStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

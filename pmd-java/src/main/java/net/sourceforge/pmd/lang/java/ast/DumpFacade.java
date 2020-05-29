@@ -20,7 +20,7 @@ public class DumpFacade extends JavaParserVisitorAdapter {
     private PrintWriter writer;
     private boolean recurse;
 
-    public void initializeWith(Writer writer, String prefix, boolean recurse, JavaNode node) {
+    public void initializeWith(final Writer writer, final String prefix, final boolean recurse, final JavaNode node) {
         this.writer = writer instanceof PrintWriter ? (PrintWriter) writer : new PrintWriter(writer);
         this.recurse = recurse;
         this.visit(node, prefix);
@@ -32,7 +32,7 @@ public class DumpFacade extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         dump(node, (String) data);
         if (recurse) {
             return super.visit(node, data + " ");
@@ -41,7 +41,7 @@ public class DumpFacade extends JavaParserVisitorAdapter {
         }
     }
 
-    private void dump(JavaNode node, String prefix) {
+    private void dump(final JavaNode node, final String prefix) {
         //
         // Dump format is generally composed of the following items...
         //
@@ -219,7 +219,7 @@ public class DumpFacade extends JavaParserVisitorAdapter {
         writer.println();
     }
 
-    private void collectModifiers(JavaNode node, List<String> extras) {
+    private void collectModifiers(final JavaNode node, final List<String> extras) {
         // Standard AccessNode extras
         if (node instanceof AccessNode) {
             AccessNode accessNode = (AccessNode) node;

@@ -54,7 +54,7 @@ public class RuleSets {
      * @param ruleSet
      *            the RuleSet
      */
-    public RuleSets(RuleSet ruleSet) {
+    public RuleSets(final RuleSet ruleSet) {
         addRuleSet(ruleSet);
     }
 
@@ -66,7 +66,7 @@ public class RuleSets {
      * @param ruleSet
      *            the RuleSet
      */
-    public void addRuleSet(RuleSet ruleSet) {
+    public void addRuleSet(final RuleSet ruleSet) {
         ruleSets.add(ruleSet);
         ruleChain.add(ruleSet);
     }
@@ -105,7 +105,7 @@ public class RuleSets {
      * @return <code>true</code> if the file should be checked,
      *         <code>false</code> otherwise
      */
-    public boolean applies(File file) {
+    public boolean applies(final File file) {
         for (RuleSet ruleSet : ruleSets) {
             if (ruleSet.applies(file)) {
                 return true;
@@ -117,7 +117,7 @@ public class RuleSets {
     /**
      * Notify all rules of the start of processing.
      */
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         for (RuleSet ruleSet : ruleSets) {
             ruleSet.start(ctx);
         }
@@ -136,7 +136,7 @@ public class RuleSets {
      * @param language
      *            the Language of the source
      */
-    public void apply(List<Node> acuList, RuleContext ctx, Language language) {
+    public void apply(final List<Node> acuList, final RuleContext ctx, final Language language) {
         ruleChain.apply(acuList, ctx, language);
         for (RuleSet ruleSet : ruleSets) {
             if (ruleSet.applies(ctx.getSourceCodeFile())) {
@@ -148,7 +148,7 @@ public class RuleSets {
     /**
      * Notify all rules of the end of processing.
      */
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         for (RuleSet ruleSet : ruleSets) {
             ruleSet.end(ctx);
         }
@@ -163,7 +163,7 @@ public class RuleSets {
      * @deprecated See {@link Rule#isDfa()}
      */
     @Deprecated
-    public boolean usesDFA(Language language) {
+    public boolean usesDFA(final Language language) {
         for (RuleSet ruleSet : ruleSets) {
             if (ruleSet.usesDFA(language)) {
                 return true;
@@ -182,7 +182,7 @@ public class RuleSets {
      *            the exact name of the rule to find
      * @return the rule or null if not found
      */
-    public Rule getRuleByName(String ruleName) {
+    public Rule getRuleByName(final String ruleName) {
         Rule rule = null;
         for (Iterator<RuleSet> i = ruleSets.iterator(); i.hasNext() && rule == null;) {
             RuleSet ruleSet = i.next();
@@ -214,7 +214,7 @@ public class RuleSets {
      * @deprecated See {@link Rule#isTypeResolution()}
      */
     @Deprecated
-    public boolean usesTypeResolution(Language language) {
+    public boolean usesTypeResolution(final Language language) {
         for (RuleSet ruleSet : ruleSets) {
             if (ruleSet.usesTypeResolution(language)) {
                 return true;
@@ -234,7 +234,7 @@ public class RuleSets {
      * @deprecated See {@link Rule#isMultifile()}
      */
     @Deprecated
-    public boolean usesMultifile(Language language) {
+    public boolean usesMultifile(final Language language) {
         for (RuleSet ruleSet : ruleSets) {
             if (ruleSet.usesMultifile(language)) {
                 return true;
@@ -249,7 +249,7 @@ public class RuleSets {
      *
      * @param collector
      */
-    public void removeDysfunctionalRules(Collection<Rule> collector) {
+    public void removeDysfunctionalRules(final Collection<Rule> collector) {
         for (RuleSet ruleSet : ruleSets) {
             ruleSet.removeDysfunctionalRules(collector);
         }

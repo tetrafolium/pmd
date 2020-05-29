@@ -12,12 +12,12 @@ public class ASTTryCatchFinallyBlockStatement extends AbstractApexNode<TryCatchF
 
     @Deprecated
     @InternalApi
-    public ASTTryCatchFinallyBlockStatement(TryCatchFinallyBlockStatement tryCatchFinallyBlockStatement) {
+    public ASTTryCatchFinallyBlockStatement(final TryCatchFinallyBlockStatement tryCatchFinallyBlockStatement) {
         super(tryCatchFinallyBlockStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

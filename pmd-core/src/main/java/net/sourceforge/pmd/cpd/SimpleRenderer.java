@@ -24,16 +24,16 @@ public class SimpleRenderer implements Renderer, CPDRenderer {
         this(false);
     }
 
-    public SimpleRenderer(boolean trimLeadingWhitespace) {
+    public SimpleRenderer(final boolean trimLeadingWhitespace) {
         this(DEFAULT_SEPARATOR);
         this.trimLeadingWhitespace = trimLeadingWhitespace;
     }
 
-    public SimpleRenderer(String theSeparator) {
+    public SimpleRenderer(final String theSeparator) {
         separator = theSeparator;
     }
 
-    private void renderOn(Writer writer, Match match) throws IOException {
+    private void renderOn(final Writer writer, final Match match) throws IOException {
 
         writer.append("Found a ").append(String.valueOf(match.getLineCount())).append(" line (").append(String.valueOf(match.getTokenCount()))
                 .append(" tokens) duplication in the following files: ").append(PMD.EOL);
@@ -64,7 +64,7 @@ public class SimpleRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public String render(Iterator<Match> matches) {
+    public String render(final Iterator<Match> matches) {
         StringWriter writer = new StringWriter(300);
         try {
             render(matches, writer);
@@ -75,7 +75,7 @@ public class SimpleRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public void render(Iterator<Match> matches, Writer writer) throws IOException {
+    public void render(final Iterator<Match> matches, final Writer writer) throws IOException {
         if (matches.hasNext()) {
             renderOn(writer, matches.next());
         }

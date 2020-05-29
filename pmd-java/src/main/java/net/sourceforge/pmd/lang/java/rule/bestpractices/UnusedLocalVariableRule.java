@@ -20,7 +20,7 @@ public class UnusedLocalVariableRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration decl, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration decl, final Object data) {
         for (int i = 0; i < decl.getNumChildren(); i++) {
             if (!(decl.getChild(i) instanceof ASTVariableDeclarator)) {
                 continue;
@@ -36,7 +36,7 @@ public class UnusedLocalVariableRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean actuallyUsed(List<NameOccurrence> usages) {
+    private boolean actuallyUsed(final List<NameOccurrence> usages) {
         for (NameOccurrence occ : usages) {
             JavaNameOccurrence jocc = (JavaNameOccurrence) occ;
             if (!jocc.isOnLeftHandSide()) {

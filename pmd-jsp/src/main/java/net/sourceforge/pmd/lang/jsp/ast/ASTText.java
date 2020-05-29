@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTText extends AbstractJspNode {
     @InternalApi
     @Deprecated
-    public ASTText(int id) {
+    public ASTText(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTText(JspParser p, int id) {
+    public ASTText(final JspParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -28,7 +28,7 @@ abstract class AbstractScalaNode<T extends Tree> extends AbstractNode implements
      * @param treeNode
      *            the scala tree node this node wraps
      */
-    AbstractScalaNode(T treeNode) {
+    AbstractScalaNode(final T treeNode) {
         super(0);
         node = treeNode;
         pos = node.pos();
@@ -67,25 +67,25 @@ abstract class AbstractScalaNode<T extends Tree> extends AbstractNode implements
 
     @Override
     @Deprecated
-    public void testingOnlySetBeginColumn(int i) {
+    public void testingOnlySetBeginColumn(final int i) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void testingOnlySetBeginLine(int i) {
+    public void testingOnlySetBeginLine(final int i) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void testingOnlySetEndColumn(int i) {
+    public void testingOnlySetEndColumn(final int i) {
         throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public void testingOnlySetEndLine(int i) {
+    public void testingOnlySetEndLine(final int i) {
         throw new UnsupportedOperationException();
     }
 
@@ -99,7 +99,7 @@ abstract class AbstractScalaNode<T extends Tree> extends AbstractNode implements
     }
 
     @Override
-    public ScalaNode<?> getChild(int index) {
+    public ScalaNode<?> getChild(final int index) {
         return (ScalaNode<?>) super.getChild(index);
     }
 

@@ -28,7 +28,7 @@ public final class ApexQualifiedName implements QualifiedName {
     private final String operation;
 
 
-    private ApexQualifiedName(String nameSpace, String[] classes, String operation) {
+    private ApexQualifiedName(final String nameSpace, final String[] classes, final String operation) {
         this.nameSpace = nameSpace;
         this.operation = operation;
         this.classes = classes;
@@ -105,7 +105,7 @@ public final class ApexQualifiedName implements QualifiedName {
 
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         return obj instanceof ApexQualifiedName
                && Objects.deepEquals(classes, ((ApexQualifiedName) obj).classes)
                && Objects.equals(operation, ((ApexQualifiedName) obj).operation)
@@ -128,19 +128,19 @@ public final class ApexQualifiedName implements QualifiedName {
      * @return An ApexQualifiedName, or null if the string couldn't be parsed
      */
     // private static final Pattern FORMAT = Pattern.compile("(\\w+)__(\\w+)(.(\\w+))?(#(\\w+))?"); // TODO
-    public static ApexQualifiedName ofString(String toParse) {
+    public static ApexQualifiedName ofString(final String toParse) {
         throw new UnsupportedOperationException();
     }
 
 
-    static ApexQualifiedName ofOuterClass(ASTUserClassOrInterface<?> astUserClass) {
+    static ApexQualifiedName ofOuterClass(final ASTUserClassOrInterface<?> astUserClass) {
         String ns = astUserClass.getNamespace();
         String[] classes = {astUserClass.getImage()};
         return new ApexQualifiedName(StringUtils.isEmpty(ns) ? "c" : ns, classes, null);
     }
 
 
-    static ApexQualifiedName ofNestedClass(ApexQualifiedName parent, ASTUserClassOrInterface astUserClass) {
+    static ApexQualifiedName ofNestedClass(final ApexQualifiedName parent, final ASTUserClassOrInterface astUserClass) {
 
         String[] classes = Arrays.copyOf(parent.classes, parent.classes.length + 1);
         classes[classes.length - 1] = astUserClass.getImage();
@@ -148,7 +148,7 @@ public final class ApexQualifiedName implements QualifiedName {
     }
 
 
-    private static String getOperationString(ASTMethod node) {
+    private static String getOperationString(final ASTMethod node) {
         StringBuilder sb = new StringBuilder();
         sb.append(node.getImage()).append('(');
 
@@ -170,7 +170,7 @@ public final class ApexQualifiedName implements QualifiedName {
     }
 
 
-    static ApexQualifiedName ofMethod(ASTMethod node) {
+    static ApexQualifiedName ofMethod(final ASTMethod node) {
         ASTUserClassOrInterface<?> parent = node.getFirstParentOfType(ASTUserClassOrInterface.class);
         if (parent == null) {
             ASTUserTrigger trigger = node.getFirstParentOfType(ASTUserTrigger.class);

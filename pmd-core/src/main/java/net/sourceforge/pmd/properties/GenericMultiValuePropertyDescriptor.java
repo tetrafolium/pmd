@@ -28,12 +28,12 @@ final class GenericMultiValuePropertyDescriptor<V, C extends Collection<V>> exte
     private final Class<V> type;
 
 
-    GenericMultiValuePropertyDescriptor(String name, String description, float uiOrder,
-                                        Collection<V> defaultValue,
-                                        Set<PropertyConstraint<? super C>> listValidators,
-                                        ValueParser<V> parser,
-                                        char delim,
-                                        Class<V> type) {
+    GenericMultiValuePropertyDescriptor(final String name, final String description, final float uiOrder,
+                                        final Collection<V> defaultValue,
+                                        final Set<PropertyConstraint<? super C>> listValidators,
+                                        final ValueParser<V> parser,
+                                        final char delim,
+                                        final Class<V> type) {
         // this cast is safe until 7.0.0
         super(name, description, (List<V>) defaultValue, uiOrder, delim, false);
         this.listValidators = listValidators;
@@ -49,7 +49,7 @@ final class GenericMultiValuePropertyDescriptor<V, C extends Collection<V>> exte
 
     @SuppressWarnings("unchecked")
     @Override
-    public String errorFor(List<V> values) {
+    public String errorFor(final List<V> values) {
         for (PropertyConstraint<? super C> lv : listValidators) {
             // Note: the unchecked cast is safe because pre-7.0.0,
             // we only allow building property descriptors for lists.
@@ -69,7 +69,7 @@ final class GenericMultiValuePropertyDescriptor<V, C extends Collection<V>> exte
 
 
     @Override
-    protected V createFrom(String toParse) {
+    protected V createFrom(final String toParse) {
         return parser.valueOf(toParse);
     }
 

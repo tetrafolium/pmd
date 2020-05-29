@@ -23,7 +23,7 @@ import net.sourceforge.pmd.lang.plsql.ast.PLSQLParserTokenManager;
 public class PLSQLTokenManager implements TokenManager {
     private final PLSQLParserTokenManager tokenManager;
 
-    public PLSQLTokenManager(Reader source) {
+    public PLSQLTokenManager(final Reader source) {
         tokenManager = new PLSQLParserTokenManager(new SimpleCharStream(source));
     }
 
@@ -33,7 +33,7 @@ public class PLSQLTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         PLSQLParserTokenManager.setFileName(fileName);
     }
 }

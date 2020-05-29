@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTQueryBlock extends AbstractSelectStatement {
     @Deprecated
     @InternalApi
-    public ASTQueryBlock(int id) {
+    public ASTQueryBlock(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTQueryBlock(PLSQLParser p, int id) {
+    public ASTQueryBlock(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -51,7 +51,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
      *
      * @param strategy Strategy to parameterize the output of this instance
      */
-    public XmlTreeRenderer(XmlRenderingConfig strategy) {
+    public XmlTreeRenderer(final XmlRenderingConfig strategy) {
         this.strategy = strategy;
         this.attrDelim = strategy.singleQuoteAttributes ? '\'' : '"';
     }
@@ -76,7 +76,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
      *                                  a name that is not a valid XML name
      */
     @Override
-    public void renderSubtree(Node node, Appendable out) throws IOException {
+    public void renderSubtree(final Node node, final Appendable out) throws IOException {
         if (strategy.renderProlog) {
             renderProlog(out);
         }
@@ -84,13 +84,13 @@ public final class XmlTreeRenderer implements TreeRenderer {
         out.append(strategy.lineSeparator);
     }
 
-    private void renderProlog(Appendable out) throws IOException {
+    private void renderProlog(final Appendable out) throws IOException {
         out.append("<?xml version=").append(attrDelim).append("1.0").append(attrDelim)
            .append(" encoding=").append(attrDelim).append("UTF-8").append(attrDelim)
            .append(" ?>").append(strategy.lineSeparator);
     }
 
-    private void renderSubtree(int depth, Node node, Appendable out) throws IOException {
+    private void renderSubtree(final int depth, final Node node, final Appendable out) throws IOException {
 
         String eltName = node.getXPathNodeName();
 
@@ -123,7 +123,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
         indent(depth, out).append("</").append(eltName).append('>');
     }
 
-    private void appendAttribute(Appendable out, String name, String value) throws IOException {
+    private void appendAttribute(final Appendable out, final String name, final String value) throws IOException {
         checkValidName(name);
 
         out.append(' ')
@@ -134,36 +134,36 @@ public final class XmlTreeRenderer implements TreeRenderer {
             .append(attrDelim);
     }
 
-    private void checkValidName(String name) {
+    private void checkValidName(final String name) {
         if (!isValidXmlName(name) || isReservedXmlName(name)) {
             throw new IllegalArgumentException(name + " is not a valid XML name");
         }
     }
 
-    private Appendable indent(int depth, Appendable out) throws IOException {
+    private Appendable indent(final int depth, final Appendable out) throws IOException {
         while (depth-- > 0) {
             out.append(strategy.indentString);
         }
         return out;
     }
 
-    private static String escapeXmlText(String xml) {
+    private static String escapeXmlText(final String xml) {
         return xml.replaceAll("<", "&lt;")
                   .replaceAll("&", "&amp;");
 
     }
 
-    private static String escapeXmlAttribute(String xml, boolean isSingleQuoted) {
+    private static String escapeXmlAttribute(final String xml, final boolean isSingleQuoted) {
 
         return isSingleQuoted ? escapeXmlText(xml).replaceAll("'", "&apos;")
                               : escapeXmlText(xml).replaceAll("\"", "&quot;");
     }
 
-    private static boolean isValidXmlName(String xml) {
+    private static boolean isValidXmlName(final String xml) {
         return XML_NAME.matcher(xml).matches();
     }
 
-    private static boolean isReservedXmlName(String xml) {
+    private static boolean isReservedXmlName(final String xml) {
         return StringUtils.startsWithIgnoreCase(xml, "xml");
     }
 
@@ -178,7 +178,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
         private boolean singleQuoteAttributes = true;
         private boolean renderProlog = true;
 
-        private Map<String, String> getXmlAttributes(Node node) {
+        private Map<String, String> getXmlAttributes(final Node node) {
             Map<String, String> attrs = new TreeMap<>();
             Iterator<Attribute> iter = node.getXPathAttributesIterator();
             while (iter.hasNext()) {
@@ -203,7 +203,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          * @param attr Attribute for which the fetch failed
          * @param e    Exception that occurred
          */
-        protected void handleAttributeFetchException(Attribute attr, Exception e) {
+        protected void handleAttributeFetchException(final Attribute attr, final Exception e) {
             // to be overridden
         }
 
@@ -215,7 +215,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          * @param node      Node owning the attribute
          * @param attribute Attribute to test
          */
-        protected boolean takeAttribute(Node node, Attribute attribute) {
+        protected boolean takeAttribute(final Node node, final Attribute attribute) {
             return true;
         }
 
@@ -225,7 +225,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          *
          * @throws NullPointerException If the argument is null
          */
-        public XmlRenderingConfig lineSeparator(String lineSeparator) {
+        public XmlRenderingConfig lineSeparator(final String lineSeparator) {
             this.lineSeparator = Objects.requireNonNull(lineSeparator);
             return this;
         }
@@ -236,7 +236,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          *
          * @param useSingleQuote True for single quotes, false for double quotes
          */
-        public XmlRenderingConfig singleQuoteAttributes(boolean useSingleQuote) {
+        public XmlRenderingConfig singleQuoteAttributes(final boolean useSingleQuote) {
             this.singleQuoteAttributes = useSingleQuote;
             return this;
         }
@@ -245,7 +245,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          * Sets whether to render an XML prolog or not. The default is
          * true.
          */
-        public XmlRenderingConfig renderProlog(boolean renderProlog) {
+        public XmlRenderingConfig renderProlog(final boolean renderProlog) {
             this.renderProlog = renderProlog;
             return this;
         }
@@ -256,7 +256,7 @@ public final class XmlTreeRenderer implements TreeRenderer {
          *
          * @throws NullPointerException If the argument is null
          */
-        public XmlRenderingConfig indentWith(String indentString) {
+        public XmlRenderingConfig indentWith(final String indentString) {
             this.indentString = Objects.requireNonNull(indentString);
             return this;
         }

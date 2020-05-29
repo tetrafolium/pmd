@@ -20,13 +20,13 @@ public class ASTReferenceExpression extends AbstractApexNode<ReferenceExpression
 
     @Deprecated
     @InternalApi
-    public ASTReferenceExpression(ReferenceExpression referenceExpression) {
+    public ASTReferenceExpression(final ReferenceExpression referenceExpression) {
         super(referenceExpression);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

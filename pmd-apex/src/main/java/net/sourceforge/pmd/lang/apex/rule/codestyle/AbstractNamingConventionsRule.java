@@ -22,19 +22,19 @@ abstract class AbstractNamingConventionsRule extends AbstractApexRule {
 
     abstract String displayName(String name);
 
-    protected void checkMatches(PropertyDescriptor<Pattern> propertyDescriptor, ApexNode<?> node, Object data) {
+    protected void checkMatches(final PropertyDescriptor<Pattern> propertyDescriptor, final ApexNode<?> node, final Object data) {
         checkMatches(propertyDescriptor, getProperty(propertyDescriptor), node, data);
     }
 
-    protected void checkMatches(PropertyDescriptor<Pattern> propertyDescriptor, Pattern overridePattern, ApexNode<?> node, Object data) {
+    protected void checkMatches(final PropertyDescriptor<Pattern> propertyDescriptor, final Pattern overridePattern, final ApexNode<?> node, final Object data) {
         String name = node.getImage();
         if (!overridePattern.matcher(name).matches()) {
             String displayName = displayName(propertyDescriptor.name());
-            addViolation(data, node, new Object[] { displayName, name, overridePattern.toString() });
+            addViolation(data, node, new Object[] {displayName, name, overridePattern.toString() });
         }
     }
 
-    protected static PropertyBuilder.RegexPropertyBuilder prop(String name, String displayName, Map<String, String> descriptorToDisplayNames) {
+    protected static PropertyBuilder.RegexPropertyBuilder prop(final String name, final String displayName, final Map<String, String> descriptorToDisplayNames) {
         descriptorToDisplayNames.put(name, displayName);
         return regexProperty(name).desc("Regex which applies to " + displayName + " names");
     }

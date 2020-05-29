@@ -21,12 +21,12 @@ public abstract class AbstractAnyTypeDeclaration extends AbstractJavaAccessTypeN
     private JavaTypeQualifiedName qualifiedName;
 
 
-    AbstractAnyTypeDeclaration(int i) {
+    AbstractAnyTypeDeclaration(final int i) {
         super(i);
     }
 
 
-    AbstractAnyTypeDeclaration(JavaParser parser, int i) {
+    AbstractAnyTypeDeclaration(final JavaParser parser, final int i) {
         super(parser, i);
     }
 
@@ -77,7 +77,7 @@ public abstract class AbstractAnyTypeDeclaration extends AbstractJavaAccessTypeN
      * @param kinds Kinds to test
      */
     // TODO 7.0.0 move that up to ASTAnyTypeDeclaration
-    public final boolean enclosingTypeIsA(TypeKind... kinds) {
+    public final boolean enclosingTypeIsA(final TypeKind... kinds) {
 
         ASTAnyTypeDeclaration parent = getEnclosingTypeDeclaration();
         if (parent == null) {
@@ -116,7 +116,7 @@ public abstract class AbstractAnyTypeDeclaration extends AbstractJavaAccessTypeN
 
     @InternalApi
     @Deprecated
-    public void setQualifiedName(JavaTypeQualifiedName qualifiedName) {
+    public void setQualifiedName(final JavaTypeQualifiedName qualifiedName) {
         this.qualifiedName = qualifiedName;
         this.typeDefinition = JavaTypeDefinition.forClass(qualifiedName.getType());
     }

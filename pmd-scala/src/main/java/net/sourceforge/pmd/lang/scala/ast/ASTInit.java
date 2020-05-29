@@ -15,12 +15,12 @@ public class ASTInit extends AbstractScalaNode<Init> {
 
     @Deprecated
     @InternalApi
-    public ASTInit(Init scalaNode) {
+    public ASTInit(final Init scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

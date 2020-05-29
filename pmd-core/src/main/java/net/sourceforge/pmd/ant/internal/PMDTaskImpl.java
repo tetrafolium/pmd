@@ -60,7 +60,7 @@ public class PMDTaskImpl {
     private String failuresPropertyName;
     private Project project;
 
-    public PMDTaskImpl(PMDTask task) {
+    public PMDTaskImpl(final PMDTask task) {
         configuration.setReportShortNames(task.isShortFilenames());
         configuration.setSuppressMarker(task.getSuppressMarker());
         this.failOnError = task.isFailOnError();
@@ -162,13 +162,13 @@ public class PMDTaskImpl {
                 }
 
                 @Override
-                public void startFileAnalysis(DataSource dataSource) {
+                public void startFileAnalysis(final DataSource dataSource) {
                     project.log("Processing file " + dataSource.getNiceFileName(false, commonInputPath),
                             Project.MSG_VERBOSE);
                 }
 
                 @Override
-                public void renderFileReport(Report r) {
+                public void renderFileReport(final Report r) {
                     int size = r.size();
                     if (size > 0) {
                         reportSize.addAndGet(size);
@@ -237,7 +237,7 @@ public class PMDTaskImpl {
                 project, classpath, parentFirst));
     }
 
-    private void handleError(RuleContext ctx, Report errorReport, RuntimeException pmde) {
+    private void handleError(final RuleContext ctx, final Report errorReport, final RuntimeException pmde) {
 
         pmde.printStackTrace();
         project.log(pmde.toString(), Project.MSG_VERBOSE);
@@ -289,7 +289,7 @@ public class PMDTaskImpl {
         }
     }
 
-    private void logRulesUsed(RuleSets rules) {
+    private void logRulesUsed(final RuleSets rules) {
         project.log("Using these rulesets: " + configuration.getRuleSets(), Project.MSG_VERBOSE);
 
         RuleSet[] ruleSets = rules.getAllRuleSets();

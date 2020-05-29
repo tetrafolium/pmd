@@ -15,12 +15,12 @@ public class ASTTermApply extends AbstractScalaNode<Term.Apply> {
 
     @Deprecated
     @InternalApi
-    public ASTTermApply(Term.Apply scalaNode) {
+    public ASTTermApply(final Term.Apply scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

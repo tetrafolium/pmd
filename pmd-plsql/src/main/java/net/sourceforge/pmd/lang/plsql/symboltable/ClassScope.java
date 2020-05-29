@@ -34,7 +34,7 @@ public class ClassScope extends AbstractScope {
 
     private String className;
 
-    public ClassScope(String className) {
+    public ClassScope(final String className) {
         this.className = AbstractPLSQLNode.getCanonicalImage(className);
         anonymousInnerClassCounter.set(Integer.valueOf(1));
     }
@@ -55,7 +55,7 @@ public class ClassScope extends AbstractScope {
     }
 
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         if (declaration instanceof VariableNameDeclaration && getDeclarations().keySet().contains(declaration)) {
             throw new RuntimeException(declaration + " is already in the symbol table");
         }
@@ -63,7 +63,7 @@ public class ClassScope extends AbstractScope {
     }
 
     @Override
-    public Set<NameDeclaration> addNameOccurrence(NameOccurrence occ) {
+    public Set<NameDeclaration> addNameOccurrence(final NameOccurrence occ) {
         PLSQLNameOccurrence occurrence = (PLSQLNameOccurrence) occ;
         Set<NameDeclaration> declarations = findVariableHere(occurrence);
         Map<MethodNameDeclaration, List<NameOccurrence>> methodNames = getMethodDeclarations();
@@ -118,7 +118,7 @@ public class ClassScope extends AbstractScope {
         return this.className;
     }
 
-    protected Set<NameDeclaration> findVariableHere(PLSQLNameOccurrence occurrence) {
+    protected Set<NameDeclaration> findVariableHere(final PLSQLNameOccurrence occurrence) {
         Set<NameDeclaration> result = new HashSet<>();
         Map<VariableNameDeclaration, List<NameOccurrence>> variableDeclarations = getVariableDeclarations();
         Map<MethodNameDeclaration, List<NameOccurrence>> methodDeclarations = getMethodDeclarations();
@@ -209,7 +209,7 @@ public class ClassScope extends AbstractScope {
         return res;
     }
 
-    private String clipClassName(String s) {
+    private String clipClassName(final String s) {
         return s.substring(s.indexOf('.') + 1);
     }
 }

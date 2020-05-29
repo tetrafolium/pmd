@@ -41,18 +41,18 @@ public class SimpleTypedNameDeclaration implements TypedNameDeclaration {
      * @param type
      *            the actual type
      */
-    public SimpleTypedNameDeclaration(String typeImage, Class<?> type) {
+    public SimpleTypedNameDeclaration(final String typeImage, final Class<?> type) {
         this.typeImage = typeImage;
         this.type = type;
     }
 
-    public SimpleTypedNameDeclaration(String typeImage, Class<?> type, SimpleTypedNameDeclaration next) {
+    public SimpleTypedNameDeclaration(final String typeImage, final Class<?> type, final SimpleTypedNameDeclaration next) {
         this.typeImage = typeImage;
         this.type = type;
         this.next = next;
     }
 
-    public void addNext(SimpleTypedNameDeclaration next) {
+    public void addNext(final SimpleTypedNameDeclaration next) {
         if (next == null) {
             return;
         }
@@ -97,11 +97,11 @@ public class SimpleTypedNameDeclaration implements TypedNameDeclaration {
      * </p>
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         return internalEquals(obj) || internalEqualsNext(obj);
     }
 
-    private boolean internalEqualsNext(Object obj) {
+    private boolean internalEqualsNext(final Object obj) {
         if (next != null) {
             return next.equals(obj);
         }
@@ -114,7 +114,7 @@ public class SimpleTypedNameDeclaration implements TypedNameDeclaration {
         return false;
     }
 
-    private boolean internalEquals(Object obj) {
+    private boolean internalEquals(final Object obj) {
         if (this == obj) {
             return true;
         }

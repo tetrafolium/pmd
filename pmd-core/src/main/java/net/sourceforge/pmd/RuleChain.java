@@ -29,7 +29,7 @@ public class RuleChain {
      * @param ruleSet
      *            The RuleSet to add Rules from.
      */
-    public void add(RuleSet ruleSet) {
+    public void add(final RuleSet ruleSet) {
         for (Rule r : ruleSet.getRules()) {
             add(ruleSet, r);
         }
@@ -43,7 +43,7 @@ public class RuleChain {
      * @param rule
      *            The Rule to add.
      */
-    private void add(RuleSet ruleSet, Rule rule) {
+    private void add(final RuleSet ruleSet, final Rule rule) {
         RuleChainVisitor visitor = getRuleChainVisitor(rule.getLanguage());
         if (visitor != null) {
             visitor.add(ruleSet, rule);
@@ -61,7 +61,7 @@ public class RuleChain {
      * @param language
      *            The Language.
      */
-    public void apply(List<Node> nodes, RuleContext ctx, Language language) {
+    public void apply(final List<Node> nodes, final RuleContext ctx, final Language language) {
         RuleChainVisitor visitor = getRuleChainVisitor(language);
         if (visitor != null) {
             visitor.visitAll(nodes, ctx);
@@ -69,7 +69,7 @@ public class RuleChain {
     }
 
     // Get the RuleChainVisitor for the appropriate Language.
-    private RuleChainVisitor getRuleChainVisitor(Language language) {
+    private RuleChainVisitor getRuleChainVisitor(final Language language) {
         RuleChainVisitor visitor = languageToRuleChainVisitor.get(language);
         if (visitor == null) {
             if (language.getRuleChainVisitorClass() != null) {

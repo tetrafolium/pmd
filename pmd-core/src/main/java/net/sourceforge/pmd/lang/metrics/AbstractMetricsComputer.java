@@ -23,23 +23,23 @@ public abstract class AbstractMetricsComputer<T extends QualifiableNode, O exten
     implements MetricsComputer<T, O> {
 
     @Override
-    public double computeForType(MetricKey<T> key, T node, boolean force,
-                                 MetricOptions options, MetricMemoizer<T> memoizer) {
+    public double computeForType(final MetricKey<T> key, final T node, final boolean force,
+                                 final MetricOptions options, final MetricMemoizer<T> memoizer) {
         return MetricsUtil.computeMetric(key, node, options);
     }
 
 
     @Override
-    public double computeForOperation(MetricKey<O> key, O node, boolean force,
-                                      MetricOptions options, MetricMemoizer<O> memoizer) {
+    public double computeForOperation(final MetricKey<O> key, final O node, final boolean force,
+                                      final MetricOptions options, final MetricMemoizer<O> memoizer) {
 
         return MetricsUtil.computeMetric(key, node, options);
     }
 
 
     @Override
-    public double computeWithResultOption(MetricKey<O> key, T node, boolean force, MetricOptions options,
-                                          ResultOption option, ProjectMemoizer<T, O> stats) {
+    public double computeWithResultOption(final MetricKey<O> key, final T node, final boolean force, final MetricOptions options,
+                                          final ResultOption option, final ProjectMemoizer<T, O> stats) {
         return MetricsUtil.computeAggregate(key, findOperations(node), options, option);
     }
 

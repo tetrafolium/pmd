@@ -21,14 +21,14 @@ public class ScopeAndDeclarationFinder extends ModelicaParserVisitorAdapter {
         scopes.push(new RootScope());
     }
 
-    private void pushScope(ModelicaNode node, AbstractModelicaScope ownScope) {
+    private void pushScope(final ModelicaNode node, final AbstractModelicaScope ownScope) {
         AbstractModelicaScope prevTop = scopes.peek();
         ownScope.setParent(prevTop);
         scopes.push(ownScope);
         InternalModelicaNodeApi.setNodeOwnScope(node, ownScope);
     }
 
-    private void createClassDeclaration(ASTClassDefinition node) {
+    private void createClassDeclaration(final ASTClassDefinition node) {
         ModelicaScope containingScope = node.getParent().getMostSpecificScope();
         ModelicaClassDeclaration declaration = new ModelicaClassDeclaration(node);
         ((AbstractModelicaScope) containingScope).addDeclaration(declaration);
@@ -36,38 +36,38 @@ public class ScopeAndDeclarationFinder extends ModelicaParserVisitorAdapter {
         pushScope(node, new ModelicaClassScope(declaration));
     }
 
-    private void createFileDeclaration(ASTStoredDefinition node) {
+    private void createFileDeclaration(final ASTStoredDefinition node) {
         RootScope rootScope = (RootScope) scopes.peek();
         ModelicaSourceFileScope scope = new ModelicaSourceFileScope(node);
         rootScope.addSourceFile(scope);
         pushScope(node, scope);
     }
 
-    private void createComponentDeclaration(ASTComponentDeclaration node) {
+    private void createComponentDeclaration(final ASTComponentDeclaration node) {
         ModelicaComponentDeclaration declaration = new ModelicaComponentDeclaration(node);
         declaration.setContainingScope((ModelicaClassScope) scopes.peek());
         ((AbstractModelicaScope) node.getMostSpecificScope()).addDeclaration(declaration);
     }
 
     @Override
-    public Object visit(ASTStoredDefinition node, Object data) {
+    public Object visit(final ASTStoredDefinition node, final Object data) {
         createFileDeclaration(node);
         return cont(node);
     }
 
     @Override
-    public Object visit(ASTClassDefinition node, Object data) {
+    public Object visit(final ASTClassDefinition node, final Object data) {
         createClassDeclaration(node);
         return cont(node);
     }
 
     @Override
-    public Object visit(ASTComponentDeclaration node, Object data) {
+    public Object visit(final ASTComponentDeclaration node, final Object data) {
         createComponentDeclaration(node);
         return super.visit(node, data);
     }
 
-    private Object cont(ModelicaNode node) {
+    private Object cont(final ModelicaNode node) {
         super.visit(node, null);
         scopes.pop();
         return null;

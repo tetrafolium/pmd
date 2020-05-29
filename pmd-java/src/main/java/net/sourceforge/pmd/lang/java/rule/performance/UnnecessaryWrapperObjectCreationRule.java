@@ -19,14 +19,14 @@ import net.sourceforge.pmd.util.CollectionUtil;
 
 public class UnnecessaryWrapperObjectCreationRule extends AbstractJavaRule {
 
-    private static final Set<String> PREFIX_SET = CollectionUtil.asSet(new String[] { "Byte.valueOf", "Short.valueOf",
+    private static final Set<String> PREFIX_SET = CollectionUtil.asSet(new String[] {"Byte.valueOf", "Short.valueOf",
         "Integer.valueOf", "Long.valueOf", "Float.valueOf", "Double.valueOf", "Character.valueOf", });
 
-    private static final Set<String> SUFFIX_SET = CollectionUtil.asSet(new String[] { "toString", "byteValue",
+    private static final Set<String> SUFFIX_SET = CollectionUtil.asSet(new String[] {"toString", "byteValue",
         "shortValue", "intValue", "longValue", "floatValue", "doubleValue", "charValue", });
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
         if (node.getNumChildren() == 0 || !(node.getChild(0) instanceof ASTName)) {
             return super.visit(node, data);
         }

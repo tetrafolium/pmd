@@ -33,7 +33,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         super.visit(node, data);
 
         int boolCompIf = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -43,7 +43,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         super.visit(node, data);
 
         if (node.isForeach()) {
@@ -57,7 +57,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         super.visit(node, data);
 
         int boolCompDo = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -67,7 +67,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         super.visit((JavaNode) node, data); // skip the superclass' treatment
 
         int boolCompSwitch = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -77,7 +77,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTSwitchLabel node, Object data) {
+    public Object visit(final ASTSwitchLabel node, final Object data) {
         if (!node.isDefault()) {
             ((MutableInt) data).increment();
         }
@@ -87,7 +87,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         super.visit(node, data);
 
         int boolCompWhile = CycloMetric.booleanExpressionComplexity(node.getFirstChildOfType(ASTExpression.class));
@@ -97,7 +97,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         super.visit(node, data);
 
         int boolCompTern = CycloMetric.booleanExpressionComplexity(node.getGuardExpressionNode());
@@ -108,7 +108,7 @@ public class CycloPathAwareDecorator extends JavaParserVisitorDecorator {
 
 
     @Override
-    public Object visit(ASTAssertStatement node, Object data) {
+    public Object visit(final ASTAssertStatement node, final Object data) {
         int base = ((MutableInt) data).getValue();
         // This is precisely the problem with decorators
         // The control flow is completely obscured and information is spread out, for no real benefit

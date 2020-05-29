@@ -78,7 +78,7 @@ public class SourceFileScope extends AbstractJavaScope {
      *            the name of the class
      * @return the class or <code>null</code> if no class could be found
      */
-    public Class<?> resolveType(String name) {
+    public Class<?> resolveType(final String name) {
         return types.findClass(name);
     }
 
@@ -93,7 +93,7 @@ public class SourceFileScope extends AbstractJavaScope {
      *             if declaration is not a {@link ClassNameDeclaration}
      */
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         if (!(declaration instanceof ClassNameDeclaration)) {
             throw new IllegalArgumentException("A SourceFileScope can only contain classes.");
         }
@@ -116,14 +116,14 @@ public class SourceFileScope extends AbstractJavaScope {
         return "SourceFileScope: " + glomNames(getClassDeclarations().keySet());
     }
 
-    public ClassNameDeclaration findClassNameDeclaration(String name) {
+    public ClassNameDeclaration findClassNameDeclaration(final String name) {
         ImageFinderFunction finder = new ImageFinderFunction(name);
         Applier.apply(finder, getClassDeclarations().keySet().iterator());
         return (ClassNameDeclaration) finder.getDecl();
     }
 
     @Override
-    protected Set<NameDeclaration> findVariableHere(JavaNameOccurrence occ) {
+    protected Set<NameDeclaration> findVariableHere(final JavaNameOccurrence occ) {
         ImageFinderFunction finder = new ImageFinderFunction(occ.getImage());
         Applier.apply(finder, getDeclarations().keySet().iterator());
         if (finder.getDecl() != null) {
@@ -147,7 +147,7 @@ public class SourceFileScope extends AbstractJavaScope {
         return qualifiedTypeNames;
     }
 
-    private Map<String, Node> getSubTypes(String qualifyingName, Scope subType) {
+    private Map<String, Node> getSubTypes(final String qualifyingName, final Scope subType) {
         Set<ClassNameDeclaration> classDeclarations = subType.getDeclarations(ClassNameDeclaration.class).keySet();
         if (classDeclarations.isEmpty()) {
             return Collections.emptyMap();

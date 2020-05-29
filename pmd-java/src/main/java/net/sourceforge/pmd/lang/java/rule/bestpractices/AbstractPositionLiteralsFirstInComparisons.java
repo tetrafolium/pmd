@@ -24,13 +24,13 @@ class AbstractPositionLiteralsFirstInComparisons extends AbstractJavaRule {
 
     private final String equalsImage;
 
-    AbstractPositionLiteralsFirstInComparisons(String equalsImage) {
+    AbstractPositionLiteralsFirstInComparisons(final String equalsImage) {
         addRuleChainVisit(ASTPrimaryExpression.class);
         this.equalsImage = equalsImage;
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         ASTPrimaryPrefix primaryPrefix = node.getFirstChildOfType(ASTPrimaryPrefix.class);
         ASTPrimarySuffix primarySuffix = node.getFirstChildOfType(ASTPrimarySuffix.class);
         if (primaryPrefix != null && primarySuffix != null) {
@@ -49,7 +49,7 @@ class AbstractPositionLiteralsFirstInComparisons extends AbstractJavaRule {
         return node;
     }
 
-    private boolean isWithinNullComparison(ASTPrimaryExpression node) {
+    private boolean isWithinNullComparison(final ASTPrimaryExpression node) {
         for (ASTExpression parentExpr : node.getParentsOfType(ASTExpression.class)) {
             if (isComparisonWithNull(parentExpr, "==", ASTConditionalOrExpression.class)
                     || isComparisonWithNull(parentExpr, "!=", ASTConditionalAndExpression.class)) {
@@ -63,7 +63,7 @@ class AbstractPositionLiteralsFirstInComparisons extends AbstractJavaRule {
      * Expression/ConditionalAndExpression//EqualityExpression(@Image='!=']//NullLiteral
      * Expression/ConditionalOrExpression//EqualityExpression(@Image='==']//NullLiteral
      */
-    private boolean isComparisonWithNull(ASTExpression parentExpr, String equalOperator, Class<? extends JavaNode> condition) {
+    private boolean isComparisonWithNull(final ASTExpression parentExpr, final String equalOperator, final Class<? extends JavaNode> condition) {
         Node condExpr = null;
         ASTEqualityExpression eqExpr = null;
         if (parentExpr != null) {
@@ -84,7 +84,7 @@ class AbstractPositionLiteralsFirstInComparisons extends AbstractJavaRule {
      *       and
      * ( count(../PrimarySuffix/Arguments/ArgumentList/Expression) = 1 )
      */
-    private boolean isSingleStringLiteralArgument(ASTPrimarySuffix primarySuffix) {
+    private boolean isSingleStringLiteralArgument(final ASTPrimarySuffix primarySuffix) {
         if (!primarySuffix.isArguments() || primarySuffix.getArgumentCount() != 1) {
             return false;
         }

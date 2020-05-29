@@ -35,7 +35,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
     public final boolean isAbstract;
 
 
-    private JavaOperationSignature(Visibility visibility, Role role, boolean isAbstract) {
+    private JavaOperationSignature(final Visibility visibility, final Role role, final boolean isAbstract) {
         super(visibility);
         this.role = role;
         this.isAbstract = isAbstract;
@@ -43,7 +43,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return this == o;
     }
 
@@ -65,7 +65,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
 
 
     /** Used internally by the pooler. */
-    private static int code(Visibility visibility, Role role, boolean isAbstract) {
+    private static int code(final Visibility visibility, final Role role, final boolean isAbstract) {
         return visibility.hashCode() * 31 + role.hashCode() * 2 + (isAbstract ? 1 : 0);
     }
 
@@ -77,7 +77,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
      *
      * @return The signature of the parameter
      */
-    public static JavaOperationSignature buildFor(ASTMethodOrConstructorDeclaration node) {
+    public static JavaOperationSignature buildFor(final ASTMethodOrConstructorDeclaration node) {
         int code = code(Visibility.get(node), Role.get(node), node.isAbstract());
         if (!POOL.containsKey(code)) {
             POOL.put(code, new JavaOperationSignature(Visibility.get(node), Role.get(node), node.isAbstract()));
@@ -95,12 +95,12 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
         private static final Pattern FIELD_NAME_PATTERN = Pattern.compile("(?:m_|_)?(\\w+)");
 
 
-        public static Role get(ASTMethodOrConstructorDeclaration node) {
+        public static Role get(final ASTMethodOrConstructorDeclaration node) {
             return node instanceof ASTConstructorDeclaration ? CONSTRUCTOR : get((ASTMethodDeclaration) node);
         }
 
 
-        private static Role get(ASTMethodDeclaration node) {
+        private static Role get(final ASTMethodDeclaration node) {
             if (node.isStatic()) {
                 return STATIC;
             } else if (isGetterOrSetter(node)) {
@@ -111,7 +111,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
         }
 
 
-        private static boolean isGetterOrSetter(ASTMethodDeclaration node) {
+        private static boolean isGetterOrSetter(final ASTMethodDeclaration node) {
 
             ClassScope scope = node.getScope().getEnclosingScope(ClassScope.class);
 
@@ -139,7 +139,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
 
 
         /** Attempts to determine if the method is a getter. */
-        private static boolean isGetter(ASTMethodDeclaration node, Map<String, String> fieldNames) {
+        private static boolean isGetter(final ASTMethodDeclaration node, final Map<String, String> fieldNames) {
 
             if (node.getFirstDescendantOfType(ASTFormalParameters.class).size() != 0
                 || node.getFirstDescendantOfType(ASTResultType.class).isVoid()) {
@@ -158,7 +158,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
 
 
         /** Attempts to determine if the method is a setter. */
-        private static boolean isSetter(ASTMethodDeclaration node, Map<String, String> fieldNames) {
+        private static boolean isSetter(final ASTMethodDeclaration node, final Map<String, String> fieldNames) {
 
             if (node.getFirstDescendantOfType(ASTFormalParameters.class).size() != 1
                 || !node.getFirstDescendantOfType(ASTResultType.class).isVoid()) {
@@ -173,7 +173,7 @@ public final class JavaOperationSignature extends JavaSignature<ASTMethodOrConst
         }
 
 
-        private static boolean containsIgnoreCase(Set<String> set, String str) {
+        private static boolean containsIgnoreCase(final Set<String> set, final String str) {
             for (String s : set) {
                 if (str.equalsIgnoreCase(s)) {
                     return true;

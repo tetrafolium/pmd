@@ -9,7 +9,7 @@ public class ClassNode extends AbstractReportNode {
 
     private String className;
 
-    public ClassNode(String className) {
+    public ClassNode(final String className) {
         this.className = className;
     }
 
@@ -18,7 +18,7 @@ public class ClassNode extends AbstractReportNode {
     }
 
     @Override
-    public boolean equalsNode(AbstractReportNode arg0) {
+    public boolean equalsNode(final AbstractReportNode arg0) {
         if (!(arg0 instanceof ClassNode)) {
             return false;
         }

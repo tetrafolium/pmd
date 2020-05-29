@@ -41,7 +41,7 @@ public class CommentSizeRule extends AbstractCommentRule {
         definePropertyDescriptor(MAX_LINE_LENGTH);
     }
 
-    private static boolean hasRealText(String line) {
+    private static boolean hasRealText(final String line) {
 
         if (StringUtils.isBlank(line)) {
             return false;
@@ -50,7 +50,7 @@ public class CommentSizeRule extends AbstractCommentRule {
         return !StringUtil.isAnyOf(line.trim(), "//", "/*", "/**", "*", "*/");
     }
 
-    private boolean hasTooManyLines(Comment comment) {
+    private boolean hasTooManyLines(final Comment comment) {
 
         String[] lines = comment.getImage().split(CR);
 
@@ -73,12 +73,12 @@ public class CommentSizeRule extends AbstractCommentRule {
         return lineCount > getProperty(MAX_LINES);
     }
 
-    private String withoutCommentMarkup(String text) {
+    private String withoutCommentMarkup(final String text) {
 
         return StringUtil.withoutPrefixes(text.trim(), "//", "*", "/**");
     }
 
-    private List<Integer> overLengthLineIndicesIn(Comment comment) {
+    private List<Integer> overLengthLineIndicesIn(final Comment comment) {
 
         int maxLength = getProperty(MAX_LINE_LENGTH);
 
@@ -98,7 +98,7 @@ public class CommentSizeRule extends AbstractCommentRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit cUnit, Object data) {
+    public Object visit(final ASTCompilationUnit cUnit, final Object data) {
 
         for (Comment comment : cUnit.getComments()) {
             if (hasTooManyLines(comment)) {

@@ -17,7 +17,7 @@ public class CodeEditorTextPane extends JTextPane implements LineGetter {
     }
 
     @Override
-    public String getLine(int number) {
+    public String getLine(final int number) {
         String[] lines = getLines();
         if (number < lines.length) {
             return lines[number];
@@ -25,7 +25,7 @@ public class CodeEditorTextPane extends JTextPane implements LineGetter {
         throw new RuntimeException("Line number " + number + " not found");
     }
 
-    private int getPosition(String[] lines, int line, int column) {
+    private int getPosition(final String[] lines, final int line, final int column) {
         int pos = 0;
         for (int count = 0; count < lines.length;) {
             String tok = lines[count++];
@@ -47,7 +47,7 @@ public class CodeEditorTextPane extends JTextPane implements LineGetter {
         throw new RuntimeException("Line " + line + " not found");
     }
 
-    public void select(Node node) {
+    public void select(final Node node) {
         String[] lines = getLines();
         if (node.getBeginLine() >= 0) {
             setSelectionStart(getPosition(lines, node.getBeginLine(), node.getBeginColumn()));

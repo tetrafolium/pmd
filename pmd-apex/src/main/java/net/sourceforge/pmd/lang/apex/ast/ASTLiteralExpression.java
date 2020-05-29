@@ -19,13 +19,13 @@ public class ASTLiteralExpression extends AbstractApexNode<LiteralExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTLiteralExpression(LiteralExpression literalExpression) {
+    public ASTLiteralExpression(final LiteralExpression literalExpression) {
         super(literalExpression);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

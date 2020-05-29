@@ -21,7 +21,7 @@ import net.sourceforge.pmd.lang.java.ast.JavaNode;
 public class ModifiedCyclomaticComplexityRule extends StdCyclomaticComplexityRule {
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         entryStack.peek().bumpDecisionPoints();
         visit((JavaNode) node, data);
         return data;

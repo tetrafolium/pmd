@@ -25,7 +25,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
     protected final org.w3c.dom.Node node;
 
 
-    protected AbstractDomNodeProxy(Node node) {
+    protected AbstractDomNodeProxy(final Node node) {
         super(0);
         this.node = node;
     }
@@ -44,7 +44,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public void setNodeValue(String nodeValue) throws DOMException {
+    public void setNodeValue(final String nodeValue) throws DOMException {
         node.setNodeValue(nodeValue);
     }
 
@@ -105,25 +105,25 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public org.w3c.dom.Node insertBefore(org.w3c.dom.Node newChild, org.w3c.dom.Node refChild) throws DOMException {
+    public org.w3c.dom.Node insertBefore(final org.w3c.dom.Node newChild, final org.w3c.dom.Node refChild) throws DOMException {
         return node.insertBefore(newChild, refChild);
     }
 
 
     @Override
-    public org.w3c.dom.Node replaceChild(org.w3c.dom.Node newChild, org.w3c.dom.Node oldChild) throws DOMException {
+    public org.w3c.dom.Node replaceChild(final org.w3c.dom.Node newChild, final org.w3c.dom.Node oldChild) throws DOMException {
         return node.replaceChild(newChild, oldChild);
     }
 
 
     @Override
-    public org.w3c.dom.Node removeChild(org.w3c.dom.Node oldChild) throws DOMException {
+    public org.w3c.dom.Node removeChild(final org.w3c.dom.Node oldChild) throws DOMException {
         return node.removeChild(oldChild);
     }
 
 
     @Override
-    public org.w3c.dom.Node appendChild(org.w3c.dom.Node newChild) throws DOMException {
+    public org.w3c.dom.Node appendChild(final org.w3c.dom.Node newChild) throws DOMException {
         return node.appendChild(newChild);
     }
 
@@ -135,7 +135,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public org.w3c.dom.Node cloneNode(boolean deep) {
+    public org.w3c.dom.Node cloneNode(final boolean deep) {
         return node.cloneNode(deep);
     }
 
@@ -147,7 +147,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public boolean isSupported(String feature, String version) {
+    public boolean isSupported(final String feature, final String version) {
         return node.isSupported(feature, version);
     }
 
@@ -165,7 +165,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public void setPrefix(String prefix) throws DOMException {
+    public void setPrefix(final String prefix) throws DOMException {
         node.setPrefix(prefix);
     }
 
@@ -190,7 +190,7 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
     @SuppressWarnings("PMD.AvoidUsingShortType")
     @Override
-    public short compareDocumentPosition(org.w3c.dom.Node other) throws DOMException {
+    public short compareDocumentPosition(final org.w3c.dom.Node other) throws DOMException {
         return node.compareDocumentPosition(other);
     }
 
@@ -202,55 +202,55 @@ public abstract class AbstractDomNodeProxy extends AbstractNode implements org.w
 
 
     @Override
-    public void setTextContent(String textContent) throws DOMException {
+    public void setTextContent(final String textContent) throws DOMException {
         node.setTextContent(textContent);
     }
 
 
     @Override
-    public boolean isSameNode(org.w3c.dom.Node other) {
+    public boolean isSameNode(final org.w3c.dom.Node other) {
         return node.isSameNode(other);
     }
 
 
     @Override
-    public String lookupPrefix(String namespaceURI) {
+    public String lookupPrefix(final String namespaceURI) {
         return node.lookupPrefix(namespaceURI);
     }
 
 
     @Override
-    public boolean isDefaultNamespace(String namespaceURI) {
+    public boolean isDefaultNamespace(final String namespaceURI) {
         return node.isDefaultNamespace(namespaceURI);
     }
 
 
     @Override
-    public String lookupNamespaceURI(String prefix) {
+    public String lookupNamespaceURI(final String prefix) {
         return node.lookupNamespaceURI(prefix);
     }
 
 
     @Override
-    public boolean isEqualNode(org.w3c.dom.Node arg) {
+    public boolean isEqualNode(final org.w3c.dom.Node arg) {
         return node.isEqualNode(arg);
     }
 
 
     @Override
-    public Object getFeature(String feature, String version) {
+    public Object getFeature(final String feature, final String version) {
         return node.getFeature(feature, version);
     }
 
 
     @Override
-    public Object setUserData(String key, Object data, UserDataHandler handler) {
+    public Object setUserData(final String key, final Object data, final UserDataHandler handler) {
         return node.setUserData(key, data, handler);
     }
 
 
     @Override
-    public Object getUserData(String key) {
+    public Object getUserData(final String key) {
         return node.getUserData(key);
     }
 

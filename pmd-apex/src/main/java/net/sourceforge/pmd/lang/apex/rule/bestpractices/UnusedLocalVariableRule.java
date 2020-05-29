@@ -20,7 +20,7 @@ public class UnusedLocalVariableRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         String variableName = node.getImage();
 
         ASTBlockStatement variableContext = node.getFirstParentOfType(ASTBlockStatement.class);

@@ -15,12 +15,12 @@ public class ASTPatSeqWildcard extends AbstractScalaNode<Pat.SeqWildcard> {
 
     @Deprecated
     @InternalApi
-    public ASTPatSeqWildcard(Pat.SeqWildcard scalaNode) {
+    public ASTPatSeqWildcard(final Pat.SeqWildcard scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

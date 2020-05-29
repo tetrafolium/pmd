@@ -20,18 +20,18 @@ public class AvoidMultipleUnaryOperatorsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTUnaryExpression node, Object data) {
+    public Object visit(final ASTUnaryExpression node, final Object data) {
         checkUnaryDescendent(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTUnaryExpressionNotPlusMinus node, Object data) {
+    public Object visit(final ASTUnaryExpressionNotPlusMinus node, final Object data) {
         checkUnaryDescendent(node, data);
         return data;
     }
 
-    private void checkUnaryDescendent(Node node, Object data) {
+    private void checkUnaryDescendent(final Node node, final Object data) {
         boolean match = false;
         if (node.getNumChildren() == 1) {
             Node child = node.getChild(0);

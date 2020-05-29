@@ -33,7 +33,7 @@ public class CreateXMLRulePanel extends JPanel implements ActionListener {
     private JTextArea xpathQueryArea = new JTextArea();
     private CodeEditorTextPane codeEditorPane = new CodeEditorTextPane();
 
-    public CreateXMLRulePanel(JTextArea xpathQueryArea, CodeEditorTextPane codeEditorPane) {
+    public CreateXMLRulePanel(final JTextArea xpathQueryArea, final CodeEditorTextPane codeEditorPane) {
         super();
         this.xpathQueryArea = xpathQueryArea;
         this.codeEditorPane = codeEditorPane;
@@ -105,7 +105,7 @@ public class CreateXMLRulePanel extends JPanel implements ActionListener {
         repaint();
     }
 
-    private static void appendLn(StringBuilder sb, String text) {
+    private static void appendLn(final StringBuilder sb, final String text) {
         sb.append(text).append(PMD.EOL);
     }
 
@@ -115,7 +115,7 @@ public class CreateXMLRulePanel extends JPanel implements ActionListener {
      *
      */
     @Override
-    public void actionPerformed(ActionEvent exception) {
+    public void actionPerformed(final ActionEvent exception) {
 
         boolean hasXPathQuery = StringUtils.isNotBlank(xpathQueryArea.getText());
 

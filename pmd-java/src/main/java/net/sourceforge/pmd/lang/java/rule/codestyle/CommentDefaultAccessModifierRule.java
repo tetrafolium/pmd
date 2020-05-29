@@ -117,7 +117,7 @@ public class CommentDefaultAccessModifierRule extends AbstractIgnoredAnnotationR
     }
 
     @Override
-    public Object visit(final ASTConstructorDeclaration decl, Object data) {
+    public Object visit(final ASTConstructorDeclaration decl, final Object data) {
         if (shouldReport(decl)) {
             addViolationWithMessage(data, decl, String.format(MESSAGE, decl.getImage(), "constructor"));
         }
@@ -134,14 +134,14 @@ public class CommentDefaultAccessModifierRule extends AbstractIgnoredAnnotationR
         return isConcreteClass && isMissingComment(decl);
     }
 
-    protected boolean hasIgnoredAnnotation(AccessNode node) {
+    protected boolean hasIgnoredAnnotation(final AccessNode node) {
         if (node instanceof Annotatable) {
             return hasIgnoredAnnotation((Annotatable) node);
         }
         return false;
     }
 
-    private boolean isMissingComment(AccessNode decl) {
+    private boolean isMissingComment(final AccessNode decl) {
         // check if the class/method/field has a default access
         // modifier
         return decl.isPackagePrivate()
@@ -152,7 +152,7 @@ public class CommentDefaultAccessModifierRule extends AbstractIgnoredAnnotationR
                 && !hasIgnoredAnnotation(decl);
     }
 
-    private boolean shouldReportTypeDeclaration(ASTAnyTypeDeclaration decl) {
+    private boolean shouldReportTypeDeclaration(final ASTAnyTypeDeclaration decl) {
         // don't report on interfaces
         return decl.getTypeKind() != ASTAnyTypeDeclaration.TypeKind.INTERFACE
                 && isMissingComment(decl)

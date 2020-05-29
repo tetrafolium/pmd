@@ -22,7 +22,7 @@ public final class JavaFieldSignature extends JavaSignature<ASTFieldDeclaration>
     public final boolean isFinal;
 
 
-    private JavaFieldSignature(Visibility visibility, boolean isStatic, boolean isFinal) {
+    private JavaFieldSignature(final Visibility visibility, final boolean isStatic, final boolean isFinal) {
         super(visibility);
         this.isStatic = isStatic;
         this.isFinal = isFinal;
@@ -40,7 +40,7 @@ public final class JavaFieldSignature extends JavaSignature<ASTFieldDeclaration>
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return this == o;
     }
 
@@ -52,7 +52,7 @@ public final class JavaFieldSignature extends JavaSignature<ASTFieldDeclaration>
 
 
     /** Used internally by the pooler. */
-    private static int code(Visibility visibility, boolean isStatic, boolean isFinal) {
+    private static int code(final Visibility visibility, final boolean isStatic, final boolean isFinal) {
         return visibility.hashCode() * 31 + (isStatic ? 1 : 0) * 2 + (isFinal ? 1 : 0);
     }
 
@@ -64,7 +64,7 @@ public final class JavaFieldSignature extends JavaSignature<ASTFieldDeclaration>
      *
      * @return The signature of the field
      */
-    public static JavaFieldSignature buildFor(ASTFieldDeclaration node) {
+    public static JavaFieldSignature buildFor(final ASTFieldDeclaration node) {
         int code = code(Visibility.get(node), node.isStatic(), node.isFinal());
         if (!POOL.containsKey(code)) {
             POOL.put(code, new JavaFieldSignature(Visibility.get(node), node.isStatic(), node.isFinal()));

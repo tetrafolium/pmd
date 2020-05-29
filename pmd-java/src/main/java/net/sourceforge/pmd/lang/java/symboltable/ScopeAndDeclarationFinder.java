@@ -65,7 +65,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      *            the class loader to use to resolve types, see
      *            {@link SourceFileScope} and {@link TypeSet}
      */
-    public ScopeAndDeclarationFinder(ClassLoader classLoader) {
+    public ScopeAndDeclarationFinder(final ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
 
@@ -81,7 +81,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void addScope(Scope newScope, JavaNode node) {
+    private void addScope(final Scope newScope, final JavaNode node) {
         newScope.setParent(scopes.peek());
         scopes.push(newScope);
         node.setScope(newScope);
@@ -97,7 +97,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createLocalScope(JavaNode node) {
+    private void createLocalScope(final JavaNode node) {
         addScope(new LocalScope(), node);
     }
 
@@ -111,7 +111,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createMethodScope(JavaNode node) {
+    private void createMethodScope(final JavaNode node) {
         addScope(new MethodScope(node), node);
     }
 
@@ -125,7 +125,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      * @throws java.util.EmptyStackException
      *             if the scope stack is empty.
      */
-    private void createClassScope(JavaNode node) {
+    private void createClassScope(final JavaNode node) {
         Scope s = ((JavaNode) node.getParent()).getScope();
         ClassNameDeclaration classNameDeclaration = new ClassNameDeclaration(node);
         s.addDeclaration(classNameDeclaration);
@@ -144,7 +144,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
      * @param node
      *            the AST node for which the scope has to be created.
      */
-    private void createSourceFileScope(ASTCompilationUnit node) {
+    private void createSourceFileScope(final ASTCompilationUnit node) {
         // When we do full symbol resolution, we'll need to add a truly
         // top-level GlobalScope.
         SourceFileScope scope;
@@ -161,21 +161,21 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         createSourceFileScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         createClassScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         createClassScope(node);
         ((ClassScope) node.getScope()).setIsEnum(true);
         cont(node);
@@ -183,21 +183,21 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         createClassScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTRecordDeclaration node, Object data) {
+    public Object visit(final ASTRecordDeclaration node, final Object data) {
         createClassScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceBody node, Object data) {
+    public Object visit(final ASTClassOrInterfaceBody node, final Object data) {
         if (node.isAnonymousInnerClass() || node.isEnumChild()) {
             createClassScope(node);
             cont(node);
@@ -208,7 +208,7 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTBlock node, Object data) {
+    public Object visit(final ASTBlock node, final Object data) {
         // top-level blocks for methods should have the same scope as parameters, just skip them
         // same applies to catch statements defining exceptions + the catch block, and for-blocks
         if (node.getParent() instanceof ASTMethodDeclaration
@@ -225,21 +225,21 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         createMethodScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         createMethodScope(node);
         ASTMethodDeclarator md = node.getFirstChildOfType(ASTMethodDeclarator.class);
         node.getScope().getEnclosingScope(ClassScope.class).addDeclaration(new MethodNameDeclaration(md));
@@ -248,14 +248,14 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTLambdaExpression node, Object data) {
+    public Object visit(final ASTLambdaExpression node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTTryStatement node, Object data) {
+    public Object visit(final ASTTryStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
@@ -263,14 +263,14 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
 
     // TODO - what about while loops and do loops?
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node.isPatternBinding()) {
             // Don't consider type test patterns here. It could bind to a name
             // that is already in the scope (e.g. field names).
@@ -288,13 +288,13 @@ public class ScopeAndDeclarationFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         createLocalScope(node);
         cont(node);
         return data;
     }
 
-    private void cont(AbstractJavaNode node) {
+    private void cont(final AbstractJavaNode node) {
         super.visit(node, null);
         scopes.pop();
     }

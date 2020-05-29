@@ -22,7 +22,7 @@ public class CppHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new CppParser(parserOptions);
     }
 }

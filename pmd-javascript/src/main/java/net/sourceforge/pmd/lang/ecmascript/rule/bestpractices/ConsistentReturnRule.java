@@ -17,7 +17,7 @@ public class ConsistentReturnRule extends AbstractEcmascriptRule {
     }
 
     @Override
-    public Object visit(ASTFunctionNode functionNode, Object data) {
+    public Object visit(final ASTFunctionNode functionNode, final Object data) {
         List<ASTReturnStatement> returnStatements = functionNode.findDescendantsOfType(ASTReturnStatement.class);
         Boolean hasResult = null;
         for (ASTReturnStatement returnStatement : returnStatements) {

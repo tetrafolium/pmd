@@ -15,12 +15,12 @@ public class ASTTypeImplicitFunction extends AbstractScalaNode<Type.ImplicitFunc
 
     @Deprecated
     @InternalApi
-    public ASTTypeImplicitFunction(Type.ImplicitFunction scalaNode) {
+    public ASTTypeImplicitFunction(final Type.ImplicitFunction scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

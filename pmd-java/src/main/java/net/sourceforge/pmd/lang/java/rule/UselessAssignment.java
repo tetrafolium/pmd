@@ -22,7 +22,7 @@ public class UselessAssignment extends AbstractJavaRule implements Executable {
     private RuleContext rc;
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         this.rc = (RuleContext) data;
 
         /*
@@ -44,7 +44,7 @@ public class UselessAssignment extends AbstractJavaRule implements Executable {
         public int accessType;
         public DataFlowNode node;
 
-        Usage(int accessType, DataFlowNode node) {
+        Usage(final int accessType, final DataFlowNode node) {
             this.accessType = accessType;
             this.node = node;
         }
@@ -56,7 +56,7 @@ public class UselessAssignment extends AbstractJavaRule implements Executable {
     }
 
     @Override
-    public void execute(CurrentPath path) {
+    public void execute(final CurrentPath path) {
         Map<String, Usage> hash = new HashMap<>();
         // System.out.println("path size is " + path.size());
         for (Iterator<DataFlowNode> i = path.iterator(); i.hasNext();) {

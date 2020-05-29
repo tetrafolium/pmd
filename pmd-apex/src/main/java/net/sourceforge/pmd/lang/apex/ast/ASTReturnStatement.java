@@ -12,12 +12,12 @@ public class ASTReturnStatement extends AbstractApexNode<ReturnStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTReturnStatement(ReturnStatement returnStatement) {
+    public ASTReturnStatement(final ReturnStatement returnStatement) {
         super(returnStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

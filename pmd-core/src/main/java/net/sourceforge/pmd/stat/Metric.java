@@ -41,7 +41,7 @@ public class Metric {
      * @param stddev
      *            the standard deviation
      */
-    public Metric(String name, int count, double total, double low, double high, double mean, double stddev) {
+    public Metric(final String name, final int count, final double total, final double low, final double high, final double mean, final double stddev) {
         this.metricName = name;
         this.low = low;
         this.high = high;

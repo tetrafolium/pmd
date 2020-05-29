@@ -8,16 +8,16 @@ import net.sourceforge.pmd.lang.java.typeresolution.typedefinition.JavaTypeDefin
 
 public class ASTYieldStatement extends AbstractJavaTypeNode {
 
-    ASTYieldStatement(int id) {
+    ASTYieldStatement(final int id) {
         super(id);
     }
 
-    ASTYieldStatement(JavaParser p, int id) {
+    ASTYieldStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

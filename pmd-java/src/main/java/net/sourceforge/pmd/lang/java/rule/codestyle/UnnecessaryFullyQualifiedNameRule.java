@@ -50,19 +50,19 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPackageDeclaration node, Object data) {
+    public Object visit(final ASTPackageDeclaration node, final Object data) {
         currentPackage = node.getPackageNameImage();
         return data;
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         imports.add(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         // This name has no qualification, it can't be unnecessarily qualified
         if (node.getImage().indexOf('.') < 0) {
             return data;
@@ -72,7 +72,7 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         if (!(node.getParent() instanceof ASTImportDeclaration)
                 && !(node.getParent() instanceof ASTPackageDeclaration)) {
             // This name has no qualification, it can't be unnecessarily qualified
@@ -91,12 +91,12 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
      * or static, that is its {@link ASTImportDeclaration#getImportedName()}
      * is the enclosing package or type name of the imported type or static member.
      */
-    private boolean declarationMatches(ASTImportDeclaration decl, String name) {
+    private boolean declarationMatches(final ASTImportDeclaration decl, final String name) {
         return name.startsWith(decl.getImportedName())
                 && name.lastIndexOf('.') == decl.getImportedName().length();
     }
 
-    private boolean couldBeMethodCall(JavaNode node) {
+    private boolean couldBeMethodCall(final JavaNode node) {
         if (node.getNthParent(2) instanceof ASTPrimaryExpression && node.getNthParent(1) instanceof ASTPrimaryPrefix) {
             int nextSibling = node.getParent().getIndexInParent() + 1;
             if (node.getNthParent(2).getNumChildren() > nextSibling) {
@@ -106,7 +106,7 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
         return false;
     }
 
-    private void checkImports(TypeNode node, Object data) {
+    private void checkImports(final TypeNode node, final Object data) {
         final String name = node.getImage();
 
         // variable names shadow everything else
@@ -183,9 +183,9 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
 
         if (matches.isEmpty()) {
             if (isJavaLangImplicit(node)) {
-                addViolation(data, node, new Object[] { node.getImage(), "java.lang.*", "implicit "});
+                addViolation(data, node, new Object[] {node.getImage(), "java.lang.*", "implicit "});
             } else if (isSamePackage(node, name)) {
-                addViolation(data, node, new Object[] { node.getImage(), currentPackage + ".*", "same package "});
+                addViolation(data, node, new Object[] {node.getImage(), currentPackage + ".*", "same package "});
             }
         } else {
             ASTImportDeclaration firstMatch = findFirstMatch(matches);
@@ -196,12 +196,12 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
                 String importStr = firstMatch.getImportedName() + (firstMatch.isImportOnDemand() ? ".*" : "");
                 String type = firstMatch.isStatic() ? "static " : "";
 
-                addViolation(data, node, new Object[] { node.getImage(), importStr, type });
+                addViolation(data, node, new Object[] {node.getImage(), importStr, type });
             }
         }
     }
 
-    private ASTImportDeclaration findFirstMatch(List<ASTImportDeclaration> imports) {
+    private ASTImportDeclaration findFirstMatch(final List<ASTImportDeclaration> imports) {
         // first search only static imports
         ASTImportDeclaration result = null;
         for (ASTImportDeclaration importDeclaration : imports) {
@@ -224,7 +224,7 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
         return result;
     }
 
-    private boolean isVariable(Scope scope, String name) {
+    private boolean isVariable(final Scope scope, final String name) {
         String firstSegment = name.substring(0, name.indexOf('.'));
 
         while (scope != null) {
@@ -241,7 +241,7 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isSamePackage(TypeNode node, String name) {
+    private boolean isSamePackage(final TypeNode node, final String name) {
         if (node.getType() != null) {
             // with type resolution we can do an exact package match
             Package packageOfType = node.getType().getPackage();
@@ -280,7 +280,7 @@ public class UnnecessaryFullyQualifiedNameRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isJavaLangImplicit(TypeNode node) {
+    private boolean isJavaLangImplicit(final TypeNode node) {
         String name = node.getImage();
         boolean isJavaLang = name != null && name.startsWith("java.lang.");
 

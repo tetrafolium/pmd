@@ -21,7 +21,7 @@ public class ProperCloneImplementationRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (!"clone".equals(node.getName()) || node.getArity() > 0) {
             return data;
         }
@@ -39,7 +39,7 @@ public class ProperCloneImplementationRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean blockHasAllocations(ASTBlock block, String enclosingClassName) {
+    private boolean blockHasAllocations(final ASTBlock block, final String enclosingClassName) {
         List<ASTAllocationExpression> allocations = block.findDescendantsOfType(ASTAllocationExpression.class);
         for (ASTAllocationExpression alloc : allocations) {
             ASTClassOrInterfaceType type = alloc.getFirstChildOfType(ASTClassOrInterfaceType.class);

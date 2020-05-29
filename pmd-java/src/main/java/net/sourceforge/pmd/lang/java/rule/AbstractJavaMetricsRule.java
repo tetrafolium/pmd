@@ -24,51 +24,51 @@ import net.sourceforge.pmd.lang.java.ast.MethodLikeNode;
 public abstract class AbstractJavaMetricsRule extends AbstractJavaRule {
 
     @Override
-    public final Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public final Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
     @Override
-    public final Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public final Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
     @Override
-    public final Object visit(ASTEnumDeclaration node, Object data) {
+    public final Object visit(final ASTEnumDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
 
     @Override
-    public final Object visit(ASTMethodDeclaration node, Object data) {
+    public final Object visit(final ASTMethodDeclaration node, final Object data) {
         return visit((ASTMethodOrConstructorDeclaration) node, data);
     }
 
 
     @Override
-    public final Object visit(ASTConstructorDeclaration node, Object data) {
+    public final Object visit(final ASTConstructorDeclaration node, final Object data) {
         return visit((ASTMethodOrConstructorDeclaration) node, data);
     }
 
     @Override
-    public final Object visit(ASTLambdaExpression node, Object data) {
+    public final Object visit(final ASTLambdaExpression node, final Object data) {
         return visit((MethodLikeNode) node, data);
     }
 
 
-    public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
         return visit((MethodLikeNode) node, data);
     }
 
 
-    public Object visit(MethodLikeNode node, Object data) {
+    public Object visit(final MethodLikeNode node, final Object data) {
         return visit((JavaNode) node, data);
     }
 

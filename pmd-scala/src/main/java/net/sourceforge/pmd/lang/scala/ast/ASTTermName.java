@@ -15,12 +15,12 @@ public class ASTTermName extends AbstractScalaNode<Term.Name> {
 
     @Deprecated
     @InternalApi
-    public ASTTermName(Term.Name scalaNode) {
+    public ASTTermName(final Term.Name scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

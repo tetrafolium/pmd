@@ -22,7 +22,7 @@ public final class MethodType {
     private final List<JavaTypeDefinition> argTypes;
     private final Method method;
 
-    private MethodType(JavaTypeDefinition returnType, List<JavaTypeDefinition> argTypes, Method method) {
+    private MethodType(final JavaTypeDefinition returnType, final List<JavaTypeDefinition> argTypes, final Method method) {
         this.returnType = returnType;
         this.argTypes = argTypes;
         this.method = method;
@@ -31,11 +31,11 @@ public final class MethodType {
     /**
      * @return An unparameterized MethodType
      */
-    public static MethodType build(Method method) {
+    public static MethodType build(final Method method) {
         return new MethodType(null, null, method);
     }
 
-    public static MethodType build(JavaTypeDefinition returnType, List<JavaTypeDefinition> argTypes, Method method) {
+    public static MethodType build(final JavaTypeDefinition returnType, final List<JavaTypeDefinition> argTypes, final Method method) {
         return new MethodType(returnType, Collections.unmodifiableList(argTypes), method);
     }
 
@@ -67,7 +67,7 @@ public final class MethodType {
         return Modifier.isAbstract(method.getModifiers());
     }
 
-    public JavaTypeDefinition getArgTypeIncludingVararg(int index) {
+    public JavaTypeDefinition getArgTypeIncludingVararg(final int index) {
         if (index < argTypes.size() - 1) {
             return argTypes.get(index);
         } else {
@@ -106,7 +106,7 @@ public final class MethodType {
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

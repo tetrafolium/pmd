@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.ast.RootNode;
 public class ASTCompilationUnit extends AbstractVFNode implements RootNode {
     @Deprecated
     @InternalApi
-    public ASTCompilationUnit(int id) {
+    public ASTCompilationUnit(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTCompilationUnit(VfParser p, int id) {
+    public ASTCompilationUnit(final VfParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -29,7 +29,7 @@ public final class GenerateRuleDocsCmd {
         // Utility class
     }
 
-    public static void main(String[] args) throws RuleSetNotFoundException {
+    public static void main(final String[] args) throws RuleSetNotFoundException {
         long start = System.currentTimeMillis();
         Path output = FileSystems.getDefault().getPath(args[0]).resolve("..").toAbsolutePath().normalize();
         System.out.println("Generating docs into " + output);
@@ -44,7 +44,7 @@ public final class GenerateRuleDocsCmd {
         System.out.println("Generated docs in " + (System.currentTimeMillis() - start) + " ms");
     }
 
-    public static List<String> findAdditionalRulesets(Path basePath) {
+    public static List<String> findAdditionalRulesets(final Path basePath) {
         try {
             List<String> additionalRulesets = new ArrayList<>();
             Pattern rulesetPattern = Pattern.compile("^.+" + Pattern.quote(File.separator) + "pmd-\\w+"
@@ -52,7 +52,7 @@ public final class GenerateRuleDocsCmd {
                     + "\\w+" + Pattern.quote(File.separator) + "\\w+.xml$");
             Files.walkFileTree(basePath, new SimpleFileVisitor<Path>() {
                 @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
                     if (rulesetPattern.matcher(file.toString()).matches()) {
                         additionalRulesets.add(file.toString());
                     }

@@ -27,107 +27,107 @@ public class DocumentNavigator extends DefaultNavigator {
     private static final Iterator<Node> EMPTY_ITERATOR = new ArrayList<Node>().iterator();
 
     @Override
-    public String getAttributeName(Object arg0) {
+    public String getAttributeName(final Object arg0) {
         return ((Attribute) arg0).getName();
     }
 
     @Override
-    public String getAttributeNamespaceUri(Object arg0) {
+    public String getAttributeNamespaceUri(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getAttributeQName(Object arg0) {
+    public String getAttributeQName(final Object arg0) {
         return ((Attribute) arg0).getName();
     }
 
     @Override
-    public String getAttributeStringValue(Object arg0) {
+    public String getAttributeStringValue(final Object arg0) {
         return ((Attribute) arg0).getStringValue();
     }
 
     @Override
-    public String getCommentStringValue(Object arg0) {
+    public String getCommentStringValue(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getElementName(Object node) {
+    public String getElementName(final Object node) {
         return ((Node) node).getXPathNodeName();
     }
 
     @Override
-    public String getElementNamespaceUri(Object arg0) {
+    public String getElementNamespaceUri(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getElementQName(Object arg0) {
+    public String getElementQName(final Object arg0) {
         return getElementName(arg0);
     }
 
     @Override
-    public String getElementStringValue(Object arg0) {
+    public String getElementStringValue(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getNamespacePrefix(Object arg0) {
+    public String getNamespacePrefix(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getNamespaceStringValue(Object arg0) {
+    public String getNamespaceStringValue(final Object arg0) {
         return "";
     }
 
     @Override
-    public String getTextStringValue(Object arg0) {
+    public String getTextStringValue(final Object arg0) {
         return "";
     }
 
     @Override
-    public boolean isAttribute(Object arg0) {
+    public boolean isAttribute(final Object arg0) {
         return arg0 instanceof Attribute;
     }
 
     @Override
-    public boolean isComment(Object arg0) {
+    public boolean isComment(final Object arg0) {
         return false;
     }
 
     @Override
-    public boolean isDocument(Object arg0) {
+    public boolean isDocument(final Object arg0) {
         return arg0 instanceof RootNode;
     }
 
     @Override
-    public boolean isElement(Object arg0) {
+    public boolean isElement(final Object arg0) {
         return arg0 instanceof Node;
     }
 
     @Override
-    public boolean isNamespace(Object arg0) {
+    public boolean isNamespace(final Object arg0) {
         return false;
     }
 
     @Override
-    public boolean isProcessingInstruction(Object arg0) {
+    public boolean isProcessingInstruction(final Object arg0) {
         return false;
     }
 
     @Override
-    public boolean isText(Object arg0) {
+    public boolean isText(final Object arg0) {
         return false;
     }
 
     @Override
-    public XPath parseXPath(String arg0) {
+    public XPath parseXPath(final String arg0) {
         return null;
     }
 
     @Override
-    public Object getParentNode(Object arg0) {
+    public Object getParentNode(final Object arg0) {
         if (arg0 instanceof Node) {
             return ((Node) arg0).getParent();
         }
@@ -150,7 +150,7 @@ public class DocumentNavigator extends DefaultNavigator {
         private final Iterator<Attribute> baseIterator;
         private Attribute current;
 
-        ListFilteringAttributeIterator(Iterator<Attribute> baseIterator) {
+        ListFilteringAttributeIterator(final Iterator<Attribute> baseIterator) {
             this.baseIterator = baseIterator;
             this.current = getNextAttribute();
         }
@@ -196,15 +196,15 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getChildAxisIterator(Object contextNode) {
+    public Iterator<Node> getChildAxisIterator(final Object contextNode) {
         return new NodeIterator((Node) contextNode) {
             @Override
-            protected Node getFirstNode(Node node) {
+            protected Node getFirstNode(final Node node) {
                 return getFirstChild(node);
             }
 
             @Override
-            protected Node getNextNode(Node node) {
+            protected Node getNextNode(final Node node) {
                 return getNextSibling(node);
             }
         };
@@ -218,7 +218,7 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getParentAxisIterator(Object contextNode) {
+    public Iterator<Node> getParentAxisIterator(final Object contextNode) {
         if (isAttribute(contextNode)) {
             return new SingleObjectIterator(((Attribute) contextNode).getParent());
         }
@@ -238,15 +238,15 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getFollowingSiblingAxisIterator(Object contextNode) {
+    public Iterator<Node> getFollowingSiblingAxisIterator(final Object contextNode) {
         return new NodeIterator((Node) contextNode) {
             @Override
-            protected Node getFirstNode(Node node) {
+            protected Node getFirstNode(final Node node) {
                 return getNextNode(node);
             }
 
             @Override
-            protected Node getNextNode(Node node) {
+            protected Node getNextNode(final Node node) {
                 return getNextSibling(node);
             }
         };
@@ -260,15 +260,15 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getPrecedingSiblingAxisIterator(Object contextNode) {
+    public Iterator<Node> getPrecedingSiblingAxisIterator(final Object contextNode) {
         return new NodeIterator((Node) contextNode) {
             @Override
-            protected Node getFirstNode(Node node) {
+            protected Node getFirstNode(final Node node) {
                 return getNextNode(node);
             }
 
             @Override
-            protected Node getNextNode(Node node) {
+            protected Node getNextNode(final Node node) {
                 return getPreviousSibling(node);
             }
         };
@@ -282,10 +282,10 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getFollowingAxisIterator(Object contextNode) {
+    public Iterator<Node> getFollowingAxisIterator(final Object contextNode) {
         return new NodeIterator((Node) contextNode) {
             @Override
-            protected Node getFirstNode(Node node) {
+            protected Node getFirstNode(final Node node) {
                 if (node == null) {
                     return null;
                 } else {
@@ -299,7 +299,7 @@ public class DocumentNavigator extends DefaultNavigator {
             }
 
             @Override
-            protected Node getNextNode(Node node) {
+            protected Node getNextNode(final Node node) {
                 if (node == null) {
                     return null;
                 } else {
@@ -325,10 +325,10 @@ public class DocumentNavigator extends DefaultNavigator {
      * @return A possibly-empty iterator (not null).
      */
     @Override
-    public Iterator<Node> getPrecedingAxisIterator(Object contextNode) {
+    public Iterator<Node> getPrecedingAxisIterator(final Object contextNode) {
         return new NodeIterator((Node) contextNode) {
             @Override
-            protected Node getFirstNode(Node node) {
+            protected Node getFirstNode(final Node node) {
                 if (node == null) {
                     return null;
                 } else {
@@ -342,7 +342,7 @@ public class DocumentNavigator extends DefaultNavigator {
             }
 
             @Override
-            protected Node getNextNode(Node node) {
+            protected Node getNextNode(final Node node) {
                 if (node == null) {
                     return null;
                 } else {
@@ -361,7 +361,7 @@ public class DocumentNavigator extends DefaultNavigator {
     }
 
     @Override
-    public Object getDocumentNode(Object contextNode) {
+    public Object getDocumentNode(final Object contextNode) {
         if (isDocument(contextNode)) {
             return contextNode;
         }

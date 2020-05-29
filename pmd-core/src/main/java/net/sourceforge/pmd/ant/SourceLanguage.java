@@ -16,7 +16,7 @@ public class SourceLanguage {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(final String version) {
         this.version = version;
     }
 
@@ -24,7 +24,7 @@ public class SourceLanguage {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 

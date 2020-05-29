@@ -23,7 +23,7 @@ public class ScalaRuleChainVisitor extends AbstractRuleChainVisitor {
 
     @SuppressWarnings("unchecked")
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         // Rule better either be a ScalaParserVisitor, or a XPathRule
         if (rule instanceof XPathRule) {
             ((XPathRule) rule).evaluate(node, ctx);
@@ -33,10 +33,10 @@ public class ScalaRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         ScalaParserVisitor<RuleContext, Void> visitor = new ScalaParserVisitorAdapter<RuleContext, Void>() {
             @Override
-            public Void visit(ScalaNode<?> node, RuleContext data) {
+            public Void visit(final ScalaNode<?> node, final RuleContext data) {
                 indexNode(node);
                 return super.visit(node, data);
             }

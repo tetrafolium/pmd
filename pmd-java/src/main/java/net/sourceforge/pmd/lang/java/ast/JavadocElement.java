@@ -11,7 +11,7 @@ public class JavadocElement extends AbstractNode {
 
     private final JavadocTag tag;
 
-    public JavadocElement(int theBeginLine, int theEndLine, int theBeginColumn, int theEndColumn, JavadocTag theTag) {
+    public JavadocElement(final int theBeginLine, final int theEndLine, final int theBeginColumn, final int theEndColumn, final JavadocTag theTag) {
         super(-1, theBeginLine, theEndLine, theBeginColumn, theEndColumn);
 
         tag = theTag;

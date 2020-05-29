@@ -20,23 +20,23 @@ public class PrintVisitor {
         this(0);
     }
 
-    public PrintVisitor(PrintVisitor parent) {
+    public PrintVisitor(final PrintVisitor parent) {
         this(parent.level + 2);
     }
 
-    public PrintVisitor(int level) {
+    public PrintVisitor(final int level) {
         this.level = level;
     }
 
-    public void println(String s) {
+    public void println(final String s) {
         println(this.level, s);
     }
 
-    public void printlnIndent(String s) {
+    public void printlnIndent(final String s) {
         println(this.level + 1, s);
     }
 
-    private void println(int level, String s) {
+    private void println(final int level, final String s) {
         for (int i = 0; i < level; i++) {
             System.out.print(INDENT);
         }

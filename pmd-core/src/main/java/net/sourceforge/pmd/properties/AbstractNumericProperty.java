@@ -39,8 +39,8 @@ import net.sourceforge.pmd.properties.modules.NumericPropertyModule;
      * @throws IllegalArgumentException if lower > upper, or one of them is null, or the default is not between the
      *                                  bounds
      */
-    protected AbstractNumericProperty(String theName, String theDescription, T lower, T upper, T theDefault,
-                                      float theUIOrder, boolean isDefinedExternally) {
+    protected AbstractNumericProperty(final String theName, final String theDescription, final T lower, final T upper, final T theDefault,
+                                      final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally);
 
         module = new NumericPropertyModule<>(lower, upper);
@@ -52,7 +52,7 @@ import net.sourceforge.pmd.properties.modules.NumericPropertyModule;
 
 
     @Override
-    protected String valueErrorFor(T value) {
+    protected String valueErrorFor(final T value) {
         return module.valueErrorFor(value);
     }
 
@@ -70,7 +70,7 @@ import net.sourceforge.pmd.properties.modules.NumericPropertyModule;
 
 
     @Override
-    protected void addAttributesTo(Map<PropertyDescriptorField, String> attributes) {
+    protected void addAttributesTo(final Map<PropertyDescriptorField, String> attributes) {
         super.addAttributesTo(attributes);
         module.addAttributesTo(attributes);
     }

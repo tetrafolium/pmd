@@ -87,15 +87,15 @@ public final class DCD {
 
     private DCD() { }
 
-    public static void dump(UsageGraph usageGraph, boolean verbose) {
+    public static void dump(final UsageGraph usageGraph, final boolean verbose) {
         usageGraph.accept(new DumpNodeVisitor(), Boolean.valueOf(verbose));
     }
 
-    public static void report(UsageGraph usageGraph, boolean verbose) {
+    public static void report(final UsageGraph usageGraph, final boolean verbose) {
         usageGraph.accept(new UsageNodeVisitor(), Boolean.valueOf(verbose));
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
         // 1) Directories
         List<File> directories = new ArrayList<>();
         directories.add(new File("C:/pmd/workspace/pmd-trunk/src"));
@@ -103,7 +103,7 @@ public final class DCD {
         // Basic filter
         FilenameFilter javaFilter = new FilenameFilter() {
             @Override
-            public boolean accept(File dir, String name) {
+            public boolean accept(final File dir, final String name) {
                 // Recurse on directories
                 if (new File(dir, name).isDirectory()) {
                     return true;
@@ -146,8 +146,8 @@ public final class DCD {
 
         // Define filter for "indirect users" and "dead code candidates".
         // TODO Need to support these are different concepts.
-        List<String> includeRegexes = Arrays.asList(new String[] { "net\\.sourceforge\\.pmd\\.dcd.*", "us\\..*" });
-        List<String> excludeRegexes = Arrays.asList(new String[] { "java\\..*", "javax\\..*", ".*\\.twa\\..*" });
+        List<String> includeRegexes = Arrays.asList(new String[] {"net\\.sourceforge\\.pmd\\.dcd.*", "us\\..*" });
+        List<String> excludeRegexes = Arrays.asList(new String[] {"java\\..*", "javax\\..*", ".*\\.twa\\..*" });
         Filter<String> classFilter = Filters.buildRegexFilterExcludeOverInclude(includeRegexes, excludeRegexes);
         System.out.println("Class filter: " + classFilter);
 

@@ -31,21 +31,21 @@ public class MoreThanOneLoggerRule extends AbstractJavaRule {
     private Integer count;
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         return init(node, data);
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         return init(node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         return init(node, data);
     }
 
-    private Object init(JavaNode node, Object data) {
+    private Object init(final JavaNode node, final Object data) {
         stack.push(count);
         count = NumericConstants.ZERO;
 
@@ -60,7 +60,7 @@ public class MoreThanOneLoggerRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclarator node, Object data) {
+    public Object visit(final ASTVariableDeclarator node, final Object data) {
         if (count > 1) {
             return super.visit(node, data);
         }

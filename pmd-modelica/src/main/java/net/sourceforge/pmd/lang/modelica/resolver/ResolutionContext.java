@@ -18,7 +18,7 @@ public class ResolutionContext {
     private boolean ttlExceeded = false;
     private boolean isCollectingHidden = false;
 
-    ResolutionContext(ResolutionState ctx) {
+    ResolutionContext(final ResolutionState ctx) {
         state = ctx;
     }
 
@@ -30,7 +30,7 @@ public class ResolutionContext {
         state.tick();
     }
 
-    public void addCandidate(ResolvableEntity candidate) {
+    public void addCandidate(final ResolvableEntity candidate) {
         if (isCollectingHidden) {
             hiddenCandidates.add(candidate);
         } else {
@@ -60,7 +60,7 @@ public class ResolutionContext {
         }
     }
 
-    void accumulate(ResolutionResult result) {
+    void accumulate(final ResolutionResult result) {
         bestCandidates.addAll(result.getBestCandidates());
         hiddenCandidates.addAll(result.getHiddenCandidates());
     }
@@ -70,7 +70,7 @@ public class ResolutionContext {
         private final List<A> hiddenCandidates = new ArrayList<>();
         private final boolean timedOut;
 
-        Result(Class<A> tpe, List<?> best, List<?> hidden, boolean timedOut) {
+        Result(final Class<A> tpe, final List<?> best, final List<?> hidden, final boolean timedOut) {
             for (Object b: best) {
                 if (tpe.isInstance(b)) {
                     bestCandidates.add((A) b);
@@ -123,7 +123,7 @@ public class ResolutionContext {
         return new Result<>(ModelicaDeclaration.class, bestCandidates, hiddenCandidates, ttlExceeded);
     }
 
-    public <T extends ResolvableEntity> ResolutionResult<T> get(Class<T> clazz) {
+    public <T extends ResolvableEntity> ResolutionResult<T> get(final Class<T> clazz) {
         return new Result<>(clazz, bestCandidates, hiddenCandidates, ttlExceeded);
     }
 

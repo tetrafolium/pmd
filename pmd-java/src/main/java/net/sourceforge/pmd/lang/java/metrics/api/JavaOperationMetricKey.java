@@ -67,7 +67,7 @@ public enum JavaOperationMetricKey implements MetricKey<MethodLikeNode> {
     private final JavaOperationMetric calculator;
 
 
-    JavaOperationMetricKey(JavaOperationMetric m) {
+    JavaOperationMetricKey(final JavaOperationMetric m) {
         calculator = m;
     }
 
@@ -79,7 +79,7 @@ public enum JavaOperationMetricKey implements MetricKey<MethodLikeNode> {
 
 
     @Override
-    public boolean supports(MethodLikeNode node) {
+    public boolean supports(final MethodLikeNode node) {
         return calculator.supports(node);
     }
 
@@ -90,7 +90,7 @@ public enum JavaOperationMetricKey implements MetricKey<MethodLikeNode> {
      *             Please explicitly link your code to that method and recompile your code. Will be remove with 7.0.0
      */
     @Deprecated
-    public boolean supports(ASTMethodOrConstructorDeclaration node) {
+    public boolean supports(final ASTMethodOrConstructorDeclaration node) {
         return this.supports((MethodLikeNode) node);
     }
 }

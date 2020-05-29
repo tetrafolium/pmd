@@ -28,11 +28,11 @@ abstract class AbstractModelicaNode extends AbstractJjtreeNode<ModelicaNode> imp
     private ModelicaParser parser;
     private ModelicaScope ownScope;
 
-    AbstractModelicaNode(int id) {
+    AbstractModelicaNode(final int id) {
         super(id);
     }
 
-    AbstractModelicaNode(ModelicaParser parser, int id) {
+    AbstractModelicaNode(final ModelicaParser parser, final int id) {
         super(id);
         this.parser = parser;
     }
@@ -102,7 +102,7 @@ abstract class AbstractModelicaNode extends AbstractJjtreeNode<ModelicaNode> imp
     }
 
     @Override
-    public void jjtSetLastToken(GenericToken token) {
+    public void jjtSetLastToken(final GenericToken token) {
         // don't let jjtree override tokens we've chosen
         if (lastToken == null) {
             super.jjtSetLastToken(token);
@@ -128,7 +128,7 @@ abstract class AbstractModelicaNode extends AbstractJjtreeNode<ModelicaNode> imp
      *
      * @param scope Scope defined by this specific node
      */
-    void setOwnScope(ModelicaScope scope) {
+    void setOwnScope(final ModelicaScope scope) {
         ownScope = scope;
     }
 }

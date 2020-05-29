@@ -19,7 +19,7 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
 public class MethodArgumentCouldBeFinalRule extends AbstractOptimizationRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration meth, Object data) {
+    public Object visit(final ASTMethodDeclaration meth, final Object data) {
         if (meth.isNative() || meth.isAbstract()) {
             return data;
         }
@@ -27,7 +27,7 @@ public class MethodArgumentCouldBeFinalRule extends AbstractOptimizationRule {
         return super.visit(meth, data);
     }
 
-    private void lookForViolation(Scope scope, Object data) {
+    private void lookForViolation(final Scope scope, final Object data) {
         Map<VariableNameDeclaration, List<NameOccurrence>> decls = scope.getDeclarations(VariableNameDeclaration.class);
         for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry : decls.entrySet()) {
             VariableNameDeclaration var = entry.getKey();
@@ -39,7 +39,7 @@ public class MethodArgumentCouldBeFinalRule extends AbstractOptimizationRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration constructor, Object data) {
+    public Object visit(final ASTConstructorDeclaration constructor, final Object data) {
         this.lookForViolation(constructor.getScope(), data);
         return super.visit(constructor, data);
     }

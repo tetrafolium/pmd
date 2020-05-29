@@ -15,12 +15,12 @@ public class ASTPatAlternative extends AbstractScalaNode<Pat.Alternative> {
 
     @Deprecated
     @InternalApi
-    public ASTPatAlternative(Pat.Alternative scalaNode) {
+    public ASTPatAlternative(final Pat.Alternative scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

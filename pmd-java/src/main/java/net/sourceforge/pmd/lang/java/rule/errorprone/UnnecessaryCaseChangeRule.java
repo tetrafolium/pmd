@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class UnnecessaryCaseChangeRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTPrimaryExpression exp, Object data) {
+    public Object visit(final ASTPrimaryExpression exp, final Object data) {
         int n = exp.getNumChildren();
         if (n < 4) {
             return data;
@@ -42,7 +42,7 @@ public class UnnecessaryCaseChangeRule extends AbstractJavaRule {
         return data;
     }
 
-    private int getBadPrefixOrNull(ASTPrimaryExpression exp, int childrenCount) {
+    private int getBadPrefixOrNull(final ASTPrimaryExpression exp, final int childrenCount) {
         // verify PrimaryPrefix/Name[ends-with(@Image, 'toUpperCase']
         for (int i = 0; i < childrenCount - 3; i++) {
             Node child = exp.getChild(i);
@@ -69,7 +69,7 @@ public class UnnecessaryCaseChangeRule extends AbstractJavaRule {
         return -1;
     }
 
-    private String getBadSuffixOrNull(ASTPrimaryExpression exp, int equalsPosition) {
+    private String getBadSuffixOrNull(final ASTPrimaryExpression exp, final int equalsPosition) {
         // verify PrimarySuffix[@Image='equals']
         if (!(exp.getChild(equalsPosition) instanceof ASTPrimarySuffix)) {
             return null;

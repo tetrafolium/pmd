@@ -21,13 +21,13 @@ public class ASTAssignmentOperator extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTAssignmentOperator(int id) {
+    public ASTAssignmentOperator(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAssignmentOperator(JavaParser p, int id) {
+    public ASTAssignmentOperator(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -43,7 +43,7 @@ public class ASTAssignmentOperator extends AbstractJavaNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

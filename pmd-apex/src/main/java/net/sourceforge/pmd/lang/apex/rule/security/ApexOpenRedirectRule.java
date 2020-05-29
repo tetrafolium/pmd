@@ -38,7 +38,7 @@ public class ApexOpenRedirectRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
         }
@@ -68,7 +68,7 @@ public class ApexOpenRedirectRule extends AbstractApexRule {
         return data;
     }
 
-    private void findSafeLiterals(ApexNode<?> node) {
+    private void findSafeLiterals(final ApexNode<?> node) {
         ASTBinaryExpression binaryExp = node.getFirstChildOfType(ASTBinaryExpression.class);
         if (binaryExp != null) {
             findSafeLiterals(binaryExp);
@@ -108,12 +108,12 @@ public class ApexOpenRedirectRule extends AbstractApexRule {
 
     }
 
-    private void addVariable(ASTVariableDeclaration node) {
+    private void addVariable(final ASTVariableDeclaration node) {
         ASTVariableExpression variable = node.getFirstChildOfType(ASTVariableExpression.class);
         addVariable(variable);
     }
 
-    private void addVariable(ASTVariableExpression node) {
+    private void addVariable(final ASTVariableExpression node) {
         if (node != null) {
             listOfStringLiteralVariables.add(Helper.getFQVariableName(node));
         }
@@ -125,7 +125,7 @@ public class ApexOpenRedirectRule extends AbstractApexRule {
      * @param node
      * @param data
      */
-    private void checkNewObjects(ASTNewObjectExpression node, Object data) {
+    private void checkNewObjects(final ASTNewObjectExpression node, final Object data) {
 
         ASTMethod method = node.getFirstParentOfType(ASTMethod.class);
         if (method != null && Helper.isTestMethodOrClass(method)) {
@@ -145,7 +145,7 @@ public class ApexOpenRedirectRule extends AbstractApexRule {
      * @param data
      *
      */
-    private void getObjectValue(ApexNode<?> node, Object data) {
+    private void getObjectValue(final ApexNode<?> node, final Object data) {
         // PageReference(foo);
         final List<ASTVariableExpression> variableExpressions = node.findChildrenOfType(ASTVariableExpression.class);
         for (ASTVariableExpression variable : variableExpressions) {

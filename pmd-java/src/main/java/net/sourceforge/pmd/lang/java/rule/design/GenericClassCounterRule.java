@@ -53,13 +53,13 @@ public class GenericClassCounterRule extends AbstractJavaRule {
 
     // Class is unused, properties won't be converted
     private static final StringMultiProperty NAME_MATCH_DESCRIPTOR = new StringMultiProperty("nameMatch",
-            "A series of regex, separated by ',' to match on the classname", new String[] { "" }, 1.0f, ',');
+            "A series of regex, separated by ',' to match on the classname", new String[] {"" }, 1.0f, ',');
 
     private static final StringProperty OPERAND_DESCRIPTOR = new StringProperty("operand",
             "or/and value to refined match criteria", new String(), 2.0f);
 
     private static final StringMultiProperty TYPE_MATCH_DESCRIPTOR = new StringMultiProperty("typeMatch",
-            "A series of regex, separated by ',' to match on implements/extends classname", new String[] { "" }, 3.0f,
+            "A series of regex, separated by ',' to match on implements/extends classname", new String[] {"" }, 3.0f,
             ',');
 
     // TODO - this should be an IntegerProperty instead?
@@ -100,20 +100,20 @@ public class GenericClassCounterRule extends AbstractJavaRule {
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         // Adding the proper attribute to the context
         ctx.setAttribute(counterLabel, new AtomicLong());
         super.start(ctx);
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         init();
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         // Is there any imported types that match ?
         for (Pattern pattern : this.typesMatch) {
             if (RegexHelper.isMatch(pattern, node.getImportedName())) {
@@ -128,7 +128,7 @@ public class GenericClassCounterRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType classType, Object data) {
+    public Object visit(final ASTClassOrInterfaceType classType, final Object data) {
         // Is extends/implements list using one of the previous match on import ?
         // FIXME: use type resolution framework to deal with star import ?
         for (String matchType : simpleClassname) {
@@ -146,7 +146,7 @@ public class GenericClassCounterRule extends AbstractJavaRule {
         return super.visit(classType, data);
     }
 
-    private void addAMatch(Node node, Object data) {
+    private void addAMatch(final Node node, final Object data) {
         // We have a match, we increment
         RuleContext ctx = (RuleContext) data;
         AtomicLong total = (AtomicLong) ctx.getAttribute(counterLabel);
@@ -155,7 +155,7 @@ public class GenericClassCounterRule extends AbstractJavaRule {
         this.matches.add(node);
     }
 
-    private boolean searchForAMatch(String matchType, Node node) {
+    private boolean searchForAMatch(final String matchType, final Node node) {
         String xpathQuery = "//ClassOrInterfaceDeclaration[(./ExtendsList/ClassOrInterfaceType[@Image = '" + matchType
                 + "']) or (./ImplementsList/ClassOrInterfaceType[@Image = '" + matchType + "'])]";
 
@@ -163,12 +163,12 @@ public class GenericClassCounterRule extends AbstractJavaRule {
     }
 
     @Override
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         AtomicLong total = (AtomicLong) ctx.getAttribute(counterLabel);
         // Do we have a violation ?
         if (total.get() > this.threshold) {
             for (Node node : this.matches) {
-                addViolation(ctx, node, new Object[] { total });
+                addViolation(ctx, node, new Object[] {total });
             }
             // Cleaning the context for the others rules
             ctx.removeAttribute(counterLabel);

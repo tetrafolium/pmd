@@ -30,13 +30,13 @@ public final class StringProperty extends AbstractSingleValueProperty<String> {
      * @deprecated Use {@link PropertyFactory#stringProperty(String)}
      */
     @Deprecated
-    public StringProperty(String theName, String theDescription, String defaultValue, float theUIOrder) {
+    public StringProperty(final String theName, final String theDescription, final String defaultValue, final float theUIOrder) {
         this(theName, theDescription, defaultValue, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private StringProperty(String theName, String theDescription, String defaultValue, float theUIOrder, boolean
+    private StringProperty(final String theName, final String theDescription, final String defaultValue, final float theUIOrder, final boolean
             isDefinedExternally) {
         super(theName, theDescription, defaultValue, theUIOrder, isDefinedExternally);
     }
@@ -49,7 +49,7 @@ public final class StringProperty extends AbstractSingleValueProperty<String> {
 
 
     @Override
-    public String createFrom(String valueString) {
+    public String createFrom(final String valueString) {
         return valueString;
     }
 
@@ -57,7 +57,7 @@ public final class StringProperty extends AbstractSingleValueProperty<String> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue<String, StringPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue<String, StringPBuilder>(String.class, ValueParserConstants.STRING_PARSER) {
             @Override
-            protected StringPBuilder newBuilder(String name) {
+            protected StringPBuilder newBuilder(final String name) {
                 return new StringPBuilder(name);
             }
         };
@@ -68,7 +68,7 @@ public final class StringProperty extends AbstractSingleValueProperty<String> {
      * @deprecated Use {@link PropertyFactory#stringProperty(String)}
      */
     @Deprecated
-    public static StringPBuilder named(String name) {
+    public static StringPBuilder named(final String name) {
         return new StringPBuilder(name);
     }
 
@@ -78,7 +78,7 @@ public final class StringProperty extends AbstractSingleValueProperty<String> {
      */
     @Deprecated
     public static final class StringPBuilder extends SingleValuePropertyBuilder<String, StringPBuilder> {
-        private StringPBuilder(String name) {
+        private StringPBuilder(final String name) {
             super(name);
         }
 

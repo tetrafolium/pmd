@@ -20,18 +20,18 @@ import net.sourceforge.pmd.util.IOUtil;
 public class EcmascriptTokenizer extends JavaCCTokenizer {
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         StringBuilder buffer = sourceCode.getCodeBuffer();
         return new Ecmascript5TokenManager(IOUtil.skipBOM(new StringReader(buffer.toString())));
     }
 
     @Override
-    protected TokenEntry processToken(Tokens tokenEntries, GenericToken currentToken, String filename) {
+    protected TokenEntry processToken(final Tokens tokenEntries, final GenericToken currentToken, final String filename) {
         return new TokenEntry(getTokenImage(currentToken), filename, currentToken.getBeginLine(),
                 currentToken.getBeginColumn(), currentToken.getEndColumn());
     }
 
-    private String getTokenImage(GenericToken token) {
+    private String getTokenImage(final GenericToken token) {
         Token jsToken = (Token) token;
         // Remove line continuation characters from string literals
         if (jsToken.kind == Ecmascript5ParserConstants.STRING_LITERAL

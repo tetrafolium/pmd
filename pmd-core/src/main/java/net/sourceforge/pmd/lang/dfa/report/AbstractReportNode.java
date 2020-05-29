@@ -53,7 +53,7 @@ public abstract class AbstractReportNode {
     /**
      * @return index The index of the x-th child of his parent.
      */
-    private int getChildIndex(AbstractReportNode child) {
+    private int getChildIndex(final AbstractReportNode child) {
         for (int i = 0; i < childNodes.size(); i++) {
             if (childNodes.get(i).equals(child)) {
                 return i;
@@ -65,7 +65,7 @@ public abstract class AbstractReportNode {
     /**
      * Adds the child in front of any other childs.
      */
-    public void addFirst(AbstractReportNode child) {
+    public void addFirst(final AbstractReportNode child) {
         childNodes.add(0, child);
         child.parentNode = this;
     }
@@ -73,12 +73,12 @@ public abstract class AbstractReportNode {
     /**
      * Adds the child at the end.
      */
-    public void add(AbstractReportNode child) {
+    public void add(final AbstractReportNode child) {
         childNodes.add(child);
         child.parentNode = this;
     }
 
-    public void addNumberOfViolation(int number) {
+    public void addNumberOfViolation(final int number) {
         numberOfViolations += number;
     }
 
@@ -91,18 +91,18 @@ public abstract class AbstractReportNode {
 
     // ----------------------------------------------------------------------------
     // visitor methods
-    public void childrenAccept(ReportVisitor visitor) {
+    public void childrenAccept(final ReportVisitor visitor) {
         for (int i = 0; i < childNodes.size(); i++) {
             AbstractReportNode node = childNodes.get(i);
             node.accept(visitor);
         }
     }
 
-    public void accept(ReportVisitor visitor) {
+    public void accept(final ReportVisitor visitor) {
         visitor.visit(this);
     }
 
-    public AbstractReportNode getChildAt(int arg0) {
+    public AbstractReportNode getChildAt(final int arg0) {
         if (arg0 >= 0 && arg0 <= childNodes.size() - 1) {
             return childNodes.get(arg0);
         }

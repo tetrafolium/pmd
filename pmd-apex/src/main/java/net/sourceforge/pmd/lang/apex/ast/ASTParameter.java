@@ -13,12 +13,12 @@ public class ASTParameter extends AbstractApexNode<Parameter> implements CanSupp
 
     @Deprecated
     @InternalApi
-    public ASTParameter(Parameter parameter) {
+    public ASTParameter(final Parameter parameter) {
         super(parameter);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -28,7 +28,7 @@ public class ASTParameter extends AbstractApexNode<Parameter> implements CanSupp
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (ASTModifierNode modifier : findChildrenOfType(ASTModifierNode.class)) {
             for (ASTAnnotation a : modifier.findChildrenOfType(ASTAnnotation.class)) {
                 if (a.suppresses(rule)) {

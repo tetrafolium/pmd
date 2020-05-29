@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTAttributeValue extends AbstractVFNode {
     @Deprecated
     @InternalApi
-    public ASTAttributeValue(int id) {
+    public ASTAttributeValue(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTAttributeValue(VfParser p, int id) {
+    public ASTAttributeValue(final VfParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

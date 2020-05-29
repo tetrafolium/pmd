@@ -16,12 +16,12 @@ public class ASTUserTrigger extends ApexRootNode<UserTrigger> {
 
     @Deprecated
     @InternalApi
-    public ASTUserTrigger(UserTrigger userTrigger) {
+    public ASTUserTrigger(final UserTrigger userTrigger) {
         super(userTrigger);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

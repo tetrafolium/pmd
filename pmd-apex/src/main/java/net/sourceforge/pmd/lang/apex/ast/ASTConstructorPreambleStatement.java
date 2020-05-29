@@ -12,12 +12,12 @@ public class ASTConstructorPreambleStatement extends AbstractApexNode<Constructo
 
     @Deprecated
     @InternalApi
-    public ASTConstructorPreambleStatement(ConstructorPreambleStatement constructorPreambleStatement) {
+    public ASTConstructorPreambleStatement(final ConstructorPreambleStatement constructorPreambleStatement) {
         super(constructorPreambleStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

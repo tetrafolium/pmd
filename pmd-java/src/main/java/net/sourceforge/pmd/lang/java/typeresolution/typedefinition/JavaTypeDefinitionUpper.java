@@ -14,7 +14,7 @@ import java.util.Set;
 /* default */ class JavaTypeDefinitionUpper extends JavaTypeDefinition {
     private final JavaTypeDefinition[] typeList;
 
-    protected JavaTypeDefinitionUpper(TypeDefinitionType defType, JavaTypeDefinition... typeList) {
+    protected JavaTypeDefinitionUpper(final TypeDefinitionType defType, final JavaTypeDefinition... typeList) {
         super(defType);
 
         if (typeList.length == 0) {
@@ -54,22 +54,22 @@ import java.util.Set;
     }
 
     @Override
-    public JavaTypeDefinition getGenericType(String parameterName) {
+    public JavaTypeDefinition getGenericType(final String parameterName) {
         return firstJavaType().getGenericType(parameterName);
     }
 
     @Override
-    public JavaTypeDefinition getGenericType(int index) {
+    public JavaTypeDefinition getGenericType(final int index) {
         return firstJavaType().getGenericType(index);
     }
 
     @Override
-    public JavaTypeDefinition resolveTypeDefinition(Type type) {
+    public JavaTypeDefinition resolveTypeDefinition(final Type type) {
         return firstJavaType().resolveTypeDefinition(type);
     }
 
     @Override
-    public JavaTypeDefinition resolveTypeDefinition(Type type, Method method, List<JavaTypeDefinition> methodTypeArgs) {
+    public JavaTypeDefinition resolveTypeDefinition(final Type type, final Method method, final List<JavaTypeDefinition> methodTypeArgs) {
         return firstJavaType().resolveTypeDefinition(type, method, methodTypeArgs);
     }
 
@@ -86,7 +86,7 @@ import java.util.Set;
 
 
     @Override
-    public JavaTypeDefinition withDimensions(int numDimensions) {
+    public JavaTypeDefinition withDimensions(final int numDimensions) {
         return firstJavaType().withDimensions(numDimensions);
     }
 
@@ -107,7 +107,7 @@ import java.util.Set;
     }
 
     @Override
-    public boolean hasSameErasureAs(JavaTypeDefinition def) {
+    public boolean hasSameErasureAs(final JavaTypeDefinition def) {
         return firstJavaType().hasSameErasureAs(def);
     }
 
@@ -141,7 +141,7 @@ import java.util.Set;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -178,7 +178,7 @@ import java.util.Set;
     }
 
     @Override
-    protected Set<JavaTypeDefinition> getSuperTypeSet(Set<JavaTypeDefinition> destinationSet) {
+    protected Set<JavaTypeDefinition> getSuperTypeSet(final Set<JavaTypeDefinition> destinationSet) {
         return firstJavaType().getSuperTypeSet(destinationSet);
     }
 
@@ -188,12 +188,12 @@ import java.util.Set;
     }
 
     @Override
-    public JavaTypeDefinition getAsSuper(Class<?> superClazz) {
+    public JavaTypeDefinition getAsSuper(final Class<?> superClazz) {
         return firstJavaType().getAsSuper(superClazz);
     }
 
     @Override
-    public JavaTypeDefinition getJavaType(int index) {
+    public JavaTypeDefinition getJavaType(final int index) {
         return firstJavaType();
     }
 

@@ -36,7 +36,7 @@ public class TooManyFieldsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         List<ASTField> fields = node.findChildrenOfType(ASTField.class);
 

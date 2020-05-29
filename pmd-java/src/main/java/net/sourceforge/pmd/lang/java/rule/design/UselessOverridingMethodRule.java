@@ -59,12 +59,12 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         packageName = "";
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration clz, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration clz, final Object data) {
         if (clz.isInterface()) {
             return data;
         }
@@ -72,7 +72,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
     }
 
     // TODO: this method should be externalize into an utility class, shouldn't it ?
-    private boolean isMethodResultType(ASTMethodDeclaration node, Class<?> resultType) {
+    private boolean isMethodResultType(final ASTMethodDeclaration node, final Class<?> resultType) {
         ASTResultType type = node.getResultType();
         if (type != null && type.getChild(0) instanceof ASTType) {
             Class<?> resolvedResultType = ((ASTType) type.getChild(0)).getType();
@@ -82,7 +82,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
     }
 
     // TODO: this method should be externalize into an utility class, shouldn't it ?
-    private boolean isMethodThrowingType(ASTMethodDeclaration node, Class<? extends Exception> exceptionType) {
+    private boolean isMethodThrowingType(final ASTMethodDeclaration node, final Class<? extends Exception> exceptionType) {
         ASTNameList thrownsExceptions = node.getThrows();
         if (thrownsExceptions != null) {
             List<ASTName> names = thrownsExceptions.findChildrenOfType(ASTName.class);
@@ -96,13 +96,13 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPackageDeclaration node, Object data) {
+    public Object visit(final ASTPackageDeclaration node, final Object data) {
         packageName = node.getPackageNameImage();
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         // Can skip abstract methods and methods whose only purpose is to
         // guarantee that the inherited method is not changed by finalizing
         // them.
@@ -228,7 +228,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private boolean isCloneMethod(ASTMethodDeclaration node) {
+    private boolean isCloneMethod(final ASTMethodDeclaration node) {
         boolean isCloneAndPublic = CLONE_METHOD_NAME.equals(node.getName()) && node.isPublic();
         boolean hasNoParameters = node.getArity() == 0;
         return isCloneAndPublic
@@ -237,7 +237,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
                 && this.isMethodThrowingType(node, CloneNotSupportedException.class);
     }
 
-    private boolean modifiersChanged(ASTMethodDeclaration node) {
+    private boolean modifiersChanged(final ASTMethodDeclaration node) {
         Class<?> type = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class).getType();
         if (type == null) {
             return false;
@@ -274,7 +274,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
         return declaredMethod != null && isElevatingAccessModifier(node, declaredMethod);
     }
 
-    private boolean isElevatingAccessModifier(ASTMethodDeclaration overridingMethod, Method superMethod) {
+    private boolean isElevatingAccessModifier(final ASTMethodDeclaration overridingMethod, final Method superMethod) {
         String superPackageName = null;
         Package p = superMethod.getDeclaringClass().getPackage();
         if (p != null) {
@@ -296,7 +296,7 @@ public class UselessOverridingMethodRule extends AbstractJavaRule {
      * @deprecated this method will be removed. Just use {@link Node#findChildrenOfType(Class)} directly.
      */
     @Deprecated
-    public <T> List<T> findFirstDegreeChaildrenOfType(Node n, Class<T> targetType) {
+    public <T> List<T> findFirstDegreeChaildrenOfType(final Node n, final Class<T> targetType) {
         return n.findChildrenOfType(targetType);
     }
 }

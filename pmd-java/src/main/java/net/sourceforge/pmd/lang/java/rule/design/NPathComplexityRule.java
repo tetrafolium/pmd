@@ -50,7 +50,7 @@ public class NPathComplexityRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         reportLevel = getReportLevel();
 
         super.visit(node, data);
@@ -70,7 +70,7 @@ public class NPathComplexityRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public final Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public final Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
         if (!JavaOperationMetricKey.NPATH.supports(node)) {
             return data;
         }

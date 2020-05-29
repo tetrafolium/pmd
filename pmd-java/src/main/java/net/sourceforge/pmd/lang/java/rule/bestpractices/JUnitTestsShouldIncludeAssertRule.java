@@ -31,7 +31,7 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
 public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -39,7 +39,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration method, Object data) {
+    public Object visit(final ASTMethodDeclaration method, final Object data) {
         if (isJUnitMethod(method, data)) {
             if (!isExpectAnnotated(method.getParent())) {
                 Map<String, VariableNameDeclaration> variables = getVariables(method);
@@ -55,9 +55,9 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
         return data;
     }
 
-    private boolean containsExpectOrAssert(Node n,
-                                           Map<String, List<NameOccurrence>> expectables,
-                                           Map<String, VariableNameDeclaration> variables) {
+    private boolean containsExpectOrAssert(final Node n,
+                                           final Map<String, List<NameOccurrence>> expectables,
+                                           final Map<String, VariableNameDeclaration> variables) {
         if (n instanceof ASTStatementExpression) {
             if (isExpectStatement((ASTStatementExpression) n, expectables)
                     || isAssertOrFailStatement((ASTStatementExpression) n)
@@ -77,7 +77,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
         return false;
     }
 
-    private Map<String, VariableNameDeclaration> getVariables(ASTMethodDeclaration method) {
+    private Map<String, VariableNameDeclaration> getVariables(final ASTMethodDeclaration method) {
         Map<String, VariableNameDeclaration> variables = new HashMap<>();
         for (VariableNameDeclaration vnd : method.getScope().getDeclarations(VariableNameDeclaration.class).keySet()) {
             variables.put(vnd.getName(), vnd);
@@ -93,7 +93,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
      *            The class scope to search for
      * @return See description
      */
-    private Map<String, List<NameOccurrence>> getRuleAnnotatedExpectedExceptions(Scope classScope) {
+    private Map<String, List<NameOccurrence>> getRuleAnnotatedExpectedExceptions(final Scope classScope) {
         Map<String, List<NameOccurrence>> result = new HashMap<>();
         Map<NameDeclaration, List<NameOccurrence>> decls = classScope.getDeclarations();
 
@@ -119,7 +119,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
     /**
      * Tells if the node contains a Test annotation with an expected exception.
      */
-    private boolean isExpectAnnotated(Node methodParent) {
+    private boolean isExpectAnnotated(final Node methodParent) {
         List<ASTNormalAnnotation> annotations = methodParent.findDescendantsOfType(ASTNormalAnnotation.class);
         for (ASTNormalAnnotation annotation : annotations) {
             ASTName name = annotation.getFirstChildOfType(ASTName.class);
@@ -135,7 +135,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
         return false;
     }
 
-    private String getMethodCallNameOrNull(ASTStatementExpression expression) {
+    private String getMethodCallNameOrNull(final ASTStatementExpression expression) {
         if (expression != null) {
             ASTPrimaryExpression pe = expression.getFirstChildOfType(ASTPrimaryExpression.class);
             if (pe != null) {
@@ -151,7 +151,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
     /**
      * Tells if the expression is an Hamcrest assert
      */
-    private boolean isHamcrestAssert(ASTStatementExpression expression) {
+    private boolean isHamcrestAssert(final ASTStatementExpression expression) {
         String img = getMethodCallNameOrNull(expression);
         return "assertThat".equals(img) || "MatcherAssert.assertThat".equals(img);
     }
@@ -159,7 +159,7 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
     /**
      * Tells if the expression is an assert statement or not.
      */
-    private boolean isAssertOrFailStatement(ASTStatementExpression expression) {
+    private boolean isAssertOrFailStatement(final ASTStatementExpression expression) {
         String img = getMethodCallNameOrNull(expression);
         return img != null && (img.startsWith("assert") || img.startsWith("fail")
                 || img.startsWith("Assert.assert") || img.startsWith("Assert.fail"));
@@ -168,13 +168,13 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
     /**
      * Tells if the expression is verify statement or not
      */
-    private boolean isVerifyStatement(ASTStatementExpression expression) {
+    private boolean isVerifyStatement(final ASTStatementExpression expression) {
         String img = getMethodCallNameOrNull(expression);
         return img != null && (img.startsWith("verify") || img.startsWith("Mockito.verify"));
     }
 
-    private boolean isExpectStatement(ASTStatementExpression expression,
-            Map<String, List<NameOccurrence>> expectables) {
+    private boolean isExpectStatement(final ASTStatementExpression expression,
+            final Map<String, List<NameOccurrence>> expectables) {
         ASTPrimaryExpression pe = expression.getFirstChildOfType(ASTPrimaryExpression.class);
         if (pe != null) {
             ASTPrimaryPrefix primaryPrefix = pe.getFirstChildOfType(ASTPrimaryPrefix.class);
@@ -202,8 +202,8 @@ public class JUnitTestsShouldIncludeAssertRule extends AbstractJUnitRule {
         return false;
     }
 
-    private boolean isSoftAssertionStatement(ASTStatementExpression expression,
-                                             Map<String, VariableNameDeclaration> variables) {
+    private boolean isSoftAssertionStatement(final ASTStatementExpression expression,
+                                             final Map<String, VariableNameDeclaration> variables) {
         if (expression != null) {
             ASTPrimaryExpression pe = expression.getFirstChildOfType(ASTPrimaryExpression.class);
             if (pe != null) {

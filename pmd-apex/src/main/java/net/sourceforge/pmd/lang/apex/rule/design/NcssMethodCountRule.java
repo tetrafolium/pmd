@@ -27,7 +27,7 @@ public class NcssMethodCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!node.isConstructor()) {
             return super.visit(node, data);
         }
@@ -36,8 +36,8 @@ public class NcssMethodCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
-        return new String[] { ((ASTMethod) point.getNode()).getImage(),
+    public Object[] getViolationParameters(final DataPoint point) {
+        return new String[] {((ASTMethod) point.getNode()).getImage(),
             String.valueOf((int) point.getScore()), };
     }
 }

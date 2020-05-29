@@ -22,7 +22,7 @@ public abstract class NodeIterator implements Iterator<Node> {
 
     private Node node;
 
-    protected NodeIterator(Node contextNode) {
+    protected NodeIterator(final Node contextNode) {
         this.node = getFirstNode(contextNode);
     }
 
@@ -50,7 +50,7 @@ public abstract class NodeIterator implements Iterator<Node> {
 
     protected abstract Node getNextNode(Node contextNode);
 
-    protected Node getPreviousSibling(Node contextNode) {
+    protected Node getPreviousSibling(final Node contextNode) {
         Node parentNode = contextNode.getParent();
         if (parentNode != null) {
             int prevPosition = contextNode.getIndexInParent() - 1;
@@ -61,7 +61,7 @@ public abstract class NodeIterator implements Iterator<Node> {
         return null;
     }
 
-    protected Node getNextSibling(Node contextNode) {
+    protected Node getNextSibling(final Node contextNode) {
         Node parentNode = contextNode.getParent();
         if (parentNode != null) {
             int nextPosition = contextNode.getIndexInParent() + 1;
@@ -72,7 +72,7 @@ public abstract class NodeIterator implements Iterator<Node> {
         return null;
     }
 
-    protected Node getFirstChild(Node contextNode) {
+    protected Node getFirstChild(final Node contextNode) {
         if (contextNode.getNumChildren() > 0) {
             return contextNode.getChild(0);
         } else {
@@ -80,7 +80,7 @@ public abstract class NodeIterator implements Iterator<Node> {
         }
     }
 
-    protected Node getLastChild(Node contextNode) {
+    protected Node getLastChild(final Node contextNode) {
         if (contextNode.getNumChildren() > 0) {
             return contextNode.getChild(contextNode.getNumChildren() - 1);
         } else {

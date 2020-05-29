@@ -20,16 +20,16 @@ import net.sourceforge.pmd.annotation.Experimental;
  */
 @Experimental
 public final class ASTRecordComponentList extends AbstractJavaNode implements Iterable<ASTRecordComponent> {
-    ASTRecordComponentList(int id) {
+    ASTRecordComponentList(final int id) {
         super(id);
     }
 
-    ASTRecordComponentList(JavaParser p, int id) {
+    ASTRecordComponentList(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

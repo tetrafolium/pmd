@@ -12,12 +12,12 @@ public class ASTJavaMethodCallExpression extends AbstractApexNode<JavaMethodCall
 
     @Deprecated
     @InternalApi
-    public ASTJavaMethodCallExpression(JavaMethodCallExpression javaMethodCallExpression) {
+    public ASTJavaMethodCallExpression(final JavaMethodCallExpression javaMethodCallExpression) {
         super(javaMethodCallExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -15,12 +15,12 @@ public class ASTModLazy extends AbstractScalaNode<Mod.Lazy> {
 
     @Deprecated
     @InternalApi
-    public ASTModLazy(Mod.Lazy scalaNode) {
+    public ASTModLazy(final Mod.Lazy scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

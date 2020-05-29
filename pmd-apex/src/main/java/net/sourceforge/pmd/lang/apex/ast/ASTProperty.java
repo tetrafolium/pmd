@@ -12,12 +12,12 @@ public class ASTProperty extends AbstractApexNode<Property> {
 
     @Deprecated
     @InternalApi
-    public ASTProperty(Property property) {
+    public ASTProperty(final Property property) {
         super(property);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

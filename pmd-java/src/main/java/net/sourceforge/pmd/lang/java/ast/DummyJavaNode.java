@@ -16,13 +16,13 @@ public class DummyJavaNode extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public DummyJavaNode(int id) {
+    public DummyJavaNode(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public DummyJavaNode(JavaParser parser, int id) {
+    public DummyJavaNode(final JavaParser parser, final int id) {
         super(parser, id);
     }
 }

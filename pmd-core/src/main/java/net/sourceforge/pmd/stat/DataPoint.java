@@ -46,7 +46,7 @@ public class DataPoint implements Comparable<DataPoint> {
      *         score is greater than the other data point.
      */
     @Override
-    public int compareTo(DataPoint rhs) {
+    public int compareTo(final DataPoint rhs) {
         if (score != rhs.getScore()) {
             return Double.compare(score, rhs.getScore());
         }
@@ -57,7 +57,7 @@ public class DataPoint implements Comparable<DataPoint> {
         return node;
     }
 
-    public void setNode(Node node) {
+    public void setNode(final Node node) {
         this.node = node;
     }
 
@@ -65,7 +65,7 @@ public class DataPoint implements Comparable<DataPoint> {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         this.message = message;
     }
 
@@ -73,7 +73,7 @@ public class DataPoint implements Comparable<DataPoint> {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(final double score) {
         this.score = score;
     }
 }

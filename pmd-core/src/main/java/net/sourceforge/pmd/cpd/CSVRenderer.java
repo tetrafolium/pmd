@@ -26,21 +26,21 @@ public class CSVRenderer implements Renderer, CPDRenderer {
         this(DEFAULT_SEPARATOR, DEFAULT_LINECOUNTPERFILE);
     }
 
-    public CSVRenderer(boolean lineCountPerFile) {
+    public CSVRenderer(final boolean lineCountPerFile) {
         this(DEFAULT_SEPARATOR, lineCountPerFile);
     }
 
-    public CSVRenderer(char separatorChar) {
+    public CSVRenderer(final char separatorChar) {
         this(separatorChar, DEFAULT_LINECOUNTPERFILE);
     }
 
-    public CSVRenderer(char separatorChar, boolean lineCountPerFile) {
+    public CSVRenderer(final char separatorChar, final boolean lineCountPerFile) {
         this.separator = separatorChar;
         this.lineCountPerFile = lineCountPerFile;
     }
 
     @Override
-    public String render(Iterator<Match> matches) {
+    public String render(final Iterator<Match> matches) {
         StringWriter writer = new StringWriter(1000);
         try {
             render(matches, writer);
@@ -51,7 +51,7 @@ public class CSVRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public void render(Iterator<Match> matches, Writer writer) throws IOException {
+    public void render(final Iterator<Match> matches, final Writer writer) throws IOException {
         if (!lineCountPerFile) {
             writer.append("lines").append(separator);
         }

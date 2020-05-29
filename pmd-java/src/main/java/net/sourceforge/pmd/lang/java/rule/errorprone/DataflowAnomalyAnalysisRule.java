@@ -55,7 +55,7 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
         public int accessType;
         public DataFlowNode node;
 
-        Usage(int accessType, DataFlowNode node) {
+        Usage(final int accessType, final DataFlowNode node) {
             this.accessType = accessType;
             this.node = node;
         }
@@ -72,14 +72,14 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         maxRuleViolations = getProperty(MAX_VIOLATIONS_DESCRIPTOR);
         currentRuleViolationCount = 0;
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration methodDeclaration, Object data) {
+    public Object visit(final ASTMethodDeclaration methodDeclaration, final Object data) {
         rc = (RuleContext) data;
         daaRuleViolations = new ArrayList<>();
 
@@ -93,7 +93,7 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
     }
 
     @Override
-    public void execute(CurrentPath path) {
+    public void execute(final CurrentPath path) {
 
         if (maxNumberOfViolationsReached()) {
             return;
@@ -121,7 +121,7 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
         }
     }
 
-    private void checkVariableAccess(DataFlowNode inode, VariableAccess va, final Usage u) {
+    private void checkVariableAccess(final DataFlowNode inode, final VariableAccess va, final Usage u) {
         // get the start and end line
         int startLine = u.node.getLine();
         int endLine = inode.getLine();
@@ -139,7 +139,7 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
     /**
      * Adds a daa violation to the report.
      */
-    private void addDaaViolation(Object data, Node node, String type, String var, int startLine, int endLine) {
+    private void addDaaViolation(final Object data, final Node node, final String type, final String var, final int startLine, final int endLine) {
         if (!maxNumberOfViolationsReached() && !violationAlreadyExists(type, var, startLine, endLine) && node != null) {
             RuleContext ctx = (RuleContext) data;
             String msg = type;
@@ -173,7 +173,7 @@ public class DataflowAnomalyAnalysisRule extends AbstractJavaRule implements Exe
      * @param endLine
      * @return true if the violation already was added to the report
      */
-    private boolean violationAlreadyExists(String type, String var, int startLine, int endLine) {
+    private boolean violationAlreadyExists(final String type, final String var, final int startLine, final int endLine) {
         for (DaaRuleViolation violation : daaRuleViolations) {
             if (violation.getBeginLine() == startLine && violation.getEndLine() == endLine
                     && violation.getType().equals(type) && violation.getVariableName().equals(var)) {

@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTEmptyExpression extends AbstractEcmascriptNode<EmptyExpression> {
     @Deprecated
     @InternalApi
-    public ASTEmptyExpression(EmptyExpression emptyExpression) {
+    public ASTEmptyExpression(final EmptyExpression emptyExpression) {
         super(emptyExpression);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

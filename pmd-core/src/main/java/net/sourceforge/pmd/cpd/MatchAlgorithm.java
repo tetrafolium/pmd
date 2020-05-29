@@ -24,11 +24,11 @@ public class MatchAlgorithm {
     private CPDListener cpdListener;
     private int min;
 
-    public MatchAlgorithm(Map<String, SourceCode> sourceCode, Tokens tokens, int min) {
+    public MatchAlgorithm(final Map<String, SourceCode> sourceCode, final Tokens tokens, final int min) {
         this(sourceCode, tokens, min, new CPDNullListener());
     }
 
-    public MatchAlgorithm(Map<String, SourceCode> sourceCode, Tokens tokens, int min, CPDListener listener) {
+    public MatchAlgorithm(final Map<String, SourceCode> sourceCode, final Tokens tokens, final int min, final CPDListener listener) {
         this.source = sourceCode;
         this.tokens = tokens;
         this.code = tokens.getTokens();
@@ -39,7 +39,7 @@ public class MatchAlgorithm {
         }
     }
 
-    public void setListener(CPDListener listener) {
+    public void setListener(final CPDListener listener) {
         this.cpdListener = listener;
     }
 
@@ -47,7 +47,7 @@ public class MatchAlgorithm {
         return matches.iterator();
     }
 
-    public TokenEntry tokenAt(int offset, TokenEntry m) {
+    public TokenEntry tokenAt(final int offset, final TokenEntry m) {
         return code.get(offset + m.getIndex());
     }
 

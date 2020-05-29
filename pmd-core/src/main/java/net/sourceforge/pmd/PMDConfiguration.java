@@ -124,7 +124,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param suppressMarker
      *            The suppress marker to use.
      */
-    public void setSuppressMarker(String suppressMarker) {
+    public void setSuppressMarker(final String suppressMarker) {
         this.suppressMarker = suppressMarker;
     }
 
@@ -143,7 +143,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param threads
      *            The number of threads.
      */
-    public void setThreads(int threads) {
+    public void setThreads(final int threads) {
         this.threads = threads;
     }
 
@@ -163,7 +163,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param classLoader
      *            The ClassLoader to use
      */
-    public void setClassLoader(ClassLoader classLoader) {
+    public void setClassLoader(final ClassLoader classLoader) {
         if (classLoader == null) {
             this.classLoader = getClass().getClassLoader();
         } else {
@@ -188,7 +188,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @see PMDConfiguration#setClassLoader(ClassLoader)
      * @see ClasspathClassLoader
      */
-    public void prependClasspath(String classpath) throws IOException {
+    public void prependClasspath(final String classpath) throws IOException {
         if (classLoader == null) {
             classLoader = PMDConfiguration.class.getClassLoader();
         }
@@ -213,7 +213,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param languageVersion
      *            the LanguageVersion
      */
-    public void setDefaultLanguageVersion(LanguageVersion languageVersion) {
+    public void setDefaultLanguageVersion(final LanguageVersion languageVersion) {
         setDefaultLanguageVersions(Arrays.asList(languageVersion));
     }
 
@@ -224,7 +224,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param languageVersions
      *            The LanguageVersions.
      */
-    public void setDefaultLanguageVersions(List<LanguageVersion> languageVersions) {
+    public void setDefaultLanguageVersions(final List<LanguageVersion> languageVersions) {
         for (LanguageVersion languageVersion : languageVersions) {
             languageVersionDiscoverer.setDefaultLanguageVersion(languageVersion);
         }
@@ -245,7 +245,7 @@ public class PMDConfiguration extends AbstractConfiguration {
     // FUTURE Delete this? I can't think of a good reason to keep it around.
     // Failure to determine the LanguageVersion for a file should be a hard
     // error, or simply cause the file to be skipped?
-    public LanguageVersion getLanguageVersionOfFile(String fileName) {
+    public LanguageVersion getLanguageVersionOfFile(final String fileName) {
         LanguageVersion languageVersion = languageVersionDiscoverer.getDefaultLanguageVersionForFile(fileName);
         if (languageVersion == null) {
             // For compatibility with older code that does not always pass in
@@ -270,7 +270,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param ruleSets
      *            the rulesets to set
      */
-    public void setRuleSets(String ruleSets) {
+    public void setRuleSets(final String ruleSets) {
         this.ruleSets = ruleSets;
     }
 
@@ -289,7 +289,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param minimumPriority
      *            The minimum priority.
      */
-    public void setMinimumPriority(RulePriority minimumPriority) {
+    public void setMinimumPriority(final RulePriority minimumPriority) {
         this.minimumPriority = minimumPriority;
     }
 
@@ -308,7 +308,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param inputPaths
      *            The comma separated list.
      */
-    public void setInputPaths(String inputPaths) {
+    public void setInputPaths(final String inputPaths) {
         this.inputPaths = inputPaths;
     }
 
@@ -327,7 +327,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param inputFilePath
      *            path to the file
      */
-    public void setInputFilePath(String inputFilePath) {
+    public void setInputFilePath(final String inputFilePath) {
         this.inputFilePath = inputFilePath;
     }
 
@@ -338,7 +338,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param ignoreFilePath
      *            path to the file
      */
-    public void setIgnoreFilePath(String ignoreFilePath) {
+    public void setIgnoreFilePath(final String ignoreFilePath) {
         this.ignoreFilePath = ignoreFilePath;
     }
 
@@ -357,7 +357,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param inputUri
      *            a single URI
      */
-    public void setInputUri(String inputUri) {
+    public void setInputUri(final String inputUri) {
         this.inputUri = inputUri;
     }
 
@@ -376,7 +376,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param reportShortNames
      *            <code>true</code> when using short names in reports.
      */
-    public void setReportShortNames(boolean reportShortNames) {
+    public void setReportShortNames(final boolean reportShortNames) {
         this.reportShortNames = reportShortNames;
     }
 
@@ -399,7 +399,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *            whether to configure a writer or not
      * @return A Renderer instance.
      */
-    public Renderer createRenderer(boolean withReportWriter) {
+    public Renderer createRenderer(final boolean withReportWriter) {
         Renderer renderer = RendererFactory.createRenderer(reportFormat, reportProperties);
         renderer.setShowSuppressedViolations(showSuppressedViolations);
         if (reportShortNames && inputPaths != null) {
@@ -428,7 +428,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *
      * @see Renderer
      */
-    public void setReportFormat(String reportFormat) {
+    public void setReportFormat(final String reportFormat) {
         this.reportFormat = reportFormat;
     }
 
@@ -447,7 +447,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param reportFile
      *            the file to set
      */
-    public void setReportFile(String reportFile) {
+    public void setReportFile(final String reportFile) {
         this.reportFile = reportFile;
     }
 
@@ -468,7 +468,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *            <code>true</code> if showing suppressed violations,
      *            <code>false</code> otherwise.
      */
-    public void setShowSuppressedViolations(boolean showSuppressedViolations) {
+    public void setShowSuppressedViolations(final boolean showSuppressedViolations) {
         this.showSuppressedViolations = showSuppressedViolations;
     }
 
@@ -487,7 +487,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param reportProperties
      *            The Report properties to set.
      */
-    public void setReportProperties(Properties reportProperties) {
+    public void setReportProperties(final Properties reportProperties) {
         this.reportProperties = reportProperties;
     }
 
@@ -510,7 +510,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *            The stree test indicator to set.
      * @see #isStressTest()
      */
-    public void setStressTest(boolean stressTest) {
+    public void setStressTest(final boolean stressTest) {
         this.stressTest = stressTest;
     }
 
@@ -532,7 +532,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *            The benchmark indicator to set.
      * @see #isBenchmark()
      */
-    public void setBenchmark(boolean benchmark) {
+    public void setBenchmark(final boolean benchmark) {
         this.benchmark = benchmark;
     }
 
@@ -553,7 +553,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      * @param failOnViolation
      *            failOnViolation
      */
-    public void setFailOnViolation(boolean failOnViolation) {
+    public void setFailOnViolation(final boolean failOnViolation) {
         this.failOnViolation = failOnViolation;
     }
 
@@ -575,7 +575,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *
      * @see RuleSetFactoryCompatibility
      */
-    public void setRuleSetFactoryCompatibilityEnabled(boolean ruleSetFactoryCompatibilityEnabled) {
+    public void setRuleSetFactoryCompatibilityEnabled(final boolean ruleSetFactoryCompatibilityEnabled) {
         this.ruleSetFactoryCompatibilityEnabled = ruleSetFactoryCompatibilityEnabled;
     }
 
@@ -628,7 +628,7 @@ public class PMDConfiguration extends AbstractConfiguration {
      *
      * @param noCache Whether to ignore incremental analysis or not
      */
-    public void setIgnoreIncrementalAnalysis(boolean noCache) {
+    public void setIgnoreIncrementalAnalysis(final boolean noCache) {
         // see #getAnalysisCache for the implementation.
         this.ignoreIncrementalAnalysis = noCache;
     }

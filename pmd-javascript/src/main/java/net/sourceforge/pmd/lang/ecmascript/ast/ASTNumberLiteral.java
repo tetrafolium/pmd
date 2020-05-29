@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTNumberLiteral extends AbstractEcmascriptNode<NumberLiteral> {
     @Deprecated
     @InternalApi
-    public ASTNumberLiteral(NumberLiteral numberLiteral) {
+    public ASTNumberLiteral(final NumberLiteral numberLiteral) {
         super(numberLiteral);
         super.setImage(numberLiteral.getValue());
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -31,7 +31,7 @@ public class ASTNumberLiteral extends AbstractEcmascriptNode<NumberLiteral> {
         return image;
     }
 
-    private String normalizeHexIntegerLiteral(String image) {
+    private String normalizeHexIntegerLiteral(final String image) {
         if (image.startsWith("0x") || image.startsWith("0X")) {
             return String.valueOf(Integer.parseInt(image.substring(2), 16));
         }

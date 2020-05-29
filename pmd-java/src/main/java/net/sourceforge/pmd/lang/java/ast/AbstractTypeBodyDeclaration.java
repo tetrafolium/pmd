@@ -29,12 +29,12 @@ abstract class AbstractTypeBodyDeclaration extends AbstractJavaNode implements A
 
     private DeclarationKind kind;
 
-    AbstractTypeBodyDeclaration(int id) {
+    AbstractTypeBodyDeclaration(final int id) {
         super(id);
     }
 
 
-    AbstractTypeBodyDeclaration(JavaParser p, int id) {
+    AbstractTypeBodyDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 

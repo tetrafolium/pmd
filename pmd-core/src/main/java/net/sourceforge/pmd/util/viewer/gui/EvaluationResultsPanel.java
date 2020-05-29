@@ -35,7 +35,7 @@ public class EvaluationResultsPanel extends JPanel implements ViewerModelListene
      * @param model
      *            model to refer to
      */
-    public EvaluationResultsPanel(ViewerModel model) {
+    public EvaluationResultsPanel(final ViewerModel model) {
         super(new BorderLayout());
 
         this.model = model;
@@ -51,7 +51,7 @@ public class EvaluationResultsPanel extends JPanel implements ViewerModelListene
 
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
+            public void valueChanged(final ListSelectionEvent e) {
                 if (list.getSelectedValue() != null) {
                     model.selectNode((Node) list.getSelectedValue(), EvaluationResultsPanel.this);
                 }
@@ -66,7 +66,7 @@ public class EvaluationResultsPanel extends JPanel implements ViewerModelListene
      */
     @Override
     @SuppressWarnings("PMD.UseArrayListInsteadOfVector")
-    public void viewerModelChanged(ViewerModelEvent e) {
+    public void viewerModelChanged(final ViewerModelEvent e) {
         switch (e.getReason()) {
         case ViewerModelEvent.PATH_EXPRESSION_EVALUATED:
 

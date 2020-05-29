@@ -20,18 +20,18 @@ public class ASTCatchStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTCatchStatement(int id) {
+    public ASTCatchStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTCatchStatement(JavaParser p, int id) {
+    public ASTCatchStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

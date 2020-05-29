@@ -22,7 +22,7 @@ public abstract class AbstractASTXPathHandler implements XPathHandler {
         return new DocumentNavigator();
     }
 
-    public void initialize(IndependentContext context, Language language, Class<?> functionsClass) {
+    public void initialize(final IndependentContext context, final Language language, final Class<?> functionsClass) {
         context.declareNamespace("pmd-" + language.getTerseName(), "java:" + functionsClass.getName());
     }
 
@@ -32,7 +32,7 @@ public abstract class AbstractASTXPathHandler implements XPathHandler {
     }
 
     @Override
-    public void initialize(IndependentContext context) {
+    public void initialize(final IndependentContext context) {
         // override if needed
     }
 }

@@ -24,7 +24,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class AssignmentToNonFinalStaticRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         Map<VariableNameDeclaration, List<NameOccurrence>> vars = node.getScope()
                 .getDeclarations(VariableNameDeclaration.class);
         for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry : vars.entrySet()) {
@@ -42,7 +42,7 @@ public class AssignmentToNonFinalStaticRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private List<Node> initializedInConstructor(List<NameOccurrence> usages) {
+    private List<Node> initializedInConstructor(final List<NameOccurrence> usages) {
         final List<Node> unsafeAssignments = new ArrayList<>();
         for (NameOccurrence occ : usages) {
             // specifically omitting prefix and postfix operators as there are

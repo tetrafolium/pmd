@@ -59,7 +59,7 @@ final class ClassStats implements ClassMirror {
      *
      * @return The new ClassStats or the one that was found. Can return null if createIfNotFound is unset
      */
-    ClassStats getNestedClassStats(String className, boolean createIfNotFound) {
+    ClassStats getNestedClassStats(final String className, final boolean createIfNotFound) {
         if (createIfNotFound && !nestedClasses.containsKey(className)) {
             nestedClasses.put(className, new ClassStats());
         }
@@ -73,7 +73,7 @@ final class ClassStats implements ClassMirror {
      * @param name The name of the operation
      * @param sig  The signature of the operation
      */
-    void addOperation(String name, JavaOperationSignature sig) {
+    void addOperation(final String name, final JavaOperationSignature sig) {
         if (!operations.containsKey(sig)) {
             operations.put(sig, new HashSet<String>());
         }
@@ -87,7 +87,7 @@ final class ClassStats implements ClassMirror {
      * @param name The name of the field
      * @param sig  The signature of the field
      */
-    void addField(String name, JavaFieldSignature sig) {
+    void addField(final String name, final JavaFieldSignature sig) {
         if (!fields.containsKey(sig)) {
             fields.put(sig, new HashSet<String>());
         }
@@ -96,7 +96,7 @@ final class ClassStats implements ClassMirror {
 
 
     @Override
-    public boolean hasMatchingOpSig(String name, JavaOperationSigMask mask) {
+    public boolean hasMatchingOpSig(final String name, final JavaOperationSigMask mask) {
         // Indexing on signatures optimises this type of request
         for (Entry<JavaOperationSignature, Set<String>> entry : operations.entrySet()) {
             if (mask.covers(entry.getKey())) {
@@ -110,7 +110,7 @@ final class ClassStats implements ClassMirror {
 
 
     @Override
-    public boolean hasMatchingFieldSig(String name, JavaFieldSigMask mask) {
+    public boolean hasMatchingFieldSig(final String name, final JavaFieldSigMask mask) {
         for (Entry<JavaFieldSignature, Set<String>> entry : fields.entrySet()) {
             if (mask.covers(entry.getKey())) {
                 if (entry.getValue().contains(name)) {
@@ -123,7 +123,7 @@ final class ClassStats implements ClassMirror {
 
 
     @Override
-    public int countMatchingOpSigs(JavaOperationSigMask sigMask) {
+    public int countMatchingOpSigs(final JavaOperationSigMask sigMask) {
         int sum = 0;
 
         for (Entry<JavaOperationSignature, Set<String>> e : operations.entrySet()) {
@@ -137,7 +137,7 @@ final class ClassStats implements ClassMirror {
 
 
     @Override
-    public int countMatchingFieldSigs(JavaFieldSigMask sigMask) {
+    public int countMatchingFieldSigs(final JavaFieldSigMask sigMask) {
         int sum = 0;
 
         for (Entry<JavaFieldSignature, Set<String>> e : fields.entrySet()) {

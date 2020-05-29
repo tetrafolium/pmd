@@ -23,20 +23,20 @@ public class ASTMemberValue extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTMemberValue(int id) {
+    public ASTMemberValue(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTMemberValue(JavaParser p, int id) {
+    public ASTMemberValue(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

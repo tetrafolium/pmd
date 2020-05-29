@@ -25,19 +25,19 @@ public class ASTSwitchStatement extends AbstractJavaNode implements Iterable<AST
 
     @InternalApi
     @Deprecated
-    public ASTSwitchStatement(int id) {
+    public ASTSwitchStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTSwitchStatement(JavaParser p, int id) {
+    public ASTSwitchStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

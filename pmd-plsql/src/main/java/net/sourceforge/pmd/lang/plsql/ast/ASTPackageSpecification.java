@@ -10,18 +10,18 @@ public class ASTPackageSpecification extends net.sourceforge.pmd.lang.plsql.ast.
         implements OracleObject {
     @Deprecated
     @InternalApi
-    public ASTPackageSpecification(int id) {
+    public ASTPackageSpecification(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTPackageSpecification(PLSQLParser p, int id) {
+    public ASTPackageSpecification(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

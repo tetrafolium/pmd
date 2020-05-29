@@ -26,18 +26,18 @@ public class JavaLanguageParser extends AbstractJavaParser {
     private final int jdkVersion;
     private final boolean preview;
 
-    public JavaLanguageParser(int jdkVersion, ParserOptions parserOptions) {
+    public JavaLanguageParser(final int jdkVersion, final ParserOptions parserOptions) {
         this(jdkVersion, false, parserOptions);
     }
 
-    public JavaLanguageParser(int jdkVersion, boolean preview, ParserOptions parserOptions) {
+    public JavaLanguageParser(final int jdkVersion, final boolean preview, final ParserOptions parserOptions) {
         super(parserOptions);
         this.jdkVersion = jdkVersion;
         this.preview = preview;
     }
 
     @Override
-    protected JavaParser createJavaParser(Reader source) throws ParseException {
+    protected JavaParser createJavaParser(final Reader source) throws ParseException {
         JavaParser javaParser = super.createJavaParser(source);
         javaParser.setJdkVersion(jdkVersion);
         javaParser.setPreview(preview);

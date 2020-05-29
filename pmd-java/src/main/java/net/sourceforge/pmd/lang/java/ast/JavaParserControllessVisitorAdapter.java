@@ -17,7 +17,7 @@ package net.sourceforge.pmd.lang.java.ast;
 public class JavaParserControllessVisitorAdapter extends JavaParserVisitorAdapter implements JavaParserControllessVisitor {
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         return data;
     }
 

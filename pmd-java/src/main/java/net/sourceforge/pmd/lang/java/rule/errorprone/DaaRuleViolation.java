@@ -25,8 +25,8 @@ public class DaaRuleViolation extends JavaRuleViolation {
     private final String variableName;
     private final String type;
 
-    public DaaRuleViolation(Rule rule, RuleContext ctx, Node node, String type, String msg, String var, int beginLine,
-            int endLine) {
+    public DaaRuleViolation(final Rule rule, final RuleContext ctx, final Node node, final String type, final String msg, final String var, final int beginLine,
+            final int endLine) {
         super(rule, ctx, (JavaNode) node, msg);
         this.variableName = var;
         setLines(beginLine, endLine);

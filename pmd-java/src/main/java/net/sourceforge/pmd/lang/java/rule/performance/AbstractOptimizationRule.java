@@ -20,14 +20,14 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class AbstractOptimizationRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
         return super.visit(node, data);
     }
 
-    protected boolean assigned(List<NameOccurrence> usages) {
+    protected boolean assigned(final List<NameOccurrence> usages) {
         for (NameOccurrence occ : usages) {
             JavaNameOccurrence jocc = (JavaNameOccurrence) occ;
             if (jocc.isOnLeftHandSide() || jocc.isSelfAssignment()) {

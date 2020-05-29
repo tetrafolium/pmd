@@ -24,7 +24,7 @@ public class ApexMetricsComputer extends AbstractMetricsComputer<ASTUserClassOrI
     private static final ApexMetricsComputer INSTANCE = new ApexMetricsComputer();
 
     @Override
-    protected List<ASTMethod> findOperations(ASTUserClassOrInterface<?> node) {
+    protected List<ASTMethod> findOperations(final ASTUserClassOrInterface<?> node) {
         return ApexMetrics.findOps(node);
     }
 

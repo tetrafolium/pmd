@@ -61,7 +61,7 @@ public abstract class Directive implements Cloneable {
      * @param line
      * @param column
      */
-    public void setLocation(int line, int column) {
+    public void setLocation(final int line, final int column) {
         this.line = line;
         this.column = column;
     }
@@ -72,7 +72,7 @@ public abstract class Directive implements Cloneable {
      * @param line
      * @param column
      */
-    public void setLocation(int line, int column, String templateName) {
+    public void setLocation(final int line, final int column, final String templateName) {
         setLocation(line, column);
         this.templateName = templateName;
     }

@@ -53,7 +53,7 @@ public class CodeClimateRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
         while (violations.hasNext()) {
@@ -73,7 +73,7 @@ public class CodeClimateRenderer extends AbstractIncrementingRenderer {
      *
      * @return The generated issue.
      */
-    private CodeClimateIssue asIssue(RuleViolation rv) {
+    private CodeClimateIssue asIssue(final RuleViolation rv) {
         CodeClimateIssue issue = new CodeClimateIssue();
         issue.check_name = rule.getName();
         issue.description = cleaned(rv.getDescription());
@@ -105,7 +105,7 @@ public class CodeClimateRenderer extends AbstractIncrementingRenderer {
         return "json";
     }
 
-    private CodeClimateIssue.Location getLocation(RuleViolation rv) {
+    private CodeClimateIssue.Location getLocation(final RuleViolation rv) {
         CodeClimateIssue.Location result;
 
         String pathWithoutCcRoot = StringUtils.removeStartIgnoreCase(
@@ -188,7 +188,7 @@ public class CodeClimateRenderer extends AbstractIncrementingRenderer {
         return cleaned(result);
     }
 
-    private String cleaned(String original) {
+    private String cleaned(final String original) {
         String result = original.trim();
         result = result.replaceAll("\\s+", " ");
         result = result.replaceAll("\\s*[\\r\\n]+\\s*", "");

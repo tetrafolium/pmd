@@ -100,7 +100,7 @@ public class PMD {
      * @param configuration
      *            The runtime Configuration of PMD to use.
      */
-    public PMD(PMDConfiguration configuration) {
+    public PMD(final PMDConfiguration configuration) {
         this.configuration = configuration;
         this.rulesetsFileProcessor = new SourceCodeProcessor(configuration);
     }
@@ -116,7 +116,7 @@ public class PMD {
      *             if the URI couldn't be parsed
      * @see DBURI
      */
-    public static List<DataSource> getURIDataSources(String uriString) throws PMDException {
+    public static List<DataSource> getURIDataSources(final String uriString) throws PMDException {
         List<DataSource> dataSources = new ArrayList<>();
 
         try {
@@ -162,7 +162,7 @@ public class PMD {
      *            the given configuration
      * @return the pre-configured parser
      */
-    public static Parser parserFor(LanguageVersion languageVersion, PMDConfiguration configuration) {
+    public static Parser parserFor(final LanguageVersion languageVersion, final PMDConfiguration configuration) {
 
         // TODO Handle Rules having different parser options.
         LanguageVersionHandler languageVersionHandler = languageVersion.getLanguageVersionHandler();
@@ -200,7 +200,7 @@ public class PMD {
      *            the configure to use
      * @return number of violations found.
      */
-    public static int doPMD(PMDConfiguration configuration) {
+    public static int doPMD(final PMDConfiguration configuration) {
 
         // Load the RuleSets
         final RuleSetFactory ruleSetFactory = RulesetsFactoryUtils.getRulesetFactory(configuration, new ResourceLoader());
@@ -226,12 +226,12 @@ public class PMD {
             final AtomicInteger violations = new AtomicInteger(0);
             ctx.getReport().addListener(new ThreadSafeReportListener() {
                 @Override
-                public void ruleViolationAdded(RuleViolation ruleViolation) {
+                public void ruleViolationAdded(final RuleViolation ruleViolation) {
                     violations.getAndIncrement();
                 }
 
                 @Override
-                public void metricAdded(Metric metric) {
+                public void metricAdded(final Metric metric) {
                     // ignored - not needed for counting violations
                 }
             });
@@ -276,7 +276,7 @@ public class PMD {
      *            the source code file
      * @return the rule context
      */
-    public static RuleContext newRuleContext(String sourceCodeFilename, File sourceCodeFile) {
+    public static RuleContext newRuleContext(final String sourceCodeFilename, final File sourceCodeFile) {
 
         RuleContext context = new RuleContext();
         context.setSourceCodeFile(sourceCodeFile);
@@ -320,7 +320,7 @@ public class PMD {
             final String inputPaths = configuration.getInputPaths();
             Collections.sort(files, new Comparator<DataSource>() {
                 @Override
-                public int compare(DataSource left, DataSource right) {
+                public int compare(final DataSource left, final DataSource right) {
                     String leftString = left.getNiceFileName(useShortNames, inputPaths);
                     String rightString = right.getNiceFileName(useShortNames, inputPaths);
                     return leftString.compareTo(rightString);
@@ -359,14 +359,14 @@ public class PMD {
      *            used to filter by file extension
      * @return List of {@link DataSource} of files
      */
-    public static List<DataSource> getApplicableFiles(PMDConfiguration configuration, Set<Language> languages) {
+    public static List<DataSource> getApplicableFiles(final PMDConfiguration configuration, final Set<Language> languages) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.COLLECT_FILES)) {
             return internalGetApplicableFiles(configuration, languages);
         }
     }
 
-    private static List<DataSource> internalGetApplicableFiles(PMDConfiguration configuration,
-            Set<Language> languages) {
+    private static List<DataSource> internalGetApplicableFiles(final PMDConfiguration configuration,
+            final Set<Language> languages) {
         LanguageFilenameFilter fileSelector = new LanguageFilenameFilter(languages);
         List<DataSource> files = new ArrayList<>();
 
@@ -448,7 +448,7 @@ public class PMD {
      * @param args
      *            command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         PMDCommandLineInterface.run(args);
     }
 
@@ -461,7 +461,7 @@ public class PMD {
      *         <code>1</code> means error, <code>4</code> means there have been
      *         violations found.
      */
-    public static int run(String[] args) {
+    public static int run(final String[] args) {
         final PMDParameters params = PMDCommandLineInterface.extractParameters(new PMDParameters(), args, "pmd");
 
         if (params.isBenchmark()) {

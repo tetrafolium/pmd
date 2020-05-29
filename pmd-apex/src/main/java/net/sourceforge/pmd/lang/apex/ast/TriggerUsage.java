@@ -40,7 +40,7 @@ public enum TriggerUsage {
         }
     }
 
-    TriggerUsage(apex.jorje.data.ast.TriggerUsage apexTriggerUsage) {
+    TriggerUsage(final apex.jorje.data.ast.TriggerUsage apexTriggerUsage) {
         this.apexTriggerUsage = apexTriggerUsage;
     }
 
@@ -48,7 +48,7 @@ public enum TriggerUsage {
         return apexTriggerUsage;
     }
 
-    public static TriggerUsage of(apex.jorje.data.ast.TriggerUsage apexTriggerUsage) {
+    public static TriggerUsage of(final apex.jorje.data.ast.TriggerUsage apexTriggerUsage) {
         TriggerUsage result = APEX_TO_PMD.get(apexTriggerUsage);
         if (result != null) {
             return result;

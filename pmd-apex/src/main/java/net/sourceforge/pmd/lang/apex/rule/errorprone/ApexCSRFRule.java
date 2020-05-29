@@ -28,7 +28,7 @@ public class ApexCSRFRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
         }
@@ -37,7 +37,7 @@ public class ApexCSRFRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!Helper.isTestMethodOrClass(node)) {
             checkForCSRF(node, data);
         }
@@ -45,14 +45,14 @@ public class ApexCSRFRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTBlockStatement node, Object data) {
+    public Object visit(final ASTBlockStatement node, final Object data) {
         if (node.getParent() instanceof ASTUserClass && Helper.foundAnyDML(node)) {
             addViolation(data, node);
         }
         return data;
     }
 
-    private void checkForCSRF(ASTMethod node, Object data) {
+    private void checkForCSRF(final ASTMethod node, final Object data) {
         if (node.isConstructor() && Helper.foundAnyDML(node)) {
             addViolation(data, node);
         }
@@ -63,7 +63,7 @@ public class ApexCSRFRule extends AbstractApexRule {
         }
     }
 
-    private boolean isInitializerMethod(String name) {
+    private boolean isInitializerMethod(final String name) {
         return INIT.equalsIgnoreCase(name) || STATIC_INITIALIZER.equals(name);
     }
 }

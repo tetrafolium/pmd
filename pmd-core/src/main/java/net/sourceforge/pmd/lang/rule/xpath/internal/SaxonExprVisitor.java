@@ -17,43 +17,43 @@ import net.sf.saxon.expr.VennExpression;
 import net.sf.saxon.sort.DocumentSorter;
 
 abstract class SaxonExprVisitor {
-    public Expression visit(DocumentSorter e) {
+    public Expression visit(final DocumentSorter e) {
         Expression base = visit(e.getBaseExpression());
         return new DocumentSorter(base);
     }
 
-    public Expression visit(PathExpression e) {
+    public Expression visit(final PathExpression e) {
         Expression start = visit(e.getStartExpression());
         Expression step = visit(e.getStepExpression());
         return new PathExpression(start, step);
     }
 
-    public Expression visit(RootExpression e) {
+    public Expression visit(final RootExpression e) {
         return e;
     }
 
-    public Expression visit(AxisExpression e) {
+    public Expression visit(final AxisExpression e) {
         return e;
     }
 
-    public Expression visit(VennExpression e) {
+    public Expression visit(final VennExpression e) {
         final Expression[] operands = e.getOperands();
         Expression operand0 = visit(operands[0]);
         Expression operand1 = visit(operands[1]);
         return new VennExpression(operand0, e.getOperator(), operand1);
     }
 
-    public Expression visit(FilterExpression e) {
+    public Expression visit(final FilterExpression e) {
         Expression base = visit(e.getBaseExpression());
         Expression filter = visit(e.getFilter());
         return new FilterExpression(base, filter);
     }
 
-    public Expression visit(QuantifiedExpression e) {
+    public Expression visit(final QuantifiedExpression e) {
         return e;
     }
 
-    public Expression visit(LetExpression e) {
+    public Expression visit(final LetExpression e) {
         Expression action = visit(e.getAction());
         Expression sequence = visit(e.getSequence());
         LetExpression result = new LetExpression();
@@ -65,19 +65,19 @@ abstract class SaxonExprVisitor {
         return result;
     }
 
-    public Expression visit(LazyExpression e) {
+    public Expression visit(final LazyExpression e) {
         Expression base = visit(e.getBaseExpression());
         return LazyExpression.makeLazyExpression(base);
     }
 
-    public Expression visit(BooleanExpression e) {
+    public Expression visit(final BooleanExpression e) {
         final Expression[] operands = e.getOperands();
         Expression operand0 = visit(operands[0]);
         Expression operand1 = visit(operands[1]);
         return new BooleanExpression(operand0, e.getOperator(), operand1);
     }
 
-    public Expression visit(Expression expr) {
+    public Expression visit(final Expression expr) {
         Expression result;
         if (expr instanceof DocumentSorter) {
             result = visit((DocumentSorter) expr);

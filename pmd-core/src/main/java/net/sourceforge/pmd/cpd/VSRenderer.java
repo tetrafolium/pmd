@@ -15,7 +15,7 @@ import net.sourceforge.pmd.cpd.renderer.CPDRenderer;
 public class VSRenderer implements Renderer, CPDRenderer {
 
     @Override
-    public String render(Iterator<Match> matches) {
+    public String render(final Iterator<Match> matches) {
         StringWriter writer = new StringWriter(300);
         try {
             render(matches, writer);
@@ -26,7 +26,7 @@ public class VSRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public void render(Iterator<Match> matches, Writer writer) throws IOException {
+    public void render(final Iterator<Match> matches, final Writer writer) throws IOException {
         for (Match match; matches.hasNext();) {
             match = matches.next();
             Mark mark;

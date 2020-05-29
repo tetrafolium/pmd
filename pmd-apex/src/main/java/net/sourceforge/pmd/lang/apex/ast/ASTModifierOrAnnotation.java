@@ -12,12 +12,12 @@ public class ASTModifierOrAnnotation extends AbstractApexNode<ModifierOrAnnotati
 
     @Deprecated
     @InternalApi
-    public ASTModifierOrAnnotation(ModifierOrAnnotation modifierOrAnnotation) {
+    public ASTModifierOrAnnotation(final ModifierOrAnnotation modifierOrAnnotation) {
         super(modifierOrAnnotation);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

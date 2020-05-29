@@ -43,7 +43,7 @@ public class GodClassRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (!MetricsUtil.supportsAll(node, WMC, TCC, ATFD)) {
             return super.visit(node, data);
         }

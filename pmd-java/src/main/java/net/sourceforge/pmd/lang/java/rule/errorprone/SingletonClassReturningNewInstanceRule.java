@@ -21,7 +21,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class SingletonClassReturningNewInstanceRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
 
         boolean violation = false;
         String localVarName = null;
@@ -89,7 +89,7 @@ public class SingletonClassReturningNewInstanceRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private String getReturnVariableName(ASTMethodDeclaration node) {
+    private String getReturnVariableName(final ASTMethodDeclaration node) {
 
         List<ASTReturnStatement> rsl = node.findDescendantsOfType(ASTReturnStatement.class);
         ASTReturnStatement rs = rsl.get(0);
@@ -108,7 +108,7 @@ public class SingletonClassReturningNewInstanceRule extends AbstractJavaRule {
 
     }
 
-    private String getNameFromPrimaryPrefix(ASTPrimaryPrefix pp) {
+    private String getNameFromPrimaryPrefix(final ASTPrimaryPrefix pp) {
         if (pp.getNumChildren() == 1 && pp.getChild(0) instanceof ASTName) {
             return ((ASTName) pp.getChild(0)).getImage();
         }

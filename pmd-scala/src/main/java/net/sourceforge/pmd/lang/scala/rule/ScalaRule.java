@@ -176,7 +176,7 @@ public class ScalaRule extends AbstractRule implements ScalaParserVisitor<RuleCo
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Node node : nodes) {
             if (node instanceof ASTSource) {
                 visit((ASTSource) node, ctx);
@@ -185,7 +185,7 @@ public class ScalaRule extends AbstractRule implements ScalaParserVisitor<RuleCo
     }
 
     @Override
-    public RuleContext visit(ScalaNode<?> node, RuleContext data) {
+    public RuleContext visit(final ScalaNode<?> node, final RuleContext data) {
         for (ScalaNode<?> child : node.children()) {
             child.accept(this, data);
         }
@@ -193,637 +193,637 @@ public class ScalaRule extends AbstractRule implements ScalaParserVisitor<RuleCo
     }
 
     @Override
-    public RuleContext visit(ASTSource node, RuleContext data) {
+    public RuleContext visit(final ASTSource node, final RuleContext data) {
         return visit((ScalaNode<Source>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTCase node, RuleContext data) {
+    public RuleContext visit(final ASTCase node, final RuleContext data) {
         return visit((ScalaNode<Case>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTCtorPrimary node, RuleContext data) {
+    public RuleContext visit(final ASTCtorPrimary node, final RuleContext data) {
         return visit((ScalaNode<Ctor.Primary>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTCtorSecondary node, RuleContext data) {
+    public RuleContext visit(final ASTCtorSecondary node, final RuleContext data) {
         return visit((ScalaNode<Ctor.Secondary>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDeclDef node, RuleContext data) {
+    public RuleContext visit(final ASTDeclDef node, final RuleContext data) {
         return visit((ScalaNode<Decl.Def>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDeclType node, RuleContext data) {
+    public RuleContext visit(final ASTDeclType node, final RuleContext data) {
         return visit((ScalaNode<Decl.Type>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDeclVal node, RuleContext data) {
+    public RuleContext visit(final ASTDeclVal node, final RuleContext data) {
         return visit((ScalaNode<Decl.Val>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDeclVar node, RuleContext data) {
+    public RuleContext visit(final ASTDeclVar node, final RuleContext data) {
         return visit((ScalaNode<Decl.Var>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnClass node, RuleContext data) {
+    public RuleContext visit(final ASTDefnClass node, final RuleContext data) {
         return visit((ScalaNode<Defn.Class>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnDef node, RuleContext data) {
+    public RuleContext visit(final ASTDefnDef node, final RuleContext data) {
         return visit((ScalaNode<Defn.Def>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnMacro node, RuleContext data) {
+    public RuleContext visit(final ASTDefnMacro node, final RuleContext data) {
         return visit((ScalaNode<Defn.Macro>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnObject node, RuleContext data) {
+    public RuleContext visit(final ASTDefnObject node, final RuleContext data) {
         return visit((ScalaNode<Defn.Object>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnTrait node, RuleContext data) {
+    public RuleContext visit(final ASTDefnTrait node, final RuleContext data) {
         return visit((ScalaNode<Defn.Trait>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnType node, RuleContext data) {
+    public RuleContext visit(final ASTDefnType node, final RuleContext data) {
         return visit((ScalaNode<Defn.Type>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnVal node, RuleContext data) {
+    public RuleContext visit(final ASTDefnVal node, final RuleContext data) {
         return visit((ScalaNode<Defn.Val>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTDefnVar node, RuleContext data) {
+    public RuleContext visit(final ASTDefnVar node, final RuleContext data) {
         return visit((ScalaNode<Defn.Var>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTEnumeratorGenerator node, RuleContext data) {
+    public RuleContext visit(final ASTEnumeratorGenerator node, final RuleContext data) {
         return visit((ScalaNode<Enumerator.Generator>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTEnumeratorGuard node, RuleContext data) {
+    public RuleContext visit(final ASTEnumeratorGuard node, final RuleContext data) {
         return visit((ScalaNode<Enumerator.Guard>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTEnumeratorVal node, RuleContext data) {
+    public RuleContext visit(final ASTEnumeratorVal node, final RuleContext data) {
         return visit((ScalaNode<Enumerator.Val>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImport node, RuleContext data) {
+    public RuleContext visit(final ASTImport node, final RuleContext data) {
         return visit((ScalaNode<Import>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImporteeName node, RuleContext data) {
+    public RuleContext visit(final ASTImporteeName node, final RuleContext data) {
         return visit((ScalaNode<Importee.Name>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImporteeRename node, RuleContext data) {
+    public RuleContext visit(final ASTImporteeRename node, final RuleContext data) {
         return visit((ScalaNode<Importee.Rename>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImporteeUnimport node, RuleContext data) {
+    public RuleContext visit(final ASTImporteeUnimport node, final RuleContext data) {
         return visit((ScalaNode<Importee.Unimport>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImporteeWildcard node, RuleContext data) {
+    public RuleContext visit(final ASTImporteeWildcard node, final RuleContext data) {
         return visit((ScalaNode<Importee.Wildcard>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTImporter node, RuleContext data) {
+    public RuleContext visit(final ASTImporter node, final RuleContext data) {
         return visit((ScalaNode<Importer>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTInit node, RuleContext data) {
+    public RuleContext visit(final ASTInit node, final RuleContext data) {
         return visit((ScalaNode<Init>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitBoolean node, RuleContext data) {
+    public RuleContext visit(final ASTLitBoolean node, final RuleContext data) {
         return visit((ScalaNode<Lit.Boolean>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitByte node, RuleContext data) {
+    public RuleContext visit(final ASTLitByte node, final RuleContext data) {
         return visit((ScalaNode<Lit.Byte>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitChar node, RuleContext data) {
+    public RuleContext visit(final ASTLitChar node, final RuleContext data) {
         return visit((ScalaNode<Lit.Char>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitDouble node, RuleContext data) {
+    public RuleContext visit(final ASTLitDouble node, final RuleContext data) {
         return visit((ScalaNode<Lit.Double>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitFloat node, RuleContext data) {
+    public RuleContext visit(final ASTLitFloat node, final RuleContext data) {
         return visit((ScalaNode<Lit.Float>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitInt node, RuleContext data) {
+    public RuleContext visit(final ASTLitInt node, final RuleContext data) {
         return visit((ScalaNode<Lit.Int>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitLong node, RuleContext data) {
+    public RuleContext visit(final ASTLitLong node, final RuleContext data) {
         return visit((ScalaNode<Lit.Long>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitNull node, RuleContext data) {
+    public RuleContext visit(final ASTLitNull node, final RuleContext data) {
         return visit((ScalaNode<Lit.Null>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitShort node, RuleContext data) {
+    public RuleContext visit(final ASTLitShort node, final RuleContext data) {
         return visit((ScalaNode<Lit.Short>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitString node, RuleContext data) {
+    public RuleContext visit(final ASTLitString node, final RuleContext data) {
         return visit((ScalaNode<Lit.String>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitSymbol node, RuleContext data) {
+    public RuleContext visit(final ASTLitSymbol node, final RuleContext data) {
         return visit((ScalaNode<Lit.Symbol>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTLitUnit node, RuleContext data) {
+    public RuleContext visit(final ASTLitUnit node, final RuleContext data) {
         return visit((ScalaNode<Lit.Unit>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModAbstract node, RuleContext data) {
+    public RuleContext visit(final ASTModAbstract node, final RuleContext data) {
         return visit((ScalaNode<Mod.Abstract>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModAnnot node, RuleContext data) {
+    public RuleContext visit(final ASTModAnnot node, final RuleContext data) {
         return visit((ScalaNode<Mod.Annot>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModCase node, RuleContext data) {
+    public RuleContext visit(final ASTModCase node, final RuleContext data) {
         return visit((ScalaNode<Mod.Case>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModContravariant node, RuleContext data) {
+    public RuleContext visit(final ASTModContravariant node, final RuleContext data) {
         return visit((ScalaNode<Mod.Contravariant>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModCovariant node, RuleContext data) {
+    public RuleContext visit(final ASTModCovariant node, final RuleContext data) {
         return visit((ScalaNode<Mod.Covariant>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModFinal node, RuleContext data) {
+    public RuleContext visit(final ASTModFinal node, final RuleContext data) {
         return visit((ScalaNode<Mod.Final>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModImplicit node, RuleContext data) {
+    public RuleContext visit(final ASTModImplicit node, final RuleContext data) {
         return visit((ScalaNode<Mod.Implicit>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModInline node, RuleContext data) {
+    public RuleContext visit(final ASTModInline node, final RuleContext data) {
         return visit((ScalaNode<Mod.Inline>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModLazy node, RuleContext data) {
+    public RuleContext visit(final ASTModLazy node, final RuleContext data) {
         return visit((ScalaNode<Mod.Lazy>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModOverride node, RuleContext data) {
+    public RuleContext visit(final ASTModOverride node, final RuleContext data) {
         return visit((ScalaNode<Mod.Override>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModPrivate node, RuleContext data) {
+    public RuleContext visit(final ASTModPrivate node, final RuleContext data) {
         return visit((ScalaNode<Mod.Private>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModProtected node, RuleContext data) {
+    public RuleContext visit(final ASTModProtected node, final RuleContext data) {
         return visit((ScalaNode<Mod.Protected>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModSealed node, RuleContext data) {
+    public RuleContext visit(final ASTModSealed node, final RuleContext data) {
         return visit((ScalaNode<Mod.Sealed>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModValParam node, RuleContext data) {
+    public RuleContext visit(final ASTModValParam node, final RuleContext data) {
         return visit((ScalaNode<Mod.ValParam>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTModVarParam node, RuleContext data) {
+    public RuleContext visit(final ASTModVarParam node, final RuleContext data) {
         return visit((ScalaNode<Mod.VarParam>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTNameAnonymous node, RuleContext data) {
+    public RuleContext visit(final ASTNameAnonymous node, final RuleContext data) {
         return visit((ScalaNode<Name.Anonymous>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTNameIndeterminate node, RuleContext data) {
+    public RuleContext visit(final ASTNameIndeterminate node, final RuleContext data) {
         return visit((ScalaNode<Name.Indeterminate>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatAlternative node, RuleContext data) {
+    public RuleContext visit(final ASTPatAlternative node, final RuleContext data) {
         return visit((ScalaNode<Pat.Alternative>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatBind node, RuleContext data) {
+    public RuleContext visit(final ASTPatBind node, final RuleContext data) {
         return visit((ScalaNode<Pat.Bind>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatExtract node, RuleContext data) {
+    public RuleContext visit(final ASTPatExtract node, final RuleContext data) {
         return visit((ScalaNode<Pat.Extract>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatExtractInfix node, RuleContext data) {
+    public RuleContext visit(final ASTPatExtractInfix node, final RuleContext data) {
         return visit((ScalaNode<Pat.ExtractInfix>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatInterpolate node, RuleContext data) {
+    public RuleContext visit(final ASTPatInterpolate node, final RuleContext data) {
         return visit((ScalaNode<Pat.Interpolate>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatSeqWildcard node, RuleContext data) {
+    public RuleContext visit(final ASTPatSeqWildcard node, final RuleContext data) {
         return visit((ScalaNode<Pat.SeqWildcard>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatTuple node, RuleContext data) {
+    public RuleContext visit(final ASTPatTuple node, final RuleContext data) {
         return visit((ScalaNode<Pat.Tuple>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatTyped node, RuleContext data) {
+    public RuleContext visit(final ASTPatTyped node, final RuleContext data) {
         return visit((ScalaNode<Pat.Typed>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatVar node, RuleContext data) {
+    public RuleContext visit(final ASTPatVar node, final RuleContext data) {
         return visit((ScalaNode<Pat.Var>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatWildcard node, RuleContext data) {
+    public RuleContext visit(final ASTPatWildcard node, final RuleContext data) {
         return visit((ScalaNode<Pat.Wildcard>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPatXml node, RuleContext data) {
+    public RuleContext visit(final ASTPatXml node, final RuleContext data) {
         return visit((ScalaNode<Pat.Xml>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPkg node, RuleContext data) {
+    public RuleContext visit(final ASTPkg node, final RuleContext data) {
         return visit((ScalaNode<Pkg>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTPkgObject node, RuleContext data) {
+    public RuleContext visit(final ASTPkgObject node, final RuleContext data) {
         return visit((ScalaNode<Pkg.Object>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTQuasi node, RuleContext data) {
+    public RuleContext visit(final ASTQuasi node, final RuleContext data) {
         return visit((ScalaNode<Quasi>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTSelf node, RuleContext data) {
+    public RuleContext visit(final ASTSelf node, final RuleContext data) {
         return visit((ScalaNode<Self>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTemplate node, RuleContext data) {
+    public RuleContext visit(final ASTTemplate node, final RuleContext data) {
         return visit((ScalaNode<Template>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermAnnotate node, RuleContext data) {
+    public RuleContext visit(final ASTTermAnnotate node, final RuleContext data) {
         return visit((ScalaNode<Term.Annotate>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermApply node, RuleContext data) {
+    public RuleContext visit(final ASTTermApply node, final RuleContext data) {
         return visit((ScalaNode<Term.Apply>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermApplyInfix node, RuleContext data) {
+    public RuleContext visit(final ASTTermApplyInfix node, final RuleContext data) {
         return visit((ScalaNode<Term.ApplyInfix>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermApplyType node, RuleContext data) {
+    public RuleContext visit(final ASTTermApplyType node, final RuleContext data) {
         return visit((ScalaNode<Term.ApplyType>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermApplyUnary node, RuleContext data) {
+    public RuleContext visit(final ASTTermApplyUnary node, final RuleContext data) {
         return visit((ScalaNode<Term.ApplyUnary>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermAscribe node, RuleContext data) {
+    public RuleContext visit(final ASTTermAscribe node, final RuleContext data) {
         return visit((ScalaNode<Term.Ascribe>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermAssign node, RuleContext data) {
+    public RuleContext visit(final ASTTermAssign node, final RuleContext data) {
         return visit((ScalaNode<Term.Assign>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermBlock node, RuleContext data) {
+    public RuleContext visit(final ASTTermBlock node, final RuleContext data) {
         return visit((ScalaNode<Term.Block>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermDo node, RuleContext data) {
+    public RuleContext visit(final ASTTermDo node, final RuleContext data) {
         return visit((ScalaNode<Term.Do>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermEta node, RuleContext data) {
+    public RuleContext visit(final ASTTermEta node, final RuleContext data) {
         return visit((ScalaNode<Term.Eta>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermFor node, RuleContext data) {
+    public RuleContext visit(final ASTTermFor node, final RuleContext data) {
         return visit((ScalaNode<Term.For>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermForYield node, RuleContext data) {
+    public RuleContext visit(final ASTTermForYield node, final RuleContext data) {
         return visit((ScalaNode<Term.ForYield>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermFunction node, RuleContext data) {
+    public RuleContext visit(final ASTTermFunction node, final RuleContext data) {
         return visit((ScalaNode<Term.Function>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermIf node, RuleContext data) {
+    public RuleContext visit(final ASTTermIf node, final RuleContext data) {
         return visit((ScalaNode<Term.If>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermInterpolate node, RuleContext data) {
+    public RuleContext visit(final ASTTermInterpolate node, final RuleContext data) {
         return visit((ScalaNode<Term.Interpolate>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermMatch node, RuleContext data) {
+    public RuleContext visit(final ASTTermMatch node, final RuleContext data) {
         return visit((ScalaNode<Term.Match>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermName node, RuleContext data) {
+    public RuleContext visit(final ASTTermName node, final RuleContext data) {
         return visit((ScalaNode<Term.Name>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermNewAnonymous node, RuleContext data) {
+    public RuleContext visit(final ASTTermNewAnonymous node, final RuleContext data) {
         return visit((ScalaNode<Term.NewAnonymous>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermNew node, RuleContext data) {
+    public RuleContext visit(final ASTTermNew node, final RuleContext data) {
         return visit((ScalaNode<Term.New>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermParam node, RuleContext data) {
+    public RuleContext visit(final ASTTermParam node, final RuleContext data) {
         return visit((ScalaNode<Term.Param>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermPartialFunction node, RuleContext data) {
+    public RuleContext visit(final ASTTermPartialFunction node, final RuleContext data) {
         return visit((ScalaNode<Term.PartialFunction>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermPlaceholder node, RuleContext data) {
+    public RuleContext visit(final ASTTermPlaceholder node, final RuleContext data) {
         return visit((ScalaNode<Term.Placeholder>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermRepeated node, RuleContext data) {
+    public RuleContext visit(final ASTTermRepeated node, final RuleContext data) {
         return visit((ScalaNode<Term.Repeated>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermReturn node, RuleContext data) {
+    public RuleContext visit(final ASTTermReturn node, final RuleContext data) {
         return visit((ScalaNode<Term.Return>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermSelect node, RuleContext data) {
+    public RuleContext visit(final ASTTermSelect node, final RuleContext data) {
         return visit((ScalaNode<Term.Select>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermSuper node, RuleContext data) {
+    public RuleContext visit(final ASTTermSuper node, final RuleContext data) {
         return visit((ScalaNode<Term.Super>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermThis node, RuleContext data) {
+    public RuleContext visit(final ASTTermThis node, final RuleContext data) {
         return visit((ScalaNode<Term.This>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermThrow node, RuleContext data) {
+    public RuleContext visit(final ASTTermThrow node, final RuleContext data) {
         return visit((ScalaNode<Term.Throw>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermTry node, RuleContext data) {
+    public RuleContext visit(final ASTTermTry node, final RuleContext data) {
         return visit((ScalaNode<Term.Try>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermTryWithHandler node, RuleContext data) {
+    public RuleContext visit(final ASTTermTryWithHandler node, final RuleContext data) {
         return visit((ScalaNode<Term.TryWithHandler>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermTuple node, RuleContext data) {
+    public RuleContext visit(final ASTTermTuple node, final RuleContext data) {
         return visit((ScalaNode<Term.Tuple>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermWhile node, RuleContext data) {
+    public RuleContext visit(final ASTTermWhile node, final RuleContext data) {
         return visit((ScalaNode<Term.While>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTermXml node, RuleContext data) {
+    public RuleContext visit(final ASTTermXml node, final RuleContext data) {
         return visit((ScalaNode<Term.Xml>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeAnd node, RuleContext data) {
+    public RuleContext visit(final ASTTypeAnd node, final RuleContext data) {
         return visit((ScalaNode<Type.And>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeAnnotate node, RuleContext data) {
+    public RuleContext visit(final ASTTypeAnnotate node, final RuleContext data) {
         return visit((ScalaNode<Type.Annotate>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeApply node, RuleContext data) {
+    public RuleContext visit(final ASTTypeApply node, final RuleContext data) {
         return visit((ScalaNode<Type.Apply>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeApplyInfix node, RuleContext data) {
+    public RuleContext visit(final ASTTypeApplyInfix node, final RuleContext data) {
         return visit((ScalaNode<Type.ApplyInfix>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeBounds node, RuleContext data) {
+    public RuleContext visit(final ASTTypeBounds node, final RuleContext data) {
         return visit((ScalaNode<Type.Bounds>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeByName node, RuleContext data) {
+    public RuleContext visit(final ASTTypeByName node, final RuleContext data) {
         return visit((ScalaNode<Type.ByName>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeExistential node, RuleContext data) {
+    public RuleContext visit(final ASTTypeExistential node, final RuleContext data) {
         return visit((ScalaNode<Type.Existential>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeFunction node, RuleContext data) {
+    public RuleContext visit(final ASTTypeFunction node, final RuleContext data) {
         return visit((ScalaNode<Type.Function>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeImplicitFunction node, RuleContext data) {
+    public RuleContext visit(final ASTTypeImplicitFunction node, final RuleContext data) {
         return visit((ScalaNode<Type.ImplicitFunction>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeLambda node, RuleContext data) {
+    public RuleContext visit(final ASTTypeLambda node, final RuleContext data) {
         return visit((ScalaNode<Type.Lambda>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeMethod node, RuleContext data) {
+    public RuleContext visit(final ASTTypeMethod node, final RuleContext data) {
         return visit((ScalaNode<Type.Method>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeName node, RuleContext data) {
+    public RuleContext visit(final ASTTypeName node, final RuleContext data) {
         return visit((ScalaNode<Type.Name>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeOr node, RuleContext data) {
+    public RuleContext visit(final ASTTypeOr node, final RuleContext data) {
         return visit((ScalaNode<Type.Or>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeParam node, RuleContext data) {
+    public RuleContext visit(final ASTTypeParam node, final RuleContext data) {
         return visit((ScalaNode<Type.Param>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypePlaceholder node, RuleContext data) {
+    public RuleContext visit(final ASTTypePlaceholder node, final RuleContext data) {
         return visit((ScalaNode<Type.Placeholder>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeProject node, RuleContext data) {
+    public RuleContext visit(final ASTTypeProject node, final RuleContext data) {
         return visit((ScalaNode<Type.Project>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeRefine node, RuleContext data) {
+    public RuleContext visit(final ASTTypeRefine node, final RuleContext data) {
         return visit((ScalaNode<Type.Refine>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeRepeated node, RuleContext data) {
+    public RuleContext visit(final ASTTypeRepeated node, final RuleContext data) {
         return visit((ScalaNode<Type.Repeated>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeSelect node, RuleContext data) {
+    public RuleContext visit(final ASTTypeSelect node, final RuleContext data) {
         return visit((ScalaNode<Type.Select>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeSingleton node, RuleContext data) {
+    public RuleContext visit(final ASTTypeSingleton node, final RuleContext data) {
         return visit((ScalaNode<Type.Singleton>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeTuple node, RuleContext data) {
+    public RuleContext visit(final ASTTypeTuple node, final RuleContext data) {
         return visit((ScalaNode<Type.Tuple>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeVar node, RuleContext data) {
+    public RuleContext visit(final ASTTypeVar node, final RuleContext data) {
         return visit((ScalaNode<Type.Var>) node, data);
     }
 
     @Override
-    public RuleContext visit(ASTTypeWith node, RuleContext data) {
+    public RuleContext visit(final ASTTypeWith node, final RuleContext data) {
         return visit((ScalaNode<Type.With>) node, data);
     }
 }

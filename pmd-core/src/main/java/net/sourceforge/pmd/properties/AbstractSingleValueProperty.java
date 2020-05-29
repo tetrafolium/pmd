@@ -33,8 +33,8 @@ import net.sourceforge.pmd.Rule;
      *
      * @throws IllegalArgumentException If name or description are empty, or UI order is negative.
      */
-    protected AbstractSingleValueProperty(String theName, String theDescription, T theDefault,
-                                          float theUIOrder, boolean isDefinedExternally) {
+    protected AbstractSingleValueProperty(final String theName, final String theDescription, final T theDefault,
+                                          final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theUIOrder, isDefinedExternally);
 
         defaultValue = theDefault;
@@ -54,7 +54,7 @@ import net.sourceforge.pmd.Rule;
 
 
     @Override
-    public String asDelimitedString(T value) {
+    public String asDelimitedString(final T value) {
         return asString(value);
     }
 
@@ -66,20 +66,20 @@ import net.sourceforge.pmd.Rule;
      *
      * @return A string representation of the value
      */
-    protected String asString(T value) {
+    protected String asString(final T value) {
         return value == null ? "" : value.toString();
     }
 
 
     @Override
-    public String propertyErrorFor(Rule rule) {
+    public String propertyErrorFor(final Rule rule) {
         T realValue = rule.getProperty(this);
         return realValue == null ? null : errorFor(realValue);
     }
 
 
     @Override
-    public String errorFor(T value) {
+    public String errorFor(final T value) {
         String typeError = typeErrorFor(value);
         if (typeError != null) {
             return typeError;
@@ -88,7 +88,7 @@ import net.sourceforge.pmd.Rule;
     }
 
 
-    private String typeErrorFor(T value) {
+    private String typeErrorFor(final T value) {
         if (value != null && !type().isAssignableFrom(value.getClass())) {
             return value + " is not an instance of " + type();
         }
@@ -103,7 +103,7 @@ import net.sourceforge.pmd.Rule;
      *
      * @return A diagnostic error message, or null if there's no problem
      */
-    protected String valueErrorFor(T value) {
+    protected String valueErrorFor(final T value) {
         return value != null || defaultHasNullValue() ? null : "missing value";
     }
 
@@ -125,7 +125,7 @@ import net.sourceforge.pmd.Rule;
 
 
     @Override
-    public final T valueFrom(String valueString) throws IllegalArgumentException {
+    public final T valueFrom(final String valueString) throws IllegalArgumentException {
         return createFrom(valueString);
     }
 

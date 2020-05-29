@@ -17,7 +17,7 @@ public abstract class AbstractRuleViolationFactory implements RuleViolationFacto
 
     private static final Object[] NO_ARGS = new Object[0];
 
-    private String cleanup(String message, Object[] args) {
+    private String cleanup(final String message, final Object[] args) {
 
         if (message != null) {
             // Escape PMD specific variable message format, specifically the {
@@ -30,7 +30,7 @@ public abstract class AbstractRuleViolationFactory implements RuleViolationFacto
     }
 
     @Override
-    public void addViolation(RuleContext ruleContext, Rule rule, Node node, String message, Object[] args) {
+    public void addViolation(final RuleContext ruleContext, final Rule rule, final Node node, final String message, final Object[] args) {
 
         String formattedMessage = cleanup(message, args);
 
@@ -38,8 +38,8 @@ public abstract class AbstractRuleViolationFactory implements RuleViolationFacto
     }
 
     @Override
-    public void addViolation(RuleContext ruleContext, Rule rule, Node node, String message, int beginLine, int endLine,
-            Object[] args) {
+    public void addViolation(final RuleContext ruleContext, final Rule rule, final Node node, final String message, final int beginLine, final int endLine,
+            final Object[] args) {
 
         String formattedMessage = cleanup(message, args);
 

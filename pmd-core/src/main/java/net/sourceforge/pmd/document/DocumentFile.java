@@ -76,7 +76,7 @@ public class DocumentFile implements Document, Closeable {
     }
 
     @Override
-    public void insert(int beginLine, int beginColumn, final String textToInsert) {
+    public void insert(final int beginLine, final int beginColumn, final String textToInsert) {
         try {
             tryToInsertIntoFile(beginLine, beginColumn, textToInsert);
         } catch (final IOException e) {
@@ -84,7 +84,7 @@ public class DocumentFile implements Document, Closeable {
         }
     }
 
-    private void tryToInsertIntoFile(int beginLine, int beginColumn, final String textToInsert) throws IOException {
+    private void tryToInsertIntoFile(final int beginLine, final int beginColumn, final String textToInsert) throws IOException {
         final int offset = mapToOffset(beginLine, beginColumn);
         writeUntilOffsetReached(offset);
         writer.write(textToInsert);

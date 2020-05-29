@@ -31,7 +31,7 @@ final class ApexProjectMirror implements ApexSignatureMatcher {
     }
 
 
-    ApexClassStats getClassStats(ApexQualifiedName qname, boolean createIfNotFound) {
+    ApexClassStats getClassStats(final ApexQualifiedName qname, final boolean createIfNotFound) {
         ApexQualifiedName className = qname.getClassName();
         if (createIfNotFound && !classes.containsKey(className)) {
             classes.put(className, new ApexClassStats());
@@ -41,7 +41,7 @@ final class ApexProjectMirror implements ApexSignatureMatcher {
 
 
     @Override
-    public boolean hasMatchingSig(ApexQualifiedName qname, ApexOperationSigMask mask) {
+    public boolean hasMatchingSig(final ApexQualifiedName qname, final ApexOperationSigMask mask) {
         ApexClassStats classStats = getClassStats(qname, false);
 
         return classStats != null && classStats.hasMatchingSig(qname.getOperation(), mask);

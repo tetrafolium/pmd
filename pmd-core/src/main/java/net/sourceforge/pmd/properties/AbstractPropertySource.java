@@ -89,7 +89,7 @@ public abstract class AbstractPropertySource implements PropertySource {
 
 
     @Override
-    public void definePropertyDescriptor(PropertyDescriptor<?> propertyDescriptor) {
+    public void definePropertyDescriptor(final PropertyDescriptor<?> propertyDescriptor) {
         // Check to ensure the property does not already exist.
         if (getPropertyDescriptor(propertyDescriptor.name()) != null) {
             throw new IllegalArgumentException("There is already a PropertyDescriptor with name '"
@@ -105,7 +105,7 @@ public abstract class AbstractPropertySource implements PropertySource {
     protected abstract String getPropertySourceType();
 
     @Override
-    public PropertyDescriptor<?> getPropertyDescriptor(String name) {
+    public PropertyDescriptor<?> getPropertyDescriptor(final String name) {
         for (PropertyDescriptor<?> propertyDescriptor : propertyDescriptors) {
             if (name.equals(propertyDescriptor.name())) {
                 return propertyDescriptor;
@@ -116,7 +116,7 @@ public abstract class AbstractPropertySource implements PropertySource {
 
 
     @Override
-    public boolean hasDescriptor(PropertyDescriptor<?> descriptor) {
+    public boolean hasDescriptor(final PropertyDescriptor<?> descriptor) {
         return propertyDescriptors.contains(descriptor);
     }
 
@@ -134,7 +134,7 @@ public abstract class AbstractPropertySource implements PropertySource {
 
 
     @Override
-    public <T> T getProperty(PropertyDescriptor<T> propertyDescriptor) {
+    public <T> T getProperty(final PropertyDescriptor<T> propertyDescriptor) {
         checkValidPropertyDescriptor(propertyDescriptor);
         T result = propertyDescriptor.defaultValue();
         if (propertyValuesByDescriptor.containsKey(propertyDescriptor)) {
@@ -147,13 +147,13 @@ public abstract class AbstractPropertySource implements PropertySource {
 
 
     @Override
-    public boolean isPropertyOverridden(PropertyDescriptor<?> propertyDescriptor) {
+    public boolean isPropertyOverridden(final PropertyDescriptor<?> propertyDescriptor) {
         return propertyValuesByDescriptor.containsKey(propertyDescriptor);
     }
 
 
     @Override
-    public <T> void setProperty(PropertyDescriptor<T> propertyDescriptor, T value) {
+    public <T> void setProperty(final PropertyDescriptor<T> propertyDescriptor, final T value) {
         checkValidPropertyDescriptor(propertyDescriptor);
         if (value instanceof List) {
             propertyValuesByDescriptor.put(propertyDescriptor, Collections.unmodifiableList((List) value));
@@ -165,7 +165,7 @@ public abstract class AbstractPropertySource implements PropertySource {
 
     @Override
     @Deprecated
-    public <V> void setProperty(MultiValuePropertyDescriptor<V> propertyDescriptor, V... values) {
+    public <V> void setProperty(final MultiValuePropertyDescriptor<V> propertyDescriptor, final V... values) {
         checkValidPropertyDescriptor(propertyDescriptor);
         propertyValuesByDescriptor.put(propertyDescriptor, Collections.unmodifiableList(Arrays.asList(values)));
     }
@@ -176,7 +176,7 @@ public abstract class AbstractPropertySource implements PropertySource {
      *
      * @param propertyDescriptor The property descriptor to check
      */
-    private void checkValidPropertyDescriptor(PropertyDescriptor<?> propertyDescriptor) {
+    private void checkValidPropertyDescriptor(final PropertyDescriptor<?> propertyDescriptor) {
         if (!hasDescriptor(propertyDescriptor)) {
             throw new IllegalArgumentException("Property descriptor not defined for " + getPropertySourceType() + " " + getName() + ": " + propertyDescriptor);
         }
@@ -231,7 +231,7 @@ public abstract class AbstractPropertySource implements PropertySource {
 
     @Override
     @Deprecated
-    public void useDefaultValueFor(PropertyDescriptor<?> desc) {
+    public void useDefaultValueFor(final PropertyDescriptor<?> desc) {
         propertyValuesByDescriptor.remove(desc);
     }
 
@@ -249,7 +249,7 @@ public abstract class AbstractPropertySource implements PropertySource {
     }
 
 
-    private <T> String errorForPropCapture(PropertyDescriptor<T> descriptor) {
+    private <T> String errorForPropCapture(final PropertyDescriptor<T> descriptor) {
         return descriptor.errorFor(getProperty(descriptor));
     }
 }

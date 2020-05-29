@@ -77,7 +77,7 @@ public final class NcssCountRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         methodReportLevel = getProperty(METHOD_REPORT_LEVEL_DESCRIPTOR);
         classReportLevel = getProperty(CLASS_REPORT_LEVEL_DESCRIPTOR);
         ncssOptions = MetricOptions.ofOptions(getProperty(NCSS_OPTIONS_DESCRIPTOR));
@@ -88,7 +88,7 @@ public final class NcssCountRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
 
         super.visit(node, data);
 
@@ -109,7 +109,7 @@ public final class NcssCountRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
 
         if (JavaOperationMetricKey.NCSS.supports((MethodLikeNode) node)) {
             int methodSize = (int) MetricsUtil.computeMetric(JavaOperationMetricKey.NCSS, node, ncssOptions);

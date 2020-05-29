@@ -12,12 +12,12 @@ public class ASTWhileLoopStatement extends AbstractApexNode<WhileLoopStatement> 
 
     @Deprecated
     @InternalApi
-    public ASTWhileLoopStatement(WhileLoopStatement whileLoopStatement) {
+    public ASTWhileLoopStatement(final WhileLoopStatement whileLoopStatement) {
         super(whileLoopStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

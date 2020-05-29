@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTXmlExpression extends AbstractEcmascriptNode<XmlExpression> {
     @Deprecated
     @InternalApi
-    public ASTXmlExpression(XmlExpression xmlExpression) {
+    public ASTXmlExpression(final XmlExpression xmlExpression) {
         super(xmlExpression);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

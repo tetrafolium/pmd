@@ -24,7 +24,7 @@ public final class AttributeToolkit {
      *            atribute which value should be formatted
      * @return formmated value
      */
-    public static String formatValueForXPath(Attribute attribute) {
+    public static String formatValueForXPath(final Attribute attribute) {
         return '\'' + attribute.getStringValue() + '\'';
     }
 
@@ -35,7 +35,7 @@ public final class AttributeToolkit {
      *            attribute to be formatted as predicate
      * @return predicate
      */
-    public static String constructPredicate(Attribute attribute) {
+    public static String constructPredicate(final Attribute attribute) {
         return "[@" + attribute.getName() + '=' + formatValueForXPath(attribute) + ']';
     }
 }

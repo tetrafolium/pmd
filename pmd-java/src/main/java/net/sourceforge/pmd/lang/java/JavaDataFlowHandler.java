@@ -20,7 +20,7 @@ import net.sourceforge.pmd.lang.java.dfa.JavaDataFlowNode;
 @Deprecated
 public class JavaDataFlowHandler implements DataFlowHandler {
     @Override
-    public DataFlowNode createDataFlowNode(List<DataFlowNode> dataFlow, Node node) {
+    public DataFlowNode createDataFlowNode(final List<DataFlowNode> dataFlow, final Node node) {
         return new JavaDataFlowNode(dataFlow, node);
     }
 

@@ -33,7 +33,7 @@ public class FormalParameterNamingConventionsRule extends AbstractNamingConventi
     }
 
     @Override
-    public Object visit(ASTParameter node, Object data) {
+    public Object visit(final ASTParameter node, final Object data) {
         // classes that extend Exception will contains methods that have parameters with null names
         if (node.getImage() == null) {
             return data;
@@ -49,7 +49,7 @@ public class FormalParameterNamingConventionsRule extends AbstractNamingConventi
     }
 
     @Override
-    protected String displayName(String name) {
+    protected String displayName(final String name) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(name);
     }
 }

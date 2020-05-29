@@ -49,13 +49,13 @@ public class AbstractLombokAwareRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         lombokImported = false;
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         ASTName name = node.getFirstChildOfType(ASTName.class);
         if (!lombokImported && name != null && name.getImage() != null & name.getImage().startsWith(LOMBOK_PACKAGE)) {
             lombokImported = true;
@@ -64,7 +64,7 @@ public class AbstractLombokAwareRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         boolean oldValue = classHasLombokAnnotation;
         classHasLombokAnnotation = hasLombokAnnotation(node);
         Object result = super.visit(node, data);
@@ -73,7 +73,7 @@ public class AbstractLombokAwareRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         boolean oldValue = classHasLombokAnnotation;
         classHasLombokAnnotation = hasLombokAnnotation(node);
         Object result = super.visit(node, data);
@@ -103,7 +103,7 @@ public class AbstractLombokAwareRule extends AbstractIgnoredAnnotationRule {
      * @return <code>true</code> if a lombok annotation has been found
      */
     @Deprecated
-    protected boolean hasLombokAnnotation(Node node) {
+    protected boolean hasLombokAnnotation(final Node node) {
         boolean result = false;
         Node parent = node.getParent();
         List<ASTAnnotation> annotations = parent.findChildrenOfType(ASTAnnotation.class);
@@ -136,7 +136,7 @@ public class AbstractLombokAwareRule extends AbstractIgnoredAnnotationRule {
      *            the Annotatable node to check
      * @return <code>true</code> if a lombok annotation has been found
      */
-    protected boolean hasLombokAnnotation(Annotatable node) {
+    protected boolean hasLombokAnnotation(final Annotatable node) {
         return node.isAnyAnnotationPresent(LOMBOK_ANNOTATIONS);
     }
 }

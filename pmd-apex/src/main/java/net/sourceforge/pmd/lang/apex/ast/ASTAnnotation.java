@@ -17,12 +17,12 @@ public class ASTAnnotation extends AbstractApexNode<Annotation> {
 
     @Deprecated
     @InternalApi
-    public ASTAnnotation(Annotation annotation) {
+    public ASTAnnotation(final Annotation annotation) {
         super(annotation);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -31,7 +31,7 @@ public class ASTAnnotation extends AbstractApexNode<Annotation> {
         return node.getType().getApexName();
     }
 
-    public boolean suppresses(Rule rule) {
+    public boolean suppresses(final Rule rule) {
         final String ruleAnno = "PMD." + rule.getName();
 
         if (hasImageEqualTo("SuppressWarnings")) {

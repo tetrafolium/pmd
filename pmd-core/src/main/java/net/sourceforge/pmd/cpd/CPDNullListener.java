@@ -8,12 +8,12 @@ import java.io.File;
 
 public class CPDNullListener implements CPDListener {
     @Override
-    public void addedFile(int fileCount, File file) {
+    public void addedFile(final int fileCount, final File file) {
         // does nothing - override it if necessary
     }
 
     @Override
-    public void phaseUpdate(int phase) {
+    public void phaseUpdate(final int phase) {
         // does nothing - override it if necessary
     }
 }

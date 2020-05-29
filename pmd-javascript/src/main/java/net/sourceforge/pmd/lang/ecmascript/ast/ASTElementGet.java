@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTElementGet extends AbstractEcmascriptNode<ElementGet> {
     @Deprecated
     @InternalApi
-    public ASTElementGet(ElementGet elementGet) {
+    public ASTElementGet(final ElementGet elementGet) {
         super(elementGet);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

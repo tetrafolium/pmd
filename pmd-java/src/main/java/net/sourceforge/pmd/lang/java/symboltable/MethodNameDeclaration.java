@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.symboltable.AbstractNameDeclaration;
 
 public class MethodNameDeclaration extends AbstractNameDeclaration {
 
-    public MethodNameDeclaration(ASTMethodDeclarator node) {
+    public MethodNameDeclaration(final ASTMethodDeclarator node) {
         super(node);
     }
 
@@ -57,7 +57,7 @@ public class MethodNameDeclaration extends AbstractNameDeclaration {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof MethodNameDeclaration)) {
             return false;
         }

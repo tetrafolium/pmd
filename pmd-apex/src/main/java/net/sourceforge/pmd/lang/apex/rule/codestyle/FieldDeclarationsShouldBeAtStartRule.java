@@ -31,7 +31,7 @@ public class FieldDeclarationsShouldBeAtStartRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         // Unfortunately the parser re-orders the AST to put field declarations before method declarations
         // so we have to rely on line numbers / positions to work out where the first non-field declaration starts
         // so we can check if the fields are in acceptable places.
@@ -62,7 +62,7 @@ public class FieldDeclarationsShouldBeAtStartRule extends AbstractApexRule {
         return data;
     }
 
-    private List<ApexNode<?>> getMethodNodes(ASTUserClass node) {
+    private List<ApexNode<?>> getMethodNodes(final ASTUserClass node) {
         // The method <clinit> represents static initializer blocks, of which there can be many. The
         // <clinit> method doesn't contain location information, however the containing ASTBlockStatements do,
         // so we fetch them for that method only.

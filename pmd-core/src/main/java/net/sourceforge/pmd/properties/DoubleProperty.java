@@ -38,15 +38,15 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
      * @deprecated Use {@link PropertyFactory#doubleProperty(String)}.
      */
     @Deprecated
-    public DoubleProperty(String theName, String theDescription, String minStr, String maxStr, String defaultStr,
-                          float theUIOrder) {
+    public DoubleProperty(final String theName, final String theDescription, final String minStr, final String maxStr, final String defaultStr,
+                          final float theUIOrder) {
         this(theName, theDescription, doubleFrom(minStr), doubleFrom(maxStr), doubleFrom(defaultStr), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private DoubleProperty(String theName, String theDescription, Double min, Double max, Double theDefault,
-                           float theUIOrder, boolean isDefinedExternally) {
+    private DoubleProperty(final String theName, final String theDescription, final Double min, final Double max, final Double theDefault,
+                           final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -65,8 +65,8 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
      * @deprecated Use {@link PropertyFactory#doubleProperty(String)}.
      */
     @Deprecated
-    public DoubleProperty(String theName, String theDescription, Double min, Double max, Double theDefault,
-                          float theUIOrder) {
+    public DoubleProperty(final String theName, final String theDescription, final Double min, final Double max, final Double theDefault,
+                          final float theUIOrder) {
         this(theName, theDescription, min, max, theDefault, theUIOrder, false);
     }
 
@@ -78,7 +78,7 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
 
 
     @Override
-    protected Double createFrom(String value) {
+    protected Double createFrom(final String value) {
         return doubleFrom(value);
     }
 
@@ -90,7 +90,7 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
      *
      * @return Parsed Double
      */
-    private static Double doubleFrom(String numberString) {
+    private static Double doubleFrom(final String numberString) {
         return DOUBLE_PARSER.valueOf(numberString);
     }
 
@@ -98,7 +98,7 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Double, DoublePBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue.Numeric<Double, DoublePBuilder>(Double.class, ValueParserConstants.DOUBLE_PARSER) {
             @Override
-            protected DoublePBuilder newBuilder(String name) {
+            protected DoublePBuilder newBuilder(final String name) {
                 return new DoublePBuilder(name);
             }
         };
@@ -109,7 +109,7 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
      * @deprecated Use {@link PropertyFactory#doubleProperty(String)}.
      */
     @Deprecated
-    public static DoublePBuilder named(String name) {
+    public static DoublePBuilder named(final String name) {
         return new DoublePBuilder(name);
     }
 
@@ -119,7 +119,7 @@ public final class DoubleProperty extends AbstractNumericProperty<Double> {
      */
     @Deprecated
     public static final class DoublePBuilder extends SingleNumericPropertyBuilder<Double, DoublePBuilder> {
-        private DoublePBuilder(String name) {
+        private DoublePBuilder(final String name) {
             super(name);
         }
 

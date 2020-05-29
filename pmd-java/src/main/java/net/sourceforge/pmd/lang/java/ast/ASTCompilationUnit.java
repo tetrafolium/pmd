@@ -19,13 +19,13 @@ public class ASTCompilationUnit extends AbstractJavaTypeNode implements RootNode
 
     @InternalApi
     @Deprecated
-    public ASTCompilationUnit(int id) {
+    public ASTCompilationUnit(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTCompilationUnit(JavaParser p, int id) {
+    public ASTCompilationUnit(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -35,12 +35,12 @@ public class ASTCompilationUnit extends AbstractJavaTypeNode implements RootNode
 
     @InternalApi
     @Deprecated
-    public void setComments(List<Comment> comments) {
+    public void setComments(final List<Comment> comments) {
         this.comments = comments;
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -83,7 +83,7 @@ public class ASTCompilationUnit extends AbstractJavaTypeNode implements RootNode
 
     @InternalApi
     @Deprecated
-    public void setClassTypeResolver(ClassTypeResolver classTypeResolver) {
+    public void setClassTypeResolver(final ClassTypeResolver classTypeResolver) {
         this.classTypeResolver = classTypeResolver;
     }
 }

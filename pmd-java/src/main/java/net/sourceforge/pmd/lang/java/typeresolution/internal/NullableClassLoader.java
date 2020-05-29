@@ -25,13 +25,13 @@ public interface NullableClassLoader {
 
         private final ClassLoader classLoader;
 
-        private ClassLoaderWrapper(ClassLoader classLoader) {
+        private ClassLoaderWrapper(final ClassLoader classLoader) {
             assert classLoader != null : "Null classloader";
             this.classLoader = classLoader;
         }
 
         @Override
-        public Class<?> loadClassOrNull(String binaryName) {
+        public Class<?> loadClassOrNull(final String binaryName) {
             try {
                 return classLoader.loadClass(binaryName);
             } catch (ClassNotFoundException e) {
@@ -39,7 +39,7 @@ public interface NullableClassLoader {
             }
         }
 
-        public static ClassLoaderWrapper wrapNullable(ClassLoader classLoader) {
+        public static ClassLoaderWrapper wrapNullable(final ClassLoader classLoader) {
             if (classLoader == null) {
                 classLoader = ClassLoader.getSystemClassLoader();
             }

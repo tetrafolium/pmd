@@ -15,12 +15,12 @@ public class ASTDefnTrait extends AbstractScalaNode<Defn.Trait> {
 
     @Deprecated
     @InternalApi
-    public ASTDefnTrait(Defn.Trait scalaNode) {
+    public ASTDefnTrait(final Defn.Trait scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -7,11 +7,11 @@ package net.sourceforge.pmd.lang.java.symboltable;
 import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
 
 public class SymbolFacade {
-    public void initializeWith(ASTCompilationUnit node) {
+    public void initializeWith(final ASTCompilationUnit node) {
         initializeWith(SymbolFacade.class.getClassLoader(), node);
     }
 
-    public void initializeWith(ClassLoader classLoader, ASTCompilationUnit node) {
+    public void initializeWith(final ClassLoader classLoader, final ASTCompilationUnit node) {
         ScopeAndDeclarationFinder sc = new ScopeAndDeclarationFinder(classLoader);
         node.jjtAccept(sc, null);
         OccurrenceFinder of = new OccurrenceFinder();

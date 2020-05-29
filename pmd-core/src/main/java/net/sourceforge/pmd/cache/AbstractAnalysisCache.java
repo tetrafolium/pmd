@@ -161,7 +161,7 @@ public abstract class AbstractAnalysisCache implements AnalysisCache {
         ruleMapper.initialize(ruleSets);
     }
 
-    private static boolean isClassPathWildcard(String entry) {
+    private static boolean isClassPathWildcard(final String entry) {
         return entry.endsWith("/*") || entry.endsWith("\\*");
     }
 

@@ -22,7 +22,7 @@ abstract class BaseNodeInfo extends AbstractNodeInfo implements VirtualNode, Sib
 
     protected final ElementNode parent;
 
-    BaseNodeInfo(int nodeKind, NamePool namePool, String localName, ElementNode parent) {
+    BaseNodeInfo(final int nodeKind, final NamePool namePool, final String localName, final ElementNode parent) {
         this.nodeKind = nodeKind;
         this.namePool = namePool;
         this.fingerprint = namePool.allocate("", "", localName) & NamePool.FP_MASK;

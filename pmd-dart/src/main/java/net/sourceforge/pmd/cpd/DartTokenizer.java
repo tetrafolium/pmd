@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.dart.antlr4.Dart2Lexer;
 public class DartTokenizer extends AntlrTokenizer {
 
     @Override
-    protected AntlrTokenManager getLexerForSource(SourceCode sourceCode) {
+    protected AntlrTokenManager getLexerForSource(final SourceCode sourceCode) {
         CharStream charStream = AntlrTokenizer.getCharStreamFromSourceCode(sourceCode);
         return new AntlrTokenManager(new Dart2Lexer(charStream), sourceCode.getFileName());
     }

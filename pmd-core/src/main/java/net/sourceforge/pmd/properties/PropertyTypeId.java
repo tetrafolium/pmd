@@ -77,7 +77,7 @@ public enum PropertyTypeId {
     }
 
 
-    PropertyTypeId(String id, PropertyDescriptorExternalBuilder<?> factory, ValueParser<?> valueParser) {
+    PropertyTypeId(final String id, final PropertyDescriptorExternalBuilder<?> factory, final ValueParser<?> valueParser) {
         this.stringId = id;
         this.factory = factory;
         this.valueParser = valueParser;
@@ -195,7 +195,7 @@ public enum PropertyTypeId {
      * @deprecated See {@link PropertyDescriptorExternalBuilder}
      */
     @Deprecated
-    public static PropertyDescriptorExternalBuilder<?> factoryFor(String stringId) {
+    public static PropertyDescriptorExternalBuilder<?> factoryFor(final String stringId) {
         PropertyTypeId cons = CONSTANTS_BY_MNEMONIC.get(stringId);
         return cons == null ? null : cons.factory;
     }
@@ -208,7 +208,7 @@ public enum PropertyTypeId {
      *
      * @return A PropertyTypeId
      */
-    public static PropertyTypeId lookupMnemonic(String stringId) {
+    public static PropertyTypeId lookupMnemonic(final String stringId) {
         return CONSTANTS_BY_MNEMONIC.get(stringId);
     }
 
@@ -225,7 +225,7 @@ public enum PropertyTypeId {
      * @deprecated The signature will probably be altered in 7.0.0 but a similar functionality will be available
      */
     @Deprecated
-    public static String typeIdFor(Class<?> valueType, boolean multiValue) {
+    public static String typeIdFor(final Class<?> valueType, final boolean multiValue) {
         for (Map.Entry<String, PropertyTypeId> entry : CONSTANTS_BY_MNEMONIC.entrySet()) {
             if (entry.getValue().propertyValueType() == valueType
                 && entry.getValue().isPropertyMultivalue() == multiValue) {

@@ -10,7 +10,7 @@ package net.sourceforge.pmd.cpd;
 public class ReportException extends Exception {
     private static final long serialVersionUID = 6043174086675858209L;
 
-    public ReportException(Throwable cause) {
+    public ReportException(final Throwable cause) {
         super(cause);
     }
 }

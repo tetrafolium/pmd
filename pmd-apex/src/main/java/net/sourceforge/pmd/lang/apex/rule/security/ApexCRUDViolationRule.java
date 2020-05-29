@@ -70,16 +70,16 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     private static final String GET_DESCRIBE = "getDescribe";
 
     // ESAPI.accessController().isAuthorizedToView(Lead.sObject, fields)
-    private static final String[] ESAPI_ISAUTHORIZED_TO_VIEW = new String[] { "ESAPI", "accessController",
+    private static final String[] ESAPI_ISAUTHORIZED_TO_VIEW = new String[] {"ESAPI", "accessController",
         "isAuthorizedToView", };
-    private static final String[] ESAPI_ISAUTHORIZED_TO_CREATE = new String[] { "ESAPI", "accessController",
+    private static final String[] ESAPI_ISAUTHORIZED_TO_CREATE = new String[] {"ESAPI", "accessController",
         "isAuthorizedToCreate", };
-    private static final String[] ESAPI_ISAUTHORIZED_TO_UPDATE = new String[] { "ESAPI", "accessController",
+    private static final String[] ESAPI_ISAUTHORIZED_TO_UPDATE = new String[] {"ESAPI", "accessController",
         "isAuthorizedToUpdate", };
-    private static final String[] ESAPI_ISAUTHORIZED_TO_DELETE = new String[] { "ESAPI", "accessController",
+    private static final String[] ESAPI_ISAUTHORIZED_TO_DELETE = new String[] {"ESAPI", "accessController",
         "isAuthorizedToDelete", };
 
-    private static final String[] RESERVED_KEYS_FLS = new String[] { "Schema", S_OBJECT_TYPE, };
+    private static final String[] RESERVED_KEYS_FLS = new String[] {"Schema", S_OBJECT_TYPE, };
 
     private static final Pattern WITH_SECURITY_ENFORCED = Pattern.compile("(?is).*[^']\\s*WITH\\s+SECURITY_ENFORCED\\s*[^']*");
 
@@ -96,7 +96,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
         }
@@ -114,44 +114,44 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         collectCRUDMethodLevelChecks(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTDmlInsertStatement node, Object data) {
+    public Object visit(final ASTDmlInsertStatement node, final Object data) {
         checkForCRUD(node, data, IS_CREATEABLE);
         return data;
     }
 
     @Override
-    public Object visit(ASTDmlDeleteStatement node, Object data) {
+    public Object visit(final ASTDmlDeleteStatement node, final Object data) {
         checkForCRUD(node, data, IS_DELETABLE);
         return data;
     }
 
     @Override
-    public Object visit(ASTDmlUpdateStatement node, Object data) {
+    public Object visit(final ASTDmlUpdateStatement node, final Object data) {
         checkForCRUD(node, data, IS_UPDATEABLE);
         return data;
     }
 
     @Override
-    public Object visit(ASTDmlUpsertStatement node, Object data) {
+    public Object visit(final ASTDmlUpsertStatement node, final Object data) {
         checkForCRUD(node, data, IS_CREATEABLE);
         checkForCRUD(node, data, IS_UPDATEABLE);
         return data;
     }
 
     @Override
-    public Object visit(ASTDmlMergeStatement node, Object data) {
+    public Object visit(final ASTDmlMergeStatement node, final Object data) {
         checkForCRUD(node, data, IS_MERGEABLE);
         return data;
     }
 
     @Override
-    public Object visit(final ASTAssignmentExpression node, Object data) {
+    public Object visit(final ASTAssignmentExpression node, final Object data) {
         final ASTSoqlExpression soql = node.getFirstChildOfType(ASTSoqlExpression.class);
         if (soql != null) {
             checkForAccessibility(soql, data);
@@ -161,7 +161,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(final ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         String type = node.getType();
         addVariableToMapping(Helper.getFQVariableName(node), type);
 
@@ -175,7 +175,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(final ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         ASTFieldDeclarationStatements field = node.getFirstParentOfType(ASTFieldDeclarationStatements.class);
         if (field != null) {
             String namesString = field.getTypeName();
@@ -202,7 +202,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(final ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         final ASTSoqlExpression soql = node.getFirstChildOfType(ASTSoqlExpression.class);
         if (soql != null) {
             checkForAccessibility(soql, data);
@@ -235,7 +235,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(final ASTProperty node, Object data) {
+    public Object visit(final ASTProperty node, final Object data) {
         ASTField field = node.getFirstChildOfType(ASTField.class);
         if (field != null) {
             String fieldType = field.getType();
@@ -505,7 +505,7 @@ public class ApexCRUDViolationRule extends AbstractApexRule {
         }
     }
 
-    private void checkForAccessibility(final ASTSoqlExpression node, Object data) {
+    private void checkForAccessibility(final ASTSoqlExpression node, final Object data) {
         final boolean isCount = node.getCanonicalQuery().startsWith("SELECT COUNT()");
         final Set<String> typesFromSOQL = getTypesFromSOQLQuery(node);
 

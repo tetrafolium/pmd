@@ -34,7 +34,7 @@ public class ReaderDataSource extends AbstractDataSource {
     /**
      * Create the DataSource from the Reader.
      */
-    public ReaderDataSource(Reader reader, String dataSourceName) {
+    public ReaderDataSource(final Reader reader, final String dataSourceName) {
         this.reader = reader;
         this.dataSourceName = dataSourceName;
     }
@@ -67,7 +67,7 @@ public class ReaderDataSource extends AbstractDataSource {
      * @return
      */
     @Override
-    public String getNiceFileName(boolean shortNames, String inputFileName) {
+    public String getNiceFileName(final boolean shortNames, final String inputFileName) {
         return getDataSourceName();
     }
 
@@ -82,7 +82,7 @@ public class ReaderDataSource extends AbstractDataSource {
      * @param dataSourceName
      *            the dataSourceName to set
      */
-    public void setDataSourceName(String dataSourceName) {
+    public void setDataSourceName(final String dataSourceName) {
         this.dataSourceName = dataSourceName;
     }
 

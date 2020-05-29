@@ -38,8 +38,8 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
      * @param legalPackageNames String[]
      * @param theUIOrder        float
      */
-    public MethodMultiProperty(String theName, String theDescription, Method[] theDefaults,
-                               String[] legalPackageNames, float theUIOrder) {
+    public MethodMultiProperty(final String theName, final String theDescription, final Method[] theDefaults,
+                               final String[] legalPackageNames, final float theUIOrder) {
         this(theName, theDescription, Arrays.asList(theDefaults), legalPackageNames, theUIOrder);
     }
 
@@ -55,15 +55,15 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
      *
      * @throws IllegalArgumentException
      */
-    public MethodMultiProperty(String theName, String theDescription, List<Method> theDefaults,
-                               String[] legalPackageNames, float theUIOrder) {
+    public MethodMultiProperty(final String theName, final String theDescription, final List<Method> theDefaults,
+                               final String[] legalPackageNames, final float theUIOrder) {
         this(theName, theDescription, theDefaults, legalPackageNames, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private MethodMultiProperty(String theName, String theDescription, List<Method> theDefaults,
-                                String[] legalPackageNames, float theUIOrder, boolean isDefinedExternally) {
+    private MethodMultiProperty(final String theName, final String theDescription, final List<Method> theDefaults,
+                                final String[] legalPackageNames, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefaults, theUIOrder, isDefinedExternally,
             new MethodPropertyModule(legalPackageNames, theDefaults));
     }
@@ -81,8 +81,8 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
      * @throws IllegalArgumentException
      * @deprecated will be removed in 7.O.O
      */
-    public MethodMultiProperty(String theName, String theDescription, String methodDefaults,
-                               String[] legalPackageNames, float theUIOrder) {
+    public MethodMultiProperty(final String theName, final String theDescription, final String methodDefaults,
+                               final String[] legalPackageNames, final float theUIOrder) {
         this(theName, theDescription,
             methodsFrom(methodDefaults),
             legalPackageNames, theUIOrder,
@@ -91,13 +91,13 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
 
 
     @Override
-    public String asString(Method value) {
+    public String asString(final Method value) {
         return MethodPropertyModule.asString(value);
     }
 
 
     @Override
-    protected Method createFrom(String toParse) {
+    protected Method createFrom(final String toParse) {
         return METHOD_PARSER.valueOf(toParse);
     }
 
@@ -109,12 +109,12 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
 
 
     @Override
-    public List<Method> valueFrom(String valueString) throws IllegalArgumentException {
+    public List<Method> valueFrom(final String valueString) throws IllegalArgumentException {
         return methodsFrom(valueString);
     }
 
 
-    private static List<Method> methodsFrom(String valueString) {
+    private static List<Method> methodsFrom(final String valueString) {
         return ValueParserConstants.parsePrimitives(valueString, MULTI_VALUE_DELIMITER, METHOD_PARSER);
     }
 
@@ -122,20 +122,20 @@ public final class MethodMultiProperty extends AbstractMultiPackagedProperty<Met
     static PropertyDescriptorBuilderConversionWrapper.MultiValue.Packaged<Method, MethodMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Packaged<Method, MethodMultiPBuilder>(Method.class, ValueParserConstants.METHOD_PARSER) {
             @Override
-            protected MethodMultiPBuilder newBuilder(String name) {
+            protected MethodMultiPBuilder newBuilder(final String name) {
                 return new MethodMultiPBuilder(name);
             }
         };
     }
 
 
-    public static MethodMultiPBuilder named(String name) {
+    public static MethodMultiPBuilder named(final String name) {
         return new MethodMultiPBuilder(name);
     }
 
 
     public static final class MethodMultiPBuilder extends MultiPackagedPropertyBuilder<Method, MethodMultiPBuilder> {
-        private MethodMultiPBuilder(String name) {
+        private MethodMultiPBuilder(final String name) {
             super(name);
         }
 

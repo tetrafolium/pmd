@@ -15,12 +15,12 @@ public class ASTTypeRefine extends AbstractScalaNode<Type.Refine> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeRefine(Type.Refine scalaNode) {
+    public ASTTypeRefine(final Type.Refine scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

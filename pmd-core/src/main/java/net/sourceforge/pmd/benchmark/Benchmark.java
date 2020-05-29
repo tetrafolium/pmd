@@ -35,7 +35,7 @@ public enum Benchmark {
     public final String name;
 
 
-    Benchmark(String theName) {
+    Benchmark(final String theName) {
         name = theName;
     }
 }

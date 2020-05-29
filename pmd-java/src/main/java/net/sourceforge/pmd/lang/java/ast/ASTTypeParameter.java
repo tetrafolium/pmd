@@ -23,14 +23,14 @@ public class ASTTypeParameter extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTTypeParameter(int id) {
+    public ASTTypeParameter(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTTypeParameter(JavaParser p, int id) {
+    public ASTTypeParameter(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -63,7 +63,7 @@ public class ASTTypeParameter extends AbstractJavaTypeNode {
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

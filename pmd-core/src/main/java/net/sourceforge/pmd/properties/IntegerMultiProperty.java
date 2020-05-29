@@ -39,15 +39,15 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
      * @deprecated Use {@link PropertyFactory#intListProperty(String)}
      */
     @Deprecated
-    public IntegerMultiProperty(String theName, String theDescription, Integer min, Integer max,
-                                Integer[] defaultValues, float theUIOrder) {
+    public IntegerMultiProperty(final String theName, final String theDescription, final Integer min, final Integer max,
+                                final Integer[] defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, Arrays.asList(defaultValues), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private IntegerMultiProperty(String theName, String theDescription, Integer min, Integer max,
-                                 List<Integer> defaultValues, float theUIOrder, boolean isDefinedExternally) {
+    private IntegerMultiProperty(final String theName, final String theDescription, final Integer min, final Integer max,
+                                 final List<Integer> defaultValues, final float theUIOrder, final boolean isDefinedExternally) {
 
         super(theName, theDescription, min, max, defaultValues, theUIOrder, isDefinedExternally);
     }
@@ -67,8 +67,8 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
      * @deprecated Use {@link PropertyFactory#intListProperty(String)}
      */
     @Deprecated
-    public IntegerMultiProperty(String theName, String theDescription, Integer min, Integer max,
-                                List<Integer> defaultValues, float theUIOrder) {
+    public IntegerMultiProperty(final String theName, final String theDescription, final Integer min, final Integer max,
+                                final List<Integer> defaultValues, final float theUIOrder) {
 
         this(theName, theDescription, min, max, defaultValues, theUIOrder, false);
     }
@@ -81,7 +81,7 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
 
 
     @Override
-    protected Integer createFrom(String toParse) {
+    protected Integer createFrom(final String toParse) {
         return Integer.valueOf(toParse);
     }
 
@@ -89,7 +89,7 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
     static PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Integer, IntegerMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Integer, IntegerMultiPBuilder>(Integer.class, ValueParserConstants.INTEGER_PARSER) {
             @Override
-            protected IntegerMultiPBuilder newBuilder(String name) {
+            protected IntegerMultiPBuilder newBuilder(final String name) {
                 return new IntegerMultiPBuilder(name);
             }
         };
@@ -100,7 +100,7 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
      * @deprecated Use {@link PropertyFactory#intListProperty(String)}
      */
     @Deprecated
-    public static IntegerMultiPBuilder named(String name) {
+    public static IntegerMultiPBuilder named(final String name) {
         return new IntegerMultiPBuilder(name);
     }
 
@@ -110,7 +110,7 @@ public final class IntegerMultiProperty extends AbstractMultiNumericProperty<Int
      */
     @Deprecated
     public static final class IntegerMultiPBuilder extends MultiNumericPropertyBuilder<Integer, IntegerMultiPBuilder> {
-        private IntegerMultiPBuilder(String name) {
+        private IntegerMultiPBuilder(final String name) {
             super(name);
         }
 

@@ -14,16 +14,16 @@ public class ASTSingleDefinitionImportClause extends AbstractModelicaImportClaus
     private ASTName importWhat;
     private String importedName;
 
-    ASTSingleDefinitionImportClause(int id) {
+    ASTSingleDefinitionImportClause(final int id) {
         super(id);
     }
 
-    ASTSingleDefinitionImportClause(ModelicaParser p, int id) {
+    ASTSingleDefinitionImportClause(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -36,12 +36,12 @@ public class ASTSingleDefinitionImportClause extends AbstractModelicaImportClaus
     }
 
     @Override
-    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(ResolutionState state, ModelicaScope scope) {
+    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(final ResolutionState state, final ModelicaScope scope) {
         return scope.safeResolveLexically(ModelicaDeclaration.class, state, importWhat.getCompositeName());
     }
 
     @Override
-    protected void fetchImportedClassesFromSource(ResolutionContext result, ModelicaDeclaration source, String simpleName) {
+    protected void fetchImportedClassesFromSource(final ResolutionContext result, final ModelicaDeclaration source, final String simpleName) {
         if (importedName.equals(simpleName)) {
             result.addCandidate(source);
         }

@@ -12,12 +12,12 @@ public class ASTNewSetLiteralExpression extends AbstractApexNode<NewSetLiteralEx
 
     @Deprecated
     @InternalApi
-    public ASTNewSetLiteralExpression(NewSetLiteralExpression newSetLiteralExpression) {
+    public ASTNewSetLiteralExpression(final NewSetLiteralExpression newSetLiteralExpression) {
         super(newSetLiteralExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

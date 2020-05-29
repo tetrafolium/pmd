@@ -5,16 +5,16 @@
 package net.sourceforge.pmd.lang.modelica.ast;
 
 public final class ASTWithinClause extends AbstractModelicaNode {
-    ASTWithinClause(int id) {
+    ASTWithinClause(final int id) {
         super(id);
     }
 
-    ASTWithinClause(ModelicaParser p, int id) {
+    ASTWithinClause(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

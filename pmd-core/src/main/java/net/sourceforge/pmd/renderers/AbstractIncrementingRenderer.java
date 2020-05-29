@@ -41,7 +41,7 @@ public abstract class AbstractIncrementingRenderer extends AbstractRenderer {
      */
     protected List<Report.SuppressedViolation> suppressed = new LinkedList<>();
 
-    public AbstractIncrementingRenderer(String name, String description) {
+    public AbstractIncrementingRenderer(final String name, final String description) {
         super(name, description);
     }
 
@@ -51,12 +51,12 @@ public abstract class AbstractIncrementingRenderer extends AbstractRenderer {
     }
 
     @Override
-    public void startFileAnalysis(DataSource dataSource) {
+    public void startFileAnalysis(final DataSource dataSource) {
         // does nothing - override if necessary
     }
 
     @Override
-    public void renderFileReport(Report report) throws IOException {
+    public void renderFileReport(final Report report) throws IOException {
         Iterator<RuleViolation> violations = report.iterator();
         if (violations.hasNext()) {
             renderFileViolations(violations);

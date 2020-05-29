@@ -25,20 +25,20 @@ public class ASTInclusiveOrExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTInclusiveOrExpression(int id) {
+    public ASTInclusiveOrExpression(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTInclusiveOrExpression(JavaParser p, int id) {
+    public ASTInclusiveOrExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

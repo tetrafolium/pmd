@@ -12,13 +12,13 @@ public class ASTAttribute extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public ASTAttribute(int id) {
+    public ASTAttribute(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTAttribute(VfParser p, int id) {
+    public ASTAttribute(final VfParser p, final int id) {
         super(p, id);
     }
 
@@ -28,7 +28,7 @@ public class ASTAttribute extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -60,7 +60,7 @@ public class ASTAttribute extends AbstractVFNode {
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

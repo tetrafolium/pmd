@@ -50,12 +50,12 @@ public class DummyLanguageModule extends BaseLanguageModule {
 
     public static class DummyRuleChainVisitor extends AbstractRuleChainVisitor {
         @Override
-        protected void visit(Rule rule, Node node, RuleContext ctx) {
+        protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
             rule.apply(Arrays.asList(node), ctx);
         }
 
         @Override
-        protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+        protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
             for (Node n : nodes) {
                 indexNode(n);
                 List<Node> childs = new ArrayList<>();
@@ -74,10 +74,10 @@ public class DummyLanguageModule extends BaseLanguageModule {
         }
 
         @Override
-        public Parser getParser(ParserOptions parserOptions) {
+        public Parser getParser(final ParserOptions parserOptions) {
             return new AbstractParser(parserOptions) {
                 @Override
-                public Node parse(String fileName, Reader source) throws ParseException {
+                public Node parse(final String fileName, final Reader source) throws ParseException {
                     DummyNode node = new DummyNode(1);
                     node.testingOnlySetBeginLine(1);
                     node.testingOnlySetBeginColumn(1);
@@ -96,7 +96,7 @@ public class DummyLanguageModule extends BaseLanguageModule {
                 }
 
                 @Override
-                protected TokenManager createTokenManager(Reader source) {
+                protected TokenManager createTokenManager(final Reader source) {
                     return null;
                 }
             };
@@ -105,13 +105,13 @@ public class DummyLanguageModule extends BaseLanguageModule {
 
     public static class RuleViolationFactory extends AbstractRuleViolationFactory {
         @Override
-        protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message) {
+        protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message) {
             return createRuleViolation(rule, ruleContext, node, message, 0, 0);
         }
 
         @Override
-        protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message,
-                int beginLine, int endLine) {
+        protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message,
+                final int beginLine, final int endLine) {
             ParametricRuleViolation<Node> rv = new ParametricRuleViolation<Node>(rule, ruleContext, node, message) {
                 @Override
                 public String getPackageName() {

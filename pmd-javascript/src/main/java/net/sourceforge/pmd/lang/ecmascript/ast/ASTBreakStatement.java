@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTBreakStatement extends AbstractEcmascriptNode<BreakStatement> {
     @Deprecated
     @InternalApi
-    public ASTBreakStatement(BreakStatement breakStatement) {
+    public ASTBreakStatement(final BreakStatement breakStatement) {
         super(breakStatement);
         super.setImage(breakStatement.getBreakLabel() != null ? breakStatement.getBreakLabel().getIdentifier() : null);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

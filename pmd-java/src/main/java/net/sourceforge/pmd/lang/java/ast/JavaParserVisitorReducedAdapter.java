@@ -12,58 +12,58 @@ package net.sourceforge.pmd.lang.java.ast;
 public class JavaParserVisitorReducedAdapter extends JavaParserVisitorAdapter {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
     @Override
-    public Object visit(ASTRecordDeclaration node, Object data) {
+    public Object visit(final ASTRecordDeclaration node, final Object data) {
         return visit((ASTAnyTypeDeclaration) node, data);
     }
 
 
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         return visit((ASTMethodOrConstructorDeclaration) node, data);
     }
 
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         return visit((ASTMethodOrConstructorDeclaration) node, data);
     }
 
 
-    public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
         return visit((MethodLikeNode) node, data);
     }
 
 
     @Override
-    public Object visit(ASTLambdaExpression node, Object data) {
+    public Object visit(final ASTLambdaExpression node, final Object data) {
         return visit((MethodLikeNode) node, data);
     }
 
 
-    public Object visit(MethodLikeNode node, Object data) {
+    public Object visit(final MethodLikeNode node, final Object data) {
         return visit((JavaNode) node, data);
     }
 

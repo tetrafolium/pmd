@@ -11,17 +11,17 @@ public class ASTOutOfLineConstraint extends net.sourceforge.pmd.lang.plsql.ast.A
 
     @Deprecated
     @InternalApi
-    public ASTOutOfLineConstraint(int id) {
+    public ASTOutOfLineConstraint(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTOutOfLineConstraint(PLSQLParser p, int id) {
+    public ASTOutOfLineConstraint(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setType(ConstraintType type) {
+    void setType(final ConstraintType type) {
         this.type = type;
     }
 
@@ -46,7 +46,7 @@ public class ASTOutOfLineConstraint extends net.sourceforge.pmd.lang.plsql.ast.A
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

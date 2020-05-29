@@ -21,16 +21,16 @@ public abstract class JavaTypeDefinition implements TypeDefinition {
 
     private final TypeDefinitionType definitionType;
 
-    protected JavaTypeDefinition(TypeDefinitionType definitionType) {
+    protected JavaTypeDefinition(final TypeDefinitionType definitionType) {
         this.definitionType = definitionType;
     }
 
-    public static JavaTypeDefinition forClass(TypeDefinitionType type, Class<?> clazz,
-                                              JavaTypeDefinition... boundGenerics) {
+    public static JavaTypeDefinition forClass(final TypeDefinitionType type, final Class<?> clazz,
+                                              final JavaTypeDefinition... boundGenerics) {
         return forClass(type, forClass(clazz, boundGenerics));
     }
 
-    public static JavaTypeDefinition forClass(TypeDefinitionType type, JavaTypeDefinition... intersectionTypes) {
+    public static JavaTypeDefinition forClass(final TypeDefinitionType type, final JavaTypeDefinition... intersectionTypes) {
         switch (type) {
         case EXACT:
             if (intersectionTypes.length == 1) {
@@ -52,7 +52,7 @@ public abstract class JavaTypeDefinition implements TypeDefinition {
         }
     }
 
-    public static JavaTypeDefinition forClass(final Class<?> clazz, JavaTypeDefinition... boundGenerics) {
+    public static JavaTypeDefinition forClass(final Class<?> clazz, final JavaTypeDefinition... boundGenerics) {
         if (clazz == null) {
             return null;
         }
@@ -88,7 +88,7 @@ public abstract class JavaTypeDefinition implements TypeDefinition {
 
     public abstract boolean isGeneric();
 
-    public static int getGenericTypeIndex(TypeVariable<?>[] typeParameters, final String parameterName) {
+    public static int getGenericTypeIndex(final TypeVariable<?>[] typeParameters, final String parameterName) {
         for (int i = 0; i < typeParameters.length; i++) {
             if (typeParameters[i].getName().equals(parameterName)) {
                 return i;

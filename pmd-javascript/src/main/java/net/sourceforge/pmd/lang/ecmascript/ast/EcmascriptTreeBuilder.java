@@ -140,13 +140,13 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
 
     private final SourceCodePositioner sourceCodePositioner;
 
-    public EcmascriptTreeBuilder(String sourceCode, List<ParseProblem> parseProblems) {
+    public EcmascriptTreeBuilder(final String sourceCode, final List<ParseProblem> parseProblems) {
         this.sourceCodePositioner = new SourceCodePositioner(sourceCode);
         this.parseProblems = parseProblems;
     }
 
-    private static <T extends AstNode> void register(Class<T> nodeType,
-            Class<? extends AbstractEcmascriptNode<T>> nodeAdapterType) {
+    private static <T extends AstNode> void register(final Class<T> nodeType,
+            final Class<? extends AbstractEcmascriptNode<T>> nodeAdapterType) {
         try {
             NODE_TYPE_TO_NODE_ADAPTER_TYPE.put(nodeType, nodeAdapterType.getConstructor(nodeType));
         } catch (SecurityException | NoSuchMethodException e) {
@@ -154,7 +154,7 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
         }
     }
 
-    static <T extends AstNode> AbstractEcmascriptNode<T> createNodeAdapter(T node) {
+    static <T extends AstNode> AbstractEcmascriptNode<T> createNodeAdapter(final T node) {
         try {
             // the register function makes sure only AbstractEcmascriptNode<T> can be
             // added, where T is "T extends AstNode".
@@ -173,7 +173,7 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
         }
     }
 
-    public <T extends AstNode> EcmascriptNode<T> build(T astNode) {
+    public <T extends AstNode> EcmascriptNode<T> build(final T astNode) {
         EcmascriptNode<T> node = buildInternal(astNode);
 
         calculateLineNumbers(node);
@@ -186,7 +186,7 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
         return node;
     }
 
-    private <T extends AstNode> EcmascriptNode<T> buildInternal(T astNode) {
+    private <T extends AstNode> EcmascriptNode<T> buildInternal(final T astNode) {
         // Create a Node
         AbstractEcmascriptNode<T> node = createNodeAdapter(astNode);
 
@@ -210,7 +210,7 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
     }
 
     @Override
-    public boolean visit(AstNode node) {
+    public boolean visit(final AstNode node) {
         if (parents.peek() == node) {
             return true;
         } else {
@@ -219,7 +219,7 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
         }
     }
 
-    private void handleParseProblems(AbstractEcmascriptNode<? extends AstNode> node) {
+    private void handleParseProblems(final AbstractEcmascriptNode<? extends AstNode> node) {
         if (node instanceof TrailingCommaNode) {
             int nodeStart = node.node.getAbsolutePosition();
             int nodeEnd = nodeStart + node.node.getLength() - 1;
@@ -247,10 +247,10 @@ public final class EcmascriptTreeBuilder implements NodeVisitor {
         }
     }
 
-    private void calculateLineNumbers(EcmascriptNode<?> node) {
+    private void calculateLineNumbers(final EcmascriptNode<?> node) {
         EcmascriptParserVisitorAdapter visitor = new EcmascriptParserVisitorAdapter() {
             @Override
-            public Object visit(EcmascriptNode<?> node, Object data) {
+            public Object visit(final EcmascriptNode<?> node, final Object data) {
                 ((AbstractEcmascriptNode<?>) node).calculateLineNumbers(sourceCodePositioner);
                 return super.visit(node, data); // also visit the children
             }

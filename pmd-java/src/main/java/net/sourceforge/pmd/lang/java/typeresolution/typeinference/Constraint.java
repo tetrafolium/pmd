@@ -14,22 +14,22 @@ import net.sourceforge.pmd.lang.java.typeresolution.typedefinition.JavaTypeDefin
 @Deprecated
 @InternalApi
 public class Constraint extends BoundOrConstraint {
-    public Constraint(JavaTypeDefinition leftProperType, JavaTypeDefinition rightProperType, InferenceRuleType
+    public Constraint(final JavaTypeDefinition leftProperType, final JavaTypeDefinition rightProperType, final InferenceRuleType
             ruleType) {
         super(leftProperType, rightProperType, ruleType);
     }
 
-    public Constraint(JavaTypeDefinition leftProperType, Variable rightTypeVariable, InferenceRuleType
+    public Constraint(final JavaTypeDefinition leftProperType, final Variable rightTypeVariable, final InferenceRuleType
             ruleType) {
         super(leftProperType, rightTypeVariable, ruleType);
     }
 
-    public Constraint(Variable leftTypeVariable, JavaTypeDefinition rightProperType, InferenceRuleType
+    public Constraint(final Variable leftTypeVariable, final JavaTypeDefinition rightProperType, final InferenceRuleType
             ruleType) {
         super(leftTypeVariable, rightProperType, ruleType);
     }
 
-    public Constraint(Variable leftTypeVariable, Variable rightTypeVariable, InferenceRuleType
+    public Constraint(final Variable leftTypeVariable, final Variable rightTypeVariable, final InferenceRuleType
             ruleType) {
         super(leftTypeVariable, rightTypeVariable, ruleType);
     }

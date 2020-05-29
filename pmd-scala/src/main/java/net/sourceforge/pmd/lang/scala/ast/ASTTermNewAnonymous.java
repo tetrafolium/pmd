@@ -15,12 +15,12 @@ public class ASTTermNewAnonymous extends AbstractScalaNode<Term.NewAnonymous> {
 
     @Deprecated
     @InternalApi
-    public ASTTermNewAnonymous(Term.NewAnonymous scalaNode) {
+    public ASTTermNewAnonymous(final Term.NewAnonymous scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

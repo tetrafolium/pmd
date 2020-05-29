@@ -19,19 +19,19 @@ public class ASTTryStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTTryStatement(int id) {
+    public ASTTryStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTTryStatement(JavaParser p, int id) {
+    public ASTTryStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

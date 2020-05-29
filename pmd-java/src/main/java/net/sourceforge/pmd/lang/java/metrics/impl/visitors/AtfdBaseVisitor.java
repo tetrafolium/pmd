@@ -31,7 +31,7 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         if (isForeignAttributeOrMethod(node)) {
             if (isAttributeAccess(node)) {
                 ((MutableInt) data).increment();
@@ -43,18 +43,18 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
     }
 
 
-    private boolean isForeignGetterSetterCall(ASTPrimaryExpression node) {
+    private boolean isForeignGetterSetterCall(final ASTPrimaryExpression node) {
         String methodOrAttributeName = getMethodOrAttributeName(node);
         return isForeignGetterSetterCall(methodOrAttributeName);
     }
 
 
-    private boolean isForeignGetterSetterCall(String methodOrAttributeName) {
+    private boolean isForeignGetterSetterCall(final String methodOrAttributeName) {
         return methodOrAttributeName != null && StringUtils.startsWithAny(methodOrAttributeName, "get", "is", "set");
     }
 
 
-    private int countForeignGetterSetterCalls(ASTPrimaryExpression node) {
+    private int countForeignGetterSetterCalls(final ASTPrimaryExpression node) {
         if (!isForeignGetterSetterCall(node) || !isForeignAttributeOrMethod(node)) {
             return 0;
         }
@@ -75,7 +75,7 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
     }
 
 
-    private boolean isForeignAttributeOrMethod(ASTPrimaryExpression node) {
+    private boolean isForeignAttributeOrMethod(final ASTPrimaryExpression node) {
         boolean result;
         String nameImage = getNameImage(node);
 
@@ -93,7 +93,7 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
     }
 
 
-    private String getNameImage(ASTPrimaryExpression node) {
+    private String getNameImage(final ASTPrimaryExpression node) {
         ASTPrimaryPrefix prefix = node.getFirstDescendantOfType(ASTPrimaryPrefix.class);
         ASTName name = prefix.getFirstDescendantOfType(ASTName.class);
 
@@ -105,7 +105,7 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
     }
 
 
-    private String getMethodOrAttributeName(ASTPrimaryExpression node) {
+    private String getMethodOrAttributeName(final ASTPrimaryExpression node) {
         ASTPrimaryPrefix prefix = node.getFirstDescendantOfType(ASTPrimaryPrefix.class);
         ASTName name = prefix.getFirstDescendantOfType(ASTName.class);
 
@@ -122,12 +122,12 @@ public class AtfdBaseVisitor extends JavaParserVisitorAdapter {
     }
 
 
-    private String getMethodOrAttributeName(ASTPrimarySuffix node) {
+    private String getMethodOrAttributeName(final ASTPrimarySuffix node) {
         return node.getImage();
     }
 
 
-    private boolean isAttributeAccess(ASTPrimaryExpression node) {
+    private boolean isAttributeAccess(final ASTPrimaryExpression node) {
         return !node.hasDescendantOfType(ASTPrimarySuffix.class);
     }
 

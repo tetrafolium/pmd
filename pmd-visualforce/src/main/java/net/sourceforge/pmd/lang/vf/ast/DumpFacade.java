@@ -22,7 +22,7 @@ public class DumpFacade extends VfParserVisitorAdapter {
     private PrintWriter writer;
     private boolean recurse;
 
-    public void initializeWith(Writer writer, String prefix, boolean recurse, VfNode node) {
+    public void initializeWith(final Writer writer, final String prefix, final boolean recurse, final VfNode node) {
         this.writer = writer instanceof PrintWriter ? (PrintWriter) writer : new PrintWriter(writer);
         this.recurse = recurse;
         this.visit(node, prefix);
@@ -34,7 +34,7 @@ public class DumpFacade extends VfParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(VfNode node, Object data) {
+    public Object visit(final VfNode node, final Object data) {
         dump(node, (String) data);
         if (recurse) {
             return super.visit(node, data + " ");
@@ -43,7 +43,7 @@ public class DumpFacade extends VfParserVisitorAdapter {
         }
     }
 
-    private void dump(Node node, String prefix) {
+    private void dump(final Node node, final String prefix) {
         //
         // Dump format is generally composed of the following items...
         //

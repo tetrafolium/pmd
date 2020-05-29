@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTElExpression extends AbstractJspNode {
     @InternalApi
     @Deprecated
-    public ASTElExpression(int id) {
+    public ASTElExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTElExpression(JspParser p, int id) {
+    public ASTElExpression(final JspParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -14,13 +14,13 @@ public class ASTConstructorDeclaration extends AbstractMethodOrConstructorDeclar
 
     @InternalApi
     @Deprecated
-    public ASTConstructorDeclaration(int id) {
+    public ASTConstructorDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTConstructorDeclaration(JavaParser p, int id) {
+    public ASTConstructorDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -31,7 +31,7 @@ public class ASTConstructorDeclaration extends AbstractMethodOrConstructorDeclar
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

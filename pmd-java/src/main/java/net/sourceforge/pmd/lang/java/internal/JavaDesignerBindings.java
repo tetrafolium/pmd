@@ -30,7 +30,7 @@ public final class JavaDesignerBindings extends DefaultDesignerBindings {
     }
 
     @Override
-    public Attribute getMainAttribute(Node node) {
+    public Attribute getMainAttribute(final Node node) {
         if (node instanceof JavaNode) {
             Attribute attr = (Attribute) ((JavaNode) node).jjtAccept(MainAttrVisitor.INSTANCE, null);
             if (attr != null) {
@@ -43,7 +43,7 @@ public final class JavaDesignerBindings extends DefaultDesignerBindings {
     }
 
     @Override
-    public TreeIconId getIcon(Node node) {
+    public TreeIconId getIcon(final Node node) {
         if (node instanceof ASTFieldDeclaration) {
             return TreeIconId.FIELD;
         } else if (node instanceof ASTAnyTypeDeclaration) {
@@ -60,7 +60,7 @@ public final class JavaDesignerBindings extends DefaultDesignerBindings {
     }
 
     @Override
-    public Collection<AdditionalInfo> getAdditionalInfo(Node node) {
+    public Collection<AdditionalInfo> getAdditionalInfo(final Node node) {
         if (node instanceof TypeNode) {
             Class<?> type = ((TypeNode) node).getType();
             if (type != null) {
@@ -75,17 +75,17 @@ public final class JavaDesignerBindings extends DefaultDesignerBindings {
         private static final JavaParserVisitor INSTANCE = new MainAttrVisitor();
 
         @Override
-        public Object visit(JavaNode node, Object data) {
+        public Object visit(final JavaNode node, final Object data) {
             return null; // don't recurse
         }
 
         @Override
-        public Object visit(ASTAnyTypeDeclaration node, Object data) {
+        public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
             return new Attribute(node, "SimpleName", node.getSimpleName());
         }
 
         @Override
-        public Object visit(ASTMethodDeclaration node, Object data) {
+        public Object visit(final ASTMethodDeclaration node, final Object data) {
             return new Attribute(node, "Name", node.getName());
         }
     }

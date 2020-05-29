@@ -43,7 +43,7 @@ public class RegexStringFilter implements Filter<String> {
     protected Pattern pattern;
     protected String endsWith;
 
-    public RegexStringFilter(String regex) {
+    public RegexStringFilter(final String regex) {
         this.regex = regex;
         optimize();
     }
@@ -77,7 +77,7 @@ public class RegexStringFilter implements Filter<String> {
     }
 
     @Override
-    public boolean filter(String obj) {
+    public boolean filter(final String obj) {
         if (this.endsWith != null) {
             return obj.endsWith(this.endsWith);
         } else if (this.pattern != null) {

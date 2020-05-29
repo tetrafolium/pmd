@@ -60,7 +60,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
     private T defaultValue;
 
 
-    PropertyBuilder(String name) {
+    PropertyBuilder(final String name) {
 
         if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("Name must be provided");
@@ -71,7 +71,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
     }
 
 
-    void setDefinedExternally(boolean bool) {
+    void setDefinedExternally(final boolean bool) {
         this.isDefinedExternally = bool;
     }
 
@@ -117,7 +117,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
      * @throws IllegalArgumentException If the description is null or whitespace
      */
     @SuppressWarnings("unchecked")
-    public B desc(String desc) {
+    public B desc(final String desc) {
         if (StringUtils.isBlank(desc)) {
             throw new IllegalArgumentException("Description must be provided");
         }
@@ -147,7 +147,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
      * @see net.sourceforge.pmd.properties.constraints.NumericConstraints
      */
     @SuppressWarnings("unchecked")
-    public B require(PropertyConstraint<? super T> constraint) {
+    public B require(final PropertyConstraint<? super T> constraint) {
         validators.add(constraint);
         return (B) this;
     }
@@ -167,7 +167,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
      * @throws IllegalArgumentException If the argument is null
      */
     @SuppressWarnings("unchecked")
-    public B defaultValue(T val) {
+    public B defaultValue(final T val) {
         if (val == null) {
             throw new IllegalArgumentException("Property values may not be null.");
         }
@@ -206,7 +206,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
 
 
         // Class is not final but a package-private constructor restricts inheritance
-        BaseSinglePropertyBuilder(String name, ValueParser<T> parser, Class<T> type) {
+        BaseSinglePropertyBuilder(final String name, final ValueParser<T> parser, final Class<T> type) {
             super(name);
             this.parser = parser;
             this.type = type;
@@ -247,7 +247,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
 
 
         // TODO 7.0.0 this can be inlined
-        private <C extends Collection<T>> GenericCollectionPropertyBuilder<T, C> toCollection(Supplier<C> emptyCollSupplier) {
+        private <C extends Collection<T>> GenericCollectionPropertyBuilder<T, C> toCollection(final Supplier<C> emptyCollSupplier) {
             if (isDefaultValueSet()) {
                 throw new IllegalStateException("The default value is already set!");
             }
@@ -292,7 +292,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
     // Note: This type is used to fix the first type parameter for classes that don't need more API.
     public static final class GenericPropertyBuilder<T> extends BaseSinglePropertyBuilder<GenericPropertyBuilder<T>, T> {
 
-        GenericPropertyBuilder(String name, ValueParser<T> parser, Class<T> type) {
+        GenericPropertyBuilder(final String name, final ValueParser<T> parser, final Class<T> type) {
             super(name, parser, type);
         }
     }
@@ -307,7 +307,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
      */
     public static final class RegexPropertyBuilder extends BaseSinglePropertyBuilder<RegexPropertyBuilder, Pattern> {
 
-        RegexPropertyBuilder(String name) {
+        RegexPropertyBuilder(final String name) {
             super(name, ValueParserConstants.REGEX_PARSER, Pattern.class);
         }
 
@@ -322,7 +322,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          *
          * @throws java.util.regex.PatternSyntaxException If the argument is not a valid pattern
          */
-        public RegexPropertyBuilder defaultValue(String pattern) {
+        public RegexPropertyBuilder defaultValue(final String pattern) {
             super.defaultValue(Pattern.compile(pattern));
             return this;
         }
@@ -341,7 +341,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          * @throws IllegalArgumentException               If bit values other than those corresponding to the defined
          *                                                match flags are set in {@code flags}
          */
-        public RegexPropertyBuilder defaultValue(String pattern, int flags) {
+        public RegexPropertyBuilder defaultValue(final String pattern, final int flags) {
             super.defaultValue(Pattern.compile(pattern, flags));
             return this;
         }
@@ -373,10 +373,10 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
         /**
          * Builds a new builder for a collection type. Package-private.
          */
-        GenericCollectionPropertyBuilder(String name,
-                                         ValueParser<V> parser,
-                                         Supplier<C> emptyCollSupplier,
-                                         Class<V> type) {
+        GenericCollectionPropertyBuilder(final String name,
+                                         final ValueParser<V> parser,
+                                         final Supplier<C> emptyCollSupplier,
+                                         final Class<V> type) {
             super(name);
             this.parser = parser;
             this.emptyCollSupplier = emptyCollSupplier;
@@ -384,7 +384,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
         }
 
 
-        private C getDefaultValue(Collection<? extends V> list) {
+        private C getDefaultValue(final Collection<? extends V> list) {
             C coll = emptyCollSupplier.get();
             coll.addAll(list);
             return coll;
@@ -399,7 +399,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          * @return The same builder
          */
         @SuppressWarnings("unchecked")
-        public GenericCollectionPropertyBuilder<V, C> defaultValue(Collection<? extends V> val) {
+        public GenericCollectionPropertyBuilder<V, C> defaultValue(final Collection<? extends V> val) {
             super.defaultValue(getDefaultValue(val));
             return this;
         }
@@ -415,7 +415,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          * @return The same builder
          */
         @SuppressWarnings("unchecked")
-        public GenericCollectionPropertyBuilder<V, C> defaultValues(V head, V... tail) {
+        public GenericCollectionPropertyBuilder<V, C> defaultValues(final V head, final V... tail) {
             List<V> tmp = new ArrayList<>(tail.length + 1);
             tmp.add(head);
             tmp.addAll(Arrays.asList(tail));
@@ -442,7 +442,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          *
          * @return The same builder
          */
-        public GenericCollectionPropertyBuilder<V, C> requireEach(PropertyConstraint<? super V> constraint) {
+        public GenericCollectionPropertyBuilder<V, C> requireEach(final PropertyConstraint<? super V> constraint) {
             return super.require(constraint.toCollectionConstraint());
         }
 
@@ -460,7 +460,7 @@ public abstract class PropertyBuilder<B extends PropertyBuilder<B, T>, T> {
          * it will be scrapped come 7.0.0.
          */
         @Deprecated
-        public GenericCollectionPropertyBuilder<V, C> delim(char delim) {
+        public GenericCollectionPropertyBuilder<V, C> delim(final char delim) {
             this.multiValueDelimiter = delim;
             return this;
         }

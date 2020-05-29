@@ -25,13 +25,13 @@ import net.sourceforge.pmd.lang.apex.metrics.impl.CycloMetric;
 public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTIfBlockStatement node, Object data) {
+    public Object visit(final ASTIfBlockStatement node, final Object data) {
         ((MutableInt) data).add(
             1 + CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTStandardCondition.class)));
         super.visit(node, data);
@@ -40,7 +40,7 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTCatchBlockStatement node, Object data) {
+    public Object visit(final ASTCatchBlockStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -48,7 +48,7 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTForLoopStatement node, Object data) {
+    public Object visit(final ASTForLoopStatement node, final Object data) {
         ((MutableInt) data).add(
             1 + CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTStandardCondition.class)));
         super.visit(node, data);
@@ -57,14 +57,14 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTForEachStatement node, Object data) {
+    public Object visit(final ASTForEachStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         ((MutableInt) data).increment();
         super.visit(node, data);
         return data;
@@ -72,7 +72,7 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTWhileLoopStatement node, Object data) {
+    public Object visit(final ASTWhileLoopStatement node, final Object data) {
         ((MutableInt) data).add(
             1 + CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTStandardCondition.class)));
         super.visit(node, data);
@@ -81,7 +81,7 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTDoLoopStatement node, Object data) {
+    public Object visit(final ASTDoLoopStatement node, final Object data) {
         ((MutableInt) data).add(
             1 + CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTStandardCondition.class)));
         super.visit(node, data);
@@ -90,7 +90,7 @@ public class StandardCycloVisitor extends ApexParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTTernaryExpression node, Object data) {
+    public Object visit(final ASTTernaryExpression node, final Object data) {
         ((MutableInt) data).add(
             1 + CycloMetric.booleanExpressionComplexity(node.getFirstDescendantOfType(ASTStandardCondition.class)));
         super.visit(node, data);

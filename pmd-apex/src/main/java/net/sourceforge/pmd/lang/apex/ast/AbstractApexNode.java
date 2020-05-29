@@ -21,13 +21,13 @@ public abstract class AbstractApexNode<T extends AstNode> extends AbstractApexNo
 
     protected final T node;
 
-    protected AbstractApexNode(T node) {
+    protected AbstractApexNode(final T node) {
         super(node.getClass());
         this.node = node;
     }
 
     @Override
-    public ApexNode<?> getChild(int index) {
+    public ApexNode<?> getChild(final int index) {
         return (ApexNode<?>) super.getChild(index);
     }
 
@@ -41,7 +41,7 @@ public abstract class AbstractApexNode<T extends AstNode> extends AbstractApexNo
         return (Iterable<? extends ApexNode<?>>) super.children();
     }
 
-    void calculateLineNumbers(SourceCodePositioner positioner) {
+    void calculateLineNumbers(final SourceCodePositioner positioner) {
         if (!hasRealLoc()) {
             return;
         }
@@ -50,7 +50,7 @@ public abstract class AbstractApexNode<T extends AstNode> extends AbstractApexNo
         calculateLineNumbers(positioner, loc.getStartIndex(), loc.getEndIndex());
     }
 
-    protected void handleSourceCode(String source) {
+    protected void handleSourceCode(final String source) {
         // default implementation does nothing
     }
 

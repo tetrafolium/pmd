@@ -29,16 +29,16 @@ import net.sourceforge.pmd.lang.ast.Node;
  */
 @Experimental
 public final class ASTRecordDeclaration extends AbstractAnyTypeDeclaration {
-    ASTRecordDeclaration(int id) {
+    ASTRecordDeclaration(final int id) {
         super(id);
     }
 
-    ASTRecordDeclaration(JavaParser p, int id) {
+    ASTRecordDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

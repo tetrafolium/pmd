@@ -12,12 +12,12 @@ public class ASTThisMethodCallExpression extends AbstractApexNode<ThisMethodCall
 
     @Deprecated
     @InternalApi
-    public ASTThisMethodCallExpression(ThisMethodCallExpression thisMethodCallExpression) {
+    public ASTThisMethodCallExpression(final ThisMethodCallExpression thisMethodCallExpression) {
         super(thisMethodCallExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

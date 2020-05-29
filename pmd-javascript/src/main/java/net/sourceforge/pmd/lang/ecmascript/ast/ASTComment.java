@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTComment extends AbstractEcmascriptNode<Comment> {
     @Deprecated
     @InternalApi
-    public ASTComment(Comment comment) {
+    public ASTComment(final Comment comment) {
         super(comment);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

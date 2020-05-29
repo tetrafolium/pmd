@@ -81,7 +81,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
     }
 
     @Override
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         propertyValues.put(ACCESSOR_CMT_DESCRIPTOR, getProperty(ACCESSOR_CMT_DESCRIPTOR));
         propertyValues.put(OVERRIDE_CMT_DESCRIPTOR, getProperty(OVERRIDE_CMT_DESCRIPTOR));
         propertyValues.put(FIELD_CMT_REQUIREMENT_DESCRIPTOR, getProperty(FIELD_CMT_REQUIREMENT_DESCRIPTOR));
@@ -108,8 +108,8 @@ public class CommentRequiredRule extends AbstractCommentRule {
         }
     }
 
-    private void checkCommentMeetsRequirement(Object data, AbstractJavaNode node,
-                                              PropertyDescriptor<CommentRequirement> descriptor) {
+    private void checkCommentMeetsRequirement(final Object data, final AbstractJavaNode node,
+                                              final PropertyDescriptor<CommentRequirement> descriptor) {
         switch (propertyValues.get(descriptor)) {
         case Ignored:
             break;
@@ -130,8 +130,8 @@ public class CommentRequiredRule extends AbstractCommentRule {
 
 
     // Adds a violation
-    private void commentRequiredViolation(Object data, AbstractJavaNode node,
-                                          PropertyDescriptor<CommentRequirement> descriptor) {
+    private void commentRequiredViolation(final Object data, final AbstractJavaNode node,
+                                          final PropertyDescriptor<CommentRequirement> descriptor) {
 
 
         addViolationWithMessage(data, node,
@@ -142,21 +142,21 @@ public class CommentRequiredRule extends AbstractCommentRule {
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration decl, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration decl, final Object data) {
         checkCommentMeetsRequirement(data, decl, CLASS_CMT_REQUIREMENT_DESCRIPTOR);
         return super.visit(decl, data);
     }
 
 
     @Override
-    public Object visit(ASTConstructorDeclaration decl, Object data) {
+    public Object visit(final ASTConstructorDeclaration decl, final Object data) {
         checkMethodOrConstructorComment(decl, data);
         return super.visit(decl, data);
     }
 
 
     @Override
-    public Object visit(ASTMethodDeclaration decl, Object data) {
+    public Object visit(final ASTMethodDeclaration decl, final Object data) {
         if (isAnnotatedOverride(decl)) {
             checkCommentMeetsRequirement(data, decl, OVERRIDE_CMT_DESCRIPTOR);
         } else if (decl.getSignature().role == JavaOperationSignature.Role.GETTER_OR_SETTER) {
@@ -168,7 +168,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
     }
 
 
-    private void checkMethodOrConstructorComment(AbstractJavaAccessNode decl, Object data) {
+    private void checkMethodOrConstructorComment(final AbstractJavaAccessNode decl, final Object data) {
         if (decl.isPublic()) {
             checkCommentMeetsRequirement(data, decl, PUB_METHOD_CMT_REQUIREMENT_DESCRIPTOR);
         } else if (decl.isProtected()) {
@@ -177,7 +177,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
     }
 
 
-    private boolean isAnnotatedOverride(ASTMethodDeclaration decl) {
+    private boolean isAnnotatedOverride(final ASTMethodDeclaration decl) {
         List<ASTMarkerAnnotation> annotations = decl.getParent().findDescendantsOfType(ASTMarkerAnnotation.class);
         for (ASTMarkerAnnotation ann : annotations) { // TODO consider making a method to get the annotations of a method
             if (ann.getFirstChildOfType(ASTName.class).getImage().equals("Override")) {
@@ -189,7 +189,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
 
 
     @Override
-    public Object visit(ASTFieldDeclaration decl, Object data) {
+    public Object visit(final ASTFieldDeclaration decl, final Object data) {
         if (isSerialVersionUID(decl)) {
             checkCommentMeetsRequirement(data, decl, SERIAL_VERSION_UID_CMT_REQUIREMENT_DESCRIPTOR);
         } else if (isSerialPersistentFields(decl)) {
@@ -202,7 +202,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
     }
 
 
-    private boolean isSerialVersionUID(ASTFieldDeclaration field) {
+    private boolean isSerialVersionUID(final ASTFieldDeclaration field) {
         return "serialVersionUID".equals(field.getVariableName())
                && field.isStatic()
                && field.isFinal()
@@ -229,13 +229,13 @@ public class CommentRequiredRule extends AbstractCommentRule {
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration decl, Object data) {
+    public Object visit(final ASTEnumDeclaration decl, final Object data) {
         checkCommentMeetsRequirement(data, decl, ENUM_CMT_REQUIREMENT_DESCRIPTOR);
         return super.visit(decl, data);
     }
 
     @Override
-    public Object visit(ASTCompilationUnit cUnit, Object data) {
+    public Object visit(final ASTCompilationUnit cUnit, final Object data) {
         assignCommentsToDeclarations(cUnit);
         return super.visit(cUnit, data);
     }
@@ -274,7 +274,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
             MAPPINGS = Collections.unmodifiableMap(tmp);
         }
 
-        CommentRequirement(String theLabel) {
+        CommentRequirement(final String theLabel) {
             label = theLabel;
         }
 
@@ -300,7 +300,7 @@ public class CommentRequiredRule extends AbstractCommentRule {
 
 
     // pre-filled builder
-    private static GenericPropertyBuilder<CommentRequirement> requirementPropertyBuilder(String name, String commentType) {
+    private static GenericPropertyBuilder<CommentRequirement> requirementPropertyBuilder(final String name, final String commentType) {
         DESCRIPTOR_NAME_TO_COMMENT_TYPE.put(name, commentType);
         return PropertyFactory.enumProperty(name, CommentRequirement.mappings())
             .desc(commentType + ". Possible values: " + CommentRequirement.labels())

@@ -19,21 +19,21 @@ public class Match implements Comparable<Match>, Iterable<Mark> {
 
     public static final Comparator<Match> MATCHES_COMPARATOR = new Comparator<Match>() {
         @Override
-        public int compare(Match ma, Match mb) {
+        public int compare(final Match ma, final Match mb) {
             return mb.getMarkCount() - ma.getMarkCount();
         }
     };
 
     public static final Comparator<Match> LINES_COMPARATOR = new Comparator<Match>() {
         @Override
-        public int compare(Match ma, Match mb) {
+        public int compare(final Match ma, final Match mb) {
             return mb.getLineCount() - ma.getLineCount();
         }
     };
 
     public static final Comparator<Match> LABEL_COMPARATOR = new Comparator<Match>() {
         @Override
-        public int compare(Match ma, Match mb) {
+        public int compare(final Match ma, final Match mb) {
             if (ma.getLabel() == null) {
                 return 1;
             }
@@ -46,18 +46,18 @@ public class Match implements Comparable<Match>, Iterable<Mark> {
 
     public static final Comparator<Match> LENGTH_COMPARATOR = new Comparator<Match>() {
         @Override
-        public int compare(Match ma, Match mb) {
+        public int compare(final Match ma, final Match mb) {
             return mb.getLineCount() - ma.getLineCount();
         }
     };
 
-    public Match(int tokenCount, Mark first, Mark second) {
+    public Match(final int tokenCount, final Mark first, final Mark second) {
         markSet.add(first);
         markSet.add(second);
         this.tokenCount = tokenCount;
     }
 
-    public Match(int tokenCount, TokenEntry first, TokenEntry second) {
+    public Match(final int tokenCount, final TokenEntry first, final TokenEntry second) {
         this(tokenCount, new Mark(first), new Mark(second));
     }
 
@@ -83,7 +83,7 @@ public class Match implements Comparable<Match>, Iterable<Mark> {
     }
 
     @Override
-    public int compareTo(Match other) {
+    public int compareTo(final Match other) {
         int diff = other.getTokenCount() - getTokenCount();
         if (diff != 0) {
             return diff;
@@ -112,11 +112,11 @@ public class Match implements Comparable<Match>, Iterable<Mark> {
         return getMark(0).getToken().getIndex() + getTokenCount() - 1;
     }
 
-    public void setMarkSet(Set<Mark> markSet) {
+    public void setMarkSet(final Set<Mark> markSet) {
         this.markSet = markSet;
     }
 
-    public void setLabel(String aLabel) {
+    public void setLabel(final String aLabel) {
         label = aLabel;
     }
 
@@ -124,11 +124,11 @@ public class Match implements Comparable<Match>, Iterable<Mark> {
         return label;
     }
 
-    public void addTokenEntry(TokenEntry entry) {
+    public void addTokenEntry(final TokenEntry entry) {
         markSet.add(new Mark(entry));
     }
 
-    private Mark getMark(int index) {
+    private Mark getMark(final int index) {
         Mark result = null;
         int i = 0;
         for (Iterator<Mark> it = markSet.iterator(); it.hasNext() && i < index + 1;) {

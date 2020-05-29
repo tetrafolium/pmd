@@ -102,7 +102,7 @@ public class AccessorMethodGenerationRule extends AbstractJavaRule {
         }
     }
 
-    public boolean isCompileTimeConstant(ASTPrimaryExpression expressions) {
+    public boolean isCompileTimeConstant(final ASTPrimaryExpression expressions) {
         // function call detected
         List<ASTPrimarySuffix> suffix = expressions.findDescendantsOfType(ASTPrimarySuffix.class);
         if (!suffix.isEmpty()) {
@@ -133,7 +133,7 @@ public class AccessorMethodGenerationRule extends AbstractJavaRule {
     }
 
     @Override
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         cache.clear();
     }
 }

@@ -18,7 +18,7 @@ public abstract class AbstractApexClassMetric extends AbstractApexMetric<ASTUser
     implements ApexClassMetric {
 
     @Override
-    public boolean supports(ASTUserClassOrInterface<?> node) {
+    public boolean supports(final ASTUserClassOrInterface<?> node) {
         return node.getTypeKind() == TypeKind.CLASS;
     }
 }

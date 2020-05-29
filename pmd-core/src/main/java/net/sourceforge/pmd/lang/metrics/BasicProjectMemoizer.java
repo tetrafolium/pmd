@@ -42,7 +42,7 @@ public abstract class BasicProjectMemoizer<T extends QualifiableNode, O extends 
 
 
     @Override
-    public MetricMemoizer<O> getOperationMemoizer(QualifiedName qname) {
+    public MetricMemoizer<O> getOperationMemoizer(final QualifiedName qname) {
         synchronized (operationsSynchronizer) {
             if (!operations.containsKey(qname)) {
                 operations.put(qname, new BasicMetricMemoizer<O>());
@@ -54,7 +54,7 @@ public abstract class BasicProjectMemoizer<T extends QualifiableNode, O extends 
 
 
     @Override
-    public MetricMemoizer<T> getClassMemoizer(QualifiedName qname) {
+    public MetricMemoizer<T> getClassMemoizer(final QualifiedName qname) {
         synchronized (classesSynchronizer) {
             if (!classes.containsKey(qname)) {
                 classes.put(qname, new BasicMetricMemoizer<T>());

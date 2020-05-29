@@ -34,7 +34,7 @@ public class SourceCodePanel extends JPanel implements ViewerModelListener {
 
     private static final Color HIGHLIGHT_COLOR = new Color(79, 237, 111);
 
-    public SourceCodePanel(ViewerModel model) {
+    public SourceCodePanel(final ViewerModel model) {
         this.model = model;
         init();
     }
@@ -60,7 +60,7 @@ public class SourceCodePanel extends JPanel implements ViewerModelListener {
      * @see ViewerModelListener#viewerModelChanged(ViewerModelEvent)
      */
     @Override
-    public void viewerModelChanged(ViewerModelEvent e) {
+    public void viewerModelChanged(final ViewerModelEvent e) {
         if (e.getReason() == ViewerModelEvent.NODE_SELECTED) {
             final Node node = (Node) e.getParameter();
             SwingUtilities.invokeLater(new Runnable() {

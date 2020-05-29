@@ -14,17 +14,17 @@ public class ASTSqlStatement extends AbstractPLSQLNode {
 
     @Deprecated
     @InternalApi
-    public ASTSqlStatement(int id) {
+    public ASTSqlStatement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTSqlStatement(PLSQLParser p, int id) {
+    public ASTSqlStatement(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setType(Type type) {
+    void setType(final Type type) {
         this.type = type;
     }
 
@@ -33,7 +33,7 @@ public class ASTSqlStatement extends AbstractPLSQLNode {
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

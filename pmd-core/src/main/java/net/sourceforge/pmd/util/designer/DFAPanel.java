@@ -42,7 +42,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
         private int y = 50;
         private LineGetter lines;
 
-        private void addAccessLabel(StringBuffer sb, VariableAccess va) {
+        private void addAccessLabel(final StringBuffer sb, final VariableAccess va) {
 
             if (va.isDefinition()) {
                 sb.append("d(");
@@ -59,7 +59,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
             sb.append(va.getVariableName()).append(')');
         }
 
-        private String childIndicesOf(DataFlowNode node, String separator) {
+        private String childIndicesOf(final DataFlowNode node, final String separator) {
 
             List<DataFlowNode> kids = node.getChildren();
             if (kids.isEmpty()) {
@@ -76,7 +76,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
             return sb.toString();
         }
 
-        private String[] deriveAccessLabels(List<DataFlowNode> flow) {
+        private String[] deriveAccessLabels(final List<DataFlowNode> flow) {
 
             if (flow == null || flow.isEmpty()) {
                 return StringUtil.getEmptyStrings();
@@ -104,7 +104,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
             return labels;
         }
 
-        private int maxWidthOf(String[] strings, FontMetrics fm) {
+        private int maxWidthOf(final String[] strings, final FontMetrics fm) {
 
             int max = 0;
             String str;
@@ -120,7 +120,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
         }
 
         @Override
-        public void paintComponent(Graphics g) {
+        public void paintComponent(final Graphics g) {
             super.paintComponent(g);
 
             if (node == null) {
@@ -161,20 +161,20 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
             }
         }
 
-        public void setCode(LineGetter h) {
+        public void setCode(final LineGetter h) {
             this.lines = h;
         }
 
-        public void setMethod(Node node) {
+        public void setMethod(final Node node) {
             this.node = node;
         }
 
-        private int computeDrawPos(int index) {
+        private int computeDrawPos(final int index) {
             int z = NODE_RADIUS * 4;
             return z + index * z;
         }
 
-        private void drawArrow(Graphics g, int x, int y, int direction) {
+        private void drawArrow(final Graphics g, final int x, final int y, final int direction) {
 
             final int height = NODE_RADIUS * 2 / 3;
             final int width = NODE_RADIUS * 2 / 3;
@@ -202,7 +202,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
             }
         }
 
-        private void drawMyLine(int index1, int index2, Graphics g) {
+        private void drawMyLine(final int index1, final int index2, final Graphics g) {
             int y1 = this.computeDrawPos(index1);
             int y2 = this.computeDrawPos(index2);
 
@@ -245,7 +245,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
     private static class ElementWrapper {
         private DFAGraphMethod node;
 
-        ElementWrapper(DFAGraphMethod node) {
+        ElementWrapper(final DFAGraphMethod node) {
             this.node = node;
         }
 
@@ -288,7 +288,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
     }
 
     @Override
-    public void valueChanged(ListSelectionEvent event) {
+    public void valueChanged(final ListSelectionEvent event) {
         ElementWrapper wrapper = null;
         if (nodes.size() == 1) {
             wrapper = (ElementWrapper) nodes.get(0);
@@ -303,7 +303,7 @@ public class DFAPanel extends JComponent implements ListSelectionListener {
         dfaCanvas.repaint();
     }
 
-    public void resetTo(List<DFAGraphMethod> newNodes, LineGetter lines) {
+    public void resetTo(final List<DFAGraphMethod> newNodes, final LineGetter lines) {
         dfaCanvas.setCode(lines);
         nodes.clear();
         for (DFAGraphMethod md : newNodes) {

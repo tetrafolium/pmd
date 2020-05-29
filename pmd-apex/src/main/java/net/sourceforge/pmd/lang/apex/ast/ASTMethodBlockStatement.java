@@ -12,12 +12,12 @@ public class ASTMethodBlockStatement extends AbstractApexNode<MethodBlockStateme
 
     @Deprecated
     @InternalApi
-    public ASTMethodBlockStatement(MethodBlockStatement node) {
+    public ASTMethodBlockStatement(final MethodBlockStatement node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

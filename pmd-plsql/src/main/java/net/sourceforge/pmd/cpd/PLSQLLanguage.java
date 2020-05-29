@@ -25,7 +25,7 @@ public class PLSQLLanguage extends AbstractLanguage {
     }
 
     @Override
-    public final void setProperties(Properties properties) {
+    public final void setProperties(final Properties properties) {
         ((PLSQLTokenizer) getTokenizer()).setProperties(properties);
     }
 }

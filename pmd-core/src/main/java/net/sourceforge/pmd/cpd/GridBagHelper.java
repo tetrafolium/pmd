@@ -30,7 +30,7 @@ public class GridBagHelper {
     int labelAlignment = SwingConstants.RIGHT;
     double[] weights;
 
-    public GridBagHelper(Container container, double[] weights) {
+    public GridBagHelper(final Container container, final double[] weights) {
         this.container = container;
         this.weights = weights;
 
@@ -43,11 +43,11 @@ public class GridBagHelper {
         c.fill = GridBagConstraints.HORIZONTAL;
     }
 
-    public void add(Component component) {
+    public void add(final Component component) {
         add(component, 1);
     }
 
-    public void add(Component component, int width) {
+    public void add(final Component component, final int width) {
         c.gridx = x;
         c.gridy = y;
         c.weightx = weights[x];
@@ -62,7 +62,7 @@ public class GridBagHelper {
         x = 0;
     }
 
-    public void addLabel(String label) {
+    public void addLabel(final String label) {
         add(new JLabel(label, labelAlignment));
     }
 

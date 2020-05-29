@@ -41,7 +41,7 @@ public class ApexBadCryptoRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node)) {
             return data;
         }
@@ -71,7 +71,7 @@ public class ApexBadCryptoRule extends AbstractApexRule {
         return data;
     }
 
-    private void findSafeVariables(ApexNode<?> var) {
+    private void findSafeVariables(final ApexNode<?> var) {
         ASTMethodCallExpression methodCall = var.getFirstChildOfType(ASTMethodCallExpression.class);
         if (methodCall != null && Helper.isMethodName(methodCall, BLOB, VALUE_OF)) {
             ASTVariableExpression variable = var.getFirstChildOfType(ASTVariableExpression.class);
@@ -81,7 +81,7 @@ public class ApexBadCryptoRule extends AbstractApexRule {
         }
     }
 
-    private void validateStaticIVorKey(ASTMethodCallExpression methodCall, Object data) {
+    private void validateStaticIVorKey(final ASTMethodCallExpression methodCall, final Object data) {
         // .encrypt('AES128', key, exampleIv, data);
         int numberOfChildren = methodCall.getNumChildren();
         switch (numberOfChildren) {
@@ -105,7 +105,7 @@ public class ApexBadCryptoRule extends AbstractApexRule {
 
     }
 
-    private void reportIfHardCoded(Object data, Object potentialIV) {
+    private void reportIfHardCoded(final Object data, final Object potentialIV) {
         if (potentialIV instanceof ASTVariableExpression) {
             ASTVariableExpression variable = (ASTVariableExpression) potentialIV;
             if (potentiallyStaticBlob.contains(Helper.getFQVariableName(variable))) {

@@ -13,18 +13,18 @@ public class ASTCompoundCondition extends net.sourceforge.pmd.lang.plsql.ast.Abs
 
     @Deprecated
     @InternalApi
-    public ASTCompoundCondition(int id) {
+    public ASTCompoundCondition(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTCompoundCondition(PLSQLParser p, int id) {
+    public ASTCompoundCondition(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -32,7 +32,7 @@ public class ASTCompoundCondition extends net.sourceforge.pmd.lang.plsql.ast.Abs
         return type;
     }
 
-    void setType(String type) {
+    void setType(final String type) {
         this.type = type;
         if (this.type != null) {
             this.type = this.type.toUpperCase(Locale.ROOT);

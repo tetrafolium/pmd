@@ -61,7 +61,7 @@ public class Report implements Iterable<RuleViolation> {
      *            the filename used to report any violations
      * @return the new report
      */
-    public static Report createReport(RuleContext ctx, String fileName) {
+    public static Report createReport(final RuleContext ctx, final String fileName) {
         Report report = new Report();
 
         // overtake the listener
@@ -84,7 +84,7 @@ public class Report implements Iterable<RuleViolation> {
          * @param duration
          *            the duration in milliseconds.
          */
-        public ReadableDuration(long duration) {
+        public ReadableDuration(final long duration) {
             this.duration = duration;
         }
 
@@ -114,7 +114,7 @@ public class Report implements Iterable<RuleViolation> {
          * @param theIssue
          *            the reason, why the configuration is wrong
          */
-        public ConfigurationError(Rule theRule, String theIssue) {
+        public ConfigurationError(final Rule theRule, final String theIssue) {
             rule = theRule;
             issue = theIssue;
         }
@@ -153,7 +153,7 @@ public class Report implements Iterable<RuleViolation> {
          * @param file
          *            the file during which the error occurred
          */
-        public ProcessingError(Throwable error, String file) {
+        public ProcessingError(final Throwable error, final String file) {
             this.error = error;
             this.file = file;
         }
@@ -202,7 +202,7 @@ public class Report implements Iterable<RuleViolation> {
          * @param userMessage
          *            contains the suppressed code line or <code>null</code>
          */
-        public SuppressedViolation(RuleViolation rv, boolean isNOPMD, String userMessage) {
+        public SuppressedViolation(final RuleViolation rv, final boolean isNOPMD, final String userMessage) {
             this.isNOPMD = isNOPMD;
             this.rv = rv;
             this.userMessage = userMessage;
@@ -245,11 +245,11 @@ public class Report implements Iterable<RuleViolation> {
      * @param lines
      *            the suppressed lines
      */
-    public void suppress(Map<Integer, String> lines) {
+    public void suppress(final Map<Integer, String> lines) {
         linesToSuppress = lines;
     }
 
-    private static String keyFor(RuleViolation rv) {
+    private static String keyFor(final RuleViolation rv) {
 
         return StringUtils.isNotBlank(rv.getPackageName()) ? rv.getPackageName() + '.' + rv.getClassName() : "";
     }
@@ -298,7 +298,7 @@ public class Report implements Iterable<RuleViolation> {
      * @param listener
      *            the listener
      */
-    public void addListener(ThreadSafeReportListener listener) {
+    public void addListener(final ThreadSafeReportListener listener) {
         listeners.add(listener);
     }
 
@@ -312,7 +312,7 @@ public class Report implements Iterable<RuleViolation> {
      * @param violation
      *            the violation to add
      */
-    public void addRuleViolation(RuleViolation violation) {
+    public void addRuleViolation(final RuleViolation violation) {
 
         // NOPMD suppress
         int line = violation.getBeginLine();
@@ -343,7 +343,7 @@ public class Report implements Iterable<RuleViolation> {
      * @deprecated see {@link StatisticalRule}
      */
     @Deprecated
-    public void addMetric(Metric metric) {
+    public void addMetric(final Metric metric) {
         metrics.add(metric);
         for (ThreadSafeReportListener listener : listeners) {
             listener.metricAdded(metric);
@@ -356,7 +356,7 @@ public class Report implements Iterable<RuleViolation> {
      * @param error
      *            the error to add
      */
-    public void addConfigError(ConfigurationError error) {
+    public void addConfigError(final ConfigurationError error) {
         if (configErrors == null) {
             configErrors = new ArrayList<>();
         }
@@ -369,7 +369,7 @@ public class Report implements Iterable<RuleViolation> {
      * @param error
      *            the error to add
      */
-    public void addError(ProcessingError error) {
+    public void addError(final ProcessingError error) {
         if (errors == null) {
             errors = new ArrayList<>();
         }
@@ -385,7 +385,7 @@ public class Report implements Iterable<RuleViolation> {
      *            the report to be merged into this.
      * @see AbstractAccumulatingRenderer
      */
-    public void merge(Report r) {
+    public void merge(final Report r) {
         Iterator<ProcessingError> i = r.errors();
         while (i.hasNext()) {
             addError(i.next());
@@ -553,7 +553,7 @@ public class Report implements Iterable<RuleViolation> {
      * @param allListeners
      *            the report listeners
      */
-    public void addListeners(List<ThreadSafeReportListener> allListeners) {
+    public void addListeners(final List<ThreadSafeReportListener> allListeners) {
         listeners.addAll(allListeners);
     }
 }

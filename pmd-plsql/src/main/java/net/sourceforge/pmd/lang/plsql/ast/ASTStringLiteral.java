@@ -8,18 +8,18 @@ package net.sourceforge.pmd.lang.plsql.ast;
 public final class ASTStringLiteral extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
 
 
-    ASTStringLiteral(int id) {
+    ASTStringLiteral(final int id) {
         super(id);
     }
 
 
-    ASTStringLiteral(PLSQLParser p, int id) {
+    ASTStringLiteral(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

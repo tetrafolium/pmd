@@ -62,7 +62,7 @@ public class ConfusingTernaryRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         // look for "if (match) ..; else .."
         if (node.getNumChildren() == 3) {
             Node inode = node.getChild(0);
@@ -82,7 +82,7 @@ public class ConfusingTernaryRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         // look for "match ? .. : .."
         if (node.getNumChildren() > 0) {
             Node inode = node.getChild(0);
@@ -94,22 +94,22 @@ public class ConfusingTernaryRule extends AbstractJavaRule {
     }
 
     // recursive!
-    private static boolean isMatch(Node node) {
+    private static boolean isMatch(final Node node) {
         return isUnaryNot(node) || isNotEquals(node) || isConditionalWithAllMatches(node)
                 || isParenthesisAroundMatch(node);
     }
 
-    private static boolean isUnaryNot(Node node) {
+    private static boolean isUnaryNot(final Node node) {
         // look for "!x"
         return node instanceof ASTUnaryExpressionNotPlusMinus && "!".equals(node.getImage());
     }
 
-    private static boolean isNotEquals(Node node) {
+    private static boolean isNotEquals(final Node node) {
         // look for "x != y"
         return node instanceof ASTEqualityExpression && "!=".equals(node.getImage());
     }
 
-    private static boolean isConditionalWithAllMatches(Node node) {
+    private static boolean isConditionalWithAllMatches(final Node node) {
         // look for "match && match" or "match || match"
         if (!(node instanceof ASTConditionalAndExpression) && !(node instanceof ASTConditionalOrExpression)) {
             return false;
@@ -129,7 +129,7 @@ public class ConfusingTernaryRule extends AbstractJavaRule {
         return true;
     }
 
-    private static boolean isParenthesisAroundMatch(Node node) {
+    private static boolean isParenthesisAroundMatch(final Node node) {
         // look for "(match)"
         if (!(node instanceof ASTPrimaryExpression) || node.getNumChildren() != 1) {
             return false;

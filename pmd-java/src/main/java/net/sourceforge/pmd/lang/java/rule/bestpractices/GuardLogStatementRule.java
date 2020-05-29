@@ -87,13 +87,13 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit unit, Object data) {
+    public Object visit(final ASTCompilationUnit unit, final Object data) {
         extractProperties();
         return super.visit(unit, data);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data; // don't consider interfaces
         }
@@ -101,7 +101,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
     }
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         if (node.getNumChildren() < 1 || !(node.getChild(0) instanceof ASTPrimaryExpression)) {
             // only consider primary expressions
             return node;
@@ -125,7 +125,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
         return super.visit(node, data);
     }
 
-    private boolean hasGuard(ASTPrimaryExpression node, String methodCall, String logLevel) {
+    private boolean hasGuard(final ASTPrimaryExpression node, final String methodCall, final String logLevel) {
         ASTIfStatement ifStatement = node.getFirstParentOfType(ASTIfStatement.class);
         if (ifStatement == null) {
             return false;
@@ -172,7 +172,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
      * @param prefix the method call
      * @return the name of the called method
      */
-    private String getMethodCallName(ASTPrimaryPrefix prefix) {
+    private String getMethodCallName(final ASTPrimaryPrefix prefix) {
         String result = "";
         if (prefix.getNumChildren() == 1 && prefix.getChild(0) instanceof ASTName) {
             result = getLastPartOfName(prefix.getChild(0));
@@ -180,7 +180,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
         return result;
     }
 
-    private String getLastPartOfName(Node name) {
+    private String getLastPartOfName(final Node name) {
         String result = "";
         if (name != null) {
             result = name.getImage();
@@ -202,7 +202,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
      * @return the found child node or <code>null</code>
      */
     @SafeVarargs
-    private static <N extends Node> N getFirstChild(Node root, Class<? extends Node> ... childrenTypes) {
+    private static <N extends Node> N getFirstChild(final Node root, final Class<? extends Node>... childrenTypes) {
         Node current = root;
         for (Class<? extends Node> clazz : childrenTypes) {
             Node child = current.getFirstChildOfType(clazz);
@@ -226,7 +226,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
      * @param methodCallName the called method name previously determined
      * @return the log level or <code>null</code> if it could not be determined
      */
-    private String getLogLevelName(Node node, String methodCallName) {
+    private String getLogLevelName(final Node node, final String methodCallName) {
         if (!JAVA_UTIL_LOG_METHOD.equals(methodCallName) && !JAVA_UTIL_LOG_GUARD_METHOD.equals(methodCallName)) {
             return methodCallName;
         }
@@ -275,7 +275,7 @@ public class GuardLogStatementRule extends AbstractJavaRule implements Rule {
         }
     }
 
-    private void buildGuardStatementMap(List<String> logLevels, List<String> guardMethods) {
+    private void buildGuardStatementMap(final List<String> logLevels, final List<String> guardMethods) {
         for (int i = 0; i < logLevels.size(); i++) {
             String logLevel = logLevels.get(i);
             if (guardStmtByLogLevel.containsKey(logLevel)) {

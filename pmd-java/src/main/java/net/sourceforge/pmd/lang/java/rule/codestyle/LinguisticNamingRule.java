@@ -79,7 +79,7 @@ public class LinguisticNamingRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (!hasIgnoredAnnotation(node)) {
             String nameOfMethod = node.getName();
 
@@ -106,7 +106,7 @@ public class LinguisticNamingRule extends AbstractIgnoredAnnotationRule {
         return data;
     }
 
-    private void checkPrefixedTransformMethods(ASTMethodDeclaration node, Object data, String nameOfMethod) {
+    private void checkPrefixedTransformMethods(final ASTMethodDeclaration node, final Object data, final String nameOfMethod) {
         ASTResultType resultType = node.getResultType();
         List<String> prefixes = getProperty(TRANSFORM_METHOD_NAMES_PROPERTY);
         String[] splitMethodName = StringUtils.splitByCharacterTypeCamelCase(nameOfMethod);
@@ -114,79 +114,79 @@ public class LinguisticNamingRule extends AbstractIgnoredAnnotationRule {
                 && prefixes.contains(splitMethodName[0].toLowerCase(Locale.ROOT))) {
             // "To" or any other configured prefix found
             addViolationWithMessage(data, node, "Linguistics Antipattern - The transform method ''{0}'' should not return void linguistically",
-                    new Object[] { nameOfMethod });
+                    new Object[] {nameOfMethod });
         }
     }
 
-    private void checkTransformMethods(ASTMethodDeclaration node, Object data, String nameOfMethod) {
+    private void checkTransformMethods(final ASTMethodDeclaration node, final Object data, final String nameOfMethod) {
         ASTResultType resultType = node.getResultType();
         List<String> infixes = getProperty(TRANSFORM_METHOD_NAMES_PROPERTY);
         for (String infix : infixes) {
             if (resultType.isVoid() && containsWord(nameOfMethod, StringUtils.capitalize(infix))) {
                 // "To" or any other configured infix in the middle somewhere
                 addViolationWithMessage(data, node, "Linguistics Antipattern - The transform method ''{0}'' should not return void linguistically",
-                        new Object[] { nameOfMethod });
+                        new Object[] {nameOfMethod });
                 // the first violation is sufficient - it is still the same method we are analyzing here
                 break;
             }
         }
     }
 
-    private void checkGetters(ASTMethodDeclaration node, Object data, String nameOfMethod) {
+    private void checkGetters(final ASTMethodDeclaration node, final Object data, final String nameOfMethod) {
         ASTResultType resultType = node.getResultType();
         if (hasPrefix(nameOfMethod, "get") && resultType.isVoid()) {
             addViolationWithMessage(data, node, "Linguistics Antipattern - The getter ''{0}'' should not return void linguistically",
-                    new Object[] { nameOfMethod });
+                    new Object[] {nameOfMethod });
         }
     }
 
-    private void checkSetters(ASTMethodDeclaration node, Object data, String nameOfMethod) {
+    private void checkSetters(final ASTMethodDeclaration node, final Object data, final String nameOfMethod) {
         ASTResultType resultType = node.getResultType();
         if (hasPrefix(nameOfMethod, "set") && !resultType.isVoid()) {
             addViolationWithMessage(data, node, "Linguistics Antipattern - The setter ''{0}'' should not return any type except void linguistically",
-                    new Object[] { nameOfMethod });
+                    new Object[] {nameOfMethod });
         }
     }
 
-    private boolean isBooleanType(ASTType node) {
+    private boolean isBooleanType(final ASTType node) {
         return "boolean".equalsIgnoreCase(node.getTypeImage())
                 || TypeHelper.isA(node, "java.util.concurrent.atomic.AtomicBoolean")
                 || TypeHelper.isA(node, "java.util.function.Predicate");
     }
 
-    private void checkBooleanMethods(ASTMethodDeclaration node, Object data, String nameOfMethod) {
+    private void checkBooleanMethods(final ASTMethodDeclaration node, final Object data, final String nameOfMethod) {
         ASTResultType resultType = node.getResultType();
         ASTType t = node.getResultType().getFirstChildOfType(ASTType.class);
         if (!resultType.isVoid() && t != null) {
             for (String prefix : getProperty(BOOLEAN_METHOD_PREFIXES_PROPERTY)) {
                 if (hasPrefix(nameOfMethod, prefix) && !isBooleanType(t)) {
                     addViolationWithMessage(data, node, "Linguistics Antipattern - The method ''{0}'' indicates linguistically it returns a boolean, but it returns ''{1}''",
-                            new Object[] { nameOfMethod, t.getTypeImage() });
+                            new Object[] {nameOfMethod, t.getTypeImage() });
                 }
             }
         }
     }
 
-    private void checkField(ASTType typeNode, ASTVariableDeclarator node, Object data) {
+    private void checkField(final ASTType typeNode, final ASTVariableDeclarator node, final Object data) {
         for (String prefix : getProperty(BOOLEAN_FIELD_PREFIXES_PROPERTY)) {
             if (hasPrefix(node.getName(), prefix) && !isBooleanType(typeNode)) {
                 addViolationWithMessage(data, node, "Linguistics Antipattern - The field ''{0}'' indicates linguistically it is a boolean, but it is ''{1}''",
-                        new Object[] { node.getName(), typeNode.getTypeImage() });
+                        new Object[] {node.getName(), typeNode.getTypeImage() });
             }
         }
     }
 
-    private void checkVariable(ASTType typeNode, ASTVariableDeclarator node, Object data) {
+    private void checkVariable(final ASTType typeNode, final ASTVariableDeclarator node, final Object data) {
         for (String prefix : getProperty(BOOLEAN_FIELD_PREFIXES_PROPERTY)) {
             if (hasPrefix(node.getName(), prefix) && !isBooleanType(typeNode)) {
                 addViolationWithMessage(data, node, "Linguistics Antipattern - The variable ''{0}'' indicates linguistically it is a boolean, but it is ''{1}''",
-                        new Object[] { node.getName(), typeNode.getTypeImage() });
+                        new Object[] {node.getName(), typeNode.getTypeImage() });
             }
         }
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         ASTType type = node.getFirstChildOfType(ASTType.class);
         if (type != null && getProperty(CHECK_FIELDS)) {
             List<ASTVariableDeclarator> fields = node.findChildrenOfType(ASTVariableDeclarator.class);
@@ -198,7 +198,7 @@ public class LinguisticNamingRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         ASTType type = node.getFirstChildOfType(ASTType.class);
         if (type != null && getProperty(CHECK_VARIABLES)) {
             List<ASTVariableDeclarator> variables = node.findChildrenOfType(ASTVariableDeclarator.class);
@@ -209,12 +209,12 @@ public class LinguisticNamingRule extends AbstractIgnoredAnnotationRule {
         return data;
     }
 
-    private static boolean hasPrefix(String name, String prefix) {
+    private static boolean hasPrefix(final String name, final String prefix) {
         return name.startsWith(prefix) && name.length() > prefix.length()
                 && Character.isUpperCase(name.charAt(prefix.length()));
     }
 
-    private static boolean containsWord(String name, String word) {
+    private static boolean containsWord(final String name, final String word) {
         int index = name.indexOf(word);
         if (index >= 0 && name.length() > index + word.length()) {
             return Character.isUpperCase(name.charAt(index + word.length()));

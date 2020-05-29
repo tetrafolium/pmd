@@ -12,12 +12,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTExpressionStatement extends AbstractEcmascriptNode<ExpressionStatement> {
     @Deprecated
     @InternalApi
-    public ASTExpressionStatement(ExpressionStatement expressionStatement) {
+    public ASTExpressionStatement(final ExpressionStatement expressionStatement) {
         super(expressionStatement);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -20,7 +20,7 @@ public enum ApexOperationMetricKey implements MetricKey<ASTMethod> {
     private final ApexOperationMetric calculator;
 
 
-    ApexOperationMetricKey(ApexOperationMetric m) {
+    ApexOperationMetricKey(final ApexOperationMetric m) {
         calculator = m;
     }
 
@@ -32,7 +32,7 @@ public enum ApexOperationMetricKey implements MetricKey<ASTMethod> {
 
 
     @Override
-    public boolean supports(ASTMethod node) {
+    public boolean supports(final ASTMethod node) {
         return calculator.supports(node);
     }
 }

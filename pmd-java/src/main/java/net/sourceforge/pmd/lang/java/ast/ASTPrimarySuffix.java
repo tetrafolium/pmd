@@ -13,13 +13,13 @@ public class ASTPrimarySuffix extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTPrimarySuffix(int id) {
+    public ASTPrimarySuffix(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTPrimarySuffix(JavaParser p, int id) {
+    public ASTPrimarySuffix(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -59,7 +59,7 @@ public class ASTPrimarySuffix extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

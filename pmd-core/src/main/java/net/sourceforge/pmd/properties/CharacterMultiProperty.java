@@ -39,14 +39,14 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
      * @deprecated Use {@link PropertyFactory#charListProperty(String)}
      */
     @Deprecated
-    public CharacterMultiProperty(String theName, String theDescription, Character[] defaultValues, float theUIOrder, char delimiter) {
+    public CharacterMultiProperty(final String theName, final String theDescription, final Character[] defaultValues, final float theUIOrder, final char delimiter) {
         this(theName, theDescription, Arrays.asList(defaultValues), theUIOrder, delimiter, false);
     }
 
 
     /** Master constructor. */
-    private CharacterMultiProperty(String theName, String theDescription, List<Character> defaultValues, float theUIOrder,
-                                   char delimiter, boolean isDefinedExternally) {
+    private CharacterMultiProperty(final String theName, final String theDescription, final List<Character> defaultValues, final float theUIOrder,
+                                   final char delimiter, final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValues, theUIOrder, delimiter, isDefinedExternally);
 
         if (defaultValues != null) {
@@ -72,13 +72,13 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
      * @deprecated Use {@link PropertyFactory#charListProperty(String)}
      */
     @Deprecated
-    public CharacterMultiProperty(String theName, String theDescription, List<Character> defaultValues, float theUIOrder, char delimiter) {
+    public CharacterMultiProperty(final String theName, final String theDescription, final List<Character> defaultValues, final float theUIOrder, final char delimiter) {
         this(theName, theDescription, defaultValues, theUIOrder, delimiter, false);
     }
 
 
     @Override
-    protected Character createFrom(String toParse) {
+    protected Character createFrom(final String toParse) {
         return CharacterProperty.charFrom(toParse);
     }
 
@@ -90,7 +90,7 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
 
 
     @Override
-    public List<Character> valueFrom(String valueString) throws IllegalArgumentException {
+    public List<Character> valueFrom(final String valueString) throws IllegalArgumentException {
         String[] values = StringUtils.split(valueString, multiValueDelimiter());
 
         List<Character> chars = new ArrayList<>(values.length);
@@ -104,7 +104,7 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
     static PropertyDescriptorBuilderConversionWrapper.MultiValue<Character, CharacterMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue<Character, CharacterMultiPBuilder>(Character.class, ValueParserConstants.CHARACTER_PARSER) {
             @Override
-            protected CharacterMultiPBuilder newBuilder(String name) {
+            protected CharacterMultiPBuilder newBuilder(final String name) {
                 return new CharacterMultiPBuilder(name);
             }
         };
@@ -115,7 +115,7 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
      * @deprecated Use {@link PropertyFactory#charListProperty(String)}
      */
     @Deprecated
-    public static CharacterMultiPBuilder named(String name) {
+    public static CharacterMultiPBuilder named(final String name) {
         return new CharacterMultiPBuilder(name);
     }
 
@@ -125,7 +125,7 @@ public final class CharacterMultiProperty extends AbstractMultiValueProperty<Cha
      */
     @Deprecated
     public static final class CharacterMultiPBuilder extends MultiValuePropertyBuilder<Character, CharacterMultiPBuilder> {
-        private CharacterMultiPBuilder(String name) {
+        private CharacterMultiPBuilder(final String name) {
             super(name);
         }
 

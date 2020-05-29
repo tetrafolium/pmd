@@ -25,7 +25,7 @@ public interface VisitorStarter {
      */
     VisitorStarter DUMMY = new VisitorStarter() {
         @Override
-        public void start(Node rootNode) {
+        public void start(final Node rootNode) {
             // does nothing - dummy implementation.
         }
     };

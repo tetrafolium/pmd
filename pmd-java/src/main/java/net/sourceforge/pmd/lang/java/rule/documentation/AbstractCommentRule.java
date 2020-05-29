@@ -53,16 +53,16 @@ public abstract class AbstractCommentRule extends AbstractJavaRule {
      *      turn provide access to the {@link JavadocTag}.
      */
     @Deprecated // the method will be removed with PMD 7.0.0
-    protected List<Integer> tagsIndicesIn(String comments) {
+    protected List<Integer> tagsIndicesIn(final String comments) {
         Map<String, Integer> tags = CommentUtil.javadocTagsIn(comments);
         return new ArrayList<>(tags.values());
     }
 
-    protected String filteredCommentIn(Comment comment) {
+    protected String filteredCommentIn(final Comment comment) {
         return comment.getFilteredComment();
     }
 
-    protected void assignCommentsToDeclarations(ASTCompilationUnit cUnit) {
+    protected void assignCommentsToDeclarations(final ASTCompilationUnit cUnit) {
 
         SortedMap<Integer, Node> itemsByLineNumber = orderedCommentsAndDeclarations(cUnit);
         FormalComment lastComment = null;
@@ -87,7 +87,7 @@ public abstract class AbstractCommentRule extends AbstractJavaRule {
         }
     }
 
-    private boolean isCommentNotWithin(FormalComment n1, Node n2, Node node) {
+    private boolean isCommentNotWithin(final FormalComment n1, final Node n2, final Node node) {
         if (n1 == null || n2 == null || node == null) {
             return true;
         }
@@ -100,12 +100,12 @@ public abstract class AbstractCommentRule extends AbstractJavaRule {
         return isNotWithinNode2 || isNotSameClass || isNodeWithinNode2;
     }
 
-    private boolean isCommentBefore(FormalComment n1, Node n2) {
+    private boolean isCommentBefore(final FormalComment n1, final Node n2) {
         return n1.getEndLine() < n2.getBeginLine()
                 || n1.getEndLine() == n2.getBeginLine() && n1.getEndColumn() < n2.getBeginColumn();
     }
 
-    protected SortedMap<Integer, Node> orderedCommentsAndDeclarations(ASTCompilationUnit cUnit) {
+    protected SortedMap<Integer, Node> orderedCommentsAndDeclarations(final ASTCompilationUnit cUnit) {
         SortedMap<Integer, Node> itemsByLineNumber = new TreeMap<>();
 
         addDeclarations(itemsByLineNumber, cUnit.findDescendantsOfType(ASTPackageDeclaration.class, true));
@@ -125,7 +125,7 @@ public abstract class AbstractCommentRule extends AbstractJavaRule {
         return itemsByLineNumber;
     }
 
-    private void addDeclarations(SortedMap<Integer, Node> map, List<? extends Node> nodes) {
+    private void addDeclarations(final SortedMap<Integer, Node> map, final List<? extends Node> nodes) {
         for (Node node : nodes) {
             map.put((node.getBeginLine() << 16) + node.getBeginColumn(), node);
         }

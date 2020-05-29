@@ -83,22 +83,22 @@ public abstract class AbstractAntTestHelper {
         }
     }
 
-    public void executeTarget(String target) {
+    public void executeTarget(final String target) {
         buildRule.executeTarget(target);
     }
 
-    public void assertOutputContaining(String text) {
+    public void assertOutputContaining(final String text) {
         assertContains(buildRule.getOutput(), text);
     }
 
 
-    public void assertContains(String text, String toFind) {
+    public void assertContains(final String text, final String toFind) {
         Assert.assertTrue("Expected to find \"" + toFind + "\", but it's missing",
                           text.contains(toFind));
     }
 
 
-    public void assertDoesntContain(String text, String toFind) {
+    public void assertDoesntContain(final String text, final String toFind) {
         Assert.assertTrue("Expected no occurrence of \"" + toFind + "\", but found at least one",
                           !text.contains(toFind));
     }

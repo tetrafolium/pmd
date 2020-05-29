@@ -15,11 +15,11 @@ public class MatchCollector {
     private Map<Integer, Map<Integer, Match>> matchTree = new TreeMap<>();
     private MatchAlgorithm ma;
 
-    public MatchCollector(MatchAlgorithm ma) {
+    public MatchCollector(final MatchAlgorithm ma) {
         this.ma = ma;
     }
 
-    public void collect(List<TokenEntry> marks) {
+    public void collect(final List<TokenEntry> marks) {
         // first get a pairwise collection of all maximal matches
         for (int i = 0; i < marks.size() - 1; i++) {
             TokenEntry mark1 = marks.get(i);
@@ -47,7 +47,7 @@ public class MatchCollector {
         }
     }
 
-    private void reportMatch(TokenEntry mark1, TokenEntry mark2, int dupes) {
+    private void reportMatch(final TokenEntry mark1, final TokenEntry mark2, final int dupes) {
         Map<Integer, Match> matches = matchTree.get(dupes);
         if (matches == null) {
             matches = new TreeMap<>();
@@ -69,7 +69,7 @@ public class MatchCollector {
         }
     }
 
-    private void addNewMatch(TokenEntry mark1, TokenEntry mark2, int dupes, Map<Integer, Match> matches) {
+    private void addNewMatch(final TokenEntry mark1, final TokenEntry mark2, final int dupes, final Map<Integer, Match> matches) {
         Match match = new Match(dupes, mark1, mark2);
         matches.put(mark1.getIndex(), match);
         matches.put(mark2.getIndex(), match);
@@ -82,14 +82,14 @@ public class MatchCollector {
         return matchList;
     }
 
-    private boolean hasPreviousDupe(TokenEntry mark1, TokenEntry mark2) {
+    private boolean hasPreviousDupe(final TokenEntry mark1, final TokenEntry mark2) {
         if (mark1.getIndex() == 0) {
             return false;
         }
         return !matchEnded(ma.tokenAt(-1, mark1), ma.tokenAt(-1, mark2));
     }
 
-    private int countDuplicateTokens(TokenEntry mark1, TokenEntry mark2) {
+    private int countDuplicateTokens(final TokenEntry mark1, final TokenEntry mark2) {
         int index = 0;
         while (!matchEnded(ma.tokenAt(index, mark1), ma.tokenAt(index, mark2))) {
             index++;
@@ -97,7 +97,7 @@ public class MatchCollector {
         return index;
     }
 
-    private boolean matchEnded(TokenEntry token1, TokenEntry token2) {
+    private boolean matchEnded(final TokenEntry token1, final TokenEntry token2) {
         return token1.getIdentifier() != token2.getIdentifier() || token1 == TokenEntry.EOF || token2 == TokenEntry.EOF;
     }
 }

@@ -38,15 +38,15 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
      * @deprecated Use {@link PropertyFactory#longIntListProperty(String)}
      */
     @Deprecated
-    public LongMultiProperty(String theName, String theDescription, Long min, Long max,
-                             Long[] defaultValues, float theUIOrder) {
+    public LongMultiProperty(final String theName, final String theDescription, final Long min, final Long max,
+                             final Long[] defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, Arrays.asList(defaultValues), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private LongMultiProperty(String theName, String theDescription, Long min, Long max,
-                              List<Long> defaultValues, float theUIOrder, boolean isDefinedExternally) {
+    private LongMultiProperty(final String theName, final String theDescription, final Long min, final Long max,
+                              final List<Long> defaultValues, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, defaultValues, theUIOrder, isDefinedExternally);
     }
 
@@ -65,8 +65,8 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
      * @deprecated Use {@link PropertyFactory#longIntListProperty(String)}
      */
     @Deprecated
-    public LongMultiProperty(String theName, String theDescription, Long min, Long max,
-                             List<Long> defaultValues, float theUIOrder) {
+    public LongMultiProperty(final String theName, final String theDescription, final Long min, final Long max,
+                             final List<Long> defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, defaultValues, theUIOrder, false);
     }
 
@@ -78,7 +78,7 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
 
 
     @Override
-    protected Long createFrom(String value) {
+    protected Long createFrom(final String value) {
         return Long.valueOf(value);
     }
 
@@ -86,7 +86,7 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
     static PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Long, LongMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Long, LongMultiPBuilder>(Long.class, ValueParserConstants.LONG_PARSER) {
             @Override
-            protected LongMultiPBuilder newBuilder(String name) {
+            protected LongMultiPBuilder newBuilder(final String name) {
                 return new LongMultiPBuilder(name);
             }
         };
@@ -95,7 +95,7 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
 
     /** @deprecated Use {@link PropertyFactory#longIntListProperty(String)} */
     @Deprecated
-    public static LongMultiPBuilder named(String name) {
+    public static LongMultiPBuilder named(final String name) {
         return new LongMultiPBuilder(name);
     }
 
@@ -105,7 +105,7 @@ public final class LongMultiProperty extends AbstractMultiNumericProperty<Long> 
     public static final class LongMultiPBuilder
         extends MultiNumericPropertyBuilder<Long, LongMultiPBuilder> {
 
-        protected LongMultiPBuilder(String name) {
+        protected LongMultiPBuilder(final String name) {
             super(name);
         }
 

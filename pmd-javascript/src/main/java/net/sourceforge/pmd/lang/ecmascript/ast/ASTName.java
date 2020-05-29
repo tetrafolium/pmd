@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTName extends AbstractEcmascriptNode<Name> {
     @Deprecated
     @InternalApi
-    public ASTName(Name name) {
+    public ASTName(final Name name) {
         super(name);
         super.setImage(name.getIdentifier());
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

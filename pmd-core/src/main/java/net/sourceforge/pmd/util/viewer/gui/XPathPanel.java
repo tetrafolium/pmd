@@ -33,7 +33,7 @@ public class XPathPanel extends JTabbedPane implements ViewerModelListener {
      * @param model
      *            model to refer to
      */
-    public XPathPanel(ViewerModel model) {
+    public XPathPanel(final ViewerModel model) {
         super(SwingConstants.BOTTOM);
         this.model = model;
         init();
@@ -56,7 +56,7 @@ public class XPathPanel extends JTabbedPane implements ViewerModelListener {
      * @see ViewerModelListener#viewerModelChanged(ViewerModelEvent)
      */
     @Override
-    public void viewerModelChanged(ViewerModelEvent e) {
+    public void viewerModelChanged(final ViewerModelEvent e) {
         switch (e.getReason()) {
         case ViewerModelEvent.PATH_EXPRESSION_APPENDED:
             if (e.getSource() != this) {

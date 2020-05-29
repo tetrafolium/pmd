@@ -31,7 +31,7 @@ import net.sourceforge.pmd.lang.rule.RuleViolationFactory;
 public class PLSQLHandler extends AbstractLanguageVersionHandler {
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new PLSQLParser(parserOptions);
     }
 
@@ -54,7 +54,7 @@ public class PLSQLHandler extends AbstractLanguageVersionHandler {
     public VisitorStarter getDataFlowFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new DataFlowFacade().initializeWith(getDataFlowHandler(), (ASTInput) rootNode);
             }
         };
@@ -64,7 +64,7 @@ public class PLSQLHandler extends AbstractLanguageVersionHandler {
     public VisitorStarter getSymbolFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new SymbolFacade().initializeWith((ASTInput) rootNode);
             }
         };
@@ -75,7 +75,7 @@ public class PLSQLHandler extends AbstractLanguageVersionHandler {
     public VisitorStarter getDumpFacade(final Writer writer, final String prefix, final boolean recurse) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new DumpFacade().initializeWith(writer, prefix, recurse, (PLSQLNode) rootNode);
             }
         };

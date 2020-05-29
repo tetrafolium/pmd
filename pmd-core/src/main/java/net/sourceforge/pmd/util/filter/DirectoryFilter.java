@@ -18,7 +18,7 @@ public final class DirectoryFilter implements Filter<File> {
     }
 
     @Override
-    public boolean filter(File file) {
+    public boolean filter(final File file) {
         return file.isDirectory();
     }
 

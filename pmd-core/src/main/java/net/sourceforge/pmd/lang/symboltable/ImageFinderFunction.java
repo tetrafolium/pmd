@@ -16,16 +16,16 @@ public class ImageFinderFunction implements SearchFunction<NameDeclaration> {
     private final Set<String> images;
     private NameDeclaration decl;
 
-    public ImageFinderFunction(String img) {
+    public ImageFinderFunction(final String img) {
         images = Collections.singleton(img);
     }
 
-    public ImageFinderFunction(List<String> imageList) {
+    public ImageFinderFunction(final List<String> imageList) {
         images = new HashSet<>(imageList);
     }
 
     @Override
-    public boolean applyTo(NameDeclaration nameDeclaration) {
+    public boolean applyTo(final NameDeclaration nameDeclaration) {
         if (images.contains(nameDeclaration.getImage())) {
             decl = nameDeclaration;
             return false;

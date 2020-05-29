@@ -24,7 +24,7 @@ public class LanguageVersionDiscoverer {
      *            The new default for the Language.
      * @return The previous default version for the language.
      */
-    public LanguageVersion setDefaultLanguageVersion(LanguageVersion languageVersion) {
+    public LanguageVersion setDefaultLanguageVersion(final LanguageVersion languageVersion) {
         LanguageVersion currentLanguageVersion = languageToLanguageVersion.put(languageVersion.getLanguage(),
                 languageVersion);
         if (currentLanguageVersion == null) {
@@ -40,7 +40,7 @@ public class LanguageVersionDiscoverer {
      *            The Language.
      * @return The current default version for the language.
      */
-    public LanguageVersion getDefaultLanguageVersion(Language language) {
+    public LanguageVersion getDefaultLanguageVersion(final Language language) {
         LanguageVersion languageVersion = languageToLanguageVersion.get(language);
         if (languageVersion == null) {
             languageVersion = language.getDefaultVersion();
@@ -58,7 +58,7 @@ public class LanguageVersionDiscoverer {
      *         <code>null</code> if there are no supported Languages for the
      *         file.
      */
-    public LanguageVersion getDefaultLanguageVersionForFile(File sourceFile) {
+    public LanguageVersion getDefaultLanguageVersionForFile(final File sourceFile) {
         return getDefaultLanguageVersionForFile(sourceFile.getName());
     }
 
@@ -72,7 +72,7 @@ public class LanguageVersionDiscoverer {
      *         <code>null</code> if there are no supported Languages for the
      *         file.
      */
-    public LanguageVersion getDefaultLanguageVersionForFile(String fileName) {
+    public LanguageVersion getDefaultLanguageVersionForFile(final String fileName) {
         List<Language> languages = getLanguagesForFile(fileName);
         LanguageVersion languageVersion = null;
         if (!languages.isEmpty()) {
@@ -88,7 +88,7 @@ public class LanguageVersionDiscoverer {
      *            The file.
      * @return The Languages for the source file, may be empty.
      */
-    public List<Language> getLanguagesForFile(File sourceFile) {
+    public List<Language> getLanguagesForFile(final File sourceFile) {
         return getLanguagesForFile(sourceFile.getName());
     }
 
@@ -99,13 +99,13 @@ public class LanguageVersionDiscoverer {
      *            The file name.
      * @return The Languages for the source file, may be empty.
      */
-    public List<Language> getLanguagesForFile(String fileName) {
+    public List<Language> getLanguagesForFile(final String fileName) {
         String extension = getExtension(fileName);
         return LanguageRegistry.findByExtension(extension);
     }
 
     // Get the extensions from a file
-    private String getExtension(String fileName) {
+    private String getExtension(final String fileName) {
         String extension = null;
         int extensionIndex = 1 + fileName.lastIndexOf('.');
         if (extensionIndex > 0) {

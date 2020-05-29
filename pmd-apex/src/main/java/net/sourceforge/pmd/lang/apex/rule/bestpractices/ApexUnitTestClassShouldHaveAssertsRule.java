@@ -33,7 +33,7 @@ public class ApexUnitTestClassShouldHaveAssertsRule extends AbstractApexUnitTest
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!isTestMethodOrClass(node)) {
             return data;
         }
@@ -41,7 +41,7 @@ public class ApexUnitTestClassShouldHaveAssertsRule extends AbstractApexUnitTest
         return checkForAssertStatements(node, data);
     }
 
-    private Object checkForAssertStatements(ApexNode<?> node, Object data) {
+    private Object checkForAssertStatements(final ApexNode<?> node, final Object data) {
         final List<ASTBlockStatement> blockStatements = node.findDescendantsOfType(ASTBlockStatement.class);
         final List<ASTStatement> statements = new ArrayList<>();
         final List<ASTMethodCallExpression> methodCalls = new ArrayList<>();

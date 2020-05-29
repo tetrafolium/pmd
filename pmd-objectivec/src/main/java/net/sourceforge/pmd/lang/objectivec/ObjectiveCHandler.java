@@ -23,7 +23,7 @@ public class ObjectiveCHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new ObjectiveCParser(parserOptions);
     }
 }

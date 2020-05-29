@@ -15,12 +15,12 @@ public class ASTTermApplyInfix extends AbstractScalaNode<Term.ApplyInfix> {
 
     @Deprecated
     @InternalApi
-    public ASTTermApplyInfix(Term.ApplyInfix scalaNode) {
+    public ASTTermApplyInfix(final Term.ApplyInfix scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

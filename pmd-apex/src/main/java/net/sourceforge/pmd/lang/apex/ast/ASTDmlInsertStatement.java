@@ -12,12 +12,12 @@ public class ASTDmlInsertStatement extends AbstractApexNode<DmlInsertStatement> 
 
     @Deprecated
     @InternalApi
-    public ASTDmlInsertStatement(DmlInsertStatement dmlInsertStatement) {
+    public ASTDmlInsertStatement(final DmlInsertStatement dmlInsertStatement) {
         super(dmlInsertStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

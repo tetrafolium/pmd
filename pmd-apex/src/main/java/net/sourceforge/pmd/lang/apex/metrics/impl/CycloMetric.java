@@ -26,7 +26,7 @@ public class CycloMetric extends AbstractApexOperationMetric {
 
 
     @Override
-    public double computeFor(ASTMethod node, MetricOptions options) {
+    public double computeFor(final ASTMethod node, final MetricOptions options) {
         return ((MutableInt) node.jjtAccept(new StandardCycloVisitor(), new MutableInt(1))).doubleValue();
     }
 
@@ -39,7 +39,7 @@ public class CycloMetric extends AbstractApexOperationMetric {
      *
      * @return The complexity of the expression
      */
-    public static int booleanExpressionComplexity(ASTStandardCondition expression) {
+    public static int booleanExpressionComplexity(final ASTStandardCondition expression) {
         Set<ASTBooleanExpression> subs = new HashSet<>(expression.findDescendantsOfType(ASTBooleanExpression.class));
         int complexity = 0;
 

@@ -9,7 +9,7 @@ import static net.sourceforge.pmd.lang.java.typeresolution.typedefinition.TypeDe
 /* default */ class JavaTypeDefinitionLower extends JavaTypeDefinitionUpper {
     private static final JavaTypeDefinition OBJECT_DEFINITION = forClass(Object.class);
 
-    protected JavaTypeDefinitionLower(JavaTypeDefinition... typeList) {
+    protected JavaTypeDefinitionLower(final JavaTypeDefinition... typeList) {
         super(LOWER_WILDCARD, typeList);
     }
 

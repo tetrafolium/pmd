@@ -15,12 +15,12 @@ public abstract class AbstractMethodOrConstructorDeclaration extends AbstractMet
     private JavaOperationSignature signature;
 
 
-    AbstractMethodOrConstructorDeclaration(int i) {
+    AbstractMethodOrConstructorDeclaration(final int i) {
         super(i);
     }
 
 
-    AbstractMethodOrConstructorDeclaration(JavaParser parser, int i) {
+    AbstractMethodOrConstructorDeclaration(final JavaParser parser, final int i) {
         super(parser, i);
     }
 

@@ -14,19 +14,19 @@ public class ApexAssertionsShouldIncludeMessageRule extends AbstractApexUnitTest
     private static final String ASSERT_NOT_EQUALS = "System.assertNotEquals";
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         String methodName = node.getFullMethodName();
 
         if (ASSERT.equalsIgnoreCase(methodName) && node.getNumChildren() == 2) {
             addViolationWithMessage(data, node,
                     "''{0}'' should have 2 parameters.",
-                    new Object[] { ASSERT });
+                    new Object[] {ASSERT });
         } else if ((ASSERT_EQUALS.equalsIgnoreCase(methodName)
                 || ASSERT_NOT_EQUALS.equalsIgnoreCase(methodName))
                 && node.getNumChildren() == 3) {
             addViolationWithMessage(data, node,
                     "''{0}'' should have 3 parameters.",
-                    new Object[] { methodName });
+                    new Object[] {methodName });
         }
         return data;
     }

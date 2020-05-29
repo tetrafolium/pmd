@@ -20,16 +20,16 @@ public final class ASTMultipleDefinitionImportClause extends AbstractModelicaImp
     private ASTName importFrom;
     private Set<String> importedNames = new HashSet<>();
 
-    ASTMultipleDefinitionImportClause(int id) {
+    ASTMultipleDefinitionImportClause(final int id) {
         super(id);
     }
 
-    ASTMultipleDefinitionImportClause(ModelicaParser p, int id) {
+    ASTMultipleDefinitionImportClause(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -45,12 +45,12 @@ public final class ASTMultipleDefinitionImportClause extends AbstractModelicaImp
     }
 
     @Override
-    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(ResolutionState state, ModelicaScope scope) {
+    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(final ResolutionState state, final ModelicaScope scope) {
         return scope.safeResolveLexically(ModelicaDeclaration.class, state, importFrom.getCompositeName());
     }
 
     @Override
-    protected void fetchImportedClassesFromSource(ResolutionContext result, ModelicaDeclaration source, String simpleName) throws Watchdog.CountdownException {
+    protected void fetchImportedClassesFromSource(final ResolutionContext result, final ModelicaDeclaration source, final String simpleName) throws Watchdog.CountdownException {
         if (importedNames.contains(simpleName)) {
             InternalModelicaResolverApi.resolveFurtherNameComponents(source, result, CompositeName.create(simpleName));
         }

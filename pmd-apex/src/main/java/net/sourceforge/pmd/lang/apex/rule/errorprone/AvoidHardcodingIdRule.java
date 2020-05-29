@@ -36,7 +36,7 @@ public class AvoidHardcodingIdRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTLiteralExpression node, Object data) {
+    public Object visit(final ASTLiteralExpression node, final Object data) {
         if (node.isString()) {
             String literal = node.getImage();
             if (PATTERN.matcher(literal).matches()) {
@@ -55,7 +55,7 @@ public class AvoidHardcodingIdRule extends AbstractApexRule {
      * https://stackoverflow.com/questions/9742913/validating-a-salesforce-id#answer-29299786
      * https://gist.github.com/jeriley/36b29f7c46527af4532aaf092c90dd56
      */
-    private boolean validateChecksum(String literal) {
+    private boolean validateChecksum(final String literal) {
         final String part1 = literal.substring(0, 5);
         final String part2 = literal.substring(5, 10);
         final String part3 = literal.substring(10, 15);
@@ -68,7 +68,7 @@ public class AvoidHardcodingIdRule extends AbstractApexRule {
                 && literal.charAt(17) == checksum3;
     }
 
-    private char checksum(String part) {
+    private char checksum(final String part) {
         final StringBuilder sb = new StringBuilder(5);
         for (int i = 4; i >= 0; i--) {
             sb.append(Character.isUpperCase(part.charAt(i)) ? '1' : '0');

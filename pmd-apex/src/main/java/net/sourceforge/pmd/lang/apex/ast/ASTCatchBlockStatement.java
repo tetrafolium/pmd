@@ -12,12 +12,12 @@ public class ASTCatchBlockStatement extends AbstractApexNode<CatchBlockStatement
 
     @Deprecated
     @InternalApi
-    public ASTCatchBlockStatement(CatchBlockStatement catchBlockStatement) {
+    public ASTCatchBlockStatement(final CatchBlockStatement catchBlockStatement) {
         super(catchBlockStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

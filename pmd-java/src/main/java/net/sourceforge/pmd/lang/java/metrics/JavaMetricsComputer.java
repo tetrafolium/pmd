@@ -29,7 +29,7 @@ public final class JavaMetricsComputer extends AbstractMetricsComputer<ASTAnyTyp
 
     // TODO: doesn't consider lambdas
     @Override
-    protected List<MethodLikeNode> findOperations(ASTAnyTypeDeclaration node) {
+    protected List<MethodLikeNode> findOperations(final ASTAnyTypeDeclaration node) {
         return JavaMetrics.findOps(node);
     }
 

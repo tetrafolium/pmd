@@ -50,16 +50,16 @@ public class ElementNode extends BaseNodeInfo {
     private Map<Integer, AttributeNode> attributes;
 
     @Deprecated
-    public ElementNode(DocumentNode document, IdGenerator idGenerator, ElementNode parent, Node node, int siblingPosition) {
+    public ElementNode(final DocumentNode document, final IdGenerator idGenerator, final ElementNode parent, final Node node, final int siblingPosition) {
         this(document, idGenerator, parent, node, siblingPosition, SaxonXPathRuleQuery.getNamePool());
     }
 
-    public ElementNode(DocumentNode document,
-                       IdGenerator idGenerator,
-                       ElementNode parent,
-                       Node node,
-                       int siblingPosition,
-                       NamePool namePool) {
+    public ElementNode(final DocumentNode document,
+                       final IdGenerator idGenerator,
+                       final ElementNode parent,
+                       final Node node,
+                       final int siblingPosition,
+                       final NamePool namePool) {
         super(Type.ELEMENT, namePool, node.getXPathNodeName(), parent);
 
         this.document = document;
@@ -151,7 +151,7 @@ public class ElementNode extends BaseNodeInfo {
     }
 
     @Override
-    public int compareOrder(NodeInfo other) {
+    public int compareOrder(final NodeInfo other) {
         int result;
         if (this.isSameNodeInfo(other)) {
             result = 0;
@@ -181,7 +181,7 @@ public class ElementNode extends BaseNodeInfo {
 
 
     @Override
-    public AxisIterator iterateAxis(byte axisNumber, NodeTest nodeTest) {
+    public AxisIterator iterateAxis(final byte axisNumber, final NodeTest nodeTest) {
         if (axisNumber == Axis.ATTRIBUTE) {
             if (nodeTest instanceof NameTest) {
                 if ((nodeTest.getNodeKindMask() & (1 << Type.ATTRIBUTE)) == 0) {

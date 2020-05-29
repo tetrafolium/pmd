@@ -47,7 +47,7 @@ public class IDEAJRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         classAndMethodName = getProperty(CLASS_AND_METHOD_NAME);
         fileName = getProperty(FILE_NAME);
 
@@ -60,7 +60,7 @@ public class IDEAJRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private void renderDirectoy(Writer writer, Iterator<RuleViolation> violations) throws IOException {
+    private void renderDirectoy(final Writer writer, final Iterator<RuleViolation> violations) throws IOException {
         SourcePath sourcePath = new SourcePath(getProperty(SOURCE_PATH));
         StringBuilder buf = new StringBuilder();
         while (violations.hasNext()) {
@@ -74,7 +74,7 @@ public class IDEAJRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private void renderFile(Writer writer, Iterator<RuleViolation> violations) throws IOException {
+    private void renderFile(final Writer writer, final Iterator<RuleViolation> violations) throws IOException {
         StringBuilder buf = new StringBuilder();
         while (violations.hasNext()) {
             buf.setLength(0);
@@ -86,13 +86,13 @@ public class IDEAJRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private String getFullyQualifiedClassName(String fileName, SourcePath sourcePath) {
+    private String getFullyQualifiedClassName(final String fileName, final SourcePath sourcePath) {
         String classNameWithSlashes = sourcePath.clipPath(fileName);
         String className = classNameWithSlashes.replace(FILE_SEPARATOR.charAt(0), '.');
         return className.substring(0, className.length() - 5);
     }
 
-    private String getSimpleFileName(String fileName) {
+    private String getSimpleFileName(final String fileName) {
         return fileName.substring(fileName.lastIndexOf(FILE_SEPARATOR) + 1);
     }
 
@@ -100,13 +100,13 @@ public class IDEAJRenderer extends AbstractIncrementingRenderer {
 
         private Set<String> paths = new HashSet<>();
 
-        SourcePath(String sourcePathString) {
+        SourcePath(final String sourcePathString) {
             for (StringTokenizer st = new StringTokenizer(sourcePathString, PATH_SEPARATOR); st.hasMoreTokens();) {
                 paths.add(st.nextToken());
             }
         }
 
-        public String clipPath(String fullFilename) {
+        public String clipPath(final String fullFilename) {
             for (String path : paths) {
                 if (fullFilename.startsWith(path)) {
                     return fullFilename.substring(path.length() + 1);

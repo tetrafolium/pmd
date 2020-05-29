@@ -15,12 +15,12 @@ public class ASTTypeOr extends AbstractScalaNode<Type.Or> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeOr(Type.Or scalaNode) {
+    public ASTTypeOr(final Type.Or scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

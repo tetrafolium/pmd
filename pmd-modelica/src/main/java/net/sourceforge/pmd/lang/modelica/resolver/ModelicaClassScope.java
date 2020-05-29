@@ -10,7 +10,7 @@ package net.sourceforge.pmd.lang.modelica.resolver;
 public final class ModelicaClassScope extends AbstractModelicaScope {
     private final ModelicaClassDeclaration classDeclaration;
 
-    ModelicaClassScope(ModelicaClassDeclaration declaration) {
+    ModelicaClassScope(final ModelicaClassDeclaration declaration) {
         classDeclaration = declaration;
         classDeclaration.setOwnScope(this);
     }
@@ -20,7 +20,7 @@ public final class ModelicaClassScope extends AbstractModelicaScope {
     }
 
     @Override
-    public void resolveLexically(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    public void resolveLexically(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         InternalModelicaResolverApi.resolveFurtherNameComponents(classDeclaration, result, name);
         if (classDeclaration.isEncapsulated()) {
             getRoot().resolveBuiltin(result, name);

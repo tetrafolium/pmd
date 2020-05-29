@@ -23,13 +23,13 @@ public class MultifileVisitor extends JavaParserVisitorReducedAdapter {
     private final PackageStats toplevel;
 
 
-    MultifileVisitor(PackageStats toplevel) {
+    MultifileVisitor(final PackageStats toplevel) {
         this.toplevel = toplevel;
     }
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         stack.push(toplevel.getClassStats(node.getQualifiedName(), true));
         super.visit(node, data);
         stack.pop();
@@ -39,14 +39,14 @@ public class MultifileVisitor extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTMethodOrConstructorDeclaration node, Object data) {
+    public Object visit(final ASTMethodOrConstructorDeclaration node, final Object data) {
         stack.peek().addOperation(node.getQualifiedName().getOperation(), node.getSignature());
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         stack.peek().addField(node.getVariableName(), node.getSignature());
         return data; // end recursion
     }

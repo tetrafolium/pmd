@@ -11,11 +11,11 @@ public class ASTClassDefinition extends AbstractModelicaNode {
     private ModelicaClassSpecialization specialization;
     private ModelicaClassSpecifierNode specifier;
 
-    ASTClassDefinition(int id) {
+    ASTClassDefinition(final int id) {
         super(id);
     }
 
-    ASTClassDefinition(ModelicaParser p, int id) {
+    ASTClassDefinition(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
@@ -35,7 +35,7 @@ public class ASTClassDefinition extends AbstractModelicaNode {
         return specifier;
     }
 
-    private void checkSpecialization(Class<? extends ModelicaNode> clauseClass, ModelicaClassSpecialization restriction) {
+    private void checkSpecialization(final Class<? extends ModelicaNode> clauseClass, final ModelicaClassSpecialization restriction) {
         if (prefixes.getFirstChildOfType(clauseClass) != null) {
             assert specialization == null;
             specialization = restriction;
@@ -72,7 +72,7 @@ public class ASTClassDefinition extends AbstractModelicaNode {
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

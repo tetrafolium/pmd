@@ -12,12 +12,12 @@ public class ASTPackageVersionExpression extends AbstractApexNode<PackageVersion
 
     @Deprecated
     @InternalApi
-    public ASTPackageVersionExpression(PackageVersionExpression packageVersionExpression) {
+    public ASTPackageVersionExpression(final PackageVersionExpression packageVersionExpression) {
         super(packageVersionExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -19,7 +19,7 @@ public class CPPLanguage extends AbstractLanguage {
         this(System.getProperties());
     }
 
-    public CPPLanguage(Properties properties) {
+    public CPPLanguage(final Properties properties) {
         super("C++", "cpp", new CPPTokenizer(), ".h", ".hpp", ".hxx", ".c", ".cpp", ".cxx", ".cc", ".C");
         setProperties(properties);
     }
@@ -31,7 +31,7 @@ public class CPPLanguage extends AbstractLanguage {
      * Properties)
      */
     @Override
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         super.setProperties(properties);
         ((CPPTokenizer) getTokenizer()).setProperties(properties);
     }

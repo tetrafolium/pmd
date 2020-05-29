@@ -19,12 +19,12 @@ import net.sourceforge.pmd.stat.DataPoint;
 public class ExcessiveLengthRule extends AbstractStatisticalJavaRule {
     private Class<?> nodeClass;
 
-    public ExcessiveLengthRule(Class<?> nodeClass) {
+    public ExcessiveLengthRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         if (nodeClass.isInstance(node)) {
             DataPoint point = new DataPoint();
             point.setNode(node);

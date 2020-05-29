@@ -96,7 +96,7 @@ public final class PropertyFactory {
      *
      * @see NumericConstraints
      */
-    public static GenericPropertyBuilder<Integer> intProperty(String name) {
+    public static GenericPropertyBuilder<Integer> intProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.INTEGER_PARSER, Integer.class);
     }
 
@@ -109,7 +109,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericCollectionPropertyBuilder<Integer, List<Integer>> intListProperty(String name) {
+    public static GenericCollectionPropertyBuilder<Integer, List<Integer>> intListProperty(final String name) {
         return intProperty(name).toList().delim(MultiValuePropertyDescriptor.DEFAULT_NUMERIC_DELIMITER);
     }
 
@@ -133,7 +133,7 @@ public final class PropertyFactory {
      *
      * @see NumericConstraints
      */
-    public static GenericPropertyBuilder<Long> longIntProperty(String name) {
+    public static GenericPropertyBuilder<Long> longIntProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.LONG_PARSER, Long.class);
     }
 
@@ -146,7 +146,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericCollectionPropertyBuilder<Long, List<Long>> longIntListProperty(String name) {
+    public static GenericCollectionPropertyBuilder<Long, List<Long>> longIntListProperty(final String name) {
         return longIntProperty(name).toList().delim(MultiValuePropertyDescriptor.DEFAULT_NUMERIC_DELIMITER);
     }
 
@@ -165,7 +165,7 @@ public final class PropertyFactory {
      *
      * @see NumericConstraints
      */
-    public static GenericPropertyBuilder<Double> doubleProperty(String name) {
+    public static GenericPropertyBuilder<Double> doubleProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.DOUBLE_PARSER, Double.class);
     }
 
@@ -178,7 +178,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericCollectionPropertyBuilder<Double, List<Double>> doubleListProperty(String name) {
+    public static GenericCollectionPropertyBuilder<Double, List<Double>> doubleListProperty(final String name) {
         return doubleProperty(name).toList().delim(MultiValuePropertyDescriptor.DEFAULT_NUMERIC_DELIMITER);
     }
 
@@ -197,7 +197,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static RegexPropertyBuilder regexProperty(String name) {
+    public static RegexPropertyBuilder regexProperty(final String name) {
         return new RegexPropertyBuilder(name);
     }
 
@@ -213,7 +213,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericPropertyBuilder<String> stringProperty(String name) {
+    public static GenericPropertyBuilder<String> stringProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.STRING_PARSER, String.class);
     }
 
@@ -226,7 +226,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericCollectionPropertyBuilder<String, List<String>> stringListProperty(String name) {
+    public static GenericCollectionPropertyBuilder<String, List<String>> stringListProperty(final String name) {
         return stringProperty(name).toList();
     }
 
@@ -244,7 +244,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericPropertyBuilder<Character> charProperty(String name) {
+    public static GenericPropertyBuilder<Character> charProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.CHARACTER_PARSER, Character.class);
     }
 
@@ -257,7 +257,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericCollectionPropertyBuilder<Character, List<Character>> charListProperty(String name) {
+    public static GenericCollectionPropertyBuilder<Character, List<Character>> charListProperty(final String name) {
         return charProperty(name).toList();
     }
 
@@ -271,7 +271,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static GenericPropertyBuilder<Boolean> booleanProperty(String name) {
+    public static GenericPropertyBuilder<Boolean> booleanProperty(final String name) {
         return new GenericPropertyBuilder<>(name, ValueParserConstants.BOOLEAN_PARSER, Boolean.class);
     }
 
@@ -294,7 +294,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static <T> GenericPropertyBuilder<T> enumProperty(String name, Map<String, T> nameToValue) {
+    public static <T> GenericPropertyBuilder<T> enumProperty(final String name, final Map<String, T> nameToValue) {
         // TODO find solution to document the set of possible values
         // At best, map that requirement to a constraint (eg make parser return null if not found, and
         // add a non-null constraint with the right description.)
@@ -312,7 +312,7 @@ public final class PropertyFactory {
      *
      * @return A new builder
      */
-    public static <T> GenericCollectionPropertyBuilder<T, List<T>> enumListProperty(String name, Map<String, T> nameToValue) {
+    public static <T> GenericCollectionPropertyBuilder<T, List<T>> enumListProperty(final String name, final Map<String, T> nameToValue) {
         return enumProperty(name, nameToValue).toList().delim(MultiValuePropertyDescriptor.DEFAULT_DELIMITER);
     }
 

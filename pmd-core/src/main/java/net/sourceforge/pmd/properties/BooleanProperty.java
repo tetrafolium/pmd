@@ -32,13 +32,13 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
      * @deprecated Use {@link PropertyFactory#booleanProperty(String)} or its overloads.
      */
     @Deprecated
-    public BooleanProperty(String theName, String theDescription, String defaultBoolStr, float theUIOrder) {
+    public BooleanProperty(final String theName, final String theDescription, final String defaultBoolStr, final float theUIOrder) {
         this(theName, theDescription, Boolean.valueOf(defaultBoolStr), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private BooleanProperty(String theName, String theDescription, boolean defaultValue, float theUIOrder, boolean isDefinedExternally) {
+    private BooleanProperty(final String theName, final String theDescription, final boolean defaultValue, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValue, theUIOrder, isDefinedExternally);
     }
 
@@ -54,7 +54,7 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
      * @deprecated Use {@link PropertyFactory#booleanProperty(String)} or its overloads.
      */
     @Deprecated
-    public BooleanProperty(String theName, String theDescription, boolean defaultValue, float theUIOrder) {
+    public BooleanProperty(final String theName, final String theDescription, final boolean defaultValue, final float theUIOrder) {
         this(theName, theDescription, defaultValue, theUIOrder, false);
     }
 
@@ -66,7 +66,7 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
 
 
     @Override
-    public Boolean createFrom(String propertyString) throws IllegalArgumentException {
+    public Boolean createFrom(final String propertyString) throws IllegalArgumentException {
         return BOOLEAN_PARSER.valueOf(propertyString);
     }
 
@@ -74,7 +74,7 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
     static PropertyDescriptorBuilderConversionWrapper.SingleValue<Boolean, BooleanPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue<Boolean, BooleanPBuilder>(Boolean.class, ValueParserConstants.BOOLEAN_PARSER) {
             @Override
-            protected BooleanPBuilder newBuilder(String name) {
+            protected BooleanPBuilder newBuilder(final String name) {
                 return new BooleanPBuilder(name);
             }
         };
@@ -85,7 +85,7 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
      * @deprecated Use {@link PropertyFactory#booleanProperty(String)} or its overloads.
      */
     @Deprecated
-    public static BooleanPBuilder named(String name) {
+    public static BooleanPBuilder named(final String name) {
         return new BooleanPBuilder(name);
     }
 
@@ -95,7 +95,7 @@ public final class BooleanProperty extends AbstractSingleValueProperty<Boolean> 
      */
     @Deprecated
     public static final class BooleanPBuilder extends SingleValuePropertyBuilder<Boolean, BooleanPBuilder> {
-        private BooleanPBuilder(String name) {
+        private BooleanPBuilder(final String name) {
             super(name);
         }
 

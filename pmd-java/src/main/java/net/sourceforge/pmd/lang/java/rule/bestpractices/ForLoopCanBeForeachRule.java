@@ -43,7 +43,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
 
         final ASTForInit init = node.getFirstChildOfType(ASTForInit.class);
         final ASTForUpdate update = node.getFirstChildOfType(ASTForUpdate.class);
@@ -106,7 +106,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
 
 
     /* Finds the declaration of the index variable and its occurrences, null to abort */
-    private Entry<VariableNameDeclaration, List<NameOccurrence>> getIndexVarDeclaration(ASTForInit init, ASTForUpdate update) {
+    private Entry<VariableNameDeclaration, List<NameOccurrence>> getIndexVarDeclaration(final ASTForInit init, final ASTForUpdate update) {
         if (init == null) {
             return guessIndexVarFromUpdate(update);
         }
@@ -139,7 +139,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
 
 
     /** Does a best guess to find the index variable, gives up if the update has several statements */
-    private Entry<VariableNameDeclaration, List<NameOccurrence>> guessIndexVarFromUpdate(ASTForUpdate update) {
+    private Entry<VariableNameDeclaration, List<NameOccurrence>> guessIndexVarFromUpdate(final ASTForUpdate update) {
 
         Node name = null;
         try {
@@ -162,12 +162,12 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     /**
      * @return true if there's only one update statement of the form i++ or ++i.
      */
-    private boolean isForUpdateSimpleEnough(ASTForUpdate update, String itName) {
+    private boolean isForUpdateSimpleEnough(final ASTForUpdate update, final String itName) {
         return update != null && update.hasDescendantMatchingXPath(getSimpleForUpdateXpath(itName));
     }
 
 
-    private String getSimpleForUpdateXpath(String itName) {
+    private String getSimpleForUpdateXpath(final String itName) {
         return "./StatementExpressionList[count(*)=1]"
             + "/StatementExpression"
             + "/*[self::PostfixExpression and @Image='++' or self::PreIncrementExpression]"
@@ -179,7 +179,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
 
 
     /* We only report loops with int initializers starting at zero. */
-    private boolean indexStartsAtZero(VariableNameDeclaration index) {
+    private boolean indexStartsAtZero(final VariableNameDeclaration index) {
         ASTVariableDeclaratorId name = (ASTVariableDeclaratorId) index.getNode();
         ASTVariableDeclarator declarator = name.getFirstParentOfType(ASTVariableDeclarator.class);
 
@@ -210,7 +210,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
      *
      * @return The name, or null if it couldn't be found or the guard condition is not safe to refactor (then abort)
      */
-    private String getIterableNameOrNullToAbort(ASTExpression guardCondition, String itName) {
+    private String getIterableNameOrNullToAbort(final ASTExpression guardCondition, final String itName) {
 
 
         if (guardCondition.getNumChildren() > 0
@@ -249,7 +249,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private Entry<VariableNameDeclaration, List<NameOccurrence>> getIterableDeclOfIteratorLoop(VariableNameDeclaration indexDecl, Scope scope) {
+    private Entry<VariableNameDeclaration, List<NameOccurrence>> getIterableDeclOfIteratorLoop(final VariableNameDeclaration indexDecl, final Scope scope) {
         Node initializer = indexDecl.getNode().getFirstParentOfType(ASTVariableDeclarator.class)
                                     .getFirstChildOfType(ASTVariableInitializer.class);
 
@@ -274,8 +274,8 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private boolean isReplaceableArrayLoop(ASTForStatement stmt, List<NameOccurrence> occurrences,
-                                           VariableNameDeclaration arrayDeclaration) {
+    private boolean isReplaceableArrayLoop(final ASTForStatement stmt, final List<NameOccurrence> occurrences,
+                                           final VariableNameDeclaration arrayDeclaration) {
         String arrayName = arrayDeclaration.getName();
 
 
@@ -292,7 +292,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private boolean occurenceIsArrayAccess(NameOccurrence occ, String arrayName) {
+    private boolean occurenceIsArrayAccess(final NameOccurrence occ, final String arrayName) {
         if (occ.getLocation() instanceof ASTName) {
             ASTPrimarySuffix suffix = occ.getLocation().getFirstParentOfType(ASTPrimarySuffix.class);
 
@@ -309,8 +309,8 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private boolean isReplaceableListLoop(ASTForStatement stmt, List<NameOccurrence> occurrences,
-                                          VariableNameDeclaration listDeclaration) {
+    private boolean isReplaceableListLoop(final ASTForStatement stmt, final List<NameOccurrence> occurrences,
+                                          final VariableNameDeclaration listDeclaration) {
 
         String listName = listDeclaration.getName();
 
@@ -330,7 +330,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
 
 
     /** @return true if this occurence is as an argument to List.get on the correct list */
-    private boolean occurenceIsListGet(NameOccurrence occ, String listName) {
+    private boolean occurenceIsListGet(final NameOccurrence occ, final String listName) {
         if (occ.getLocation() instanceof ASTName) {
             ASTPrimarySuffix suffix = occ.getLocation().getFirstParentOfType(ASTPrimarySuffix.class);
 
@@ -356,7 +356,7 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private Entry<VariableNameDeclaration, List<NameOccurrence>> findDeclaration(String varName, Scope innermost) {
+    private Entry<VariableNameDeclaration, List<NameOccurrence>> findDeclaration(final String varName, final Scope innermost) {
         Scope currentScope = innermost;
 
         while (currentScope != null) {
@@ -372,10 +372,10 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
     }
 
 
-    private boolean isReplaceableIteratorLoop(Entry<VariableNameDeclaration, List<NameOccurrence>> indexInfo,
-                                              ASTExpression guardCondition,
-                                              Entry<VariableNameDeclaration, List<NameOccurrence>> iterableInfo,
-                                              ASTForStatement stmt) {
+    private boolean isReplaceableIteratorLoop(final Entry<VariableNameDeclaration, List<NameOccurrence>> indexInfo,
+                                              final ASTExpression guardCondition,
+                                              final Entry<VariableNameDeclaration, List<NameOccurrence>> iterableInfo,
+                                              final ASTForStatement stmt) {
 
         if (isIterableModifiedInsideLoop(iterableInfo, stmt)) {
             return false;
@@ -412,8 +412,8 @@ public class ForLoopCanBeForeachRule extends AbstractJavaRule {
         return true;
     }
 
-    private boolean isIterableModifiedInsideLoop(Entry<VariableNameDeclaration, List<NameOccurrence>> iterableInfo,
-                                                 ASTForStatement stmt) {
+    private boolean isIterableModifiedInsideLoop(final Entry<VariableNameDeclaration, List<NameOccurrence>> iterableInfo,
+                                                 final ASTForStatement stmt) {
 
         String iterableName = iterableInfo.getKey().getName();
         for (NameOccurrence occ : iterableInfo.getValue()) {

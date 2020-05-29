@@ -28,12 +28,12 @@ public class TypeSet {
     public static class ExplicitImportResolver implements Resolver {
         private Set<String> importStmts;
 
-        public ExplicitImportResolver(Set<String> importStmts) {
+        public ExplicitImportResolver(final Set<String> importStmts) {
             this.importStmts = importStmts;
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             for (String importStmt : importStmts) {
                 if (importStmt.endsWith(name)) {
                     return Class.forName(importStmt);
@@ -46,12 +46,12 @@ public class TypeSet {
     public static class CurrentPackageResolver implements Resolver {
         private String pkg;
 
-        public CurrentPackageResolver(String pkg) {
+        public CurrentPackageResolver(final String pkg) {
             this.pkg = pkg;
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             return Class.forName(pkg + name);
         }
     }
@@ -59,7 +59,7 @@ public class TypeSet {
     // TODO cite the JLS section on implicit imports
     public static class ImplicitImportResolver implements Resolver {
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             return Class.forName("java.lang." + name);
         }
     }
@@ -67,12 +67,12 @@ public class TypeSet {
     public static class ImportOnDemandResolver implements Resolver {
         private Set<String> importStmts;
 
-        public ImportOnDemandResolver(Set<String> importStmts) {
+        public ImportOnDemandResolver(final Set<String> importStmts) {
             this.importStmts = importStmts;
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             for (String importStmt : importStmts) {
                 if (importStmt.endsWith("*")) {
                     try {
@@ -104,7 +104,7 @@ public class TypeSet {
         }
 
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if (!primitiveTypes.containsKey(name)) {
                 throw new ClassNotFoundException();
             }
@@ -114,7 +114,7 @@ public class TypeSet {
 
     public static class VoidResolver implements Resolver {
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             if ("void".equals(name)) {
                 return void.class;
             }
@@ -124,7 +124,7 @@ public class TypeSet {
 
     public static class FullyQualifiedNameResolver implements Resolver {
         @Override
-        public Class<?> resolve(String name) throws ClassNotFoundException {
+        public Class<?> resolve(final String name) throws ClassNotFoundException {
             return Class.forName(name);
         }
     }
@@ -133,7 +133,7 @@ public class TypeSet {
     private Set<String> imports = new HashSet<>();
     private List<Resolver> resolvers = new ArrayList<>();
 
-    public void setASTinputPackage(String pkg) {
+    public void setASTinputPackage(final String pkg) {
         this.pkg = pkg;
     }
 
@@ -141,7 +141,7 @@ public class TypeSet {
         return pkg;
     }
 
-    public void addImport(String importString) {
+    public void addImport(final String importString) {
         imports.add(importString);
     }
 
@@ -149,7 +149,7 @@ public class TypeSet {
         return imports.size();
     }
 
-    public Class<?> findClass(String name) throws ClassNotFoundException {
+    public Class<?> findClass(final String name) throws ClassNotFoundException {
         // we don't build the resolvers until now since we first want to get all
         // the imports
         if (resolvers.isEmpty()) {

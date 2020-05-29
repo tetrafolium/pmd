@@ -51,7 +51,7 @@ public final class CollectionUtil {
      * @param target
      * @return int
      */
-    public static <T> int addWithoutDuplicates(Collection<T> source, Collection<T> target) {
+    public static <T> int addWithoutDuplicates(final Collection<T> source, final Collection<T> target) {
 
         int added = 0;
 
@@ -73,7 +73,7 @@ public final class CollectionUtil {
      *            String
      * @return Class
      */
-    public static Class<?> getCollectionTypeFor(String shortName) {
+    public static Class<?> getCollectionTypeFor(final String shortName) {
         Class<?> cls = COLLECTION_CLASSES_BY_NAMES.typeFor(shortName);
         if (cls != null) {
             return cls;
@@ -92,7 +92,7 @@ public final class CollectionUtil {
      *            boolean
      * @return boolean
      */
-    public static boolean isCollectionType(String typeName, boolean includeInterfaces) {
+    public static boolean isCollectionType(final String typeName, final boolean includeInterfaces) {
 
         if (COLLECTION_CLASSES_BY_NAMES.contains(typeName)) {
             return true;
@@ -111,7 +111,7 @@ public final class CollectionUtil {
      *            boolean
      * @return boolean
      */
-    public static boolean isCollectionType(Class<?> clazzType, boolean includeInterfaces) {
+    public static boolean isCollectionType(final Class<?> clazzType, final boolean includeInterfaces) {
 
         if (COLLECTION_CLASSES_BY_NAMES.contains(clazzType)) {
             return true;
@@ -127,7 +127,7 @@ public final class CollectionUtil {
      *            Object[]
      * @return Set
      */
-    public static <T> Set<T> asSet(T[] items) {
+    public static <T> Set<T> asSet(final T[] items) {
 
         return new HashSet<>(Arrays.asList(items));
     }
@@ -142,7 +142,7 @@ public final class CollectionUtil {
      *            V[]
      * @return Map
      */
-    public static <K, V> Map<K, V> mapFrom(K[] keys, V[] values) {
+    public static <K, V> Map<K, V> mapFrom(final K[] keys, final V[] values) {
         if (keys.length != values.length) {
             throw new RuntimeException("mapFrom keys and values arrays have different sizes");
         }
@@ -160,7 +160,7 @@ public final class CollectionUtil {
      *            Map
      * @return Map
      */
-    public static <K, V> Map<V, K> invertedMapFrom(Map<K, V> source) {
+    public static <K, V> Map<V, K> invertedMapFrom(final Map<K, V> source) {
         Map<V, K> map = new HashMap<>(source.size());
         for (Map.Entry<K, V> entry : source.entrySet()) {
             map.put(entry.getValue(), entry.getKey());
@@ -179,7 +179,7 @@ public final class CollectionUtil {
      * @return a list containing the elements remaining
      * on the iterator
      */
-    public static <T> List<T> toList(Iterator<T> it) {
+    public static <T> List<T> toList(final Iterator<T> it) {
         List<T> list = new ArrayList<>();
         while (it.hasNext()) {
             list.add(it.next());
@@ -200,7 +200,7 @@ public final class CollectionUtil {
      * @deprecated {@link Objects#deepEquals(Object, Object)}
      */
     @Deprecated
-    public static boolean arraysAreEqual(Object value, Object otherValue) {
+    public static boolean arraysAreEqual(final Object value, final Object otherValue) {
         if (value instanceof Object[]) {
             if (otherValue instanceof Object[]) {
                 return valuesAreTransitivelyEqual((Object[]) value, (Object[]) otherValue);
@@ -222,7 +222,7 @@ public final class CollectionUtil {
      * @deprecated {@link Arrays#deepEquals(Object[], Object[])}
      */
     @Deprecated
-    public static boolean valuesAreTransitivelyEqual(Object[] thisArray, Object[] thatArray) {
+    public static boolean valuesAreTransitivelyEqual(final Object[] thisArray, final Object[] thatArray) {
         if (thisArray == thatArray) {
             return true;
         }
@@ -252,7 +252,7 @@ public final class CollectionUtil {
      */
     @Deprecated
     @SuppressWarnings("PMD.CompareObjectsWithEquals")
-    public static boolean areEqual(Object value, Object otherValue) {
+    public static boolean areEqual(final Object value, final Object otherValue) {
         if (value == otherValue) {
             return true;
         }
@@ -275,7 +275,7 @@ public final class CollectionUtil {
      * @param items
      * @return boolean
      */
-    public static boolean isEmpty(Object[] items) {
+    public static boolean isEmpty(final Object[] items) {
         return items == null || items.length == 0;
     }
 
@@ -285,7 +285,7 @@ public final class CollectionUtil {
      * @param items
      * @return boolean
      */
-    public static boolean isNotEmpty(Object[] items) {
+    public static boolean isNotEmpty(final Object[] items) {
         return !isEmpty(items);
     }
 
@@ -301,7 +301,7 @@ public final class CollectionUtil {
      * @deprecated {@link Arrays#deepEquals(Object[], Object[])}
      */
     @Deprecated
-    public static <T> boolean areSemanticEquals(T[] a, T[] b) {
+    public static <T> boolean areSemanticEquals(final T[] a, final T[] b) {
         if (a == null) {
             return b == null || b.length == 0;
         }
@@ -334,7 +334,7 @@ public final class CollectionUtil {
      * @return an array containing the union of values and newValue
      */
     @Deprecated
-    public static <T> T[] addWithoutDuplicates(T[] values, T newValue) {
+    public static <T> T[] addWithoutDuplicates(final T[] values, final T newValue) {
 
         for (T value : values) {
             if (value.equals(newValue)) {
@@ -357,7 +357,7 @@ public final class CollectionUtil {
      * @return the union of the two arrays
      */
     @Deprecated
-    public static <T> T[] addWithoutDuplicates(T[] values, T[] newValues) {
+    public static <T> T[] addWithoutDuplicates(final T[] values, final T[] newValues) {
 
         Set<T> originals = new HashSet<>(values.length);
         for (T value : values) {

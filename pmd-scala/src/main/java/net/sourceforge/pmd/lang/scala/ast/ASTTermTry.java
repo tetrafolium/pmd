@@ -15,12 +15,12 @@ public class ASTTermTry extends AbstractScalaNode<Term.Try> {
 
     @Deprecated
     @InternalApi
-    public ASTTermTry(Term.Try scalaNode) {
+    public ASTTermTry(final Term.Try scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

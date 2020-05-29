@@ -41,7 +41,7 @@ import org.apache.commons.lang3.StringUtils;
      *
      * @throws IllegalArgumentException If name or description are empty, or UI order is negative.
      */
-    protected AbstractProperty(String theName, String theDescription, float theUIOrder, boolean isDefinedExternally) {
+    protected AbstractProperty(final String theName, final String theDescription, final float theUIOrder, final boolean isDefinedExternally) {
         if (theUIOrder < 0) {
             throw new IllegalArgumentException("Property attribute 'UI order' cannot be null or blank");
         }
@@ -66,7 +66,7 @@ import org.apache.commons.lang3.StringUtils;
 
 
     @Override
-    public final int compareTo(PropertyDescriptor<?> otherProperty) {
+    public final int compareTo(final PropertyDescriptor<?> otherProperty) {
         float otherOrder = otherProperty.uiOrder();
         return (int) (otherOrder - uiOrder);
     }
@@ -79,7 +79,7 @@ import org.apache.commons.lang3.StringUtils;
 
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -127,7 +127,7 @@ import org.apache.commons.lang3.StringUtils;
      *
      * @param attributes The map to fill
      */
-    protected void addAttributesTo(Map<PropertyDescriptorField, String> attributes) {
+    protected void addAttributesTo(final Map<PropertyDescriptorField, String> attributes) {
         attributes.put(NAME, name);
         attributes.put(DESCRIPTION, description);
         attributes.put(DEFAULT_VALUE, defaultAsString());
@@ -148,7 +148,7 @@ import org.apache.commons.lang3.StringUtils;
     }
 
 
-    private static String checkNotEmpty(String arg, PropertyDescriptorField argId) throws IllegalArgumentException {
+    private static String checkNotEmpty(final String arg, final PropertyDescriptorField argId) throws IllegalArgumentException {
         if (StringUtils.isBlank(arg)) {
             throw new IllegalArgumentException("Property attribute '" + argId + "' cannot be null or blank");
         }

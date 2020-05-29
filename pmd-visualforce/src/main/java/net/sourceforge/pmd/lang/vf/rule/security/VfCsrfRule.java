@@ -22,7 +22,7 @@ public class VfCsrfRule extends AbstractVfRule {
     private static final String APEX_PAGE = "apex:page";
 
     @Override
-    public Object visit(ASTElement node, Object data) {
+    public Object visit(final ASTElement node, final Object data) {
         if (APEX_PAGE.equalsIgnoreCase(node.getName())) {
             List<ASTAttribute> attribs = node.findChildrenOfType(ASTAttribute.class);
             boolean controller = false;
@@ -58,7 +58,7 @@ public class VfCsrfRule extends AbstractVfRule {
         return super.visit(node, data);
     }
 
-    private boolean doesElContainIdentifiers(ASTElExpression value) {
+    private boolean doesElContainIdentifiers(final ASTElExpression value) {
         return value.getFirstDescendantOfType(ASTIdentifier.class) != null;
     }
 }

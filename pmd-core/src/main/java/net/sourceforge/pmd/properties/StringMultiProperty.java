@@ -40,8 +40,8 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      * @deprecated Use {@link PropertyFactory#stringListProperty(String)}
      */
     @Deprecated
-    public StringMultiProperty(String theName, String theDescription, String[] defaultValues, float theUIOrder,
-                               char delimiter) {
+    public StringMultiProperty(final String theName, final String theDescription, final String[] defaultValues, final float theUIOrder,
+                               final char delimiter) {
         this(theName, theDescription, Arrays.asList(defaultValues), theUIOrder, delimiter);
     }
 
@@ -60,15 +60,15 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      * @deprecated Use {@link PropertyFactory#stringListProperty(String)}
      */
     @Deprecated
-    public StringMultiProperty(String theName, String theDescription, List<String> defaultValues, float theUIOrder,
-                               char delimiter) {
+    public StringMultiProperty(final String theName, final String theDescription, final List<String> defaultValues, final float theUIOrder,
+                               final char delimiter) {
         this(theName, theDescription, defaultValues, theUIOrder, delimiter, false);
     }
 
 
     /** Master constructor. */
-    private StringMultiProperty(String theName, String theDescription, List<String> defaultValues, float theUIOrder,
-                                char delimiter, boolean isDefinedExternally) {
+    private StringMultiProperty(final String theName, final String theDescription, final List<String> defaultValues, final float theUIOrder,
+                                final char delimiter, final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValues, theUIOrder, delimiter, isDefinedExternally);
 
         checkDefaults(defaultValues, delimiter);
@@ -82,13 +82,13 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
 
 
     @Override
-    public List<String> valueFrom(String valueString) {
+    public List<String> valueFrom(final String valueString) {
         return Arrays.asList(StringUtils.split(valueString, multiValueDelimiter()));
     }
 
 
     @Override
-    protected String valueErrorFor(String value) {
+    protected String valueErrorFor(final String value) {
 
         if (value == null) {
             return "Missing value";
@@ -111,13 +111,13 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      *
      * @return boolean
      */
-    private boolean containsDelimiter(String value) {
+    private boolean containsDelimiter(final String value) {
         return value.indexOf(multiValueDelimiter()) >= 0;
     }
 
 
     @Override
-    protected String createFrom(String toParse) {
+    protected String createFrom(final String toParse) {
         return toParse;
     }
 
@@ -130,7 +130,7 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      *
      * @throws IllegalArgumentException if one value contains the delimiter
      */
-    private static void checkDefaults(List<String> defaultValue, char delim) {
+    private static void checkDefaults(final List<String> defaultValue, final char delim) {
 
         if (defaultValue == null) {
             return;
@@ -147,7 +147,7 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
     static PropertyDescriptorBuilderConversionWrapper.MultiValue<String, StringMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue<String, StringMultiPBuilder>(String.class, ValueParserConstants.STRING_PARSER) {
             @Override
-            protected StringMultiPBuilder newBuilder(String name) {
+            protected StringMultiPBuilder newBuilder(final String name) {
                 return new StringMultiPBuilder(name);
             }
         };
@@ -158,7 +158,7 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      * @deprecated Use {@link PropertyFactory#stringListProperty(String)}
      */
     @Deprecated
-    public static StringMultiPBuilder named(String name) {
+    public static StringMultiPBuilder named(final String name) {
         return new StringMultiPBuilder(name);
     }
 
@@ -168,7 +168,7 @@ public final class StringMultiProperty extends AbstractMultiValueProperty<String
      */
     @Deprecated
     public static final class StringMultiPBuilder extends MultiValuePropertyBuilder<String, StringMultiPBuilder> {
-        private StringMultiPBuilder(String name) {
+        private StringMultiPBuilder(final String name) {
             super(name);
         }
 

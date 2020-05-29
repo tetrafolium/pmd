@@ -25,11 +25,11 @@ public final class ClassUtil {
     public static final Class<?>[] EMPTY_CLASS_ARRAY = new Class[0];
 
     @SuppressWarnings("PMD.AvoidUsingShortType")
-    private static final TypeMap PRIMITIVE_TYPE_NAMES = new TypeMap(new Class[] { int.class, byte.class, long.class,
+    private static final TypeMap PRIMITIVE_TYPE_NAMES = new TypeMap(new Class[] {int.class, byte.class, long.class,
         short.class, float.class, double.class, char.class, boolean.class, });
 
     private static final TypeMap TYPES_BY_NAME = new TypeMap(
-            new Class[] { Integer.class, Byte.class, Long.class, Short.class, Float.class, Double.class,
+            new Class[] {Integer.class, Byte.class, Long.class, Short.class, Float.class, Double.class,
                 Character.class, Boolean.class, BigDecimal.class, String.class, Object.class, Class.class, });
 
     private static final Map<Class<?>, String> SHORT_NAMES_BY_TYPE = computeClassShortNames();
@@ -44,7 +44,7 @@ public final class ClassUtil {
      *            String
      * @return Class
      */
-    public static Class<?> getPrimitiveTypeFor(String name) {
+    public static Class<?> getPrimitiveTypeFor(final String name) {
         return PRIMITIVE_TYPE_NAMES.typeFor(name);
     }
 
@@ -73,7 +73,7 @@ public final class ClassUtil {
      *            String
      * @return Class
      */
-    public static Class<?> getTypeFor(String shortName) {
+    public static Class<?> getTypeFor(final String shortName) {
         Class<?> type = TYPES_BY_NAME.typeFor(shortName);
         if (type != null) {
             return type;
@@ -94,7 +94,7 @@ public final class ClassUtil {
      * @param type
      * @return String
      */
-    public static String asShortestName(Class<?> type) {
+    public static String asShortestName(final Class<?> type) {
 
         String name = SHORT_NAMES_BY_TYPE.get(type);
         return name == null ? type.getName() : name;
@@ -107,7 +107,7 @@ public final class ClassUtil {
      * @return String
      */
 
-    public static String withoutPackageName(String fullTypeName) {
+    public static String withoutPackageName(final String fullTypeName) {
         int dotPos = fullTypeName.lastIndexOf('.');
         return dotPos > 0 ? fullTypeName.substring(dotPos + 1) : fullTypeName;
     }
@@ -125,7 +125,7 @@ public final class ClassUtil {
      *            Class[]
      * @return Method
      */
-    public static Method methodFor(Class<?> clasz, String methodName, Class<?>[] paramTypes) {
+    public static Method methodFor(final Class<?> clasz, final String methodName, final Class<?>[] paramTypes) {
         Method method = null;
         Class<?> current = clasz;
         while (current != Object.class) {
@@ -147,7 +147,7 @@ public final class ClassUtil {
      * @param methods
      * @return methods grouped by declaring type name
      */
-    public static Map<String, List<Method>> asMethodGroupsByTypeName(Method[] methods) {
+    public static Map<String, List<Method>> asMethodGroupsByTypeName(final Method[] methods) {
 
         Map<String, List<Method>> methodGroups = new HashMap<>(methods.length);
 
@@ -169,7 +169,7 @@ public final class ClassUtil {
      *
      * @return methods grouped by declaring type name
      */
-    public static Map<String, List<Method>> asMethodGroupsByTypeName(List<Method> methods) {
+    public static Map<String, List<Method>> asMethodGroupsByTypeName(final List<Method> methods) {
 
         Map<String, List<Method>> methodGroups = new HashMap<>(methods.size());
 

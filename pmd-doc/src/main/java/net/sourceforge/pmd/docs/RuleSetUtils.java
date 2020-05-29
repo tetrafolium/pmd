@@ -23,11 +23,11 @@ public final class RuleSetUtils {
      * @param ruleset
      * @return
      */
-    public static String getRuleSetFilename(RuleSet ruleset) {
+    public static String getRuleSetFilename(final RuleSet ruleset) {
         return getRuleSetFilename(ruleset.getFileName());
     }
 
-    public static String getRuleSetFilename(String rulesetFileName) {
+    public static String getRuleSetFilename(final String rulesetFileName) {
         return FilenameUtils.getBaseName(StringUtils.chomp(rulesetFileName));
     }
 
@@ -38,7 +38,7 @@ public final class RuleSetUtils {
      * @param ruleset
      * @return
      */
-    public static boolean isRuleSetDeprecated(RuleSet ruleset) {
+    public static boolean isRuleSetDeprecated(final RuleSet ruleset) {
         boolean result = true;
         for (Rule rule : ruleset.getRules()) {
             if (!(rule instanceof RuleReference) || !rule.isDeprecated()) {
@@ -49,7 +49,7 @@ public final class RuleSetUtils {
         return result;
     }
 
-    public static String getRuleSetClasspath(RuleSet ruleset) {
+    public static String getRuleSetClasspath(final RuleSet ruleset) {
         final String RESOURCES_PATH = "/resources/";
         String filename = FilenameUtils.normalize(StringUtils.chomp(ruleset.getFileName()), true);
         int startIndex = filename.lastIndexOf(RESOURCES_PATH);
@@ -68,7 +68,7 @@ public final class RuleSetUtils {
      * @param rule
      * @return
      */
-    public static Rule resolveRuleReferences(Rule rule) {
+    public static Rule resolveRuleReferences(final Rule rule) {
         Rule result = rule;
         Rule ref = rule;
         while (ref instanceof RuleReference) {

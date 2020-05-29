@@ -25,20 +25,20 @@ public class ASTVariableDeclarator extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTVariableDeclarator(int id) {
+    public ASTVariableDeclarator(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTVariableDeclarator(JavaParser p, int id) {
+    public ASTVariableDeclarator(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -78,7 +78,7 @@ public class ASTVariableDeclarator extends AbstractJavaTypeNode {
 
 
     /* only for LocalVarDeclaration and FieldDeclaration */
-    static Iterator<ASTVariableDeclaratorId> iterateIds(Node parent) {
+    static Iterator<ASTVariableDeclaratorId> iterateIds(final Node parent) {
         // TODO this can be made clearer with iterator mapping (Java 8)
         final Iterator<ASTVariableDeclarator> declarators = new NodeChildrenIterator<>(parent, ASTVariableDeclarator.class);
 

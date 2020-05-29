@@ -21,21 +21,21 @@ public class DataFlowFacade extends JavaParserVisitorAdapter {
     private StatementAndBraceFinder sbf;
     private VariableAccessVisitor vav;
 
-    public void initializeWith(DataFlowHandler dataFlowHandler, ASTCompilationUnit node) {
+    public void initializeWith(final DataFlowHandler dataFlowHandler, final ASTCompilationUnit node) {
         sbf = new StatementAndBraceFinder(dataFlowHandler);
         vav = new VariableAccessVisitor();
         node.jjtAccept(this, null);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         sbf.buildDataFlowFor(node);
         vav.compute(node);
         return data;
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         sbf.buildDataFlowFor(node);
         vav.compute(node);
         return data;

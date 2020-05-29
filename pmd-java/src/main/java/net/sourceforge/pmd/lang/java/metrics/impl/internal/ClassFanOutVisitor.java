@@ -30,32 +30,32 @@ public class ClassFanOutVisitor extends JavaParserVisitorAdapter {
     private final boolean includeJavaLang;
 
     @SuppressWarnings("PMD.UnusedFormalParameter")
-    public ClassFanOutVisitor(MetricOptions options, JavaNode topNode) {
+    public ClassFanOutVisitor(final MetricOptions options, final JavaNode topNode) {
         includeJavaLang = options.getOptions().contains(ClassFanOutOption.INCLUDE_JAVA_LANG);
         // topNode is unused, but we'll need it if we want to discount lambdas
         // if we add it later, we break binary compatibility
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         check(node, (MutableInt) data);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         check(node, (MutableInt) data);
         return super.visit(node, data);
     }
 
-    private void check(TypeNode node, MutableInt counter) {
+    private void check(final TypeNode node, final MutableInt counter) {
         if (!classes.contains(node.getType()) && shouldBeIncluded(node.getType())) {
             classes.add(node.getType());
             counter.increment();
         }
     }
 
-    private boolean shouldBeIncluded(Class<?> classToCheck) {
+    private boolean shouldBeIncluded(final Class<?> classToCheck) {
         if (includeJavaLang || classToCheck == null) {
             // include all packages
             return true;

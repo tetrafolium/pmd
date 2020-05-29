@@ -105,7 +105,7 @@ public class SequenceChecker {
     /*
      * Defines the logical structure.
      */
-    public SequenceChecker(List<StackObject> bracesList) {
+    public SequenceChecker(final List<StackObject> bracesList) {
         this.aktStatus = root;
         this.bracesList = bracesList;
     }
@@ -224,16 +224,16 @@ public class SequenceChecker {
         private NodeType type;
         private boolean lastStep;
 
-        Status(NodeType type) {
+        Status(final NodeType type) {
             this(type, false);
         }
 
-        Status(NodeType type, boolean lastStep) {
+        Status(final NodeType type, final boolean lastStep) {
             this.type = type;
             this.lastStep = lastStep;
         }
 
-        public void addStep(Status type) {
+        public void addStep(final Status type) {
             nextSteps.add(type);
         }
 
@@ -242,7 +242,7 @@ public class SequenceChecker {
          *
          * @return valid Status or null if NodeType is not a valid transition NodeType
          */
-        public Status step(NodeType type) {
+        public Status step(final NodeType type) {
 
             for (Status s : nextSteps) {
                 if (type == s.type) {

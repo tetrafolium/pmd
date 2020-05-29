@@ -36,7 +36,7 @@ public class ParametricRuleViolation<T extends Node> implements RuleViolation {
     // must not (to prevent erroneous Rules silently logging w/o a Node). Modify
     // RuleViolationFactory to support identifying without a Node, and update
     // Rule base classes too.
-    public ParametricRuleViolation(Rule theRule, RuleContext ctx, T node, String message) {
+    public ParametricRuleViolation(final Rule theRule, final RuleContext ctx, final T node, final String message) {
         rule = theRule;
         description = message;
 
@@ -60,7 +60,7 @@ public class ParametricRuleViolation<T extends Node> implements RuleViolation {
 
     }
 
-    private void setSuppression(Rule rule, T node) {
+    private void setSuppression(final Rule rule, final T node) {
 
         String regex = rule.getProperty(Rule.VIOLATION_SUPPRESS_REGEX_DESCRIPTOR); // Regex
         if (regex != null && description != null) {
@@ -77,7 +77,7 @@ public class ParametricRuleViolation<T extends Node> implements RuleViolation {
         }
     }
 
-    protected String expandVariables(String message) {
+    protected String expandVariables(final String message) {
 
         if (message.indexOf("${") < 0) {
             return message;
@@ -97,12 +97,12 @@ public class ParametricRuleViolation<T extends Node> implements RuleViolation {
         return buf.toString();
     }
 
-    protected boolean isVariable(String name) {
+    protected boolean isVariable(final String name) {
         return StringUtil.isAnyOf(name, "variableName", "methodName", "className", "packageName")
                 || rule.getPropertyDescriptor(name) != null;
     }
 
-    protected String getVariableValue(String name) {
+    protected String getVariableValue(final String name) {
         if ("variableName".equals(name)) {
             return variableName;
         } else if ("methodName".equals(name)) {
@@ -177,7 +177,7 @@ public class ParametricRuleViolation<T extends Node> implements RuleViolation {
         return variableName;
     }
 
-    public void setLines(int theBeginLine, int theEndLine) {
+    public void setLines(final int theBeginLine, final int theEndLine) {
         beginLine = theBeginLine;
         endLine = theEndLine;
     }

@@ -50,11 +50,11 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     private final DataFlowHandler dataFlowHandler;
     private Structure dataFlow;
 
-    public StatementAndBraceFinder(DataFlowHandler dataFlowHandler) {
+    public StatementAndBraceFinder(final DataFlowHandler dataFlowHandler) {
         this.dataFlowHandler = dataFlowHandler;
     }
 
-    public void buildDataFlowFor(JavaNode node) {
+    public void buildDataFlowFor(final JavaNode node) {
         if (!(node instanceof ASTMethodDeclaration) && !(node instanceof ASTConstructorDeclaration)) {
             throw new RuntimeException("Can't build a data flow for anything other than a method or a constructor");
         }
@@ -79,19 +79,19 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
 
-    private void tryToLog(String tag, NodeType type, Node node) {
+    private void tryToLog(final String tag, final NodeType type, final Node node) {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("pushOnStack " + tag + " " + type + ": line " + node.getBeginLine()
                 + ", column " + node.getBeginColumn());
         }
     }
 
-    private void tryToLog(NodeType type, Node node) {
+    private void tryToLog(final NodeType type, final Node node) {
         tryToLog("", type, node);
     }
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -105,7 +105,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTVariableDeclarator node, Object data) {
+    public Object visit(final ASTVariableDeclarator node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -119,7 +119,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -161,7 +161,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTForInit node, Object data) {
+    public Object visit(final ASTForInit node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -179,7 +179,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTLabeledStatement node, Object data) {
+    public Object visit(final ASTLabeledStatement node, final Object data) {
         dataFlow.createNewNode(node);
         dataFlow.pushOnStack(NodeType.LABEL_STATEMENT, dataFlow.getLast());
         tryToLog(NodeType.LABEL_STATEMENT, node);
@@ -187,7 +187,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTForUpdate node, Object data) {
+    public Object visit(final ASTForUpdate node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -203,7 +203,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     // BRANCH OUT
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -247,7 +247,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -259,7 +259,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTSwitchLabel node, Object data) {
+    public Object visit(final ASTSwitchLabel node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -276,7 +276,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -288,7 +288,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -300,7 +300,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -312,7 +312,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         if (!(data instanceof Structure)) {
             return data;
         }
@@ -327,7 +327,7 @@ public class StatementAndBraceFinder extends JavaParserVisitorAdapter {
      * The method handles the special "for" loop. It creates always an
      * expression node even if the loop looks like for(;;).
      */
-    private void addForExpressionNode(Node node, Structure dataFlow) {
+    private void addForExpressionNode(final Node node, final Structure dataFlow) {
         ASTForStatement parent = (ASTForStatement) node.getParent();
         boolean hasExpressionChild = false;
         boolean hasForInitNode = false;

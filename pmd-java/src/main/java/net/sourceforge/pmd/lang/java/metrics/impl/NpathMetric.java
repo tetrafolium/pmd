@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.metrics.MetricOptions;
 public class NpathMetric extends AbstractJavaOperationMetric {
 
     @Override
-    public double computeFor(MethodLikeNode node, MetricOptions options) {
+    public double computeFor(final MethodLikeNode node, final MetricOptions options) {
         return (Integer) node.jjtAccept(NpathBaseVisitor.INSTANCE, null);
     }
 

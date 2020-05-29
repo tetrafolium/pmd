@@ -20,10 +20,10 @@ public class UnnecessaryConversionTemporaryRule extends AbstractJavaRule {
     private boolean usingPrimitiveWrapperAllocation;
 
     private static final Set<String> PRIMITIVE_WRAPPERS = CollectionUtil
-            .asSet(new String[] { "Integer", "Boolean", "Double", "Long", "Short", "Byte", "Float" });
+            .asSet(new String[] {"Integer", "Boolean", "Double", "Long", "Short", "Byte", "Float" });
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         if (node.getNumChildren() == 0 || (node.getChild(0)).getNumChildren() == 0
                 || !(node.getChild(0).getChild(0) instanceof ASTAllocationExpression)) {
             return super.visit(node, data);
@@ -39,7 +39,7 @@ public class UnnecessaryConversionTemporaryRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         if (!inPrimaryExpressionContext || !(node.getChild(0) instanceof ASTClassOrInterfaceType)) {
             return super.visit(node, data);
         }
@@ -51,7 +51,7 @@ public class UnnecessaryConversionTemporaryRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPrimarySuffix node, Object data) {
+    public Object visit(final ASTPrimarySuffix node, final Object data) {
         if (inPrimaryExpressionContext && usingPrimitiveWrapperAllocation) {
             if (node.hasImageEqualTo("toString")) {
                 if (node.getParent() == primary) {

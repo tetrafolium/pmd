@@ -12,12 +12,12 @@ public class ASTStatement extends AbstractApexNode<Statement> {
 
     @Deprecated
     @InternalApi
-    public ASTStatement(Statement statement) {
+    public ASTStatement(final Statement statement) {
         super(statement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

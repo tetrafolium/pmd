@@ -36,7 +36,7 @@ import net.sourceforge.pmd.lang.java.typeresolution.TypeHelper;
 public class InefficientStringBufferingRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTAdditiveExpression node, Object data) {
+    public Object visit(final ASTAdditiveExpression node, final Object data) {
         ASTBlockStatement bs = node.getFirstParentOfType(ASTBlockStatement.class);
         if (bs == null) {
             return data;
@@ -105,7 +105,7 @@ public class InefficientStringBufferingRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isStringType(ASTName name) {
+    private boolean isStringType(final ASTName name) {
         ASTType type = getTypeNode(name);
         if (type != null) {
             List<ASTClassOrInterfaceType> types = type.findDescendantsOfType(ASTClassOrInterfaceType.class);
@@ -119,12 +119,12 @@ public class InefficientStringBufferingRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isPrimitiveType(ASTName name) {
+    private boolean isPrimitiveType(final ASTName name) {
         ASTType type = getTypeNode(name);
         return type != null && !type.findChildrenOfType(ASTPrimitiveType.class).isEmpty();
     }
 
-    private ASTType getTypeNode(ASTName name) {
+    private ASTType getTypeNode(final ASTName name) {
         if (name.getNameDeclaration() instanceof VariableNameDeclaration) {
             VariableNameDeclaration vnd = (VariableNameDeclaration) name.getNameDeclaration();
             if (vnd.getAccessNodeParent() instanceof ASTLocalVariableDeclaration) {
@@ -138,7 +138,7 @@ public class InefficientStringBufferingRule extends AbstractJavaRule {
         return null;
     }
 
-    protected static boolean isInStringBufferOperation(Node node, int length, String methodName) {
+    protected static boolean isInStringBufferOperation(final Node node, final int length, final String methodName) {
         if (!(node.getNthParent(length) instanceof ASTStatementExpression)) {
             return false;
         }
@@ -164,7 +164,7 @@ public class InefficientStringBufferingRule extends AbstractJavaRule {
                 StringBuilder.class);
     }
 
-    private boolean isAllocatedStringBuffer(ASTAdditiveExpression node) {
+    private boolean isAllocatedStringBuffer(final ASTAdditiveExpression node) {
         ASTAllocationExpression ao = node.getFirstParentOfType(ASTAllocationExpression.class);
         if (ao == null) {
             return false;

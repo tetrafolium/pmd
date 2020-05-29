@@ -8,7 +8,7 @@ public final class ResolutionState {
     private final Watchdog watchdog;
     private boolean constantsOnly;
 
-    private ResolutionState(boolean constantsOnly) {
+    private ResolutionState(final boolean constantsOnly) {
         watchdog = new Watchdog(1000);
         this.constantsOnly = constantsOnly;
     }
@@ -25,7 +25,7 @@ public final class ResolutionState {
         watchdog.decrement();
     }
 
-    public boolean needRecurseInto(ModelicaComponentDeclaration component) {
+    public boolean needRecurseInto(final ModelicaComponentDeclaration component) {
         return !constantsOnly || component.getVariability() == ModelicaComponentDeclaration.ComponentVariability.CONSTANT;
     }
 

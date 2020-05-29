@@ -74,7 +74,7 @@ public final class TypeHelper {
      * Returns true if the class n is a subtype of clazzName, given n
      * is an annotationt type.
      */
-    private static boolean isAnnotationSubtype(Class<?> n, String clazzName) {
+    private static boolean isAnnotationSubtype(final Class<?> n, final String clazzName) {
         assert n != null && n.isAnnotation() : "Not an annotation type";
         // then, the supertype may only be Object, j.l.Annotation, or the class name
         // this avoids classloading altogether
@@ -84,7 +84,7 @@ public final class TypeHelper {
             || clazzName.equals(n.getName());
     }
 
-    private static boolean fallbackIsA(TypeNode n, String clazzName) {
+    private static boolean fallbackIsA(final TypeNode n, final String clazzName) {
         if (clazzName.equals(n.getImage()) || clazzName.endsWith("." + n.getImage())) {
             return true;
         }
@@ -162,11 +162,11 @@ public final class TypeHelper {
      * 'java.util.Map$Entry').
      */
     // test only
-    static Class<?> loadClass(NullableClassLoader ctr, String className) {
+    static Class<?> loadClass(final NullableClassLoader ctr, final String className) {
         return loadClassMaybeArray(ctr, StringUtils.deleteWhitespace(className));
     }
 
-    private static Class<?> loadClassFromCanonicalName(NullableClassLoader ctr, String className) {
+    private static Class<?> loadClassFromCanonicalName(final NullableClassLoader ctr, final String className) {
         Class<?> clazz = PRIMITIVES_BY_NAME.get(className);
         if (clazz == null) {
             clazz = ctr.loadClassOrNull(className);
@@ -186,8 +186,8 @@ public final class TypeHelper {
     }
 
 
-    private static Class<?> loadClassMaybeArray(NullableClassLoader classLoader,
-                                                String className) {
+    private static Class<?> loadClassMaybeArray(final NullableClassLoader classLoader,
+                                                final String className) {
         Validate.notNull(className, "className must not be null.");
         if (className.endsWith("[]")) {
             int dimension = 0;
@@ -212,11 +212,11 @@ public final class TypeHelper {
         }
     }
 
-    private static IllegalArgumentException invalidClassName(String className) {
+    private static IllegalArgumentException invalidClassName(final String className) {
         return new IllegalArgumentException("Not a valid class name \"" + className + "\"");
     }
 
-    private static void checkJavaIdent(String className, int endOffsetExclusive) {
+    private static void checkJavaIdent(final String className, final int endOffsetExclusive) {
         if (endOffsetExclusive <= 0 || !Character.isJavaIdentifierStart(className.charAt(0))) {
             throw invalidClassName(className);
         }
@@ -231,15 +231,15 @@ public final class TypeHelper {
 
 
     /** @see #isA(TypeNode, String) */
-    public static boolean isA(TypeNode n, Class<?> clazz) {
+    public static boolean isA(final TypeNode n, final Class<?> clazz) {
         return subclasses(n, clazz);
     }
 
-    public static boolean isEither(TypeNode n, Class<?> class1, Class<?> class2) {
+    public static boolean isEither(final TypeNode n, final Class<?> class1, final Class<?> class2) {
         return subclasses(n, class1) || subclasses(n, class2);
     }
 
-    public static boolean isExactlyAny(TypedNameDeclaration vnd, Class<?>... clazzes) {
+    public static boolean isExactlyAny(final TypedNameDeclaration vnd, final Class<?>... clazzes) {
         Class<?> type = vnd.getType();
         for (final Class<?> clazz : clazzes) {
             if (type != null && type.equals(clazz) || type == null
@@ -251,7 +251,7 @@ public final class TypeHelper {
         return false;
     }
 
-    public static boolean isExactlyNone(TypedNameDeclaration vnd, Class<?>... clazzes) {
+    public static boolean isExactlyNone(final TypedNameDeclaration vnd, final Class<?>... clazzes) {
         return !isExactlyAny(vnd, clazzes);
     }
 
@@ -259,7 +259,7 @@ public final class TypeHelper {
      * @deprecated use {@link #isExactlyAny(TypedNameDeclaration, Class...)}
      */
     @Deprecated
-    public static boolean isA(TypedNameDeclaration vnd, Class<?> clazz) {
+    public static boolean isA(final TypedNameDeclaration vnd, final Class<?> clazz) {
         return isExactlyAny(vnd, clazz);
     }
 
@@ -267,7 +267,7 @@ public final class TypeHelper {
      * @deprecated use {@link #isExactlyAny(TypedNameDeclaration, Class...)}
      */
     @Deprecated
-    public static boolean isEither(TypedNameDeclaration vnd, Class<?> class1, Class<?> class2) {
+    public static boolean isEither(final TypedNameDeclaration vnd, final Class<?> class1, final Class<?> class2) {
         return isExactlyAny(vnd, class1, class2);
     }
 
@@ -275,11 +275,11 @@ public final class TypeHelper {
      * @deprecated use {@link #isExactlyNone(TypedNameDeclaration, Class...)}
      */
     @Deprecated
-    public static boolean isNeither(TypedNameDeclaration vnd, Class<?> class1, Class<?> class2) {
+    public static boolean isNeither(final TypedNameDeclaration vnd, final Class<?> class1, final Class<?> class2) {
         return !isA(vnd, class1) && !isA(vnd, class2);
     }
 
-    public static boolean subclasses(TypeNode n, Class<?> clazz) {
+    public static boolean subclasses(final TypeNode n, final Class<?> clazz) {
         Class<?> type = n.getType();
         if (clazz == null) {
             return false; // If in auxclasspath, both should be resolvable, or are not the same
@@ -290,7 +290,7 @@ public final class TypeHelper {
         return clazz.isAssignableFrom(type);
     }
 
-    public static boolean isA(TypedNameDeclaration vnd, String className) {
+    public static boolean isA(final TypedNameDeclaration vnd, final String className) {
         Class<?> type = vnd.getType();
         if (type != null) {
             Class<?> clazz = loadClass(ClassLoaderWrapper.wrapNullable(type.getClassLoader()), className);

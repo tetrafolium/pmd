@@ -12,12 +12,12 @@ public class ASTArrayLoadExpression extends AbstractApexNode<ArrayLoadExpression
 
     @Deprecated
     @InternalApi
-    public ASTArrayLoadExpression(ArrayLoadExpression arrayLoadExpression) {
+    public ASTArrayLoadExpression(final ArrayLoadExpression arrayLoadExpression) {
         super(arrayLoadExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

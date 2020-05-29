@@ -37,15 +37,15 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
      * @deprecated use {@link PropertyFactory#doubleListProperty(String)}
      */
     @Deprecated
-    public FloatMultiProperty(String theName, String theDescription, Float min, Float max,
-                              Float[] defaultValues, float theUIOrder) {
+    public FloatMultiProperty(final String theName, final String theDescription, final Float min, final Float max,
+                              final Float[] defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, Arrays.asList(defaultValues), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private FloatMultiProperty(String theName, String theDescription, Float min, Float max,
-                               List<Float> defaultValues, float theUIOrder, boolean isDefinedExternally) {
+    private FloatMultiProperty(final String theName, final String theDescription, final Float min, final Float max,
+                               final List<Float> defaultValues, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, defaultValues, theUIOrder, isDefinedExternally);
     }
 
@@ -64,8 +64,8 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
      * @deprecated use {@link PropertyFactory#doubleListProperty(String)}
      */
     @Deprecated
-    public FloatMultiProperty(String theName, String theDescription, Float min, Float max,
-                              List<Float> defaultValues, float theUIOrder) {
+    public FloatMultiProperty(final String theName, final String theDescription, final Float min, final Float max,
+                              final List<Float> defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, defaultValues, theUIOrder, false);
     }
 
@@ -77,7 +77,7 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
 
 
     @Override
-    protected Float createFrom(String value) {
+    protected Float createFrom(final String value) {
         return Float.valueOf(value);
     }
 
@@ -85,7 +85,7 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
     static PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Float, FloatMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Float, FloatMultiPBuilder>(Float.class, ValueParserConstants.FLOAT_PARSER) {
             @Override
-            protected FloatMultiPBuilder newBuilder(String name) {
+            protected FloatMultiPBuilder newBuilder(final String name) {
                 return new FloatMultiPBuilder(name);
             }
         };
@@ -94,7 +94,7 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
 
     /** @deprecated use {@link PropertyFactory#doubleListProperty(String)} */
     @Deprecated
-    public static FloatMultiPBuilder named(String name) {
+    public static FloatMultiPBuilder named(final String name) {
         return new FloatMultiPBuilder(name);
     }
 
@@ -102,7 +102,7 @@ public final class FloatMultiProperty extends AbstractMultiNumericProperty<Float
     /** @deprecated use {@link PropertyFactory#doubleListProperty(String)} */
     @Deprecated
     public static final class FloatMultiPBuilder extends MultiNumericPropertyBuilder<Float, FloatMultiPBuilder> {
-        private FloatMultiPBuilder(String name) {
+        private FloatMultiPBuilder(final String name) {
             super(name);
         }
 

@@ -44,7 +44,7 @@ public class ImmutableFieldRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         Object result = super.visit(node, data);
 
         Map<VariableNameDeclaration, List<NameOccurrence>> vars = node.getScope()
@@ -71,11 +71,11 @@ public class ImmutableFieldRule extends AbstractLombokAwareRule {
         return result;
     }
 
-    private boolean initializedWhenDeclared(VariableNameDeclaration field) {
+    private boolean initializedWhenDeclared(final VariableNameDeclaration field) {
         return field.getAccessNodeParent().hasDescendantOfType(ASTVariableInitializer.class);
     }
 
-    private FieldImmutabilityType initializedInConstructor(VariableNameDeclaration field, List<NameOccurrence> usages, Set<ASTConstructorDeclaration> allConstructors) {
+    private FieldImmutabilityType initializedInConstructor(final VariableNameDeclaration field, final List<NameOccurrence> usages, final Set<ASTConstructorDeclaration> allConstructors) {
         FieldImmutabilityType result = FieldImmutabilityType.MUTABLE;
         int methodInitCount = 0;
         int lambdaUsage = 0;
@@ -129,23 +129,23 @@ public class ImmutableFieldRule extends AbstractLombokAwareRule {
      * Checks whether the given constructor belongs to the class, in which the field is declared.
      * This might not be the case for inner classes, which accesses the fields of the outer class.
      */
-    private boolean isSameClass(VariableNameDeclaration field, ASTConstructorDeclaration constructor) {
+    private boolean isSameClass(final VariableNameDeclaration field, final ASTConstructorDeclaration constructor) {
         return constructor.getFirstParentOfType(ASTClassOrInterfaceBody.class) == field.getNode().getFirstParentOfType(ASTClassOrInterfaceBody.class);
     }
 
-    private boolean inLoopOrTry(Node node) {
+    private boolean inLoopOrTry(final Node node) {
         return node.getFirstParentOfType(ASTTryStatement.class) != null
                 || node.getFirstParentOfType(ASTForStatement.class) != null
                 || node.getFirstParentOfType(ASTWhileStatement.class) != null
                 || node.getFirstParentOfType(ASTDoStatement.class) != null;
     }
 
-    private boolean inAnonymousInnerClass(Node node) {
+    private boolean inAnonymousInnerClass(final Node node) {
         ASTClassOrInterfaceBodyDeclaration parent = node.getFirstParentOfType(ASTClassOrInterfaceBodyDeclaration.class);
         return parent != null && parent.isAnonymousInnerClass();
     }
 
-    private List<ASTConstructorDeclaration> findAllConstructors(ASTClassOrInterfaceDeclaration node) {
+    private List<ASTConstructorDeclaration> findAllConstructors(final ASTClassOrInterfaceDeclaration node) {
         return node.getFirstChildOfType(ASTClassOrInterfaceBody.class)
                 .findDescendantsOfType(ASTConstructorDeclaration.class);
     }

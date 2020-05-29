@@ -20,7 +20,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class AvoidFieldNameMatchingMethodNameRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -28,7 +28,7 @@ public class AvoidFieldNameMatchingMethodNameRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceBody node, Object data) {
+    public Object visit(final ASTClassOrInterfaceBody node, final Object data) {
         int n = node.getNumChildren();
         List<ASTFieldDeclaration> fields = new ArrayList<>();
         Set<String> methodNames = new HashSet<>();

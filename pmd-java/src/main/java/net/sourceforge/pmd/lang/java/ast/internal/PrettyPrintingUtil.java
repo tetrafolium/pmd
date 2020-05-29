@@ -26,7 +26,7 @@ public final class PrettyPrintingUtil {
     /**
      * Returns a normalized method name. This just looks at the image of the types of the parameters.
      */
-    public static String displaySignature(String methodName, ASTFormalParameters params) {
+    public static String displaySignature(final String methodName, final ASTFormalParameters params) {
 
         StringBuilder sb = new StringBuilder();
         sb.append(methodName);
@@ -53,7 +53,7 @@ public final class PrettyPrintingUtil {
     /**
      * Returns a normalized method name. This just looks at the image of the types of the parameters.
      */
-    public static String displaySignature(ASTMethodOrConstructorDeclaration node) {
+    public static String displaySignature(final ASTMethodOrConstructorDeclaration node) {
         ASTFormalParameters params = node.getFirstDescendantOfType(ASTFormalParameters.class);
         String name = node instanceof ASTMethodDeclaration ? ((ASTMethodDeclaration) node).getName() : node.getImage();
 
@@ -63,7 +63,7 @@ public final class PrettyPrintingUtil {
     /**
      * Returns the generic kind of declaration this is, eg "enum" or "class".
      */
-    public static String kindName(ASTAnyTypeDeclaration decl) {
+    public static String kindName(final ASTAnyTypeDeclaration decl) {
         if (decl instanceof ASTClassOrInterfaceDeclaration
             && ((ASTClassOrInterfaceDeclaration) decl).isInterface()) {
             return "interface";

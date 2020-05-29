@@ -12,12 +12,12 @@ public class ASTNewMapLiteralExpression extends AbstractApexNode<NewMapLiteralEx
 
     @Deprecated
     @InternalApi
-    public ASTNewMapLiteralExpression(NewMapLiteralExpression newMapLiteralExpression) {
+    public ASTNewMapLiteralExpression(final NewMapLiteralExpression newMapLiteralExpression) {
         super(newMapLiteralExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

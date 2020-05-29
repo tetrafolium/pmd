@@ -17,12 +17,12 @@ public final class CompositeName {
     private String head;
     private CompositeName tail;
 
-    private CompositeName(String head, CompositeName tail) {
+    private CompositeName(final String head, final CompositeName tail) {
         this.head = head;
         this.tail = tail;
     }
 
-    private static CompositeName create(String[] components, int startIndex, int total, boolean isAbsolute) {
+    private static CompositeName create(final String[] components, final int startIndex, final int total, final boolean isAbsolute) {
         if (isAbsolute) {
             return new CompositeName(ROOT_PSEUDO_NAME, create(components, startIndex, total, false));
         } else if (startIndex == total) {
@@ -32,15 +32,15 @@ public final class CompositeName {
         }
     }
 
-    public static CompositeName create(boolean isAbsolute, String[] components) {
+    public static CompositeName create(final boolean isAbsolute, final String[] components) {
         return create(components, 0, components.length, isAbsolute);
     }
 
-    public static CompositeName create(boolean isAbsolute, String[] componenets, int prefixLength) {
+    public static CompositeName create(final boolean isAbsolute, final String[] componenets, final int prefixLength) {
         return create(componenets, 0, prefixLength, isAbsolute);
     }
 
-    public static CompositeName create(String simpleName) {
+    public static CompositeName create(final String simpleName) {
         return new CompositeName(simpleName, NIL);
     }
 
@@ -56,7 +56,7 @@ public final class CompositeName {
         return tail;
     }
 
-    private CompositeName matchPrefix(String[] prefix, int currentIndex) {
+    private CompositeName matchPrefix(final String[] prefix, final int currentIndex) {
         if (currentIndex == prefix.length) {
             return this;
         } else if (prefix[currentIndex].equals(head) && tail != null) {
@@ -71,7 +71,7 @@ public final class CompositeName {
      *
      * @return the remaining elements on success or null on failure
      */
-    public CompositeName matchPrefix(String[] prefix) {
+    public CompositeName matchPrefix(final String[] prefix) {
         return matchPrefix(prefix, 0);
     }
 

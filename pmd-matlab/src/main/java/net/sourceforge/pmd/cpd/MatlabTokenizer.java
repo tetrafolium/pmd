@@ -17,7 +17,7 @@ import net.sourceforge.pmd.util.IOUtil;
 public class MatlabTokenizer extends JavaCCTokenizer {
 
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         StringBuilder buffer = sourceCode.getCodeBuffer();
         return new MatlabTokenManager(IOUtil.skipBOM(new StringReader(buffer.toString())));
     }

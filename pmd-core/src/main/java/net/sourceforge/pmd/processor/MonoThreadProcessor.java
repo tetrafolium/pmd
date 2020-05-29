@@ -19,18 +19,18 @@ public final class MonoThreadProcessor extends AbstractPMDProcessor {
 
     private final List<Report> reports = new ArrayList<>();
 
-    public MonoThreadProcessor(PMDConfiguration configuration) {
+    public MonoThreadProcessor(final PMDConfiguration configuration) {
         super(configuration);
     }
 
     @Override
-    protected void runAnalysis(PmdRunnable runnable) {
+    protected void runAnalysis(final PmdRunnable runnable) {
         // single thread execution, run analysis on same thread
         reports.add(runnable.call());
     }
 
     @Override
-    protected void collectReports(List<Renderer> renderers) {
+    protected void collectReports(final List<Renderer> renderers) {
         for (Report r : reports) {
             super.renderReports(renderers, r);
         }

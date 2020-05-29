@@ -49,7 +49,7 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (node.getModifiers().isTest()) {
             checkMatches(TEST_CLASS_REGEX, node, data);
         } else if (node.getModifiers().isAbstract()) {
@@ -62,21 +62,21 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         checkMatches(INTERFACE_REGEX, node, data);
 
         return data;
     }
 
     @Override
-    public Object visit(ASTUserEnum node, Object data) {
+    public Object visit(final ASTUserEnum node, final Object data) {
         checkMatches(ENUM_REGEX, node, data);
 
         return data;
     }
 
     @Override
-    protected String displayName(String name) {
+    protected String displayName(final String name) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(name);
     }
 }

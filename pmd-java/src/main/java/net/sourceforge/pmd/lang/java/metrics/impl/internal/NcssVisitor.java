@@ -56,7 +56,7 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @SuppressWarnings("PMD.UnusedFormalParameter")
-    public NcssVisitor(MetricOptions options, JavaNode topNode) {
+    public NcssVisitor(final MetricOptions options, final JavaNode topNode) {
         countImports = options.contains(NcssOption.COUNT_IMPORTS);
         // topNode is unused, but we'll need it if we want to discount lambdas
         // if we add it later, we break binary compatibility
@@ -64,14 +64,14 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public final Object visit(JavaNode node, Object data) {
+    public final Object visit(final JavaNode node, final Object data) {
         // same here
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (countImports) {
             ASTCompilationUnit acu = node.getFirstParentOfType(ASTCompilationUnit.class);
             List<ASTImportDeclaration> imports = acu.findChildrenOfType(ASTImportDeclaration.class);
@@ -89,21 +89,21 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         ((MutableInt) data).increment();
         // May use a lambda
         return super.visit(node, data);
@@ -111,21 +111,21 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
 
         // doesn't count variable declared inside a for initializer
         if (!(node.getParent() instanceof ASTForInit)) {
@@ -137,7 +137,7 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         ((MutableInt) data).increment();
         if (node.hasElse()) {
             ((MutableInt) data).increment();
@@ -148,21 +148,21 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         if (!(node.getParent().getParent() instanceof ASTForUpdate)) {
             ((MutableInt) data).increment();
         }
@@ -171,98 +171,98 @@ public class NcssVisitor extends JavaParserVisitorAdapter {
 
 
     @Override
-    public Object visit(ASTExplicitConstructorInvocation node, Object data) {
+    public Object visit(final ASTExplicitConstructorInvocation node, final Object data) {
         ((MutableInt) data).increment();
         return data;
     }
 
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         ((MutableInt) data).increment();
         return data;
     }
 
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         ((MutableInt) data).increment();
         return data;
     }
 
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         ((MutableInt) data).increment();
         return data;
     }
 
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTSynchronizedStatement node, Object data) {
+    public Object visit(final ASTSynchronizedStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTFinallyStatement node, Object data) {
+    public Object visit(final ASTFinallyStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTLabeledStatement node, Object data) {
+    public Object visit(final ASTLabeledStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTSwitchLabel node, Object data) {
+    public Object visit(final ASTSwitchLabel node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTInitializer node, Object data) {
+    public Object visit(final ASTInitializer node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTAssertStatement node, Object data) {
+    public Object visit(final ASTAssertStatement node, final Object data) {
         ((MutableInt) data).increment();
         return super.visit(node, data);
     }

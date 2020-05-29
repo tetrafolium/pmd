@@ -163,12 +163,12 @@ public final class Helper {
         return sb.toString();
     }
 
-    public static boolean isSystemLevelClass(ASTUserClass node) {
+    public static boolean isSystemLevelClass(final ASTUserClass node) {
         List<String> interfaces = node.getInterfaceNames();
         return interfaces.stream().anyMatch(Helper::isWhitelisted);
     }
 
-    private static boolean isWhitelisted(String identifier) {
+    private static boolean isWhitelisted(final String identifier) {
         switch (identifier.toLowerCase(Locale.ROOT)) {
         case "queueable":
         case "database.batchable":
@@ -180,7 +180,7 @@ public final class Helper {
         return false;
     }
 
-    public static String getFQVariableName(ASTParameter p) {
+    public static String getFQVariableName(final ASTParameter p) {
         StringBuilder sb = new StringBuilder();
         sb.append(p.getDefiningType()).append(":").append(p.getImage());
         return sb.toString();

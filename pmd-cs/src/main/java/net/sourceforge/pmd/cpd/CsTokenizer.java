@@ -20,13 +20,13 @@ public class CsTokenizer extends AntlrTokenizer {
 
     private boolean ignoreUsings = false;
 
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         if (properties.containsKey(IGNORE_USINGS)) {
             ignoreUsings = Boolean.parseBoolean(properties.getProperty(IGNORE_USINGS, "false"));
         }
     }
 
-    public void setIgnoreUsings(boolean ignoreUsings) {
+    public void setIgnoreUsings(final boolean ignoreUsings) {
         this.ignoreUsings = ignoreUsings;
     }
 
@@ -60,7 +60,7 @@ public class CsTokenizer extends AntlrTokenizer {
         private boolean discardingNL = false;
         private boolean discardCurrent = false;
 
-        CsTokenFilter(final AntlrTokenManager tokenManager, boolean ignoreUsings) {
+        CsTokenFilter(final AntlrTokenManager tokenManager, final boolean ignoreUsings) {
             super(tokenManager);
             this.ignoreUsings = ignoreUsings;
         }

@@ -36,8 +36,8 @@ public class StartAndEndTagMismatchException extends SyntaxErrorException {
      * @param endColumn
      * @param endTagName
      */
-    public StartAndEndTagMismatchException(int startLine, int startColumn, String startTagName, int endLine,
-            int endColumn, String endTagName) {
+    public StartAndEndTagMismatchException(final int startLine, final int startColumn, final String startTagName, final int endLine,
+            final int endColumn, final String endTagName) {
         super(endLine, START_END_TAG_MISMATCH_RULE_NAME);
         this.startLine = startLine;
         this.startColumn = startColumn;

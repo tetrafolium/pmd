@@ -240,7 +240,7 @@ public abstract class AbstractRuleSetFactoryTest {
         return result;
     }
 
-    private List<String> getRuleSetFileNames(String language) throws IOException, RuleSetNotFoundException {
+    private List<String> getRuleSetFileNames(final String language) throws IOException, RuleSetNotFoundException {
         List<String> ruleSetFileNames = new ArrayList<>();
         try {
             Properties properties = new Properties();
@@ -260,12 +260,12 @@ public abstract class AbstractRuleSetFactoryTest {
         return ruleSetFileNames;
     }
 
-    private RuleSet loadRuleSetByFileName(String ruleSetFileName) throws RuleSetNotFoundException {
+    private RuleSet loadRuleSetByFileName(final String ruleSetFileName) throws RuleSetNotFoundException {
         RuleSetFactory rsf = RulesetsFactoryUtils.defaultFactory();
         return rsf.createRuleSet(ruleSetFileName);
     }
 
-    private boolean validateAgainstSchema(String fileName)
+    private boolean validateAgainstSchema(final String fileName)
             throws IOException, RuleSetNotFoundException, ParserConfigurationException, SAXException {
         try (InputStream inputStream = loadResourceAsStream(fileName)) {
             boolean valid = validateAgainstSchema(inputStream);
@@ -276,7 +276,7 @@ public abstract class AbstractRuleSetFactoryTest {
         }
     }
 
-    private boolean validateAgainstSchema(InputStream inputStream)
+    private boolean validateAgainstSchema(final InputStream inputStream)
             throws IOException, RuleSetNotFoundException, ParserConfigurationException, SAXException {
 
         saxParser.parse(inputStream, validateDefaultHandler.resetValid());
@@ -284,7 +284,7 @@ public abstract class AbstractRuleSetFactoryTest {
         return validateDefaultHandler.isValid();
     }
 
-    private boolean validateAgainstDtd(String fileName)
+    private boolean validateAgainstDtd(final String fileName)
             throws IOException, RuleSetNotFoundException, ParserConfigurationException, SAXException {
         try (InputStream inputStream = loadResourceAsStream(fileName)) {
             boolean valid = validateAgainstDtd(inputStream);
@@ -295,7 +295,7 @@ public abstract class AbstractRuleSetFactoryTest {
         }
     }
 
-    private boolean validateAgainstDtd(InputStream inputStream)
+    private boolean validateAgainstDtd(final InputStream inputStream)
             throws IOException, RuleSetNotFoundException, ParserConfigurationException, SAXException {
 
         // Read file into memory
@@ -324,7 +324,7 @@ public abstract class AbstractRuleSetFactoryTest {
         return validateDefaultHandler.isValid();
     }
 
-    private String readFullyToString(InputStream inputStream) throws IOException {
+    private String readFullyToString(final InputStream inputStream) throws IOException {
         StringBuilder buf = new StringBuilder(64 * 1024);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
@@ -336,11 +336,11 @@ public abstract class AbstractRuleSetFactoryTest {
         }
     }
 
-    private static InputStream loadResourceAsStream(String resource) throws RuleSetNotFoundException {
+    private static InputStream loadResourceAsStream(final String resource) throws RuleSetNotFoundException {
         return new ResourceLoader().loadClassPathResourceAsStreamOrThrow(resource);
     }
 
-    private void testRuleSet(String fileName)
+    private void testRuleSet(final String fileName)
             throws IOException, RuleSetNotFoundException, ParserConfigurationException, SAXException {
 
         // Load original XML
@@ -398,7 +398,7 @@ public abstract class AbstractRuleSetFactoryTest {
                 xml3);
     }
 
-    private void assertEqualsRuleSet(String message, RuleSet ruleSet1, RuleSet ruleSet2) {
+    private void assertEqualsRuleSet(final String message, final RuleSet ruleSet1, final RuleSet ruleSet2) {
         assertEquals(message + ", RuleSet name", ruleSet1.getName(), ruleSet2.getName());
         assertEquals(message + ", RuleSet description", ruleSet1.getDescription(), ruleSet2.getDescription());
         assertEquals(message + ", RuleSet exclude patterns", ruleSet1.getExcludePatterns(),
@@ -478,7 +478,7 @@ public abstract class AbstractRuleSetFactoryTest {
     protected static RuleSetReferenceId createRuleSetReferenceId(final String ruleSetXml) {
         return new RuleSetReferenceId(null) {
             @Override
-            public InputStream getInputStream(ResourceLoader resourceLoader) throws RuleSetNotFoundException {
+            public InputStream getInputStream(final ResourceLoader resourceLoader) throws RuleSetNotFoundException {
                 try {
                     return new ByteArrayInputStream(ruleSetXml.getBytes("UTF-8"));
                 } catch (UnsupportedEncodingException e) {
@@ -511,28 +511,28 @@ public abstract class AbstractRuleSetFactoryTest {
         }
 
         @Override
-        public void error(SAXParseException e) throws SAXException {
+        public void error(final SAXParseException e) throws SAXException {
             log("Error", e);
         }
 
         @Override
-        public void fatalError(SAXParseException e) throws SAXException {
+        public void fatalError(final SAXParseException e) throws SAXException {
             log("FatalError", e);
         }
 
         @Override
-        public void warning(SAXParseException e) throws SAXException {
+        public void warning(final SAXParseException e) throws SAXException {
             log("Warning", e);
         }
 
-        private void log(String prefix, SAXParseException e) {
+        private void log(final String prefix, final SAXParseException e) {
             String message = prefix + " at (" + e.getLineNumber() + ", " + e.getColumnNumber() + "): " + e.getMessage();
             System.err.println(message);
             valid = false;
         }
 
         @Override
-        public InputSource resolveEntity(String publicId, String systemId) throws IOException, SAXException {
+        public InputSource resolveEntity(final String publicId, final String systemId) throws IOException, SAXException {
             String resource = schemaMapping.get(systemId);
 
             if (resource != null) {

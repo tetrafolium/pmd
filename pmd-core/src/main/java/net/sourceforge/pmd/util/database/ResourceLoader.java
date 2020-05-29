@@ -13,7 +13,7 @@ import java.io.InputStream;
  */
 public class ResourceLoader {
 
-    public InputStream getResourceStream(String path) throws java.io.IOException {
+    public InputStream getResourceStream(final String path) throws java.io.IOException {
         ClassLoader cl = this.getClass().getClassLoader();
         if (cl == null) {
             cl = ClassLoader.getSystemClassLoader();

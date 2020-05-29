@@ -98,12 +98,12 @@ public class SaxonXPathRuleQuery extends AbstractXPathRuleQuery {
         this(DeprecatedAttrLogger.noop());
     }
 
-    public SaxonXPathRuleQuery(DeprecatedAttrLogger attrCtx) {
+    public SaxonXPathRuleQuery(final DeprecatedAttrLogger attrCtx) {
         this.attrCtx = attrCtx;
     }
 
     @Override
-    public boolean isSupportedVersion(String version) {
+    public boolean isSupportedVersion(final String version) {
         return XPATH_1_0_COMPATIBILITY.equals(version) || XPATH_2_0.equals(version);
     }
 
@@ -146,7 +146,7 @@ public class SaxonXPathRuleQuery extends AbstractXPathRuleQuery {
         }
     }
 
-    private List<Expression> getXPathExpressionForNodeOrDefault(String nodeName) {
+    private List<Expression> getXPathExpressionForNodeOrDefault(final String nodeName) {
         if (nodeNameToXPaths.containsKey(nodeName)) {
             return nodeNameToXPaths.get(nodeName);
         }
@@ -222,7 +222,7 @@ public class SaxonXPathRuleQuery extends AbstractXPathRuleQuery {
         return root;
     }
 
-    private void addExpressionForNode(String nodeName, Expression expression) {
+    private void addExpressionForNode(final String nodeName, final Expression expression) {
         if (!nodeNameToXPaths.containsKey(nodeName)) {
             nodeNameToXPaths.put(nodeName, new LinkedList<Expression>());
         }
@@ -349,7 +349,7 @@ public class SaxonXPathRuleQuery extends AbstractXPathRuleQuery {
         }
     }
 
-    public static Value getSequenceRepresentation(List<?> list) {
+    public static Value getSequenceRepresentation(final List<?> list) {
         if (list == null || list.isEmpty()) {
             return EmptySequence.getInstance();
         }

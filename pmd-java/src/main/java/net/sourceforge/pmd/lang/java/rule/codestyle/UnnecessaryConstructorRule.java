@@ -30,7 +30,7 @@ public class UnnecessaryConstructorRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
         ASTConstructorDeclaration cons = node.getFirstDescendantOfType(ASTConstructorDeclaration.class);
         if (isExplicitDefaultConstructor(node)
@@ -42,7 +42,7 @@ public class UnnecessaryConstructorRule extends AbstractIgnoredAnnotationRule {
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
 
         ASTConstructorDeclaration cons = node.getFirstDescendantOfType(ASTConstructorDeclaration.class);
         if (isExplicitDefaultConstructor(node) && cons.isPrivate()) {
@@ -59,7 +59,7 @@ public class UnnecessaryConstructorRule extends AbstractIgnoredAnnotationRule {
      *
      * @param node the node to check
      */
-    private boolean isExplicitDefaultConstructor(Node node) {
+    private boolean isExplicitDefaultConstructor(final Node node) {
 
         List<ASTConstructorDeclaration> nodes
             = node.findDescendantsOfType(ASTConstructorDeclaration.class);
@@ -81,7 +81,7 @@ public class UnnecessaryConstructorRule extends AbstractIgnoredAnnotationRule {
      *
      * @param cons the node to check
      */
-    private boolean hasDefaultConstructorInvocation(ASTConstructorDeclaration cons) {
+    private boolean hasDefaultConstructorInvocation(final ASTConstructorDeclaration cons) {
         ASTExplicitConstructorInvocation inv = cons.getFirstChildOfType(ASTExplicitConstructorInvocation.class);
         return inv == null || inv.isSuper() && inv.getArgumentCount() == 0;
     }
@@ -93,7 +93,7 @@ public class UnnecessaryConstructorRule extends AbstractIgnoredAnnotationRule {
      * @param node the class declaration node
      * @param cons the constructor declaration node
      */
-    private boolean haveSameAccessModifier(ASTClassOrInterfaceDeclaration node, ASTConstructorDeclaration cons) {
+    private boolean haveSameAccessModifier(final ASTClassOrInterfaceDeclaration node, final ASTConstructorDeclaration cons) {
         return node.isPrivate() && cons.isPrivate()
             || node.isProtected() && cons.isProtected()
             || node.isPublic() && cons.isPublic()

@@ -64,7 +64,7 @@ public class AvoidBranchingStatementAsLastInLoopRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         // skip breaks, that are within a switch statement
         if (node.getNthParent(3) instanceof ASTSwitchStatement) {
             return data;
@@ -73,7 +73,7 @@ public class AvoidBranchingStatementAsLastInLoopRule extends AbstractJavaRule {
     }
 
 
-    protected Object check(PropertyDescriptor<List<String>> property, Node node, Object data) {
+    protected Object check(final PropertyDescriptor<List<String>> property, final Node node, final Object data) {
         Node parent = node.getNthParent(5);
         if (parent instanceof ASTForStatement) {
             if (hasPropertyValue(property, CHECK_FOR)) {
@@ -92,19 +92,19 @@ public class AvoidBranchingStatementAsLastInLoopRule extends AbstractJavaRule {
     }
 
 
-    protected boolean hasPropertyValue(PropertyDescriptor<List<String>> property, String value) {
+    protected boolean hasPropertyValue(final PropertyDescriptor<List<String>> property, final String value) {
         return getProperty(property).contains(value);
     }
 
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return check(CHECK_CONTINUE_LOOP_TYPES, node, data);
     }
 
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return check(CHECK_RETURN_LOOP_TYPES, node, data);
     }
 
@@ -117,7 +117,7 @@ public class AvoidBranchingStatementAsLastInLoopRule extends AbstractJavaRule {
         return checksNothing() ? "All loop types are ignored" : null;
     }
 
-    private static PropertyDescriptor<List<String>> propertyFor(String stmtName) {
+    private static PropertyDescriptor<List<String>> propertyFor(final String stmtName) {
         return PropertyFactory.enumListProperty("check" + StringUtils.capitalize(stmtName) + "LoopTypes", LOOP_TYPES_MAPPINGS)
                 .desc("List of loop types in which " + stmtName + " statements will be checked")
                 .defaultValue(DEFAULTS)

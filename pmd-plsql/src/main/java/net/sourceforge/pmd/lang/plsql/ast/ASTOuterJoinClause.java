@@ -11,13 +11,13 @@ public class ASTOuterJoinClause extends net.sourceforge.pmd.lang.plsql.ast.Abstr
 
     @Deprecated
     @InternalApi
-    public ASTOuterJoinClause(int id) {
+    public ASTOuterJoinClause(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTOuterJoinClause(PLSQLParser p, int id) {
+    public ASTOuterJoinClause(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
@@ -25,12 +25,12 @@ public class ASTOuterJoinClause extends net.sourceforge.pmd.lang.plsql.ast.Abstr
         return natural;
     }
 
-    void setNatural(boolean natural) {
+    void setNatural(final boolean natural) {
         this.natural = natural;
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

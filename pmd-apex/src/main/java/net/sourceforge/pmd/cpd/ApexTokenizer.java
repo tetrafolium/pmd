@@ -30,18 +30,18 @@ public class ApexTokenizer implements Tokenizer {
 
     private boolean caseSensitive;
 
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         caseSensitive = Boolean.parseBoolean(properties.getProperty(CASE_SENSITIVE, "false"));
     }
 
     @Override
-    public void tokenize(SourceCode sourceCode, Tokens tokenEntries) {
+    public void tokenize(final SourceCode sourceCode, final Tokens tokenEntries) {
         StringBuilder code = sourceCode.getCodeBuffer();
 
         ANTLRStringStream ass = new ANTLRStringStream(code.toString());
         ApexLexer lexer = new ApexLexer(ass) {
             @Override
-            public void emitErrorMessage(String msg) {
+            public void emitErrorMessage(final String msg) {
                 throw new TokenMgrError(msg, TokenMgrError.LEXICAL_ERROR);
             }
         };

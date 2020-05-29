@@ -57,7 +57,7 @@ public class RuleSetWriter {
     private Document document;
     private Set<String> ruleSetFileNames;
 
-    public RuleSetWriter(OutputStream outputStream) {
+    public RuleSetWriter(final OutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
@@ -65,7 +65,7 @@ public class RuleSetWriter {
         IOUtils.closeQuietly(outputStream);
     }
 
-    public void write(RuleSet ruleSet) {
+    public void write(final RuleSet ruleSet) {
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             documentBuilderFactory.setNamespaceAware(true);
@@ -95,7 +95,7 @@ public class RuleSetWriter {
         }
     }
 
-    private Element createRuleSetElement(RuleSet ruleSet) {
+    private Element createRuleSetElement(final RuleSet ruleSet) {
         Element ruleSetElement = document.createElementNS(RULESET_2_0_0_NS_URI, "ruleset");
         ruleSetElement.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
         ruleSetElement.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:schemaLocation",
@@ -123,15 +123,15 @@ public class RuleSetWriter {
         return ruleSetElement;
     }
 
-    private Element createDescriptionElement(String description) {
+    private Element createDescriptionElement(final String description) {
         return createTextElement("description", description);
     }
 
-    private Element createExcludePatternElement(String excludePattern) {
+    private Element createExcludePatternElement(final String excludePattern) {
         return createTextElement("exclude-pattern", excludePattern);
     }
 
-    private Element createIncludePatternElement(String includePattern) {
+    private Element createIncludePatternElement(final String includePattern) {
         return createTextElement("include-pattern", includePattern);
     }
 
@@ -139,17 +139,17 @@ public class RuleSetWriter {
         return document.createElementNS(RULESET_2_0_0_NS_URI, "rule");
     }
 
-    private Element createExcludeElement(String exclude) {
+    private Element createExcludeElement(final String exclude) {
         Element element = document.createElementNS(RULESET_2_0_0_NS_URI, "exclude");
         element.setAttribute("name", exclude);
         return element;
     }
 
-    private Element createExampleElement(String example) {
+    private Element createExampleElement(final String example) {
         return createCDATASectionElement("example", example);
     }
 
-    private Element createPriorityElement(RulePriority priority) {
+    private Element createPriorityElement(final RulePriority priority) {
         return createTextElement("priority", String.valueOf(priority.getPriority()));
     }
 
@@ -157,7 +157,7 @@ public class RuleSetWriter {
         return document.createElementNS(RULESET_2_0_0_NS_URI, "properties");
     }
 
-    private Element createRuleElement(Rule rule) {
+    private Element createRuleElement(final Rule rule) {
         if (rule instanceof RuleReference) {
             RuleReference ruleReference = (RuleReference) rule;
             RuleSetReference ruleSetReference = ruleReference.getRuleSetReference();
@@ -200,18 +200,18 @@ public class RuleSetWriter {
         }
     }
 
-    private void setIfNonNull(Object value, Element target, String id) {
+    private void setIfNonNull(final Object value, final Element target, final String id) {
         if (value != null) {
             target.setAttribute(id, value.toString());
         }
     }
 
-    private Element createSingleRuleElement(Language language, LanguageVersion minimumLanguageVersion,
-            LanguageVersion maximumLanguageVersion, Boolean deprecated, String name, String since, String ref,
-            String message, String externalInfoUrl, String clazz, Boolean dfa, Boolean typeResolution,
-            Boolean multifile, // NOPMD: TODO multifile
-            String description, RulePriority priority, List<PropertyDescriptor<?>> propertyDescriptors,
-            Map<PropertyDescriptor<?>, Object> propertiesByPropertyDescriptor, List<String> examples) {
+    private Element createSingleRuleElement(final Language language, final LanguageVersion minimumLanguageVersion,
+            final LanguageVersion maximumLanguageVersion, final Boolean deprecated, final String name, final String since, final String ref,
+            final String message, final String externalInfoUrl, final String clazz, final Boolean dfa, final Boolean typeResolution,
+            final Boolean multifile, // NOPMD: TODO multifile
+            final String description, final RulePriority priority, final List<PropertyDescriptor<?>> propertyDescriptors,
+            final Map<PropertyDescriptor<?>, Object> propertiesByPropertyDescriptor, final List<String> examples) {
         Element ruleElement = createRuleElement();
         if (language != null) {
             ruleElement.setAttribute("language", language.getTerseName());
@@ -255,7 +255,7 @@ public class RuleSetWriter {
         return ruleElement;
     }
 
-    private Element createRuleSetReferenceElement(RuleSetReference ruleSetReference) {
+    private Element createRuleSetReferenceElement(final RuleSetReference ruleSetReference) {
         Element ruleSetReferenceElement = createRuleElement();
         ruleSetReferenceElement.setAttribute("ref", ruleSetReference.getRuleSetFileName());
         for (String exclude : ruleSetReference.getExcludes()) {
@@ -266,8 +266,8 @@ public class RuleSetWriter {
     }
 
     @SuppressWarnings("PMD.CompareObjectsWithEquals")
-    private Element createPropertiesElement(List<PropertyDescriptor<?>> propertyDescriptors,
-            Map<PropertyDescriptor<?>, Object> propertiesByPropertyDescriptor) {
+    private Element createPropertiesElement(final List<PropertyDescriptor<?>> propertyDescriptors,
+            final Map<PropertyDescriptor<?>, Object> propertiesByPropertyDescriptor) {
 
         Element propertiesElement = null;
         if (propertyDescriptors != null) {
@@ -325,7 +325,7 @@ public class RuleSetWriter {
         return propertiesElement;
     }
 
-    private Element createPropertyValueElement(PropertyDescriptor propertyDescriptor, Object value) {
+    private Element createPropertyValueElement(final PropertyDescriptor propertyDescriptor, final Object value) {
         Element propertyElement = document.createElementNS(RULESET_2_0_0_NS_URI, "property");
         propertyElement.setAttribute("name", propertyDescriptor.name());
         String valueString = propertyDescriptor.asDelimitedString(value);
@@ -340,7 +340,7 @@ public class RuleSetWriter {
     }
 
 
-    private Element createPropertyDefinitionElementBR(PropertyDescriptor<?> propertyDescriptor) {
+    private Element createPropertyDefinitionElementBR(final PropertyDescriptor<?> propertyDescriptor) {
 
         final Element propertyElement = createPropertyValueElement(propertyDescriptor,
                 propertyDescriptor.defaultValue());
@@ -356,14 +356,14 @@ public class RuleSetWriter {
         return propertyElement;
     }
 
-    private Element createTextElement(String name, String value) {
+    private Element createTextElement(final String name, final String value) {
         Element element = document.createElementNS(RULESET_2_0_0_NS_URI, name);
         Text text = document.createTextNode(value);
         element.appendChild(text);
         return element;
     }
 
-    private Element createCDATASectionElement(String name, String value) {
+    private Element createCDATASectionElement(final String name, final String value) {
         Element element = document.createElementNS(RULESET_2_0_0_NS_URI, name);
         CDATASection cdataSection = document.createCDATASection(value);
         element.appendChild(cdataSection);

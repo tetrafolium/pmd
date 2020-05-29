@@ -38,7 +38,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration meth, Object data) {
+    public Object visit(final ASTMethodDeclaration meth, final Object data) {
         // skip void/abstract/native method
         if (meth.isVoid() || meth.isAbstract() || meth.isNative()) {
             return data;
@@ -47,7 +47,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTReturnStatement rtn, Object data) {
+    public Object visit(final ASTReturnStatement rtn, final Object data) {
         // skip returns of literals
         ASTName name = rtn.getFirstDescendantOfType(ASTName.class);
         if (name == null) {
@@ -91,7 +91,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean statementsBeforeReturn(VariableNameDeclaration variableDeclaration, ASTReturnStatement returnStatement) {
+    private boolean statementsBeforeReturn(final VariableNameDeclaration variableDeclaration, final ASTReturnStatement returnStatement) {
         if (!getProperty(STATEMENT_ORDER_MATTERS)) {
             return false;
         }
@@ -107,7 +107,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
     }
 
     // TODO : should node define isAfter / isBefore helper methods for Nodes?
-    private static boolean isAfter(Node n1, Node n2) {
+    private static boolean isAfter(final Node n1, final Node n2) {
         return n1.getBeginLine() > n2.getBeginLine()
                 || n1.getBeginLine() == n2.getBeginLine() && n1.getBeginColumn() >= n2.getEndColumn();
     }
@@ -154,7 +154,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isNotAnnotated(VariableNameDeclaration variableDeclaration) {
+    private boolean isNotAnnotated(final VariableNameDeclaration variableDeclaration) {
         AccessNode accessNodeParent = variableDeclaration.getAccessNodeParent();
         return !accessNodeParent.hasDescendantOfType(ASTAnnotation.class);
     }
@@ -166,7 +166,7 @@ public class UnnecessaryLocalBeforeReturnRule extends AbstractJavaRule {
      *            return statement to analyze
      * @return true if any method calls are made within the given return
      */
-    private boolean isMethodCall(ASTReturnStatement rtn) {
+    private boolean isMethodCall(final ASTReturnStatement rtn) {
         List<ASTPrimarySuffix> suffix = rtn.findDescendantsOfType(ASTPrimarySuffix.class);
         for (ASTPrimarySuffix element : suffix) {
             if (element.isArguments()) {

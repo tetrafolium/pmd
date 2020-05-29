@@ -19,15 +19,15 @@ public class ImportWrapper {
     private boolean isStaticDemand;
     private Set<String> allDemands = new HashSet<>();
 
-    public ImportWrapper(String fullname, String name) {
+    public ImportWrapper(final String fullname, final String name) {
         this(fullname, name, null);
     }
 
-    public ImportWrapper(String fullname, String name, Node node) {
+    public ImportWrapper(final String fullname, final String name, final Node node) {
         this(fullname, name, node, false);
     }
 
-    public ImportWrapper(String fullname, String name, Node node, Class<?> type, boolean isStaticDemand) {
+    public ImportWrapper(final String fullname, final String name, final Node node, final Class<?> type, final boolean isStaticDemand) {
         this(fullname, name, node, isStaticDemand);
         if (type != null) {
             for (Method m : type.getMethods()) {
@@ -51,7 +51,7 @@ public class ImportWrapper {
         }
     }
 
-    public ImportWrapper(String fullname, String name, Node node, boolean isStaticDemand) {
+    public ImportWrapper(final String fullname, final String name, final Node node, final boolean isStaticDemand) {
         this.fullname = fullname;
         this.name = name;
         this.node = node;
@@ -59,7 +59,7 @@ public class ImportWrapper {
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(final Object other) {
         if (other == null) {
             return false;
         }
@@ -76,7 +76,7 @@ public class ImportWrapper {
         return false;
     }
 
-    public boolean matches(ImportWrapper i) {
+    public boolean matches(final ImportWrapper i) {
         if (isStaticDemand) {
             if (allDemands.contains(i.fullname)) {
                 return true;

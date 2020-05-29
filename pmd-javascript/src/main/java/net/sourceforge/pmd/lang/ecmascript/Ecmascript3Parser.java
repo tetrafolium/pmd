@@ -20,14 +20,14 @@ import net.sourceforge.pmd.lang.ecmascript5.Ecmascript5TokenManager;
 public class Ecmascript3Parser extends AbstractParser {
     private net.sourceforge.pmd.lang.ecmascript.ast.EcmascriptParser ecmascriptParser;
 
-    public Ecmascript3Parser(ParserOptions parserOptions) {
+    public Ecmascript3Parser(final ParserOptions parserOptions) {
         super(parserOptions);
         ecmascriptParser = new net.sourceforge.pmd.lang.ecmascript.ast.EcmascriptParser(
                 (EcmascriptParserOptions) parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return new Ecmascript5TokenManager(source);
     }
 
@@ -37,7 +37,7 @@ public class Ecmascript3Parser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         return ecmascriptParser.parse(source);
     }
 

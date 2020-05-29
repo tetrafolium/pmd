@@ -15,12 +15,12 @@ public class ASTTermApplyUnary extends AbstractScalaNode<Term.ApplyUnary> {
 
     @Deprecated
     @InternalApi
-    public ASTTermApplyUnary(Term.ApplyUnary scalaNode) {
+    public ASTTermApplyUnary(final Term.ApplyUnary scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

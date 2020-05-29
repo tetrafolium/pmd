@@ -13,12 +13,12 @@ public class ASTAssignmentExpression extends AbstractApexNode<AssignmentExpressi
 
     @Deprecated
     @InternalApi
-    public ASTAssignmentExpression(AssignmentExpression assignmentExpression) {
+    public ASTAssignmentExpression(final AssignmentExpression assignmentExpression) {
         super(assignmentExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

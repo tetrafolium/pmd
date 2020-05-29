@@ -34,7 +34,7 @@ public class JavaNameOccurrence implements NameOccurrence {
     private static final String THIS_DOT = "this.";
     private static final String SUPER_DOT = "super.";
 
-    public JavaNameOccurrence(JavaNode location, String image) {
+    public JavaNameOccurrence(final JavaNode location, final String image) {
         this.location = location;
         this.image = image;
     }
@@ -43,7 +43,7 @@ public class JavaNameOccurrence implements NameOccurrence {
         isMethodOrConstructorInvocation = true;
     }
 
-    public void setArgumentCount(int count) {
+    public void setArgumentCount(final int count) {
         argumentCount = count;
     }
 
@@ -59,7 +59,7 @@ public class JavaNameOccurrence implements NameOccurrence {
         return location instanceof ASTMethodReference;
     }
 
-    public void setNameWhichThisQualifies(NameOccurrence qualifiedName) {
+    public void setNameWhichThisQualifies(final NameOccurrence qualifiedName) {
         this.qualifiedName = qualifiedName;
     }
 
@@ -117,11 +117,11 @@ public class JavaNameOccurrence implements NameOccurrence {
         return !isCompoundAssignment(primaryExpression);
     }
 
-    private boolean isCompoundAssignment(Node primaryExpression) {
+    private boolean isCompoundAssignment(final Node primaryExpression) {
         return ((ASTAssignmentOperator) primaryExpression.getChild(1)).isCompound();
     }
 
-    private boolean isStandAlonePostfix(Node primaryExpression) {
+    private boolean isStandAlonePostfix(final Node primaryExpression) {
         if (!(primaryExpression instanceof ASTPostfixExpression)
                 || !(primaryExpression.getParent() instanceof ASTStatementExpression)) {
             return false;
@@ -136,7 +136,7 @@ public class JavaNameOccurrence implements NameOccurrence {
         return thirdChildHasDottedName(primaryExpression);
     }
 
-    private boolean thirdChildHasDottedName(Node primaryExpression) {
+    private boolean thirdChildHasDottedName(final Node primaryExpression) {
         Node thirdChild = primaryExpression.getChild(0).getChild(0).getChild(0);
         return thirdChild instanceof ASTName && ((ASTName) thirdChild).getImage().indexOf('.') == -1;
     }
@@ -182,7 +182,7 @@ public class JavaNameOccurrence implements NameOccurrence {
         }
     }
 
-    private boolean hasAssignmentOperator(Node node) {
+    private boolean hasAssignmentOperator(final Node node) {
         if (node instanceof ASTStatementExpression || node instanceof ASTExpression) {
             if (node.getNumChildren() >= 2 && node.getChild(1) instanceof ASTAssignmentOperator) {
                 return true;
@@ -218,7 +218,7 @@ public class JavaNameOccurrence implements NameOccurrence {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (o instanceof JavaNameOccurrence) {
             JavaNameOccurrence n = (JavaNameOccurrence) o;
             return n.getImage().equals(getImage());

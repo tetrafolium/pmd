@@ -11,13 +11,13 @@ public class ASTArguments extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTArguments(int id) {
+    public ASTArguments(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTArguments(JavaParser p, int id) {
+    public ASTArguments(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -42,7 +42,7 @@ public class ASTArguments extends AbstractJavaNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

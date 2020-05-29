@@ -47,11 +47,11 @@ public final class DirectiveMapper {
         }
     }
 
-    public static Directive getDirective(String directiveName) {
+    public static Directive getDirective(final String directiveName) {
         return DIRECTIVE_MAP.get(directiveName);
     }
 
-    public static boolean isDirective(String name) {
+    public static boolean isDirective(final String name) {
         return DIRECTIVE_NAMES.contains(name);
     }
 

@@ -19,7 +19,7 @@ public class OccurrenceFinder extends PLSQLParserVisitorAdapter {
     private static final Logger LOGGER = Logger.getLogger(OccurrenceFinder.class.getName());
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         NameFinder nameFinder = new NameFinder(node);
 
         // Maybe do some sort of State pattern thingy for when NameDeclaration

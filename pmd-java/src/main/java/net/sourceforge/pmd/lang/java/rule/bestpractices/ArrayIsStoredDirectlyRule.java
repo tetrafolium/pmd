@@ -34,7 +34,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 public class ArrayIsStoredDirectlyRule extends AbstractSunSecureRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -42,7 +42,7 @@ public class ArrayIsStoredDirectlyRule extends AbstractSunSecureRule {
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         ASTFormalParameter[] arrs = getArrays(node.getFormalParameters());
         // TODO check if one of these arrays is stored in a non local
         // variable
@@ -52,20 +52,20 @@ public class ArrayIsStoredDirectlyRule extends AbstractSunSecureRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         final ASTFormalParameters params = node.getFirstDescendantOfType(ASTFormalParameters.class);
         ASTFormalParameter[] arrs = getArrays(params);
         checkAll(data, arrs, node.findDescendantsOfType(ASTBlockStatement.class));
         return data;
     }
 
-    private void checkAll(Object context, ASTFormalParameter[] arrs, List<ASTBlockStatement> bs) {
+    private void checkAll(final Object context, final ASTFormalParameter[] arrs, final List<ASTBlockStatement> bs) {
         for (ASTFormalParameter element : arrs) {
             checkForDirectAssignment(context, element, bs);
         }
     }
 
-    private String getExpressionVarName(Node e) {
+    private String getExpressionVarName(final Node e) {
         String assignedVar = getFirstNameImage(e);
         if (assignedVar == null) {
             ASTPrimarySuffix suffix = e.getFirstDescendantOfType(ASTPrimarySuffix.class);
@@ -88,7 +88,7 @@ public class ArrayIsStoredDirectlyRule extends AbstractSunSecureRule {
      * Checks if the variable designed in parameter is written to a field (not
      * local variable) in the statements.
      */
-    private boolean checkForDirectAssignment(Object ctx, final ASTFormalParameter parameter,
+    private boolean checkForDirectAssignment(final Object ctx, final ASTFormalParameter parameter,
             final List<ASTBlockStatement> bs) {
         final ASTVariableDeclaratorId vid = parameter.getFirstDescendantOfType(ASTVariableDeclaratorId.class);
         final String varName = vid.getImage();
@@ -147,7 +147,7 @@ public class ArrayIsStoredDirectlyRule extends AbstractSunSecureRule {
         return false;
     }
 
-    private ASTFormalParameter[] getArrays(ASTFormalParameters params) {
+    private ASTFormalParameter[] getArrays(final ASTFormalParameters params) {
         final List<ASTFormalParameter> l = params.findChildrenOfType(ASTFormalParameter.class);
         if (l != null && !l.isEmpty()) {
             List<ASTFormalParameter> l2 = new ArrayList<>();

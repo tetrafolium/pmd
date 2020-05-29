@@ -10,18 +10,18 @@ public class ASTDefaultValue extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTDefaultValue(int id) {
+    public ASTDefaultValue(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTDefaultValue(JavaParser p, int id) {
+    public ASTDefaultValue(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

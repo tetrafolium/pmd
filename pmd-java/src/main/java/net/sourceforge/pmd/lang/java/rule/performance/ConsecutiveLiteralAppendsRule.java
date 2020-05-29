@@ -92,7 +92,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
 
         if (!isStringBuilderOrBuffer(node)) {
             return data;
@@ -167,7 +167,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
         return data;
     }
 
-    private List<NameOccurrence> determineUsages(ASTVariableDeclaratorId node) {
+    private List<NameOccurrence> determineUsages(final ASTVariableDeclaratorId node) {
         Map<VariableNameDeclaration, List<NameOccurrence>> decls = node.getScope()
                 .getDeclarations(VariableNameDeclaration.class);
         for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry : decls.entrySet()) {
@@ -186,7 +186,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      * @param node
      * @return 1 if the constructor contains string argument, else 0
      */
-    private int checkConstructor(ASTVariableDeclaratorId node, Object data) {
+    private int checkConstructor(final ASTVariableDeclaratorId node, final Object data) {
         Node parent = node.getParent();
         if (parent.getNumChildren() >= 2) {
             ASTAllocationExpression allocationExpression = parent.getChild(1)
@@ -213,7 +213,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      * @param node
      * @return
      */
-    private int checkInitializerExpressions(ASTVariableDeclaratorId node) {
+    private int checkInitializerExpressions(final ASTVariableDeclaratorId node) {
         ASTVariableInitializer initializer = node.getParent().getFirstChildOfType(ASTVariableInitializer.class);
         ASTPrimaryExpression primary = initializer.getFirstDescendantOfType(ASTPrimaryExpression.class);
 
@@ -250,11 +250,11 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
         return result;
     }
 
-    private boolean hasInitializer(ASTVariableDeclaratorId node) {
+    private boolean hasInitializer(final ASTVariableDeclaratorId node) {
         return node.getParent().hasDescendantOfType(ASTVariableInitializer.class);
     }
 
-    private int processAdditive(Object data, int concurrentCount, Node sn, Node rootNode) {
+    private int processAdditive(final Object data, final int concurrentCount, final Node sn, final Node rootNode) {
         ASTAdditiveExpression additive = sn.getFirstDescendantOfType(ASTAdditiveExpression.class);
         // The additive expression must of be type String to count
         if (additive == null || additive.getType() != null && !TypeHelper.isA(additive, String.class)) {
@@ -308,7 +308,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      * @return true if the node has an additive expression (i.e. "Hello " +
      *         Const.WORLD)
      */
-    private boolean isAdditive(Node n) {
+    private boolean isAdditive(final Node n) {
         List<ASTAdditiveExpression> lstAdditive = n.findDescendantsOfType(ASTAdditiveExpression.class);
         if (lstAdditive.isEmpty()) {
             return false;
@@ -334,7 +334,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      *            The node to check
      * @return The first parent block
      */
-    private Node getFirstParentBlock(Node node) {
+    private Node getFirstParentBlock(final Node node) {
         Node parentNode = node.getParent();
 
         Node lastNode = node;
@@ -359,7 +359,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      *            The last node processed
      * @return The parent node for the switch statement
      */
-    private Node getSwitchParent(Node parentNode, Node lastNode) {
+    private Node getSwitchParent(final Node parentNode, final Node lastNode) {
         int allChildren = parentNode.getNumChildren();
         Node result = parentNode;
         ASTSwitchLabel label = null;
@@ -379,14 +379,14 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
      * Helper method checks to see if a violation occurred, and adds a
      * RuleViolation if it did
      */
-    private void checkForViolation(Node node, Object data, int concurrentCount) {
+    private void checkForViolation(final Node node, final Object data, final int concurrentCount) {
         if (concurrentCount > threshold) {
-            String[] param = { String.valueOf(concurrentCount) };
+            String[] param = {String.valueOf(concurrentCount) };
             addViolation(data, node, param);
         }
     }
 
-    private boolean isAppendingStringLiteral(Node node) {
+    private boolean isAppendingStringLiteral(final Node node) {
         Node n = node;
         while (n.getNumChildren() != 0 && !(n instanceof ASTLiteral)) {
             n = n.getChild(0);
@@ -394,7 +394,7 @@ public class ConsecutiveLiteralAppendsRule extends AbstractJavaRule {
         return n instanceof ASTLiteral;
     }
 
-    private static boolean isStringBuilderOrBuffer(ASTVariableDeclaratorId node) {
+    private static boolean isStringBuilderOrBuffer(final ASTVariableDeclaratorId node) {
         if (node.getType() != null) {
             return TypeHelper.isEither(node, StringBuffer.class, StringBuilder.class);
         }

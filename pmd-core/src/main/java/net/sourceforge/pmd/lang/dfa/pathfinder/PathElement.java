@@ -12,11 +12,11 @@ public class PathElement {
     public DataFlowNode node;
     public DataFlowNode pseudoRef;
 
-    PathElement(DataFlowNode node) {
+    PathElement(final DataFlowNode node) {
         this.node = node;
     }
 
-    PathElement(DataFlowNode node, DataFlowNode ref) {
+    PathElement(final DataFlowNode node, final DataFlowNode ref) {
         this.node = node;
         this.pseudoRef = ref;
     }

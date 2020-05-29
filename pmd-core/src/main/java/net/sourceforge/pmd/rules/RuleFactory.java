@@ -92,7 +92,7 @@ public class RuleFactory {
      *
      * @return A rule reference to the referenced rule
      */
-    public RuleReference decorateRule(Rule referencedRule, RuleSetReference ruleSetReference, Element ruleElement) {
+    public RuleReference decorateRule(final Rule referencedRule, final RuleSetReference ruleSetReference, final Element ruleElement) {
         RuleReference ruleReference = new RuleReference(referencedRule, ruleSetReference);
 
         if (ruleElement.hasAttribute(DEPRECATED)) {
@@ -146,7 +146,7 @@ public class RuleFactory {
      * @return A new instance of the rule described by this element
      * @throws IllegalArgumentException if the element doesn't describe a valid rule.
      */
-    public Rule buildRule(Element ruleElement) {
+    public Rule buildRule(final Element ruleElement) {
         checkRequiredAttributesArePresent(ruleElement);
 
         String name = ruleElement.getAttribute(NAME);
@@ -221,7 +221,7 @@ public class RuleFactory {
         return rule;
     }
 
-    private void checkRequiredAttributesArePresent(Element ruleElement) {
+    private void checkRequiredAttributesArePresent(final Element ruleElement) {
         // add an attribute name here to make it required
 
         for (String att : REQUIRED_ATTRIBUTES) {
@@ -238,7 +238,7 @@ public class RuleFactory {
      *
      * @return A map of property names to their value
      */
-    private Map<String, String> getPropertyValuesFrom(Element propertiesNode) {
+    private Map<String, String> getPropertyValuesFrom(final Element propertiesNode) {
         Map<String, String> overridenProperties = new HashMap<>();
 
         for (int i = 0; i < propertiesNode.getChildNodes().getLength(); i++) {
@@ -259,7 +259,7 @@ public class RuleFactory {
      * @param builder        Rule builder
      * @param propertiesNode Node to parse
      */
-    private void parsePropertiesForDefinitions(RuleBuilder builder, Node propertiesNode) {
+    private void parsePropertiesForDefinitions(final RuleBuilder builder, final Node propertiesNode) {
         for (int i = 0; i < propertiesNode.getChildNodes().getLength(); i++) {
             Node node = propertiesNode.getChildNodes().item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE && PROPERTY.equals(node.getNodeName())
@@ -277,7 +277,7 @@ public class RuleFactory {
      *
      * @return An entry of property name to its value
      */
-    private Entry<String, String> getPropertyValue(Element propertyElement) {
+    private Entry<String, String> getPropertyValue(final Element propertyElement) {
         String name = propertyElement.getAttribute(PropertyDescriptorField.NAME.attributeName());
         return new SimpleEntry<>(name, valueFrom(propertyElement));
     }
@@ -288,7 +288,7 @@ public class RuleFactory {
      * @param rule          The rule
      * @param propertiesElt The {@literal <properties>} element
      */
-    private void setPropertyValues(Rule rule, Element propertiesElt) {
+    private void setPropertyValues(final Rule rule, final Element propertiesElt) {
         Map<String, String> overridden = getPropertyValuesFrom(propertiesElt);
 
         for (Entry<String, String> e : overridden.entrySet()) {
@@ -302,7 +302,7 @@ public class RuleFactory {
         }
     }
 
-    private <T> void setRulePropertyCapture(Rule rule, PropertyDescriptor<T> descriptor, String value) {
+    private <T> void setRulePropertyCapture(final Rule rule, final PropertyDescriptor<T> descriptor, final String value) {
         rule.setProperty(descriptor, descriptor.valueFrom(value));
     }
 
@@ -313,7 +313,7 @@ public class RuleFactory {
      *
      * @return True if this element defines a new property, false if this is just stating a value
      */
-    private static boolean isPropertyDefinition(Element node) {
+    private static boolean isPropertyDefinition(final Element node) {
         return node.hasAttribute(PropertyDescriptorField.TYPE.attributeName());
     }
 
@@ -324,7 +324,7 @@ public class RuleFactory {
      *
      * @return The property descriptor
      */
-    private static PropertyDescriptor<?> parsePropertyDefinition(Element propertyElement) {
+    private static PropertyDescriptor<?> parsePropertyDefinition(final Element propertyElement) {
         String typeId = propertyElement.getAttribute(PropertyDescriptorField.TYPE.attributeName());
 
         PropertyDescriptorExternalBuilder<?> pdFactory = PropertyTypeId.factoryFor(typeId);
@@ -355,7 +355,7 @@ public class RuleFactory {
     }
 
     /** Gets the string value from a property node. */
-    private static String valueFrom(Element propertyNode) {
+    private static String valueFrom(final Element propertyNode) {
         String strValue = propertyNode.getAttribute(DEFAULT_VALUE.attributeName());
 
         if (StringUtils.isNotBlank(strValue)) {
@@ -373,7 +373,7 @@ public class RuleFactory {
         return null;
     }
 
-    private static boolean hasAttributeSetTrue(Element element, String attributeId) {
+    private static boolean hasAttributeSetTrue(final Element element, final String attributeId) {
         return element.hasAttribute(attributeId) && "true".equalsIgnoreCase(element.getAttribute(attributeId));
     }
 
@@ -384,7 +384,7 @@ public class RuleFactory {
      *
      * @return The String.
      */
-    private static String parseTextNode(Node node) {
+    private static String parseTextNode(final Node node) {
         final int nodeCount = node.getChildNodes().getLength();
         if (nodeCount == 0) {
             return "";

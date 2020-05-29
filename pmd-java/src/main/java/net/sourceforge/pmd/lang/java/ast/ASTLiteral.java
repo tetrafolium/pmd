@@ -32,18 +32,18 @@ public class ASTLiteral extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTLiteral(int id) {
+    public ASTLiteral(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTLiteral(JavaParser p, int id) {
+    public ASTLiteral(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -276,7 +276,7 @@ public class ASTLiteral extends AbstractJavaTypeNode {
         return determineTextBlockContent(getImage());
     }
 
-    static String determineTextBlockContent(String image) {
+    static String determineTextBlockContent(final String image) {
         // normalize line endings to LF
         String content = image.replaceAll("\r\n|\r", "\n");
         int start = determineContentStart(content);
@@ -316,7 +316,7 @@ public class ASTLiteral extends AbstractJavaTypeNode {
         return sb.toString();
     }
 
-    private static void interpretEscapeSequences(StringBuilder sb) {
+    private static void interpretEscapeSequences(final StringBuilder sb) {
         // interpret escape sequences "\<LF>" (line continuation), "n","t","b","r","f", "s", "\"", "\'", "\\"
         // we need to interpret everything in one pass, so regex replacement is inappropriate
         for (int i = 0; i < sb.length(); i++) {
@@ -370,7 +370,7 @@ public class ASTLiteral extends AbstractJavaTypeNode {
         }
     }
 
-    private static int determineContentStart(String s) {
+    private static int determineContentStart(final String s) {
         int start = TEXTBLOCK_DELIMITER.length(); // this is the opening delimiter
         // the content begins after at the first character after the line terminator
         // of the opening delimiter
@@ -383,7 +383,7 @@ public class ASTLiteral extends AbstractJavaTypeNode {
         return start;
     }
 
-    private static int countLeadingWhitespace(String s) {
+    private static int countLeadingWhitespace(final String s) {
         int count = 0;
         while (count < s.length() && Character.isWhitespace(s.charAt(count))) {
             count++;
@@ -391,7 +391,7 @@ public class ASTLiteral extends AbstractJavaTypeNode {
         return count;
     }
 
-    private static String removeTrailingWhitespace(String s) {
+    private static String removeTrailingWhitespace(final String s) {
         int endIndexIncluding = s.length() - 1;
         while (endIndexIncluding >= 0 && Character.isWhitespace(s.charAt(endIndexIncluding))) {
             endIndexIncluding--;

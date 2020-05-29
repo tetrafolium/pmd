@@ -34,7 +34,7 @@ public class HardCodedCryptoKeyRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         ASTClassOrInterfaceType declClassName = node.getFirstChildOfType(ASTClassOrInterfaceType.class);
         if (declClassName != null && TypeHelper.isA(declClassName, SECRET_KEY_SPEC)) {
             Node firstArgument = null;
@@ -61,7 +61,7 @@ public class HardCodedCryptoKeyRule extends AbstractJavaRule {
      * @param data
      * @param firstArgumentExpression
      */
-    private void validateProperKeyArgument(Object data, ASTPrimaryPrefix firstArgumentExpression) {
+    private void validateProperKeyArgument(final Object data, final ASTPrimaryPrefix firstArgumentExpression) {
         if (firstArgumentExpression == null) {
             return;
         }

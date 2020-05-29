@@ -30,7 +30,7 @@ public class AvoidUsingOctalValuesRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         boolean strict = getProperty(STRICT_METHODS_DESCRIPTOR);
         Pattern p = strict ? STRICT_OCTAL_PATTERN : OCTAL_PATTERN;
 

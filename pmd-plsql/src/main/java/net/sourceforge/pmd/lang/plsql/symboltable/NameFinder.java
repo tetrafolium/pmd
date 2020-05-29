@@ -20,7 +20,7 @@ public class NameFinder {
 
     private List<PLSQLNameOccurrence> names = new ArrayList<>();
 
-    public NameFinder(ASTPrimaryExpression node) {
+    public NameFinder(final ASTPrimaryExpression node) {
         Node simpleNode = node.getChild(0);
         if (simpleNode instanceof ASTPrimaryPrefix) {
             ASTPrimaryPrefix prefix = (ASTPrimaryPrefix) simpleNode;
@@ -40,7 +40,7 @@ public class NameFinder {
         return names;
     }
 
-    private void checkForNameChild(Node node) {
+    private void checkForNameChild(final Node node) {
         if (node.getImage() != null) {
             add(new PLSQLNameOccurrence((PLSQLNode) node, node.getImage()));
         }
@@ -66,7 +66,7 @@ public class NameFinder {
         }
     }
 
-    private void add(PLSQLNameOccurrence name) {
+    private void add(final PLSQLNameOccurrence name) {
         names.add(name);
         if (names.size() > 1) {
             PLSQLNameOccurrence qualifiedName = names.get(names.size() - 2);

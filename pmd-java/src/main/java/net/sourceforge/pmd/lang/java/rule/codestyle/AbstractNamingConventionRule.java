@@ -30,12 +30,12 @@ abstract class AbstractNamingConventionRule<T extends JavaNode> extends Abstract
     static final String PASCAL_CASE = "[A-Z][a-zA-Z0-9]*";
 
     /** The argument is interpreted as the display name, and is converted to camel case to get the property name. */
-    RegexPropertyBuilder defaultProp(String displayName) {
+    RegexPropertyBuilder defaultProp(final String displayName) {
         return defaultProp(StringUtil.toCamelCase(displayName, true), displayName);
     }
 
     /** Returns a pre-filled builder with the given name and display name (for the description). */
-    RegexPropertyBuilder defaultProp(String name, String displayName) {
+    RegexPropertyBuilder defaultProp(final String name, final String displayName) {
         return PropertyFactory.regexProperty(name + "Pattern")
                               .desc("Regex which applies to " + displayName.trim() + " names")
                               .defaultValue(defaultConvention());
@@ -49,12 +49,12 @@ abstract class AbstractNamingConventionRule<T extends JavaNode> extends Abstract
     abstract String kindDisplayName(T node, PropertyDescriptor<Pattern> descriptor);
 
     /** Extracts the name that should be pattern matched. */
-    String nameExtractor(T node) {
+    String nameExtractor(final T node) {
         return node.getImage();
     }
 
 
-    void checkMatches(T node, PropertyDescriptor<Pattern> regex, Object data) {
+    void checkMatches(final T node, final PropertyDescriptor<Pattern> regex, final Object data) {
         String name = nameExtractor(node);
         if (!getProperty(regex).matcher(name).matches()) {
             addViolation(data, node, new Object[]{

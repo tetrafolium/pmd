@@ -50,18 +50,18 @@ public class DocumentNode extends BaseNodeInfo implements DocumentInfo {
      *
      * @see ElementNode
      */
-    public DocumentNode(Node node, NamePool namePool) {
+    public DocumentNode(final Node node, final NamePool namePool) {
         super(Type.DOCUMENT, namePool, "", null);
         this.rootNode = new ElementNode(this, new IdGenerator(), null, node, -1, namePool);
     }
 
     @Deprecated
-    public DocumentNode(Node node) {
+    public DocumentNode(final Node node) {
         this(node, SaxonXPathRuleQuery.getNamePool());
     }
 
     @Override
-    public String[] getUnparsedEntity(String name) {
+    public String[] getUnparsedEntity(final String name) {
         throw createUnsupportedOperationException("DocumentInfo.getUnparsedEntity(String)");
     }
 
@@ -71,7 +71,7 @@ public class DocumentNode extends BaseNodeInfo implements DocumentInfo {
     }
 
     @Override
-    public NodeInfo selectID(String id) {
+    public NodeInfo selectID(final String id) {
         throw createUnsupportedOperationException("DocumentInfo.selectID(String)");
     }
 
@@ -86,7 +86,7 @@ public class DocumentNode extends BaseNodeInfo implements DocumentInfo {
     }
 
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    public AxisIterator iterateAxis(final byte axisNumber) {
         switch (axisNumber) {
         case Axis.DESCENDANT:
             return new Navigator.DescendantEnumeration(this, false, true);
@@ -103,7 +103,7 @@ public class DocumentNode extends BaseNodeInfo implements DocumentInfo {
         return attrCtx == null ? DeprecatedAttrLogger.noop() : attrCtx;
     }
 
-    public void setAttrCtx(DeprecatedAttrLogger attrCtx) {
+    public void setAttrCtx(final DeprecatedAttrLogger attrCtx) {
         this.attrCtx = attrCtx;
     }
 }

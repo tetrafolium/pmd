@@ -23,7 +23,7 @@ import net.sf.saxon.om.Axis;
 public class ExpressionPrinter extends SaxonExprVisitor {
     private int depth = 0;
 
-    private void print(String s) {
+    private void print(final String s) {
         for (int i = 0; i < depth; i++) {
             System.out.print("    ");
         }
@@ -31,25 +31,25 @@ public class ExpressionPrinter extends SaxonExprVisitor {
     }
 
     @Override
-    public Expression visit(AxisExpression e) {
+    public Expression visit(final AxisExpression e) {
         print("axis=" + Axis.axisName[e.getAxis()] + "(test=" + e.getNodeTest() + ")");
         return super.visit(e);
     }
 
     @Override
-    public Expression visit(RootExpression e) {
+    public Expression visit(final RootExpression e) {
         print("/");
         return super.visit(e);
     }
 
     @Override
-    public Expression visit(VennExpression e) {
+    public Expression visit(final VennExpression e) {
         print("venn=" + Token.tokens[e.getOperator()]);
         return super.visit(e);
     }
 
     @Override
-    public Expression visit(Expression expr) {
+    public Expression visit(final Expression expr) {
         depth++;
         print(expr.getClass().getSimpleName());
         Expression result = super.visit(expr);

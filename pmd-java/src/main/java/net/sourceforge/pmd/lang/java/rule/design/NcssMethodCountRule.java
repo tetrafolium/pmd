@@ -24,12 +24,12 @@ public class NcssMethodCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         return super.visit(node, data);
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         return new String[] {((ASTMethodDeclaration) point.getNode()).getName(),
                              String.valueOf((int) point.getScore()), };
     }

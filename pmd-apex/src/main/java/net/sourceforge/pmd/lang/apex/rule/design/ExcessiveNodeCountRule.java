@@ -30,12 +30,12 @@ import net.sourceforge.pmd.stat.DataPoint;
 public class ExcessiveNodeCountRule extends AbstractStatisticalApexRule {
     private Class<?> nodeClass;
 
-    public ExcessiveNodeCountRule(Class<?> nodeClass) {
+    public ExcessiveNodeCountRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(ApexNode<?> node, Object data) {
+    public Object visit(final ApexNode<?> node, final Object data) {
         int numNodes = 0;
 
         for (ApexNode<?> child : node.children()) {

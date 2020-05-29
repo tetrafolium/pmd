@@ -13,13 +13,13 @@ public class ASTFormalParameter extends net.sourceforge.pmd.lang.plsql.ast.Abstr
 
     @Deprecated
     @InternalApi
-    public ASTFormalParameter(int id) {
+    public ASTFormalParameter(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTFormalParameter(PLSQLParser p, int id) {
+    public ASTFormalParameter(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
@@ -27,7 +27,7 @@ public class ASTFormalParameter extends net.sourceforge.pmd.lang.plsql.ast.Abstr
         return this.in;
     }
 
-    void setIn(boolean in) {
+    void setIn(final boolean in) {
         this.in = in;
     }
 
@@ -35,7 +35,7 @@ public class ASTFormalParameter extends net.sourceforge.pmd.lang.plsql.ast.Abstr
         return this.out;
     }
 
-    void setOut(boolean out) {
+    void setOut(final boolean out) {
         this.out = out;
     }
 
@@ -43,12 +43,12 @@ public class ASTFormalParameter extends net.sourceforge.pmd.lang.plsql.ast.Abstr
         return this.nocopy;
     }
 
-    void setNoCopy(boolean nocopy) {
+    void setNoCopy(final boolean nocopy) {
         this.nocopy = nocopy;
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

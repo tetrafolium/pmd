@@ -15,12 +15,12 @@ public class ASTImporteeRename extends AbstractScalaNode<Importee.Rename> {
 
     @Deprecated
     @InternalApi
-    public ASTImporteeRename(Importee.Rename scalaNode) {
+    public ASTImporteeRename(final Importee.Rename scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

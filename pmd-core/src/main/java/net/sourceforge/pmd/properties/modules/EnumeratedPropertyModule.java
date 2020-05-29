@@ -23,7 +23,7 @@ public class EnumeratedPropertyModule<E> {
     private final Class<E> valueType;
 
 
-    public EnumeratedPropertyModule(Map<String, E> choicesByLabel, Class<E> valueType) {
+    public EnumeratedPropertyModule(final Map<String, E> choicesByLabel, final Class<E> valueType) {
         this.valueType = valueType;
         this.choicesByLabel = Collections.unmodifiableMap(choicesByLabel);
         this.labelsByChoice = Collections.unmodifiableMap(CollectionUtil.invertedMapFrom(choicesByLabel));
@@ -45,17 +45,17 @@ public class EnumeratedPropertyModule<E> {
     }
 
 
-    private String nonLegalValueMsgFor(E value) {
+    private String nonLegalValueMsgFor(final E value) {
         return value + " is not a legal value";
     }
 
 
-    public String errorFor(E value) {
+    public String errorFor(final E value) {
         return labelsByChoice.containsKey(value) ? null : nonLegalValueMsgFor(value);
     }
 
 
-    public E choiceFrom(String label) {
+    public E choiceFrom(final String label) {
         E result = choicesByLabel.get(label);
         if (result != null) {
             return result;
@@ -64,7 +64,7 @@ public class EnumeratedPropertyModule<E> {
     }
 
 
-    public void checkValue(E value) {
+    public void checkValue(final E value) {
         if (!choicesByLabel.containsValue(value)) {
             throw new IllegalArgumentException("Invalid default value: no mapping to this value");
         }

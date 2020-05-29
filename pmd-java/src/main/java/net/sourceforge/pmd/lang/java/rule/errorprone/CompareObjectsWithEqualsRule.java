@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.java.symboltable.VariableNameDeclaration;
 
 public class CompareObjectsWithEqualsRule extends AbstractJavaRule {
 
-    private boolean hasName(Node n) {
+    private boolean hasName(final Node n) {
         return n.getNumChildren() > 0 && n.getChild(0) instanceof ASTName;
     }
 
@@ -28,13 +28,13 @@ public class CompareObjectsWithEqualsRule extends AbstractJavaRule {
      *            node that might be allocating a new object
      * @return true if child 0 is an AllocationExpression
      */
-    private boolean isAllocation(Node n) {
+    private boolean isAllocation(final Node n) {
         return n.getNumChildren() > 0 && n.getChild(0) instanceof ASTAllocationExpression
                 && n.getParent().getNumChildren() == 1;
     }
 
     @Override
-    public Object visit(ASTEqualityExpression node, Object data) {
+    public Object visit(final ASTEqualityExpression node, final Object data) {
         Node c0 = node.getChild(0).getChild(0);
         Node c1 = node.getChild(1).getChild(0);
 
@@ -106,7 +106,7 @@ public class CompareObjectsWithEqualsRule extends AbstractJavaRule {
      *            the node
      * @return <code>true</code> if it is a qualified name
      */
-    private boolean isPartOfQualifiedName(Node node) {
+    private boolean isPartOfQualifiedName(final Node node) {
         return node.getChild(0) instanceof ASTPrimaryPrefix
                 && !node.findChildrenOfType(ASTPrimarySuffix.class).isEmpty();
     }

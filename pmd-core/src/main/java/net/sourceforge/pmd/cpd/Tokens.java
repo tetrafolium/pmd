@@ -12,7 +12,7 @@ public class Tokens {
 
     private List<TokenEntry> tokens = new ArrayList<>();
 
-    public void add(TokenEntry tokenEntry) {
+    public void add(final TokenEntry tokenEntry) {
         this.tokens.add(tokenEntry);
     }
 
@@ -20,7 +20,7 @@ public class Tokens {
         return tokens.iterator();
     }
 
-    private TokenEntry get(int index) {
+    private TokenEntry get(final int index) {
         return tokens.get(index);
     }
 
@@ -28,11 +28,11 @@ public class Tokens {
         return tokens.size();
     }
 
-    public TokenEntry getEndToken(TokenEntry mark, Match match) {
+    public TokenEntry getEndToken(final TokenEntry mark, final Match match) {
         return get(mark.getIndex() + match.getTokenCount() - 1);
     }
 
-    public int getLineCount(TokenEntry mark, Match match) {
+    public int getLineCount(final TokenEntry mark, final Match match) {
         TokenEntry endTok = getEndToken(mark, match);
         if (endTok == TokenEntry.EOF) {
             endTok = get(mark.getIndex() + match.getTokenCount() - 2);

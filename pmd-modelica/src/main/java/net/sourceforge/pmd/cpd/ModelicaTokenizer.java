@@ -17,13 +17,13 @@ import net.sourceforge.pmd.lang.modelica.ast.Token;
 
 public class ModelicaTokenizer extends JavaCCTokenizer {
     @Override
-    protected TokenManager getLexerForSource(SourceCode sourceCode) {
+    protected TokenManager getLexerForSource(final SourceCode sourceCode) {
         final StringBuilder stringBuilder = sourceCode.getCodeBuffer();
         return new ModelicaTokenManager(new StringReader(stringBuilder.toString()));
     }
 
     @Override
-    protected JavaCCTokenFilter getTokenFilter(TokenManager tokenManager) {
+    protected JavaCCTokenFilter getTokenFilter(final TokenManager tokenManager) {
         return new ModelicaTokenFilter(tokenManager);
     }
 
@@ -31,11 +31,11 @@ public class ModelicaTokenizer extends JavaCCTokenizer {
         private boolean discardingWithinAndImport = false;
         private boolean discardingAnnotation = false;
 
-        ModelicaTokenFilter(TokenManager tokenManager) {
+        ModelicaTokenFilter(final TokenManager tokenManager) {
             super(tokenManager);
         }
 
-        private void skipWithinAndImport(Token currentToken) {
+        private void skipWithinAndImport(final Token currentToken) {
             final int type = currentToken.kind;
             if (type == ModelicaParser.IMPORT || type == ModelicaParser.WITHIN) {
                 discardingWithinAndImport = true;
@@ -44,7 +44,7 @@ public class ModelicaTokenizer extends JavaCCTokenizer {
             }
         }
 
-        private void skipAnnotation(Token currentToken) {
+        private void skipAnnotation(final Token currentToken) {
             final int type = currentToken.kind;
             if (type == ModelicaParser.ANNOTATION) {
                 discardingAnnotation = true;
@@ -54,7 +54,7 @@ public class ModelicaTokenizer extends JavaCCTokenizer {
         }
 
         @Override
-        protected void analyzeToken(GenericToken currentToken) {
+        protected void analyzeToken(final GenericToken currentToken) {
             skipWithinAndImport((Token) currentToken);
             skipAnnotation((Token) currentToken);
         }

@@ -82,20 +82,20 @@ public class RuleSetFactoryCompatibility {
         addFilterRuleRenamed("java", "logging-jakarta-commons", "GuardDebugLogging", "GuardLogStatement");
     }
 
-    void addFilterRuleMovedAndRenamed(String language, String oldRuleset, String oldName, String newRuleset, String newName) {
+    void addFilterRuleMovedAndRenamed(final String language, final String oldRuleset, final String oldName, final String newRuleset, final String newName) {
         filters.add(RuleSetFilter.ruleMoved(language, oldRuleset, newRuleset, oldName));
         filters.add(RuleSetFilter.ruleRenamedMoved(language, newRuleset, oldName, newName));
     }
 
-    void addFilterRuleRenamed(String language, String ruleset, String oldName, String newName) {
+    void addFilterRuleRenamed(final String language, final String ruleset, final String oldName, final String newName) {
         filters.add(RuleSetFilter.ruleRenamed(language, ruleset, oldName, newName));
     }
 
-    void addFilterRuleMoved(String language, String oldRuleset, String newRuleset, String ruleName) {
+    void addFilterRuleMoved(final String language, final String oldRuleset, final String newRuleset, final String ruleName) {
         filters.add(RuleSetFilter.ruleMoved(language, oldRuleset, newRuleset, ruleName));
     }
 
-    void addFilterRuleRemoved(String language, String ruleset, String name) {
+    void addFilterRuleRemoved(final String language, final String ruleset, final String name) {
         filters.add(RuleSetFilter.ruleRemoved(language, ruleset, name));
     }
 
@@ -108,7 +108,7 @@ public class RuleSetFactoryCompatibility {
      * @return a reader, from which the filtered ruleset can be read
      * @throws IOException if the stream couldn't be read
      */
-    public Reader filterRuleSetFile(InputStream stream) throws IOException {
+    public Reader filterRuleSetFile(final InputStream stream) throws IOException {
         byte[] bytes = IOUtils.toByteArray(stream);
         String encoding = determineEncoding(bytes);
         String ruleset = new String(bytes, encoding);
@@ -118,7 +118,7 @@ public class RuleSetFactoryCompatibility {
         return new StringReader(ruleset);
     }
 
-    private String applyAllFilters(String ruleset) {
+    private String applyAllFilters(final String ruleset) {
         String result = ruleset;
         for (RuleSetFilter filter : filters) {
             result = filter.apply(result);
@@ -136,7 +136,7 @@ public class RuleSetFactoryCompatibility {
      *            the input bytes, might be more or less than 1024 bytes
      * @return the determined encoding, falls back to the default UTF-8 encoding
      */
-    String determineEncoding(byte[] bytes) {
+    String determineEncoding(final byte[] bytes) {
         String firstBytes = new String(bytes, 0, bytes.length > 1024 ? 1024 : bytes.length,
                 Charset.forName("ISO-8859-1"));
         Matcher matcher = ENCODING_PATTERN.matcher(firstBytes);
@@ -154,7 +154,7 @@ public class RuleSetFactoryCompatibility {
         private String exclusionReplacement;
         private final String logMessage;
 
-        private RuleSetFilter(String refPattern, String replacement, String logMessage) {
+        private RuleSetFilter(final String refPattern, final String replacement, final String logMessage) {
             this.logMessage = logMessage;
             if (replacement != null) {
                 this.refPattern = Pattern.compile("ref=\"" + Pattern.quote(refPattern) + "\"");
@@ -165,7 +165,7 @@ public class RuleSetFactoryCompatibility {
             }
         }
 
-        private void setExclusionPattern(String oldName, String newName) {
+        private void setExclusionPattern(final String oldName, final String newName) {
             exclusionPattern = Pattern.compile("<exclude\\s+name=[\"']" + Pattern.quote(oldName) + "[\"']\\s*/>");
             if (newName != null) {
                 exclusionReplacement = "<exclude name=\"" + newName + "\" />";
@@ -174,26 +174,26 @@ public class RuleSetFactoryCompatibility {
             }
         }
 
-        public static RuleSetFilter ruleRenamed(String language, String ruleset, String oldName, String newName) {
+        public static RuleSetFilter ruleRenamed(final String language, final String ruleset, final String oldName, final String newName) {
             RuleSetFilter filter = ruleRenamedMoved(language, ruleset, oldName, newName);
             filter.setExclusionPattern(oldName, newName);
             return filter;
         }
 
-        public static RuleSetFilter ruleRenamedMoved(String language, String ruleset, String oldName, String newName) {
+        public static RuleSetFilter ruleRenamedMoved(final String language, final String ruleset, final String oldName, final String newName) {
             String base = "rulesets/" + language + "/" + ruleset + ".xml/";
             return new RuleSetFilter(base + oldName, base + newName, "The rule \"" + oldName
                     + "\" has been renamed to \"" + newName + "\". Please change your ruleset!");
         }
 
-        public static RuleSetFilter ruleMoved(String language, String oldRuleset, String newRuleset, String ruleName) {
+        public static RuleSetFilter ruleMoved(final String language, final String oldRuleset, final String newRuleset, final String ruleName) {
             String base = "rulesets/" + language + "/";
             return new RuleSetFilter(base + oldRuleset + ".xml/" + ruleName, base + newRuleset + ".xml/" + ruleName,
                     "The rule \"" + ruleName + "\" has been moved from ruleset \"" + oldRuleset + "\" to \""
                             + newRuleset + "\". Please change your ruleset!");
         }
 
-        public static RuleSetFilter ruleRemoved(String language, String ruleset, String name) {
+        public static RuleSetFilter ruleRemoved(final String language, final String ruleset, final String name) {
             RuleSetFilter filter = new RuleSetFilter("rulesets/" + language + "/" + ruleset + ".xml/" + name, null,
                     "The rule \"" + name + "\" in ruleset \"" + ruleset
                             + "\" has been removed from PMD and no longer exists. Please change your ruleset!");
@@ -201,7 +201,7 @@ public class RuleSetFactoryCompatibility {
             return filter;
         }
 
-        String apply(String ruleset) {
+        String apply(final String ruleset) {
             String result = ruleset;
             Matcher matcher = refPattern.matcher(ruleset);
 

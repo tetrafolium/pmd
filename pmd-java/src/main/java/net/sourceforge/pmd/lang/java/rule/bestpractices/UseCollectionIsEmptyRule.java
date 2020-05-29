@@ -32,7 +32,7 @@ import net.sourceforge.pmd.util.CollectionUtil;
 public class UseCollectionIsEmptyRule extends AbstractInefficientZeroCheck {
 
     @Override
-    public boolean appliesToClassName(String name) {
+    public boolean appliesToClassName(final String name) {
         return CollectionUtil.isCollectionType(name, true);
     }
 
@@ -44,7 +44,7 @@ public class UseCollectionIsEmptyRule extends AbstractInefficientZeroCheck {
      * @return true if it's .size, else false
      */
     @Override
-    public boolean isTargetMethod(JavaNameOccurrence occ) {
+    public boolean isTargetMethod(final JavaNameOccurrence occ) {
         if (occ.getNameForWhichThisIsAQualifier() != null) {
             if (occ.getLocation().getImage().endsWith(".size")) {
                 return true;
@@ -66,7 +66,7 @@ public class UseCollectionIsEmptyRule extends AbstractInefficientZeroCheck {
     }
 
     @Override
-    public Object visit(ASTPrimarySuffix node, Object data) {
+    public Object visit(final ASTPrimarySuffix node, final Object data) {
         if (node.getImage() != null && node.getImage().endsWith("size")) {
 
             ASTClassOrInterfaceType type = getTypeOfPrimaryPrefix(node);
@@ -82,7 +82,7 @@ public class UseCollectionIsEmptyRule extends AbstractInefficientZeroCheck {
         return data;
     }
 
-    private ASTClassOrInterfaceType getTypeOfMethodCall(ASTPrimarySuffix node) {
+    private ASTClassOrInterfaceType getTypeOfMethodCall(final ASTPrimarySuffix node) {
         ASTClassOrInterfaceType type = null;
         ASTName methodName = node.getParent().getFirstChildOfType(ASTPrimaryPrefix.class)
                 .getFirstChildOfType(ASTName.class);
@@ -101,7 +101,7 @@ public class UseCollectionIsEmptyRule extends AbstractInefficientZeroCheck {
         return type;
     }
 
-    private ASTClassOrInterfaceType getTypeOfPrimaryPrefix(ASTPrimarySuffix node) {
+    private ASTClassOrInterfaceType getTypeOfPrimaryPrefix(final ASTPrimarySuffix node) {
         return node.getParent().getFirstChildOfType(ASTPrimaryPrefix.class)
                 .getFirstDescendantOfType(ASTClassOrInterfaceType.class);
     }

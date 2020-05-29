@@ -23,16 +23,16 @@ import net.sourceforge.pmd.annotation.Experimental;
 public final class ASTRecordComponent extends AbstractJavaAnnotatableNode {
     private boolean varargs;
 
-    ASTRecordComponent(int id) {
+    ASTRecordComponent(final int id) {
         super(id);
     }
 
-    ASTRecordComponent(JavaParser p, int id) {
+    ASTRecordComponent(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

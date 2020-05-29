@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class SuspiciousHashcodeMethodNameRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         /*
          * original XPath rule was //MethodDeclaration [ResultType
          * //PrimitiveType [@Image='int'] [//MethodDeclarator [@Image='hashcode'

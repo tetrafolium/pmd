@@ -12,7 +12,7 @@ import net.sourceforge.pmd.lang.go.antlr4.GolangLexer;
 public class GoTokenizer extends AntlrTokenizer {
 
     @Override
-    protected AntlrTokenManager getLexerForSource(SourceCode sourceCode) {
+    protected AntlrTokenManager getLexerForSource(final SourceCode sourceCode) {
         CharStream charStream = AntlrTokenizer.getCharStreamFromSourceCode(sourceCode);
         return new AntlrTokenManager(new GolangLexer(charStream), sourceCode.getFileName());
     }

@@ -36,7 +36,7 @@ public class GetCommentOnFunction implements Function {
     }
 
     @Override
-    public Object call(Context context, List args) throws FunctionCallException {
+    public Object call(final Context context, final List args) throws FunctionCallException {
         if (!args.isEmpty()) {
             return Boolean.FALSE;
         }

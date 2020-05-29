@@ -21,7 +21,7 @@ public class ExcessiveParameterListRule extends ExcessiveNodeCountRule {
 
     // Count these nodes, but no others.
     @Override
-    public Object visit(ASTFormalParameter node, Object data) {
+    public Object visit(final ASTFormalParameter node, final Object data) {
         return NumericConstants.ONE;
     }
 }

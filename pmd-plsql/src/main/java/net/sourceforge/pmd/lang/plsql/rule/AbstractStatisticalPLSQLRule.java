@@ -22,17 +22,17 @@ public abstract class AbstractStatisticalPLSQLRule extends AbstractPLSQLRule imp
     private final StatisticalRuleHelper helper = new StatisticalRuleHelper(this);
 
     @Override
-    public void addDataPoint(DataPoint point) {
+    public void addDataPoint(final DataPoint point) {
         helper.addDataPoint(point);
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         return new Object[0];
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         super.apply(nodes, ctx);
         helper.apply(ctx);
     }

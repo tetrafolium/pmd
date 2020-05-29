@@ -49,7 +49,7 @@ public abstract class AbstractMetricsFacade<T extends QualifiableNode, O extends
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public double computeForType(MetricKey<T> key, T node, MetricOptions options) {
+    public double computeForType(final MetricKey<T> key, final T node, final MetricOptions options) {
         return MetricsUtil.computeMetric(key, node, options);
     }
 
@@ -63,7 +63,7 @@ public abstract class AbstractMetricsFacade<T extends QualifiableNode, O extends
      *
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed
      */
-    public double computeForOperation(MetricKey<O> key, O node, MetricOptions options) {
+    public double computeForOperation(final MetricKey<O> key, final O node, final MetricOptions options) {
         return MetricsUtil.computeMetric(key, node, options);
     }
 
@@ -80,8 +80,8 @@ public abstract class AbstractMetricsFacade<T extends QualifiableNode, O extends
      * @return The value of the metric, or {@code Double.NaN} if the value couldn't be computed or {@code resultOption}
      * is {@code null}
      */
-    public double computeWithResultOption(MetricKey<O> key, T node,
-                                          MetricOptions options, ResultOption resultOption) {
+    public double computeWithResultOption(final MetricKey<O> key, final T node,
+                                          final MetricOptions options, final ResultOption resultOption) {
 
         return getLanguageSpecificComputer().computeWithResultOption(key, node, false, options,
                                                                      resultOption, getLanguageSpecificProjectMemoizer());

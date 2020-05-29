@@ -15,12 +15,12 @@ public class ASTDefnVar extends AbstractScalaNode<Defn.Var> {
 
     @Deprecated
     @InternalApi
-    public ASTDefnVar(Defn.Var scalaNode) {
+    public ASTDefnVar(final Defn.Var scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

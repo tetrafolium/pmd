@@ -42,14 +42,14 @@ public class MissingOverrideRule extends AbstractJavaRule {
     private final Stack<MethodLookup> currentLookup = new Stack<>();
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         currentLookup.clear();
         return super.visit(node, data);
     }
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         currentLookup.push(getMethodLookup(node.getType()));
         super.visit(node, data);
         currentLookup.pop();
@@ -58,7 +58,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         currentLookup.push(getMethodLookup(node.getType()));
         super.visit(node, data);
         currentLookup.pop();
@@ -69,7 +69,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         if (node.isAnonymousClass()) {
             currentLookup.push(getMethodLookup(node.getType()));
         }
@@ -84,7 +84,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTEnumConstant node, Object data) {
+    public Object visit(final ASTEnumConstant node, final Object data) {
         // FIXME, ASTEnumConstant needs typeres support!
         //        if (node.isAnonymousClass()) {
         //            currentExploredClass.push(node.getType());
@@ -105,7 +105,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
      *
      * @param exploredType Type to explore
      */
-    private MethodLookup getMethodLookup(Class<?> exploredType) {
+    private MethodLookup getMethodLookup(final Class<?> exploredType) {
         if (exploredType == null) {
             return null;
         }
@@ -142,12 +142,12 @@ public class MissingOverrideRule extends AbstractJavaRule {
      *
      * @param exploredType The type to explore
      */
-    private Set<Method> overriddenMethods(Class<?> exploredType) {
+    private Set<Method> overriddenMethods(final Class<?> exploredType) {
         return overriddenMethodsRec(exploredType, true, new HashSet<>(Arrays.asList(exploredType.getDeclaredMethods())), new HashSet<Method>(), new HashSet<Class<?>>(), false);
     }
 
 
-    private Set<Method> overriddenMethodsRec(Class<?> exploredType, boolean skip, Set<Method> candidates, Set<Method> result, Set<Class<?>> alreadyExplored, boolean onlyPublic) {
+    private Set<Method> overriddenMethodsRec(final Class<?> exploredType, final boolean skip, final Set<Method> candidates, final Set<Method> result, final Set<Class<?>> alreadyExplored, final boolean onlyPublic) {
 
         if (candidates.isEmpty() || alreadyExplored.contains(exploredType)) {
             return result;
@@ -208,7 +208,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (currentLookup.isEmpty() || currentLookup.peek() == null) {
             return super.visit(node, data);
         }
@@ -244,7 +244,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
         private final Set<Method> overridden;
 
 
-        private MethodLookup(Map<String, Map<Integer, List<Method>>> map, Set<Method> overridden) {
+        private MethodLookup(final Map<String, Map<Integer, List<Method>>> map, final Set<Method> overridden) {
             this.map = map;
             this.overridden = overridden;
 
@@ -257,7 +257,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
         }
 
 
-        private void resolveBridges(List<Method> overloads) {
+        private void resolveBridges(final List<Method> overloads) {
             if (overloads.size() <= 1) {
                 return;
             }
@@ -316,7 +316,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
 
 
 
-        private List<Method> getMethods(String name, int paramCount) throws NoSuchMethodException {
+        private List<Method> getMethods(final String name, final int paramCount) throws NoSuchMethodException {
             Map<Integer, List<Method>> overloads = map.get(name);
             if (overloads == null) {
                 throw new NoSuchMethodException(name);
@@ -336,7 +336,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
          *
          * @throws NoSuchMethodException if no method is registered with this name and paramcount, which is a bug
          */
-        boolean isOverridden(String name, ASTFormalParameters params) throws NoSuchMethodException {
+        boolean isOverridden(final String name, final ASTFormalParameters params) throws NoSuchMethodException {
             List<Method> methods = getMethods(name, params.size());
 
             if (methods.size() == 1) { // only one method with this name and parameter count, we can conclude
@@ -357,7 +357,7 @@ public class MissingOverrideRule extends AbstractJavaRule {
         }
 
 
-        private static Class<?>[] getParameterTypes(ASTFormalParameters params) {
+        private static Class<?>[] getParameterTypes(final ASTFormalParameters params) {
             Class<?>[] paramTypes = new Class[params.size()];
             int i = 0;
             for (ASTFormalParameter p : params) {

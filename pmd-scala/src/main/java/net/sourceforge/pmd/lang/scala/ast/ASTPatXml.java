@@ -15,12 +15,12 @@ public class ASTPatXml extends AbstractScalaNode<Pat.Xml> {
 
     @Deprecated
     @InternalApi
-    public ASTPatXml(Pat.Xml scalaNode) {
+    public ASTPatXml(final Pat.Xml scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

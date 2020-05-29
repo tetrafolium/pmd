@@ -46,7 +46,7 @@ public final class JavaTypeQualifiedName extends JavaQualifiedName {
 
     private final ClassLoader classLoader;
 
-    JavaTypeQualifiedName(ImmutableList<String> packages, ImmutableList<String> classes, ImmutableList<Integer> localIndices, ClassLoader classLoader) {
+    JavaTypeQualifiedName(final ImmutableList<String> packages, final ImmutableList<String> classes, final ImmutableList<Integer> localIndices, final ClassLoader classLoader) {
         Objects.requireNonNull(packages);
         Objects.requireNonNull(classes);
         Objects.requireNonNull(localIndices);
@@ -70,7 +70,7 @@ public final class JavaTypeQualifiedName extends JavaQualifiedName {
 
 
     @Override
-    protected boolean structurallyEquals(JavaQualifiedName qname) {
+    protected boolean structurallyEquals(final JavaQualifiedName qname) {
         JavaTypeQualifiedName that = (JavaTypeQualifiedName) qname;
         return this.packages.equals(that.packages)
                 && this.classes.equals(that.classes)

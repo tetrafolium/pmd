@@ -152,11 +152,11 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Object element : nodes) {
             /*
                 It is important to note that we are assuming that all nodes here are of type Compilation Unit,
@@ -183,7 +183,7 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
      *     {@code getType} method.
      */
     @Deprecated
-    protected final String getDeclaringType(Node node) {
+    protected final String getDeclaringType(final Node node) {
         ASTClassOrInterfaceDeclaration c = node.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
         if (c != null) {
             return c.getImage();
@@ -191,11 +191,11 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
         return null;
     }
 
-    public static boolean isQualifiedName(Node node) {
+    public static boolean isQualifiedName(final Node node) {
         return node.getImage().indexOf('.') != -1;
     }
 
-    public static boolean importsPackage(ASTCompilationUnit node, String packageName) {
+    public static boolean importsPackage(final ASTCompilationUnit node, final String packageName) {
         List<ASTImportDeclaration> nodes = node.findChildrenOfType(ASTImportDeclaration.class);
         for (ASTImportDeclaration n : nodes) {
             if (n.getPackageName().startsWith(packageName)) {
@@ -210,7 +210,7 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
      *             This will be removed with 7.0.0
      */
     @Deprecated
-    protected boolean isSuppressed(Node node) {
+    protected boolean isSuppressed(final Node node) {
         return JavaRuleViolation.isSupressed(node, this);
     }
 
@@ -220,7 +220,7 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
     // complex Rule base class instead of from relatively simple Visitor.
     //
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         for (JavaNode child : node.children()) {
             child.jjtAccept(this, data);
         }
@@ -228,157 +228,147 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
     }
 
     @Override
-    public Object visit(ASTExtendsList node, Object data) {
+    public Object visit(final ASTExtendsList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTImplementsList node, Object data) {
+    public Object visit(final ASTImplementsList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeParameters node, Object data) {
+    public Object visit(final ASTTypeParameters node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberSelector node, Object data) {
+    public Object visit(final ASTMemberSelector node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeParameter node, Object data) {
+    public Object visit(final ASTTypeParameter node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeBound node, Object data) {
+    public Object visit(final ASTTypeBound node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceBody node, Object data) {
+    public Object visit(final ASTClassOrInterfaceBody node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceBodyDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumBody node, Object data) {
+    public Object visit(final ASTEnumBody node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumConstant node, Object data) {
+    public Object visit(final ASTEnumConstant node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReferenceType node, Object data) {
+    public Object visit(final ASTReferenceType node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceType node, Object data) {
+    public Object visit(final ASTClassOrInterfaceType node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeArguments node, Object data) {
+    public Object visit(final ASTTypeArguments node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeArgument node, Object data) {
+    public Object visit(final ASTTypeArgument node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWildcardBounds node, Object data) {
+    public Object visit(final ASTWildcardBounds node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotation node, Object data) {
+    public Object visit(final ASTAnnotation node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNormalAnnotation node, Object data) {
+    public Object visit(final ASTNormalAnnotation node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMarkerAnnotation node, Object data) {
+    public Object visit(final ASTMarkerAnnotation node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSingleMemberAnnotation node, Object data) {
+    public Object visit(final ASTSingleMemberAnnotation node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberValuePairs node, Object data) {
+    public Object visit(final ASTMemberValuePairs node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberValuePair node, Object data) {
+    public Object visit(final ASTMemberValuePair node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberValue node, Object data) {
+    public Object visit(final ASTMemberValue node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMemberValueArrayInitializer node, Object data) {
+    public Object visit(final ASTMemberValueArrayInitializer node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationTypeBody node, Object data) {
+    public Object visit(final ASTAnnotationTypeBody node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationTypeMemberDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeMemberDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationMethodDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationMethodDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDefaultValue node, Object data) {
-        return visit((JavaNode) node, data);
-    }
-
-
-    /**
-     * @deprecated Will be removed in 7.0.0. Use {@link ASTShiftExpression#getOperator()}
-     */
-    @Override
-    @Deprecated
-    public Object visit(ASTRUNSIGNEDSHIFT node, Object data) {
+    public Object visit(final ASTDefaultValue node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
@@ -388,493 +378,503 @@ public abstract class AbstractJavaRule extends AbstractRule implements JavaParse
      */
     @Override
     @Deprecated
-    public Object visit(ASTRSIGNEDSHIFT node, Object data) {
+    public Object visit(final ASTRUNSIGNEDSHIFT node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
+
+    /**
+     * @deprecated Will be removed in 7.0.0. Use {@link ASTShiftExpression#getOperator()}
+     */
+    @Override
+    @Deprecated
+    public Object visit(final ASTRSIGNEDSHIFT node, final Object data) {
+        return visit((JavaNode) node, data);
+    }
+
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssertStatement node, Object data) {
+    public Object visit(final ASTAssertStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPackageDeclaration node, Object data) {
+    public Object visit(final ASTPackageDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeDeclaration node, Object data) {
+    public Object visit(final ASTTypeDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableDeclarator node, Object data) {
+    public Object visit(final ASTVariableDeclarator node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableInitializer node, Object data) {
+    public Object visit(final ASTVariableInitializer node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayInitializer node, Object data) {
+    public Object visit(final ASTArrayInitializer node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFormalParameters node, Object data) {
+    public Object visit(final ASTFormalParameters node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFormalParameter node, Object data) {
+    public Object visit(final ASTFormalParameter node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExplicitConstructorInvocation node, Object data) {
+    public Object visit(final ASTExplicitConstructorInvocation node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInitializer node, Object data) {
+    public Object visit(final ASTInitializer node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTType node, Object data) {
+    public Object visit(final ASTType node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimitiveType node, Object data) {
+    public Object visit(final ASTPrimitiveType node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTResultType node, Object data) {
+    public Object visit(final ASTResultType node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNameList node, Object data) {
+    public Object visit(final ASTNameList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignmentOperator node, Object data) {
+    public Object visit(final ASTAssignmentOperator node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalExpression node, Object data) {
+    public Object visit(final ASTConditionalExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalOrExpression node, Object data) {
+    public Object visit(final ASTConditionalOrExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionalAndExpression node, Object data) {
+    public Object visit(final ASTConditionalAndExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInclusiveOrExpression node, Object data) {
+    public Object visit(final ASTInclusiveOrExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExclusiveOrExpression node, Object data) {
+    public Object visit(final ASTExclusiveOrExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAndExpression node, Object data) {
+    public Object visit(final ASTAndExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEqualityExpression node, Object data) {
+    public Object visit(final ASTEqualityExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInstanceOfExpression node, Object data) {
+    public Object visit(final ASTInstanceOfExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRelationalExpression node, Object data) {
+    public Object visit(final ASTRelationalExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTShiftExpression node, Object data) {
+    public Object visit(final ASTShiftExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAdditiveExpression node, Object data) {
+    public Object visit(final ASTAdditiveExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMultiplicativeExpression node, Object data) {
+    public Object visit(final ASTMultiplicativeExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnaryExpression node, Object data) {
+    public Object visit(final ASTUnaryExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPreIncrementExpression node, Object data) {
+    public Object visit(final ASTPreIncrementExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPreDecrementExpression node, Object data) {
+    public Object visit(final ASTPreDecrementExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnaryExpressionNotPlusMinus node, Object data) {
+    public Object visit(final ASTUnaryExpressionNotPlusMinus node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPostfixExpression node, Object data) {
+    public Object visit(final ASTPostfixExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCastExpression node, Object data) {
+    public Object visit(final ASTCastExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimaryPrefix node, Object data) {
+    public Object visit(final ASTPrimaryPrefix node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPrimarySuffix node, Object data) {
+    public Object visit(final ASTPrimarySuffix node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBooleanLiteral node, Object data) {
+    public Object visit(final ASTBooleanLiteral node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNullLiteral node, Object data) {
+    public Object visit(final ASTNullLiteral node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArguments node, Object data) {
+    public Object visit(final ASTArguments node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArgumentList node, Object data) {
+    public Object visit(final ASTArgumentList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayDimsAndInits node, Object data) {
+    public Object visit(final ASTArrayDimsAndInits node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLabeledStatement node, Object data) {
+    public Object visit(final ASTLabeledStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBlock node, Object data) {
+    public Object visit(final ASTBlock node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBlockStatement node, Object data) {
+    public Object visit(final ASTBlockStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEmptyStatement node, Object data) {
+    public Object visit(final ASTEmptyStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchLabel node, Object data) {
+    public Object visit(final ASTSwitchLabel node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForInit node, Object data) {
+    public Object visit(final ASTForInit node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatementExpressionList node, Object data) {
+    public Object visit(final ASTStatementExpressionList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForUpdate node, Object data) {
+    public Object visit(final ASTForUpdate node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSynchronizedStatement node, Object data) {
+    public Object visit(final ASTSynchronizedStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTryStatement node, Object data) {
+    public Object visit(final ASTTryStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFinallyStatement node, Object data) {
+    public Object visit(final ASTFinallyStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTResourceSpecification node, Object data) {
+    public Object visit(final ASTResourceSpecification node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTResources node, Object data) {
+    public Object visit(final ASTResources node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTResource node, Object data) {
+    public Object visit(final ASTResource node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLambdaExpression node, Object data) {
+    public Object visit(final ASTLambdaExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodReference node, Object data) {
+    public Object visit(final ASTMethodReference node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTModuleDeclaration node, Object data) {
+    public Object visit(final ASTModuleDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTModuleDirective node, Object data) {
+    public Object visit(final ASTModuleDirective node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTModuleName node, Object data) {
+    public Object visit(final ASTModuleName node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchExpression node, Object data) {
+    public Object visit(final ASTSwitchExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchLabeledBlock node, Object data) {
+    public Object visit(final ASTSwitchLabeledBlock node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchLabeledExpression node, Object data) {
+    public Object visit(final ASTSwitchLabeledExpression node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchLabeledThrowStatement node, Object data) {
+    public Object visit(final ASTSwitchLabeledThrowStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTYieldStatement node, Object data) {
+    public Object visit(final ASTYieldStatement node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTTypeTestPattern node, Object data) {
+    public Object visit(final ASTTypeTestPattern node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTRecordDeclaration node, Object data) {
+    public Object visit(final ASTRecordDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTRecordComponentList node, Object data) {
+    public Object visit(final ASTRecordComponentList node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTRecordComponent node, Object data) {
+    public Object visit(final ASTRecordComponent node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTRecordBody node, Object data) {
+    public Object visit(final ASTRecordBody node, final Object data) {
         return visit((JavaNode) node, data);
     }
 
     @Override
     @Experimental
-    public Object visit(ASTRecordConstructorDeclaration node, Object data) {
+    public Object visit(final ASTRecordConstructorDeclaration node, final Object data) {
         return visit((JavaNode) node, data);
     }
 }

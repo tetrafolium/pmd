@@ -6,7 +6,7 @@ package net.sourceforge.pmd.lang.java.ast;
 
 public class MultiLineComment extends Comment {
 
-    public MultiLineComment(Token t) {
+    public MultiLineComment(final Token t) {
         super(t);
     }
 

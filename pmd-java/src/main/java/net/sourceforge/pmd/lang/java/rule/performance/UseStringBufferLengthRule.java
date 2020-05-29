@@ -49,13 +49,13 @@ public class UseStringBufferLengthRule extends AbstractJavaRule {
     private Set<NameDeclaration> alreadySeen = new HashSet<>();
 
     @Override
-    public Object visit(ASTMethodDeclaration acu, Object data) {
+    public Object visit(final ASTMethodDeclaration acu, final Object data) {
         alreadySeen.clear();
         return super.visit(acu, data);
     }
 
     @Override
-    public Object visit(ASTName decl, Object data) {
+    public Object visit(final ASTName decl, final Object data) {
         if (!decl.getImage().endsWith("toString")) {
             return data;
         }
@@ -92,7 +92,7 @@ public class UseStringBufferLengthRule extends AbstractJavaRule {
      * }
      * </pre>
      */
-    private boolean isViolation(ASTName decl) {
+    private boolean isViolation(final ASTName decl) {
         // the (grand)parent of a violation has four children
         Node parent = decl.getParent().getParent();
         if (parent.getNumChildren() == 4) {
@@ -109,7 +109,7 @@ public class UseStringBufferLengthRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isEqualsViolation(Node parent) {
+    private boolean isEqualsViolation(final Node parent) {
         // 3. child: equals
         if (parent.getChild(2).hasImageEqualTo("equals")) {
             // 4. child: the arguments of equals, there must be exactly one and
@@ -123,7 +123,7 @@ public class UseStringBufferLengthRule extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isLengthViolation(Node parent) {
+    private boolean isLengthViolation(final Node parent) {
         // 3. child: length
         return parent.getChild(2).hasImageEqualTo("length");
         // 4. child: the arguments of length

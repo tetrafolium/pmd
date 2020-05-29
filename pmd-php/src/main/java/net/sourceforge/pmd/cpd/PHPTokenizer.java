@@ -12,7 +12,7 @@ import java.util.List;
 public class PHPTokenizer implements Tokenizer {
 
     @Override
-    public void tokenize(SourceCode tokens, Tokens tokenEntries) {
+    public void tokenize(final SourceCode tokens, final Tokens tokenEntries) {
         List<String> code = tokens.getCode();
         for (int i = 0; i < code.size(); i++) {
             String currentLine = code.get(i);

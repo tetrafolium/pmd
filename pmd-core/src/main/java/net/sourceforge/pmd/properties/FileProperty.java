@@ -31,13 +31,13 @@ public final class FileProperty extends AbstractSingleValueProperty<File> {
      * @param theDefault     Default value
      * @param theUIOrder     UI order
      */
-    public FileProperty(String theName, String theDescription, File theDefault, float theUIOrder) {
+    public FileProperty(final String theName, final String theDescription, final File theDefault, final float theUIOrder) {
         super(theName, theDescription, theDefault, theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private FileProperty(String theName, String theDescription, File theDefault, float theUIOrder, boolean isDefinedExternally) {
+    private FileProperty(final String theName, final String theDescription, final File theDefault, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -49,7 +49,7 @@ public final class FileProperty extends AbstractSingleValueProperty<File> {
 
 
     @Override
-    public File createFrom(String propertyString) {
+    public File createFrom(final String propertyString) {
         return StringUtils.isBlank(propertyString) ? null : new File(propertyString);
     }
 
@@ -57,20 +57,20 @@ public final class FileProperty extends AbstractSingleValueProperty<File> {
     static PropertyDescriptorBuilderConversionWrapper.SingleValue<File, FilePBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue<File, FilePBuilder>(File.class, ValueParserConstants.FILE_PARSER) {
             @Override
-            protected FilePBuilder newBuilder(String name) {
+            protected FilePBuilder newBuilder(final String name) {
                 return new FilePBuilder(name);
             }
         };
     }
 
 
-    public static FilePBuilder named(String name) {
+    public static FilePBuilder named(final String name) {
         return new FilePBuilder(name);
     }
 
 
     public static final class FilePBuilder extends SinglePackagedPropertyBuilder<File, FilePBuilder> {
-        private FilePBuilder(String name) {
+        private FilePBuilder(final String name) {
             super(name);
         }
 

@@ -10,15 +10,15 @@ public class ParseException extends RuntimeException {
         super();
     }
 
-    public ParseException(String message) {
+    public ParseException(final String message) {
         super(message);
     }
 
-    public ParseException(Throwable cause) {
+    public ParseException(final Throwable cause) {
         super(cause);
     }
 
-    public ParseException(String message, Throwable cause) {
+    public ParseException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

@@ -7,15 +7,15 @@ package net.sourceforge.pmd.lang.modelica.ast;
 public class ASTElementList extends AbstractModelicaNode {
     private Visibility visibility;
 
-    ASTElementList(int id) {
+    ASTElementList(final int id) {
         super(id);
     }
 
-    ASTElementList(ModelicaParser p, int id) {
+    ASTElementList(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
-    void setVisibility(Visibility visibility) {
+    void setVisibility(final Visibility visibility) {
         this.visibility = visibility;
     }
 
@@ -24,7 +24,7 @@ public class ASTElementList extends AbstractModelicaNode {
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

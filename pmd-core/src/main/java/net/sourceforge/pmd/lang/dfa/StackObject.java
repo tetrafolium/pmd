@@ -9,7 +9,7 @@ public class StackObject {
     private NodeType type;
     private DataFlowNode node;
 
-    public StackObject(NodeType type, DataFlowNode node) {
+    public StackObject(final NodeType type, final DataFlowNode node) {
         this.type = type;
         this.node = node;
     }

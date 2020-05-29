@@ -28,12 +28,12 @@ public class MatlabParser extends AbstractParser {
      * @param parserOptions
      *            the options
      */
-    public MatlabParser(ParserOptions parserOptions) {
+    public MatlabParser(final ParserOptions parserOptions) {
         super(parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return new MatlabTokenManager(source);
     }
 
@@ -43,7 +43,7 @@ public class MatlabParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         AbstractTokenManager.setFileName(fileName);
         throw new UnsupportedOperationException("parse(Reader) is not supported for Matlab");
     }

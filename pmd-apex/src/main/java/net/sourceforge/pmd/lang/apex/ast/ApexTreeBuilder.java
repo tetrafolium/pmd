@@ -228,8 +228,8 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         register(EmptyReferenceExpression.class, ASTEmptyReferenceExpression.class);
     }
 
-    private static <T extends AstNode> void register(Class<T> nodeType,
-            Class<? extends AbstractApexNode<T>> nodeAdapterType) {
+    private static <T extends AstNode> void register(final Class<T> nodeType,
+            final Class<? extends AbstractApexNode<T>> nodeAdapterType) {
         try {
             NODE_TYPE_TO_NODE_ADAPTER_TYPE.put(nodeType, nodeAdapterType.getDeclaredConstructor(nodeType));
         } catch (SecurityException | NoSuchMethodException e) {
@@ -250,7 +250,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
     private List<ApexDocTokenLocation> apexDocTokenLocations;
     private Map<Integer, String> suppressMap;
 
-    public ApexTreeBuilder(String sourceCode, ApexParserOptions parserOptions) {
+    public ApexTreeBuilder(final String sourceCode, final ApexParserOptions parserOptions) {
         this.sourceCode = sourceCode;
         sourceCodePositioner = new SourceCodePositioner(sourceCode);
 
@@ -259,7 +259,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         suppressMap = commentInformation.suppressMap;
     }
 
-    static <T extends AstNode> AbstractApexNode<T> createNodeAdapter(T node) {
+    static <T extends AstNode> AbstractApexNode<T> createNodeAdapter(final T node) {
         try {
             @SuppressWarnings("unchecked")
             // the register function makes sure only ApexNode<T> can be added,
@@ -278,7 +278,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         }
     }
 
-    public <T extends AstNode> ApexNode<T> build(T astNode) {
+    public <T extends AstNode> ApexNode<T> build(final T astNode) {
         // Create a Node
         AbstractApexNode<T> node = createNodeAdapter(astNode);
         node.calculateLineNumbers(sourceCodePositioner);
@@ -325,7 +325,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         }
     }
 
-    private void buildFormalComment(AstNode node) {
+    private void buildFormalComment(final AstNode node) {
         if (parents.peek() == node) {
             ApexNode<?> parent = (ApexNode<?>) nodes.peek();
             assignApexDocTokenToNode(node, parent);
@@ -341,7 +341,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
      * @param jorjeNode the original node
      * @param node the potential parent node, to which the comment could belong
      */
-    private void assignApexDocTokenToNode(AstNode jorjeNode, ApexNode<?> node) {
+    private void assignApexDocTokenToNode(final AstNode jorjeNode, final ApexNode<?> node) {
         Location loc = jorjeNode.getLoc();
         if (!Locations.isReal(loc)) {
             // Synthetic nodes such as "<clinit>" don't have a location in the
@@ -365,7 +365,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         }
     }
 
-    private static CommentInformation extractInformationFromComments(String source, String suppressMarker) {
+    private static CommentInformation extractInformationFromComments(final String source, final String suppressMarker) {
         ANTLRStringStream stream = new ANTLRStringStream(source);
         ApexLexer lexer = new ApexLexer(stream);
 
@@ -406,7 +406,7 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         Map<Integer, String> suppressMap;
         List<ApexDocTokenLocation> docTokenLocations;
 
-        CommentInformation(Map<Integer, String> suppressMap, List<ApexDocTokenLocation> docTokenLocations) {
+        CommentInformation(final Map<Integer, String> suppressMap, final List<ApexDocTokenLocation> docTokenLocations) {
             this.suppressMap = suppressMap;
             this.docTokenLocations = docTokenLocations;
         }
@@ -418,13 +418,13 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
         ApexNode<?> nearestNode;
         int nearestNodeDistance;
 
-        ApexDocTokenLocation(int index, Token token) {
+        ApexDocTokenLocation(final int index, final Token token) {
             this.index = index;
             this.token = token;
         }
     }
 
-    private boolean visit(AstNode node) {
+    private boolean visit(final AstNode node) {
         if (parents.peek() == node) {
             return true;
         } else {
@@ -438,425 +438,425 @@ public final class ApexTreeBuilder extends AstVisitor<AdditionalPassScope> {
     }
 
     @Override
-    public boolean visit(UserEnum node, AdditionalPassScope scope) {
+    public boolean visit(final UserEnum node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(UserInterface node, AdditionalPassScope scope) {
+    public boolean visit(final UserInterface node, final AdditionalPassScope scope) {
         final boolean ret = visit(node);
         buildFormalComment(node);
         return ret;
     }
 
     @Override
-    public boolean visit(UserTrigger node, AdditionalPassScope scope) {
+    public boolean visit(final UserTrigger node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ArrayLoadExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ArrayLoadExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ArrayStoreExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ArrayStoreExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(AssignmentExpression node, AdditionalPassScope scope) {
+    public boolean visit(final AssignmentExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BinaryExpression node, AdditionalPassScope scope) {
+    public boolean visit(final BinaryExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BooleanExpression node, AdditionalPassScope scope) {
+    public boolean visit(final BooleanExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ClassRefExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ClassRefExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(InstanceOfExpression node, AdditionalPassScope scope) {
+    public boolean visit(final InstanceOfExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(JavaMethodCallExpression node, AdditionalPassScope scope) {
+    public boolean visit(final JavaMethodCallExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(JavaVariableExpression node, AdditionalPassScope scope) {
+    public boolean visit(final JavaVariableExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(LiteralExpression node, AdditionalPassScope scope) {
+    public boolean visit(final LiteralExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ReferenceExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ReferenceExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(MethodCallExpression node, AdditionalPassScope scope) {
+    public boolean visit(final MethodCallExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewListInitExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewListInitExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewMapInitExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewMapInitExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewSetInitExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewSetInitExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewListLiteralExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewListLiteralExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewObjectExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewObjectExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewSetLiteralExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewSetLiteralExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(PackageVersionExpression node, AdditionalPassScope scope) {
+    public boolean visit(final PackageVersionExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(PostfixExpression node, AdditionalPassScope scope) {
+    public boolean visit(final PostfixExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(PrefixExpression node, AdditionalPassScope scope) {
+    public boolean visit(final PrefixExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(TernaryExpression node, AdditionalPassScope scope) {
+    public boolean visit(final TernaryExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(StandardCondition node, AdditionalPassScope scope) {
+    public boolean visit(final StandardCondition node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(TriggerVariableExpression node, AdditionalPassScope scope) {
+    public boolean visit(final TriggerVariableExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(VariableExpression node, AdditionalPassScope scope) {
+    public boolean visit(final VariableExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final BlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BreakStatement node, AdditionalPassScope scope) {
+    public boolean visit(final BreakStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ContinueStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ContinueStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlDeleteStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlDeleteStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlInsertStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlInsertStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlMergeStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlMergeStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlUndeleteStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlUndeleteStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlUpdateStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlUpdateStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DmlUpsertStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DmlUpsertStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(DoLoopStatement node, AdditionalPassScope scope) {
+    public boolean visit(final DoLoopStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ExpressionStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ExpressionStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ForEachStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ForEachStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ForLoopStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ForLoopStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(FieldDeclaration node, AdditionalPassScope scope) {
+    public boolean visit(final FieldDeclaration node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(FieldDeclarationStatements node, AdditionalPassScope scope) {
+    public boolean visit(final FieldDeclarationStatements node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(IfBlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final IfBlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(IfElseBlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final IfElseBlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ReturnStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ReturnStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(RunAsBlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final RunAsBlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ThrowStatement node, AdditionalPassScope scope) {
+    public boolean visit(final ThrowStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(VariableDeclaration node, AdditionalPassScope scope) {
+    public boolean visit(final VariableDeclaration node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(VariableDeclarationStatements node, AdditionalPassScope scope) {
+    public boolean visit(final VariableDeclarationStatements node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(WhileLoopStatement node, AdditionalPassScope scope) {
+    public boolean visit(final WhileLoopStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BindExpressions node, AdditionalPassScope scope) {
+    public boolean visit(final BindExpressions node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(SoqlExpression node, AdditionalPassScope scope) {
+    public boolean visit(final SoqlExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(SoslExpression node, AdditionalPassScope scope) {
+    public boolean visit(final SoslExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewMapLiteralExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewMapLiteralExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(MapEntryNode node, AdditionalPassScope scope) {
+    public boolean visit(final MapEntryNode node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(CatchBlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final CatchBlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(TryCatchFinallyBlockStatement node, AdditionalPassScope scope) {
+    public boolean visit(final TryCatchFinallyBlockStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(Property node, AdditionalPassScope scope) {
+    public boolean visit(final Property node, final AdditionalPassScope scope) {
         final boolean ret = visit(node);
         buildFormalComment(node);
         return ret;
     }
 
     @Override
-    public boolean visit(Field node, AdditionalPassScope scope) {
+    public boolean visit(final Field node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(Parameter node, AdditionalPassScope scope) {
+    public boolean visit(final Parameter node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(BridgeMethodCreator node, AdditionalPassScope scope) {
+    public boolean visit(final BridgeMethodCreator node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(UserClassMethods node, AdditionalPassScope scope) {
+    public boolean visit(final UserClassMethods node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(UserExceptionMethods node, AdditionalPassScope scope) {
+    public boolean visit(final UserExceptionMethods node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(Annotation node, AdditionalPassScope scope) {
+    public boolean visit(final Annotation node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(AnnotationParameter node, AdditionalPassScope scope) {
+    public boolean visit(final AnnotationParameter node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ModifierNode node, AdditionalPassScope scope) {
+    public boolean visit(final ModifierNode node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(SuperMethodCallExpression node, AdditionalPassScope scope) {
+    public boolean visit(final SuperMethodCallExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ThisMethodCallExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ThisMethodCallExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(SuperVariableExpression node, AdditionalPassScope scope) {
+    public boolean visit(final SuperVariableExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ThisVariableExpression node, AdditionalPassScope scope) {
+    public boolean visit(final ThisVariableExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(UserClass node, AdditionalPassScope scope) {
+    public boolean visit(final UserClass node, final AdditionalPassScope scope) {
         final boolean ret = visit(node);
         buildFormalComment(node);
         return ret;
     }
 
     @Override
-    public boolean visit(Method node, AdditionalPassScope scope) {
+    public boolean visit(final Method node, final AdditionalPassScope scope) {
         final boolean ret = visit(node);
         buildFormalComment(node);
         return ret;
     }
 
     @Override
-    public boolean visit(AnonymousClass node, AdditionalPassScope scope) {
+    public boolean visit(final AnonymousClass node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(CastExpression node, AdditionalPassScope scope) {
+    public boolean visit(final CastExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(NewKeyValueObjectExpression node, AdditionalPassScope scope) {
+    public boolean visit(final NewKeyValueObjectExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(SwitchStatement node, AdditionalPassScope scope) {
+    public boolean visit(final SwitchStatement node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ElseWhenBlock node, AdditionalPassScope scope) {
+    public boolean visit(final ElseWhenBlock node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(TypeWhenBlock node, AdditionalPassScope scope) {
+    public boolean visit(final TypeWhenBlock node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(ValueWhenBlock node, AdditionalPassScope scope) {
+    public boolean visit(final ValueWhenBlock node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(LiteralCase node, AdditionalPassScope scope) {
+    public boolean visit(final LiteralCase node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(IdentifierCase node, AdditionalPassScope scope) {
+    public boolean visit(final IdentifierCase node, final AdditionalPassScope scope) {
         return visit(node);
     }
 
     @Override
-    public boolean visit(EmptyReferenceExpression node, AdditionalPassScope scope) {
+    public boolean visit(final EmptyReferenceExpression node, final AdditionalPassScope scope) {
         return visit(node);
     }
 }

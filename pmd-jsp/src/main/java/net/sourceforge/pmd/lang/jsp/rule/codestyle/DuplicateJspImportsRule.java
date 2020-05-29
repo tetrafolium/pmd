@@ -20,7 +20,7 @@ public class DuplicateJspImportsRule extends AbstractJspRule {
     private Set<ImportWrapper> imports = new HashSet<>();
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         /*
          * TODO: This method is a hack! It's overriding the parent's method
          * because the JSP parsing doesn't seem to hit ASTCompilationUnit
@@ -31,7 +31,7 @@ public class DuplicateJspImportsRule extends AbstractJspRule {
     }
 
     @Override
-    public Object visit(ASTJspDirectiveAttribute node, Object data) {
+    public Object visit(final ASTJspDirectiveAttribute node, final Object data) {
 
         if (!"import".equals(node.getName())) {
             return super.visit(node, data);

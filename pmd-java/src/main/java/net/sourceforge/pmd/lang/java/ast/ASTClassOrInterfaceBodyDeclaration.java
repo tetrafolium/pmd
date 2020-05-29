@@ -11,13 +11,13 @@ public class ASTClassOrInterfaceBodyDeclaration extends AbstractTypeBodyDeclarat
 
     @InternalApi
     @Deprecated
-    public ASTClassOrInterfaceBodyDeclaration(int id) {
+    public ASTClassOrInterfaceBodyDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTClassOrInterfaceBodyDeclaration(JavaParser p, int id) {
+    public ASTClassOrInterfaceBodyDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -27,7 +27,7 @@ public class ASTClassOrInterfaceBodyDeclaration extends AbstractTypeBodyDeclarat
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (int i = 0; i < getNumChildren(); i++) {
             if (getChild(i) instanceof ASTAnnotation) {
                 ASTAnnotation a = (ASTAnnotation) getChild(i);
@@ -40,7 +40,7 @@ public class ASTClassOrInterfaceBodyDeclaration extends AbstractTypeBodyDeclarat
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

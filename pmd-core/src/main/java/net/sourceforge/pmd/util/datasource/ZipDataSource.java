@@ -24,7 +24,7 @@ public class ZipDataSource extends AbstractDataSource {
      * @param zipEntry
      *            the ZipEntry containing the file to read
      */
-    public ZipDataSource(ZipFile zipFile, ZipEntry zipEntry) {
+    public ZipDataSource(final ZipFile zipFile, final ZipEntry zipEntry) {
         this.zipFile = zipFile;
         this.zipEntry = zipEntry;
     }
@@ -35,7 +35,7 @@ public class ZipDataSource extends AbstractDataSource {
     }
 
     @Override
-    public String getNiceFileName(boolean shortNames, String inputFileName) {
+    public String getNiceFileName(final boolean shortNames, final String inputFileName) {
         // FIXME: this could probably be done better
         return zipFile.getName() + ":" + zipEntry.getName();
     }
@@ -61,7 +61,7 @@ public class ZipDataSource extends AbstractDataSource {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

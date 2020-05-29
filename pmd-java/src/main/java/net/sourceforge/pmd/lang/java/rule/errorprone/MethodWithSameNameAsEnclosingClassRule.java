@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class MethodWithSameNameAsEnclosingClassRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         List<ASTMethodDeclarator> methods = node.findDescendantsOfType(ASTMethodDeclarator.class);
         for (ASTMethodDeclarator m : methods) {
             if (m.hasImageEqualTo(node.getImage())) {

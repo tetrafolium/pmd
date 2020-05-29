@@ -22,20 +22,20 @@ public class ASTMarkerAnnotation extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTMarkerAnnotation(int id) {
+    public ASTMarkerAnnotation(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTMarkerAnnotation(JavaParser p, int id) {
+    public ASTMarkerAnnotation(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

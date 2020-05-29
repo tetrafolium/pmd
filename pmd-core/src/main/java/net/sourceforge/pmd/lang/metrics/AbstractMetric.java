@@ -22,7 +22,7 @@ public abstract class AbstractMetric<N extends Node> implements Metric<N> {
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(Object o) {
+    public final boolean equals(final Object o) {
         return o != null && o.getClass() == this.getClass();
     }
 

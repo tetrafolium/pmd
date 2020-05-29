@@ -46,11 +46,11 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
      *            the encoding to use or null. If null, default (platform
      *            dependent) encoding is used.
      */
-    public XMLRenderer(String encoding) {
+    public XMLRenderer(final String encoding) {
         setEncoding(encoding);
     }
 
-    public void setEncoding(String encoding) {
+    public void setEncoding(final String encoding) {
         if (encoding != null) {
             this.encoding = encoding;
         } else {
@@ -72,7 +72,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
         }
     }
 
-    private void dumpDocToWriter(Document doc, Writer writer) {
+    private void dumpDocToWriter(final Document doc, final Writer writer) {
         try {
             TransformerFactory tf = TransformerFactory.newInstance();
             Transformer transformer = tf.newTransformer();
@@ -87,7 +87,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public String render(Iterator<Match> matches) {
+    public String render(final Iterator<Match> matches) {
         StringWriter writer = new StringWriter();
         try {
             render(matches, writer);
@@ -98,7 +98,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
     }
 
     @Override
-    public void render(Iterator<Match> matches, Writer writer) throws IOException {
+    public void render(final Iterator<Match> matches, final Writer writer) throws IOException {
         Document doc = createDocument();
         Element root = doc.createElement("pmd-cpd");
         doc.appendChild(root);
@@ -113,7 +113,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
         writer.flush();
     }
 
-    private Element addFilesToDuplicationElement(Document doc, Element duplication, Match match) {
+    private Element addFilesToDuplicationElement(final Document doc, final Element duplication, final Match match) {
         Mark mark;
         for (Iterator<Mark> iterator = match.iterator(); iterator.hasNext();) {
             mark = iterator.next();
@@ -134,7 +134,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
         return duplication;
     }
 
-    private Element addCodeSnippet(Document doc, Element duplication, Match match) {
+    private Element addCodeSnippet(final Document doc, final Element duplication, final Match match) {
         String codeSnipet = match.getSourceCodeSlice();
         if (codeSnipet != null) {
             Element codefragment = doc.createElement("codefragment");
@@ -144,7 +144,7 @@ public final class XMLRenderer implements Renderer, CPDRenderer {
         return duplication;
     }
 
-    private Element createDuplicationElement(Document doc, Match match) {
+    private Element createDuplicationElement(final Document doc, final Match match) {
         Element duplication = doc.createElement("duplication");
         duplication.setAttribute("lines", String.valueOf(match.getLineCount()));
         duplication.setAttribute("tokens", String.valueOf(match.getTokenCount()));

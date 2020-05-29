@@ -29,7 +29,7 @@ public class UseUtilityClassRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (hasIgnoredAnnotation(node)) {
             return data;
         }
@@ -37,7 +37,7 @@ public class UseUtilityClassRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceBody decl, Object data) {
+    public Object visit(final ASTClassOrInterfaceBody decl, final Object data) {
         Object result = super.visit(decl, data);
 
         if (decl.getParent() instanceof ASTClassOrInterfaceDeclaration) {
@@ -97,7 +97,7 @@ public class UseUtilityClassRule extends AbstractLombokAwareRule {
         return result;
     }
 
-    private boolean hasLombokNoArgsConstructor(ASTClassOrInterfaceDeclaration parent) {
+    private boolean hasLombokNoArgsConstructor(final ASTClassOrInterfaceDeclaration parent) {
         // check if there's a lombok no arg private constructor, if so skip the rest of the rules
         ASTAnnotation annotation = parent.getAnnotation("lombok.NoArgsConstructor");
 
@@ -124,7 +124,7 @@ public class UseUtilityClassRule extends AbstractLombokAwareRule {
         return false;
     }
 
-    private Node skipAnnotations(Node p) {
+    private Node skipAnnotations(final Node p) {
         int index = 0;
         Node n = p.getChild(index++);
         while (n instanceof ASTAnnotation && index < p.getNumChildren()) {

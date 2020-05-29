@@ -10,7 +10,7 @@ import net.sourceforge.pmd.lang.modelica.resolver.ResolvableEntity;
 
 public class AmbiguousResolutionRule extends AbstractModelicaRule {
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         ResolutionResult<ResolvableEntity> candidates = node.getResolutionCandidates();
         if (candidates.isClashed()) {
             StringBuilder sb = new StringBuilder();

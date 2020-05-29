@@ -15,12 +15,12 @@ public class ASTModValParam extends AbstractScalaNode<Mod.ValParam> {
 
     @Deprecated
     @InternalApi
-    public ASTModValParam(Mod.ValParam scalaNode) {
+    public ASTModValParam(final Mod.ValParam scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -37,7 +37,7 @@ public abstract class AbstractIgnoredAnnotationRule extends AbstractJavaRule {
      *            the node to check
      * @return <code>true</code> if the annotation has been found, otherwise <code>false</code>
      */
-    protected boolean hasIgnoredAnnotation(Annotatable node) {
+    protected boolean hasIgnoredAnnotation(final Annotatable node) {
         return node.isAnyAnnotationPresent(getProperty(ignoredAnnotationsDescriptor));
     }
 }

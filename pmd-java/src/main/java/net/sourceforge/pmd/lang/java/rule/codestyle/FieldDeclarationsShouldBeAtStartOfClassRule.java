@@ -51,7 +51,7 @@ public class FieldDeclarationsShouldBeAtStartOfClassRule extends AbstractJavaRul
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         Node parent = node.getParent().getParent();
         for (int i = 0; i < parent.getNumChildren(); i++) {
             Node child = parent.getChild(i);
@@ -98,7 +98,7 @@ public class FieldDeclarationsShouldBeAtStartOfClassRule extends AbstractJavaRul
      *            the node from where to start the search
      * @return the first child or the first child after annotations
      */
-    private Node skipAnnotations(Node child) {
+    private Node skipAnnotations(final Node child) {
         Node nextChild = child.getChild(0);
         for (int j = 0; j < child.getNumChildren(); j++) {
             if (!(child.getChild(j) instanceof ASTAnnotation)) {

@@ -25,13 +25,13 @@ public class ScalaRuleViolationFactory extends AbstractRuleViolationFactory {
     public static final RuleViolationFactory INSTANCE = new ScalaRuleViolationFactory();
 
     @Override
-    protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message) {
+    protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message) {
         return new ParametricRuleViolation<Node>(rule, ruleContext, node, message);
     }
 
     @Override
-    protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message,
-            int beginLine, int endLine) {
+    protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message,
+            final int beginLine, final int endLine) {
         ParametricRuleViolation<Node> rv = new ParametricRuleViolation<>(rule, ruleContext, node, message);
         rv.setLines(beginLine, endLine);
         return rv;

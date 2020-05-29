@@ -24,7 +24,7 @@ public class PMDException extends Exception {
      * @param message
      *            the message
      */
-    public PMDException(String message) {
+    public PMDException(final String message) {
         super(message);
     }
 
@@ -37,11 +37,11 @@ public class PMDException extends Exception {
      * @param reason
      *            the root cause
      */
-    public PMDException(String message, Exception reason) {
+    public PMDException(final String message, final Exception reason) {
         super(message, reason);
     }
 
-    public void setSeverity(int severity) {
+    public void setSeverity(final int severity) {
         this.severity = severity;
     }
 

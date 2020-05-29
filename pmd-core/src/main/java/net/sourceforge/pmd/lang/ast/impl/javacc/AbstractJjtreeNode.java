@@ -19,18 +19,18 @@ import net.sourceforge.pmd.lang.ast.Node;
 @Experimental
 public abstract class AbstractJjtreeNode<N extends Node> extends AbstractNode {
 
-    public AbstractJjtreeNode(int id) {
+    public AbstractJjtreeNode(final int id) {
         super(id);
     }
 
-    public AbstractJjtreeNode(int id, int theBeginLine, int theEndLine, int theBeginColumn, int theEndColumn) {
+    public AbstractJjtreeNode(final int id, final int theBeginLine, final int theEndLine, final int theBeginColumn, final int theEndColumn) {
         super(id, theBeginLine, theEndLine, theBeginColumn, theEndColumn);
     }
 
 
     @Override
     @SuppressWarnings("unchecked")
-    public N getChild(int index) {
+    public N getChild(final int index) {
         return (N) super.getChild(index);
     }
 

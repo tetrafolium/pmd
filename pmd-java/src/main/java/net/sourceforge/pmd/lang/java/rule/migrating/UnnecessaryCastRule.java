@@ -65,16 +65,16 @@ public class UnnecessaryCastRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         return process(node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return process(node, data);
     }
 
-    private Object process(Node node, Object data) {
+    private Object process(final Node node, final Object data) {
         ASTClassOrInterfaceType cit = node.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
         if (cit == null || !implClassNames.contains(cit.getImage())) {
             return data;

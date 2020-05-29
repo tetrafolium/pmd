@@ -31,7 +31,7 @@ public class ASTModel implements TreeModel {
      * @param root
      *            tree's root
      */
-    public ASTModel(Node root) {
+    public ASTModel(final Node root) {
         this.root = root;
     }
 
@@ -39,7 +39,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel
      */
     @Override
-    public Object getChild(Object parent, int index) {
+    public Object getChild(final Object parent, final int index) {
         return ((Node) parent).getChild(index);
     }
 
@@ -47,7 +47,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#getChildCount(java.lang.Object)
      */
     @Override
-    public int getChildCount(Object parent) {
+    public int getChildCount(final Object parent) {
         return ((Node) parent).getNumChildren();
     }
 
@@ -55,7 +55,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#getIndexOfChild(java.lang.Object,java.lang.Object)
      */
     @Override
-    public int getIndexOfChild(Object parent, Object child) {
+    public int getIndexOfChild(final Object parent, final Object child) {
         Node node = (Node) parent;
         for (int i = 0; i < node.getNumChildren(); i++) {
             if (node.getChild(i).equals(child)) {
@@ -69,7 +69,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#isLeaf(java.lang.Object)
      */
     @Override
-    public boolean isLeaf(Object node) {
+    public boolean isLeaf(final Object node) {
         return ((Node) node).getNumChildren() == 0;
     }
 
@@ -85,7 +85,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#valueForPathChanged(javax.swing.tree.TreePath,java.lang.Object)
      */
     @Override
-    public void valueForPathChanged(TreePath path, Object newValue) {
+    public void valueForPathChanged(final TreePath path, final Object newValue) {
         throw new UnsupportedOperationException();
     }
 
@@ -93,7 +93,7 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#addTreeModelListener(javax.swing.event.TreeModelListener)
      */
     @Override
-    public void addTreeModelListener(TreeModelListener l) {
+    public void addTreeModelListener(final TreeModelListener l) {
         listeners.add(l);
     }
 
@@ -101,11 +101,11 @@ public class ASTModel implements TreeModel {
      * @see javax.swing.tree.TreeModel#removeTreeModelListener(javax.swing.event.TreeModelListener)
      */
     @Override
-    public void removeTreeModelListener(TreeModelListener l) {
+    public void removeTreeModelListener(final TreeModelListener l) {
         listeners.remove(l);
     }
 
-    protected void fireTreeModelEvent(TreeModelEvent e) {
+    protected void fireTreeModelEvent(final TreeModelEvent e) {
         for (TreeModelListener listener : listeners) {
             listener.treeNodesChanged(e);
         }

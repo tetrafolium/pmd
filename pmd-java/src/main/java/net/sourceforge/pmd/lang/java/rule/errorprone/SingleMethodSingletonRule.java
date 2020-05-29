@@ -26,7 +26,7 @@ public class SingleMethodSingletonRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
 
         List<ASTMethodDeclaration> methods = node.findDescendantsOfType(ASTMethodDeclaration.class); // Find the name of methods in it

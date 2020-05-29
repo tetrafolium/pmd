@@ -49,13 +49,13 @@ public class UnsynchronizedStaticFormatterRule extends AbstractJavaRule {
         definePropertyDescriptor(ALLOW_METHOD_LEVEL_SYNC);
     }
 
-    UnsynchronizedStaticFormatterRule(Class<?> formatterClassToCheck) {
+    UnsynchronizedStaticFormatterRule(final Class<?> formatterClassToCheck) {
         this();
         this.formatterClassToCheck = formatterClassToCheck;
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         if (!node.isStatic()) {
             return data;
         }

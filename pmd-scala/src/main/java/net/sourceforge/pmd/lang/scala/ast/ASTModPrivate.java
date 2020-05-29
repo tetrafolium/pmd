@@ -15,12 +15,12 @@ public class ASTModPrivate extends AbstractScalaNode<Mod.Private> {
 
     @Deprecated
     @InternalApi
-    public ASTModPrivate(Mod.Private scalaNode) {
+    public ASTModPrivate(final Mod.Private scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

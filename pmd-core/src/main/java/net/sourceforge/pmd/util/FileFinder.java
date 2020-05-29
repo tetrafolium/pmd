@@ -32,7 +32,7 @@ public class FileFinder {
      * @param recurse search for files recursively or not
      * @return list of files from the given directory
      */
-    public List<File> findFilesFrom(File dir, FilenameFilter filter, boolean recurse) {
+    public List<File> findFilesFrom(final File dir, final FilenameFilter filter, final boolean recurse) {
         this.filter = filter;
         List<File> files = new ArrayList<>();
         scanDirectory(dir, files, recurse);
@@ -43,7 +43,7 @@ public class FileFinder {
     /**
      * Implements a tail recursive file scanner
      */
-    private void scanDirectory(File dir, List<File> list, boolean recurse) {
+    private void scanDirectory(final File dir, final List<File> list, final boolean recurse) {
         File[] candidates = dir.listFiles(filter);
         if (candidates == null) {
             return;

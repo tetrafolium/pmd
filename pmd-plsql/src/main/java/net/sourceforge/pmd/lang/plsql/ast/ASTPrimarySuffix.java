@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTPrimarySuffix extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
     @Deprecated
     @InternalApi
-    public ASTPrimarySuffix(int id) {
+    public ASTPrimarySuffix(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTPrimarySuffix(PLSQLParser p, int id) {
+    public ASTPrimarySuffix(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -29,23 +29,23 @@ import net.sourceforge.pmd.lang.apex.rule.internal.Helper;
  *
  */
 public class ApexXSSFromURLParamRule extends AbstractApexRule {
-    private static final String[] URL_PARAMETER_METHOD = new String[] { "ApexPages", "currentPage", "getParameters",
+    private static final String[] URL_PARAMETER_METHOD = new String[] {"ApexPages", "currentPage", "getParameters",
         "get", };
-    private static final String[] HTML_ESCAPING = new String[] { "ESAPI", "encoder", "SFDC_HTMLENCODE" };
-    private static final String[] JS_ESCAPING = new String[] { "ESAPI", "encoder", "SFDC_JSENCODE" };
-    private static final String[] JSINHTML_ESCAPING = new String[] { "ESAPI", "encoder", "SFDC_JSINHTMLENCODE" };
-    private static final String[] URL_ESCAPING = new String[] { "ESAPI", "encoder", "SFDC_URLENCODE" };
-    private static final String[] STRING_HTML3 = new String[] { "String", "escapeHtml3" };
-    private static final String[] STRING_HTML4 = new String[] { "String", "escapeHtml4" };
-    private static final String[] STRING_XML = new String[] { "String", "escapeXml" };
-    private static final String[] STRING_ECMASCRIPT = new String[] { "String", "escapeEcmaScript" };
-    private static final String[] INTEGER_VALUEOF = new String[] { "Integer", "valueOf" };
-    private static final String[] ID_VALUEOF = new String[] { "ID", "valueOf" };
-    private static final String[] DOUBLE_VALUEOF = new String[] { "Double", "valueOf" };
-    private static final String[] BOOLEAN_VALUEOF = new String[] { "Boolean", "valueOf" };
-    private static final String[] STRING_ISEMPTY = new String[] { "String", "isEmpty" };
-    private static final String[] STRING_ISBLANK = new String[] { "String", "isBlank" };
-    private static final String[] STRING_ISNOTBLANK = new String[] { "String", "isNotBlank" };
+    private static final String[] HTML_ESCAPING = new String[] {"ESAPI", "encoder", "SFDC_HTMLENCODE" };
+    private static final String[] JS_ESCAPING = new String[] {"ESAPI", "encoder", "SFDC_JSENCODE" };
+    private static final String[] JSINHTML_ESCAPING = new String[] {"ESAPI", "encoder", "SFDC_JSINHTMLENCODE" };
+    private static final String[] URL_ESCAPING = new String[] {"ESAPI", "encoder", "SFDC_URLENCODE" };
+    private static final String[] STRING_HTML3 = new String[] {"String", "escapeHtml3" };
+    private static final String[] STRING_HTML4 = new String[] {"String", "escapeHtml4" };
+    private static final String[] STRING_XML = new String[] {"String", "escapeXml" };
+    private static final String[] STRING_ECMASCRIPT = new String[] {"String", "escapeEcmaScript" };
+    private static final String[] INTEGER_VALUEOF = new String[] {"Integer", "valueOf" };
+    private static final String[] ID_VALUEOF = new String[] {"ID", "valueOf" };
+    private static final String[] DOUBLE_VALUEOF = new String[] {"Double", "valueOf" };
+    private static final String[] BOOLEAN_VALUEOF = new String[] {"Boolean", "valueOf" };
+    private static final String[] STRING_ISEMPTY = new String[] {"String", "isEmpty" };
+    private static final String[] STRING_ISBLANK = new String[] {"String", "isBlank" };
+    private static final String[] STRING_ISNOTBLANK = new String[] {"String", "isNotBlank" };
 
     private final Set<String> urlParameterStrings = new HashSet<>();
 
@@ -56,7 +56,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
         }
@@ -65,35 +65,35 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTAssignmentExpression node, Object data) {
+    public Object visit(final ASTAssignmentExpression node, final Object data) {
         findTaintedVariables(node, data);
         processVariableAssignments(node, data, false);
         return data;
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         findTaintedVariables(node, data);
         processVariableAssignments(node, data, true);
         return data;
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         findTaintedVariables(node, data);
         processVariableAssignments(node, data, true);
         return data;
     }
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         processEscapingMethodCalls(node, data);
         processInlineMethodCalls(node, data, false);
         return data;
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         ASTBinaryExpression binaryExpression = node.getFirstChildOfType(ASTBinaryExpression.class);
         if (binaryExpression != null) {
             processBinaryExpression(binaryExpression, data);
@@ -118,7 +118,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
         return data;
     }
 
-    private String getReturnType(ASTReturnStatement node) {
+    private String getReturnType(final ASTReturnStatement node) {
         ASTMethod method = node.getFirstParentOfType(ASTMethod.class);
         if (method != null) {
             return method.getReturnType();
@@ -127,7 +127,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
         return "";
     }
 
-    private boolean isEscapingMethod(ASTMethodCallExpression methodNode) {
+    private boolean isEscapingMethod(final ASTMethodCallExpression methodNode) {
         // escaping methods
         return Helper.isMethodCallChain(methodNode, HTML_ESCAPING) || Helper.isMethodCallChain(methodNode, JS_ESCAPING)
                 || Helper.isMethodCallChain(methodNode, JSINHTML_ESCAPING)
@@ -147,7 +147,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
                 || Helper.isMethodCallChain(methodNode, STRING_ISNOTBLANK);
     }
 
-    private void processInlineMethodCalls(ASTMethodCallExpression methodNode, Object data, final boolean isNested) {
+    private void processInlineMethodCalls(final ASTMethodCallExpression methodNode, final Object data, final boolean isNested) {
         ASTMethodCallExpression nestedCall = methodNode.getFirstChildOfType(ASTMethodCallExpression.class);
         if (nestedCall != null) {
 
@@ -164,7 +164,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
 
     }
 
-    private void findTaintedVariables(ApexNode<?> node, Object data) {
+    private void findTaintedVariables(final ApexNode<?> node, final Object data) {
         final ASTMethodCallExpression right = node.getFirstChildOfType(ASTMethodCallExpression.class);
         // Looks for: (String) foo =
         // ApexPages.currentPage().getParameters().get(..)
@@ -191,7 +191,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
         }
     }
 
-    private void processEscapingMethodCalls(ASTMethodCallExpression methodNode, Object data) {
+    private void processEscapingMethodCalls(final ASTMethodCallExpression methodNode, final Object data) {
         ASTMethodCallExpression nestedCall = methodNode.getFirstChildOfType(ASTMethodCallExpression.class);
         if (nestedCall != null) {
             processEscapingMethodCalls(nestedCall, data);
@@ -209,7 +209,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
 
     }
 
-    private void processVariableAssignments(ApexNode<?> node, Object data, final boolean reverseOrder) {
+    private void processVariableAssignments(final ApexNode<?> node, final Object data, final boolean reverseOrder) {
         ASTMethodCallExpression methodCallAssignment = node.getFirstChildOfType(ASTMethodCallExpression.class);
         if (methodCallAssignment != null) {
 
@@ -252,7 +252,7 @@ public class ApexXSSFromURLParamRule extends AbstractApexRule {
 
     }
 
-    private void processBinaryExpression(ApexNode<?> node, Object data) {
+    private void processBinaryExpression(final ApexNode<?> node, final Object data) {
         ASTBinaryExpression nestedBinaryExpression = node.getFirstChildOfType(ASTBinaryExpression.class);
         if (nestedBinaryExpression != null) {
             processBinaryExpression(nestedBinaryExpression, data);

@@ -11,7 +11,7 @@ public class RuleSetWrapper {
         return file;
     }
 
-    public final void addText(String t) {
+    public final void addText(final String t) {
         this.file = t;
     }
 }

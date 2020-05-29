@@ -30,23 +30,23 @@ public class AvoidDeeplyNestedIfStmtsRule extends AbstractVmRule {
     }
 
     @Override
-    public Object visit(ASTprocess node, Object data) {
+    public Object visit(final ASTprocess node, final Object data) {
         depth = 0;
         depthLimit = getProperty(PROBLEM_DEPTH_DESCRIPTOR);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return handleIf(node, data);
     }
 
     @Override
-    public Object visit(ASTElseIfStatement node, Object data) {
+    public Object visit(final ASTElseIfStatement node, final Object data) {
         return handleIf(node, data);
     }
 
-    private Object handleIf(AbstractVmNode node, Object data) {
+    private Object handleIf(final AbstractVmNode node, final Object data) {
         depth++;
         super.visit(node, data);
         if (depth == depthLimit) {

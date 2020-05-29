@@ -10,18 +10,18 @@ public class ASTStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTStatement(int id) {
+    public ASTStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTStatement(JavaParser p, int id) {
+    public ASTStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

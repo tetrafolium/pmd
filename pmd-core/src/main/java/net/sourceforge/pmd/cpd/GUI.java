@@ -74,24 +74,24 @@ public class GUI implements CPDListener {
     // String render(Iterator<Match> items);
     // }
 
-    private static final Object[][] RENDERER_SETS = new Object[][] { { "Text", new CPDRenderer() {
+    private static final Object[][] RENDERER_SETS = new Object[][] {{"Text", new CPDRenderer() {
         @Override
-        public void render(Iterator<Match> items, Writer writer) throws IOException {
+        public void render(final Iterator<Match> items, final Writer writer) throws IOException {
             new SimpleRenderer().render(items, writer);
         }
-    }, }, { "XML", new CPDRenderer() {
+    }, }, {"XML", new CPDRenderer() {
         @Override
-        public void render(Iterator<Match> items, Writer writer) throws IOException {
+        public void render(final Iterator<Match> items, final Writer writer) throws IOException {
             new XMLRenderer().render(items, writer);
         }
-    }, }, { "CSV (comma)", new CPDRenderer() {
+    }, }, {"CSV (comma)", new CPDRenderer() {
         @Override
-        public void render(Iterator<Match> items, Writer writer) throws IOException {
+        public void render(final Iterator<Match> items, final Writer writer) throws IOException {
             new CSVRenderer(',').render(items, writer);
         }
-    }, }, { "CSV (tab)", new CPDRenderer() {
+    }, }, {"CSV (tab)", new CPDRenderer() {
         @Override
-        public void render(Iterator<Match> items, Writer writer) throws IOException {
+        public void render(final Iterator<Match> items, final Writer writer) throws IOException {
             new CSVRenderer('\t').render(items, writer);
         }
     }, }, };
@@ -130,7 +130,7 @@ public class GUI implements CPDListener {
             LANGUAGE_SETS[index][0] = lang.getName();
             LANGUAGE_SETS[index][1] = new LanguageConfig() {
                 @Override
-                public Language languageFor(Properties p) {
+                public Language languageFor(final Properties p) {
                     lang.setProperties(p);
                     return lang;
                 }
@@ -165,13 +165,13 @@ public class GUI implements CPDListener {
         LANGUAGE_SETS[index][0] = "by extension...";
         LANGUAGE_SETS[index][1] = new LanguageConfig() {
             @Override
-            public Language languageFor(Properties p) {
+            public Language languageFor(final Properties p) {
                 return LanguageFactory.createLanguage(LanguageFactory.BY_EXTENSION, p);
             }
 
             @Override
             public String[] extensions() {
-                return new String[] { "" };
+                return new String[] {"" };
             }
         };
     }
@@ -188,7 +188,7 @@ public class GUI implements CPDListener {
         private int width;
         private Comparator<Match> sorter;
 
-        ColumnSpec(String aLabel, int anAlignment, int aWidth, Comparator<Match> aSorter) {
+        ColumnSpec(final String aLabel, final int anAlignment, final int aWidth, final Comparator<Match> aSorter) {
             label = aLabel;
             alignment = anAlignment;
             width = aWidth;
@@ -223,20 +223,20 @@ public class GUI implements CPDListener {
         }
     }
 
-    private static LanguageConfig languageConfigFor(String label) {
+    private static LanguageConfig languageConfigFor(final String label) {
         return LANGUAGE_CONFIGS_BY_LABEL.get(label);
     }
 
     private static class CancelListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             System.exit(0);
         }
     }
 
     private class GoListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -255,12 +255,12 @@ public class GUI implements CPDListener {
 
         final CPDRenderer renderer;
 
-        SaveListener(CPDRenderer theRenderer) {
+        SaveListener(final CPDRenderer theRenderer) {
             renderer = theRenderer;
         }
 
         @Override
-        public void actionPerformed(ActionEvent evt) {
+        public void actionPerformed(final ActionEvent evt) {
             JFileChooser fcSave = new JFileChooser();
             int ret = fcSave.showSaveDialog(GUI.this.frame);
             File f = fcSave.getSelectedFile();
@@ -281,7 +281,7 @@ public class GUI implements CPDListener {
             }
         }
 
-        private void error(String message, Exception e) {
+        private void error(final String message, final Exception e) {
             if (e != null) {
                 e.printStackTrace();
             }
@@ -292,7 +292,7 @@ public class GUI implements CPDListener {
 
     private class BrowseListener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             JFileChooser fc = new JFileChooser(rootDirectoryField.getText());
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             fc.showDialog(frame, "Select");
@@ -306,13 +306,13 @@ public class GUI implements CPDListener {
         private static final long serialVersionUID = -2190382865483285032L;
         private int[] alignments;
 
-        AlignmentRenderer(int[] theAlignments) {
+        AlignmentRenderer(final int[] theAlignments) {
             alignments = theAlignments;
         }
 
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-                int row, int column) {
+        public Component getTableCellRendererComponent(final JTable table, final Object value, final boolean isSelected, final boolean hasFocus,
+                final int row, final int column) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             setHorizontalAlignment(alignments[column]);
@@ -345,7 +345,7 @@ public class GUI implements CPDListener {
 
     private List<Match> matches = new ArrayList<>();
 
-    private void addSaveOptionsTo(JMenu menu) {
+    private void addSaveOptionsTo(final JMenu menu) {
 
         JMenuItem saveItem;
 
@@ -375,7 +375,7 @@ public class GUI implements CPDListener {
         JMenuItem trimItem = new JCheckBoxMenuItem("Trim leading whitespace");
         trimItem.addItemListener(new ItemListener() {
             @Override
-            public void itemStateChanged(ItemEvent e) {
+            public void itemStateChanged(final ItemEvent e) {
                 AbstractButton button = (AbstractButton) e.getItem();
                 GUI.this.trimLeadingWhitespace = button.isSelected();
             }
@@ -415,7 +415,7 @@ public class GUI implements CPDListener {
         frame.setVisible(true);
     }
 
-    private void adjustLanguageControlsFor(LanguageConfig current) {
+    private void adjustLanguageControlsFor(final LanguageConfig current) {
         ignoreIdentifiersCheckbox.setEnabled(current.canIgnoreIdentifiers());
         ignoreLiteralsCheckbox.setEnabled(current.canIgnoreLiterals());
         ignoreAnnotationsCheckbox.setEnabled(current.canIgnoreAnnotations());
@@ -426,9 +426,9 @@ public class GUI implements CPDListener {
         extensionLabel.setEnabled(enableExtension);
     }
 
-    private JPanel makeSettingsPanel(JButton browseButton, JButton goButton, JButton cxButton) {
+    private JPanel makeSettingsPanel(final JButton browseButton, final JButton goButton, final JButton cxButton) {
         JPanel settingsPanel = new JPanel();
-        GridBagHelper helper = new GridBagHelper(settingsPanel, new double[] { 0.2, 0.7, 0.1, 0.1 });
+        GridBagHelper helper = new GridBagHelper(settingsPanel, new double[] {0.2, 0.7, 0.1, 0.1 });
         helper.addLabel("Root source directory:");
         helper.add(rootDirectoryField);
         helper.add(browseButton, 2);
@@ -442,7 +442,7 @@ public class GUI implements CPDListener {
         }
         languageBox.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 adjustLanguageControlsFor(languageConfigFor((String) languageBox.getSelectedItem()));
             }
         });
@@ -494,7 +494,7 @@ public class GUI implements CPDListener {
 
     private JPanel makeProgressPanel() {
         JPanel progressPanel = new JPanel();
-        final double[] weights = { 0.0, 0.8, 0.4, 0.2 };
+        final double[] weights = {0.0, 0.8, 0.4, 0.2 };
         GridBagHelper helper = new GridBagHelper(progressPanel, weights);
         helper.addLabel("Tokenizing files:");
         helper.add(tokenizingFilesBar, 3);
@@ -571,21 +571,21 @@ public class GUI implements CPDListener {
 
         resultsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
+            public void valueChanged(final ListSelectionEvent e) {
                 populateResultArea();
             }
         });
 
         resultsTable.registerKeyboardAction(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 copyMatchListSelectionsToClipboard();
             }
         }, "Copy", COPY_KEY_STROKE, JComponent.WHEN_FOCUSED);
 
         resultsTable.registerKeyboardAction(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 deleteMatchlistSelections();
             }
         }, "Del", DELETE_KEY_STROKE, JComponent.WHEN_FOCUSED);
@@ -600,7 +600,7 @@ public class GUI implements CPDListener {
         final JTableHeader header = resultsTable.getTableHeader();
         header.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(final MouseEvent e) {
                 sortOnColumn(header.columnAtPoint(new Point(e.getX(), e.getY())));
             }
         });
@@ -608,7 +608,7 @@ public class GUI implements CPDListener {
         return new JScrollPane(resultsTable);
     }
 
-    private boolean isLegalPath(String path, LanguageConfig config) {
+    private boolean isLegalPath(final String path, final LanguageConfig config) {
         String[] extensions = config.extensions();
         for (int i = 0; i < extensions.length; i++) {
             if (path.endsWith(extensions[i]) && !extensions[i].isEmpty()) {
@@ -618,7 +618,7 @@ public class GUI implements CPDListener {
         return false;
     }
 
-    private String setLabelFor(Match match) {
+    private String setLabelFor(final Match match) {
 
         Set<String> sourceIDs = new HashSet<>(match.getMarkCount());
         for (Iterator<Mark> occurrences = match.iterator(); occurrences.hasNext();) {
@@ -638,7 +638,7 @@ public class GUI implements CPDListener {
         return label;
     }
 
-    private void setProgressControls(boolean isRunning) {
+    private void setProgressControls(final boolean isRunning) {
         progressPanel.setVisible(isRunning);
         goButton.setEnabled(!isRunning);
         cancelButton.setEnabled(isRunning);
@@ -719,7 +719,7 @@ public class GUI implements CPDListener {
 
         return new Timer(1000, new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 long now = System.currentTimeMillis();
                 long elapsedMillis = now - start;
                 long elapsedSeconds = elapsedMillis / 1000;
@@ -730,7 +730,7 @@ public class GUI implements CPDListener {
         });
     }
 
-    private static String formatTime(long minutes, long seconds) {
+    private static String formatTime(final long minutes, final long seconds) {
 
         StringBuilder sb = new StringBuilder(5);
         if (minutes < 10) {
@@ -764,7 +764,7 @@ public class GUI implements CPDListener {
             private boolean sortDescending;
 
             @Override
-            public Object getValueAt(int rowIndex, int columnIndex) {
+            public Object getValueAt(final int rowIndex, final int columnIndex) {
                 Match match = items.get(rowIndex);
                 switch (columnIndex) {
                 case 0:
@@ -791,17 +791,17 @@ public class GUI implements CPDListener {
             }
 
             @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(final int rowIndex, final int columnIndex) {
                 return false;
             }
 
             @Override
-            public Class<?> getColumnClass(int columnIndex) {
+            public Class<?> getColumnClass(final int columnIndex) {
                 return Object.class;
             }
 
             @Override
-            public String getColumnName(int i) {
+            public String getColumnName(final int i) {
                 return matchColumns[i].label();
             }
 
@@ -811,7 +811,7 @@ public class GUI implements CPDListener {
             }
 
             @Override
-            public void sortColumn(int column) {
+            public void sortColumn(final int column) {
                 sortColumn = column;
             }
 
@@ -821,12 +821,12 @@ public class GUI implements CPDListener {
             }
 
             @Override
-            public void sortDescending(boolean flag) {
+            public void sortDescending(final boolean flag) {
                 sortDescending = flag;
             }
 
             @Override
-            public void sort(Comparator<Match> comparator) {
+            public void sort(final Comparator<Match> comparator) {
                 Collections.sort(items, comparator);
                 if (sortDescending) {
                     Collections.reverse(items);
@@ -835,7 +835,7 @@ public class GUI implements CPDListener {
         };
     }
 
-    private void sortOnColumn(int columnIndex) {
+    private void sortOnColumn(final int columnIndex) {
         Comparator<Match> comparator = matchColumns[columnIndex].sorter();
         SortingTableModel<Match> model = (SortingTableModel<Match>) resultsTable.getModel();
         if (model.sortColumn() == columnIndex) {
@@ -848,7 +848,7 @@ public class GUI implements CPDListener {
         resultsTable.repaint();
     }
 
-    private void setListDataFrom(List<Match> matches) {
+    private void setListDataFrom(final List<Match> matches) {
 
         resultsTable.setModel(tableModelFrom(matches));
 
@@ -869,11 +869,11 @@ public class GUI implements CPDListener {
 
     // CPDListener
     @Override
-    public void phaseUpdate(int phase) {
+    public void phaseUpdate(final int phase) {
         phaseLabel.setText(getPhaseText(phase));
     }
 
-    public String getPhaseText(int phase) {
+    public String getPhaseText(final int phase) {
         switch (phase) {
         case CPDListener.INIT:
             return "Initializing";
@@ -891,13 +891,13 @@ public class GUI implements CPDListener {
     }
 
     @Override
-    public void addedFile(int fileCount, File file) {
+    public void addedFile(final int fileCount, final File file) {
         tokenizingFilesBar.setMaximum(fileCount);
         tokenizingFilesBar.setValue(tokenizingFilesBar.getValue() + 1);
     }
     // CPDListener
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // this should prevent the disk not found popup
         // System.setSecurityManager(null);
         new GUI();

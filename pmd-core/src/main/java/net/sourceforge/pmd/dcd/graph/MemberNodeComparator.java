@@ -22,7 +22,7 @@ public final class MemberNodeComparator implements Comparator<MemberNode> {
     }
 
     @Override
-    public int compare(MemberNode node1, MemberNode node2) {
+    public int compare(final MemberNode node1, final MemberNode node2) {
         if (node1 instanceof FieldNode) {
             if (node2 instanceof FieldNode) {
                 return node1.compareTo(node2);

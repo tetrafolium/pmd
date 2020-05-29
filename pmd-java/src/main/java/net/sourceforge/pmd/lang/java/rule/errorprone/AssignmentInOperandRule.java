@@ -54,7 +54,7 @@ public class AssignmentInOperandRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         Node parent = node.getParent();
         if ((parent instanceof ASTIfStatement && !getProperty(ALLOW_IF_DESCRIPTOR)
                 || parent instanceof ASTWhileStatement && !getProperty(ALLOW_WHILE_DESCRIPTOR)

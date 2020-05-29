@@ -66,7 +66,7 @@ public class AvoidUsingHardCodedIPRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         checkIPv4 = false;
         checkIPv6 = false;
         checkIPv4MappedIPv6 = false;
@@ -83,7 +83,7 @@ public class AvoidUsingHardCodedIPRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         if (!node.isStringLiteral()) {
             return data;
         }
@@ -103,11 +103,11 @@ public class AvoidUsingHardCodedIPRule extends AbstractJavaRule {
         return data;
     }
 
-    protected boolean isLatinDigit(char c) {
+    protected boolean isLatinDigit(final char c) {
         return '0' <= c && c <= '9';
     }
 
-    protected boolean isHexCharacter(char c) {
+    protected boolean isHexCharacter(final char c) {
         return isLatinDigit(c) || 'A' <= c && c <= 'F' || 'a' <= c && c <= 'f';
     }
 
@@ -135,7 +135,7 @@ public class AvoidUsingHardCodedIPRule extends AbstractJavaRule {
         }
     }
 
-    protected boolean isIPv6(final char firstChar, String s, final boolean checkIPv6,
+    protected boolean isIPv6(final char firstChar, final String s, final boolean checkIPv6,
             final boolean checkIPv4MappedIPv6) {
         // Quick check before using Regular Expression
         // 1) At least 3 characters

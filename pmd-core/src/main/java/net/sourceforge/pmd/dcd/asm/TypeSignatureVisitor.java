@@ -56,17 +56,17 @@ public class TypeSignatureVisitor extends SignatureVisitor {
         init();
     }
 
-    public TypeSignatureVisitor(PrintVisitor parent) {
+    public TypeSignatureVisitor(final PrintVisitor parent) {
         super(Opcodes.ASM5);
         p = new PrintVisitor(parent);
         init();
     }
 
-    protected void println(String s) {
+    protected void println(final String s) {
         p.println(s);
     }
 
-    protected void printlnIndent(String s) {
+    protected void printlnIndent(final String s) {
         p.printlnIndent(s);
     }
 
@@ -105,7 +105,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
         }
     }
 
-    private void pushType(int type) {
+    private void pushType(final int type) {
         this.typeType = type;
     }
 
@@ -154,7 +154,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public void visitBaseType(char descriptor) {
+    public void visitBaseType(final char descriptor) {
         if (TRACE) {
             println("visitBaseType:");
             printlnIndent("descriptor: " + descriptor);
@@ -201,7 +201,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public void visitClassType(String name) {
+    public void visitClassType(final String name) {
         if (TRACE) {
             println("visitClassType:");
             printlnIndent("name: " + name);
@@ -227,7 +227,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public void visitFormalTypeParameter(String name) {
+    public void visitFormalTypeParameter(final String name) {
         if (TRACE) {
             println("visitFormalTypeParameter:");
             printlnIndent("name: " + name);
@@ -235,7 +235,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public void visitInnerClassType(String name) {
+    public void visitInnerClassType(final String name) {
         if (TRACE) {
             println("visitInnerClassType:");
             printlnIndent("name: " + name);
@@ -294,7 +294,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public SignatureVisitor visitTypeArgument(char wildcard) {
+    public SignatureVisitor visitTypeArgument(final char wildcard) {
         if (TRACE) {
             println("visitTypeArgument:");
             printlnIndent("wildcard: " + wildcard);
@@ -303,7 +303,7 @@ public class TypeSignatureVisitor extends SignatureVisitor {
     }
 
     @Override
-    public void visitTypeVariable(String name) {
+    public void visitTypeVariable(final String name) {
         if (TRACE) {
             println("visitTypeVariable:");
             printlnIndent("name: " + name);

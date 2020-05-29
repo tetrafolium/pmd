@@ -17,12 +17,12 @@ public class ParserOptions {
         return suppressMarker;
     }
 
-    public void setSuppressMarker(String suppressMarker) {
+    public void setSuppressMarker(final String suppressMarker) {
         this.suppressMarker = suppressMarker;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

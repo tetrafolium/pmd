@@ -27,7 +27,7 @@ public class FileIterable implements Iterable<String> {
 
     private LineNumberReader lineReader = null;
 
-    public FileIterable(File file) {
+    public FileIterable(final File file) {
         try {
             lineReader = new LineNumberReader(Files.newBufferedReader(file.toPath(), Charset.defaultCharset()));
         } catch (IOException e) {

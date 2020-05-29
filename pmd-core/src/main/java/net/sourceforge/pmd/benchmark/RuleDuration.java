@@ -12,13 +12,13 @@ public class RuleDuration implements Comparable<RuleDuration> {
     public Rule rule;
     public long time;
 
-    public RuleDuration(long elapsed, Rule rule) {
+    public RuleDuration(final long elapsed, final Rule rule) {
         this.rule = rule;
         this.time = elapsed;
     }
 
     @Override
-    public int compareTo(RuleDuration other) {
+    public int compareTo(final RuleDuration other) {
         if (other.time < time) {
             return -1;
         } else if (other.time > time) {

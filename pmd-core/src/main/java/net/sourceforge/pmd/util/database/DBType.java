@@ -46,7 +46,7 @@ public class DBType {
         private String name;
         private String description;
 
-        Property(String name, String description) {
+        Property(final String name, final String description) {
             this.name = name;
             this.description = description;
         }
@@ -89,7 +89,7 @@ public class DBType {
      *
      * @param dbType
      */
-    public DBType(String dbType) throws Exception {
+    public DBType(final String dbType) throws Exception {
         properties = loadDBProperties(dbType);
     }
 
@@ -100,7 +100,7 @@ public class DBType {
      * @param subnamePrefix
      * @throws IOException
      */
-    public DBType(String subProtocol, String subnamePrefix) throws IOException {
+    public DBType(final String subProtocol, final String subnamePrefix) throws IOException {
 
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine("subProtocol=" + subProtocol + ", subnamePrefix=" + subnamePrefix);
@@ -153,7 +153,7 @@ public class DBType {
      * @return "current" set of properties (from one or more resources/property
      *         files)
      */
-    private Properties loadDBProperties(String matchString) throws IOException {
+    private Properties loadDBProperties(final String matchString) throws IOException {
         LOGGER.entering(DBType.class.getCanonicalName(), matchString);
         // Locale locale = Control.g;
         ResourceBundle resourceBundle = null;
@@ -256,7 +256,7 @@ public class DBType {
      *            ResourceBundle
      * @return Properties
      */
-    public static Properties getResourceBundleAsProperties(ResourceBundle resourceBundle) {
+    public static Properties getResourceBundleAsProperties(final ResourceBundle resourceBundle) {
         Properties properties = new Properties();
         for (String key : resourceBundle.keySet()) {
             properties.put(key, resourceBundle.getObject(key));
@@ -280,7 +280,7 @@ public class DBType {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -385,7 +385,7 @@ public class DBType {
      * @param properties
      *            the properties to set
      */
-    public void setProperties(Properties properties) {
+    public void setProperties(final Properties properties) {
         this.properties = properties;
 
         // Driver Class

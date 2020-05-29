@@ -14,12 +14,12 @@ public class ContextualizedNavigator extends DocumentNavigator {
 
     private final DeprecatedAttrLogger ctx;
 
-    public ContextualizedNavigator(DeprecatedAttrLogger ctx) {
+    public ContextualizedNavigator(final DeprecatedAttrLogger ctx) {
         this.ctx = ctx;
     }
 
     @Override
-    public String getAttributeStringValue(Object arg0) {
+    public String getAttributeStringValue(final Object arg0) {
         Attribute attr = (Attribute) arg0;
         ctx.recordUsageOf(attr);
         return attr.getStringValue();

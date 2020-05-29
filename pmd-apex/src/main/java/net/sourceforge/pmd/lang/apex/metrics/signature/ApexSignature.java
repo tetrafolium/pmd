@@ -19,7 +19,7 @@ public abstract class ApexSignature {
 
 
     /** Create a signature using its visibility. */
-    protected ApexSignature(Visibility visibility) {
+    protected ApexSignature(final Visibility visibility) {
         this.visibility = visibility;
     }
 
@@ -36,7 +36,7 @@ public abstract class ApexSignature {
          *
          * @return The visibility of the method
          */
-        public static Visibility get(ASTMethod method) {
+        public static Visibility get(final ASTMethod method) {
             ASTModifierNode modifierNode = method.getFirstChildOfType(ASTModifierNode.class);
             if (modifierNode.isPublic()) {
                 return PUBLIC;

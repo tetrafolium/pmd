@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTArrayComprehensionLoop extends AbstractEcmascriptNode<ArrayComprehensionLoop> {
     @Deprecated
     @InternalApi
-    public ASTArrayComprehensionLoop(ArrayComprehensionLoop arrayComprehensionLoop) {
+    public ASTArrayComprehensionLoop(final ArrayComprehensionLoop arrayComprehensionLoop) {
         super(arrayComprehensionLoop);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

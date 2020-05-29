@@ -46,7 +46,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
     private Map<String, Set<String>> methodAttributeAccess;
 
 
-    public TccAttributeAccessCollector(ASTAnyTypeDeclaration exploredClass) {
+    public TccAttributeAccessCollector(final ASTAnyTypeDeclaration exploredClass) {
         this.exploredClass = exploredClass;
     }
 
@@ -61,7 +61,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         if (Objects.equals(node, exploredClass)) {
             methodAttributeAccess = new HashMap<>();
             super.visit(node, data);
@@ -74,7 +74,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
 
         if (!node.isAbstract()) {
             if (node.getFirstParentOfType(ASTAnyTypeDeclaration.class) == exploredClass) {
@@ -93,7 +93,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
 
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         return data; // we're only looking for method pairs
     }
 
@@ -105,7 +105,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
      * map is updated for the current method.
      */
     @Override
-    public Object visit(ASTPrimaryExpression node, Object data) {
+    public Object visit(final ASTPrimaryExpression node, final Object data) {
         if (currentMethodName != null) {
             Set<String> methodAccess = methodAttributeAccess.get(currentMethodName);
             String variableName = getVariableName(node);
@@ -118,7 +118,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
     }
 
 
-    private String getVariableName(ASTPrimaryExpression node) {
+    private String getVariableName(final ASTPrimaryExpression node) {
         ASTPrimaryPrefix prefix = node.getFirstDescendantOfType(ASTPrimaryPrefix.class);
 
         if (prefix.usesThisModifier()) {
@@ -147,7 +147,7 @@ public class TccAttributeAccessCollector extends JavaParserVisitorReducedAdapter
     }
 
 
-    private boolean isLocalAttributeAccess(String varName, Scope scope) {
+    private boolean isLocalAttributeAccess(final String varName, final Scope scope) {
         Scope currentScope = scope;
 
         while (currentScope != null) {

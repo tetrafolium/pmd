@@ -40,7 +40,7 @@ public class TooManyFieldsRule extends AbstractPLSQLRule {
     }
 
     @Override
-    public Object visit(ASTInput node, Object data) {
+    public Object visit(final ASTInput node, final Object data) {
 
         stats = new HashMap<>(5);
         nodes = new HashMap<>(5);
@@ -49,7 +49,7 @@ public class TooManyFieldsRule extends AbstractPLSQLRule {
     }
 
     @Override
-    public Object visit(ASTPackageSpecification node, Object data) {
+    public Object visit(final ASTPackageSpecification node, final Object data) {
 
         int maxFields = getProperty(MAX_FIELDS_DESCRIPTOR);
 
@@ -69,7 +69,7 @@ public class TooManyFieldsRule extends AbstractPLSQLRule {
     }
 
     @Override
-    public Object visit(ASTTypeSpecification node, Object data) {
+    public Object visit(final ASTTypeSpecification node, final Object data) {
 
         int maxFields = getProperty(MAX_FIELDS_DESCRIPTOR);
 
@@ -88,7 +88,7 @@ public class TooManyFieldsRule extends AbstractPLSQLRule {
         return data;
     }
 
-    private void bumpCounterFor(PLSQLNode clazz) {
+    private void bumpCounterFor(final PLSQLNode clazz) {
         String key = clazz.getImage();
         if (!stats.containsKey(key)) {
             stats.put(key, NumericConstants.ZERO);

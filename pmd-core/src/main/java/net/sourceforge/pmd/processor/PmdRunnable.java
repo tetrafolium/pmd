@@ -34,8 +34,8 @@ public class PmdRunnable implements Callable<Report> {
     private final RuleSets ruleSets;
     private final SourceCodeProcessor sourceCodeProcessor;
 
-    public PmdRunnable(DataSource dataSource, String fileName, List<Renderer> renderers,
-            RuleContext ruleContext, RuleSets ruleSets, SourceCodeProcessor sourceCodeProcessor) {
+    public PmdRunnable(final DataSource dataSource, final String fileName, final List<Renderer> renderers,
+            final RuleContext ruleContext, final RuleSets ruleSets, final SourceCodeProcessor sourceCodeProcessor) {
         this.ruleSets = ruleSets;
         this.dataSource = dataSource;
         this.fileName = fileName;
@@ -48,7 +48,7 @@ public class PmdRunnable implements Callable<Report> {
         LOCAL_THREAD_CONTEXT.remove();
     }
 
-    private void addError(Report report, Exception e, String errorMessage) {
+    private void addError(final Report report, final Exception e, final String errorMessage) {
         // unexpected exception: log and stop executor service
         LOG.log(Level.FINE, errorMessage, e);
         report.addError(new Report.ProcessingError(e, fileName));
@@ -93,7 +93,7 @@ public class PmdRunnable implements Callable<Report> {
         /* default */ final RuleSets ruleSets;
         /* default */ final RuleContext ruleContext;
 
-        ThreadContext(RuleSets ruleSets, RuleContext ruleContext) {
+        ThreadContext(final RuleSets ruleSets, final RuleContext ruleContext) {
             this.ruleSets = ruleSets;
             this.ruleContext = ruleContext;
         }

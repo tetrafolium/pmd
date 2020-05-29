@@ -15,12 +15,12 @@ public class ASTTermIf extends AbstractScalaNode<Term.If> {
 
     @Deprecated
     @InternalApi
-    public ASTTermIf(Term.If scalaNode) {
+    public ASTTermIf(final Term.If scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

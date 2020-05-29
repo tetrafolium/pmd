@@ -28,7 +28,7 @@ public class EcmascriptParser {
     private Map<Integer, String> suppressMap;
     private String suppressMarker = "NOPMD"; // that's the default value
 
-    public EcmascriptParser(EcmascriptParserOptions parserOptions) {
+    public EcmascriptParser(final EcmascriptParserOptions parserOptions) {
         this.parserOptions = parserOptions;
         if (parserOptions.getSuppressMarker() != null) {
             suppressMarker = parserOptions.getSuppressMarker();

@@ -67,7 +67,7 @@ public final class LogUtil {
      * @param colnum
      *            Column number withing the file at linenum
      */
-    public static String formatFileString(String template, final int linenum, final int colnum) {
+    public static String formatFileString(final String template, final int linenum, final int colnum) {
         if (template == null || "".equals(template)) {
             template = "<unknown template>";
         }

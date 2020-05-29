@@ -12,12 +12,12 @@ public class ASTUserExceptionMethods extends AbstractApexNode<UserExceptionMetho
 
     @Deprecated
     @InternalApi
-    public ASTUserExceptionMethods(UserExceptionMethods userExceptionMethods) {
+    public ASTUserExceptionMethods(final UserExceptionMethods userExceptionMethods) {
         super(userExceptionMethods);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

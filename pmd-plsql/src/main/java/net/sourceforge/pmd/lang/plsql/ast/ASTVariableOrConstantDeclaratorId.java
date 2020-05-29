@@ -14,18 +14,18 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 public class ASTVariableOrConstantDeclaratorId extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
     @Deprecated
     @InternalApi
-    public ASTVariableOrConstantDeclaratorId(int id) {
+    public ASTVariableOrConstantDeclaratorId(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTVariableOrConstantDeclaratorId(PLSQLParser p, int id) {
+    public ASTVariableOrConstantDeclaratorId(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -38,7 +38,7 @@ public class ASTVariableOrConstantDeclaratorId extends net.sourceforge.pmd.lang.
 
     @Deprecated
     @InternalApi
-    public void setNameDeclaration(NameDeclaration decl) {
+    public void setNameDeclaration(final NameDeclaration decl) {
         nameDeclaration = decl;
     }
 
@@ -84,7 +84,7 @@ public class ASTVariableOrConstantDeclaratorId extends net.sourceforge.pmd.lang.
                 "Don't know how to get the type for anything other than ASTLocalVariableDeclaration/ASTFormalParameter/ASTFieldDeclaration");
     }
 
-    private Node findTypeNameNode(Node node) {
+    private Node findTypeNameNode(final Node node) {
         ASTDatatype typeNode = (ASTDatatype) node.getChild(0);
         return typeNode.getChild(0);
     }

@@ -16,12 +16,12 @@ public class ASTSource extends AbstractScalaNode<Source> implements RootNode {
 
     @Deprecated
     @InternalApi
-    public ASTSource(Source scalaNode) {
+    public ASTSource(final Source scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

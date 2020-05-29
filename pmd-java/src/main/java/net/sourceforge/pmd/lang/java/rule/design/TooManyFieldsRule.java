@@ -32,7 +32,7 @@ public class TooManyFieldsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         final int maxFields = getProperty(MAX_FIELDS_DESCRIPTOR);
         int counter = 0;
 

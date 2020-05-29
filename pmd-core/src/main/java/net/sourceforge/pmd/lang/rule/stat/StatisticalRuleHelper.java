@@ -36,20 +36,20 @@ public class StatisticalRuleHelper {
     private int count = 0;
     private double total = 0.0;
 
-    public StatisticalRuleHelper(AbstractRule rule) {
+    public StatisticalRuleHelper(final AbstractRule rule) {
         this.rule = rule;
         rule.definePropertyDescriptor(SIGMA_DESCRIPTOR);
         rule.definePropertyDescriptor(MINIMUM_DESCRIPTOR);
         rule.definePropertyDescriptor(TOP_SCORE_DESCRIPTOR);
     }
 
-    public void addDataPoint(DataPoint point) {
+    public void addDataPoint(final DataPoint point) {
         count++;
         total += point.getScore();
         dataPoints.add(point);
     }
 
-    public void apply(RuleContext ctx) {
+    public void apply(final RuleContext ctx) {
 
         double deviation;
         double minimum = 0.0;
@@ -119,7 +119,7 @@ public class StatisticalRuleHelper {
         return Math.sqrt(deltaSq / (dataPoints.size() - 1));
     }
 
-    private SortedSet<DataPoint> applyMinimumValue(SortedSet<DataPoint> pointSet, double minValue) {
+    private SortedSet<DataPoint> applyMinimumValue(final SortedSet<DataPoint> pointSet, final double minValue) {
         SortedSet<DataPoint> rc = new TreeSet<>();
         double threshold = minValue - DELTA;
 
@@ -131,7 +131,7 @@ public class StatisticalRuleHelper {
         return rc;
     }
 
-    private SortedSet<DataPoint> applyTopScore(SortedSet<DataPoint> points, int topScore) {
+    private SortedSet<DataPoint> applyTopScore(final SortedSet<DataPoint> points, final int topScore) {
         SortedSet<DataPoint> s = new TreeSet<>();
         DataPoint[] arr = points.toArray(new DataPoint[] {});
         for (int i = arr.length - 1; i >= (arr.length - topScore); i--) {
@@ -140,7 +140,7 @@ public class StatisticalRuleHelper {
         return s;
     }
 
-    private void makeViolations(RuleContext ctx, Set<DataPoint> p) {
+    private void makeViolations(final RuleContext ctx, final Set<DataPoint> p) {
         for (DataPoint point : p) {
             rule.addViolationWithMessage(ctx, point.getNode(), point.getMessage(),
                     ((StatisticalRule) rule).getViolationParameters(point));

@@ -35,7 +35,7 @@ public final class NumericConstraints {
         return ConstraintFactory.fromPredicate(
                 new Predicate<N>() {
                     @Override
-                    public boolean test(N t) {
+                    public boolean test(final N t) {
                         return minInclusive.compareTo(t) <= 0 && maxInclusive.compareTo(t) >= 0;
                     }
                 },
@@ -59,7 +59,7 @@ public final class NumericConstraints {
         return ConstraintFactory.fromPredicate(
                 new Predicate<N>() {
                     @Override
-                    public boolean test(N t) {
+                    public boolean test(final N t) {
                         return t.intValue() > 0;
                     }
                 },

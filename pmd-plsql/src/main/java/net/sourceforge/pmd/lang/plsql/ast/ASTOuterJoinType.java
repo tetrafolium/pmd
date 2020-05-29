@@ -14,17 +14,17 @@ public class ASTOuterJoinType extends net.sourceforge.pmd.lang.plsql.ast.Abstrac
 
     @Deprecated
     @InternalApi
-    public ASTOuterJoinType(int id) {
+    public ASTOuterJoinType(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTOuterJoinType(PLSQLParser p, int id) {
+    public ASTOuterJoinType(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
-    void setType(Type type) {
+    void setType(final Type type) {
         this.type = type;
     }
 
@@ -50,7 +50,7 @@ public class ASTOuterJoinType extends net.sourceforge.pmd.lang.plsql.ast.Abstrac
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

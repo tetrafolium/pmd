@@ -43,8 +43,8 @@ import net.sourceforge.pmd.Rule;
      *
      * @throws IllegalArgumentException If name or description are empty, or UI order is negative.
      */
-    AbstractMultiValueProperty(String theName, String theDescription, List<V> theDefault, float theUIOrder,
-                               boolean isDefinedExternally) {
+    AbstractMultiValueProperty(final String theName, final String theDescription, final List<V> theDefault, final float theUIOrder,
+                               final boolean isDefinedExternally) {
         this(theName, theDescription, theDefault, theUIOrder, DEFAULT_DELIMITER, isDefinedExternally);
     }
 
@@ -60,8 +60,8 @@ import net.sourceforge.pmd.Rule;
      *
      * @throws IllegalArgumentException If name or description are empty, or UI order is negative.
      */
-    AbstractMultiValueProperty(String theName, String theDescription, List<V> theDefault,
-                               float theUIOrder, char delimiter, boolean isDefinedExternally) {
+    AbstractMultiValueProperty(final String theName, final String theDescription, final List<V> theDefault,
+                               final float theUIOrder, final char delimiter, final boolean isDefinedExternally) {
 
         super(theName, theDescription, theUIOrder, isDefinedExternally);
         defaultValue = Collections.unmodifiableList(theDefault);
@@ -77,14 +77,14 @@ import net.sourceforge.pmd.Rule;
 
     /* This is the one overriden in PropertyDescriptor */
     @Override
-    public String propertyErrorFor(Rule rule) {
+    public String propertyErrorFor(final Rule rule) {
         List<V> realValues = rule.getProperty(this);
         return realValues == null ? null : errorFor(realValues);
     }
 
 
     @Override
-    public String errorFor(List<V> values) {
+    public String errorFor(final List<V> values) {
 
         String err;
         for (V value2 : values) {
@@ -105,7 +105,7 @@ import net.sourceforge.pmd.Rule;
      *
      * @return A descriptive String of the error or null if there was none
      */
-    protected String valueErrorFor(V value) {
+    protected String valueErrorFor(final V value) {
         return value != null || defaultHasNullValue() ? null : "missing value";
     }
 
@@ -126,7 +126,7 @@ import net.sourceforge.pmd.Rule;
     }
 
 
-    private String asDelimitedString(List<V> values, char delimiter) {
+    private String asDelimitedString(final List<V> values, final char delimiter) {
         if (values == null) {
             return "";
         }
@@ -162,19 +162,19 @@ import net.sourceforge.pmd.Rule;
      *
      * @return A string representation of the value
      */
-    protected String asString(V value) {
+    protected String asString(final V value) {
         return value == null ? "" : value.toString();
     }
 
 
     @Override
-    public final String asDelimitedString(List<V> values) {
+    public final String asDelimitedString(final List<V> values) {
         return asDelimitedString(values, multiValueDelimiter());
     }
 
 
     @Override
-    public List<V> valueFrom(String valueString) throws IllegalArgumentException {
+    public List<V> valueFrom(final String valueString) throws IllegalArgumentException {
         if (StringUtils.isBlank(valueString)) {
             return Collections.emptyList();
         }
@@ -201,7 +201,7 @@ import net.sourceforge.pmd.Rule;
 
 
     @Override
-    protected void addAttributesTo(Map<PropertyDescriptorField, String> attributes) {
+    protected void addAttributesTo(final Map<PropertyDescriptorField, String> attributes) {
         super.addAttributesTo(attributes);
         attributes.put(PropertyDescriptorField.DELIMITER, Character.toString(multiValueDelimiter()));
     }

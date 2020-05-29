@@ -36,7 +36,7 @@ public class ExcessivePublicCountRule extends ExcessiveNodeCountRule {
      * Method counts ONLY public methods.
      */
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         return this.getTallyOnAccessType((AccessNode) node.getParent());
     }
 
@@ -45,7 +45,7 @@ public class ExcessivePublicCountRule extends ExcessiveNodeCountRule {
      * static- these usually represent constants....
      */
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         if (node.isFinal() && node.isStatic()) {
             return NumericConstants.ZERO;
         }
@@ -59,7 +59,7 @@ public class ExcessivePublicCountRule extends ExcessiveNodeCountRule {
      *            The access node.
      * @return Integer 1 if node is public 0 otherwise
      */
-    private Integer getTallyOnAccessType(AccessNode node) {
+    private Integer getTallyOnAccessType(final AccessNode node) {
         if (node.isPublic()) {
             return NumericConstants.ONE;
         }

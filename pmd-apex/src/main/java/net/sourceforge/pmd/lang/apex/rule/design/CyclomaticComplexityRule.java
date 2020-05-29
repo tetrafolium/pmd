@@ -54,7 +54,7 @@ public class CyclomaticComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTUserTrigger node, Object data) {
+    public Object visit(final ASTUserTrigger node, final Object data) {
         inTrigger = true;
         super.visit(node, data);
         inTrigger = false;
@@ -63,7 +63,7 @@ public class CyclomaticComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         classNames.push(node.getImage());
         super.visit(node, data);
@@ -88,7 +88,7 @@ public class CyclomaticComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public final Object visit(ASTMethod node, Object data) {
+    public final Object visit(final ASTMethod node, final Object data) {
 
         if (ApexOperationMetricKey.CYCLO.supports(node)) {
             int cyclo = (int) MetricsUtil.computeMetric(ApexOperationMetricKey.CYCLO, node);

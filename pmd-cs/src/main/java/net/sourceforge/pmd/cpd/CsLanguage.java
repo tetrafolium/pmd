@@ -15,13 +15,13 @@ public class CsLanguage extends AbstractLanguage {
         this(System.getProperties());
     }
 
-    public CsLanguage(Properties properties) {
+    public CsLanguage(final Properties properties) {
         super("C#", "cs", new CsTokenizer(), ".cs");
         setProperties(properties);
     }
 
     @Override
-    public final void setProperties(Properties properties) {
+    public final void setProperties(final Properties properties) {
         CsTokenizer tokenizer = (CsTokenizer) getTokenizer();
         tokenizer.setProperties(properties);
     }

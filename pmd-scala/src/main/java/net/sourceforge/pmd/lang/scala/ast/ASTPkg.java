@@ -15,12 +15,12 @@ public class ASTPkg extends AbstractScalaNode<Pkg> {
 
     @Deprecated
     @InternalApi
-    public ASTPkg(Pkg scalaNode) {
+    public ASTPkg(final Pkg scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

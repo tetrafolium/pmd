@@ -25,19 +25,19 @@ public class ASTFormalComment extends AbstractApexNode<AstComment> {
 
     private final String image;
 
-    ASTFormalComment(Token token) {
+    ASTFormalComment(final Token token) {
         super(new AstComment(token));
         this.image = token.getText();
     }
 
     @Deprecated
-    public ASTFormalComment(String token) {
+    public ASTFormalComment(final String token) {
         super(new AstComment(null));
         image = token;
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -57,7 +57,7 @@ public class ASTFormalComment extends AbstractApexNode<AstComment> {
 
         private final Location loc;
 
-        private AstComment(Token token) {
+        private AstComment(final Token token) {
             this.loc = token == null
                        ? Locations.NONE
                        : Locations.loc(token.getLine(), token.getCharPositionInLine() + 1);
@@ -69,17 +69,17 @@ public class ASTFormalComment extends AbstractApexNode<AstComment> {
         }
 
         @Override
-        public <T extends Scope> void traverse(AstVisitor<T> astVisitor, T t) {
+        public <T extends Scope> void traverse(final AstVisitor<T> astVisitor, final T t) {
             // do nothing
         }
 
         @Override
-        public void validate(SymbolResolver symbolResolver, ValidationScope validationScope) {
+        public void validate(final SymbolResolver symbolResolver, final ValidationScope validationScope) {
             // do nothing
         }
 
         @Override
-        public void emit(Emitter emitter) {
+        public void emit(final Emitter emitter) {
             // do nothing
         }
 

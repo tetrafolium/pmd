@@ -24,18 +24,18 @@ public class ASTUnaryExpressionNotPlusMinus extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTUnaryExpressionNotPlusMinus(int id) {
+    public ASTUnaryExpressionNotPlusMinus(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTUnaryExpressionNotPlusMinus(JavaParser p, int id) {
+    public ASTUnaryExpressionNotPlusMinus(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

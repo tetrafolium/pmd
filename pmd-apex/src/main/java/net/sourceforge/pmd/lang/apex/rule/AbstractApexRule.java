@@ -131,11 +131,11 @@ public abstract class AbstractApexRule extends AbstractRule
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Object element : nodes) {
             if (element instanceof ASTUserClass) {
                 visit((ASTUserClass) element, ctx);
@@ -153,14 +153,14 @@ public abstract class AbstractApexRule extends AbstractRule
      */
     @Deprecated
     @Override
-    public Object visit(AbstractApexNodeBase node, Object data) {
+    public Object visit(final AbstractApexNodeBase node, final Object data) {
         node.childrenAccept(this, data);
         return null;
     }
 
 
     @Override
-    public Object visit(ApexNode<?> node, Object data) {
+    public Object visit(final ApexNode<?> node, final Object data) {
         for (ApexNode<?> child : node.children()) {
             child.jjtAccept(this, data);
         }
@@ -168,482 +168,482 @@ public abstract class AbstractApexRule extends AbstractRule
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTModifierNode node, Object data) {
+    public Object visit(final ASTModifierNode node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTParameter node, Object data) {
+    public Object visit(final ASTParameter node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBlockStatement node, Object data) {
+    public Object visit(final ASTBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserClassMethods node, Object data) {
+    public Object visit(final ASTUserClassMethods node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBridgeMethodCreator node, Object data) {
+    public Object visit(final ASTBridgeMethodCreator node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTLiteralExpression node, Object data) {
+    public Object visit(final ASTLiteralExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTConstructorPreambleStatement node, Object data) {
+    public Object visit(final ASTConstructorPreambleStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserEnum node, Object data) {
+    public Object visit(final ASTUserEnum node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTWhileLoopStatement node, Object data) {
+    public Object visit(final ASTWhileLoopStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTTryCatchFinallyBlockStatement node, Object data) {
+    public Object visit(final ASTTryCatchFinallyBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTForLoopStatement node, Object data) {
+    public Object visit(final ASTForLoopStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTIfElseBlockStatement node, Object data) {
+    public Object visit(final ASTIfElseBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTIfBlockStatement node, Object data) {
+    public Object visit(final ASTIfBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTForEachStatement node, Object data) {
+    public Object visit(final ASTForEachStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTField node, Object data) {
+    public Object visit(final ASTField node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDoLoopStatement node, Object data) {
+    public Object visit(final ASTDoLoopStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTTernaryExpression node, Object data) {
+    public Object visit(final ASTTernaryExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSoqlExpression node, Object data) {
+    public Object visit(final ASTSoqlExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBooleanExpression node, Object data) {
+    public Object visit(final ASTBooleanExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotation node, Object data) {
+    public Object visit(final ASTAnnotation node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAnonymousClass node, Object data) {
+    public Object visit(final ASTAnonymousClass node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayLoadExpression node, Object data) {
+    public Object visit(final ASTArrayLoadExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTArrayStoreExpression node, Object data) {
+    public Object visit(final ASTArrayStoreExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignmentExpression node, Object data) {
+    public Object visit(final ASTAssignmentExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBinaryExpression node, Object data) {
+    public Object visit(final ASTBinaryExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTBindExpressions node, Object data) {
+    public Object visit(final ASTBindExpressions node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTCatchBlockStatement node, Object data) {
+    public Object visit(final ASTCatchBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTClassRefExpression node, Object data) {
+    public Object visit(final ASTClassRefExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlDeleteStatement node, Object data) {
+    public Object visit(final ASTDmlDeleteStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlInsertStatement node, Object data) {
+    public Object visit(final ASTDmlInsertStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlMergeStatement node, Object data) {
+    public Object visit(final ASTDmlMergeStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlUndeleteStatement node, Object data) {
+    public Object visit(final ASTDmlUndeleteStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlUpdateStatement node, Object data) {
+    public Object visit(final ASTDmlUpdateStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTDmlUpsertStatement node, Object data) {
+    public Object visit(final ASTDmlUpsertStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionStatement node, Object data) {
+    public Object visit(final ASTExpressionStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTFieldDeclarationStatements node, Object data) {
+    public Object visit(final ASTFieldDeclarationStatements node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTInstanceOfExpression node, Object data) {
+    public Object visit(final ASTInstanceOfExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTJavaMethodCallExpression node, Object data) {
+    public Object visit(final ASTJavaMethodCallExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTJavaVariableExpression node, Object data) {
+    public Object visit(final ASTJavaVariableExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTMapEntryNode node, Object data) {
+    public Object visit(final ASTMapEntryNode node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTModifierOrAnnotation node, Object data) {
+    public Object visit(final ASTModifierOrAnnotation node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewListInitExpression node, Object data) {
+    public Object visit(final ASTNewListInitExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewListLiteralExpression node, Object data) {
+    public Object visit(final ASTNewListLiteralExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewMapInitExpression node, Object data) {
+    public Object visit(final ASTNewMapInitExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewMapLiteralExpression node, Object data) {
+    public Object visit(final ASTNewMapLiteralExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewObjectExpression node, Object data) {
+    public Object visit(final ASTNewObjectExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewSetInitExpression node, Object data) {
+    public Object visit(final ASTNewSetInitExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewSetLiteralExpression node, Object data) {
+    public Object visit(final ASTNewSetLiteralExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTPackageVersionExpression node, Object data) {
+    public Object visit(final ASTPackageVersionExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTPostfixExpression node, Object data) {
+    public Object visit(final ASTPostfixExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTPrefixExpression node, Object data) {
+    public Object visit(final ASTPrefixExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTProperty node, Object data) {
+    public Object visit(final ASTProperty node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTReferenceExpression node, Object data) {
+    public Object visit(final ASTReferenceExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTRunAsBlockStatement node, Object data) {
+    public Object visit(final ASTRunAsBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSoslExpression node, Object data) {
+    public Object visit(final ASTSoslExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTStandardCondition node, Object data) {
+    public Object visit(final ASTStandardCondition node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSuperMethodCallExpression node, Object data) {
+    public Object visit(final ASTSuperMethodCallExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSuperVariableExpression node, Object data) {
+    public Object visit(final ASTSuperVariableExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTThisMethodCallExpression node, Object data) {
+    public Object visit(final ASTThisMethodCallExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTThisVariableExpression node, Object data) {
+    public Object visit(final ASTThisVariableExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTTriggerVariableExpression node, Object data) {
+    public Object visit(final ASTTriggerVariableExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserExceptionMethods node, Object data) {
+    public Object visit(final ASTUserExceptionMethods node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTUserTrigger node, Object data) {
+    public Object visit(final ASTUserTrigger node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableDeclarationStatements node, Object data) {
+    public Object visit(final ASTVariableDeclarationStatements node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTVariableExpression node, Object data) {
+    public Object visit(final ASTVariableExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotationParameter node, Object data) {
+    public Object visit(final ASTAnnotationParameter node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTCastExpression node, Object data) {
+    public Object visit(final ASTCastExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTConstructorPreamble node, Object data) {
+    public Object visit(final ASTConstructorPreamble node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTIllegalStoreExpression node, Object data) {
+    public Object visit(final ASTIllegalStoreExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTMethodBlockStatement node, Object data) {
+    public Object visit(final ASTMethodBlockStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTModifier node, Object data) {
+    public Object visit(final ASTModifier node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTMultiStatement node, Object data) {
+    public Object visit(final ASTMultiStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNestedExpression node, Object data) {
+    public Object visit(final ASTNestedExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNestedStoreExpression node, Object data) {
+    public Object visit(final ASTNestedStoreExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTNewKeyValueObjectExpression node, Object data) {
+    public Object visit(final ASTNewKeyValueObjectExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTStatementExecuted node, Object data) {
+    public Object visit(final ASTStatementExecuted node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTFormalComment node, Object data) {
+    public Object visit(final ASTFormalComment node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTElseWhenBlock node, Object data) {
+    public Object visit(final ASTElseWhenBlock node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeWhenBlock node, Object data) {
+    public Object visit(final ASTTypeWhenBlock node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTValueWhenBlock node, Object data) {
+    public Object visit(final ASTValueWhenBlock node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTIdentifierCase node, Object data) {
+    public Object visit(final ASTIdentifierCase node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTLiteralCase node, Object data) {
+    public Object visit(final ASTLiteralCase node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 
     @Override
-    public Object visit(ASTEmptyReferenceExpression node, Object data) {
+    public Object visit(final ASTEmptyReferenceExpression node, final Object data) {
         return visit((ApexNode<?>) node, data);
     }
 }

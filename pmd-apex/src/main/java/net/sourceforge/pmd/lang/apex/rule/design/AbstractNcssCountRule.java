@@ -38,7 +38,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalApexRule 
      * @param nodeClass
      *            class of node to count
      */
-    protected AbstractNcssCountRule(Class<?> nodeClass) {
+    protected AbstractNcssCountRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
 
         setProperty(MINIMUM_DESCRIPTOR, 1000d);
@@ -48,7 +48,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalApexRule 
     }
 
     @Override
-    public Object visit(ApexNode<?> node, Object data) {
+    public Object visit(final ApexNode<?> node, final Object data) {
         int numNodes = 0;
 
         for (ApexNode<?> child : node.children()) {
@@ -78,7 +78,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalApexRule 
      *            node data
      * @return count of the number of children of the node, plus one
      */
-    protected Integer countNodeChildren(ApexNode<?> node, Object data) {
+    protected Integer countNodeChildren(final ApexNode<?> node, final Object data) {
         Integer nodeCount;
         int lineCount = 0;
         for (ApexNode<?> child : node.children()) {
@@ -89,27 +89,27 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalApexRule 
     }
 
     @Override
-    public Object visit(ASTForLoopStatement node, Object data) {
+    public Object visit(final ASTForLoopStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTForEachStatement node, Object data) {
+    public Object visit(final ASTForEachStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTDoLoopStatement node, Object data) {
+    public Object visit(final ASTDoLoopStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTIfBlockStatement node, Object data) {
+    public Object visit(final ASTIfBlockStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTIfElseBlockStatement node, Object data) {
+    public Object visit(final ASTIfElseBlockStatement node, final Object data) {
 
         Integer lineCount = countNodeChildren(node, data);
         lineCount++;
@@ -118,42 +118,42 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalApexRule 
     }
 
     @Override
-    public Object visit(ASTWhileLoopStatement node, Object data) {
+    public Object visit(final ASTWhileLoopStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTTryCatchFinallyBlockStatement node, Object data) {
+    public Object visit(final ASTTryCatchFinallyBlockStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTMethodCallExpression node, Object data) {
+    public Object visit(final ASTMethodCallExpression node, final Object data) {
         return NumericConstants.ONE;
     }
 }

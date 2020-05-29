@@ -14,13 +14,13 @@ public class ASTPostfixExpression extends AbstractApexNode<PostfixExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTPostfixExpression(PostfixExpression postfixExpression) {
+    public ASTPostfixExpression(final PostfixExpression postfixExpression) {
         super(postfixExpression);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

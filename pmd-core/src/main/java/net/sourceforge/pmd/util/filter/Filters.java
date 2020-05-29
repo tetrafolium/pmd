@@ -36,7 +36,7 @@ public final class Filters {
      * @return A List containing only those objects for which the Filter
      *         returned <code>true</code>.
      */
-    public static <T> List<T> filter(Filter<T> filter, Collection<T> collection) {
+    public static <T> List<T> filter(final Filter<T> filter, final Collection<T> collection) {
         List<T> list = new ArrayList<>();
         for (T obj : collection) {
             if (filter.filter(obj)) {
@@ -53,7 +53,7 @@ public final class Filters {
      *            The extensions to filter.
      * @return A File Filter.
      */
-    public static Filter<File> getFileExtensionFilter(String... extensions) {
+    public static Filter<File> getFileExtensionFilter(final String... extensions) {
         return new FileExtensionFilter(extensions);
     }
 
@@ -74,7 +74,7 @@ public final class Filters {
      *            The extensions to filter.
      * @return A File Filter.
      */
-    public static Filter<File> getFileExtensionOrDirectoryFilter(String... extensions) {
+    public static Filter<File> getFileExtensionOrDirectoryFilter(final String... extensions) {
         return new OrFilter<>(getFileExtensionFilter(extensions), getDirectoryFilter());
     }
 
@@ -91,7 +91,7 @@ public final class Filters {
     public static Filter<File> toNormalizedFileFilter(final Filter<String> filter) {
         return new Filter<File>() {
             @Override
-            public boolean filter(File file) {
+            public boolean filter(final File file) {
                 String path = file.getPath();
                 path = path.replace('\\', '/');
                 return filter.filter(path);
@@ -118,7 +118,7 @@ public final class Filters {
     public static <T> Filter<T> fromStringFilter(final Filter<String> filter) {
         return new Filter<T>() {
             @Override
-            public boolean filter(T obj) {
+            public boolean filter(final T obj) {
                 return filter.filter(obj.toString());
             }
 
@@ -139,7 +139,7 @@ public final class Filters {
     public static FilenameFilter toFilenameFilter(final Filter<File> filter) {
         return new FilenameFilter() {
             @Override
-            public boolean accept(File dir, String name) {
+            public boolean accept(final File dir, final String name) {
                 return filter.filter(new File(dir, name));
             }
 
@@ -160,7 +160,7 @@ public final class Filters {
     public static Filter<File> toFileFilter(final FilenameFilter filter) {
         return new Filter<File>() {
             @Override
-            public boolean filter(File file) {
+            public boolean filter(final File file) {
                 return filter.accept(file.getParentFile(), file.getName());
             }
 
@@ -186,8 +186,8 @@ public final class Filters {
      *            The exclude regular expressions. May be <code>null</code>.
      * @return A String Filter.
      */
-    public static Filter<String> buildRegexFilterExcludeOverInclude(List<String> includeRegexes,
-            List<String> excludeRegexes) {
+    public static Filter<String> buildRegexFilterExcludeOverInclude(final List<String> includeRegexes,
+            final List<String> excludeRegexes) {
         OrFilter<String> includeFilter = new OrFilter<>();
         if (includeRegexes == null || includeRegexes.isEmpty()) {
             includeFilter.addFilter(new RegexStringFilter(".*"));
@@ -222,8 +222,8 @@ public final class Filters {
      *            The exclude regular expressions. May be <code>null</code>.
      * @return A String Filter.
      */
-    public static Filter<String> buildRegexFilterIncludeOverExclude(List<String> includeRegexes,
-            List<String> excludeRegexes) {
+    public static Filter<String> buildRegexFilterIncludeOverExclude(final List<String> includeRegexes,
+            final List<String> excludeRegexes) {
         OrFilter<String> includeFilter = new OrFilter<>();
         if (includeRegexes != null) {
             for (String includeRegex : includeRegexes) {

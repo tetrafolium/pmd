@@ -15,7 +15,7 @@ public class LinkerException extends Exception {
         super("An error occured by computing the data flow paths");
     }
 
-    public LinkerException(String message) {
+    public LinkerException(final String message) {
         super(message);
     }
 

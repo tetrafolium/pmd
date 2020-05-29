@@ -40,7 +40,7 @@ public final class StringUtil {
      *
      * @throws IllegalArgumentException if the double to format is not between 0 and 1
      */
-    public static String percentageString(double val, int numDecimals) {
+    public static String percentageString(final double val, final int numDecimals) {
         if (val < 0 || val > 1) {
             throw new IllegalArgumentException("Expected a number between 0 and 1");
         }
@@ -60,7 +60,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#startsWithAny(CharSequence, CharSequence...)}
      */
     @Deprecated
-    public static boolean startsWithAny(String text, String... prefixes) {
+    public static boolean startsWithAny(final String text, final String... prefixes) {
 
         for (String prefix : prefixes) {
             if (text.startsWith(prefix)) {
@@ -80,7 +80,7 @@ public final class StringUtil {
      *
      * @return boolean
      */
-    public static boolean isAnyOf(String text, String... tests) {
+    public static boolean isAnyOf(final String text, final String... tests) {
 
         for (String test : tests) {
             if (text.equals(test)) {
@@ -101,7 +101,7 @@ public final class StringUtil {
      *
      * @return String
      */
-    public static String withoutPrefixes(String text, String... prefixes) {
+    public static String withoutPrefixes(final String text, final String... prefixes) {
 
         for (String prefix : prefixes) {
             if (text.startsWith(prefix)) {
@@ -120,7 +120,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#isNotBlank(CharSequence)}
      */
     @Deprecated
-    public static boolean isNotEmpty(String value) {
+    public static boolean isNotEmpty(final String value) {
         return !isEmpty(value);
     }
 
@@ -136,7 +136,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#isBlank(CharSequence)}
      */
     @Deprecated
-    public static boolean isEmpty(String value) {
+    public static boolean isEmpty(final String value) {
         return StringUtils.isBlank(value);
     }
 
@@ -150,7 +150,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#isEmpty(CharSequence)}
      */
     @Deprecated
-    public static boolean isMissing(String value) {
+    public static boolean isMissing(final String value) {
         return StringUtils.isEmpty(value);
     }
 
@@ -165,7 +165,7 @@ public final class StringUtil {
      * @return boolean
      */
     @Deprecated
-    public static boolean areSemanticEquals(String a, String b) {
+    public static boolean areSemanticEquals(final String a, final String b) {
 
         if (a == null) {
             return isEmpty(b);
@@ -213,7 +213,7 @@ public final class StringUtil {
      *                    <code>false</code>) or should be included as is ( <code>true</code>).
      *
      */
-    public static void appendXmlEscaped(StringBuilder buf, String src, boolean supportUTF8) {
+    public static void appendXmlEscaped(final StringBuilder buf, final String src, final boolean supportUTF8) {
         char c;
         int i = 0;
         while (i < src.length()) {
@@ -253,7 +253,7 @@ public final class StringUtil {
      *
      * @return String
      */
-    public static String escapeWhitespace(Object o) {
+    public static String escapeWhitespace(final Object o) {
 
         if (o == null) {
             return null;
@@ -274,7 +274,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#replace(String, String, String)} or {@link StringUtils#replaceChars(String, char, char)}
      */
     @Deprecated
-    public static String replaceString(final String original, char oldChar, final String newString) {
+    public static String replaceString(final String original, final char oldChar, final String newString) {
         int index = original.indexOf(oldChar);
         if (index < 0) {
             return original;
@@ -307,7 +307,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#split(String, char)}
      */
     @Deprecated
-    public static String[] substringsOf(String source, char delimiter) {
+    public static String[] substringsOf(final String source, final char delimiter) {
 
         if (source == null || source.length() == 0) {
             return EMPTY_STRINGS;
@@ -355,7 +355,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#split(String, String)}
      */
     @Deprecated
-    public static String[] substringsOf(String str, String separator) {
+    public static String[] substringsOf(final String str, final String separator) {
 
         if (str == null || str.length() == 0) {
             return EMPTY_STRINGS;
@@ -389,7 +389,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#join(Iterator, String)}
      */
     @Deprecated
-    public static void asStringOn(StringBuffer sb, Iterator<?> iter, String separator) {
+    public static void asStringOn(final StringBuffer sb, final Iterator<?> iter, final String separator) {
 
         if (!iter.hasNext()) {
             return;
@@ -414,7 +414,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#join(Iterable, String)}
      */
     @Deprecated
-    public static void asStringOn(StringBuilder sb, Object[] items, String separator) {
+    public static void asStringOn(final StringBuilder sb, final Object[] items, final String separator) {
 
         if (items == null || items.length == 0) {
             return;
@@ -439,7 +439,7 @@ public final class StringUtil {
      *
      * @return int
      */
-    public static int maxCommonLeadingWhitespaceForAll(String[] strings) {
+    public static int maxCommonLeadingWhitespaceForAll(final String[] strings) {
 
         int shortest = lengthOfShortestIn(strings);
         if (shortest == 0) {
@@ -474,7 +474,7 @@ public final class StringUtil {
      *
      * @return int
      */
-    public static int lengthOfShortestIn(String[] strings) {
+    public static int lengthOfShortestIn(final String[] strings) {
 
         if (CollectionUtil.isEmpty(strings)) {
             return 0;
@@ -502,7 +502,7 @@ public final class StringUtil {
      *
      * @return String[]
      */
-    public static String[] trimStartOn(String[] strings, int trimDepth) {
+    public static String[] trimStartOn(final String[] strings, final int trimDepth) {
 
         if (trimDepth == 0) {
             return strings;
@@ -526,7 +526,7 @@ public final class StringUtil {
      * @deprecated {@link StringUtils#leftPad(String, int)}
      */
     @Deprecated
-    public static String lpad(String s, int length) {
+    public static String lpad(final String s, final int length) {
         String res = s;
         if (length - s.length() > 0) {
             char[] arr = new char[length - s.length()];
@@ -551,8 +551,8 @@ public final class StringUtil {
      *
      * @return <code>true</code> if the Strings are the same, <code>false</code> otherwise.
      */
-    public static boolean isSame(String s1, String s2, boolean trim, boolean ignoreCase,
-                                 boolean standardizeWhitespace) {
+    public static boolean isSame(final String s1, final String s2, final boolean trim, final boolean ignoreCase,
+                                 final boolean standardizeWhitespace) {
         if (s1 == null && s2 == null) {
             return true;
         } else if (s1 == null || s2 == null) {
@@ -582,7 +582,7 @@ public final class StringUtil {
      *
      * @return String
      */
-    public static String asString(Object[] items, String separator) {
+    public static String asString(final Object[] items, final String separator) {
 
         if (items == null || items.length == 0) {
             return "";
@@ -623,7 +623,7 @@ public final class StringUtil {
      *
      * @return The string converted to Camel case
      */
-    public static String toCamelCase(String name) {
+    public static String toCamelCase(final String name) {
         return toCamelCase(name, false);
     }
 
@@ -644,7 +644,7 @@ public final class StringUtil {
      *
      * @return The string converted to Camel case
      */
-    public static String toCamelCase(String name, boolean forceLowerCase) {
+    public static String toCamelCase(final String name, final boolean forceLowerCase) {
         StringBuilder sb = new StringBuilder();
         boolean isFirst = true;
         for (String word : name.trim().split("\\s++")) {
@@ -664,7 +664,7 @@ public final class StringUtil {
      * Replaces unprintable characters by their escaped (or unicode escaped)
      * equivalents in the given string
      */
-    public static String escapeJava(String str) {
+    public static String escapeJava(final String str) {
         StringBuilder retval = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             final char ch = str.charAt(i);

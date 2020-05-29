@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTBlock extends AbstractEcmascriptNode<Block> {
     @Deprecated
     @InternalApi
-    public ASTBlock(Block block) {
+    public ASTBlock(final Block block) {
         super(block);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

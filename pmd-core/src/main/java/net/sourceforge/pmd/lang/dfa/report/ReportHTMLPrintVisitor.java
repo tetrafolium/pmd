@@ -37,14 +37,14 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
 
     private static final String FILE_SEPARATOR = System.getProperty("file.separator");
 
-    public ReportHTMLPrintVisitor(String baseDir) {
+    public ReportHTMLPrintVisitor(final String baseDir) {
         this.baseDir = baseDir;
     }
 
     /**
      * Writes the buffer to file.
      */
-    private void write(String filename, StringBuilder buf) throws IOException {
+    private void write(final String filename, final StringBuilder buf) throws IOException {
         try (BufferedWriter bw = Files.newBufferedWriter(new File(baseDir + FILE_SEPARATOR + filename).toPath(),
                 StandardCharsets.UTF_8)) {
             bw.write(buf.toString(), 0, buf.length());
@@ -54,7 +54,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
     /**
      * Generates a html table with violation information.
      */
-    private String displayRuleViolation(RuleViolation vio) {
+    private String displayRuleViolation(final RuleViolation vio) {
 
         StringBuilder sb = new StringBuilder(200);
         sb.append("<table border=\"0\">");
@@ -76,7 +76,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
     }
 
     // TODO - join the 21st century, include CSS attributes :)
-    private void renderViolationRow(StringBuilder sb, String fieldName, String fieldData) {
+    private void renderViolationRow(final StringBuilder sb, final String fieldName, final String fieldData) {
         sb.append("<tr><td><b>").append(fieldName).append("</b></td><td>").append(fieldData).append("</td></tr>");
     }
 
@@ -87,7 +87,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
      * contains the name(s) of the package.
      */
     @Override
-    public void visit(AbstractReportNode node) {
+    public void visit(final AbstractReportNode node) {
 
         /*
          * The first node of result tree.
@@ -127,7 +127,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
         }
     }
 
-    private void renderViolation(ViolationNode vnode) {
+    private void renderViolation(final ViolationNode vnode) {
 
         vnode.getParent().addNumberOfViolation(1);
         RuleViolation vio = vnode.getRuleViolation();
@@ -135,7 +135,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
                 + "</td>" + "</tr>");
     }
 
-    private void renderPackage(PackageNode pnode) {
+    private void renderPackage(final PackageNode pnode) {
 
         String str;
 
@@ -151,7 +151,7 @@ public class ReportHTMLPrintVisitor extends ReportVisitor {
                 + pnode.getNumberOfViolations() + "</td>" + "</tr>" + PMD.EOL);
     }
 
-    private void renderClass(ClassNode cnode) {
+    private void renderClass(final ClassNode cnode) {
 
         String str = cnode.getClassName();
 

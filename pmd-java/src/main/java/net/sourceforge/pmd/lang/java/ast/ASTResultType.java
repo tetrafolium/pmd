@@ -10,13 +10,13 @@ public class ASTResultType extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTResultType(int id) {
+    public ASTResultType(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTResultType(JavaParser p, int id) {
+    public ASTResultType(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -29,7 +29,7 @@ public class ASTResultType extends AbstractJavaNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

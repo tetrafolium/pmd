@@ -44,7 +44,7 @@ public class MetricFunction implements Function {
 
 
     @Override
-    public Object call(Context context, List args) throws FunctionCallException {
+    public Object call(final Context context, final List args) throws FunctionCallException {
 
         if (args.isEmpty()) {
             throw new IllegalArgumentException(badMetricKeyArgMessage());
@@ -81,7 +81,7 @@ public class MetricFunction implements Function {
     }
 
 
-    public static double getMetric(Node n, String metricKeyName) {
+    public static double getMetric(final Node n, final String metricKeyName) {
         if (n instanceof ASTAnyTypeDeclaration) {
             return computeMetric(getClassMetricKey(metricKeyName), (ASTAnyTypeDeclaration) n);
         } else if (n instanceof MethodLikeNode) {
@@ -91,12 +91,12 @@ public class MetricFunction implements Function {
         }
     }
 
-    private static <T extends Node> double computeMetric(MetricKey<T> metricKey, T n) {
+    private static <T extends Node> double computeMetric(final MetricKey<T> metricKey, final T n) {
         return metricKey.supports(n) ? MetricsUtil.computeMetric(metricKey, n) : Double.NaN;
     }
 
 
-    private static JavaClassMetricKey getClassMetricKey(String s) {
+    private static JavaClassMetricKey getClassMetricKey(final String s) {
         String constantName = s.toUpperCase(Locale.ROOT);
         if (!CLASS_METRIC_KEY_MAP.containsKey(constantName)) {
             throw new IllegalArgumentException(badClassMetricKeyMessage());
@@ -105,7 +105,7 @@ public class MetricFunction implements Function {
     }
 
 
-    private static JavaOperationMetricKey getOperationMetricKey(String s) {
+    private static JavaOperationMetricKey getOperationMetricKey(final String s) {
         String constantName = s.toUpperCase(Locale.ROOT);
         if (!OPERATION_METRIC_KEY_MAP.containsKey(constantName)) {
             throw new IllegalArgumentException(badOperationMetricKeyMessage());

@@ -11,11 +11,11 @@ import net.sourceforge.pmd.lang.modelica.resolver.ModelicaClassType;
  * Common parent for class-specifier nodes, see {@link ModelicaClassSpecifierNode} for public API.
  */
 abstract class AbstractModelicaClassSpecifierNode extends AbstractModelicaNode implements ModelicaClassSpecifierNode {
-    AbstractModelicaClassSpecifierNode(int id) {
+    AbstractModelicaClassSpecifierNode(final int id) {
         super(id);
     }
 
-    AbstractModelicaClassSpecifierNode(ModelicaParser parser, int id) {
+    AbstractModelicaClassSpecifierNode(final ModelicaParser parser, final int id) {
         super(parser, id);
     }
 
@@ -30,11 +30,11 @@ abstract class AbstractModelicaClassSpecifierNode extends AbstractModelicaNode i
      *
      * @param classTypeDeclaration a class declaration object corresponding to this AST node
      */
-    void populateExtendsAndImports(ModelicaClassType classTypeDeclaration) {
+    void populateExtendsAndImports(final ModelicaClassType classTypeDeclaration) {
         // by default, do nothing
     }
 
-    private void pushExtendsAndImportsFromList(ModelicaClassType classTypeDeclaration, ASTElementList listNode) {
+    private void pushExtendsAndImportsFromList(final ModelicaClassType classTypeDeclaration, final ASTElementList listNode) {
         for (int i = 0; i < listNode.getNumChildren(); ++i) {
             AbstractModelicaNode child = (AbstractModelicaNode) listNode.getChild(i);
             if (child instanceof ASTExtendsClause) {
@@ -54,7 +54,7 @@ abstract class AbstractModelicaClassSpecifierNode extends AbstractModelicaNode i
         }
     }
 
-    void pushExtendsAndImports(ModelicaClassType classTypeDeclaration, ASTComposition composition) {
+    void pushExtendsAndImports(final ModelicaClassType classTypeDeclaration, final ASTComposition composition) {
         for (int i = 0; i < composition.getNumChildren(); ++i) {
             ModelicaNode maybeElementList = composition.getChild(i);
             if (maybeElementList instanceof ASTElementList) {

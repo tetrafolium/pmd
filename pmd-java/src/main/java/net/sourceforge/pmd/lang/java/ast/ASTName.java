@@ -13,19 +13,19 @@ public class ASTName extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTName(int id) {
+    public ASTName(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTName(JavaParser p, int id) {
+    public ASTName(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @InternalApi
     @Deprecated
-    public void setNameDeclaration(NameDeclaration nd) {
+    public void setNameDeclaration(final NameDeclaration nd) {
         this.nd = nd;
     }
 
@@ -34,7 +34,7 @@ public class ASTName extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

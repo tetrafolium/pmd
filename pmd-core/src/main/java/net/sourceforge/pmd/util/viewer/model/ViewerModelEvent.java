@@ -41,7 +41,7 @@ public class ViewerModelEvent {
      * @param reason
      *            event's reason
      */
-    public ViewerModelEvent(Object source, int reason) {
+    public ViewerModelEvent(final Object source, final int reason) {
         this(source, reason, null);
     }
 
@@ -55,7 +55,7 @@ public class ViewerModelEvent {
      * @param parameter
      *            parameter object
      */
-    public ViewerModelEvent(Object source, int reason, Object parameter) {
+    public ViewerModelEvent(final Object source, final int reason, final Object parameter) {
         this.source = source;
         this.reason = reason;
         this.parameter = parameter;

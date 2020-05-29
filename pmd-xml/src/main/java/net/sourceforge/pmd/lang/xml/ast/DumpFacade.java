@@ -24,7 +24,7 @@ public class DumpFacade {
     private PrintWriter writer;
     private boolean recurse;
 
-    public void initializeWith(Writer writer, String prefix, boolean recurse, XmlNode node) {
+    public void initializeWith(final Writer writer, final String prefix, final boolean recurse, final XmlNode node) {
         this.writer = writer instanceof PrintWriter ? (PrintWriter) writer : new PrintWriter(writer);
         this.recurse = recurse;
         this.dump(node, prefix);
@@ -35,7 +35,7 @@ public class DumpFacade {
         }
     }
 
-    public Object visit(XmlNode node, Object data) {
+    public Object visit(final XmlNode node, final Object data) {
         dump(node, (String) data);
         if (recurse) {
             for (int i = 0; i < node.getNumChildren(); i++) {
@@ -47,7 +47,7 @@ public class DumpFacade {
         }
     }
 
-    private void dump(XmlNode node, String prefix) {
+    private void dump(final XmlNode node, final String prefix) {
         //
         // Dump format is generally composed of the following items...
         //

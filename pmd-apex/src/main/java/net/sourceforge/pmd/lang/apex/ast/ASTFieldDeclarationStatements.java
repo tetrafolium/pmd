@@ -22,17 +22,17 @@ public class ASTFieldDeclarationStatements extends AbstractApexNode<FieldDeclara
 
     @Deprecated
     @InternalApi
-    public ASTFieldDeclarationStatements(FieldDeclarationStatements fieldDeclarationStatements) {
+    public ASTFieldDeclarationStatements(final FieldDeclarationStatements fieldDeclarationStatements) {
         super(fieldDeclarationStatements);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @Override
-    public boolean hasSuppressWarningsAnnotationFor(Rule rule) {
+    public boolean hasSuppressWarningsAnnotationFor(final Rule rule) {
         for (ASTModifierNode modifier : findChildrenOfType(ASTModifierNode.class)) {
             for (ASTAnnotation a : modifier.findChildrenOfType(ASTAnnotation.class)) {
                 if (a.suppresses(rule)) {
@@ -55,7 +55,7 @@ public class ASTFieldDeclarationStatements extends AbstractApexNode<FieldDeclara
         return null;
     }
 
-    private static String identifiersToString(List<Identifier> identifiers) {
+    private static String identifiersToString(final List<Identifier> identifiers) {
         return identifiers.stream().map(Identifier::getValue).collect(Collectors.joining("."));
     }
 

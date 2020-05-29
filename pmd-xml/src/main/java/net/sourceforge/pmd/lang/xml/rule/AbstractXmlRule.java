@@ -38,7 +38,7 @@ public class AbstractXmlRule extends AbstractRule implements ImmutableLanguage {
         defineProperties();
     }
 
-    protected AbstractXmlRule(Language language) {
+    protected AbstractXmlRule(final Language language) {
         super.setLanguage(language);
         defineProperties();
     }
@@ -59,18 +59,18 @@ public class AbstractXmlRule extends AbstractRule implements ImmutableLanguage {
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Object element : nodes) {
             XmlNode node = (XmlNode) element;
             visit(node, ctx);
         }
     }
 
-    protected void visit(XmlNode node, RuleContext ctx) {
+    protected void visit(final XmlNode node, final RuleContext ctx) {
         final int numChildren = node.getNumChildren();
         for (int i = 0; i < numChildren; i++) {
             XmlNode child = (XmlNode) node.getChild(i);

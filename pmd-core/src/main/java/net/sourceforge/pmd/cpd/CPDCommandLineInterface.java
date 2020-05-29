@@ -37,7 +37,7 @@ public final class CPDCommandLineInterface {
 
     private CPDCommandLineInterface() { }
 
-    public static void setStatusCodeOrExit(int status) {
+    public static void setStatusCodeOrExit(final int status) {
         if (isExitAfterRunSet()) {
             System.exit(status);
         } else {
@@ -53,11 +53,11 @@ public final class CPDCommandLineInterface {
         return noExit == null;
     }
 
-    private static void setStatusCode(int statusCode) {
+    private static void setStatusCode(final int statusCode) {
         System.setProperty(STATUS_CODE_PROPERTY, Integer.toString(statusCode));
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         CPDConfiguration arguments = new CPDConfiguration();
         JCommander jcommander = new JCommander(arguments);
         jcommander.setProgramName(PROGRAM_NAME);
@@ -108,7 +108,7 @@ public final class CPDCommandLineInterface {
         }
     }
 
-    public static void addSourceFilesToCPD(CPD cpd, CPDConfiguration arguments) {
+    public static void addSourceFilesToCPD(final CPD cpd, final CPDConfiguration arguments) {
         // Add files
         if (null != arguments.getFiles() && !arguments.getFiles().isEmpty()) {
             addSourcesFilesToCPD(arguments.getFiles(), cpd, !arguments.isNonRecursive());
@@ -124,7 +124,7 @@ public final class CPDCommandLineInterface {
         }
     }
 
-    private static void addSourcesFilesToCPD(List<File> files, CPD cpd, boolean recursive) {
+    private static void addSourcesFilesToCPD(final List<File> files, final CPD cpd, final boolean recursive) {
         try {
             for (File file : files) {
                 if (!file.exists()) {
@@ -144,7 +144,7 @@ public final class CPDCommandLineInterface {
         }
     }
 
-    private static void addFilesFromFilelist(String inputFilePath, CPD cpd, boolean recursive) {
+    private static void addFilesFromFilelist(final String inputFilePath, final CPD cpd, final boolean recursive) {
         File file = new File(inputFilePath);
         List<File> files = new ArrayList<>();
         try {
@@ -166,7 +166,7 @@ public final class CPDCommandLineInterface {
         }
     }
 
-    private static void addSourceURIToCPD(String uri, CPD cpd) {
+    private static void addSourceURIToCPD(final String uri, final CPD cpd) {
         try {
             LOGGER.fine(String.format("Attempting DBURI=%s", uri));
             DBURI dburi = new DBURI(uri);

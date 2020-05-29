@@ -53,7 +53,7 @@ public class FieldNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         for (ASTVariableDeclaratorId id : node) {
             if (getProperty(EXCLUDED_NAMES).contains(id.getVariableName())) {
                 continue;
@@ -74,7 +74,7 @@ public class FieldNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    public Object visit(ASTEnumConstant node, Object data) {
+    public Object visit(final ASTEnumConstant node, final Object data) {
         // This inlines checkMatches because there's no variable declarator id
 
         if (!getProperty(enumConstantRegex).matcher(node.getImage()).matches()) {
@@ -96,7 +96,7 @@ public class FieldNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    String kindDisplayName(ASTVariableDeclaratorId node, PropertyDescriptor<Pattern> descriptor) {
+    String kindDisplayName(final ASTVariableDeclaratorId node, final PropertyDescriptor<Pattern> descriptor) {
         ASTFieldDeclaration field = (ASTFieldDeclaration) node.getNthParent(2);
 
         if (field.isFinal() && field.isStatic()) {

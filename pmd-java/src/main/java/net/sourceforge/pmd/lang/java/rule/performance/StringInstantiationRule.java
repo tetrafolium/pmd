@@ -29,7 +29,7 @@ public class StringInstantiationRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         if (!(node.getChild(0) instanceof ASTClassOrInterfaceType)) {
             return data;
         }
@@ -70,7 +70,7 @@ public class StringInstantiationRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isArrayAccess(ASTAllocationExpression node) {
+    private boolean isArrayAccess(final ASTAllocationExpression node) {
         ASTArguments arguments = node.getFirstChildOfType(ASTArguments.class);
         if (arguments == null || arguments.size() != 1) {
             return false;

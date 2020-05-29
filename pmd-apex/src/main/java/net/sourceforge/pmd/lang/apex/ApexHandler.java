@@ -47,13 +47,13 @@ public class ApexHandler extends AbstractLanguageVersionHandler {
     }
 
     @Override
-    public Parser getParser(ParserOptions parserOptions) {
+    public Parser getParser(final ParserOptions parserOptions) {
         return new ApexParser(parserOptions);
     }
 
     @Deprecated
     @Override
-    public VisitorStarter getDumpFacade(Writer writer, String prefix, boolean recurse) {
+    public VisitorStarter getDumpFacade(final Writer writer, final String prefix, final boolean recurse) {
         return rootNode -> new DumpFacade().initializeWith(writer, prefix, recurse, (ApexNode<?>) rootNode);
     }
 
@@ -78,7 +78,7 @@ public class ApexHandler extends AbstractLanguageVersionHandler {
 
 
         @Override
-        protected List<ASTMethod> findOps(ASTUserClassOrInterface<?> astUserClassOrInterface) {
+        protected List<ASTMethod> findOps(final ASTUserClassOrInterface<?> astUserClassOrInterface) {
             return ApexMetrics.findOps(astUserClassOrInterface);
         }
 

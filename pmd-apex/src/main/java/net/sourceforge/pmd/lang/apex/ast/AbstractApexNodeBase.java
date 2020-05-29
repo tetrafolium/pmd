@@ -16,11 +16,11 @@ import net.sourceforge.pmd.lang.ast.SourceCodePositioner;
 @InternalApi
 public abstract class AbstractApexNodeBase extends AbstractNode {
 
-    public AbstractApexNodeBase(Class<?> klass) {
+    public AbstractApexNodeBase(final Class<?> klass) {
         super(klass.hashCode());
     }
 
-    /* package */ void calculateLineNumbers(SourceCodePositioner positioner, int startOffset, int endOffset) {
+    /* package */ void calculateLineNumbers(final SourceCodePositioner positioner, final int startOffset, final int endOffset) {
         // end column will be interpreted as inclusive, while endOffset/endIndex
         // is exclusive
         endOffset -= 1;
@@ -43,7 +43,7 @@ public abstract class AbstractApexNodeBase extends AbstractNode {
     /**
      * Accept the visitor. *
      */
-    public Object childrenAccept(ApexParserVisitor visitor, Object data) {
+    public Object childrenAccept(final ApexParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 // we know that the children here are all ApexNodes

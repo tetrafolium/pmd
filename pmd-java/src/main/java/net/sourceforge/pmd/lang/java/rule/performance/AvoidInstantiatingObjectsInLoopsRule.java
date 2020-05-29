@@ -16,22 +16,22 @@ import net.sourceforge.pmd.lang.java.ast.ASTWhileStatement;
 public class AvoidInstantiatingObjectsInLoopsRule extends AbstractOptimizationRule {
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         if (insideLoop(node) && fourthParentNotThrow(node) && fourthParentNotReturn(node)) {
             addViolation(data, node);
         }
         return data;
     }
 
-    private boolean fourthParentNotThrow(ASTAllocationExpression node) {
+    private boolean fourthParentNotThrow(final ASTAllocationExpression node) {
         return !(node.getParent().getParent().getParent().getParent() instanceof ASTThrowStatement);
     }
 
-    private boolean fourthParentNotReturn(ASTAllocationExpression node) {
+    private boolean fourthParentNotReturn(final ASTAllocationExpression node) {
         return !(node.getParent().getParent().getParent().getParent() instanceof ASTReturnStatement);
     }
 
-    private boolean insideLoop(ASTAllocationExpression node) {
+    private boolean insideLoop(final ASTAllocationExpression node) {
         Node n = node.getParent();
         while (n != null) {
             if (n instanceof ASTDoStatement || n instanceof ASTWhileStatement || n instanceof ASTForStatement) {

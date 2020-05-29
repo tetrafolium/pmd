@@ -13,7 +13,7 @@ public final class ModelicaSourceFileScope extends AbstractModelicaScope {
     private final String fileFQCN;
     private final String[] packageComponents;
 
-    ModelicaSourceFileScope(ASTStoredDefinition node) {
+    ModelicaSourceFileScope(final ASTStoredDefinition node) {
         fileFQCN = node.getImage();
         if (fileFQCN.isEmpty()) {
             packageComponents = new String[0];
@@ -25,7 +25,7 @@ public final class ModelicaSourceFileScope extends AbstractModelicaScope {
     /**
      * Resolve <code>name</code> as if not accounting for <code>fileFQCN</code> (as if it would be empty).
      */
-    void lookupLocally(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    void lookupLocally(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         if (name.isEmpty()) {
             // TODO technically, here we should return an implicit package...
             return;
@@ -47,7 +47,7 @@ public final class ModelicaSourceFileScope extends AbstractModelicaScope {
     /**
      * Resolve <code>name</code> accounting for <code>fileFQCN</code>. To be called from {@link RootScope}.
      */
-    void lookupGlobally(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    void lookupGlobally(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         result.watchdogTick();
         CompositeName remainingNameComponents = name.matchPrefix(packageComponents);
         if (remainingNameComponents != null) {
@@ -56,7 +56,7 @@ public final class ModelicaSourceFileScope extends AbstractModelicaScope {
     }
 
     @Override
-    public void resolveLexically(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    public void resolveLexically(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         if (!isInDefaultPackage()) {
             // otherwise we would get it from the RootScope anyway
             lookupLocally(result, name);

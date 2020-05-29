@@ -28,7 +28,7 @@ public final class ClassFanOutMetric {
 
         private final String vName;
 
-        ClassFanOutOption(String valueName) {
+        ClassFanOutOption(final String valueName) {
             this.vName = valueName;
         }
 
@@ -41,7 +41,7 @@ public final class ClassFanOutMetric {
     public static final class ClassFanOutClassMetric extends AbstractJavaClassMetric {
 
         @Override
-        public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+        public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
             MutableInt cfo = (MutableInt) node.jjtAccept(new ClassFanOutVisitor(options, node), new MutableInt(0));
             return (double) cfo.getValue();
         }
@@ -50,12 +50,12 @@ public final class ClassFanOutMetric {
     public static final class ClassFanOutOperationMetric extends AbstractJavaOperationMetric {
 
         @Override
-        public boolean supports(MethodLikeNode node) {
+        public boolean supports(final MethodLikeNode node) {
             return true;
         }
 
         @Override
-        public double computeFor(MethodLikeNode node, MetricOptions options) {
+        public double computeFor(final MethodLikeNode node, final MetricOptions options) {
             MutableInt cfo;
             // look at the parent to catch annotations
             if (node.getParent() instanceof ASTClassOrInterfaceBodyDeclaration) {

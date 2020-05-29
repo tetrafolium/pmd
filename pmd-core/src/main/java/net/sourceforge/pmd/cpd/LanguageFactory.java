@@ -51,7 +51,7 @@ public final class LanguageFactory {
         // across JVM versions / OS.
         Collections.sort(languagesList, new Comparator<Language>() {
             @Override
-            public int compare(Language o1, Language o2) {
+            public int compare(final Language o1, final Language o2) {
                 return o1.getTerseName().compareToIgnoreCase(o2.getTerseName());
             }
         });
@@ -64,11 +64,11 @@ public final class LanguageFactory {
 
     }
 
-    public static Language createLanguage(String language) {
+    public static Language createLanguage(final String language) {
         return createLanguage(language, new Properties());
     }
 
-    public static Language createLanguage(String language, Properties properties) {
+    public static Language createLanguage(final String language, final Properties properties) {
         Language implementation;
         if (BY_EXTENSION.equals(language)) {
             implementation = instance.getLanguageByExtension(properties.getProperty(EXTENSION));
@@ -84,7 +84,7 @@ public final class LanguageFactory {
         return implementation;
     }
 
-    private String languageAliases(String language) {
+    private String languageAliases(final String language) {
         // CPP and C language share the same parser
         if ("c".equals(language)) {
             return "cpp";
@@ -92,7 +92,7 @@ public final class LanguageFactory {
         return language;
     }
 
-    private Language getLanguageByExtension(String extension) {
+    private Language getLanguageByExtension(final String extension) {
         Language result = null;
 
         for (Language language : languages.values()) {

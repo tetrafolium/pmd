@@ -28,7 +28,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class BrokenNullCheckRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         ASTExpression expression = (ASTExpression) node.getChild(0);
 
         ASTConditionalAndExpression conditionalAndExpression = expression
@@ -46,7 +46,7 @@ public class BrokenNullCheckRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private void checkForViolations(ASTIfStatement node, Object data, Node conditionalExpression) {
+    private void checkForViolations(final ASTIfStatement node, final Object data, final Node conditionalExpression) {
         ASTEqualityExpression equalityExpression = conditionalExpression
                 .getFirstChildOfType(ASTEqualityExpression.class);
         if (equalityExpression == null) {
@@ -102,8 +102,8 @@ public class BrokenNullCheckRule extends AbstractJavaRule {
         }
     }
 
-    private boolean primaryExpressionsAreEqual(ASTPrimaryExpression nullCompareVariable,
-            ASTPrimaryExpression expressionUsage) {
+    private boolean primaryExpressionsAreEqual(final ASTPrimaryExpression nullCompareVariable,
+            final ASTPrimaryExpression expressionUsage) {
         List<String> nullCompareNames = new ArrayList<>();
         findExpressionNames(nullCompareVariable, nullCompareNames);
 
@@ -138,7 +138,7 @@ public class BrokenNullCheckRule extends AbstractJavaRule {
      * Find the names of variables, methods and array arguments in a
      * PrimaryExpression.
      */
-    private void findExpressionNames(Node nullCompareVariable, List<String> results) {
+    private void findExpressionNames(final Node nullCompareVariable, final List<String> results) {
         for (int i = 0; i < nullCompareVariable.getNumChildren(); i++) {
             Node child = nullCompareVariable.getChild(i);
 
@@ -168,7 +168,7 @@ public class BrokenNullCheckRule extends AbstractJavaRule {
         }
     }
 
-    private ASTPrimaryExpression findNullCompareExpression(ASTEqualityExpression equalityExpression) {
+    private ASTPrimaryExpression findNullCompareExpression(final ASTEqualityExpression equalityExpression) {
         List<ASTPrimaryExpression> primaryExpressions = equalityExpression
                 .findDescendantsOfType(ASTPrimaryExpression.class);
         for (ASTPrimaryExpression primaryExpression : primaryExpressions) {

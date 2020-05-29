@@ -13,11 +13,11 @@ public class AbstractJspNode extends AbstractJjtreeNode<JspNode> implements JspN
 
     protected JspParser parser;
 
-    public AbstractJspNode(int id) {
+    public AbstractJspNode(final int id) {
         super(id);
     }
 
-    public AbstractJspNode(JspParser parser, int id) {
+    public AbstractJspNode(final JspParser parser, final int id) {
         super(id);
         this.parser = parser;
     }
@@ -46,7 +46,7 @@ public class AbstractJspNode extends AbstractJjtreeNode<JspNode> implements JspN
      * Accept the visitor. *
      */
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -54,7 +54,7 @@ public class AbstractJspNode extends AbstractJjtreeNode<JspNode> implements JspN
      * Accept the visitor. *
      */
     @Override
-    public Object childrenAccept(JspParserVisitor visitor, Object data) {
+    public Object childrenAccept(final JspParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 ((JspNode) children[i]).jjtAccept(visitor, data);

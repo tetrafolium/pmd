@@ -29,7 +29,7 @@ public final class NLS {
      *            key to be translated
      * @return translated string
      */
-    public static String nls(String key) {
+    public static String nls(final String key) {
         return BUNDLE.getString(key);
     }
 }

@@ -22,18 +22,18 @@ public class ASTMethodDeclaration extends AbstractMethodOrConstructorDeclaration
 
     @InternalApi
     @Deprecated
-    public ASTMethodDeclaration(int id) {
+    public ASTMethodDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTMethodDeclaration(JavaParser p, int id) {
+    public ASTMethodDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

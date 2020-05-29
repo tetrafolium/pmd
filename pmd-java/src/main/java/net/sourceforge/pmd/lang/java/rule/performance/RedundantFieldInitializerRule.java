@@ -31,7 +31,7 @@ public class RedundantFieldInitializerRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration fieldDeclaration, Object data) {
+    public Object visit(final ASTFieldDeclaration fieldDeclaration, final Object data) {
         // Finals can only be initialized once.
         if (fieldDeclaration.isFinal()) {
             return data;
@@ -129,7 +129,7 @@ public class RedundantFieldInitializerRule extends AbstractJavaRule {
      * @return <code>true</code> if the field is a reference. <code>false</code>
      *         otherwise.
      */
-    private boolean isRef(ASTFieldDeclaration fieldDeclaration, ASTVariableDeclarator variableDeclarator) {
+    private boolean isRef(final ASTFieldDeclaration fieldDeclaration, final ASTVariableDeclarator variableDeclarator) {
         Node type = fieldDeclaration.getChild(0).getChild(0);
         if (type instanceof ASTReferenceType) {
             // Reference type, array or otherwise
@@ -140,7 +140,7 @@ public class RedundantFieldInitializerRule extends AbstractJavaRule {
         }
     }
 
-    private void addViolation(Object data, ASTVariableDeclarator variableDeclarator) {
+    private void addViolation(final Object data, final ASTVariableDeclarator variableDeclarator) {
         super.addViolation(data, variableDeclarator, variableDeclarator.getChild(0).getImage());
     }
 }

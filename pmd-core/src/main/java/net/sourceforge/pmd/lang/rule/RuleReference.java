@@ -59,14 +59,14 @@ public class RuleReference extends AbstractDelegateRule {
      * @param theRule the referenced rule
      * @param theRuleSetReference the rule set, where the rule is defined
      */
-    public RuleReference(Rule theRule, RuleSetReference theRuleSetReference) {
+    public RuleReference(final Rule theRule, final RuleSetReference theRuleSetReference) {
         setRule(theRule);
         ruleSetReference = theRuleSetReference;
     }
 
 
     /** copy constructor */
-    private RuleReference(RuleReference ref) {
+    private RuleReference(final RuleReference ref) {
 
         this.language = ref.language;
         this.minimumLanguageVersion = ref.minimumLanguageVersion;
@@ -92,7 +92,7 @@ public class RuleReference extends AbstractDelegateRule {
     // FIXME should we really allow overriding the language of a rule?
     // I don't see any case where this wouldn't just make the rule fail during execution
     @Override
-    public void setLanguage(Language language) {
+    public void setLanguage(final Language language) {
         // Only override if different than current value, or if already
         // overridden.
         if (!Objects.equals(language, super.getLanguage()) || this.language != null) {
@@ -106,7 +106,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setMinimumLanguageVersion(LanguageVersion minimumLanguageVersion) {
+    public void setMinimumLanguageVersion(final LanguageVersion minimumLanguageVersion) {
         // Only override if different than current value, or if already
         // overridden.
         if (!Objects.equals(minimumLanguageVersion, super.getMinimumLanguageVersion()) || this.minimumLanguageVersion != null) {
@@ -120,7 +120,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setMaximumLanguageVersion(LanguageVersion maximumLanguageVersion) {
+    public void setMaximumLanguageVersion(final LanguageVersion maximumLanguageVersion) {
         // Only override if different than current value, or if already
         // overridden.
         if (!Objects.equals(maximumLanguageVersion, super.getMaximumLanguageVersion()) || this.maximumLanguageVersion != null) {
@@ -139,7 +139,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setDeprecated(boolean deprecated) {
+    public void setDeprecated(final boolean deprecated) {
         // Deprecation does not propagate to the underlying Rule. It is the
         // Rule reference itself which is being deprecated.
         this.deprecated = deprecated ? deprecated : null;
@@ -154,7 +154,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         // Only override if different than current value, or if already
         // overridden.
         if (!isSame(name, super.getName()) || this.name != null) {
@@ -175,7 +175,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         // Only override if different than current value, or if already
         // overridden.
         if (!isSame(message, super.getMessage()) || this.message != null) {
@@ -189,7 +189,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         // Only override if different than current value, or if already
         // overridden.
         if (!isSame(description, super.getDescription()) || this.description != null) {
@@ -203,7 +203,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void addExample(String example) {
+    public void addExample(final String example) {
         // TODO Intuitively, if some examples are overridden (even with empty value), then
         // I think we should discard the previous ones. If the rule needs new examples,
         // then the previous ones are not relevant.
@@ -235,7 +235,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setExternalInfoUrl(String externalInfoUrl) {
+    public void setExternalInfoUrl(final String externalInfoUrl) {
         // Only override if different than current value, or if already
         // overridden.
         if (!isSame(externalInfoUrl, super.getExternalInfoUrl()) || this.externalInfoUrl != null) {
@@ -249,7 +249,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void setPriority(RulePriority priority) {
+    public void setPriority(final RulePriority priority) {
         // Only override if different than current value, or if already
         // overridden.
         if (priority != super.getPriority() || this.priority != null) {
@@ -266,7 +266,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public void definePropertyDescriptor(PropertyDescriptor<?> propertyDescriptor) throws IllegalArgumentException {
+    public void definePropertyDescriptor(final PropertyDescriptor<?> propertyDescriptor) throws IllegalArgumentException {
         // Define on the underlying Rule, where it is impossible to have two
         // property descriptors with the same name. Therefore, there is no need
         // to check if the property is already overridden at this level.
@@ -284,7 +284,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public <T> void setProperty(PropertyDescriptor<T> propertyDescriptor, T value) {
+    public <T> void setProperty(final PropertyDescriptor<T> propertyDescriptor, final T value) {
         // Only override if different than current value.
         if (!Objects.equals(super.getProperty(propertyDescriptor), value)) {
             if (propertyValues == null) {
@@ -305,16 +305,16 @@ public class RuleReference extends AbstractDelegateRule {
      * @deprecated There's no use in setting the ruleset reference after construction
      */
     @Deprecated
-    public void setRuleSetReference(RuleSetReference ruleSetReference) {
+    public void setRuleSetReference(final RuleSetReference ruleSetReference) {
         this.ruleSetReference = ruleSetReference;
     }
 
-    private static boolean isSame(String s1, String s2) {
+    private static boolean isSame(final String s1, final String s2) {
         return StringUtil.isSame(s1, s2, true, false, true);
     }
 
 
-    private static boolean contains(Collection<String> collection, String s1) {
+    private static boolean contains(final Collection<String> collection, final String s1) {
         for (String s2 : collection) {
             if (isSame(s1, s2)) {
                 return true;
@@ -324,7 +324,7 @@ public class RuleReference extends AbstractDelegateRule {
     }
 
     @Override
-    public boolean hasDescriptor(PropertyDescriptor<?> descriptor) {
+    public boolean hasDescriptor(final PropertyDescriptor<?> descriptor) {
         return propertyDescriptors != null && propertyDescriptors.contains(descriptor)
                 || super.hasDescriptor(descriptor);
     }
@@ -333,12 +333,12 @@ public class RuleReference extends AbstractDelegateRule {
      * @deprecated Use {@link #isPropertyOverridden(PropertyDescriptor)} instead
      */
     @Deprecated
-    public boolean hasOverriddenProperty(PropertyDescriptor<?> descriptor) {
+    public boolean hasOverriddenProperty(final PropertyDescriptor<?> descriptor) {
         return isPropertyOverridden(descriptor);
     }
 
     @Override
-    public boolean isPropertyOverridden(PropertyDescriptor<?> descriptor) {
+    public boolean isPropertyOverridden(final PropertyDescriptor<?> descriptor) {
         return propertyValues != null && propertyValues.containsKey(descriptor);
     }
 
@@ -362,7 +362,7 @@ public class RuleReference extends AbstractDelegateRule {
 
     @Override
     @Deprecated
-    public void useDefaultValueFor(PropertyDescriptor<?> desc) {
+    public void useDefaultValueFor(final PropertyDescriptor<?> desc) {
 
         // not sure if we should go all the way through to the real thing?
         getRule().useDefaultValueFor(desc);

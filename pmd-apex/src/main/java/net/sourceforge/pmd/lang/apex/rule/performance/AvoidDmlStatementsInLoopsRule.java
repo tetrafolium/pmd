@@ -29,7 +29,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlDeleteStatement node, Object data) {
+    public Object visit(final ASTDmlDeleteStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
@@ -37,7 +37,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlInsertStatement node, Object data) {
+    public Object visit(final ASTDmlInsertStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
@@ -45,7 +45,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlMergeStatement node, Object data) {
+    public Object visit(final ASTDmlMergeStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
@@ -53,7 +53,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlUndeleteStatement node, Object data) {
+    public Object visit(final ASTDmlUndeleteStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
@@ -61,7 +61,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlUpdateStatement node, Object data) {
+    public Object visit(final ASTDmlUpdateStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
@@ -69,14 +69,14 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTDmlUpsertStatement node, Object data) {
+    public Object visit(final ASTDmlUpsertStatement node, final Object data) {
         if (insideLoop(node)) {
             addViolation(data, node);
         }
         return data;
     }
 
-    private boolean insideLoop(AbstractNode node) {
+    private boolean insideLoop(final AbstractNode node) {
         Node n = node.getParent();
 
         while (n != null) {

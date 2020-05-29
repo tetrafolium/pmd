@@ -9,13 +9,13 @@ import apex.jorje.semantic.ast.statement.WhenCases.IdentifierCase;
 public final class ASTIdentifierCase extends AbstractApexNode<IdentifierCase> {
 
 
-    ASTIdentifierCase(IdentifierCase node) {
+    ASTIdentifierCase(final IdentifierCase node) {
         super(node);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

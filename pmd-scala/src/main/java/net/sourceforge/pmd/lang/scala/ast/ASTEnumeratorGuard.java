@@ -15,12 +15,12 @@ public class ASTEnumeratorGuard extends AbstractScalaNode<Enumerator.Guard> {
 
     @Deprecated
     @InternalApi
-    public ASTEnumeratorGuard(Enumerator.Guard scalaNode) {
+    public ASTEnumeratorGuard(final Enumerator.Guard scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

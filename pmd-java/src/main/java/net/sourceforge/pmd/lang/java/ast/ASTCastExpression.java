@@ -12,19 +12,19 @@ public class ASTCastExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTCastExpression(int id) {
+    public ASTCastExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTCastExpression(JavaParser p, int id) {
+    public ASTCastExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @InternalApi
     @Deprecated
-    public void setIntersectionTypes(boolean intersectionTypes) {
+    public void setIntersectionTypes(final boolean intersectionTypes) {
         this.intersectionTypes = intersectionTypes;
     }
 
@@ -33,7 +33,7 @@ public class ASTCastExpression extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

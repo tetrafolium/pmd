@@ -51,12 +51,12 @@ public interface DesignerBindings {
         private final String display;
 
 
-        public AdditionalInfo(String sortKey, String display) {
+        public AdditionalInfo(final String sortKey, final String display) {
             this.sortKey = sortKey;
             this.display = display;
         }
 
-        public AdditionalInfo(String display) {
+        public AdditionalInfo(final String display) {
             this(display, display);
         }
 
@@ -143,12 +143,12 @@ public interface DesignerBindings {
         }
 
         @Override
-        public Collection<AdditionalInfo> getAdditionalInfo(Node node) {
+        public Collection<AdditionalInfo> getAdditionalInfo(final Node node) {
             return Collections.emptyList();
         }
 
         @Override
-        public Attribute getMainAttribute(Node node) {
+        public Attribute getMainAttribute(final Node node) {
             String image = node.getImage();
             if (image != null) {
                 return new Attribute(node, "Image", image);
@@ -157,12 +157,12 @@ public interface DesignerBindings {
         }
 
         @Override
-        public boolean isExpandedByDefaultInTree(Node node) {
+        public boolean isExpandedByDefaultInTree(final Node node) {
             return true;
         }
 
         @Override
-        public TreeIconId getIcon(Node node) {
+        public TreeIconId getIcon(final Node node) {
             return null;
         }
 

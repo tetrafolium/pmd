@@ -15,12 +15,12 @@ public class ASTLitLong extends AbstractScalaNode<Lit.Long> {
 
     @Deprecated
     @InternalApi
-    public ASTLitLong(Lit.Long scalaNode) {
+    public ASTLitLong(final Lit.Long scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

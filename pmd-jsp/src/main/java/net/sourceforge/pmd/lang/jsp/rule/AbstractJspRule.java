@@ -49,11 +49,11 @@ public abstract class AbstractJspRule extends AbstractRule implements JspParserV
     }
 
     @Override
-    public void apply(List<? extends Node> nodes, RuleContext ctx) {
+    public void apply(final List<? extends Node> nodes, final RuleContext ctx) {
         visitAll(nodes, ctx);
     }
 
-    protected void visitAll(List<? extends Node> nodes, RuleContext ctx) {
+    protected void visitAll(final List<? extends Node> nodes, final RuleContext ctx) {
         for (Object element : nodes) {
             JspNode node = (JspNode) element;
             visit(node, ctx);
@@ -67,7 +67,7 @@ public abstract class AbstractJspRule extends AbstractRule implements JspParserV
     //
 
     @Override
-    public Object visit(JspNode node, Object data) {
+    public Object visit(final JspNode node, final Object data) {
         for (JspNode child : node.children()) {
             child.jjtAccept(this, data);
         }
@@ -75,112 +75,112 @@ public abstract class AbstractJspRule extends AbstractRule implements JspParserV
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTContent node, Object data) {
+    public Object visit(final ASTContent node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspDirective node, Object data) {
+    public Object visit(final ASTJspDirective node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspDirectiveAttribute node, Object data) {
+    public Object visit(final ASTJspDirectiveAttribute node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspScriptlet node, Object data) {
+    public Object visit(final ASTJspScriptlet node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspExpression node, Object data) {
+    public Object visit(final ASTJspExpression node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspDeclaration node, Object data) {
+    public Object visit(final ASTJspDeclaration node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspComment node, Object data) {
+    public Object visit(final ASTJspComment node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTText node, Object data) {
+    public Object visit(final ASTText node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnparsedText node, Object data) {
+    public Object visit(final ASTUnparsedText node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElExpression node, Object data) {
+    public Object visit(final ASTElExpression node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTValueBinding node, Object data) {
+    public Object visit(final ASTValueBinding node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCData node, Object data) {
+    public Object visit(final ASTCData node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElement node, Object data) {
+    public Object visit(final ASTElement node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttribute node, Object data) {
+    public Object visit(final ASTAttribute node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttributeValue node, Object data) {
+    public Object visit(final ASTAttributeValue node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTJspExpressionInAttribute node, Object data) {
+    public Object visit(final ASTJspExpressionInAttribute node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCommentTag node, Object data) {
+    public Object visit(final ASTCommentTag node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeclaration node, Object data) {
+    public Object visit(final ASTDeclaration node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDoctypeDeclaration node, Object data) {
+    public Object visit(final ASTDoctypeDeclaration node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDoctypeExternalId node, Object data) {
+    public Object visit(final ASTDoctypeExternalId node, final Object data) {
         return visit((JspNode) node, data);
     }
 
     @Override
-    public Object visit(ASTHtmlScript node, Object data) {
+    public Object visit(final ASTHtmlScript node, final Object data) {
         return visit((JspNode) node, data);
     }
 }

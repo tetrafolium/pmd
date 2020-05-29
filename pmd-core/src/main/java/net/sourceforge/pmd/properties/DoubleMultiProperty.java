@@ -37,15 +37,15 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
      * @deprecated use {@link PropertyFactory#doubleListProperty(String)}
      */
     @Deprecated
-    public DoubleMultiProperty(String theName, String theDescription, Double min, Double max,
-                               Double[] defaultValues, float theUIOrder) {
+    public DoubleMultiProperty(final String theName, final String theDescription, final Double min, final Double max,
+                               final Double[] defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, Arrays.asList(defaultValues), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private DoubleMultiProperty(String theName, String theDescription, Double min, Double max,
-                                List<Double> defaultValues, float theUIOrder, boolean isDefinedExternally) {
+    private DoubleMultiProperty(final String theName, final String theDescription, final Double min, final Double max,
+                                final List<Double> defaultValues, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, min, max, defaultValues, theUIOrder, isDefinedExternally);
     }
 
@@ -64,8 +64,8 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
      * @deprecated use {@link PropertyFactory#doubleListProperty(String)}
      */
     @Deprecated
-    public DoubleMultiProperty(String theName, String theDescription, Double min, Double max,
-                               List<Double> defaultValues, float theUIOrder) {
+    public DoubleMultiProperty(final String theName, final String theDescription, final Double min, final Double max,
+                               final List<Double> defaultValues, final float theUIOrder) {
         this(theName, theDescription, min, max, defaultValues, theUIOrder, false);
     }
 
@@ -77,7 +77,7 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
 
 
     @Override
-    protected Double createFrom(String value) {
+    protected Double createFrom(final String value) {
         return Double.valueOf(value);
     }
 
@@ -85,7 +85,7 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
     static PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Double, DoubleMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Numeric<Double, DoubleMultiPBuilder>(Double.class, ValueParserConstants.DOUBLE_PARSER) {
             @Override
-            protected DoubleMultiPBuilder newBuilder(String name) {
+            protected DoubleMultiPBuilder newBuilder(final String name) {
                 return new DoubleMultiPBuilder(name);
             }
         };
@@ -93,7 +93,7 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
 
     /** @deprecated use {@link PropertyFactory#doubleListProperty(String)} */
     @Deprecated
-    public static DoubleMultiPBuilder named(String name) {
+    public static DoubleMultiPBuilder named(final String name) {
         return new DoubleMultiPBuilder(name);
     }
 
@@ -101,7 +101,7 @@ public final class DoubleMultiProperty extends AbstractMultiNumericProperty<Doub
     /** @deprecated use {@link PropertyFactory#doubleListProperty(String)} */
     @Deprecated
     public static final class DoubleMultiPBuilder extends MultiNumericPropertyBuilder<Double, DoubleMultiPBuilder> {
-        private DoubleMultiPBuilder(String name) {
+        private DoubleMultiPBuilder(final String name) {
             super(name);
         }
 

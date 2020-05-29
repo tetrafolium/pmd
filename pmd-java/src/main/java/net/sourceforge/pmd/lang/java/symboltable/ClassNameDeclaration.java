@@ -11,7 +11,7 @@ import net.sourceforge.pmd.lang.symboltable.AbstractNameDeclaration;
 
 public class ClassNameDeclaration extends AbstractNameDeclaration implements TypedNameDeclaration {
 
-    public ClassNameDeclaration(JavaNode node) {
+    public ClassNameDeclaration(final JavaNode node) {
         super(node);
     }
 

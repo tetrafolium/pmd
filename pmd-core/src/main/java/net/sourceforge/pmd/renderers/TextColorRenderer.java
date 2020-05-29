@@ -105,7 +105,7 @@ public class TextColorRenderer extends AbstractAccumulatingRenderer {
         }
     }
 
-    private boolean isPropertyEnabled(String property) {
+    private boolean isPropertyEnabled(final String property) {
         return property != null && !("0".equals(property) || "false".equalsIgnoreCase(property));
     }
 
@@ -191,7 +191,7 @@ public class TextColorRenderer extends AbstractAccumulatingRenderer {
      *            line number to extract
      * @return a trimmed line of source code
      */
-    private String getLine(String sourceFile, int line) {
+    private String getLine(final String sourceFile, final int line) {
         String code = null;
         try (BufferedReader br = new BufferedReader(getReader(sourceFile))) {
             for (int i = 0; line > i; i++) {
@@ -204,7 +204,7 @@ public class TextColorRenderer extends AbstractAccumulatingRenderer {
         return code;
     }
 
-    protected Reader getReader(String sourceFile) throws FileNotFoundException {
+    protected Reader getReader(final String sourceFile) throws FileNotFoundException {
         try {
             return Files.newBufferedReader(new File(sourceFile).toPath(), Charset.defaultCharset());
         } catch (IOException e) {
@@ -223,7 +223,7 @@ public class TextColorRenderer extends AbstractAccumulatingRenderer {
      *            well, the file with its original path.
      * @return the relative path to the file
      */
-    private String getRelativePath(String fileName) {
+    private String getRelativePath(final String fileName) {
         String relativePath;
 
         // check if working directory need to be assigned

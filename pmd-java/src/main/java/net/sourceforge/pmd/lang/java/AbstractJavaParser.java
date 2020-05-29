@@ -30,19 +30,19 @@ import net.sourceforge.pmd.lang.java.ast.ParseException;
 public abstract class AbstractJavaParser extends AbstractParser {
     private JavaParser parser;
 
-    public AbstractJavaParser(ParserOptions parserOptions) {
+    public AbstractJavaParser(final ParserOptions parserOptions) {
         super(parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return new JavaTokenManager(source);
     }
 
     /**
      * Subclass should override this method to modify the JavaParser as needed.
      */
-    protected JavaParser createJavaParser(Reader source) throws ParseException {
+    protected JavaParser createJavaParser(final Reader source) throws ParseException {
         parser = new JavaParser(new JavaCharStream(source));
         String suppressMarker = getParserOptions().getSuppressMarker();
         if (suppressMarker != null) {
@@ -57,7 +57,7 @@ public abstract class AbstractJavaParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         AbstractTokenManager.setFileName(fileName);
         return createJavaParser(source).CompilationUnit();
     }

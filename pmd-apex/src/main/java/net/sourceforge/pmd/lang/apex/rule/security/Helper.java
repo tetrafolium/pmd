@@ -136,18 +136,18 @@ public final class Helper {
         return net.sourceforge.pmd.lang.apex.rule.internal.Helper.getFQVariableName(variable);
     }
 
-    static boolean isSystemLevelClass(ASTUserClass node) {
+    static boolean isSystemLevelClass(final ASTUserClass node) {
         return net.sourceforge.pmd.lang.apex.rule.internal.Helper.isSystemLevelClass(node);
     }
 
     @Deprecated
-    public static String getFQVariableName(Parameter p) {
+    public static String getFQVariableName(final Parameter p) {
         StringBuilder sb = new StringBuilder();
         sb.append(p.getDefiningType()).append(":").append(p.getName().getValue());
         return sb.toString();
     }
 
-    static String getFQVariableName(ASTParameter p) {
+    static String getFQVariableName(final ASTParameter p) {
         return net.sourceforge.pmd.lang.apex.rule.internal.Helper.getFQVariableName(p);
     }
 

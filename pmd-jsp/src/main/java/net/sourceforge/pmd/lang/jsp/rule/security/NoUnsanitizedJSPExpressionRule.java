@@ -16,7 +16,7 @@ import net.sourceforge.pmd.lang.jsp.rule.AbstractJspRule;
  */
 public class NoUnsanitizedJSPExpressionRule extends AbstractJspRule {
     @Override
-    public Object visit(ASTElExpression node, Object data) {
+    public Object visit(final ASTElExpression node, final Object data) {
         if (elOutsideTaglib(node)) {
             addViolation(data, node);
         }
@@ -24,7 +24,7 @@ public class NoUnsanitizedJSPExpressionRule extends AbstractJspRule {
         return super.visit(node, data);
     }
 
-    private boolean elOutsideTaglib(ASTElExpression node) {
+    private boolean elOutsideTaglib(final ASTElExpression node) {
         ASTElement parentASTElement = node.getFirstParentOfType(ASTElement.class);
 
         boolean elInTaglib = parentASTElement != null && parentASTElement.getName() != null

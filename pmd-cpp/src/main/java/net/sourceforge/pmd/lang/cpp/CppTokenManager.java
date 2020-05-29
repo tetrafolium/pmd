@@ -26,7 +26,7 @@ public class CppTokenManager implements TokenManager {
      * @param source
      *            the source code
      */
-    public CppTokenManager(Reader source) {
+    public CppTokenManager(final Reader source) {
         tokenManager = new CppParserTokenManager(new CppCharStream(source));
     }
 
@@ -36,7 +36,7 @@ public class CppTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         CppParserTokenManager.setFileName(fileName);
     }
 }

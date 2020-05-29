@@ -15,12 +15,12 @@ public class ASTTypeApply extends AbstractScalaNode<Type.Apply> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeApply(Type.Apply scalaNode) {
+    public ASTTypeApply(final Type.Apply scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTPrimaryPrefix extends net.sourceforge.pmd.lang.plsql.ast.AbstractPLSQLNode {
     @Deprecated
     @InternalApi
-    public ASTPrimaryPrefix(int id) {
+    public ASTPrimaryPrefix(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTPrimaryPrefix(PLSQLParser p, int id) {
+    public ASTPrimaryPrefix(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

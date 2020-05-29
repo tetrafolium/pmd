@@ -9,13 +9,13 @@ import apex.jorje.semantic.ast.statement.WhenCases.LiteralCase;
 public final class ASTLiteralCase extends AbstractApexNode<LiteralCase> {
 
 
-    ASTLiteralCase(LiteralCase node) {
+    ASTLiteralCase(final LiteralCase node) {
         super(node);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

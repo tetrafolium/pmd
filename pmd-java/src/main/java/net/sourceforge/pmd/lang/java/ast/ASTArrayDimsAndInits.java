@@ -12,18 +12,18 @@ public class ASTArrayDimsAndInits extends AbstractJavaNode implements Dimensiona
 
     @InternalApi
     @Deprecated
-    public ASTArrayDimsAndInits(int id) {
+    public ASTArrayDimsAndInits(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTArrayDimsAndInits(JavaParser p, int id) {
+    public ASTArrayDimsAndInits(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

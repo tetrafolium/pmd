@@ -12,13 +12,13 @@ public class ASTDeclaration extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public ASTDeclaration(int id) {
+    public ASTDeclaration(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTDeclaration(VfParser p, int id) {
+    public ASTDeclaration(final VfParser p, final int id) {
         super(p, id);
     }
 
@@ -28,12 +28,12 @@ public class ASTDeclaration extends AbstractVFNode {
 
     @Deprecated
     @InternalApi
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

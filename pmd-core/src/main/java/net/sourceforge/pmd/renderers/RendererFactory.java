@@ -58,7 +58,7 @@ public final class RendererFactory {
      *            Initialization properties for the corresponding Renderer.
      * @return A Renderer instance.
      */
-    public static Renderer createRenderer(String reportFormat, Properties properties) {
+    public static Renderer createRenderer(final String reportFormat, final Properties properties) {
         Class<? extends Renderer> rendererClass = getRendererClass(reportFormat);
         Constructor<? extends Renderer> constructor = getRendererConstructor(rendererClass);
 
@@ -100,7 +100,7 @@ public final class RendererFactory {
     }
 
     @SuppressWarnings("unchecked")
-    private static Class<? extends Renderer> getRendererClass(String reportFormat) {
+    private static Class<? extends Renderer> getRendererClass(final String reportFormat) {
         Class<? extends Renderer> rendererClass = REPORT_FORMAT_TO_RENDERER.get(reportFormat);
 
         // Look up a custom renderer class
@@ -120,7 +120,7 @@ public final class RendererFactory {
         return rendererClass;
     }
 
-    private static Constructor<? extends Renderer> getRendererConstructor(Class<? extends Renderer> rendererClass) {
+    private static Constructor<? extends Renderer> getRendererConstructor(final Class<? extends Renderer> rendererClass) {
         Constructor<? extends Renderer> constructor = null;
 
         // 1) Properties constructor? - deprecated

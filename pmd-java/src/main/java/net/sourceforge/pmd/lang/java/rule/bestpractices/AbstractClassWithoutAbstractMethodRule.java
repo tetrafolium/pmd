@@ -20,7 +20,7 @@ public class AbstractClassWithoutAbstractMethodRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (!node.isAbstract() || doesExtend(node) || doesImplement(node)) {
             return data;
         }
@@ -40,11 +40,11 @@ public class AbstractClassWithoutAbstractMethodRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean doesExtend(ASTClassOrInterfaceDeclaration node) {
+    private boolean doesExtend(final ASTClassOrInterfaceDeclaration node) {
         return node.getFirstChildOfType(ASTExtendsList.class) != null;
     }
 
-    private boolean doesImplement(ASTClassOrInterfaceDeclaration node) {
+    private boolean doesImplement(final ASTClassOrInterfaceDeclaration node) {
         return node.getFirstChildOfType(ASTImplementsList.class) != null;
     }
 }

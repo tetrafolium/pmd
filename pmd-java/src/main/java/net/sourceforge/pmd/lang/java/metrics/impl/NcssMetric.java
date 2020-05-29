@@ -30,7 +30,7 @@ public final class NcssMetric {
         private final String vName;
 
 
-        NcssOption(String valueName) {
+        NcssOption(final String valueName) {
             this.vName = valueName;
         }
 
@@ -44,13 +44,13 @@ public final class NcssMetric {
     public static final class NcssClassMetric extends AbstractJavaClassMetric {
 
         @Override
-        public boolean supports(ASTAnyTypeDeclaration node) {
+        public boolean supports(final ASTAnyTypeDeclaration node) {
             return true;
         }
 
 
         @Override
-        public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+        public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
             MutableInt ncss = (MutableInt) node.jjtAccept(new NcssVisitor(options, node), new MutableInt(0));
             return (double) ncss.getValue();
         }
@@ -60,13 +60,13 @@ public final class NcssMetric {
     public static final class NcssOperationMetric extends AbstractJavaOperationMetric {
 
         @Override
-        public boolean supports(MethodLikeNode node) {
+        public boolean supports(final MethodLikeNode node) {
             return true;
         }
 
 
         @Override
-        public double computeFor(MethodLikeNode node, MetricOptions options) {
+        public double computeFor(final MethodLikeNode node, final MetricOptions options) {
             MutableInt ncss = (MutableInt) node.jjtAccept(new NcssVisitor(options, node), new MutableInt(0));
             return (double) ncss.getValue();
         }

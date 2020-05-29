@@ -43,7 +43,7 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
         return "html";
     }
 
-    private void addViolation(RuleViolation violation) {
+    private void addViolation(final RuleViolation violation) {
         String packageName = violation.getPackageName();
 
         // report each part of the package name: e.g. net.sf.pmd.test will create nodes for
@@ -99,7 +99,7 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
                 + (outputDir == null ? "above the project directory" : "in '" + outputDir + '\'') + ".</h3>" + PMD.EOL);
     }
 
-    private void renderIndex(String outputDir) throws IOException {
+    private void renderIndex(final String outputDir) throws IOException {
         try (PrintWriter out = new PrintWriter(Files.newBufferedWriter(new File(outputDir, "index.html").toPath(), StandardCharsets.UTF_8))) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -138,7 +138,7 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
         }
     }
 
-    private void renderClasses(String outputDir) throws IOException {
+    private void renderClasses(final String outputDir) throws IOException {
         for (ReportNode node : reportNodesByPackage.values()) {
             if (node.hasViolations()) {
                 try (PrintWriter out = new PrintWriter(Files.newBufferedWriter(new File(outputDir, node.getClassName() + ".html").toPath(), StandardCharsets.UTF_8))) {
@@ -187,7 +187,7 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
         }
     }
 
-    private String renderViolationRow(String name, String value) {
+    private String renderViolationRow(final String name, final String value) {
         StringBuilder row = new StringBuilder(40 + name.length() + value.length());
         row.append("<tr><td><b>")
             .append(name)
@@ -207,12 +207,12 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
         private int violationCount;
         private final List<RuleViolation> violations = new LinkedList<>();
 
-        ReportNode(String packageName) {
+        ReportNode(final String packageName) {
             this.packageName = packageName;
             this.className = "-";
         }
 
-        ReportNode(String packageName, String className) {
+        ReportNode(final String packageName, final String className) {
             this.packageName = packageName;
             this.className = className;
         }
@@ -221,7 +221,7 @@ public class YAHTMLRenderer extends AbstractAccumulatingRenderer {
             violationCount++;
         }
 
-        public void addRuleViolation(RuleViolation violation) {
+        public void addRuleViolation(final RuleViolation violation) {
             violations.add(violation);
         }
 

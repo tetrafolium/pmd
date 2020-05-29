@@ -25,7 +25,7 @@ public class ColumnDescriptor<T extends Object> {
         String get(int idx, T violation, String lineSeparator);
     }
 
-    public ColumnDescriptor(String theId, String theTitle, Accessor<T> theAccessor) {
+    public ColumnDescriptor(final String theId, final String theTitle, final Accessor<T> theAccessor) {
         id = theId;
         title = theTitle;
         accessor = theAccessor;

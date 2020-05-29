@@ -10,18 +10,18 @@ public class ASTSwitchLabeledBlock extends AbstractJavaNode implements ASTSwitch
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledBlock(int id) {
+    ASTSwitchLabeledBlock(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledBlock(JavaParser p, int id) {
+    ASTSwitchLabeledBlock(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -29,39 +29,39 @@ public abstract class AbstractLanguageMetricsProvider<T extends QualifiableNode,
     private final Class<O> oClass;
 
 
-    protected AbstractLanguageMetricsProvider(Class<T> tClass,
-                                              Class<O> oClass) {
+    protected AbstractLanguageMetricsProvider(final Class<T> tClass,
+                                              final Class<O> oClass) {
         this.tClass = tClass;
         this.oClass = oClass;
     }
 
 
     @Override
-    public T asTypeNode(Node anyNode) {
+    public T asTypeNode(final Node anyNode) {
         return tClass.isInstance(anyNode) ? tClass.cast(anyNode) : null;
     }
 
 
     @Override
-    public O asOperationNode(Node anyNode) {
+    public O asOperationNode(final Node anyNode) {
         return oClass.isInstance(anyNode) ? oClass.cast(anyNode) : null;
     }
 
 
     @Override
-    public double computeForType(MetricKey<T> key, T node, MetricOptions options) {
+    public double computeForType(final MetricKey<T> key, final T node, final MetricOptions options) {
         return MetricsUtil.computeMetric(key, node, options, true);
     }
 
 
     @Override
-    public double computeForOperation(MetricKey<O> key, O node, MetricOptions options) {
+    public double computeForOperation(final MetricKey<O> key, final O node, final MetricOptions options) {
         return MetricsUtil.computeMetric(key, node, options, true);
     }
 
 
     @Override
-    public double computeWithResultOption(MetricKey<O> key, T node, MetricOptions options, ResultOption resultOption) {
+    public double computeWithResultOption(final MetricKey<O> key, final T node, final MetricOptions options, final ResultOption resultOption) {
         return MetricsUtil.computeAggregate(key, findOps(node), options, resultOption);
     }
 
@@ -69,7 +69,7 @@ public abstract class AbstractLanguageMetricsProvider<T extends QualifiableNode,
 
 
     @Override
-    public Map<MetricKey<?>, Double> computeAllMetricsFor(Node node) {
+    public Map<MetricKey<?>, Double> computeAllMetricsFor(final Node node) {
         Map<MetricKey<?>, Double> results = new HashMap<>();
         T t = asTypeNode(node);
         if (t != null) {

@@ -10,18 +10,18 @@ public class ASTSwitchExpression extends AbstractJavaTypeNode {
 
     @Deprecated
     @InternalApi
-    ASTSwitchExpression(int id) {
+    ASTSwitchExpression(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    ASTSwitchExpression(JavaParser p, int id) {
+    ASTSwitchExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

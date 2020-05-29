@@ -17,11 +17,11 @@ import net.sourceforge.pmd.lang.modelica.resolver.Watchdog;
 abstract class AbstractModelicaImportClause extends AbstractModelicaNode implements ModelicaImportClause {
     private ResolutionResult<ModelicaDeclaration> importSourcesCache;
 
-    AbstractModelicaImportClause(int id) {
+    AbstractModelicaImportClause(final int id) {
         super(id);
     }
 
-    AbstractModelicaImportClause(ModelicaParser parser, int id) {
+    AbstractModelicaImportClause(final ModelicaParser parser, final int id) {
         super(parser, id);
     }
 
@@ -52,7 +52,7 @@ abstract class AbstractModelicaImportClause extends AbstractModelicaNode impleme
      * @param simpleName Name to resolve
      * @throws Watchdog.CountdownException if too many resolution steps were performed
      */
-    final void resolveSimpleName(ResolutionContext result, String simpleName) throws Watchdog.CountdownException {
+    final void resolveSimpleName(final ResolutionContext result, final String simpleName) throws Watchdog.CountdownException {
         // No need to re-resolve if already resolved successfully
         if (importSourcesCache == null || importSourcesCache.wasTimedOut()) {
             importSourcesCache = getCacheableImportSources(result.getState(), getMostSpecificScope().getParent());

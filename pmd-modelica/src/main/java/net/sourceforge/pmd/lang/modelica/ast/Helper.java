@@ -14,7 +14,7 @@ final class Helper {
     }
 
     // For Rule Designer
-    static String getResolvedTo(ResolutionResult<ResolvableEntity> result) {
+    static String getResolvedTo(final ResolutionResult<ResolvableEntity> result) {
         List<ResolvableEntity> decls = result.getBestCandidates();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < decls.size(); ++i) {

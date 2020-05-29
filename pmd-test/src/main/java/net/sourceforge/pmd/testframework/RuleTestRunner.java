@@ -37,14 +37,14 @@ public class RuleTestRunner extends ParentRunner<TestDescriptor> {
     private ConcurrentHashMap<TestDescriptor, Description> testDescriptions = new ConcurrentHashMap<>();
     private final RuleTst instance;
 
-    public RuleTestRunner(Class<? extends RuleTst> testClass) throws InitializationError {
+    public RuleTestRunner(final Class<? extends RuleTst> testClass) throws InitializationError {
         super(testClass);
         instance = createTestClass();
         instance.setUp();
     }
 
     @Override
-    protected Description describeChild(TestDescriptor testCase) {
+    protected Description describeChild(final TestDescriptor testCase) {
         Description description = testDescriptions.get(testCase);
         if (description == null) {
             description = Description.createTestDescription(getTestClass().getJavaClass(),
@@ -69,7 +69,7 @@ public class RuleTestRunner extends ParentRunner<TestDescriptor> {
         List<Rule> rules = new ArrayList<>(instance.getRules());
         Collections.sort(rules, new Comparator<Rule>() {
             @Override
-            public int compare(Rule o1, Rule o2) {
+            public int compare(final Rule o1, final Rule o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         });
@@ -94,7 +94,7 @@ public class RuleTestRunner extends ParentRunner<TestDescriptor> {
     }
 
     @Override
-    protected void runChild(TestDescriptor testCase, RunNotifier notifier) {
+    protected void runChild(final TestDescriptor testCase, final RunNotifier notifier) {
         Description description = describeChild(testCase);
         if (isIgnored(testCase)) {
             notifier.fireTestIgnored(description);
@@ -123,23 +123,23 @@ public class RuleTestRunner extends ParentRunner<TestDescriptor> {
         return statement;
     }
 
-    private Statement withBefores(Statement statement) {
+    private Statement withBefores(final Statement statement) {
         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(Before.class);
         return befores.isEmpty() ? statement : new RunBefores(statement, befores, instance);
     }
 
-    private Statement withAfters(Statement statement) {
+    private Statement withAfters(final Statement statement) {
         List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(After.class);
         return afters.isEmpty() ? statement : new RunAfters(statement, afters, instance);
     }
 
-    private Statement withRules(final TestDescriptor testCase, Statement statement) {
+    private Statement withRules(final TestDescriptor testCase, final Statement statement) {
         List<TestRule> testRules = getTestClass().getAnnotatedFieldValues(instance, org.junit.Rule.class, TestRule.class);
         return testRules.isEmpty() ? statement : new RunRules(statement, testRules, describeChild(testCase));
     }
 
     @Override
-    protected boolean isIgnored(TestDescriptor child) {
+    protected boolean isIgnored(final TestDescriptor child) {
         return TestDescriptor.inRegressionTestMode() && !child.isRegressionTest();
     }
 }

@@ -37,7 +37,7 @@ import java.util.logging.Logger;
     private static final Logger LOG = Logger.getLogger(JavaTypeDefinitionSimple.class.getName());
     private static final JavaTypeDefinition[] NO_GENERICS = {};
 
-    protected JavaTypeDefinitionSimple(Class<?> clazz, JavaTypeDefinition... boundGenerics) {
+    protected JavaTypeDefinitionSimple(final Class<?> clazz, final JavaTypeDefinition... boundGenerics) {
         super(EXACT);
         this.clazz = clazz;
 
@@ -91,8 +91,8 @@ import java.util.logging.Logger;
         return isGeneric;
     }
 
-    private JavaTypeDefinition getGenericType(final String parameterName, Method method,
-                                              List<JavaTypeDefinition> methodTypeArguments) {
+    private JavaTypeDefinition getGenericType(final String parameterName, final Method method,
+                                              final List<JavaTypeDefinition> methodTypeArguments) {
         if (method != null && methodTypeArguments != null) {
             int paramIndex = getGenericTypeIndex(method.getTypeParameters(), parameterName);
             if (paramIndex != -1) {
@@ -157,8 +157,8 @@ import java.util.logging.Logger;
     }
 
     @Override
-    public JavaTypeDefinition resolveTypeDefinition(final Type type, Method method,
-                                                    List<JavaTypeDefinition> methodTypeArgs) {
+    public JavaTypeDefinition resolveTypeDefinition(final Type type, final Method method,
+                                                    final List<JavaTypeDefinition> methodTypeArgs) {
         if (type == null) {
             // Without more info, this is all we can tell...
             return forClass(Object.class);
@@ -219,7 +219,7 @@ import java.util.logging.Logger;
     }
 
 
-    private Class<?> getElementTypeRec(Class<?> arrayType) {
+    private Class<?> getElementTypeRec(final Class<?> arrayType) {
         return arrayType.isArray() ? getElementTypeRec(arrayType.getComponentType()) : arrayType;
     }
 
@@ -231,7 +231,7 @@ import java.util.logging.Logger;
 
 
     @Override
-    public JavaTypeDefinition withDimensions(int numDimensions) {
+    public JavaTypeDefinition withDimensions(final int numDimensions) {
         if (numDimensions < 0) {
             throw new IllegalArgumentException("Negative array dimension");
         }
@@ -255,13 +255,13 @@ import java.util.logging.Logger;
         return clazz.isPrimitive();
     }
 
-    public boolean equivalent(JavaTypeDefinition def) {
+    public boolean equivalent(final JavaTypeDefinition def) {
         // TODO: JavaTypeDefinition generic equality
         return clazz.equals(def.getType()) && getTypeParameterCount() == def.getTypeParameterCount();
     }
 
     @Override
-    public boolean hasSameErasureAs(JavaTypeDefinition def) {
+    public boolean hasSameErasureAs(final JavaTypeDefinition def) {
         return clazz == def.getType();
     }
 
@@ -303,7 +303,7 @@ import java.util.logging.Logger;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (!(obj instanceof JavaTypeDefinitionSimple)) {
             return false;
         }
@@ -346,7 +346,7 @@ import java.util.logging.Logger;
     }
 
     @Override
-    protected Set<JavaTypeDefinition> getSuperTypeSet(Set<JavaTypeDefinition> destinationSet) {
+    protected Set<JavaTypeDefinition> getSuperTypeSet(final Set<JavaTypeDefinition> destinationSet) {
         destinationSet.add(this);
 
         if (this.clazz != Object.class) {
@@ -368,7 +368,7 @@ import java.util.logging.Logger;
         return getErasedSuperTypeSet(this.clazz, result);
     }
 
-    private static Set<Class<?>> getErasedSuperTypeSet(Class<?> clazz, Set<Class<?>> destinationSet) {
+    private static Set<Class<?>> getErasedSuperTypeSet(final Class<?> clazz, final Set<Class<?>> destinationSet) {
         if (clazz != null) {
             destinationSet.add(clazz);
             getErasedSuperTypeSet(clazz.getSuperclass(), destinationSet);
@@ -383,7 +383,7 @@ import java.util.logging.Logger;
 
 
     @Override
-    public JavaTypeDefinition getAsSuper(Class<?> superClazz) {
+    public JavaTypeDefinition getAsSuper(final Class<?> superClazz) {
         if (Objects.equals(clazz, superClazz)) { // optimize for same class calls
             return this;
         }
@@ -398,7 +398,7 @@ import java.util.logging.Logger;
     }
 
     @Override
-    public JavaTypeDefinition getJavaType(int index) {
+    public JavaTypeDefinition getJavaType(final int index) {
         if (index == 0) {
             return this;
         } else {

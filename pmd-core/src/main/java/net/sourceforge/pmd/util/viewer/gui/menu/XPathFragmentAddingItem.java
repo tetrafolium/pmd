@@ -31,7 +31,7 @@ public class XPathFragmentAddingItem extends JMenuItem implements ActionListener
      * @param fragment
      *            XPath expression fragment to be added upon action
      */
-    public XPathFragmentAddingItem(String caption, ViewerModel model, String fragment) {
+    public XPathFragmentAddingItem(final String caption, final ViewerModel model, final String fragment) {
         super(caption);
         this.model = model;
         this.fragment = fragment;
@@ -42,7 +42,7 @@ public class XPathFragmentAddingItem extends JMenuItem implements ActionListener
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         model.appendToXPathExpression(fragment, this);
     }
 }

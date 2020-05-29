@@ -15,12 +15,12 @@ public class ASTEnumeratorVal extends AbstractScalaNode<Enumerator.Val> {
 
     @Deprecated
     @InternalApi
-    public ASTEnumeratorVal(Enumerator.Val scalaNode) {
+    public ASTEnumeratorVal(final Enumerator.Val scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

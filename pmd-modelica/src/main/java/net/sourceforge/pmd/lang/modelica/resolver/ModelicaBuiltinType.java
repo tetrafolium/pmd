@@ -18,7 +18,7 @@ public class ModelicaBuiltinType implements ModelicaType {
 
         private final String name;
 
-        BaseType(String name) {
+        BaseType(final String name) {
             this.name = name;
         }
 
@@ -34,7 +34,7 @@ public class ModelicaBuiltinType implements ModelicaType {
 
     private final BaseType baseType;
 
-    ModelicaBuiltinType(BaseType tpe) {
+    ModelicaBuiltinType(final BaseType tpe) {
         baseType = tpe;
     }
 

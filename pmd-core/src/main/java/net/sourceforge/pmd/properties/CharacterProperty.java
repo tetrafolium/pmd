@@ -33,13 +33,13 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
      * @deprecated Use {@link PropertyFactory#charProperty(String)}
      */
     @Deprecated
-    public CharacterProperty(String theName, String theDescription, String defaultStr, float theUIOrder) {
+    public CharacterProperty(final String theName, final String theDescription, final String defaultStr, final float theUIOrder) {
         this(theName, theDescription, charFrom(defaultStr), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private CharacterProperty(String theName, String theDescription, Character theDefault, float theUIOrder, boolean isDefinedExternally) {
+    private CharacterProperty(final String theName, final String theDescription, final Character theDefault, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theDefault, theUIOrder, isDefinedExternally);
     }
 
@@ -54,7 +54,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
      * @deprecated Use {@link PropertyFactory#charProperty(String)}
      */
     @Deprecated
-    public CharacterProperty(String theName, String theDescription, Character theDefault, float theUIOrder) {
+    public CharacterProperty(final String theName, final String theDescription, final Character theDefault, final float theUIOrder) {
         this(theName, theDescription, theDefault, theUIOrder, false);
     }
 
@@ -66,7 +66,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
 
 
     @Override
-    public Character createFrom(String valueString) throws IllegalArgumentException {
+    public Character createFrom(final String valueString) throws IllegalArgumentException {
         return charFrom(valueString);
     }
 
@@ -79,7 +79,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
      * @return Parsed Character
      * @throws IllegalArgumentException if the String doesn't have length 1
      */
-    public static Character charFrom(String charStr) {
+    public static Character charFrom(final String charStr) {
         return CHARACTER_PARSER.valueOf(charStr);
     }
 
@@ -87,7 +87,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
     static PropertyDescriptorBuilderConversionWrapper.SingleValue<Character, CharacterPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.SingleValue<Character, CharacterPBuilder>(Character.class, ValueParserConstants.CHARACTER_PARSER) {
             @Override
-            protected CharacterPBuilder newBuilder(String name) {
+            protected CharacterPBuilder newBuilder(final String name) {
                 return new CharacterPBuilder(name);
             }
         };
@@ -98,7 +98,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
      * @deprecated Use {@link PropertyFactory#charProperty(String)}
      */
     @Deprecated
-    public static CharacterPBuilder named(String name) {
+    public static CharacterPBuilder named(final String name) {
         return new CharacterPBuilder(name);
     }
 
@@ -108,7 +108,7 @@ public final class CharacterProperty extends AbstractSingleValueProperty<Charact
      */
     @Deprecated
     public static final class CharacterPBuilder extends SingleValuePropertyBuilder<Character, CharacterPBuilder> {
-        private CharacterPBuilder(String name) {
+        private CharacterPBuilder(final String name) {
             super(name);
         }
 

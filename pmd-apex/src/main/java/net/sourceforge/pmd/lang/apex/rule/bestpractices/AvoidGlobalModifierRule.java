@@ -23,16 +23,16 @@ public class AvoidGlobalModifierRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         return checkForGlobal(node, data);
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         return checkForGlobal(node, data);
     }
 
-    private Object checkForGlobal(ApexNode<?> node, Object data) {
+    private Object checkForGlobal(final ApexNode<?> node, final Object data) {
         ASTModifierNode modifierNode = node.getFirstChildOfType(ASTModifierNode.class);
 
         if (isGlobal(modifierNode) && !hasRestAnnotation(modifierNode) && !hasWebServices(node)) {
@@ -46,7 +46,7 @@ public class AvoidGlobalModifierRule extends AbstractApexRule {
         return data;
     }
 
-    private boolean hasWebServices(ApexNode<?> node) {
+    private boolean hasWebServices(final ApexNode<?> node) {
         List<ASTMethod> methods = node.findChildrenOfType(ASTMethod.class);
         for (ASTMethod method : methods) {
             ASTModifierNode methodModifier = method.getFirstChildOfType(ASTModifierNode.class);
@@ -57,15 +57,15 @@ public class AvoidGlobalModifierRule extends AbstractApexRule {
         return false;
     }
 
-    private boolean isWebService(ASTModifierNode modifierNode) {
+    private boolean isWebService(final ASTModifierNode modifierNode) {
         return modifierNode != null && modifierNode.isWebService();
     }
 
-    private boolean isGlobal(ASTModifierNode modifierNode) {
+    private boolean isGlobal(final ASTModifierNode modifierNode) {
         return modifierNode != null && modifierNode.isGlobal();
     }
 
-    private boolean hasRestAnnotation(ASTModifierNode modifierNode) {
+    private boolean hasRestAnnotation(final ASTModifierNode modifierNode) {
         List<ASTAnnotation> annotations = modifierNode.findChildrenOfType(ASTAnnotation.class);
         for (ASTAnnotation annotation : annotations) {
             if (annotation.hasImageEqualTo("RestResource")) {

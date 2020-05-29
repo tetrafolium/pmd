@@ -27,7 +27,7 @@ public class LocalVariableCouldBeFinalRule extends AbstractOptimizationRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         if (node.isFinal()) {
             return data;
         }

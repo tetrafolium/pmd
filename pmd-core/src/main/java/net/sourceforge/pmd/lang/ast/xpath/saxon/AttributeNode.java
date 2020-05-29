@@ -37,7 +37,7 @@ public class AttributeNode extends BaseNodeInfo {
      * @param parent Parent elemtn
      * @param id     The index within the attribute order
      */
-    public AttributeNode(ElementNode parent, Attribute attribute, int id) {
+    public AttributeNode(final ElementNode parent, final Attribute attribute, final int id) {
         super(Type.ATTRIBUTE, parent.getNamePool(), attribute.getName(), parent);
         this.attribute = attribute;
         this.id = id;
@@ -78,7 +78,7 @@ public class AttributeNode extends BaseNodeInfo {
     }
 
     @Override
-    public int compareOrder(NodeInfo other) {
+    public int compareOrder(final NodeInfo other) {
 
         return Integer.signum(this.id - ((AttributeNode) other).id);
     }

@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTContinueStatement extends AbstractEcmascriptNode<ContinueStatement> {
     @Deprecated
     @InternalApi
-    public ASTContinueStatement(ContinueStatement continueStatement) {
+    public ASTContinueStatement(final ContinueStatement continueStatement) {
         super(continueStatement);
         super.setImage(continueStatement.getLabel() != null ? continueStatement.getLabel().getIdentifier() : null);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

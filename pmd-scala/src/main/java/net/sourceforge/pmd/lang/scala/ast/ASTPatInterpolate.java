@@ -15,12 +15,12 @@ public class ASTPatInterpolate extends AbstractScalaNode<Pat.Interpolate> {
 
     @Deprecated
     @InternalApi
-    public ASTPatInterpolate(Pat.Interpolate scalaNode) {
+    public ASTPatInterpolate(final Pat.Interpolate scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

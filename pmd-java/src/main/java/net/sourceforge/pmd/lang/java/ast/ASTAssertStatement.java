@@ -19,18 +19,18 @@ public class ASTAssertStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTAssertStatement(int id) {
+    public ASTAssertStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAssertStatement(JavaParser p, int id) {
+    public ASTAssertStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

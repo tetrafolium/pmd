@@ -287,7 +287,7 @@ public class RuleSetReferenceId {
         return result;
     }
 
-    private static boolean isHttpUrl(String name) {
+    private static boolean isHttpUrl(final String name) {
         String stripped = StringUtils.strip(name);
         if (stripped == null) {
             return false;
@@ -296,7 +296,7 @@ public class RuleSetReferenceId {
         return stripped.startsWith("http://") || stripped.startsWith("https://");
     }
 
-    private static boolean isValidUrl(String name) {
+    private static boolean isValidUrl(final String name) {
         if (isHttpUrl(name)) {
             String url = StringUtils.strip(name);
             try {
@@ -316,7 +316,7 @@ public class RuleSetReferenceId {
         return false;
     }
 
-    private static boolean isFullRuleSetName(String name) {
+    private static boolean isFullRuleSetName(final String name) {
 
         return name != null && name.endsWith(".xml");
     }
@@ -329,7 +329,7 @@ public class RuleSetReferenceId {
      *            A comma separated list of RuleSet reference IDs.
      * @return The corresponding List of RuleSetReferenceId instances.
      */
-    public static List<RuleSetReferenceId> parse(String referenceString) {
+    public static List<RuleSetReferenceId> parse(final String referenceString) {
         List<RuleSetReferenceId> references = new ArrayList<>();
         if (referenceString != null && referenceString.trim().length() > 0) {
 

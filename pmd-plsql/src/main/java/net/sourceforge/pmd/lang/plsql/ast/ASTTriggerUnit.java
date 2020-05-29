@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.dfa.DFAGraphMethod;
 public class ASTTriggerUnit extends AbstractPLSQLNode implements ExecutableCode, OracleObject, DFAGraphMethod {
     @Deprecated
     @InternalApi
-    public ASTTriggerUnit(int id) {
+    public ASTTriggerUnit(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTTriggerUnit(PLSQLParser p, int id) {
+    public ASTTriggerUnit(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -10,7 +10,7 @@ public class Mark implements Comparable<Mark> {
     private int lineCount;
     private SourceCode code;
 
-    public Mark(TokenEntry token) {
+    public Mark(final TokenEntry token) {
         this.token = token;
     }
 
@@ -52,11 +52,11 @@ public class Mark implements Comparable<Mark> {
         return this.lineCount;
     }
 
-    public void setLineCount(int lineCount) {
+    public void setLineCount(final int lineCount) {
         this.lineCount = lineCount;
     }
 
-    public void setEndToken(TokenEntry endToken) {
+    public void setEndToken(final TokenEntry endToken) {
         this.endToken = endToken;
     }
 
@@ -64,7 +64,7 @@ public class Mark implements Comparable<Mark> {
         return this.code.getSlice(getBeginLine(), getEndLine());
     }
 
-    public void setSourceCode(SourceCode code) {
+    public void setSourceCode(final SourceCode code) {
         this.code = code;
     }
 
@@ -77,7 +77,7 @@ public class Mark implements Comparable<Mark> {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
@@ -99,7 +99,7 @@ public class Mark implements Comparable<Mark> {
     }
 
     @Override
-    public int compareTo(Mark other) {
+    public int compareTo(final Mark other) {
         return getToken().compareTo(other.getToken());
     }
 }

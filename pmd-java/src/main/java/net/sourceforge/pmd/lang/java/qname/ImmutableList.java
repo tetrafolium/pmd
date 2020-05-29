@@ -158,7 +158,7 @@ interface ImmutableList<E> extends List<E> {
          *
          * @see String#split(String)
          */
-        static ImmutableList<String> split(String input, String regex) {
+        static ImmutableList<String> split(final String input, final String regex) {
             return split(input, regex, 0);
         }
 
@@ -178,7 +178,7 @@ interface ImmutableList<E> extends List<E> {
          *
          * @see String#split(String, int)
          */
-        static ImmutableList<String> split(String input, String regex, int limit) {
+        static ImmutableList<String> split(final String input, final String regex, final int limit) {
             // this was adapted from Pattern.split
             int index = 0;
             boolean matchLimited = limit > 0;
@@ -250,7 +250,7 @@ interface ImmutableList<E> extends List<E> {
         }
 
 
-        private static <E> ImmutableList<E> fromArray(E[] arr) {
+        private static <E> ImmutableList<E> fromArray(final E[] arr) {
             ImmutableList<E> cur = emptyList();
             if (arr != null) {
                 for (E item : arr) {
@@ -271,7 +271,7 @@ interface ImmutableList<E> extends List<E> {
          * @return A list containing the given elements.
          */
         @SafeVarargs
-        static <E> ImmutableList<E> make(E... elems) {
+        static <E> ImmutableList<E> make(final E... elems) {
             return fromArray(elems);
         }
 
@@ -284,49 +284,49 @@ interface ImmutableList<E> extends List<E> {
         private abstract static class AbstractImmutableList<E> implements ImmutableList<E> {
 
             @Override
-            public boolean add(E e) {
+            public boolean add(final E e) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public boolean addAll(Collection<? extends E> c) {
+            public boolean addAll(final Collection<? extends E> c) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public boolean addAll(int index, Collection<? extends E> c) {
+            public boolean addAll(final int index, final Collection<? extends E> c) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public void add(int index, E element) {
+            public void add(final int index, final E element) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public boolean remove(Object o) {
+            public boolean remove(final Object o) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public boolean removeAll(Collection<?> c) {
+            public boolean removeAll(final Collection<?> c) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public E remove(int index) {
+            public E remove(final int index) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public boolean retainAll(Collection<?> c) {
+            public boolean retainAll(final Collection<?> c) {
                 throw new UnsupportedOperationException();
             }
 
@@ -344,12 +344,12 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public ListIterator<E> listIterator(int index) {
+            public ListIterator<E> listIterator(final int index) {
                 throw new UnsupportedOperationException();
             }
 
             @Override
-            public <T> T[] toArray(T[] a) {
+            public <T> T[] toArray(final T[] a) {
                 return toList().toArray(a);
             }
 
@@ -360,25 +360,25 @@ interface ImmutableList<E> extends List<E> {
             }
 
             @Override
-            public final AbstractImmutableList<E> prepend(E elem) {
+            public final AbstractImmutableList<E> prepend(final E elem) {
                 return new ListNode<>(elem, this);
             }
 
 
             @Override
-            public E set(int index, E element) {
+            public E set(final int index, final E element) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public List<E> subList(int fromIndex, int toIndex) {
+            public List<E> subList(final int fromIndex, final int toIndex) {
                 throw new UnsupportedOperationException();
             }
 
 
             @Override
-            public final <T> ImmutableList<Entry<E, T>> zip(ImmutableList<T> right) {
+            public final <T> ImmutableList<Entry<E, T>> zip(final ImmutableList<T> right) {
                 Iterator<E> thisIt = this.iterator();
                 Iterator<T> rightIt = right.iterator();
                 ImmutableList<Entry<E, T>> result = emptyList();
@@ -410,7 +410,7 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public E get(int i) {
+            public E get(final int i) {
                 throw new IndexOutOfBoundsException("Empty list!");
             }
 
@@ -446,25 +446,25 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public boolean contains(Object item) {
+            public boolean contains(final Object item) {
                 return false;
             }
 
 
             @Override
-            public boolean containsAll(Collection<?> c) {
+            public boolean containsAll(final Collection<?> c) {
                 return false;
             }
 
 
             @Override
-            public int indexOf(Object o) {
+            public int indexOf(final Object o) {
                 return -1;
             }
 
 
             @Override
-            public int lastIndexOf(Object o) {
+            public int lastIndexOf(final Object o) {
                 return -1;
             }
 
@@ -493,7 +493,7 @@ interface ImmutableList<E> extends List<E> {
             private SoftReference<ImmutableList<E>> reverseCache;
 
 
-            private ListNode(E head, AbstractImmutableList<E> tail) {
+            private ListNode(final E head, final AbstractImmutableList<E> tail) {
                 this.head = head;
                 this.tail = tail;
                 this.size = tail.isEmpty() ? 1 : tail.size() + 1;
@@ -525,7 +525,7 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public E get(int i) {
+            public E get(final int i) {
                 if (i < 0 || i > size()) {
                     throw new IndexOutOfBoundsException();
                 }
@@ -572,13 +572,13 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public boolean contains(Object o) {
+            public boolean contains(final Object o) {
                 return Objects.equals(head(), o) || tail.contains(o);
             }
 
 
             @Override
-            public boolean containsAll(Collection<?> c) {
+            public boolean containsAll(final Collection<?> c) {
                 for (Object o : c) {
                     if (!contains(o)) {
                         return false;
@@ -589,7 +589,7 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public int indexOf(Object o) {
+            public int indexOf(final Object o) {
                 int i = 0;
                 for (E e : this) {
                     if (Objects.equals(e, o)) {
@@ -602,7 +602,7 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public int lastIndexOf(Object o) {
+            public int lastIndexOf(final Object o) {
                 int i = reverse().indexOf(o);
                 return i < 0 ? i : size() - i - 1;
             }
@@ -623,7 +623,7 @@ interface ImmutableList<E> extends List<E> {
 
 
             @Override
-            public boolean equals(Object o) {
+            public boolean equals(final Object o) {
                 if (this == o) {
                     return true;
                 }
@@ -647,7 +647,7 @@ interface ImmutableList<E> extends List<E> {
                 ImmutableList<E> current;
 
 
-                NodeIterator(ImmutableList<E> start) {
+                NodeIterator(final ImmutableList<E> start) {
                     current = start;
                 }
 

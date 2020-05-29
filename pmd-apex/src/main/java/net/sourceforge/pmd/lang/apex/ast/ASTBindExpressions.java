@@ -12,12 +12,12 @@ public class ASTBindExpressions extends AbstractApexNode<BindExpressions> {
 
     @Deprecated
     @InternalApi
-    public ASTBindExpressions(BindExpressions bindExpressions) {
+    public ASTBindExpressions(final BindExpressions bindExpressions) {
         super(bindExpressions);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -34,14 +34,14 @@ public final class BooleanMultiProperty extends AbstractMultiValueProperty<Boole
      * @deprecated Not useful, will be removed with 7.0.0
      */
     @Deprecated
-    public BooleanMultiProperty(String theName, String theDescription, Boolean[] defaultValues, float theUIOrder) {
+    public BooleanMultiProperty(final String theName, final String theDescription, final Boolean[] defaultValues, final float theUIOrder) {
         this(theName, theDescription, Arrays.asList(defaultValues), theUIOrder, false);
     }
 
 
     /** Master constructor. */
-    private BooleanMultiProperty(String theName, String theDescription, List<Boolean> defaultValues,
-                                 float theUIOrder, boolean isDefinedExternally) {
+    private BooleanMultiProperty(final String theName, final String theDescription, final List<Boolean> defaultValues,
+                                 final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValues, theUIOrder, isDefinedExternally);
     }
 
@@ -57,13 +57,13 @@ public final class BooleanMultiProperty extends AbstractMultiValueProperty<Boole
      * @deprecated Not useful, will be removed with 7.0.0
      */
     @Deprecated
-    public BooleanMultiProperty(String theName, String theDescription, List<Boolean> defaultValues, float theUIOrder) {
+    public BooleanMultiProperty(final String theName, final String theDescription, final List<Boolean> defaultValues, final float theUIOrder) {
         this(theName, theDescription, defaultValues, theUIOrder, false);
     }
 
 
     @Override
-    protected Boolean createFrom(String toParse) {
+    protected Boolean createFrom(final String toParse) {
         return BOOLEAN_PARSER.valueOf(toParse);
     }
 
@@ -77,7 +77,7 @@ public final class BooleanMultiProperty extends AbstractMultiValueProperty<Boole
     static PropertyDescriptorBuilderConversionWrapper.MultiValue<Boolean, BooleanMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue<Boolean, BooleanMultiPBuilder>(Boolean.class, ValueParserConstants.BOOLEAN_PARSER) {
             @Override
-            protected BooleanMultiPBuilder newBuilder(String name) {
+            protected BooleanMultiPBuilder newBuilder(final String name) {
                 return new BooleanMultiPBuilder(name);
             }
         };
@@ -88,7 +88,7 @@ public final class BooleanMultiProperty extends AbstractMultiValueProperty<Boole
      * @deprecated Not useful, will be removed with 7.0.0
      */
     @Deprecated
-    public static BooleanMultiPBuilder named(String name) {
+    public static BooleanMultiPBuilder named(final String name) {
         return new BooleanMultiPBuilder(name);
     }
 
@@ -98,7 +98,7 @@ public final class BooleanMultiProperty extends AbstractMultiValueProperty<Boole
      */
     @Deprecated
     public static final class BooleanMultiPBuilder extends MultiValuePropertyBuilder<Boolean, BooleanMultiPBuilder> {
-        private BooleanMultiPBuilder(String name) {
+        private BooleanMultiPBuilder(final String name) {
             super(name);
         }
 

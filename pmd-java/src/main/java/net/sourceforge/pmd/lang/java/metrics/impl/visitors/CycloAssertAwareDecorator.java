@@ -21,7 +21,7 @@ import net.sourceforge.pmd.lang.java.ast.JavaParserVisitorDecorator;
 public class CycloAssertAwareDecorator extends JavaParserVisitorDecorator {
 
     @Override
-    public Object visit(ASTAssertStatement node, Object data) {
+    public Object visit(final ASTAssertStatement node, final Object data) {
         ((MutableInt) data).add(2); // equivalent to if (condition) { throw .. }
         return data;
     }

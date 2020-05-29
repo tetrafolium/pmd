@@ -43,13 +43,13 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
 @Deprecated
 public class JavaRuleViolation extends ParametricRuleViolation<JavaNode> {
 
-    public JavaRuleViolation(Rule rule, RuleContext ctx, JavaNode node, String message, int beginLine, int endLine) {
+    public JavaRuleViolation(final Rule rule, final RuleContext ctx, final JavaNode node, final String message, final int beginLine, final int endLine) {
         this(rule, ctx, node, message);
 
         setLines(beginLine, endLine);
     }
 
-    public JavaRuleViolation(Rule rule, RuleContext ctx, JavaNode node, String message) {
+    public JavaRuleViolation(final Rule rule, final RuleContext ctx, final JavaNode node, final String message) {
         super(rule, ctx, node, message);
 
         if (node != null) {
@@ -84,7 +84,7 @@ public class JavaRuleViolation extends ParametricRuleViolation<JavaNode> {
      * @deprecated Is internal API, not useful, there's a typo. See <a href="https://github.com/pmd/pmd/pull/1927">#1927</a>
      */
     @Deprecated
-    public static boolean isSupressed(Node node, Rule rule) {
+    public static boolean isSupressed(final Node node, final Rule rule) {
         boolean result = suppresses(node, rule);
 
         if (!result && node instanceof ASTCompilationUnit) {
@@ -102,7 +102,7 @@ public class JavaRuleViolation extends ParametricRuleViolation<JavaNode> {
         return result;
     }
 
-    private void setClassNameFrom(JavaNode node) {
+    private void setClassNameFrom(final JavaNode node) {
         String qualifiedName = null;
 
         if (node instanceof ASTAnyTypeDeclaration && node.getScope() instanceof ClassScope) {
@@ -150,12 +150,12 @@ public class JavaRuleViolation extends ParametricRuleViolation<JavaNode> {
         }
     }
 
-    private static boolean suppresses(final Node node, Rule rule) {
+    private static boolean suppresses(final Node node, final Rule rule) {
         return node instanceof CanSuppressWarnings
                 && ((CanSuppressWarnings) node).hasSuppressWarningsAnnotationFor(rule);
     }
 
-    private String getVariableNames(Iterable<ASTVariableDeclaratorId> iterable) {
+    private String getVariableNames(final Iterable<ASTVariableDeclaratorId> iterable) {
 
         Iterator<ASTVariableDeclaratorId> it = iterable.iterator();
         StringBuilder builder = new StringBuilder();
@@ -167,7 +167,7 @@ public class JavaRuleViolation extends ParametricRuleViolation<JavaNode> {
         return builder.toString();
     }
 
-    private void setVariableNameIfExists(Node node) {
+    private void setVariableNameIfExists(final Node node) {
         if (node instanceof ASTFieldDeclaration) {
             variableName = getVariableNames((ASTFieldDeclaration) node);
         } else if (node instanceof ASTLocalVariableDeclaration) {

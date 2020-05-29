@@ -37,14 +37,14 @@ public class CPD {
     private MatchAlgorithm matchAlgorithm;
     private Set<String> current = new HashSet<>();
 
-    public CPD(CPDConfiguration theConfiguration) {
+    public CPD(final CPDConfiguration theConfiguration) {
         configuration = theConfiguration;
         // before we start any tokenizing (add(File...)), we need to reset the
         // static TokenEntry status
         TokenEntry.clearImages();
     }
 
-    public void setCpdListener(CPDListener cpdListener) {
+    public void setCpdListener(final CPDListener cpdListener) {
         this.listener = cpdListener;
     }
 
@@ -57,21 +57,21 @@ public class CPD {
         return matchAlgorithm.matches();
     }
 
-    public void addAllInDirectory(File dir) throws IOException {
+    public void addAllInDirectory(final File dir) throws IOException {
         addDirectory(dir, false);
     }
 
-    public void addRecursively(File dir) throws IOException {
+    public void addRecursively(final File dir) throws IOException {
         addDirectory(dir, true);
     }
 
-    public void add(List<File> files) throws IOException {
+    public void add(final List<File> files) throws IOException {
         for (File f : files) {
             add(f);
         }
     }
 
-    private void addDirectory(File dir, boolean recurse) throws IOException {
+    private void addDirectory(final File dir, final boolean recurse) throws IOException {
         if (!dir.exists()) {
             throw new FileNotFoundException("Couldn't find directory " + dir);
         }
@@ -80,7 +80,7 @@ public class CPD {
         add(finder.findFilesFrom(dir, configuration.filenameFilter(), recurse));
     }
 
-    public void add(File file) throws IOException {
+    public void add(final File file) throws IOException {
 
         if (configuration.isSkipDuplicates()) {
             // TODO refactor this thing into a separate class
@@ -108,7 +108,7 @@ public class CPD {
         add(sourceCode);
     }
 
-    public void add(DBURI dburi) throws IOException {
+    public void add(final DBURI dburi) throws IOException {
 
         try {
             DBMSMetadata dbmsmetadata = new DBMSMetadata(dburi);
@@ -132,7 +132,7 @@ public class CPD {
     }
 
     @Experimental
-    public void add(SourceCode sourceCode) throws IOException {
+    public void add(final SourceCode sourceCode) throws IOException {
         if (configuration.isSkipLexicalErrors()) {
             addAndSkipLexicalErrors(sourceCode);
         } else {
@@ -140,13 +140,13 @@ public class CPD {
         }
     }
 
-    private void addAndThrowLexicalError(SourceCode sourceCode) throws IOException {
+    private void addAndThrowLexicalError(final SourceCode sourceCode) throws IOException {
         configuration.tokenizer().tokenize(sourceCode, tokens);
         listener.addedFile(1, new File(sourceCode.getFileName()));
         source.put(sourceCode.getFileName(), sourceCode);
     }
 
-    private void addAndSkipLexicalErrors(SourceCode sourceCode) throws IOException {
+    private void addAndSkipLexicalErrors(final SourceCode sourceCode) throws IOException {
         TokenEntry.State savedTokenEntry = new TokenEntry.State(tokens.getTokens());
         try {
             addAndThrowLexicalError(sourceCode);
@@ -175,7 +175,7 @@ public class CPD {
         return new ArrayList<>(source.values());
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         CPDCommandLineInterface.main(args);
     }
 }

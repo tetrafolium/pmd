@@ -13,12 +13,12 @@ public class ASTPrefixExpression extends AbstractApexNode<PrefixExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTPrefixExpression(PrefixExpression prefixExpression) {
+    public ASTPrefixExpression(final PrefixExpression prefixExpression) {
         super(prefixExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

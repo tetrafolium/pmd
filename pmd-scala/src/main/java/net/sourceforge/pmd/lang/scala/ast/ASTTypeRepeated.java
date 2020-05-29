@@ -15,12 +15,12 @@ public class ASTTypeRepeated extends AbstractScalaNode<Type.Repeated> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeRepeated(Type.Repeated scalaNode) {
+    public ASTTypeRepeated(final Type.Repeated scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

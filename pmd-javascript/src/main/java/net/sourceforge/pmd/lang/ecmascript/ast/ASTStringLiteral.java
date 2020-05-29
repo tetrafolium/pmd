@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTStringLiteral extends AbstractEcmascriptNode<StringLiteral> {
     @Deprecated
     @InternalApi
-    public ASTStringLiteral(StringLiteral stringLiteral) {
+    public ASTStringLiteral(final StringLiteral stringLiteral) {
         super(stringLiteral);
         super.setImage(stringLiteral.getValue());
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

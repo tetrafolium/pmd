@@ -106,7 +106,7 @@ public class CyclomaticComplexityRule extends AbstractJavaMetricsRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         // methodReportLevel = getProperty(METHOD_LEVEL_DESCRIPTOR);
         // classReportLevel = getProperty(CLASS_LEVEL_DESCRIPTOR);
         assignReportLevelsCompat();
@@ -120,7 +120,7 @@ public class CyclomaticComplexityRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
 
         super.visit(node, data);
 
@@ -143,7 +143,7 @@ public class CyclomaticComplexityRule extends AbstractJavaMetricsRule {
 
 
     @Override
-    public final Object visit(MethodLikeNode node, Object data) {
+    public final Object visit(final MethodLikeNode node, final Object data) {
 
         if (JavaOperationMetricKey.CYCLO.supports(node)) {
             int cyclo = (int) MetricsUtil.computeMetric(JavaOperationMetricKey.CYCLO, node, cycloOptions);

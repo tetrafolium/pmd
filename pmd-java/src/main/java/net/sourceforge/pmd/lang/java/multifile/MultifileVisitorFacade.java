@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.java.ast.JavaParserVisitorAdapter;
  */
 public final class MultifileVisitorFacade extends JavaParserVisitorAdapter {
 
-    public void initializeWith(ASTCompilationUnit rootNode) {
+    public void initializeWith(final ASTCompilationUnit rootNode) {
         PackageStats projectMirror = PackageStats.INSTANCE;
         MultifileVisitor visitor = new MultifileVisitor(projectMirror);
         rootNode.jjtAccept(visitor, null);

@@ -34,7 +34,7 @@ public class LocalVariableNamingConventionsRule extends AbstractNamingConvention
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
         if (node.getFirstParentOfType(ASTVariableDeclarationStatements.class).getModifiers().isFinal()) {
             checkMatches(FINAL_REGEX, node, data);
         } else {
@@ -45,7 +45,7 @@ public class LocalVariableNamingConventionsRule extends AbstractNamingConvention
     }
 
     @Override
-    protected String displayName(String name) {
+    protected String displayName(final String name) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(name);
     }
 }

@@ -16,16 +16,16 @@ import net.sourceforge.pmd.lang.modelica.resolver.Watchdog;
 public final class ASTUnqualifiedImportClause extends AbstractModelicaImportClause {
     private ASTName importFromWhere;
 
-    ASTUnqualifiedImportClause(int id) {
+    ASTUnqualifiedImportClause(final int id) {
         super(id);
     }
 
-    ASTUnqualifiedImportClause(ModelicaParser p, int id) {
+    ASTUnqualifiedImportClause(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -37,12 +37,12 @@ public final class ASTUnqualifiedImportClause extends AbstractModelicaImportClau
     }
 
     @Override
-    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(ResolutionState state, ModelicaScope scope) {
+    protected ResolutionResult<ModelicaDeclaration> getCacheableImportSources(final ResolutionState state, final ModelicaScope scope) {
         return scope.safeResolveLexically(ModelicaDeclaration.class, state, importFromWhere.getCompositeName());
     }
 
     @Override
-    protected void fetchImportedClassesFromSource(ResolutionContext result, ModelicaDeclaration source, String simpleName) throws Watchdog.CountdownException {
+    protected void fetchImportedClassesFromSource(final ResolutionContext result, final ModelicaDeclaration source, final String simpleName) throws Watchdog.CountdownException {
         result.watchdogTick();
         InternalModelicaResolverApi.resolveFurtherNameComponents(source, result, CompositeName.create(simpleName));
     }

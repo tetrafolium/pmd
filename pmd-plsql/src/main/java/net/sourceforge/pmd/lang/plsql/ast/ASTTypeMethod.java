@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.dfa.DFAGraphMethod;
 public class ASTTypeMethod extends AbstractPLSQLNode implements ExecutableCode, DFAGraphMethod {
     @Deprecated
     @InternalApi
-    public ASTTypeMethod(int id) {
+    public ASTTypeMethod(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTTypeMethod(PLSQLParser p, int id) {
+    public ASTTypeMethod(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

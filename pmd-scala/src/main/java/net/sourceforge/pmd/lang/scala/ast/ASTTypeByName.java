@@ -15,12 +15,12 @@ public class ASTTypeByName extends AbstractScalaNode<Type.ByName> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeByName(Type.ByName scalaNode) {
+    public ASTTypeByName(final Type.ByName scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

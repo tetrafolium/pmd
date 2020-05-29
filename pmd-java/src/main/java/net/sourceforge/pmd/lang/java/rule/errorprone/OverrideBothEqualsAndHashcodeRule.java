@@ -26,7 +26,7 @@ public class OverrideBothEqualsAndHashcodeRule extends AbstractJavaRule {
     private Node nodeFound = null;
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -45,7 +45,7 @@ public class OverrideBothEqualsAndHashcodeRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTImplementsList node, Object data) {
+    public Object visit(final ASTImplementsList node, final Object data) {
         for (int ix = 0; ix < node.getNumChildren(); ix++) {
             if (node.getChild(ix) instanceof ASTClassOrInterfaceType) {
                 ASTClassOrInterfaceType cit = (ASTClassOrInterfaceType) node.getChild(ix);
@@ -60,7 +60,7 @@ public class OverrideBothEqualsAndHashcodeRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclarator node, Object data) {
+    public Object visit(final ASTMethodDeclarator node, final Object data) {
         if (implementsComparable) {
             return data;
         }

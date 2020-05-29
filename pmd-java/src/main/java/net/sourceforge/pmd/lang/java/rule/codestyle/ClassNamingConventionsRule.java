@@ -49,7 +49,7 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionRule<AST
 
     // This could probably be moved to ClassOrInterfaceDeclaration
     // to share the implementation and be used from XPath
-    private boolean isUtilityClass(ASTAnyTypeDeclaration node) {
+    private boolean isUtilityClass(final ASTAnyTypeDeclaration node) {
         if (node.getTypeKind() != TypeKind.CLASS) {
             return false;
         }
@@ -89,12 +89,12 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionRule<AST
         return hasAny;
     }
 
-    private boolean isNonPrivate(ASTAnyTypeBodyDeclaration decl) {
+    private boolean isNonPrivate(final ASTAnyTypeBodyDeclaration decl) {
         return !((AccessNode) decl.getDeclarationNode()).isPrivate();
     }
 
 
-    private boolean isMainMethod(ASTAnyTypeBodyDeclaration bodyDeclaration) {
+    private boolean isMainMethod(final ASTAnyTypeBodyDeclaration bodyDeclaration) {
         if (DeclarationKind.METHOD != bodyDeclaration.getKind()) {
             return false;
         }
@@ -110,7 +110,7 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
 
         if (node.isAbstract()) {
             checkMatches(node, abstractClassRegex, data);
@@ -127,14 +127,14 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         checkMatches(node, enumerationRegex, data);
         return data;
     }
 
 
     @Override
-    public Object visit(ASTAnnotationTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnnotationTypeDeclaration node, final Object data) {
         checkMatches(node, annotationRegex, data);
         return data;
     }
@@ -147,7 +147,7 @@ public class ClassNamingConventionsRule extends AbstractNamingConventionRule<AST
 
 
     @Override
-    String kindDisplayName(ASTAnyTypeDeclaration node, PropertyDescriptor<Pattern> descriptor) {
+    String kindDisplayName(final ASTAnyTypeDeclaration node, final PropertyDescriptor<Pattern> descriptor) {
         return isUtilityClass(node) ? "utility class" : PrettyPrintingUtil.kindName(node);
     }
 }

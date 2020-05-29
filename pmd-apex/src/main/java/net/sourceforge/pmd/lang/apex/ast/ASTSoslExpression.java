@@ -12,12 +12,12 @@ public class ASTSoslExpression extends AbstractApexNode<SoslExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTSoslExpression(SoslExpression soslExpression) {
+    public ASTSoslExpression(final SoslExpression soslExpression) {
         super(soslExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

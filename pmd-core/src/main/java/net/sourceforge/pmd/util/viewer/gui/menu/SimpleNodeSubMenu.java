@@ -30,7 +30,7 @@ public class SimpleNodeSubMenu extends JMenu {
      * @param node
      *            menu's owner
      */
-    public SimpleNodeSubMenu(ViewerModel model, Node node) {
+    public SimpleNodeSubMenu(final ViewerModel model, final Node node) {
         super(MessageFormat.format(NLS.nls("AST.MENU.NODE.TITLE"), node.toString()));
         this.model = model;
         this.node = node;

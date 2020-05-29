@@ -82,7 +82,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         final Set<String> loopVariables = new HashSet<>();
         for (ASTVariableDeclaratorId declaratorId : node.findDescendantsOfType(ASTVariableDeclaratorId.class)) {
             loopVariables.add(declaratorId.getImage());
@@ -129,7 +129,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
      *
      * @param ignoreFlags which statements should be ignored
      */
-    private void checkAssignExceptIncrement(Object data, Set<String> loopVariables, ASTStatement loopBody, IgnoreFlags... ignoreFlags) {
+    private void checkAssignExceptIncrement(final Object data, final Set<String> loopVariables, final ASTStatement loopBody, final IgnoreFlags... ignoreFlags) {
         checkAssignments(data, loopVariables, loopBody, false, ignoreFlags);
     }
 
@@ -138,7 +138,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
      *
      * @param ignoreFlags which statements should be ignored
      */
-    private void checkIncrementAndDecrement(Object data, Set<String> loopVariables, ASTStatement loopBody, IgnoreFlags... ignoreFlags) {
+    private void checkIncrementAndDecrement(final Object data, final Set<String> loopVariables, final ASTStatement loopBody, final IgnoreFlags... ignoreFlags) {
 
         // foo ++ and foo --
         for (ASTPostfixExpression expression : loopBody.findDescendantsOfType(ASTPostfixExpression.class)) {
@@ -178,7 +178,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
      *                       false: check all other assignments
      * @param ignoreFlags    which statements should be ignored
      */
-    private void checkAssignments(Object data, Set<String> loopVariables, ASTStatement loopBody, boolean checkIncrement, IgnoreFlags... ignoreFlags) {
+    private void checkAssignments(final Object data, final Set<String> loopVariables, final ASTStatement loopBody, final boolean checkIncrement, final IgnoreFlags... ignoreFlags) {
         for (ASTAssignmentOperator operator : loopBody.findDescendantsOfType(ASTAssignmentOperator.class)) {
             // check if the current operator is an assign-increment or assign-decrement operator
             final String operatorImage = operator.getImage();
@@ -201,7 +201,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
     /**
      * Check if the node should be ignored, depending on the given flags and the context.
      */
-    private boolean ignoreNode(Node node, ASTStatement loopBody, IgnoreFlags... ignoreFlags) {
+    private boolean ignoreNode(final Node node, final ASTStatement loopBody, final IgnoreFlags... ignoreFlags) {
         if (ignoreFlags.length == 0) {
             return false;
         }
@@ -222,7 +222,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
      *
      * @returns the Name or null if the PrimaryPrefix is "this" or "super"
      */
-    private ASTName singleVariableName(ASTPrimaryExpression primaryExpression) {
+    private ASTName singleVariableName(final ASTPrimaryExpression primaryExpression) {
         final ASTPrimaryPrefix primaryPrefix = primaryExpression.getFirstChildOfType(ASTPrimaryPrefix.class);
         final ASTPrimarySuffix primarySuffix = primaryExpression.getFirstChildOfType(ASTPrimarySuffix.class);
 
@@ -236,7 +236,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
     /**
      * Check if the given node is the first statement in the block.
      */
-    private boolean isFirstStatementInBlock(Node node, ASTStatement loopBody) {
+    private boolean isFirstStatementInBlock(final Node node, final ASTStatement loopBody) {
         // find the statement of the operation and the loop body block statement
         final ASTBlockStatement statement = node.getFirstParentOfType(ASTBlockStatement.class);
         final ASTBlock block = loopBody.getFirstDescendantOfType(ASTBlock.class);
@@ -256,7 +256,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
      * <br>
      * This doesn't check
      */
-    private boolean isConditionallyExecuted(Node node, ASTStatement loopBody) {
+    private boolean isConditionallyExecuted(final Node node, final ASTStatement loopBody) {
         // starting at the assignment/increment node, traverse the tree up to
         // check if we're inside the conditionally executed block of a control flow statement
 
@@ -295,7 +295,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
         return false;
     }
 
-    private boolean isParent(Node possibleParent, Node node) {
+    private boolean isParent(final Node possibleParent, final Node node) {
         Node checkNode = node;
         while (checkNode.getParent() != null) {
             if (checkNode.getParent().equals(possibleParent)) {
@@ -309,7 +309,7 @@ public class AvoidReassigningLoopVariablesRule extends AbstractOptimizationRule 
     /**
      * Add a violation, if the node image is one of the loop variables.
      */
-    private void checkVariable(Object data, Set<String> loopVariables, AbstractNode node) {
+    private void checkVariable(final Object data, final Set<String> loopVariables, final AbstractNode node) {
         if (node != null && loopVariables.contains(node.getImage())) {
             addViolation(data, node, node.getImage());
         }

@@ -75,7 +75,7 @@ public class RuleDocGenerator {
     private final Path root;
     private final FileWriter writer;
 
-    public RuleDocGenerator(FileWriter writer, Path root) {
+    public RuleDocGenerator(final FileWriter writer, final Path root) {
         this.writer = Objects.requireNonNull(writer, "A file writer must be provided");
         this.root = Objects.requireNonNull(root, "Root directory must be provided");
 
@@ -85,7 +85,7 @@ public class RuleDocGenerator {
         }
     }
 
-    public void generate(Iterator<RuleSet> registeredRulesets, List<String> additionalRulesets) {
+    public void generate(final Iterator<RuleSet> registeredRulesets, final List<String> additionalRulesets) {
         Map<Language, List<RuleSet>> sortedRulesets;
         Map<Language, List<RuleSet>> sortedAdditionalRulesets;
         try {
@@ -101,12 +101,12 @@ public class RuleDocGenerator {
         }
     }
 
-    private void generateSidebar(Map<Language, List<RuleSet>> sortedRulesets) throws IOException {
+    private void generateSidebar(final Map<Language, List<RuleSet>> sortedRulesets) throws IOException {
         SidebarGenerator generator = new SidebarGenerator(writer, root);
         generator.generateSidebar(sortedRulesets);
     }
 
-    private Iterator<RuleSet> resolveAdditionalRulesets(List<String> additionalRulesets) throws RuleSetNotFoundException {
+    private Iterator<RuleSet> resolveAdditionalRulesets(final List<String> additionalRulesets) throws RuleSetNotFoundException {
         if (additionalRulesets == null) {
             return Collections.emptyIterator();
         }
@@ -129,11 +129,11 @@ public class RuleDocGenerator {
         return rulesets.iterator();
     }
 
-    private Path getAbsoluteOutputPath(String filename) {
+    private Path getAbsoluteOutputPath(final String filename) {
         return root.resolve(FilenameUtils.normalize(filename));
     }
 
-    private Map<Language, List<RuleSet>> sortRulesets(Iterator<RuleSet> rulesets) throws RuleSetNotFoundException {
+    private Map<Language, List<RuleSet>> sortRulesets(final Iterator<RuleSet> rulesets) throws RuleSetNotFoundException {
         SortedMap<Language, List<RuleSet>> rulesetsByLanguage = new TreeMap<>();
 
         while (rulesets.hasNext()) {
@@ -149,7 +149,7 @@ public class RuleDocGenerator {
         for (List<RuleSet> rulesetsOfOneLanguage : rulesetsByLanguage.values()) {
             Collections.sort(rulesetsOfOneLanguage, new Comparator<RuleSet>() {
                 @Override
-                public int compare(RuleSet o1, RuleSet o2) {
+                public int compare(final RuleSet o1, final RuleSet o2) {
                     return o1.getName().compareToIgnoreCase(o2.getName());
                 }
             });
@@ -164,7 +164,7 @@ public class RuleDocGenerator {
      * @param ruleset
      * @return the terse name of the ruleset's language
      */
-    private static Language getRuleSetLanguage(RuleSet ruleset) {
+    private static Language getRuleSetLanguage(final RuleSet ruleset) {
         Collection<Rule> rules = ruleset.getRules();
         if (rules.isEmpty()) {
             throw new RuntimeException("Ruleset " + ruleset.getFileName() + " is empty!");
@@ -179,7 +179,7 @@ public class RuleDocGenerator {
      * @param sortedAdditionalRulesets additional rulesets
      * @throws IOException
      */
-    private void generateLanguageIndex(Map<Language, List<RuleSet>> rulesets, Map<Language, List<RuleSet>> sortedAdditionalRulesets) throws IOException {
+    private void generateLanguageIndex(final Map<Language, List<RuleSet>> rulesets, final Map<Language, List<RuleSet>> sortedAdditionalRulesets) throws IOException {
         for (Map.Entry<Language, List<RuleSet>> entry : rulesets.entrySet()) {
             String languageTersename = entry.getKey().getTerseName();
             String filename = LANGUAGE_INDEX_FILENAME_PATTERN
@@ -298,7 +298,7 @@ public class RuleDocGenerator {
      * @param rule
      * @return
      */
-    private static String getShortRuleDescription(Rule rule) {
+    private static String getShortRuleDescription(final Rule rule) {
         return StringEscapeUtils.escapeHtml4(
             StringUtils.abbreviate(
                 StringUtils.stripToEmpty(
@@ -310,7 +310,7 @@ public class RuleDocGenerator {
                 100));
     }
 
-    private static String getRuleSetDescriptionSingleLine(RuleSet ruleset) {
+    private static String getRuleSetDescriptionSingleLine(final RuleSet ruleset) {
         String description = ruleset.getDescription();
         description = StringEscapeUtils.escapeHtml4(description);
         description = description.replaceAll("\\n|\\r", " ");
@@ -318,7 +318,7 @@ public class RuleDocGenerator {
         return description;
     }
 
-    private static List<String> toLines(String s) {
+    private static List<String> toLines(final String s) {
         return Arrays.asList(s.split("\r\n|\n"));
     }
 
@@ -328,7 +328,7 @@ public class RuleDocGenerator {
      * @param rulesets all rulesets
      * @throws IOException
      */
-    private void generateRuleSetIndex(Map<Language, List<RuleSet>> rulesets) throws IOException {
+    private void generateRuleSetIndex(final Map<Language, List<RuleSet>> rulesets) throws IOException {
         for (Map.Entry<Language, List<RuleSet>> entry : rulesets.entrySet()) {
             Language language = entry.getKey();
             String languageTersename = language.getTerseName();
@@ -503,7 +503,7 @@ public class RuleDocGenerator {
         }
     }
 
-    private XPathRule asXPathRule(Rule rule) {
+    private XPathRule asXPathRule(final Rule rule) {
         if (rule instanceof XPathRule) {
             return (XPathRule) rule;
         } else if (rule instanceof RuleReference && ((RuleReference) rule).getRule() instanceof XPathRule) {
@@ -512,12 +512,12 @@ public class RuleDocGenerator {
         return null;
     }
 
-    private static boolean isDeprecated(PropertyDescriptor<?> propertyDescriptor) {
+    private static boolean isDeprecated(final PropertyDescriptor<?> propertyDescriptor) {
         return propertyDescriptor.description() != null
             && propertyDescriptor.description().toLowerCase(Locale.ROOT).startsWith(DEPRECATED_RULE_PROPERTY_MARKER);
     }
 
-    private String determineDefaultValueAsString(PropertyDescriptor<?> propertyDescriptor, Rule rule, boolean pad) {
+    private String determineDefaultValueAsString(final PropertyDescriptor<?> propertyDescriptor, final Rule rule, final boolean pad) {
         String defaultValue = "";
         Object realDefaultValue = rule.getProperty(propertyDescriptor);
         @SuppressWarnings("unchecked") // just force it, we know it's the right type
@@ -540,7 +540,7 @@ public class RuleDocGenerator {
         return defaultValue;
     }
 
-    private static String stripIndentation(String description) {
+    private static String stripIndentation(final String description) {
         if (description == null || description.isEmpty()) {
             return "";
         }
@@ -579,14 +579,14 @@ public class RuleDocGenerator {
      * @return
      * @see <a href="https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers">List of supported languages</a>
      */
-    private static String mapLanguageForHighlighting(String languageTersename) {
+    private static String mapLanguageForHighlighting(final String languageTersename) {
         if (LANGUAGE_HIGHLIGHT_MAPPER.containsKey(languageTersename)) {
             return LANGUAGE_HIGHLIGHT_MAPPER.get(languageTersename);
         }
         return languageTersename;
     }
 
-    private String getRuleSetKeywords(RuleSet ruleset) {
+    private String getRuleSetKeywords(final RuleSet ruleset) {
         List<String> ruleNames = new LinkedList<>();
         for (Rule rule : ruleset.getRules()) {
             ruleNames.add(rule.getName());
@@ -594,11 +594,11 @@ public class RuleDocGenerator {
         return ruleset.getName() + ", " + StringUtils.join(ruleNames, ", ");
     }
 
-    private List<Rule> getSortedRules(RuleSet ruleset) {
+    private List<Rule> getSortedRules(final RuleSet ruleset) {
         List<Rule> sortedRules = new ArrayList<>(ruleset.getRules());
         Collections.sort(sortedRules, new Comparator<Rule>() {
             @Override
-            public int compare(Rule o1, Rule o2) {
+            public int compare(final Rule o1, final Rule o2) {
                 return o1.getName().compareToIgnoreCase(o2.getName());
             }
         });
@@ -613,13 +613,13 @@ public class RuleDocGenerator {
      * @return
      * @throws IOException
      */
-    private String getRuleSetSourceFilepath(RuleSet ruleset) throws IOException {
+    private String getRuleSetSourceFilepath(final RuleSet ruleset) throws IOException {
         final String rulesetFilename = FilenameUtils.normalize(StringUtils.chomp(ruleset.getFileName()));
         final List<Path> foundPathResult = new LinkedList<>();
 
         Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
             @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
                 String path = file.toString();
                 if (path.contains("src") && path.endsWith(rulesetFilename)) {
                     foundPathResult.add(file);
@@ -640,14 +640,14 @@ public class RuleDocGenerator {
         return StringUtils.chomp(ruleset.getFileName());
     }
 
-    private String getRuleClassSourceFilepath(String ruleClass) throws IOException {
+    private String getRuleClassSourceFilepath(final String ruleClass) throws IOException {
         final String relativeSourceFilename = ruleClass.replaceAll("\\.", Matcher.quoteReplacement(File.separator))
                 + ".java";
         final List<Path> foundPathResult = new LinkedList<>();
 
         Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
             @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
                 String path = file.toString();
                 if (path.contains("src") && path.endsWith(relativeSourceFilename)) {
                     foundPathResult.add(file);

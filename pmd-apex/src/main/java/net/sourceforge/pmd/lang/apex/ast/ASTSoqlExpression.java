@@ -12,12 +12,12 @@ public class ASTSoqlExpression extends AbstractApexNode<SoqlExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTSoqlExpression(SoqlExpression soqlExpression) {
+    public ASTSoqlExpression(final SoqlExpression soqlExpression) {
         super(soqlExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

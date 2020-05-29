@@ -179,8 +179,8 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         private List<String> argumentTypes;
         private boolean superCall;
 
-        private MethodInvocation(ASTPrimaryExpression ape, List<String> qualifierNames, List<String> referenceNames,
-                String name, int argumentSize, List<String> argumentTypes, boolean superCall) {
+        private MethodInvocation(final ASTPrimaryExpression ape, final List<String> qualifierNames, final List<String> referenceNames,
+                final String name, final int argumentSize, final List<String> argumentTypes, final boolean superCall) {
             this.ape = ape;
             this.qualifierNames = qualifierNames;
             this.referenceNames = referenceNames;
@@ -218,7 +218,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
             return ape;
         }
 
-        public static MethodInvocation getMethod(ASTPrimaryExpression node) {
+        public static MethodInvocation getMethod(final ASTPrimaryExpression node) {
             MethodInvocation meth = null;
             int i = node.getNumChildren();
             if (i > 1) {
@@ -450,7 +450,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         private int count = 0;
         private List<String> argumentTypes = new ArrayList<>();
 
-        ConstructorInvocation(ASTExplicitConstructorInvocation eci) {
+        ConstructorInvocation(final ASTExplicitConstructorInvocation eci) {
             this.eci = eci;
             List<ASTArguments> l = eci.findChildrenOfType(ASTArguments.class);
             if (!l.isEmpty()) {
@@ -483,11 +483,11 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         private boolean dangerous;
         private String called;
 
-        MethodHolder(ASTMethodDeclaration amd) {
+        MethodHolder(final ASTMethodDeclaration amd) {
             this.amd = amd;
         }
 
-        public void setCalledMethod(String name) {
+        public void setCalledMethod(final String name) {
             this.called = name;
         }
 
@@ -514,7 +514,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         private ConstructorInvocation ci;
         private boolean ciInitialized;
 
-        ConstructorHolder(ASTConstructorDeclaration cd) {
+        ConstructorHolder(final ASTConstructorDeclaration cd) {
             this.cd = cd;
         }
 
@@ -557,12 +557,12 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
             return dangerous;
         }
 
-        public void setDangerous(boolean dangerous) {
+        public void setDangerous(final boolean dangerous) {
             this.dangerous = dangerous;
         }
     }
 
-    private static int compareNodes(Node n1, Node n2) {
+    private static int compareNodes(final Node n1, final Node n2) {
         int l1 = n1.getBeginLine();
         int l2 = n2.getBeginLine();
         if (l1 == l2) {
@@ -573,14 +573,14 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
 
     private static class MethodHolderComparator implements Comparator<MethodHolder> {
         @Override
-        public int compare(MethodHolder o1, MethodHolder o2) {
+        public int compare(final MethodHolder o1, final MethodHolder o2) {
             return compareNodes(o1.getASTMethodDeclaration(), o2.getASTMethodDeclaration());
         }
     }
 
     private static class ConstructorHolderComparator implements Comparator<ConstructorHolder> {
         @Override
-        public int compare(ConstructorHolder o1, ConstructorHolder o2) {
+        public int compare(final ConstructorHolder o1, final ConstructorHolder o2) {
             return compareNodes(o1.getASTConstructorDeclaration(), o2.getASTConstructorDeclaration());
         }
     }
@@ -600,7 +600,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         private EvalPackage() {
         }
 
-        EvalPackage(String className) {
+        EvalPackage(final String className) {
             this.className = className;
             // meths called from constructor
             this.calledMethods = new ArrayList<>();
@@ -629,7 +629,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
     /**
      * Adds and evaluation package and makes it current
      */
-    private void putEvalPackage(EvalPackage ep) {
+    private void putEvalPackage(final EvalPackage ep) {
         evalPackages.add(ep);
     }
 
@@ -645,7 +645,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      * This check must be evaluated independently for each class. Inner classes
      * get their own EvalPackage in order to perform independent evaluation.
      */
-    private Object visitClassDec(ASTClassOrInterfaceDeclaration node, Object data) {
+    private Object visitClassDec(final ASTClassOrInterfaceDeclaration node, final Object data) {
         String className = node.getImage();
         if (!node.isFinal()) {
             putEvalPackage(new EvalPackage(className));
@@ -723,7 +723,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      *
      * TODO investigate limiting the number of passes through config.
      */
-    private boolean evaluateDangerOfMethods(Map<MethodHolder, List<MethodInvocation>> classMethodMap) {
+    private boolean evaluateDangerOfMethods(final Map<MethodHolder, List<MethodInvocation>> classMethodMap) {
         // check each method if it calls overridable method
         boolean found = false;
         for (Map.Entry<MethodHolder, List<MethodInvocation>> entry : classMethodMap.entrySet()) {
@@ -763,8 +763,8 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      *
      * TODO optimize by having methods already evaluated somehow!?
      */
-    private void evaluateDangerOfConstructors1(Map<ConstructorHolder, List<MethodInvocation>> classConstructorMap,
-            Set<MethodHolder> evaluatedMethods) {
+    private void evaluateDangerOfConstructors1(final Map<ConstructorHolder, List<MethodInvocation>> classConstructorMap,
+            final Set<MethodHolder> evaluatedMethods) {
         // check each constructor in the class
         for (Map.Entry<ConstructorHolder, List<MethodInvocation>> entry : classConstructorMap.entrySet()) {
             ConstructorHolder ch = entry.getKey();
@@ -815,7 +815,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      * of passes through this method but it seems as if we can forgo that and
      * just process it till its done.
      */
-    private boolean evaluateDangerOfConstructors2(Map<ConstructorHolder, List<MethodInvocation>> classConstructorMap) {
+    private boolean evaluateDangerOfConstructors2(final Map<ConstructorHolder, List<MethodInvocation>> classConstructorMap) {
         boolean found = false; // triggers on danger state change
         // check each constructor in the class
         for (ConstructorHolder ch : classConstructorMap.keySet()) {
@@ -849,13 +849,13 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         clearEvalPackages();
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTEnumDeclaration node, Object data) {
+    public Object visit(final ASTEnumDeclaration node, final Object data) {
         // just skip Enums
         return data;
     }
@@ -865,7 +865,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      * get their own EvalPackage in order to perform independent evaluation.
      */
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (!node.isInterface()) {
             return visitClassDec(node, data);
         } else {
@@ -894,7 +894,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      * <p>TODO eliminate the redundancy</p>
      */
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         if (!(getCurrentEvalPackage() instanceof NullEvalPackage)) {
             // only evaluate if we have an eval package for this class
             List<MethodInvocation> calledMethodsOfConstructor = new ArrayList<>();
@@ -929,7 +929,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      * in the Map as the Object
      */
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (!(getCurrentEvalPackage() instanceof NullEvalPackage)) {
             // only evaluate if we have an eval package for this class
             MethodHolder h = new MethodHolder(node);
@@ -948,14 +948,14 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
     /**
      * Adds all methods called on this instance from within this Node.
      */
-    private static void addCalledMethodsOfNode(Node node, List<MethodInvocation> calledMethods, String className) {
+    private static void addCalledMethodsOfNode(final Node node, final List<MethodInvocation> calledMethods, final String className) {
         List<ASTPrimaryExpression> expressions = node.findDescendantsOfType(ASTPrimaryExpression.class,
                 !(node instanceof AccessNode));
         addCalledMethodsOfNodeImpl(expressions, calledMethods, className);
     }
 
-    private static void addCalledMethodsOfNodeImpl(List<ASTPrimaryExpression> expressions,
-            List<MethodInvocation> calledMethods, String className) {
+    private static void addCalledMethodsOfNodeImpl(final List<ASTPrimaryExpression> expressions,
+            final List<MethodInvocation> calledMethods, final String className) {
         for (ASTPrimaryExpression ape : expressions) {
             MethodInvocation meth = findMethod(ape, className);
             if (meth != null) {
@@ -970,7 +970,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
      *         is found. TODO Need a better way to match the class and package
      *         name to the actual method being called.
      */
-    private static MethodInvocation findMethod(ASTPrimaryExpression node, String className) {
+    private static MethodInvocation findMethod(final ASTPrimaryExpression node, final String className) {
         if (node.getNumChildren() > 0 && node.getChild(0).getNumChildren() > 0
                 && node.getChild(0).getChild(0) instanceof ASTLiteral) {
             return null;
@@ -1007,7 +1007,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
     /**
      * ASTPrimaryPrefix has name in child node of ASTName
      */
-    private static String getNameFromPrefix(ASTPrimaryPrefix node) {
+    private static String getNameFromPrefix(final ASTPrimaryPrefix node) {
         String name = null;
         // should only be 1 child, if more I need more knowledge
         if (node.getNumChildren() == 1) { // safety check
@@ -1021,7 +1021,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         return name;
     }
 
-    private static List<String> getMethodDeclaratorParameterTypes(ASTMethodOrConstructorDeclaration methodOrConstructorDeclarator) {
+    private static List<String> getMethodDeclaratorParameterTypes(final ASTMethodOrConstructorDeclaration methodOrConstructorDeclarator) {
         ASTFormalParameters parameters = methodOrConstructorDeclarator.getFirstDescendantOfType(ASTFormalParameters.class);
         List<String> parameterTypes = new ArrayList<>();
         if (parameters != null) {
@@ -1039,7 +1039,7 @@ public final class ConstructorCallsOverridableMethodRule extends AbstractJavaRul
         return parameterTypes;
     }
 
-    private static List<String> getArgumentTypes(ASTArguments args) {
+    private static List<String> getArgumentTypes(final ASTArguments args) {
         List<String> argumentTypes = new ArrayList<>();
         ASTArgumentList argumentList = args.getFirstChildOfType(ASTArgumentList.class);
         if (argumentList != null) {

@@ -111,13 +111,13 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         init();
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
         init();
         return super.visit(node, data);
     }
@@ -137,7 +137,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTField node, Object data) {
+    public Object visit(final ASTField node, final Object data) {
         if (!checkMembers) {
             return data;
         }
@@ -149,7 +149,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclaration node, Object data) {
+    public Object visit(final ASTVariableDeclaration node, final Object data) {
 
         if (!checkLocals) {
             return data;
@@ -160,7 +160,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTParameter node, Object data) {
+    public Object visit(final ASTParameter node, final Object data) {
         if (!checkParameters) {
             return data;
         }
@@ -169,8 +169,8 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
         return checkName(parameterPrefixes, parameterSuffixes, node, false, isFinal, data);
     }
 
-    private Object checkName(List<String> prefixes, List<String> suffixes, ApexNode<?> node, boolean isStatic, boolean isFinal,
-            Object data) {
+    private Object checkName(final List<String> prefixes, final List<String> suffixes, final ApexNode<?> node, final boolean isStatic, final boolean isFinal,
+            final Object data) {
 
         String varName = node.getImage();
 
@@ -184,7 +184,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
             if (!varName.equals(varName.toUpperCase(Locale.ROOT))) {
                 addViolationWithMessage(data, node,
                         "Variables that are final and static should be all capitals, ''{0}'' is not all capitals.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
             return data;
         } else if (!isFinal) {
@@ -193,22 +193,22 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
             if (normalizedVarName.indexOf('_') >= 0) {
                 addViolationWithMessage(data, node,
                         "Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), ''{0}'' is not final.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
             if (Character.isUpperCase(varName.charAt(0))) {
                 addViolationWithMessage(data, node,
                         "Variables should start with a lowercase character, ''{0}'' starts with uppercase character.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
         }
         return data;
     }
 
-    private String normalizeVariableName(String varName, List<String> prefixes, List<String> suffixes) {
+    private String normalizeVariableName(final String varName, final List<String> prefixes, final List<String> suffixes) {
         return stripSuffix(stripPrefix(varName, prefixes), suffixes);
     }
 
-    private String stripSuffix(String varName, List<String> suffixes) {
+    private String stripSuffix(final String varName, final List<String> suffixes) {
         if (suffixes != null) {
             for (String suffix : suffixes) {
                 if (varName.endsWith(suffix)) {
@@ -219,7 +219,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
         return varName;
     }
 
-    private String stripPrefix(String varName, List<String> prefixes) {
+    private String stripPrefix(final String varName, final List<String> prefixes) {
         if (prefixes != null) {
             for (String prefix : prefixes) {
                 if (varName.startsWith(prefix)) {

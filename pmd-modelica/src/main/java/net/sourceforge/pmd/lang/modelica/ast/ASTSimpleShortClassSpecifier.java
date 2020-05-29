@@ -8,21 +8,21 @@ import net.sourceforge.pmd.lang.modelica.resolver.InternalModelicaResolverApi;
 import net.sourceforge.pmd.lang.modelica.resolver.ModelicaClassType;
 
 public final class ASTSimpleShortClassSpecifier extends AbstractModelicaClassSpecifierNode {
-    ASTSimpleShortClassSpecifier(int id) {
+    ASTSimpleShortClassSpecifier(final int id) {
         super(id);
     }
 
-    ASTSimpleShortClassSpecifier(ModelicaParser p, int id) {
+    ASTSimpleShortClassSpecifier(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @Override
-    public void populateExtendsAndImports(ModelicaClassType classTypeDeclaration) {
+    public void populateExtendsAndImports(final ModelicaClassType classTypeDeclaration) {
         super.populateExtendsAndImports(classTypeDeclaration);
         InternalModelicaResolverApi.addExtendToClass(
                 classTypeDeclaration,

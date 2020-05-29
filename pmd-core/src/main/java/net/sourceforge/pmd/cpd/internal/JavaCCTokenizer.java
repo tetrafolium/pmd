@@ -20,16 +20,16 @@ public abstract class JavaCCTokenizer implements Tokenizer {
 
     protected abstract TokenManager getLexerForSource(SourceCode sourceCode);
 
-    protected TokenFilter getTokenFilter(TokenManager tokenManager) {
+    protected TokenFilter getTokenFilter(final TokenManager tokenManager) {
         return new JavaCCTokenFilter(tokenManager);
     }
 
-    protected TokenEntry processToken(Tokens tokenEntries, GenericToken currentToken, String filename) {
+    protected TokenEntry processToken(final Tokens tokenEntries, final GenericToken currentToken, final String filename) {
         return new TokenEntry(currentToken.getImage(), filename, currentToken.getBeginLine(), currentToken.getBeginColumn(), currentToken.getEndColumn());
     }
 
     @Override
-    public void tokenize(SourceCode sourceCode, Tokens tokenEntries) throws IOException {
+    public void tokenize(final SourceCode sourceCode, final Tokens tokenEntries) throws IOException {
         TokenManager tokenManager = getLexerForSource(sourceCode);
         tokenManager.setFileName(sourceCode.getFileName());
         try {

@@ -50,13 +50,13 @@ public class BeanMembersShouldSerializeRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         prefixProperty = getProperty(PREFIX_DESCRIPTOR);
         super.visit(node, data);
         return data;
     }
 
-    private static String[] imagesOf(List<? extends Node> nodes) {
+    private static String[] imagesOf(final List<? extends Node> nodes) {
 
         String[] imageArray = new String[nodes.size()];
 
@@ -67,7 +67,7 @@ public class BeanMembersShouldSerializeRule extends AbstractLombokAwareRule {
     }
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -112,14 +112,14 @@ public class BeanMembersShouldSerializeRule extends AbstractLombokAwareRule {
         return super.visit(node, data);
     }
 
-    private String trimIfPrefix(String img) {
+    private String trimIfPrefix(final String img) {
         if (prefixProperty != null && img.startsWith(prefixProperty)) {
             return img.substring(prefixProperty.length());
         }
         return img;
     }
 
-    private boolean isBeanAccessor(ASTMethodDeclarator meth) {
+    private boolean isBeanAccessor(final ASTMethodDeclarator meth) {
 
         String methodName = meth.getImage();
 

@@ -46,13 +46,13 @@ public final class MetricKeyUtil {
 
 
             @Override
-            public boolean supports(T node) {
+            public boolean supports(final T node) {
                 return metric.supports(node);
             }
 
 
             @Override
-            public boolean equals(Object obj) {
+            public boolean equals(final Object obj) {
                 return obj != null && getClass() == obj.getClass()
                     && Objects.equals(name(), ((MetricKey) obj).name())
                     && Objects.equals(getCalculator(), ((MetricKey) obj).getCalculator());

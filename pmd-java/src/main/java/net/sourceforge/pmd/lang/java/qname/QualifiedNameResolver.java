@@ -118,14 +118,14 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
      *                    to load their type.
      * @param rootNode    The root hierarchy
      */
-    public void initializeWith(ClassLoader classLoader, ASTCompilationUnit rootNode) {
+    public void initializeWith(final ClassLoader classLoader, final ASTCompilationUnit rootNode) {
         this.classLoader = PMDASMClassLoader.getInstance(classLoader);
         rootNode.jjtAccept(this, null);
     }
 
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
 
         // update the package list
         packages = getPackageList(node.getFirstChildOfType(ASTPackageDeclaration.class));
@@ -147,7 +147,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
      *
      * @param pack The package declaration, may be null
      */
-    private ImmutableList<String> getPackageList(ASTPackageDeclaration pack) {
+    private ImmutableList<String> getPackageList(final ASTPackageDeclaration pack) {
         if (pack == null) {
             return ListFactory.emptyList();
         }
@@ -189,7 +189,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
      * @param i   Index indicating the remaining number of packages, initially
      *            the total number of packages in the package name
      */
-    private ImmutableList<String> getLongestPackagePrefix(String acc, int i) {
+    private ImmutableList<String> getLongestPackagePrefix(final String acc, final int i) {
         ImmutableList<String> prefix = FOUND_PACKAGES.get(acc);
         if (prefix != null) {
             return prefix;
@@ -204,7 +204,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTAnyTypeDeclaration node, Object data) {
+    public Object visit(final ASTAnyTypeDeclaration node, final Object data) {
         int localIndex = NOTLOCAL_PLACEHOLDER;
         if (node instanceof ASTClassOrInterfaceDeclaration
                 && ((ASTClassOrInterfaceDeclaration) node).isLocal()) {
@@ -226,7 +226,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTAllocationExpression node, Object data) {
+    public Object visit(final ASTAllocationExpression node, final Object data) {
         if (!node.isAnonymousClass()) {
             return super.visit(node, data);
         }
@@ -242,7 +242,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTEnumConstant node, Object data) {
+    public Object visit(final ASTEnumConstant node, final Object data) {
         if (!node.isAnonymousClass()) {
             return super.visit(node, data);
         }
@@ -258,7 +258,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         String opname = getOperationName(node.getName(), node.getFirstDescendantOfType(ASTFormalParameters.class));
         node.setQualifiedName(contextOperationQName(opname, false));
         return super.visit(node, data);
@@ -266,7 +266,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     @Override
-    public Object visit(ASTConstructorDeclaration node, Object data) {
+    public Object visit(final ASTConstructorDeclaration node, final Object data) {
         String opname = getOperationName(classNames.head(), node.getFirstDescendantOfType(ASTFormalParameters.class));
         node.setQualifiedName(contextOperationQName(opname, false));
         return super.visit(node, data);
@@ -324,7 +324,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
      */
     // @formatter:on
     @Override
-    public Object visit(ASTLambdaExpression node, Object data) {
+    public Object visit(final ASTLambdaExpression node, final Object data) {
 
         String opname = "lambda$" + findLambdaScopeNameSegment(node)
                 + "$" + lambdaCounters.peek().getAndIncrement();
@@ -340,7 +340,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     /** Pushes a new context for an inner class. */
-    private void updateClassContext(String className, int localIndex) {
+    private void updateClassContext(final String className, final int localIndex) {
         localIndices = localIndices.prepend(localIndex);
         classNames = classNames.prepend(className);
         anonymousCounters.push(new MutableInt(0));
@@ -367,12 +367,12 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     /** Creates a new operation qname, using the current context for the class part. */
-    private JavaOperationQualifiedName contextOperationQName(String op, boolean isLambda) {
+    private JavaOperationQualifiedName contextOperationQName(final String op, final boolean isLambda) {
         return new JavaOperationQualifiedName(innermostEnclosingTypeName.peek(), op, isLambda);
     }
 
 
-    private String findLambdaScopeNameSegment(ASTLambdaExpression node) {
+    private String findLambdaScopeNameSegment(final ASTLambdaExpression node) {
         Node parent = node.getParent();
         while (parent != null
                 && !(parent instanceof ASTFieldDeclaration)
@@ -413,7 +413,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
 
 
     /** Returns a normalized method name (not Java-canonical!). */
-    private static String getOperationName(String methodName, ASTFormalParameters params) {
+    private static String getOperationName(final String methodName, final ASTFormalParameters params) {
         return PrettyPrintingUtil.displaySignature(methodName, params);
     }
 
@@ -430,7 +430,7 @@ public class QualifiedNameResolver extends JavaParserVisitorReducedAdapter {
      *
      * @return The next free index
      */
-    private static <T> int getNextIndexFromHistogram(Map<T, Integer> histogram, T key, int startIndex) {
+    private static <T> int getNextIndexFromHistogram(final Map<T, Integer> histogram, final T key, final int startIndex) {
         Integer count = histogram.get(key);
         if (count == null) {
             histogram.put(key, startIndex);

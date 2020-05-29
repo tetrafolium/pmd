@@ -39,7 +39,7 @@ public class ViewerModel {
     /**
      * Commits source code to the model. all existing source will be replaced.
      */
-    public void commitSource(String source, LanguageVersion languageVersion) {
+    public void commitSource(final String source, final LanguageVersion languageVersion) {
         LanguageVersionHandler languageVersionHandler = languageVersion.getLanguageVersionHandler();
         Node node = languageVersionHandler.getParser(languageVersionHandler.getDefaultParserOptions()).parse(null,
                 new StringReader(source));
@@ -64,7 +64,7 @@ public class ViewerModel {
      * @param evaluator
      *            object which requests the evaluation
      */
-    public void evaluateXPathExpression(String xPath, Object evaluator) throws ParseException, JaxenException {
+    public void evaluateXPathExpression(final String xPath, final Object evaluator) throws ParseException, JaxenException {
         try {
             if (LOGGER.isLoggable(Level.FINEST)) {
                 LOGGER.finest("xPath=" + xPath);
@@ -109,7 +109,7 @@ public class ViewerModel {
      * @param selector
      *            object which requests the selection
      */
-    public void selectNode(Node node, Object selector) {
+    public void selectNode(final Node node, final Object selector) {
         fireViewerModelEvent(new ViewerModelEvent(selector, ViewerModelEvent.NODE_SELECTED, node));
     }
 
@@ -121,19 +121,19 @@ public class ViewerModel {
      * @param appender
      *            object that is trying to append the fragment
      */
-    public void appendToXPathExpression(String pathFragment, Object appender) {
+    public void appendToXPathExpression(final String pathFragment, final Object appender) {
         fireViewerModelEvent(new ViewerModelEvent(appender, ViewerModelEvent.PATH_EXPRESSION_APPENDED, pathFragment));
     }
 
-    public void addViewerModelListener(ViewerModelListener l) {
+    public void addViewerModelListener(final ViewerModelListener l) {
         listeners.add(l);
     }
 
-    public void removeViewerModelListener(ViewerModelListener l) {
+    public void removeViewerModelListener(final ViewerModelListener l) {
         listeners.remove(l);
     }
 
-    protected void fireViewerModelEvent(ViewerModelEvent e) {
+    protected void fireViewerModelEvent(final ViewerModelEvent e) {
         for (int i = 0; i < listeners.size(); i++) {
             listeners.get(i).viewerModelChanged(e);
         }

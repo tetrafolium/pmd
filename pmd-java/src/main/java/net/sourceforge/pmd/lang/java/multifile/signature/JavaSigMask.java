@@ -37,7 +37,7 @@ public abstract class JavaSigMask<T extends JavaSignature<?>> implements SigMask
      *
      * @param visibilities The visibilities to cover
      */
-    public void restrictVisibilitiesTo(JavaSignature.Visibility... visibilities) {
+    public void restrictVisibilitiesTo(final JavaSignature.Visibility... visibilities) {
         visMask.clear();
         visMask.addAll(Arrays.asList(visibilities));
     }
@@ -48,13 +48,13 @@ public abstract class JavaSigMask<T extends JavaSignature<?>> implements SigMask
      *
      * @param visibilities The visibilities to forbid
      */
-    public void forbid(JavaSignature.Visibility... visibilities) {
+    public void forbid(final JavaSignature.Visibility... visibilities) {
         visMask.removeAll(Arrays.asList(visibilities));
     }
 
 
     @Override
-    public boolean covers(T sig) {
+    public boolean covers(final T sig) {
         return visMask.contains(sig.visibility);
     }
 }

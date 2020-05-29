@@ -14,20 +14,20 @@ public final class ASTExtractExpression extends AbstractPLSQLNode {
 
     @InternalApi
     @Deprecated
-    public ASTExtractExpression(int id) {
+    public ASTExtractExpression(final int id) {
         super(id);
     }
 
 
     @InternalApi
     @Deprecated
-    public ASTExtractExpression(PLSQLParser p, int id) {
+    public ASTExtractExpression(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

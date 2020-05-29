@@ -25,18 +25,18 @@ public class ASTEqualityExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTEqualityExpression(int id) {
+    public ASTEqualityExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTEqualityExpression(JavaParser p, int id) {
+    public ASTEqualityExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

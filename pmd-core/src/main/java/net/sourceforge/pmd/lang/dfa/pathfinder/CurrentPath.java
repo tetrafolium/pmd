@@ -40,7 +40,7 @@ public class CurrentPath implements Iterable<DataFlowNode> {
         return list.isEmpty();
     }
 
-    public void addLast(DataFlowNode n) {
+    public void addLast(final DataFlowNode n) {
         list.add(n);
         // System.out.println("adding: " + n);
     }
@@ -76,7 +76,7 @@ public class CurrentPath implements Iterable<DataFlowNode> {
         return this.getLast().getChildren().size() > 1;
     }
 
-    private boolean isFirstDoStatement(DataFlowNode inode) {
+    private boolean isFirstDoStatement(final DataFlowNode inode) {
         int index = inode.getIndex() - 1;
         if (index < 0) {
             return false;

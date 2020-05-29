@@ -13,11 +13,11 @@ public class AbstractVFNode extends AbstractJjtreeNode<VfNode> implements VfNode
 
     protected VfParser parser;
 
-    public AbstractVFNode(int id) {
+    public AbstractVFNode(final int id) {
         super(id);
     }
 
-    public AbstractVFNode(VfParser parser, int id) {
+    public AbstractVFNode(final VfParser parser, final int id) {
         super(id);
         this.parser = parser;
     }
@@ -46,7 +46,7 @@ public class AbstractVFNode extends AbstractJjtreeNode<VfNode> implements VfNode
      * Accept the visitor. *
      */
     @Override
-    public Object jjtAccept(VfParserVisitor visitor, Object data) {
+    public Object jjtAccept(final VfParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -54,7 +54,7 @@ public class AbstractVFNode extends AbstractJjtreeNode<VfNode> implements VfNode
      * Accept the visitor. *
      */
     @Override
-    public Object childrenAccept(VfParserVisitor visitor, Object data) {
+    public Object childrenAccept(final VfParserVisitor visitor, final Object data) {
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
                 ((VfNode) children[i]).jjtAccept(visitor, data);

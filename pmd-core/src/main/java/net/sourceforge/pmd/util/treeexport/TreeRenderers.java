@@ -83,7 +83,7 @@ public final class TreeRenderers {
                         private final List<String> excluded = Arrays.asList("BeginLine", "BeginColumn", "EndLine", "EndColumn", "SingleLine", "FindBoundary");
 
                         @Override
-                        protected boolean takeAttribute(Node node, Attribute attribute) {
+                        protected boolean takeAttribute(final Node node, final Attribute attribute) {
                             if (!properties.getProperty(XML_RENDER_COMMON_ATTRIBUTES)) {
                                 return !excluded.contains(attribute.getName());
                             }
@@ -121,7 +121,7 @@ public final class TreeRenderers {
      *
      * @return The descriptor, or null
      */
-    public static TreeRendererDescriptor findById(String id) {
+    public static TreeRendererDescriptor findById(final String id) {
         synchronized (REGISTRY) {
             return REGISTRY.get(id);
         }
@@ -145,7 +145,7 @@ public final class TreeRenderers {
      * @return True if the registration succeeded, false if there was
      *     already a registered renderer with the given ID.
      */
-    public static boolean register(TreeRendererDescriptor descriptor) {
+    public static boolean register(final TreeRendererDescriptor descriptor) {
         synchronized (REGISTRY) {
             if (REGISTRY.containsKey(descriptor.id())) {
                 return false;

@@ -11,7 +11,7 @@ public class ViolationNode extends AbstractReportNode {
 
     private RuleViolation ruleViolation;
 
-    public ViolationNode(RuleViolation violation) {
+    public ViolationNode(final RuleViolation violation) {
         this.ruleViolation = violation;
     }
 
@@ -20,7 +20,7 @@ public class ViolationNode extends AbstractReportNode {
     }
 
     @Override
-    public boolean equalsNode(AbstractReportNode arg0) {
+    public boolean equalsNode(final AbstractReportNode arg0) {
         if (!(arg0 instanceof ViolationNode)) {
             return false;
         }

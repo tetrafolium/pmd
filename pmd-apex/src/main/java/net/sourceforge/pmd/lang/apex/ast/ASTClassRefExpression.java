@@ -12,12 +12,12 @@ public class ASTClassRefExpression extends AbstractApexNode<ClassRefExpression> 
 
     @Deprecated
     @InternalApi
-    public ASTClassRefExpression(ClassRefExpression classRefExpression) {
+    public ASTClassRefExpression(final ClassRefExpression classRefExpression) {
         super(classRefExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

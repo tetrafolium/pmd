@@ -62,7 +62,7 @@ public abstract class AbstractPoorMethodCall extends AbstractJavaRule {
      *            NameOccurrence
      * @return boolean
      */
-    private boolean isNotedMethod(NameOccurrence occurrence) {
+    private boolean isNotedMethod(final NameOccurrence occurrence) {
 
         if (occurrence == null) {
             return false;
@@ -91,7 +91,7 @@ public abstract class AbstractPoorMethodCall extends AbstractJavaRule {
      *      Object)
      */
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         if (node.getNameDeclaration() == null || !targetTypename().equals(node.getNameDeclaration().getTypeImage())) {
             return data;
         }

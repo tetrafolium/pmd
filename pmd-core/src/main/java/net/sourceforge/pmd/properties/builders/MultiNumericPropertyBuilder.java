@@ -23,7 +23,7 @@ public abstract class MultiNumericPropertyBuilder<V, T extends MultiNumericPrope
     protected V upperLimit;
 
 
-    protected MultiNumericPropertyBuilder(String name) {
+    protected MultiNumericPropertyBuilder(final String name) {
         super(name);
         multiValueDelimiter = MultiValuePropertyDescriptor.DEFAULT_NUMERIC_DELIMITER;
     }
@@ -38,7 +38,7 @@ public abstract class MultiNumericPropertyBuilder<V, T extends MultiNumericPrope
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T range(V min, V max) {
+    public T range(final V min, final V max) {
         this.lowerLimit = min;
         this.upperLimit = max;
         return (T) this;

@@ -26,12 +26,12 @@ import net.sourceforge.pmd.lang.ast.ParseException;
 @InternalApi
 public class VfParser extends AbstractParser {
 
-    public VfParser(ParserOptions parserOptions) {
+    public VfParser(final ParserOptions parserOptions) {
         super(parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return new VfTokenManager(source);
     }
 
@@ -41,7 +41,7 @@ public class VfParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         AbstractTokenManager.setFileName(fileName);
         return new net.sourceforge.pmd.lang.vf.ast.VfParser(new VfSimpleCharStream(source)).CompilationUnit();
     }

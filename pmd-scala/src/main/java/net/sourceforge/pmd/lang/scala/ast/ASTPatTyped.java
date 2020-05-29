@@ -15,12 +15,12 @@ public class ASTPatTyped extends AbstractScalaNode<Pat.Typed> {
 
     @Deprecated
     @InternalApi
-    public ASTPatTyped(Pat.Typed scalaNode) {
+    public ASTPatTyped(final Pat.Typed scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

@@ -11,12 +11,12 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTFunctionCall extends AbstractEcmascriptNode<FunctionCall> {
     @Deprecated
     @InternalApi
-    public ASTFunctionCall(FunctionCall functionCall) {
+    public ASTFunctionCall(final FunctionCall functionCall) {
         super(functionCall);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -28,7 +28,7 @@ public class ASTFunctionCall extends AbstractEcmascriptNode<FunctionCall> {
         return node.getArguments().size();
     }
 
-    public EcmascriptNode<?> getArgument(int index) {
+    public EcmascriptNode<?> getArgument(final int index) {
         return (EcmascriptNode<?>) getChild(index + 1);
     }
 

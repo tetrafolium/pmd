@@ -15,12 +15,12 @@ public class ASTTermMatch extends AbstractScalaNode<Term.Match> {
 
     @Deprecated
     @InternalApi
-    public ASTTermMatch(Term.Match scalaNode) {
+    public ASTTermMatch(final Term.Match scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

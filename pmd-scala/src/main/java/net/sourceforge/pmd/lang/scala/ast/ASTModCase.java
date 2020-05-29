@@ -15,12 +15,12 @@ public class ASTModCase extends AbstractScalaNode<Mod.Case> {
 
     @Deprecated
     @InternalApi
-    public ASTModCase(Mod.Case scalaNode) {
+    public ASTModCase(final Mod.Case scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

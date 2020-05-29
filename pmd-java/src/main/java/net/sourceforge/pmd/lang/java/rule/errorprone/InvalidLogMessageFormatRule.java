@@ -120,7 +120,7 @@ public class InvalidLogMessageFormatRule extends AbstractJavaRule {
         return data;
     }
 
-    private boolean isNewThrowable(ASTPrimaryExpression last) {
+    private boolean isNewThrowable(final ASTPrimaryExpression last) {
         // in case a new exception is created or the exception class is
         // mentioned.
         ASTClassOrInterfaceType classOrInterface = last.getFirstDescendantOfType(ASTClassOrInterfaceType.class);
@@ -128,12 +128,12 @@ public class InvalidLogMessageFormatRule extends AbstractJavaRule {
                 && TypeHelper.isA(classOrInterface, Throwable.class);
     }
 
-    private boolean hasTypeThrowable(ASTPrimaryExpression last) {
+    private boolean hasTypeThrowable(final ASTPrimaryExpression last) {
         // if the type could be determined already
         return last.getType() != null && TypeHelper.isA(last, Throwable.class);
     }
 
-    private boolean isReferencingThrowable(ASTPrimaryExpression last) {
+    private boolean isReferencingThrowable(final ASTPrimaryExpression last) {
         // check the variable type, if there is a reference by name
         ASTName variable = last.getFirstDescendantOfType(ASTName.class);
         if (variable != null && variable.getNameDeclaration() != null
@@ -163,7 +163,7 @@ public class InvalidLogMessageFormatRule extends AbstractJavaRule {
         }
     }
 
-    private boolean isLambdaParameter(ASTPrimaryExpression last) {
+    private boolean isLambdaParameter(final ASTPrimaryExpression last) {
         String varName = null;
         ASTPrimaryPrefix prefix = last.getFirstChildOfType(ASTPrimaryPrefix.class);
         if (prefix != null) {

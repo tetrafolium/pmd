@@ -40,7 +40,7 @@ public final class FormalParameterNamingConventionsRule extends AbstractNamingCo
 
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
 
         if (node.isLambdaParameter()) {
             checkMatches(node, node.isTypeInferred() ? lambdaParamRegex : explicitLambdaParamRegex, data);
@@ -59,7 +59,7 @@ public final class FormalParameterNamingConventionsRule extends AbstractNamingCo
 
 
     @Override
-    String kindDisplayName(ASTVariableDeclaratorId node, PropertyDescriptor<Pattern> descriptor) {
+    String kindDisplayName(final ASTVariableDeclaratorId node, final PropertyDescriptor<Pattern> descriptor) {
         if (node.isLambdaParameter()) {
             return node.isTypeInferred() ? "lambda parameter" : "explicitly-typed lambda parameter";
         } else if (node.isFormalParameter()) { // necessarily a method parameter here

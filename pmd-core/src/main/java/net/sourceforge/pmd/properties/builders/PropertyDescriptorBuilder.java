@@ -32,7 +32,7 @@ public abstract class PropertyDescriptorBuilder<E, T extends PropertyDescriptorB
     protected boolean isDefinedInXML = false;
 
 
-    protected PropertyDescriptorBuilder(String name) {
+    protected PropertyDescriptorBuilder(final String name) {
         if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException("Name must be provided");
         }
@@ -48,7 +48,7 @@ public abstract class PropertyDescriptorBuilder<E, T extends PropertyDescriptorB
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T desc(String desc) {
+    public T desc(final String desc) {
         if (StringUtils.isBlank(desc)) {
             throw new IllegalArgumentException("Description must be provided");
         }
@@ -67,7 +67,7 @@ public abstract class PropertyDescriptorBuilder<E, T extends PropertyDescriptorB
      */
     @SuppressWarnings("unchecked")
     @Deprecated
-    public T uiOrder(float f) {
+    public T uiOrder(final float f) {
         this.uiOrder = f;
         return (T) this;
     }

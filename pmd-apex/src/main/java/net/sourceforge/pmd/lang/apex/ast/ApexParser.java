@@ -28,7 +28,7 @@ public class ApexParser {
 
     private Map<Integer, String> suppressMap;
 
-    public ApexParser(ApexParserOptions parserOptions) {
+    public ApexParser(final ApexParserOptions parserOptions) {
         ApexJorjeLogging.disableLogging();
         this.parserOptions = parserOptions;
     }
@@ -71,22 +71,22 @@ public class ApexParser {
         }
 
         @Override
-        public void visitEnd(UserClass node, AdditionalPassScope scope) {
+        public void visitEnd(final UserClass node, final AdditionalPassScope scope) {
             topLevel = node;
         }
 
         @Override
-        public void visitEnd(UserEnum node, AdditionalPassScope scope) {
+        public void visitEnd(final UserEnum node, final AdditionalPassScope scope) {
             topLevel = node;
         }
 
         @Override
-        public void visitEnd(UserInterface node, AdditionalPassScope scope) {
+        public void visitEnd(final UserInterface node, final AdditionalPassScope scope) {
             topLevel = node;
         }
 
         @Override
-        public void visitEnd(UserTrigger node, AdditionalPassScope scope) {
+        public void visitEnd(final UserTrigger node, final AdditionalPassScope scope) {
             topLevel = node;
         }
     }

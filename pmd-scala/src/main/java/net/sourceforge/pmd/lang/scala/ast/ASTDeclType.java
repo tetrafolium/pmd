@@ -15,12 +15,12 @@ public class ASTDeclType extends AbstractScalaNode<Decl.Type> {
 
     @Deprecated
     @InternalApi
-    public ASTDeclType(Decl.Type scalaNode) {
+    public ASTDeclType(final Decl.Type scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

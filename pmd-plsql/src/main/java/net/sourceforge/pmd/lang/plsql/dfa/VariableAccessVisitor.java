@@ -37,31 +37,31 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  */
 public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
 
-    public void compute(ASTMethodDeclaration node) {
+    public void compute(final ASTMethodDeclaration node) {
         // This includes Package Bodies and Object Type Bodies
         if (node.getParent() instanceof ASTPackageBody) {
             this.computeNow(node);
         }
     }
 
-    public void compute(ASTProgramUnit node) {
+    public void compute(final ASTProgramUnit node) {
         // Treat Compound Trigger as a Package Body
         if (node.getParent() instanceof ASTPackageBody || node.getParent() instanceof ASTCompoundTriggerBlock) {
             this.computeNow(node);
         }
     }
 
-    public void compute(ASTTypeMethod node) {
+    public void compute(final ASTTypeMethod node) {
         if (node.getParent() instanceof ASTPackageBody) {
             this.computeNow(node);
         }
     }
 
-    public void compute(ASTTriggerUnit node) {
+    public void compute(final ASTTriggerUnit node) {
         this.computeNow(node);
     }
 
-    public void compute(ASTTriggerTimingPointSection node) {
+    public void compute(final ASTTriggerTimingPointSection node) {
         this.computeNow(node);
     }
 
@@ -70,7 +70,7 @@ public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
      * this.computeNow(node); }
      */
 
-    private void computeNow(Node node) {
+    private void computeNow(final Node node) {
         DataFlowNode inode = node.getDataFlowNode();
 
         List<VariableAccess> undefinitions = markUsages(inode);
@@ -84,7 +84,7 @@ public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
         lastINode.setVariableAccess(undefinitions);
     }
 
-    private List<VariableAccess> markUsages(DataFlowNode inode) {
+    private List<VariableAccess> markUsages(final DataFlowNode inode) {
         // undefinitions was once a field... seems like it works fine as a local
         List<VariableAccess> undefinitions = new ArrayList<>();
         Set<Map<NameDeclaration, List<NameOccurrence>>> variableDeclarations = collectDeclarations(inode);
@@ -111,7 +111,7 @@ public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
         return undefinitions;
     }
 
-    private Set<Map<NameDeclaration, List<NameOccurrence>>> collectDeclarations(DataFlowNode inode) {
+    private Set<Map<NameDeclaration, List<NameOccurrence>>> collectDeclarations(final DataFlowNode inode) {
         Set<Map<NameDeclaration, List<NameOccurrence>>> decls = new HashSet<>();
         Map<NameDeclaration, List<NameOccurrence>> varDecls;
         for (int i = 0; i < inode.getFlow().size(); i++) {
@@ -127,7 +127,7 @@ public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
         return decls;
     }
 
-    private void addAccess(NameOccurrence occ, DataFlowNode inode) {
+    private void addAccess(final NameOccurrence occ, final DataFlowNode inode) {
         PLSQLNameOccurrence occurrence = (PLSQLNameOccurrence) occ;
         if (occurrence.isOnLeftHandSide()) {
             this.addVariableAccess(occurrence.getLocation(),
@@ -149,7 +149,7 @@ public class VariableAccessVisitor extends PLSQLParserVisitorAdapter {
      * @param flow
      *            dataflownodes that can contain the node.
      */
-    private void addVariableAccess(Node node, VariableAccess va, List<DataFlowNode> flow) {
+    private void addVariableAccess(final Node node, final VariableAccess va, final List<DataFlowNode> flow) {
         // backwards to find the right inode (not a method declaration)
         for (int i = flow.size() - 1; i > 0; i--) {
             DataFlowNode inode = flow.get(i);

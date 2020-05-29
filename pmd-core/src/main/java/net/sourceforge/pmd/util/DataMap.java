@@ -33,7 +33,7 @@ public final class DataMap<K> {
      * @return Previous value associated with the key (nullable)
      */
     @SuppressWarnings("unchecked")
-    public <T> T set(DataKey<? extends K, ? super T> key, T data) {
+    public <T> T set(final DataKey<? extends K, ? super T> key, final T data) {
         return (T) map.put(key, data);
     }
 
@@ -46,7 +46,7 @@ public final class DataMap<K> {
      * @return Value associated with the key (nullable)
      */
     @SuppressWarnings("unchecked")
-    public <T> T get(DataKey<? extends K, ? super T> key) {
+    public <T> T get(final DataKey<? extends K, ? super T> key) {
         return (T) map.get(key);
     }
 
@@ -57,7 +57,7 @@ public final class DataMap<K> {
      *
      * @return True if some value is set
      */
-    public boolean isSet(DataKey<? extends K, ?> key) {
+    public boolean isSet(final DataKey<? extends K, ?> key) {
         return map.containsKey(key);
     }
 
@@ -85,7 +85,7 @@ public final class DataMap<K> {
 
         private final String name;
 
-        SimpleDataKey(String name) {
+        SimpleDataKey(final String name) {
             this.name = name;
         }
 

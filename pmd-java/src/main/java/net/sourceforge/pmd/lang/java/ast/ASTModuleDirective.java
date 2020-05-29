@@ -22,24 +22,24 @@ public class ASTModuleDirective extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTModuleDirective(int id) {
+    public ASTModuleDirective(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTModuleDirective(JavaParser p, int id) {
+    public ASTModuleDirective(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @InternalApi
     @Deprecated
-    public void setType(DirectiveType type) {
+    public void setType(final DirectiveType type) {
         this.type = type;
     }
 
@@ -49,7 +49,7 @@ public class ASTModuleDirective extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public void setRequiresModifier(RequiresModifier requiresModifier) {
+    public void setRequiresModifier(final RequiresModifier requiresModifier) {
         this.requiresModifier = requiresModifier;
     }
 

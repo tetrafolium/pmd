@@ -44,7 +44,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 public class JUnitUseExpectedRule extends AbstractJUnitRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceBodyDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceBodyDeclaration node, final Object data) {
         boolean inAnnotation = false;
         for (int i = 0; i < node.getNumChildren(); i++) {
             Node child = node.getChild(i);
@@ -72,7 +72,7 @@ public class JUnitUseExpectedRule extends AbstractJUnitRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         List<ASTTryStatement> catches = node.findDescendantsOfType(ASTTryStatement.class);
         List<Node> found = new ArrayList<>();
         if (catches.isEmpty()) {
@@ -105,7 +105,7 @@ public class JUnitUseExpectedRule extends AbstractJUnitRule {
         return found;
     }
 
-    private ASTCatchStatement getCatch(Node n) {
+    private ASTCatchStatement getCatch(final Node n) {
         for (int i = 0; i < n.getNumChildren(); i++) {
             if (n.getChild(i) instanceof ASTCatchStatement) {
                 return (ASTCatchStatement) n.getChild(i);

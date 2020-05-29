@@ -21,13 +21,13 @@ public final class LocMetric {
     public static final class LocOperationMetric extends AbstractJavaOperationMetric {
 
         @Override
-        public boolean supports(MethodLikeNode node) {
+        public boolean supports(final MethodLikeNode node) {
             return true;
         }
 
 
         @Override
-        public double computeFor(MethodLikeNode node, MetricOptions options) {
+        public double computeFor(final MethodLikeNode node, final MetricOptions options) {
             return 1 + node.getEndLine() - node.getBeginLine();
         }
     }
@@ -35,13 +35,13 @@ public final class LocMetric {
     public static final class LocClassMetric extends AbstractJavaClassMetric {
 
         @Override
-        public boolean supports(ASTAnyTypeDeclaration node) {
+        public boolean supports(final ASTAnyTypeDeclaration node) {
             return true;
         }
 
 
         @Override
-        public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+        public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
             return 1 + node.getEndLine() - node.getBeginLine();
         }
 

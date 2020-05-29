@@ -67,7 +67,7 @@ public class SingularFieldRule extends AbstractLombokAwareRule {
 
     @SuppressWarnings("PMD.CompareObjectsWithEquals")
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         boolean checkInnerClasses = getProperty(CHECK_INNER_CLASSES);
         boolean disallowNotAssignment = getProperty(DISALLOW_NOT_ASSIGNMENT);
 
@@ -170,14 +170,14 @@ public class SingularFieldRule extends AbstractLombokAwareRule {
                 }
 
                 if (violation && !usages.isEmpty()) {
-                    addViolation(data, node, new Object[] { declaration.getImage() });
+                    addViolation(data, node, new Object[] {declaration.getImage() });
                 }
             }
         }
         return data;
     }
 
-    private boolean isInAssignment(Node potentialStatement) {
+    private boolean isInAssignment(final Node potentialStatement) {
         if (potentialStatement instanceof ASTStatementExpression) {
             ASTStatementExpression statement = (ASTStatementExpression) potentialStatement;
             List<ASTAssignmentOperator> assignments = statement.findDescendantsOfType(ASTAssignmentOperator.class);

@@ -22,8 +22,8 @@ public abstract class BoundOrConstraint {
 
     protected final InferenceRuleType ruleType;
 
-    public BoundOrConstraint(JavaTypeDefinition leftProperType, JavaTypeDefinition rightProperType,
-                             InferenceRuleType ruleType) {
+    public BoundOrConstraint(final JavaTypeDefinition leftProperType, final JavaTypeDefinition rightProperType,
+                             final InferenceRuleType ruleType) {
         this.leftProperType = leftProperType;
         this.leftTypeVariable = null;
         this.rightProperType = rightProperType;
@@ -31,8 +31,8 @@ public abstract class BoundOrConstraint {
         this.ruleType = ruleType;
     }
 
-    public BoundOrConstraint(JavaTypeDefinition leftProperType, Variable rightTypeVariable,
-                             InferenceRuleType ruleType) {
+    public BoundOrConstraint(final JavaTypeDefinition leftProperType, final Variable rightTypeVariable,
+                             final InferenceRuleType ruleType) {
         this.leftProperType = leftProperType;
         this.leftTypeVariable = null;
         this.rightProperType = null;
@@ -40,8 +40,8 @@ public abstract class BoundOrConstraint {
         this.ruleType = ruleType;
     }
 
-    public BoundOrConstraint(Variable leftTypeVariable, JavaTypeDefinition rightProperType,
-                             InferenceRuleType ruleType) {
+    public BoundOrConstraint(final Variable leftTypeVariable, final JavaTypeDefinition rightProperType,
+                             final InferenceRuleType ruleType) {
         this.leftProperType = null;
         this.leftTypeVariable = leftTypeVariable;
         this.rightProperType = rightProperType;
@@ -49,8 +49,8 @@ public abstract class BoundOrConstraint {
         this.ruleType = ruleType;
     }
 
-    public BoundOrConstraint(Variable leftTypeVariable, Variable rightTypeVariable,
-                             InferenceRuleType ruleType) {
+    public BoundOrConstraint(final Variable leftTypeVariable, final Variable rightTypeVariable,
+                             final InferenceRuleType ruleType) {
         this.leftProperType = null;
         this.leftTypeVariable = leftTypeVariable;
         this.rightProperType = null;
@@ -139,7 +139,7 @@ public abstract class BoundOrConstraint {
 
     public abstract List<BoundOrConstraint> reduce();
 
-    public void addVariablesToSet(Set<Variable> variables) {
+    public void addVariablesToSet(final Set<Variable> variables) {
         if (leftTypeVariable != null) {
             variables.add(leftTypeVariable);
         }
@@ -172,7 +172,7 @@ public abstract class BoundOrConstraint {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

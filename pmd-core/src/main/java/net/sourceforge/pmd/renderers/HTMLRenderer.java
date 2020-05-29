@@ -68,7 +68,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
      * @param report
      * @throws IOException
      */
-    public void renderBody(Writer writer, Report report) throws IOException {
+    public void renderBody(final Writer writer, final Report report) throws IOException {
         linkPrefix = getProperty(LINK_PREFIX);
         linePrefix = getProperty(LINE_PREFIX);
         replaceHtmlExtension = getProperty(HTML_EXTENSION);
@@ -101,7 +101,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
     }
 
     @Override
-    public void renderFileViolations(Iterator<RuleViolation> violations) throws IOException {
+    public void renderFileViolations(final Iterator<RuleViolation> violations) throws IOException {
         glomRuleViolations(writer, violations);
     }
 
@@ -116,7 +116,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
         writer.write("</body></html>" + PMD.EOL);
     }
 
-    private void glomRuleViolations(Writer writer, Iterator<RuleViolation> violations) throws IOException {
+    private void glomRuleViolations(final Writer writer, final Iterator<RuleViolation> violations) throws IOException {
 
         StringBuilder buf = new StringBuilder(500);
 
@@ -148,12 +148,12 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
         }
     }
 
-    private String renderFileName(String filename, int beginLine) {
+    private String renderFileName(final String filename, final int beginLine) {
         return maybeWrap(StringEscapeUtils.escapeHtml4(determineFileName(filename)),
                 linePrefix == null || beginLine < 0 ? "" : linePrefix + beginLine);
     }
 
-    private String renderRuleName(Rule rule) {
+    private String renderRuleName(final Rule rule) {
         String name = rule.getName();
         String infoUrl = rule.getExternalInfoUrl();
         if (StringUtils.isNotBlank(infoUrl)) {
@@ -162,7 +162,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
         return name;
     }
 
-    private void glomProcessingErrors(Writer writer, List<Report.ProcessingError> errors) throws IOException {
+    private void glomProcessingErrors(final Writer writer, final List<Report.ProcessingError> errors) throws IOException {
 
         if (errors.isEmpty()) {
             return;
@@ -191,7 +191,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
         writer.write("</table>");
     }
 
-    private void glomSuppressions(Writer writer, List<Report.SuppressedViolation> suppressed) throws IOException {
+    private void glomSuppressions(final Writer writer, final List<Report.SuppressedViolation> suppressed) throws IOException {
         if (suppressed.isEmpty()) {
             return;
         }
@@ -252,7 +252,7 @@ public class HTMLRenderer extends AbstractIncrementingRenderer {
         writer.write("</table>");
     }
 
-    private String maybeWrap(String filename, String line) {
+    private String maybeWrap(final String filename, final String line) {
         if (StringUtils.isBlank(linkPrefix)) {
             return filename;
         }

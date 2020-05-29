@@ -28,7 +28,7 @@ public abstract class AbstractRenderer extends AbstractPropertySource implements
 
     protected List<String> inputPathPrefixes = Collections.emptyList();
 
-    public AbstractRenderer(String name, String description) {
+    public AbstractRenderer(final String name, final String description) {
         this.name = name;
         this.description = description;
     }
@@ -44,7 +44,7 @@ public abstract class AbstractRenderer extends AbstractPropertySource implements
     }
 
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -54,7 +54,7 @@ public abstract class AbstractRenderer extends AbstractPropertySource implements
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
@@ -64,12 +64,12 @@ public abstract class AbstractRenderer extends AbstractPropertySource implements
     }
 
     @Override
-    public void setShowSuppressedViolations(boolean showSuppressedViolations) {
+    public void setShowSuppressedViolations(final boolean showSuppressedViolations) {
         this.showSuppressedViolations = showSuppressedViolations;
     }
 
     @Override
-    public void setUseShortNames(List<String> inputPaths) {
+    public void setUseShortNames(final List<String> inputPaths) {
         this.inputPathPrefixes = inputPaths;
     }
 
@@ -85,12 +85,12 @@ public abstract class AbstractRenderer extends AbstractPropertySource implements
      * @see PMDConfiguration#isReportShortNames()
      * @see PMDParameters#isShortnames()
      */
-    protected String determineFileName(String inputFileName) {
+    protected String determineFileName(final String inputFileName) {
         return ShortFilenameUtil.determineFileName(inputPathPrefixes, inputFileName);
     }
 
     @Override
-    public void setWriter(Writer writer) {
+    public void setWriter(final Writer writer) {
         this.writer = writer;
     }
 

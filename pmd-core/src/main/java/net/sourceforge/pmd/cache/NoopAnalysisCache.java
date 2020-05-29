@@ -53,7 +53,7 @@ public class NoopAnalysisCache implements AnalysisCache {
     }
 
     @Override
-    public List<RuleViolation> getCachedViolations(File sourceFile) {
+    public List<RuleViolation> getCachedViolations(final File sourceFile) {
         return Collections.emptyList();
     }
 }

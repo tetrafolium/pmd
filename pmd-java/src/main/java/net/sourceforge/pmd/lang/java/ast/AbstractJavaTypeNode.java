@@ -21,13 +21,13 @@ public abstract class AbstractJavaTypeNode extends AbstractJavaNode implements T
 
     @InternalApi
     @Deprecated
-    public AbstractJavaTypeNode(int i) {
+    public AbstractJavaTypeNode(final int i) {
         super(i);
     }
 
     @InternalApi
     @Deprecated
-    public AbstractJavaTypeNode(JavaParser p, int i) {
+    public AbstractJavaTypeNode(final JavaParser p, final int i) {
         super(p, i);
     }
 
@@ -39,7 +39,7 @@ public abstract class AbstractJavaTypeNode extends AbstractJavaNode implements T
     @InternalApi
     @Deprecated
     @Override
-    public void setType(Class<?> type) {
+    public void setType(final Class<?> type) {
         typeDefinition = JavaTypeDefinition.forClass(type);
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractJavaTypeNode extends AbstractJavaNode implements T
     @InternalApi
     @Deprecated
     @Override
-    public void setTypeDefinition(JavaTypeDefinition typeDefinition) {
+    public void setTypeDefinition(final JavaTypeDefinition typeDefinition) {
         this.typeDefinition = typeDefinition;
     }
 }

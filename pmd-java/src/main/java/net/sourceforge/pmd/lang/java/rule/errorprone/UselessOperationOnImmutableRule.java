@@ -28,7 +28,7 @@ public class UselessOperationOnImmutableRule extends AbstractJavaRule {
      * These are the BigDecimal methods which are immutable
      */
     private static final Set<String> BIG_DECIMAL_METHODS = CollectionUtil
-            .asSet(new String[] { ".abs", ".add", ".divide", ".divideToIntegralValue", ".max", ".min", ".movePointLeft",
+            .asSet(new String[] {".abs", ".add", ".divide", ".divideToIntegralValue", ".max", ".min", ".movePointLeft",
                 ".movePointRight", ".multiply", ".negate", ".plus", ".pow", ".remainder", ".round",
                 ".scaleByPowerOfTen", ".setScale", ".stripTrailingZeros", ".subtract", ".ulp", });
 
@@ -36,7 +36,7 @@ public class UselessOperationOnImmutableRule extends AbstractJavaRule {
      * These are the BigInteger methods which are immutable
      */
     private static final Set<String> BIG_INTEGER_METHODS = CollectionUtil
-            .asSet(new String[] { ".abs", ".add", ".and", ".andNot", ".clearBit", ".divide", ".flipBit", ".gcd", ".max",
+            .asSet(new String[] {".abs", ".add", ".and", ".andNot", ".clearBit", ".divide", ".flipBit", ".gcd", ".max",
                 ".min", ".mod", ".modInverse", ".modPow", ".multiply", ".negate", ".nextProbablePrine", ".not", ".or",
                 ".pow", ".remainder", ".setBit", ".shiftLeft", ".shiftRight", ".subtract", ".xor", });
 
@@ -44,7 +44,7 @@ public class UselessOperationOnImmutableRule extends AbstractJavaRule {
      * These are the String methods which are immutable
      */
     private static final Set<String> STRING_METHODS = CollectionUtil
-            .asSet(new String[] { ".concat", ".intern", ".replace", ".replaceAll", ".replaceFirst", ".substring",
+            .asSet(new String[] {".concat", ".intern", ".replace", ".replaceAll", ".replaceFirst", ".substring",
                 ".toLowerCase", ".toString", ".toUpperCase", ".trim", });
 
     /**
@@ -62,7 +62,7 @@ public class UselessOperationOnImmutableRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
 
         ASTVariableDeclaratorId var = getDeclaration(node);
         if (var == null) {
@@ -98,7 +98,7 @@ public class UselessOperationOnImmutableRule extends AbstractJavaRule {
      *            The ASTLocalVariableDeclaration which is a problem
      * @return ASTVariableDeclaratorId
      */
-    private ASTVariableDeclaratorId getDeclaration(ASTLocalVariableDeclaration node) {
+    private ASTVariableDeclaratorId getDeclaration(final ASTLocalVariableDeclaration node) {
         ASTType type = node.getTypeNode();
         if (type != null) {
             if (MAP_CLASSES.keySet().contains(type.getTypeImage())) {

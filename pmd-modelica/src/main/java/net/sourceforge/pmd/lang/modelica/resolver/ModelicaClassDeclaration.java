@@ -26,7 +26,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
     private final List<CompositeName> extendedClasses = new ArrayList<>();
     private List<ModelicaClassScope> resolvedExtends;
 
-    ModelicaClassDeclaration(ASTClassDefinition node) {
+    ModelicaClassDeclaration(final ASTClassDefinition node) {
         encapsulated = node.isEncapsulated();
         partial = node.isPartial();
         specialization = node.getSpecialization();
@@ -38,7 +38,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
     /**
      * To be called by a corresponding AST node describing itself
      */
-    void addImport(Visibility visibility, ModelicaImportClause clause) {
+    void addImport(final Visibility visibility, final ModelicaImportClause clause) {
         // TODO handle visibility
         imports.add(clause);
     }
@@ -46,13 +46,13 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
     /**
      * To be called by a corresponding AST node describing itself
      */
-    void addExtends(Visibility visibility, CompositeName extendedClass) {
+    void addExtends(final Visibility visibility, final CompositeName extendedClass) {
         // TODO handle visibility
         assert resolvedExtends == null;
         extendedClasses.add(extendedClass);
     }
 
-    private List<ModelicaClassScope> getResolvedExtends(ResolutionState lazyInitState) {
+    private List<ModelicaClassScope> getResolvedExtends(final ResolutionState lazyInitState) {
         if (resolvedExtends == null) {
             ResolutionContext ctx = lazyInitState.createContext();
             try {
@@ -74,7 +74,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
     }
 
     @Override
-    public <T extends ResolvableEntity> ResolutionResult<T> safeResolveComponent(Class<T> clazz, ResolutionState state, CompositeName name) {
+    public <T extends ResolvableEntity> ResolutionResult<T> safeResolveComponent(final Class<T> clazz, final ResolutionState state, final CompositeName name) {
         ResolutionContext result = state.createContext();
         try {
             lookupInInstanceScope(result, name);
@@ -93,7 +93,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
      * @return List of candidate resolutions
      * @throws Watchdog.CountdownException if too many lookup steps were performed
      */
-    private ResolutionResult<ModelicaDeclaration> lookupImported(ResolutionState state, String firstName, boolean qualified) throws Watchdog.CountdownException {
+    private ResolutionResult<ModelicaDeclaration> lookupImported(final ResolutionState state, final String firstName, final boolean qualified) throws Watchdog.CountdownException {
         state.tick();
 
         ResolutionContext result = state.createContext();
@@ -115,7 +115,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
      * @param name   a name to look up
      * @throws Watchdog.CountdownException in too many lookup steps were performed
      */
-    void lookupInInstanceScope(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    void lookupInInstanceScope(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         if (name.isEmpty()) {
             result.addCandidate(this);
             return;
@@ -171,7 +171,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
      * @param furtherParts       an unresolved "tail" of a composite name
      * @throws Watchdog.CountdownException if too many resolution steps were performed
      */
-    private void lookupInInstanceScopeFurtherParts(ResolutionContext result, ModelicaDeclaration resolvedSimpleName, CompositeName furtherParts) throws Watchdog.CountdownException {
+    private void lookupInInstanceScopeFurtherParts(final ResolutionContext result, final ModelicaDeclaration resolvedSimpleName, final CompositeName furtherParts) throws Watchdog.CountdownException {
         result.watchdogTick();
 
         if (furtherParts.isEmpty()) {
@@ -203,7 +203,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
         }
     }
 
-    void setOwnScope(ModelicaClassScope scope) {
+    void setOwnScope(final ModelicaClassScope scope) {
         ownScope = scope;
     }
 
@@ -253,7 +253,7 @@ class ModelicaClassDeclaration extends AbstractModelicaDeclaration implements Mo
     }
 
     @Override
-    void resolveFurtherNameComponents(ResolutionContext result, CompositeName name) throws Watchdog.CountdownException {
+    void resolveFurtherNameComponents(final ResolutionContext result, final CompositeName name) throws Watchdog.CountdownException {
         lookupInInstanceScope(result, name);
     }
 

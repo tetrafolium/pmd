@@ -63,8 +63,8 @@ public class CompilerService {
      * @param queryValidator
      *            A way to validate your queries.
      */
-    public CompilerService(SymbolProvider symbolProvider, AccessEvaluator accessEvaluator,
-            QueryValidator queryValidator) {
+    public CompilerService(final SymbolProvider symbolProvider, final AccessEvaluator accessEvaluator,
+            final QueryValidator queryValidator) {
         this.symbolProvider = symbolProvider;
         this.accessEvaluator = accessEvaluator;
         this.queryValidator = queryValidator;
@@ -72,25 +72,25 @@ public class CompilerService {
 
 
     /** @throws ParseException If the code is unparsable */
-    public ApexCompiler visitAstFromString(String source, AstVisitor<AdditionalPassScope> visitor) {
+    public ApexCompiler visitAstFromString(final String source, final AstVisitor<AdditionalPassScope> visitor) {
         return visitAstsFromStrings(ImmutableList.of(source), visitor, CompilerStage.POST_TYPE_RESOLVE);
     }
 
     /** @throws ParseException If the code is unparsable */
-    public ApexCompiler visitAstsFromStrings(List<String> sources, AstVisitor<AdditionalPassScope> visitor) {
+    public ApexCompiler visitAstsFromStrings(final List<String> sources, final AstVisitor<AdditionalPassScope> visitor) {
         return visitAstsFromStrings(sources, visitor, CompilerStage.POST_TYPE_RESOLVE);
     }
 
     /** @throws ParseException If the code is unparsable */
-    public ApexCompiler visitAstsFromStrings(List<String> sources, AstVisitor<AdditionalPassScope> visitor,
-            CompilerStage compilerStage) {
+    public ApexCompiler visitAstsFromStrings(final List<String> sources, final AstVisitor<AdditionalPassScope> visitor,
+            final CompilerStage compilerStage) {
         List<SourceFile> sourceFiles = sources.stream().map(s -> SourceFile.builder().setBody(s).build())
                 .collect(Collectors.toList());
         CompilationInput compilationUnit = createCompilationInput(sourceFiles, visitor);
         return compile(compilationUnit, compilerStage);
     }
 
-    private ApexCompiler compile(CompilationInput compilationInput, CompilerStage compilerStage) {
+    private ApexCompiler compile(final CompilationInput compilationInput, final CompilerStage compilerStage) {
         ApexCompiler compiler = ApexCompiler.builder().setInput(compilationInput).build();
         compiler.compile(compilerStage);
         callAdditionalPassVisitor(compiler);
@@ -98,7 +98,7 @@ public class CompilerService {
         return compiler;
     }
 
-    private void throwParseErrorIfAny(ApexCompiler compiler) {
+    private void throwParseErrorIfAny(final ApexCompiler compiler) {
         // this ignores semantic errors
 
         ParseException parseError = null;
@@ -116,8 +116,8 @@ public class CompilerService {
         }
     }
 
-    private CompilationInput createCompilationInput(List<SourceFile> sourceFiles,
-                                                    AstVisitor<AdditionalPassScope> visitor) {
+    private CompilationInput createCompilationInput(final List<SourceFile> sourceFiles,
+                                                    final AstVisitor<AdditionalPassScope> visitor) {
         return new CompilationInput(sourceFiles, symbolProvider, accessEvaluator, queryValidator, visitor,
                                     NoopCompilerProgressCallback.get());
     }
@@ -132,7 +132,7 @@ public class CompilerService {
      *
      */
     @SuppressWarnings("unchecked")
-    private void callAdditionalPassVisitor(ApexCompiler compiler) {
+    private void callAdditionalPassVisitor(final ApexCompiler compiler) {
         try {
             List<CodeUnit> allUnits = (List<CodeUnit>) FieldUtils.readDeclaredField(compiler, "allUnits", true);
             CompilerContext compilerContext = (CompilerContext) FieldUtils.readDeclaredField(compiler,

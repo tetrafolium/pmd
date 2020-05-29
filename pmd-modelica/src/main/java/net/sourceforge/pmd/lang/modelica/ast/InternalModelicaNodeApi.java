@@ -12,21 +12,21 @@ import net.sourceforge.pmd.lang.modelica.resolver.Watchdog;
 
 @InternalApi
 public final class InternalModelicaNodeApi {
-    private InternalModelicaNodeApi() {}
+    private InternalModelicaNodeApi() { }
 
-    public static void setNodeOwnScope(ModelicaNode node, ModelicaScope scope) {
+    public static void setNodeOwnScope(final ModelicaNode node, final ModelicaScope scope) {
         ((AbstractModelicaNode) node).setOwnScope(scope);
     }
 
-    public static boolean isQualifiedImport(ModelicaImportClause importClause) {
+    public static boolean isQualifiedImport(final ModelicaImportClause importClause) {
         return ((AbstractModelicaImportClause) importClause).isQualified();
     }
 
-    public static void resolveImportedSimpleName(ModelicaImportClause importClause, ResolutionContext result, String simpleName) throws Watchdog.CountdownException {
+    public static void resolveImportedSimpleName(final ModelicaImportClause importClause, final ResolutionContext result, final String simpleName) throws Watchdog.CountdownException {
         ((AbstractModelicaImportClause) importClause).resolveSimpleName(result, simpleName);
     }
 
-    public static void populateExtendsAndImports(ModelicaClassSpecifierNode classNode, ModelicaClassType classTypeDeclaration) {
+    public static void populateExtendsAndImports(final ModelicaClassSpecifierNode classNode, final ModelicaClassType classTypeDeclaration) {
         ((AbstractModelicaClassSpecifierNode) classNode).populateExtendsAndImports(classTypeDeclaration);
     }
 }

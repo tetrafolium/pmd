@@ -15,12 +15,12 @@ public class ASTTypeProject extends AbstractScalaNode<Type.Project> {
 
     @Deprecated
     @InternalApi
-    public ASTTypeProject(Type.Project scalaNode) {
+    public ASTTypeProject(final Type.Project scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

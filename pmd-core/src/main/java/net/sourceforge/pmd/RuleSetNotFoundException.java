@@ -7,7 +7,7 @@ package net.sourceforge.pmd;
 public class RuleSetNotFoundException extends Exception {
     private static final long serialVersionUID = -4617033110919250810L;
 
-    public RuleSetNotFoundException(String msg) {
+    public RuleSetNotFoundException(final String msg) {
         super(msg);
     }
 }

@@ -66,17 +66,17 @@ public abstract class RuleTst {
             DocumentBuilder builder = dbf.newDocumentBuilder();
             builder.setErrorHandler(new ErrorHandler() {
                 @Override
-                public void warning(SAXParseException exception) throws SAXException {
+                public void warning(final SAXParseException exception) throws SAXException {
                     throw exception;
                 }
 
                 @Override
-                public void fatalError(SAXParseException exception) throws SAXException {
+                public void fatalError(final SAXParseException exception) throws SAXException {
                     throw exception;
                 }
 
                 @Override
-                public void error(SAXParseException exception) throws SAXException {
+                public void error(final SAXParseException exception) throws SAXException {
                     throw exception;
                 }
             });
@@ -97,7 +97,7 @@ public abstract class RuleTst {
     /**
      * Find a rule in a certain ruleset by name
      */
-    public Rule findRule(String ruleSet, String ruleName) {
+    public Rule findRule(final String ruleSet, final String ruleName) {
         try {
             Rule rule = RulesetsFactoryUtils.defaultFactory().createRuleSets(ruleSet).getRuleByName(ruleName);
             if (rule == null) {
@@ -118,7 +118,7 @@ public abstract class RuleTst {
      * violations.
      */
     @SuppressWarnings("unchecked")
-    public void runTest(TestDescriptor test) {
+    public void runTest(final TestDescriptor test) {
         Rule rule = test.getRule();
 
         if (test.getReinitializeRule()) {
@@ -174,12 +174,12 @@ public abstract class RuleTst {
      *
      * @return The rule once it has been reinitialised
      */
-    protected Rule reinitializeRule(Rule rule) {
+    protected Rule reinitializeRule(final Rule rule) {
         return findRule(rule.getRuleSetName(), rule.getName());
     }
 
 
-    private void assertMessages(Report report, TestDescriptor test) {
+    private void assertMessages(final Report report, final TestDescriptor test) {
         if (report == null || test.getExpectedMessages().isEmpty()) {
             return;
         }
@@ -205,7 +205,7 @@ public abstract class RuleTst {
         }
     }
 
-    private void assertLineNumbers(Report report, TestDescriptor test) {
+    private void assertLineNumbers(final Report report, final TestDescriptor test) {
         if (report == null || test.getExpectedLineNumbers().isEmpty()) {
             return;
         }
@@ -231,7 +231,7 @@ public abstract class RuleTst {
         }
     }
 
-    private void printReport(TestDescriptor test, Report report) {
+    private void printReport(final TestDescriptor test, final Report report) {
         System.out.println("--------------------------------------------------------------");
         System.out.println("Test Failure: " + test.getDescription());
         System.out.println(" -> Expected " + test.getNumberOfProblemsExpected() + " problem(s), " + report.size()
@@ -252,7 +252,7 @@ public abstract class RuleTst {
         System.out.println("--------------------------------------------------------------");
     }
 
-    private Report processUsingStringReader(TestDescriptor test, Rule rule) throws PMDException {
+    private Report processUsingStringReader(final TestDescriptor test, final Rule rule) throws PMDException {
         Report report = new Report();
         runTestFromString(test, rule, report);
         return report;
@@ -261,12 +261,12 @@ public abstract class RuleTst {
     /**
      * Run the rule on the given code and put the violations in the report.
      */
-    public void runTestFromString(String code, Rule rule, Report report, LanguageVersion languageVersion) {
+    public void runTestFromString(final String code, final Rule rule, final Report report, final LanguageVersion languageVersion) {
         runTestFromString(code, rule, report, languageVersion, true);
     }
 
-    public void runTestFromString(String code, Rule rule, Report report, LanguageVersion languageVersion,
-            boolean isUseAuxClasspath) {
+    public void runTestFromString(final String code, final Rule rule, final Report report, final LanguageVersion languageVersion,
+            final boolean isUseAuxClasspath) {
         try {
             PMD p = new PMD();
             p.getConfiguration().setDefaultLanguageVersion(languageVersion);
@@ -287,7 +287,7 @@ public abstract class RuleTst {
         }
     }
 
-    public void runTestFromString(TestDescriptor test, Rule rule, Report report) {
+    public void runTestFromString(final TestDescriptor test, final Rule rule, final Report report) {
         runTestFromString(test.getCode(), rule, report, test.getLanguageVersion(), test.isUseAuxClasspath());
     }
 
@@ -295,7 +295,7 @@ public abstract class RuleTst {
      * getResourceAsStream tries to find the XML file in weird locations if the
      * ruleName includes the package, so we strip it here.
      */
-    protected String getCleanRuleName(Rule rule) {
+    protected String getCleanRuleName(final Rule rule) {
         String fullClassName = rule.getClass().getName();
         if (fullClassName.equals(rule.getName())) {
             // We got the full class name, so we'll use the stripped name
@@ -312,13 +312,13 @@ public abstract class RuleTst {
      * ./xml/RuleName.xml relative to the test class. The format is defined in
      * test-data.xsd.
      */
-    public TestDescriptor[] extractTestsFromXml(Rule rule) {
+    public TestDescriptor[] extractTestsFromXml(final Rule rule) {
         String testsFileName = getCleanRuleName(rule);
 
         return extractTestsFromXml(rule, testsFileName);
     }
 
-    public TestDescriptor[] extractTestsFromXml(Rule rule, String testsFileName) {
+    public TestDescriptor[] extractTestsFromXml(final Rule rule, final String testsFileName) {
         return extractTestsFromXml(rule, testsFileName, "xml/");
     }
 
@@ -327,7 +327,7 @@ public abstract class RuleTst {
      * should be ./xml/[testsFileName].xml relative to the test class. The
      * format is defined in test-data.xsd.
      */
-    public TestDescriptor[] extractTestsFromXml(Rule rule, String testsFileName, String baseDirectory) {
+    public TestDescriptor[] extractTestsFromXml(final Rule rule, final String testsFileName, final String baseDirectory) {
         String testXmlFileName = baseDirectory + testsFileName + ".xml";
 
         Document doc;
@@ -348,7 +348,7 @@ public abstract class RuleTst {
      * should be ./xml/RuleName.xml relative to the test-class. The format is
      * defined in test-data.xsd.
      */
-    public void runTests(Rule rule) {
+    public void runTests(final Rule rule) {
         runTests(extractTestsFromXml(rule));
     }
 
@@ -357,20 +357,20 @@ public abstract class RuleTst {
      * ./xml/[testsFileName].xml relative to the test-class. The format is
      * defined in test-data.xsd.
      */
-    public void runTests(Rule rule, String testsFileName) {
+    public void runTests(final Rule rule, final String testsFileName) {
         runTests(extractTestsFromXml(rule, testsFileName));
     }
 
     /**
      * Run a set of tests of a certain sourceType.
      */
-    public void runTests(TestDescriptor[] tests) {
+    public void runTests(final TestDescriptor[] tests) {
         for (int i = 0; i < tests.length; i++) {
             runTest(tests[i]);
         }
     }
 
-    private TestDescriptor[] parseTests(Rule rule, Document doc) {
+    private TestDescriptor[] parseTests(final Rule rule, final Document doc) {
         Element root = doc.getDocumentElement();
         NodeList testCodes = root.getElementsByTagName("test-code");
 
@@ -482,7 +482,7 @@ public abstract class RuleTst {
         return tests;
     }
 
-    private String getNodeValue(Element parentElm, String nodeName, boolean required) {
+    private String getNodeValue(final Element parentElm, final String nodeName, final boolean required) {
         NodeList nodes = parentElm.getElementsByTagName(nodeName);
         if (nodes == null || nodes.getLength() == 0) {
             if (required) {
@@ -495,7 +495,7 @@ public abstract class RuleTst {
         return parseTextNode(node);
     }
 
-    private static String parseTextNode(Node exampleNode) {
+    private static String parseTextNode(final Node exampleNode) {
         StringBuffer buffer = new StringBuffer();
         for (int i = 0; i < exampleNode.getChildNodes().getLength(); i++) {
             Node node = exampleNode.getChildNodes().item(i);

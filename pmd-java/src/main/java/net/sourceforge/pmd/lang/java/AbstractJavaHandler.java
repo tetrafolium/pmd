@@ -70,7 +70,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
             }
 
             @Override
-            public void initialize(IndependentContext context) {
+            public void initialize(final IndependentContext context) {
                 super.initialize(context, LanguageRegistry.getLanguage(JavaLanguageModule.NAME), JavaFunctions.class);
             }
         };
@@ -85,7 +85,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getDataFlowFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new DataFlowFacade().initializeWith(getDataFlowHandler(), (ASTCompilationUnit) rootNode);
             }
         };
@@ -95,7 +95,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getSymbolFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new SymbolFacade().initializeWith(null, (ASTCompilationUnit) rootNode);
             }
         };
@@ -105,7 +105,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getSymbolFacade(final ClassLoader classLoader) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new SymbolFacade().initializeWith(classLoader, (ASTCompilationUnit) rootNode);
             }
         };
@@ -115,7 +115,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getTypeResolutionFacade(final ClassLoader classLoader) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new TypeResolutionFacade().initializeWith(classLoader, (ASTCompilationUnit) rootNode);
             }
         };
@@ -126,7 +126,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getDumpFacade(final Writer writer, final String prefix, final boolean recurse) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new DumpFacade().initializeWith(writer, prefix, recurse, (JavaNode) rootNode);
             }
         };
@@ -136,7 +136,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getMultifileFacade() {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new MultifileVisitorFacade().initializeWith((ASTCompilationUnit) rootNode);
             }
         };
@@ -147,7 +147,7 @@ public abstract class AbstractJavaHandler extends AbstractLanguageVersionHandler
     public VisitorStarter getQualifiedNameResolutionFacade(final ClassLoader classLoader) {
         return new VisitorStarter() {
             @Override
-            public void start(Node rootNode) {
+            public void start(final Node rootNode) {
                 new QualifiedNameResolver().initializeWith(classLoader, (ASTCompilationUnit) rootNode);
             }
         };

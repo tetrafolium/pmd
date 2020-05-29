@@ -49,7 +49,7 @@ public class ASTEscape extends AbstractVmNode {
         super(p, id);
     }
 
-    void setValue(String value) {
+    void setValue(final String value) {
         this.val = value;
     }
 

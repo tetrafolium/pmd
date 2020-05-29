@@ -14,12 +14,12 @@ public class ASTArrayLiteral extends AbstractEcmascriptNode<ArrayLiteral>
 
     @Deprecated
     @InternalApi
-    public ASTArrayLiteral(ArrayLiteral arrayLiteral) {
+    public ASTArrayLiteral(final ArrayLiteral arrayLiteral) {
         super(arrayLiteral);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -36,12 +36,12 @@ public class ASTArrayLiteral extends AbstractEcmascriptNode<ArrayLiteral>
     @Override
     @Deprecated
     @InternalApi
-    public void setTrailingComma(boolean trailingComma) {
+    public void setTrailingComma(final boolean trailingComma) {
         setTrailingCommaExists(trailingComma);
     }
 
     @Override
-    protected void setTrailingCommaExists(boolean b) {
+    protected void setTrailingCommaExists(final boolean b) {
         this.trailingComma = b;
     }
 }

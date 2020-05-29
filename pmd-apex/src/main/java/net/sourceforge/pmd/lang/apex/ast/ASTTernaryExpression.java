@@ -12,12 +12,12 @@ public class ASTTernaryExpression extends AbstractApexNode<TernaryExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTTernaryExpression(TernaryExpression ternaryExpression) {
+    public ASTTernaryExpression(final TernaryExpression ternaryExpression) {
         super(ternaryExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

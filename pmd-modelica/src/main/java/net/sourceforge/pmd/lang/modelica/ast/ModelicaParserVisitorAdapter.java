@@ -7,7 +7,7 @@ package net.sourceforge.pmd.lang.modelica.ast;
 public class ModelicaParserVisitorAdapter implements ModelicaParserVisitor {
 
     @Override
-    public Object visit(ModelicaNode node, Object data) {
+    public Object visit(final ModelicaNode node, final Object data) {
         for (ModelicaNode child : node.children()) {
             child.jjtAccept(this, data);
         }
@@ -15,712 +15,712 @@ public class ModelicaParserVisitorAdapter implements ModelicaParserVisitor {
     }
 
     @Override
-    public Object visit(ASTNegated node, Object data) {
+    public Object visit(final ASTNegated node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStoredDefinition node, Object data) {
+    public Object visit(final ASTStoredDefinition node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWithinClause node, Object data) {
+    public Object visit(final ASTWithinClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassDefinition node, Object data) {
+    public Object visit(final ASTClassDefinition node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEncapsulatedClause node, Object data) {
+    public Object visit(final ASTEncapsulatedClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassSpecifier node, Object data) {
+    public Object visit(final ASTClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassPrefixes node, Object data) {
+    public Object visit(final ASTClassPrefixes node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPartialClause node, Object data) {
+    public Object visit(final ASTPartialClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassClause node, Object data) {
+    public Object visit(final ASTClassClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTModelClause node, Object data) {
+    public Object visit(final ASTModelClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRecordClause node, Object data) {
+    public Object visit(final ASTRecordClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOperatorRecordClause node, Object data) {
+    public Object visit(final ASTOperatorRecordClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBlockClause node, Object data) {
+    public Object visit(final ASTBlockClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConnectorClause node, Object data) {
+    public Object visit(final ASTConnectorClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpandableConnectorClause node, Object data) {
+    public Object visit(final ASTExpandableConnectorClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeClause node, Object data) {
+    public Object visit(final ASTTypeClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPackageClause node, Object data) {
+    public Object visit(final ASTPackageClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTPureClause node, Object data) {
+    public Object visit(final ASTPureClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTImpureClause node, Object data) {
+    public Object visit(final ASTImpureClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOperatorClause node, Object data) {
+    public Object visit(final ASTOperatorClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionClause node, Object data) {
+    public Object visit(final ASTFunctionClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOperator node, Object data) {
+    public Object visit(final ASTOperator node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSimpleLongClassSpecifier node, Object data) {
+    public Object visit(final ASTSimpleLongClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExtendingLongClassSpecifier node, Object data) {
+    public Object visit(final ASTExtendingLongClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSimpleShortClassSpecifier node, Object data) {
+    public Object visit(final ASTSimpleShortClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumerationShortClassSpecifier node, Object data) {
+    public Object visit(final ASTEnumerationShortClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDerClassSpecifier node, Object data) {
+    public Object visit(final ASTDerClassSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDerClause node, Object data) {
+    public Object visit(final ASTDerClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBasePrefix node, Object data) {
+    public Object visit(final ASTBasePrefix node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumList node, Object data) {
+    public Object visit(final ASTEnumList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEnumerationLiteral node, Object data) {
+    public Object visit(final ASTEnumerationLiteral node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComposition node, Object data) {
+    public Object visit(final ASTComposition node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExternalClause node, Object data) {
+    public Object visit(final ASTExternalClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLanguageSpecification node, Object data) {
+    public Object visit(final ASTLanguageSpecification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExternalFunctionCall node, Object data) {
+    public Object visit(final ASTExternalFunctionCall node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElementList node, Object data) {
+    public Object visit(final ASTElementList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRedeclareClause node, Object data) {
+    public Object visit(final ASTRedeclareClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFinalClause node, Object data) {
+    public Object visit(final ASTFinalClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInnerClause node, Object data) {
+    public Object visit(final ASTInnerClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOuterClause node, Object data) {
+    public Object visit(final ASTOuterClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReplaceableClause node, Object data) {
+    public Object visit(final ASTReplaceableClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRegularElement node, Object data) {
+    public Object visit(final ASTRegularElement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTImportClause node, Object data) {
+    public Object visit(final ASTImportClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRenamingImportClause node, Object data) {
+    public Object visit(final ASTRenamingImportClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTUnqualifiedImportClause node, Object data) {
+    public Object visit(final ASTUnqualifiedImportClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMultipleDefinitionImportClause node, Object data) {
+    public Object visit(final ASTMultipleDefinitionImportClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSingleDefinitionImportClause node, Object data) {
+    public Object visit(final ASTSingleDefinitionImportClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTImportList node, Object data) {
+    public Object visit(final ASTImportList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExtendsClause node, Object data) {
+    public Object visit(final ASTExtendsClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConstrainingClause node, Object data) {
+    public Object visit(final ASTConstrainingClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentClause node, Object data) {
+    public Object visit(final ASTComponentClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypePrefix node, Object data) {
+    public Object visit(final ASTTypePrefix node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFlowClause node, Object data) {
+    public Object visit(final ASTFlowClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStreamClause node, Object data) {
+    public Object visit(final ASTStreamClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDiscreteClause node, Object data) {
+    public Object visit(final ASTDiscreteClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTParameterClause node, Object data) {
+    public Object visit(final ASTParameterClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConstantClause node, Object data) {
+    public Object visit(final ASTConstantClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInputClause node, Object data) {
+    public Object visit(final ASTInputClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOutputClause node, Object data) {
+    public Object visit(final ASTOutputClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTypeSpecifier node, Object data) {
+    public Object visit(final ASTTypeSpecifier node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentList node, Object data) {
+    public Object visit(final ASTComponentList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentDeclaration node, Object data) {
+    public Object visit(final ASTComponentDeclaration node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConditionAttribute node, Object data) {
+    public Object visit(final ASTConditionAttribute node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeclaration node, Object data) {
+    public Object visit(final ASTDeclaration node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLongModification node, Object data) {
+    public Object visit(final ASTLongModification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTShortModification node, Object data) {
+    public Object visit(final ASTShortModification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignmentModification node, Object data) {
+    public Object visit(final ASTAssignmentModification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTClassModification node, Object data) {
+    public Object visit(final ASTClassModification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArgumentList node, Object data) {
+    public Object visit(final ASTArgumentList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArgument node, Object data) {
+    public Object visit(final ASTArgument node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElementModificationOrReplaceable node, Object data) {
+    public Object visit(final ASTElementModificationOrReplaceable node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEachClause node, Object data) {
+    public Object visit(final ASTEachClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElementModification node, Object data) {
+    public Object visit(final ASTElementModification node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElementRedeclaration node, Object data) {
+    public Object visit(final ASTElementRedeclaration node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElementReplaceable node, Object data) {
+    public Object visit(final ASTElementReplaceable node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentClause1 node, Object data) {
+    public Object visit(final ASTComponentClause1 node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentDeclaration1 node, Object data) {
+    public Object visit(final ASTComponentDeclaration1 node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTShortClassDefinition node, Object data) {
+    public Object visit(final ASTShortClassDefinition node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEquationSection node, Object data) {
+    public Object visit(final ASTEquationSection node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTInitialClause node, Object data) {
+    public Object visit(final ASTInitialClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAlgorithmSection node, Object data) {
+    public Object visit(final ASTAlgorithmSection node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEquation node, Object data) {
+    public Object visit(final ASTEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRegularEquation node, Object data) {
+    public Object visit(final ASTRegularEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionCallEquation node, Object data) {
+    public Object visit(final ASTFunctionCallEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatement node, Object data) {
+    public Object visit(final ASTStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignmentStatement node, Object data) {
+    public Object visit(final ASTAssignmentStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionCallStatement node, Object data) {
+    public Object visit(final ASTFunctionCallStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAssignmentFromMultiResultFunctionCall node, Object data) {
+    public Object visit(final ASTAssignmentFromMultiResultFunctionCall node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfEquation node, Object data) {
+    public Object visit(final ASTIfEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfClause node, Object data) {
+    public Object visit(final ASTIfClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTThenClause node, Object data) {
+    public Object visit(final ASTThenClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElseIfClause node, Object data) {
+    public Object visit(final ASTElseIfClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElseClause node, Object data) {
+    public Object visit(final ASTElseClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForEquation node, Object data) {
+    public Object visit(final ASTForEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTEquationList node, Object data) {
+    public Object visit(final ASTEquationList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStatementList node, Object data) {
+    public Object visit(final ASTStatementList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForIndices node, Object data) {
+    public Object visit(final ASTForIndices node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTForIndex node, Object data) {
+    public Object visit(final ASTForIndex node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhenEquation node, Object data) {
+    public Object visit(final ASTWhenEquation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhenClause node, Object data) {
+    public Object visit(final ASTWhenClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElseWhenClause node, Object data) {
+    public Object visit(final ASTElseWhenClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTWhenStatement node, Object data) {
+    public Object visit(final ASTWhenStatement node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTConnectClause node, Object data) {
+    public Object visit(final ASTConnectClause node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIfExpression node, Object data) {
+    public Object visit(final ASTIfExpression node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSimpleExpression node, Object data) {
+    public Object visit(final ASTSimpleExpression node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLogicalExpression node, Object data) {
+    public Object visit(final ASTLogicalExpression node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLogicalTerm node, Object data) {
+    public Object visit(final ASTLogicalTerm node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRelation node, Object data) {
+    public Object visit(final ASTRelation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTRelOp node, Object data) {
+    public Object visit(final ASTRelOp node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArithmeticExpression node, Object data) {
+    public Object visit(final ASTArithmeticExpression node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAddOp node, Object data) {
+    public Object visit(final ASTAddOp node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTerm node, Object data) {
+    public Object visit(final ASTTerm node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTMulOp node, Object data) {
+    public Object visit(final ASTMulOp node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFactor node, Object data) {
+    public Object visit(final ASTFactor node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFalseLiteral node, Object data) {
+    public Object visit(final ASTFalseLiteral node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTTrueLiteral node, Object data) {
+    public Object visit(final ASTTrueLiteral node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionInvocation node, Object data) {
+    public Object visit(final ASTFunctionInvocation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTListOfExpressionLists node, Object data) {
+    public Object visit(final ASTListOfExpressionLists node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNumberLiteral node, Object data) {
+    public Object visit(final ASTNumberLiteral node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStringLiteral node, Object data) {
+    public Object visit(final ASTStringLiteral node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTName node, Object data) {
+    public Object visit(final ASTName node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSimpleName node, Object data) {
+    public Object visit(final ASTSimpleName node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubscriptedName node, Object data) {
+    public Object visit(final ASTSubscriptedName node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComponentReference node, Object data) {
+    public Object visit(final ASTComponentReference node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionCallArgs node, Object data) {
+    public Object visit(final ASTFunctionCallArgs node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionArguments node, Object data) {
+    public Object visit(final ASTFunctionArguments node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNamedArguments node, Object data) {
+    public Object visit(final ASTNamedArguments node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNamedArgument node, Object data) {
+    public Object visit(final ASTNamedArgument node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTFunctionArgument node, Object data) {
+    public Object visit(final ASTFunctionArgument node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTOutputExpressionList node, Object data) {
+    public Object visit(final ASTOutputExpressionList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpressionList node, Object data) {
+    public Object visit(final ASTExpressionList node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArraySubscripts node, Object data) {
+    public Object visit(final ASTArraySubscripts node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTSubscript node, Object data) {
+    public Object visit(final ASTSubscript node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTColonSubsript node, Object data) {
+    public Object visit(final ASTColonSubsript node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTComment node, Object data) {
+    public Object visit(final ASTComment node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTStringComment node, Object data) {
+    public Object visit(final ASTStringComment node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAnnotation node, Object data) {
+    public Object visit(final ASTAnnotation node, final Object data) {
         return visit((ModelicaNode) node, data);
     }
 }

@@ -50,28 +50,28 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
 
     // the rule is deprecated and will be removed so its properties won't be converted
     private static final StringMultiProperty STATIC_PREFIXES_DESCRIPTOR = new StringMultiProperty("staticPrefix",
-            "Static variable prefixes", new String[] { "" }, 4.0f, ',');
+            "Static variable prefixes", new String[] {"" }, 4.0f, ',');
 
     private static final StringMultiProperty STATIC_SUFFIXES_DESCRIPTOR = new StringMultiProperty("staticSuffix",
-            "Static variable suffixes", new String[] { "" }, 5.0f, ',');
+            "Static variable suffixes", new String[] {"" }, 5.0f, ',');
 
     private static final StringMultiProperty MEMBER_PREFIXES_DESCRIPTOR = new StringMultiProperty("memberPrefix",
-            "Member variable prefixes", new String[] { "" }, 6.0f, ',');
+            "Member variable prefixes", new String[] {"" }, 6.0f, ',');
 
     private static final StringMultiProperty MEMBER_SUFFIXES_DESCRIPTOR = new StringMultiProperty("memberSuffix",
-            "Member variable suffixes", new String[] { "" }, 7.0f, ',');
+            "Member variable suffixes", new String[] {"" }, 7.0f, ',');
 
     private static final StringMultiProperty LOCAL_PREFIXES_DESCRIPTOR = new StringMultiProperty("localPrefix",
-            "Local variable prefixes", new String[] { "" }, 8.0f, ',');
+            "Local variable prefixes", new String[] {"" }, 8.0f, ',');
 
     private static final StringMultiProperty LOCAL_SUFFIXES_DESCRIPTOR = new StringMultiProperty("localSuffix",
-            "Local variable suffixes", new String[] { "" }, 9.0f, ',');
+            "Local variable suffixes", new String[] {"" }, 9.0f, ',');
 
     private static final StringMultiProperty PARAMETER_PREFIXES_DESCRIPTOR = new StringMultiProperty("parameterPrefix",
-            "Method parameter variable prefixes", new String[] { "" }, 10.0f, ',');
+            "Method parameter variable prefixes", new String[] {"" }, 10.0f, ',');
 
     private static final StringMultiProperty PARAMETER_SUFFIXES_DESCRIPTOR = new StringMultiProperty("parameterSuffix",
-            "Method parameter variable suffixes", new String[] { "" }, 11.0f, ',');
+            "Method parameter variable suffixes", new String[] {"" }, 11.0f, ',');
 
     public VariableNamingConventionsRule() {
         definePropertyDescriptor(CHECK_MEMBERS_DESCRIPTOR);
@@ -89,7 +89,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         init();
         return super.visit(node, data);
     }
@@ -110,7 +110,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         if (!checkMembers) {
             return data;
         }
@@ -130,7 +130,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
         if (!checkLocals) {
             return data;
         }
@@ -138,7 +138,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFormalParameters node, Object data) {
+    public Object visit(final ASTFormalParameters node, final Object data) {
         if (!checkParameters) {
             return data;
         }
@@ -157,8 +157,8 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
         return data;
     }
 
-    private Object checkVariableDeclarators(List<String> prefixes, List<String> suffixes, Node root, boolean isStatic,
-            boolean isFinal, Object data) {
+    private Object checkVariableDeclarators(final List<String> prefixes, final List<String> suffixes, final Node root, final boolean isStatic,
+            final boolean isFinal, final Object data) {
         for (ASTVariableDeclarator variableDeclarator : root.findChildrenOfType(ASTVariableDeclarator.class)) {
             for (ASTVariableDeclaratorId variableDeclaratorId : variableDeclarator
                     .findChildrenOfType(ASTVariableDeclaratorId.class)) {
@@ -168,8 +168,8 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
         return data;
     }
 
-    private Object checkVariableDeclaratorId(List<String> prefixes, List<String> suffixes, boolean isStatic,
-            boolean isFinal, ASTVariableDeclaratorId variableDeclaratorId, Object data) {
+    private Object checkVariableDeclaratorId(final List<String> prefixes, final List<String> suffixes, final boolean isStatic,
+            final boolean isFinal, final ASTVariableDeclaratorId variableDeclaratorId, final Object data) {
 
         // Get the variable name
         String varName = variableDeclaratorId.getImage();
@@ -184,7 +184,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
             if (!varName.equals(varName.toUpperCase(Locale.ROOT))) {
                 addViolationWithMessage(data, variableDeclaratorId,
                         "Variables that are final and static should be all capitals, ''{0}'' is not all capitals.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
             return data;
         } else if (!isFinal) {
@@ -193,22 +193,22 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
             if (normalizedVarName.indexOf('_') >= 0) {
                 addViolationWithMessage(data, variableDeclaratorId,
                         "Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), ''{0}'' is not final.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
             if (Character.isUpperCase(varName.charAt(0))) {
                 addViolationWithMessage(data, variableDeclaratorId,
                         "Variables should start with a lowercase character, ''{0}'' starts with uppercase character.",
-                        new Object[] { varName });
+                        new Object[] {varName });
             }
         }
         return data;
     }
 
-    private String normalizeVariableName(String varName, List<String> prefixes, List<String> suffixes) {
+    private String normalizeVariableName(final String varName, final List<String> prefixes, final List<String> suffixes) {
         return stripSuffix(stripPrefix(varName, prefixes), suffixes);
     }
 
-    private String stripSuffix(String varName, List<String> suffixes) {
+    private String stripSuffix(final String varName, final List<String> suffixes) {
         if (suffixes != null) {
             for (String suffix : suffixes) {
                 if (varName.endsWith(suffix)) {
@@ -220,7 +220,7 @@ public class VariableNamingConventionsRule extends AbstractJavaRule {
         return varName;
     }
 
-    private String stripPrefix(String varName, List<String> prefixes) {
+    private String stripPrefix(final String varName, final List<String> prefixes) {
         if (prefixes != null) {
             for (String prefix : prefixes) {
                 if (varName.startsWith(prefix)) {

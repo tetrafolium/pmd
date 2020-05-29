@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractPoorMethodCall;
 public class UseIndexOfCharRule extends AbstractPoorMethodCall {
 
     private static final String TARGET_TYPE_NAME = "String";
-    private static final String[] METHOD_NAMES = new String[] { "indexOf", "lastIndexOf" };
+    private static final String[] METHOD_NAMES = new String[] {"indexOf", "lastIndexOf" };
 
     /**
      * Method targetTypeName.
@@ -36,7 +36,7 @@ public class UseIndexOfCharRule extends AbstractPoorMethodCall {
     }
 
     @Override
-    protected boolean isViolationArgument(Node arg) {
+    protected boolean isViolationArgument(final Node arg) {
         return ((ASTLiteral) arg).isSingleCharacterStringLiteral();
     }
 

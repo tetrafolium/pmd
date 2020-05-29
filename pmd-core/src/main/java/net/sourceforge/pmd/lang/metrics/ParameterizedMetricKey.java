@@ -33,7 +33,7 @@ public final class ParameterizedMetricKey<N extends Node> implements DataKey<Par
 
 
     /** Used internally by the pooler. */
-    private ParameterizedMetricKey(MetricKey<N> key, MetricOptions options) {
+    private ParameterizedMetricKey(final MetricKey<N> key, final MetricOptions options) {
         this.key = key;
         this.options = options;
     }
@@ -46,7 +46,7 @@ public final class ParameterizedMetricKey<N extends Node> implements DataKey<Par
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         return o instanceof ParameterizedMetricKey
             && ((ParameterizedMetricKey) o).key.equals(key)
             && ((ParameterizedMetricKey) o).options.equals(options);
@@ -69,7 +69,7 @@ public final class ParameterizedMetricKey<N extends Node> implements DataKey<Par
      * @return An instance of parameterized metric key corresponding to the parameters
      */
     @SuppressWarnings("PMD.SingletonClassReturningNewInstance")
-    public static <N extends Node> ParameterizedMetricKey<N> getInstance(MetricKey<N> key, MetricOptions options) {
+    public static <N extends Node> ParameterizedMetricKey<N> getInstance(final MetricKey<N> key, final MetricOptions options) {
         // sharing instances allows using DataMap, which uses reference identity
         ParameterizedMetricKey<N> tmp = new ParameterizedMetricKey<>(key, options);
         POOL.putIfAbsent(tmp, tmp);

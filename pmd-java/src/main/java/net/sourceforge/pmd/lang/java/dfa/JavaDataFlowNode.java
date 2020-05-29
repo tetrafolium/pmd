@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 
 public class JavaDataFlowNode extends AbstractDataFlowNode {
 
-    public JavaDataFlowNode(List<DataFlowNode> dataFlow, Node node) {
+    public JavaDataFlowNode(final List<DataFlowNode> dataFlow, final Node node) {
         super(dataFlow, node);
     }
 

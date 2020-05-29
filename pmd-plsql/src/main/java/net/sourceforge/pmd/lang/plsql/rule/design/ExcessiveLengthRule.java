@@ -23,12 +23,12 @@ public class ExcessiveLengthRule extends AbstractStatisticalPLSQLRule {
     private static final Logger LOGGER = Logger.getLogger(ExcessiveLengthRule.class.getName());
     private Class<?> nodeClass;
 
-    public ExcessiveLengthRule(Class<?> nodeClass) {
+    public ExcessiveLengthRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(PLSQLNode node, Object data) {
+    public Object visit(final PLSQLNode node, final Object data) {
         if (LOGGER.isLoggable(Level.FINEST)) {
             LOGGER.finest("SimpleNode: line " + node.getBeginLine() + ", column " + node.getBeginColumn()
                     + " - is node " + node.getClass().getCanonicalName() + " instanceof "
@@ -54,7 +54,7 @@ public class ExcessiveLengthRule extends AbstractStatisticalPLSQLRule {
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
-        return new String[] { String.valueOf((int) point.getScore()) };
+    public Object[] getViolationParameters(final DataPoint point) {
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 }

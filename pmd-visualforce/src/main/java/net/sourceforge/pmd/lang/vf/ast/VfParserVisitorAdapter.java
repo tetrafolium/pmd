@@ -7,98 +7,98 @@ package net.sourceforge.pmd.lang.vf.ast;
 public class VfParserVisitorAdapter implements VfParserVisitor {
 
     @Override
-    public Object visit(VfNode node, Object data) {
+    public Object visit(final VfNode node, final Object data) {
         node.childrenAccept(this, data);
         return data;
     }
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTText node, Object data) {
+    public Object visit(final ASTText node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElExpression node, Object data) {
+    public Object visit(final ASTElExpression node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTCData node, Object data) {
+    public Object visit(final ASTCData node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTElement node, Object data) {
+    public Object visit(final ASTElement node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttribute node, Object data) {
+    public Object visit(final ASTAttribute node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTAttributeValue node, Object data) {
+    public Object visit(final ASTAttributeValue node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDeclaration node, Object data) {
+    public Object visit(final ASTDeclaration node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDoctypeDeclaration node, Object data) {
+    public Object visit(final ASTDoctypeDeclaration node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDoctypeExternalId node, Object data) {
+    public Object visit(final ASTDoctypeExternalId node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTHtmlScript node, Object data) {
+    public Object visit(final ASTHtmlScript node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTIdentifier node, Object data) {
+    public Object visit(final ASTIdentifier node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTArguments node, Object data) {
+    public Object visit(final ASTArguments node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTDotExpression node, Object data) {
+    public Object visit(final ASTDotExpression node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTContent node, Object data) {
+    public Object visit(final ASTContent node, final Object data) {
         return visit((VfNode) node, data);
     }
 
     @Override
-    public Object visit(ASTNegationExpression node, Object data) {
+    public Object visit(final ASTNegationExpression node, final Object data) {
         return visit((VfNode) node, data);
     }
 

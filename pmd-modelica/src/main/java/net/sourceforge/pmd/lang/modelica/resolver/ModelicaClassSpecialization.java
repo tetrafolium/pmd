@@ -28,11 +28,11 @@ public enum ModelicaClassSpecialization {
 
     private String name;
 
-    ModelicaClassSpecialization(String name) {
+    ModelicaClassSpecialization(final String name) {
         this.name = name;
     }
 
-    public static ModelicaClassSpecialization getFunctionSpecialization(boolean isPure, boolean isOperator) {
+    public static ModelicaClassSpecialization getFunctionSpecialization(final boolean isPure, final boolean isOperator) {
         if (isPure) {
             return isOperator ? PURE_OPERATOR_FUNCTION : PURE_FUNCTION;
         } else {

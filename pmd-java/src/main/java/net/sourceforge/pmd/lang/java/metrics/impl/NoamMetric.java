@@ -20,13 +20,13 @@ import net.sourceforge.pmd.lang.metrics.MetricOptions;
 public class NoamMetric extends AbstractJavaClassMetric {
 
     @Override
-    public boolean supports(ASTAnyTypeDeclaration node) {
+    public boolean supports(final ASTAnyTypeDeclaration node) {
         return node.getTypeKind() == TypeKind.CLASS;
     }
 
 
     @Override
-    public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+    public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
         JavaOperationSigMask mask = new JavaOperationSigMask();
         mask.restrictRolesTo(Role.GETTER_OR_SETTER);
         mask.restrictVisibilitiesTo(Visibility.PUBLIC);

@@ -15,12 +15,12 @@ public class ASTNameIndeterminate extends AbstractScalaNode<Name.Indeterminate> 
 
     @Deprecated
     @InternalApi
-    public ASTNameIndeterminate(Name.Indeterminate scalaNode) {
+    public ASTNameIndeterminate(final Name.Indeterminate scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 

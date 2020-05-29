@@ -18,12 +18,12 @@ public final class ModelicaRuleViolationFactory extends AbstractRuleViolationFac
     }
 
     @Override
-    protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message) {
+    protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message) {
         return new ParametricRuleViolation<>(rule, ruleContext, (Node) node, message);
     }
 
     @Override
-    protected RuleViolation createRuleViolation(Rule rule, RuleContext ruleContext, Node node, String message, int beginLine, int endLine) {
+    protected RuleViolation createRuleViolation(final Rule rule, final RuleContext ruleContext, final Node node, final String message, final int beginLine, final int endLine) {
         final ParametricRuleViolation<Node> violation = new ParametricRuleViolation<>(rule, ruleContext,
                 (Node) node, message);
         violation.setLines(beginLine, endLine);

@@ -14,18 +14,18 @@ public class ASTRSIGNEDSHIFT extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTRSIGNEDSHIFT(int id) {
+    public ASTRSIGNEDSHIFT(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTRSIGNEDSHIFT(JavaParser p, int id) {
+    public ASTRSIGNEDSHIFT(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

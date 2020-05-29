@@ -20,7 +20,7 @@ public class DuplicateImportsRule extends AbstractJavaRule {
     private Set<ImportWrapper> importOnDemandImports;
 
     @Override
-    public Object visit(ASTCompilationUnit node, Object data) {
+    public Object visit(final ASTCompilationUnit node, final Object data) {
         singleTypeImports = new HashSet<>();
         importOnDemandImports = new HashSet<>();
         super.visit(node, data);
@@ -54,7 +54,7 @@ public class DuplicateImportsRule extends AbstractJavaRule {
      * Example: import java.awt.*; import java.util.*; import java.util.List;
      * //Needed because java.awt.List exists
      */
-    private boolean isDisambiguationImport(ASTCompilationUnit node, String singleTypePkg, String singleTypeName) {
+    private boolean isDisambiguationImport(final ASTCompilationUnit node, final String singleTypePkg, final String singleTypeName) {
         // Loop over .* imports
         for (ImportWrapper thisImportOnDemand : importOnDemandImports) {
             // Skip same package
@@ -85,7 +85,7 @@ public class DuplicateImportsRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTImportDeclaration node, Object data) {
+    public Object visit(final ASTImportDeclaration node, final Object data) {
         ImportWrapper wrapper = new ImportWrapper(node.getImportedName(), node.getImportedName(),
                 node, node.isStatic() && node.isImportOnDemand());
 

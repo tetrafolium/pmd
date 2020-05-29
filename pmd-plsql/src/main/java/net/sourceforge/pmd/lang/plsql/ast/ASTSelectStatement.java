@@ -9,18 +9,18 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTSelectStatement extends AbstractSelectStatement {
     @Deprecated
     @InternalApi
-    public ASTSelectStatement(int id) {
+    public ASTSelectStatement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTSelectStatement(PLSQLParser p, int id) {
+    public ASTSelectStatement(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

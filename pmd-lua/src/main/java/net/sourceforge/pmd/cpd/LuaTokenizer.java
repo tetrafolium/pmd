@@ -16,7 +16,7 @@ import net.sourceforge.pmd.lang.lua.antlr4.LuaLexer;
 public class LuaTokenizer extends AntlrTokenizer {
 
     @Override
-    protected AntlrTokenManager getLexerForSource(SourceCode sourceCode) {
+    protected AntlrTokenManager getLexerForSource(final SourceCode sourceCode) {
         CharStream charStream = AntlrTokenizer.getCharStreamFromSourceCode(sourceCode);
         return new AntlrTokenManager(new LuaLexer(charStream), sourceCode.getFileName());
     }

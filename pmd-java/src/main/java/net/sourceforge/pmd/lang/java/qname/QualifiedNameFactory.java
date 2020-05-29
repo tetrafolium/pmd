@@ -103,7 +103,7 @@ public final class QualifiedNameFactory {
      *
      * @return The qualified name of the class, or null if the class is null
      */
-    public static JavaTypeQualifiedName ofClass(Class<?> clazz) {
+    public static JavaTypeQualifiedName ofClass(final Class<?> clazz) {
         if (clazz == null) {
             return null;
         }
@@ -147,11 +147,11 @@ public final class QualifiedNameFactory {
      *
      * @return A qualified name instance corresponding to the parsed string.
      */
-    public static JavaQualifiedName ofString(String name) {
+    public static JavaQualifiedName ofString(final String name) {
         return ofStringWithClassLoader(name, null);
     }
 
-    private static JavaQualifiedName ofStringWithClassLoader(String name, ClassLoader classLoader) {
+    private static JavaQualifiedName ofStringWithClassLoader(final String name, final ClassLoader classLoader) {
         Matcher matcher = FORMAT.matcher(name);
 
         if (!matcher.matches()) {

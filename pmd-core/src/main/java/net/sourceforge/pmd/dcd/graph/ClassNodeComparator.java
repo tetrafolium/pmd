@@ -22,7 +22,7 @@ public final class ClassNodeComparator implements Comparator {
     }
 
     @Override
-    public int compare(Object obj1, Object obj2) {
+    public int compare(final Object obj1, final Object obj2) {
         if (obj1 instanceof String && obj2 instanceof String) {
             return ((String) obj1).compareTo((String) obj2);
         } else if (obj1 instanceof String) {

@@ -48,8 +48,8 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
      * @deprecated Use {@link PropertyFactory#enumListProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedMultiProperty(String theName, String theDescription, String[] theLabels, E[] theChoices,
-                                   int[] choiceIndices, Class<E> valueType, float theUIOrder) {
+    public EnumeratedMultiProperty(final String theName, final String theDescription, final String[] theLabels, final E[] theChoices,
+                                   final int[] choiceIndices, final Class<E> valueType, final float theUIOrder) {
         this(theName, theDescription, CollectionUtil.mapFrom(theLabels, theChoices),
             selection(choiceIndices, theChoices), valueType, theUIOrder, false);
     }
@@ -69,8 +69,8 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
      * @deprecated Use {@link PropertyFactory#enumListProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedMultiProperty(String theName, String theDescription, String[] theLabels, E[] theChoices,
-                                   int[] choiceIndices, float theUIOrder) {
+    public EnumeratedMultiProperty(final String theName, final String theDescription, final String[] theLabels, final E[] theChoices,
+                                   final int[] choiceIndices, final float theUIOrder) {
         this(theName, theDescription, CollectionUtil.mapFrom(theLabels, theChoices),
             selection(choiceIndices, theChoices), null, theUIOrder, false);
     }
@@ -88,15 +88,15 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
      * @deprecated Use {@link PropertyFactory#enumListProperty(String, Map)}
      */
     @Deprecated
-    public EnumeratedMultiProperty(String theName, String theDescription, Map<String, E> choices,
-                                   List<E> defaultValues, Class<E> valueType, float theUIOrder) {
+    public EnumeratedMultiProperty(final String theName, final String theDescription, final Map<String, E> choices,
+                                   final List<E> defaultValues, final Class<E> valueType, final float theUIOrder) {
         this(theName, theDescription, choices, defaultValues, valueType, theUIOrder, false);
     }
 
 
-    private EnumeratedMultiProperty(String theName, String theDescription, Map<String, E> choices,
-                                    List<E> defaultValues, Class<E> valueType, float theUIOrder,
-                                    boolean isDefinedExternally) {
+    private EnumeratedMultiProperty(final String theName, final String theDescription, final Map<String, E> choices,
+                                    final List<E> defaultValues, final Class<E> valueType, final float theUIOrder,
+                                    final boolean isDefinedExternally) {
         super(theName, theDescription, defaultValues, theUIOrder, isDefinedExternally);
 
         module = new EnumeratedPropertyModule<>(choices, valueType);
@@ -117,7 +117,7 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
 
 
     @Override
-    public String errorFor(List<E> values) {
+    public String errorFor(final List<E> values) {
         for (E value : values) {
             String error = module.errorFor(value);
             if (error != null) {
@@ -129,25 +129,25 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
 
 
     @Override
-    protected E createFrom(String toParse) {
+    protected E createFrom(final String toParse) {
         return module.choiceFrom(toParse);
     }
 
 
     @Override
-    public String asString(E item) {
+    public String asString(final E item) {
         return module.getLabelsByChoice().get(item);
     }
 
 
-    private void checkDefaults(List<E> defaults) {
+    private void checkDefaults(final List<E> defaults) {
         for (E elt : defaults) {
             module.checkValue(elt);
         }
     }
 
 
-    private static <E> List<E> selection(int[] choiceIndices, E[] theChoices) {
+    private static <E> List<E> selection(final int[] choiceIndices, final E[] theChoices) {
         List<E> selected = new ArrayList<>();
         for (int i : choiceIndices) {
             if (i < 0 || i > theChoices.length) {
@@ -163,7 +163,7 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
      * @deprecated Use {@link PropertyFactory#enumListProperty(String, Map)}
      */
     @Deprecated
-    public static <E> EnumMultiPBuilder<E> named(String name) {
+    public static <E> EnumMultiPBuilder<E> named(final String name) {
         return new EnumMultiPBuilder<>(name);
     }
 
@@ -178,11 +178,11 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
         private Map<String, E> mappings;
 
 
-        private EnumMultiPBuilder(String name) {
+        private EnumMultiPBuilder(final String name) {
             super(name);
         }
 
-        public EnumMultiPBuilder<E> type(Class<E> type) {
+        public EnumMultiPBuilder<E> type(final Class<E> type) {
             this.valueType = type;
             return this;
         }
@@ -194,7 +194,7 @@ public final class EnumeratedMultiProperty<E> extends AbstractMultiValueProperty
          *
          * @return The same builder
          */
-        public EnumMultiPBuilder<E> mappings(Map<String, E> map) {
+        public EnumMultiPBuilder<E> mappings(final Map<String, E> map) {
             this.mappings = map;
             return this;
         }

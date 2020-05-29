@@ -26,13 +26,13 @@ public class BasicMetricMemoizer<N extends Node> implements MetricMemoizer<N> {
 
 
     @Override
-    public Double getMemo(ParameterizedMetricKey<N> key) {
+    public Double getMemo(final ParameterizedMetricKey<N> key) {
         return memo.get(key);
     }
 
 
     @Override
-    public void memoize(ParameterizedMetricKey<N> key, double value) {
+    public void memoize(final ParameterizedMetricKey<N> key, final double value) {
         memo.put(key, value);
     }
 }

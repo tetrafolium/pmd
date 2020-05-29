@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.xml.antlr4.XMLLexer;
 public class XmlTokenizer extends AntlrTokenizer {
 
     @Override
-    protected AntlrTokenManager getLexerForSource(SourceCode sourceCode) {
+    protected AntlrTokenManager getLexerForSource(final SourceCode sourceCode) {
         CharStream charStream = AntlrTokenizer.getCharStreamFromSourceCode(sourceCode);
         return new AntlrTokenManager(new XMLLexer(charStream), sourceCode.getFileName());
     }

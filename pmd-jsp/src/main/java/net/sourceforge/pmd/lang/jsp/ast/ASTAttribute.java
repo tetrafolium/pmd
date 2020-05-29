@@ -12,13 +12,13 @@ public class ASTAttribute extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public ASTAttribute(int id) {
+    public ASTAttribute(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTAttribute(JspParser p, int id) {
+    public ASTAttribute(final JspParser p, final int id) {
         super(p, id);
     }
 
@@ -28,7 +28,7 @@ public class ASTAttribute extends AbstractJspNode {
 
     @InternalApi
     @Deprecated
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -60,7 +60,7 @@ public class ASTAttribute extends AbstractJspNode {
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

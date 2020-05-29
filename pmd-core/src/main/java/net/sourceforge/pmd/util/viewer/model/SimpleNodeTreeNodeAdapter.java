@@ -31,7 +31,7 @@ public class SimpleNodeTreeNodeAdapter implements TreeNode {
      * @param node
      *            underlying AST's node
      */
-    public SimpleNodeTreeNodeAdapter(SimpleNodeTreeNodeAdapter parent, Node node) {
+    public SimpleNodeTreeNodeAdapter(final SimpleNodeTreeNodeAdapter parent, final Node node) {
         this.parent = parent;
         this.node = node;
     }
@@ -49,7 +49,7 @@ public class SimpleNodeTreeNodeAdapter implements TreeNode {
      * @see javax.swing.tree.TreeNode#getChildAt(int)
      */
     @Override
-    public TreeNode getChildAt(int childIndex) {
+    public TreeNode getChildAt(final int childIndex) {
         checkChildren();
         return children.get(childIndex);
     }
@@ -75,7 +75,7 @@ public class SimpleNodeTreeNodeAdapter implements TreeNode {
      * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
      */
     @Override
-    public int getIndex(TreeNode node) {
+    public int getIndex(final TreeNode node) {
         checkChildren();
         return children.indexOf(node);
     }

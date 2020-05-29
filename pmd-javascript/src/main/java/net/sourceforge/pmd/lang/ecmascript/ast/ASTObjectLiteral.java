@@ -14,16 +14,16 @@ public class ASTObjectLiteral extends AbstractEcmascriptNode<ObjectLiteral>
 
     @Deprecated
     @InternalApi
-    public ASTObjectLiteral(ObjectLiteral objectLiteral) {
+    public ASTObjectLiteral(final ObjectLiteral objectLiteral) {
         super(objectLiteral);
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
-    public ASTObjectProperty getObjectProperty(int index) {
+    public ASTObjectProperty getObjectProperty(final int index) {
         return (ASTObjectProperty) getChild(index);
     }
 
@@ -40,12 +40,12 @@ public class ASTObjectLiteral extends AbstractEcmascriptNode<ObjectLiteral>
     @Override
     @Deprecated
     @InternalApi
-    public void setTrailingComma(boolean trailingComma) {
+    public void setTrailingComma(final boolean trailingComma) {
         setTrailingCommaExists(trailingComma);
     }
 
     @Override
-    protected void setTrailingCommaExists(boolean b) {
+    protected void setTrailingCommaExists(final boolean b) {
         this.trailingComma = b;
     }
 }

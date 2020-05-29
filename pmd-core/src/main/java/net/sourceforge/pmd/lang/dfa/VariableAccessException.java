@@ -15,7 +15,7 @@ public class VariableAccessException extends Exception {
         super("VariableAccess error."); // TODO redefinition
     }
 
-    public VariableAccessException(String message) {
+    public VariableAccessException(final String message) {
         super(message);
     }
 }

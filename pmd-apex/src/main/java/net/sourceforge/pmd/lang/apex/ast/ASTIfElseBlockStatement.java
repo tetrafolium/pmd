@@ -12,12 +12,12 @@ public class ASTIfElseBlockStatement extends AbstractApexNode<IfElseBlockStateme
 
     @Deprecated
     @InternalApi
-    public ASTIfElseBlockStatement(IfElseBlockStatement ifElseBlockStatement) {
+    public ASTIfElseBlockStatement(final IfElseBlockStatement ifElseBlockStatement) {
         super(ifElseBlockStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

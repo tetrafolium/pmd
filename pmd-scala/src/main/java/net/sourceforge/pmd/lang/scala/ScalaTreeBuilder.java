@@ -305,8 +305,8 @@ class ScalaTreeBuilder {
     // The nodes having children built.
     private Stack<Node> nodes = new Stack<>();
 
-    private static <T extends Tree> void register(Class<T> nodeType,
-            Class<? extends ScalaNode<T>> nodeAdapterType) {
+    private static <T extends Tree> void register(final Class<T> nodeType,
+            final Class<? extends ScalaNode<T>> nodeAdapterType) {
         try {
             NODE_TYPE_TO_NODE_ADAPTER_TYPE.put(nodeType, nodeAdapterType.getConstructor(nodeType));
         } catch (SecurityException | NoSuchMethodException e) {
@@ -315,7 +315,7 @@ class ScalaTreeBuilder {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Tree> ScalaNode<T> createNodeAdapter(T node) {
+    private static <T extends Tree> ScalaNode<T> createNodeAdapter(final T node) {
         try {
 
             Constructor<? extends ScalaNode<T>> constructor = null;
@@ -354,11 +354,11 @@ class ScalaTreeBuilder {
      *            the Java node that extends the PMD Node interface
      * @return a PMD compatible node representing the Scala AST node
      */
-    <T extends Tree> ScalaNode<T> build(T astNode) {
+    <T extends Tree> ScalaNode<T> build(final T astNode) {
         return buildInternal(astNode);
     }
 
-    private <T extends Tree> ScalaNode<T> buildInternal(T astNode) {
+    private <T extends Tree> ScalaNode<T> buildInternal(final T astNode) {
         // Create a Node
         ScalaNode<T> node = createNodeAdapter(astNode);
         // Append to parent

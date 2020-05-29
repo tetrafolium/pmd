@@ -27,13 +27,13 @@ public class ASTConditionalExpression extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTConditionalExpression(int id) {
+    public ASTConditionalExpression(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTConditionalExpression(JavaParser p, int id) {
+    public ASTConditionalExpression(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -98,7 +98,7 @@ public class ASTConditionalExpression extends AbstractJavaTypeNode {
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

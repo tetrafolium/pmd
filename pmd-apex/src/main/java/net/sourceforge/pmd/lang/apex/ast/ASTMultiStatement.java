@@ -12,12 +12,12 @@ public class ASTMultiStatement extends AbstractApexNode<MultiStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTMultiStatement(MultiStatement node) {
+    public ASTMultiStatement(final MultiStatement node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

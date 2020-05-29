@@ -28,14 +28,14 @@ public abstract class MemberNode<S extends MemberNode<S, T>, T extends Member>
 
     private List<MemberNode> users;
 
-    public MemberNode(ClassNode classNode, String name, String desc) {
+    public MemberNode(final ClassNode classNode, final String name, final String desc) {
         this.classNode = classNode;
         this.name = name;
         this.desc = desc;
     }
 
     @Override
-    public Object accept(NodeVisitor visitor, Object data) {
+    public Object accept(final NodeVisitor visitor, final Object data) {
         visitor.visitUses(this, data);
         visitor.visitUsers(this, data);
         return data;
@@ -55,7 +55,7 @@ public abstract class MemberNode<S extends MemberNode<S, T>, T extends Member>
 
     public abstract T getMember();
 
-    public void addUse(MemberNode use) {
+    public void addUse(final MemberNode use) {
         if (uses == null) {
             uses = new ArrayList<>(1);
         }
@@ -68,7 +68,7 @@ public abstract class MemberNode<S extends MemberNode<S, T>, T extends Member>
         return uses != null ? uses : Collections.<MemberNode>emptyList();
     }
 
-    public void addUser(MemberNode user) {
+    public void addUser(final MemberNode user) {
         if (users == null) {
             users = new ArrayList<>(1);
         }
@@ -92,11 +92,11 @@ public abstract class MemberNode<S extends MemberNode<S, T>, T extends Member>
 
     @SuppressWarnings("PMD.SuspiciousEqualsMethodName")
     @Deprecated // To be removed with PMD 7.0.0
-    public boolean equals(S that) {
+    public boolean equals(final S that) {
         return equals(that.name, that.desc);
     }
 
-    public boolean equals(String name, String desc) {
+    public boolean equals(final String name, final String desc) {
         return this.name.equals(name) && this.desc.equals(desc);
     }
 
@@ -116,7 +116,7 @@ public abstract class MemberNode<S extends MemberNode<S, T>, T extends Member>
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }

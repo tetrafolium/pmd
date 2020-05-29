@@ -12,12 +12,12 @@ public class ASTDmlMergeStatement extends AbstractApexNode<DmlMergeStatement> {
 
     @Deprecated
     @InternalApi
-    public ASTDmlMergeStatement(DmlMergeStatement dmlMergeStatement) {
+    public ASTDmlMergeStatement(final DmlMergeStatement dmlMergeStatement) {
         super(dmlMergeStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

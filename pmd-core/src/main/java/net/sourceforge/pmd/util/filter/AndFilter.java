@@ -18,12 +18,12 @@ public class AndFilter<T> extends AbstractCompoundFilter<T> {
         super();
     }
 
-    public AndFilter(Filter<T>... filters) {
+    public AndFilter(final Filter<T>... filters) {
         super(filters);
     }
 
     @Override
-    public boolean filter(T obj) {
+    public boolean filter(final T obj) {
         boolean match = true;
         for (Filter<T> filter : filters) {
             if (!filter.filter(obj)) {

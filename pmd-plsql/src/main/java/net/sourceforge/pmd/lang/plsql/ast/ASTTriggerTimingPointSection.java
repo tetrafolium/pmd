@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.dfa.DFAGraphMethod;
 public class ASTTriggerTimingPointSection extends AbstractPLSQLNode implements ExecutableCode, DFAGraphMethod {
     @Deprecated
     @InternalApi
-    public ASTTriggerTimingPointSection(int id) {
+    public ASTTriggerTimingPointSection(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    public ASTTriggerTimingPointSection(PLSQLParser p, int id) {
+    public ASTTriggerTimingPointSection(final PLSQLParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(PLSQLParserVisitor visitor, Object data) {
+    public Object jjtAccept(final PLSQLParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

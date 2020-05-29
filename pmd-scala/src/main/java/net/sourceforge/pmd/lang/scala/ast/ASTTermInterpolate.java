@@ -15,12 +15,12 @@ public class ASTTermInterpolate extends AbstractScalaNode<Term.Interpolate> {
 
     @Deprecated
     @InternalApi
-    public ASTTermInterpolate(Term.Interpolate scalaNode) {
+    public ASTTermInterpolate(final Term.Interpolate scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

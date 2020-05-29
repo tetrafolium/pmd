@@ -13,16 +13,16 @@ import net.sourceforge.pmd.lang.modelica.resolver.CompositeName;
 public class ASTStoredDefinition extends AbstractModelicaNode implements RootNode {
     private boolean hasBOM = false;
 
-    ASTStoredDefinition(int id) {
+    ASTStoredDefinition(final int id) {
         super(id);
     }
 
-    ASTStoredDefinition(ModelicaParser p, int id) {
+    ASTStoredDefinition(final ModelicaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(ModelicaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ModelicaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

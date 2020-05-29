@@ -23,7 +23,7 @@ public abstract class Comment extends AbstractNode {
     // Same as "\\R" - but \\R is only available with java8+
     static final Pattern NEWLINES_PATTERN = Pattern.compile("\\u000D\\u000A|[\\u000A\\u000B\\u000C\\u000D\\u0085\\u2028\\u2029]");
 
-    protected Comment(Token t) {
+    protected Comment(final Token t) {
         super(-1, t.beginLine, t.endLine, t.beginColumn, t.endColumn);
 
         setImage(t.image);
@@ -81,7 +81,7 @@ public abstract class Comment extends AbstractNode {
      */
     // note: this is only package private, since it is used by CommentUtil. Once CommentUtil is gone, this
     // can be private
-    static List<String> trim(List<String> lines) {
+    static List<String> trim(final List<String> lines) {
         if (lines == null) {
             return Collections.emptyList();
         }

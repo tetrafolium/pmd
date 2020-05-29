@@ -14,17 +14,17 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTVariableDeclaration extends AbstractEcmascriptNode<VariableDeclaration> {
     @Deprecated
     @InternalApi
-    public ASTVariableDeclaration(VariableDeclaration variableDeclaration) {
+    public ASTVariableDeclaration(final VariableDeclaration variableDeclaration) {
         super(variableDeclaration);
         super.setImage(Token.typeToName(variableDeclaration.getType()).toLowerCase(Locale.ROOT));
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
-    public ASTVariableInitializer getVariableInitializer(int index) {
+    public ASTVariableInitializer getVariableInitializer(final int index) {
         return (ASTVariableInitializer) getChild(index);
     }
 

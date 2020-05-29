@@ -13,13 +13,13 @@ public class ASTPrimaryPrefix extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTPrimaryPrefix(int id) {
+    public ASTPrimaryPrefix(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTPrimaryPrefix(JavaParser p, int id) {
+    public ASTPrimaryPrefix(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -44,7 +44,7 @@ public class ASTPrimaryPrefix extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -54,7 +54,7 @@ public class AttributeAxisIterator implements Iterator<Attribute> {
      * Note: if you want to access the attributes of a node, don't use this directly,
      * use instead the overridable {@link Node#getXPathAttributesIterator()}.
      */
-    public AttributeAxisIterator(Node contextNode) {
+    public AttributeAxisIterator(final Node contextNode) {
         this.node = contextNode;
         if (!METHOD_CACHE.containsKey(contextNode.getClass())) {
             Method[] preFilter = contextNode.getClass().getMethods();
@@ -79,7 +79,7 @@ public class AttributeAxisIterator implements Iterator<Attribute> {
      *
      * @param method The method to test
      */
-    protected boolean isAttributeAccessor(Method method) {
+    protected boolean isAttributeAccessor(final Method method) {
         String methodName = method.getName();
 
         return !methodName.startsWith("jjt")
@@ -88,15 +88,15 @@ public class AttributeAxisIterator implements Iterator<Attribute> {
                 && isConsideredReturnType(method);
     }
 
-    private boolean isConsideredReturnType(Method method) {
+    private boolean isConsideredReturnType(final Method method) {
         return isSimpleType(method.getReturnType()) || isSequence(method.getGenericReturnType());
     }
 
-    private boolean isSimpleType(Class<?> klass) {
+    private boolean isSimpleType(final Class<?> klass) {
         return CONSIDERED_RETURN_TYPES.contains(klass) || klass.isEnum();
     }
 
-    private boolean isSequence(Type returnType) {
+    private boolean isSequence(final Type returnType) {
         if (returnType instanceof ParameterizedType && ((ParameterizedType) returnType).getRawType() == List.class) {
             Type[] actualTypeArguments = ((ParameterizedType) returnType).getActualTypeArguments();
             return actualTypeArguments.length == 1
@@ -149,7 +149,7 @@ public class AttributeAxisIterator implements Iterator<Attribute> {
         public String name;
 
 
-        MethodWrapper(Method m) {
+        MethodWrapper(final Method m) {
             this.method = m;
             this.name = truncateMethodName(m.getName());
         }
@@ -159,7 +159,7 @@ public class AttributeAxisIterator implements Iterator<Attribute> {
          * This method produces the actual XPath name of an attribute
          * from the name of its accessor.
          */
-        private String truncateMethodName(String n) {
+        private String truncateMethodName(final String n) {
             // about 70% of the methods start with 'get', so this case goes
             // first
             if (n.startsWith("get")) {

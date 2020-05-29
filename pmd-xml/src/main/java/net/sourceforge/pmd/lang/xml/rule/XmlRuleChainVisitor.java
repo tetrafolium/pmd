@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.rule.XPathRule;
 public class XmlRuleChainVisitor extends AbstractRuleChainVisitor {
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         // Visit Nodes in DFS order
         Stack<Node> stack = new Stack<>();
         stack.addAll(nodes);
@@ -34,7 +34,7 @@ public class XmlRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         // Rule better be a XPathRule
         ((XPathRule) rule).evaluate(node, ctx);
     }

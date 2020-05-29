@@ -51,13 +51,13 @@ public class VfUnescapeElRule extends AbstractVfRule {
     private static final Pattern PLACEHOLDERS = Pattern.compile("\\{(\\w|,|\\.|'|:|\\s)*\\}");
 
     @Override
-    public Object visit(ASTHtmlScript node, Object data) {
+    public Object visit(final ASTHtmlScript node, final Object data) {
         checkIfCorrectlyEscaped(node, data);
 
         return super.visit(node, data);
     }
 
-    private void checkIfCorrectlyEscaped(ASTHtmlScript node, Object data) {
+    private void checkIfCorrectlyEscaped(final ASTHtmlScript node, final Object data) {
         ASTText prevText = null;
 
         // churn thru every child just once instead of twice
@@ -75,7 +75,7 @@ public class VfUnescapeElRule extends AbstractVfRule {
         }
     }
 
-    private void processElInScriptContext(ASTElExpression elExpression, ASTText prevText, Object data) {
+    private void processElInScriptContext(final ASTElExpression elExpression, final ASTText prevText, final Object data) {
         boolean quoted = false;
         boolean jsonParse = false;
 
@@ -104,14 +104,14 @@ public class VfUnescapeElRule extends AbstractVfRule {
         }
     }
 
-    private boolean isJsonParse(ASTText prevText) {
+    private boolean isJsonParse(final ASTText prevText) {
         final String text = prevText.getImage().endsWith("'")
                 ? prevText.getImage().substring(0, prevText.getImage().length() - 1) : prevText.getImage();
 
         return text.endsWith("JSON.parse(") || text.endsWith("jQuery.parseJSON(") || text.endsWith("$.parseJSON(");
     }
 
-    private boolean isUnbalanced(String image, char pattern) {
+    private boolean isUnbalanced(final String image, final char pattern) {
         char[] array = image.toCharArray();
 
         boolean foundPattern = false;
@@ -130,7 +130,7 @@ public class VfUnescapeElRule extends AbstractVfRule {
     }
 
     @Override
-    public Object visit(ASTElement node, Object data) {
+    public Object visit(final ASTElement node, final Object data) {
         if (doesTagSupportEscaping(node)) {
             checkApexTagsThatSupportEscaping(node, data);
         } else {
@@ -141,7 +141,7 @@ public class VfUnescapeElRule extends AbstractVfRule {
         return super.visit(node, data);
     }
 
-    private void checkLimitedFlags(ASTElement node, Object data) {
+    private void checkLimitedFlags(final ASTElement node, final Object data) {
         switch (node.getName().toLowerCase(Locale.ROOT)) {
         case IFRAME_CONST:
         case APEXIFRAME_CONST:
@@ -203,7 +203,7 @@ public class VfUnescapeElRule extends AbstractVfRule {
 
     }
 
-    private void checkAllOnEventTags(ASTElement node, Object data) {
+    private void checkAllOnEventTags(final ASTElement node, final Object data) {
         final List<ASTAttribute> attributes = node.findChildrenOfType(ASTAttribute.class);
         boolean isEL = false;
         final Set<ASTElExpression> toReport = new HashSet<>();
@@ -326,7 +326,7 @@ public class VfUnescapeElRule extends AbstractVfRule {
         return false;
     }
 
-    private void checkApexTagsThatSupportEscaping(ASTElement node, Object data) {
+    private void checkApexTagsThatSupportEscaping(final ASTElement node, final Object data) {
         final List<ASTAttribute> attributes = node.findChildrenOfType(ASTAttribute.class);
         final Set<ASTElExpression> toReport = new HashSet<>();
         boolean isUnescaped = false;
@@ -388,13 +388,13 @@ public class VfUnescapeElRule extends AbstractVfRule {
         }
     }
 
-    private boolean doesElContainAnyUnescapedIdentifiers(final ASTElExpression elExpression, Escaping escape) {
+    private boolean doesElContainAnyUnescapedIdentifiers(final ASTElExpression elExpression, final Escaping escape) {
         return doesElContainAnyUnescapedIdentifiers(elExpression, EnumSet.of(escape));
 
     }
 
     private boolean doesElContainAnyUnescapedIdentifiers(final ASTElExpression elExpression,
-            EnumSet<Escaping> escapes) {
+            final EnumSet<Escaping> escapes) {
         if (elExpression == null) {
             return false;
         }

@@ -27,7 +27,7 @@ public abstract class AbstractScope implements Scope {
     }
 
     @Override
-    public void setParent(Scope parent) {
+    public void setParent(final Scope parent) {
         this.parent = parent;
     }
 
@@ -41,7 +41,7 @@ public abstract class AbstractScope implements Scope {
     }
 
     @Override
-    public <T extends NameDeclaration> Map<T, List<NameOccurrence>> getDeclarations(Class<T> clazz) {
+    public <T extends NameDeclaration> Map<T, List<NameOccurrence>> getDeclarations(final Class<T> clazz) {
         @SuppressWarnings("unchecked")
         Map<T, List<NameOccurrence>> result = (Map<T, List<NameOccurrence>>) nameDeclarations.get(clazz);
         if (result == null) {
@@ -51,7 +51,7 @@ public abstract class AbstractScope implements Scope {
     }
 
     @Override
-    public boolean contains(NameOccurrence occ) {
+    public boolean contains(final NameOccurrence occ) {
         for (NameDeclaration d : getDeclarations().keySet()) {
             if (d.getImage().equals(occ.getImage())) {
                 return true;
@@ -61,7 +61,7 @@ public abstract class AbstractScope implements Scope {
     }
 
     @Override
-    public void addDeclaration(NameDeclaration declaration) {
+    public void addDeclaration(final NameDeclaration declaration) {
         Map<NameDeclaration, List<NameOccurrence>> declarationsPerClass = nameDeclarations.get(declaration.getClass());
         if (declarationsPerClass == null) {
             declarationsPerClass = new LinkedHashMap<>();
@@ -72,7 +72,7 @@ public abstract class AbstractScope implements Scope {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends Scope> T getEnclosingScope(Class<T> clazz) {
+    public <T extends Scope> T getEnclosingScope(final Class<T> clazz) {
         Scope current = this;
         while (current != null) {
             if (clazz.isAssignableFrom(current.getClass())) {
@@ -84,7 +84,7 @@ public abstract class AbstractScope implements Scope {
     }
 
     @Override
-    public Set<NameDeclaration> addNameOccurrence(NameOccurrence occurrence) {
+    public Set<NameDeclaration> addNameOccurrence(final NameOccurrence occurrence) {
         Set<NameDeclaration> result = new HashSet<>();
         for (Map.Entry<NameDeclaration, List<NameOccurrence>> e : getDeclarations().entrySet()) {
             if (e.getKey().getImage().equals(occurrence.getImage())) {

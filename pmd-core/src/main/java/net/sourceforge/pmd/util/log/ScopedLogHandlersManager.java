@@ -28,7 +28,7 @@ public class ScopedLogHandlersManager {
     private Handler[] oldHandlers;
     private Handler[] newHandlers;
 
-    public ScopedLogHandlersManager(Level level, Handler... handlers) {
+    public ScopedLogHandlersManager(final Level level, final Handler... handlers) {
         newHandlers = handlers;
         logger = Logger.getLogger(PACKAGE_NAME);
         oldHandlers = logger.getHandlers();

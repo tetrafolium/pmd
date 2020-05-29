@@ -48,7 +48,7 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (isOverriddenMethod(node) || isPropertyAccessor(node) || isConstructor(node)) {
             return data;
         }
@@ -77,19 +77,19 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionsRule {
     }
 
     @Override
-    protected String displayName(String name) {
+    protected String displayName(final String name) {
         return DESCRIPTOR_TO_DISPLAY_NAME.get(name);
     }
 
-    private boolean isOverriddenMethod(ASTMethod node) {
+    private boolean isOverriddenMethod(final ASTMethod node) {
         return node.getModifiers().isOverride();
     }
 
-    private boolean isPropertyAccessor(ASTMethod node) {
+    private boolean isPropertyAccessor(final ASTMethod node) {
         return !node.getParentsOfType(ASTProperty.class).isEmpty();
     }
 
-    private boolean isConstructor(ASTMethod node) {
+    private boolean isConstructor(final ASTMethod node) {
         return node.isConstructor();
     }
 }

@@ -33,16 +33,16 @@ public final class TypeMultiProperty extends AbstractMultiPackagedProperty<Class
      *
      * @throws IllegalArgumentException
      */
-    public TypeMultiProperty(String theName, String theDescription, List<Class> theDefaults,
-                             String[] legalPackageNames, float theUIOrder) {
+    public TypeMultiProperty(final String theName, final String theDescription, final List<Class> theDefaults,
+                             final String[] legalPackageNames, final float theUIOrder) {
         this(theName, theDescription, theDefaults, legalPackageNames, theUIOrder, false);
 
     }
 
 
     /** Master constructor. */
-    private TypeMultiProperty(String theName, String theDescription, List<Class> theTypeDefaults,
-                              String[] legalPackageNames, float theUIOrder, boolean isDefinedExternally) {
+    private TypeMultiProperty(final String theName, final String theDescription, final List<Class> theTypeDefaults,
+                              final String[] legalPackageNames, final float theUIOrder, final boolean isDefinedExternally) {
         super(theName, theDescription, theTypeDefaults, theUIOrder, isDefinedExternally,
             new TypePropertyModule(legalPackageNames, theTypeDefaults));
     }
@@ -59,8 +59,8 @@ public final class TypeMultiProperty extends AbstractMultiPackagedProperty<Class
      *
      * @throws IllegalArgumentException
      */
-    public TypeMultiProperty(String theName, String theDescription, String theTypeDefaults,
-                             String[] legalPackageNames, float theUIOrder) {
+    public TypeMultiProperty(final String theName, final String theDescription, final String theTypeDefaults,
+                             final String[] legalPackageNames, final float theUIOrder) {
         this(theName, theDescription, typesFrom(theTypeDefaults),
             legalPackageNames,
             theUIOrder, false);
@@ -75,24 +75,24 @@ public final class TypeMultiProperty extends AbstractMultiPackagedProperty<Class
 
 
     @Override
-    public String asString(Class value) {
+    public String asString(final Class value) {
         return value == null ? "" : value.getName();
     }
 
 
     @Override
-    protected Class createFrom(String toParse) {
+    protected Class createFrom(final String toParse) {
         return ValueParserConstants.CLASS_PARSER.valueOf(toParse);
     }
 
 
     @Override
-    public List<Class> valueFrom(String valueString) {
+    public List<Class> valueFrom(final String valueString) {
         return typesFrom(valueString);
     }
 
 
-    private static List<Class> typesFrom(String valueString) {
+    private static List<Class> typesFrom(final String valueString) {
         return ValueParserConstants.parsePrimitives(valueString, MULTI_VALUE_DELIMITER, ValueParserConstants.CLASS_PARSER);
     }
 
@@ -100,21 +100,21 @@ public final class TypeMultiProperty extends AbstractMultiPackagedProperty<Class
     public static PropertyDescriptorBuilderConversionWrapper.MultiValue.Packaged<Class, TypeMultiPBuilder> extractor() {
         return new PropertyDescriptorBuilderConversionWrapper.MultiValue.Packaged<Class, TypeMultiPBuilder>(Class.class, ValueParserConstants.CLASS_PARSER) {
             @Override
-            protected TypeMultiPBuilder newBuilder(String name) {
+            protected TypeMultiPBuilder newBuilder(final String name) {
                 return new TypeMultiPBuilder(name);
             }
         };
     }
 
 
-    public static TypeMultiPBuilder named(String name) {
+    public static TypeMultiPBuilder named(final String name) {
         return new TypeMultiPBuilder(name);
     }
 
 
     public static final class TypeMultiPBuilder extends MultiPackagedPropertyBuilder<Class, TypeMultiPBuilder> {
 
-        private TypeMultiPBuilder(String name) {
+        private TypeMultiPBuilder(final String name) {
             super(name);
         }
 

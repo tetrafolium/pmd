@@ -150,7 +150,7 @@ public class DBURI {
      *            URL string
      * @throws URISyntaxException
      */
-    public DBURI(String string) throws URISyntaxException {
+    public DBURI(final String string) throws URISyntaxException {
         /*
          * A JDBC URL is an opaque URL and does not have a query.
          *
@@ -256,7 +256,7 @@ public class DBURI {
      * @param fragment
      * @throws URISyntaxException
      */
-    public DBURI(String scheme, String userInfo, String host, int port, String path, String query, String fragment)
+    public DBURI(final String scheme, final String userInfo, final String host, final int port, final String path, final String query, final String fragment)
             throws URISyntaxException {
         uri = new URI(scheme, userInfo, host, port, path, query, fragment);
 
@@ -269,7 +269,7 @@ public class DBURI {
      * @return extracted parameters
      * @throws UnsupportedEncodingException
      */
-    private Map<String, String> getParameterMap(URI dburi) throws UnsupportedEncodingException {
+    private Map<String, String> getParameterMap(final URI dburi) throws UnsupportedEncodingException {
 
         Map<String, String> map = new HashMap<>();
         String query = dburi.getRawQuery();
@@ -295,7 +295,7 @@ public class DBURI {
      * @param description
      * @param dburi
      */
-    static void dump(String description, URI dburi) {
+    static void dump(final String description, final URI dburi) {
 
         String dumpString = String.format(
                 "dump (%s)\n: isOpaque=%s, isAbsolute=%s Scheme=%s,\n SchemeSpecificPart=%s,\n Host=%s,\n Port=%s,\n Path=%s,\n Fragment=%s,\n Query=%s\n",
@@ -326,7 +326,7 @@ public class DBURI {
         return uri;
     }
 
-    public void setUri(URI uri) {
+    public void setUri(final URI uri) {
         this.uri = uri;
     }
 
@@ -334,7 +334,7 @@ public class DBURI {
         return dbType;
     }
 
-    public void setDbType(DBType dbType) {
+    public void setDbType(final DBType dbType) {
         this.dbType = dbType;
     }
 
@@ -342,7 +342,7 @@ public class DBURI {
         return schemasList;
     }
 
-    public void setSchemasList(List<String> schemasList) {
+    public void setSchemasList(final List<String> schemasList) {
         this.schemasList = schemasList;
     }
 
@@ -350,7 +350,7 @@ public class DBURI {
         return sourceCodeTypesList;
     }
 
-    public void setSourceCodeTypesList(List<String> sourceCodeTypesList) {
+    public void setSourceCodeTypesList(final List<String> sourceCodeTypesList) {
         this.sourceCodeTypesList = sourceCodeTypesList;
     }
 
@@ -358,7 +358,7 @@ public class DBURI {
         return sourceCodeNamesList;
     }
 
-    public void setSourceCodeNamesList(List<String> sourceCodeNamesList) {
+    public void setSourceCodeNamesList(final List<String> sourceCodeNamesList) {
         this.sourceCodeNamesList = sourceCodeNamesList;
     }
 
@@ -366,7 +366,7 @@ public class DBURI {
         return languagesList;
     }
 
-    public void setLanguagesList(List<String> languagesList) {
+    public void setLanguagesList(final List<String> languagesList) {
         this.languagesList = languagesList;
     }
 
@@ -374,7 +374,7 @@ public class DBURI {
         return driverClass;
     }
 
-    public void setDriverClass(String driverClass) {
+    public void setDriverClass(final String driverClass) {
         this.driverClass = driverClass;
     }
 
@@ -382,7 +382,7 @@ public class DBURI {
         return characterSet;
     }
 
-    public void setCharacterSet(String characterSet) {
+    public void setCharacterSet(final String characterSet) {
         this.characterSet = characterSet;
     }
 
@@ -390,7 +390,7 @@ public class DBURI {
         return sourceCodeType;
     }
 
-    public void setSourceCodeType(int sourceCodeType) {
+    public void setSourceCodeType(final int sourceCodeType) {
         this.sourceCodeType = sourceCodeType;
     }
 
@@ -398,7 +398,7 @@ public class DBURI {
         return subprotocol;
     }
 
-    public void setSubprotocol(String subprotocol) {
+    public void setSubprotocol(final String subprotocol) {
         this.subprotocol = subprotocol;
     }
 
@@ -406,7 +406,7 @@ public class DBURI {
         return subnamePrefix;
     }
 
-    public void setSubnamePrefix(String subnamePrefix) {
+    public void setSubnamePrefix(final String subnamePrefix) {
         this.subnamePrefix = subnamePrefix;
     }
 
@@ -414,7 +414,7 @@ public class DBURI {
         return parameters;
     }
 
-    public void setParameters(Map<String, String> parameters) {
+    public void setParameters(final Map<String, String> parameters) {
         this.parameters = parameters;
     }
 
@@ -429,7 +429,7 @@ public class DBURI {
      * @param jdbcURL
      *            the url to set
      */
-    public void setURL(String jdbcURL) {
+    public void setURL(final String jdbcURL) {
         this.url = jdbcURL;
     }
 
@@ -469,13 +469,13 @@ public class DBURI {
                 throw new URISyntaxException(getURL(), "Could not understand JDBC URL", 1);
             }
 
-            LOGGER.log(Level.FINE, "subprotocol={0}'' subnamePrefix={1}", new Object[] { subprotocol, subnamePrefix });
+            LOGGER.log(Level.FINE, "subprotocol={0}'' subnamePrefix={1}", new Object[] {subprotocol, subnamePrefix });
 
             // Set values from DBType defaults
             this.dbType = new DBType(subprotocol, subnamePrefix);
 
             LOGGER.log(Level.FINER, "DBType properties found at {0} with {1} properties.",
-                    new Object[] { dbType.getPropertiesSource(), dbType.getProperties().size() });
+                    new Object[] {dbType.getPropertiesSource(), dbType.getProperties().size() });
 
             LOGGER.log(Level.FINEST, "DBType properties are:- {0}", dbType.getProperties());
 

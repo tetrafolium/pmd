@@ -43,7 +43,7 @@ public enum RulePriority {
     private final int priority;
     private final String name;
 
-    RulePriority(int priority, String name) {
+    RulePriority(final int priority, final String name) {
         this.priority = priority;
         this.name = name;
     }
@@ -87,7 +87,7 @@ public enum RulePriority {
      *            The numeric priority value.
      * @return The priority.
      */
-    public static RulePriority valueOf(int priority) {
+    public static RulePriority valueOf(final int priority) {
         try {
             return RulePriority.values()[priority - 1];
         } catch (ArrayIndexOutOfBoundsException e) {

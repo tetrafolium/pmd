@@ -10,18 +10,18 @@ import net.sourceforge.pmd.lang.ast.RootNode;
 public class ASTCompilationUnit extends AbstractJspNode implements RootNode {
     @InternalApi
     @Deprecated
-    public ASTCompilationUnit(int id) {
+    public ASTCompilationUnit(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTCompilationUnit(JspParser p, int id) {
+    public ASTCompilationUnit(final JspParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JspParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JspParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -24,7 +24,7 @@ class DOMLineNumbers {
     private String xmlString;
     private SourceCodePositioner sourceCodePositioner;
 
-    DOMLineNumbers(Document document, String xmlString) {
+    DOMLineNumbers(final Document document, final String xmlString) {
         this.document = document;
         this.xmlString = xmlString;
         this.sourceCodePositioner = new SourceCodePositioner(xmlString);
@@ -34,7 +34,7 @@ class DOMLineNumbers {
         determineLocation(document, 0);
     }
 
-    private int determineLocation(Node n, int index) {
+    private int determineLocation(final Node n, final int index) {
         int nextIndex = index;
         int nodeLength = 0;
         int textLength = 0;
@@ -108,7 +108,7 @@ class DOMLineNumbers {
         return nextIndex;
     }
 
-    private String unexpandEntities(Node n, String te, boolean withQuotes) {
+    private String unexpandEntities(final Node n, final String te, final boolean withQuotes) {
         String result = te;
         DocumentType doctype = n.getOwnerDocument().getDoctype();
         // implicit entities
@@ -146,7 +146,7 @@ class DOMLineNumbers {
         return result;
     }
 
-    private void setBeginLocation(Node n, int index) {
+    private void setBeginLocation(final Node n, final int index) {
         if (n != null) {
             int line = sourceCodePositioner.lineNumberFromOffset(index);
             int column = sourceCodePositioner.columnFromOffset(line, index);
@@ -155,7 +155,7 @@ class DOMLineNumbers {
         }
     }
 
-    private void setEndLocation(Node n, int index) {
+    private void setEndLocation(final Node n, final int index) {
         if (n != null) {
             int line = sourceCodePositioner.lineNumberFromOffset(index);
             int column = sourceCodePositioner.columnFromOffset(line, index);

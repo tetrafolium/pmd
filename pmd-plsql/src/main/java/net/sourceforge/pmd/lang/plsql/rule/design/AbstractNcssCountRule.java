@@ -45,7 +45,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalPLSQLRule
      * @param nodeClass
      *            class of node to count
      */
-    protected AbstractNcssCountRule(Class<?> nodeClass) {
+    protected AbstractNcssCountRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine("Counting for " + nodeClass.getCanonicalName());
@@ -53,7 +53,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalPLSQLRule
     }
 
     @Override
-    public Object visit(PLSQLNode node, Object data) {
+    public Object visit(final PLSQLNode node, final Object data) {
         int numNodes = 0;
 
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -97,7 +97,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalPLSQLRule
      *            node data
      * @return count of the number of children of the node, plus one
      */
-    protected Integer countNodeChildren(Node node, Object data) {
+    protected Integer countNodeChildren(final Node node, final Object data) {
         Integer nodeCount = null;
         int lineCount = 0;
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -108,72 +108,72 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalPLSQLRule
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTLoopStatement node, Object data) {
+    public Object visit(final ASTLoopStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTElsifClause node, Object data) {
+    public Object visit(final ASTElsifClause node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTElseClause node, Object data) {
+    public Object visit(final ASTElseClause node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTExitStatement node, Object data) {
+    public Object visit(final ASTExitStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTExceptionHandler node, Object data) {
+    public Object visit(final ASTExceptionHandler node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTGotoStatement node, Object data) {
+    public Object visit(final ASTGotoStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTCaseStatement node, Object data) {
+    public Object visit(final ASTCaseStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTRaiseStatement node, Object data) {
+    public Object visit(final ASTRaiseStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTExpression node, Object data) {
+    public Object visit(final ASTExpression node, final Object data) {
 
         // "For" update expressions do not count as separate lines of code
         if (node.getParent() instanceof ASTStatement) {
@@ -184,20 +184,20 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalPLSQLRule
     }
 
     @Override
-    public Object visit(ASTLabelledStatement node, Object data) {
+    public Object visit(final ASTLabelledStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTCaseWhenClause node, Object data) {
+    public Object visit(final ASTCaseWhenClause node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine("Point score is " + point.getScore());
         }
-        return new String[] { String.valueOf((int) point.getScore()) };
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 }

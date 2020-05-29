@@ -22,14 +22,14 @@ public final class IteratorUtil {
 
     }
 
-    public static <T> Iterator<T> reverse(Iterator<T> it) {
+    public static <T> Iterator<T> reverse(final Iterator<T> it) {
         List<T> tmp = toList(it);
         Collections.reverse(tmp);
         return tmp.iterator();
     }
 
 
-    public static <T> List<T> toList(Iterator<T> it) {
+    public static <T> List<T> toList(final Iterator<T> it) {
         List<T> list = new ArrayList<>();
         while (it.hasNext()) {
             list.add(it.next());
@@ -49,7 +49,7 @@ public final class IteratorUtil {
 
 
     /** Counts the items in this iterator, exhausting it. */
-    public static int count(Iterator<?> it) {
+    public static int count(final Iterator<?> it) {
         int count = 0;
         while (it.hasNext()) {
             it.next();
@@ -122,7 +122,7 @@ public final class IteratorUtil {
             return next;
         }
 
-        protected final void setNext(T t) {
+        protected final void setNext(final T t) {
             next = t;
             state = State.READY;
         }

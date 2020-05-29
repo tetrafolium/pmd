@@ -33,7 +33,7 @@ public final class PMDCommandLineInterface {
 
     private PMDCommandLineInterface() { }
 
-    public static PMDParameters extractParameters(PMDParameters arguments, String[] args, String progName) {
+    public static PMDParameters extractParameters(final PMDParameters arguments, final String[] args, final String progName) {
         JCommander jcommander = new JCommander(arguments);
         jcommander.setProgramName(progName);
 
@@ -57,7 +57,7 @@ public final class PMDCommandLineInterface {
         return buildUsageText(null);
     }
 
-    public static String buildUsageText(JCommander jcommander) {
+    public static String buildUsageText(final JCommander jcommander) {
         StringBuilder usage = new StringBuilder();
 
         String allCommandsDescription = null;
@@ -129,7 +129,7 @@ public final class PMDCommandLineInterface {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         System.out.println(PMDCommandLineInterface.buildUsageText());
     }
 
@@ -162,11 +162,11 @@ public final class PMDCommandLineInterface {
         return buf.toString();
     }
 
-    public static void run(String[] args) {
+    public static void run(final String[] args) {
         setStatusCodeOrExit(PMD.run(args));
     }
 
-    public static void setStatusCodeOrExit(int status) {
+    public static void setStatusCodeOrExit(final int status) {
         if (isExitAfterRunSet()) {
             System.exit(status);
         } else {
@@ -182,7 +182,7 @@ public final class PMDCommandLineInterface {
         return noExit == null;
     }
 
-    private static void setStatusCode(int statusCode) {
+    private static void setStatusCode(final int statusCode) {
         System.setProperty(STATUS_CODE_PROPERTY, Integer.toString(statusCode));
     }
 

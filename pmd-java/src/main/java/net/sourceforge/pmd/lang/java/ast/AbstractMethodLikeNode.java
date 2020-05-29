@@ -14,19 +14,19 @@ public abstract class AbstractMethodLikeNode extends AbstractJavaAccessNode impl
     private JavaOperationQualifiedName qualifiedName;
 
 
-    AbstractMethodLikeNode(int i) {
+    AbstractMethodLikeNode(final int i) {
         super(i);
     }
 
 
-    AbstractMethodLikeNode(JavaParser parser, int i) {
+    AbstractMethodLikeNode(final JavaParser parser, final int i) {
         super(parser, i);
     }
 
 
     @InternalApi
     @Deprecated
-    public void setQualifiedName(JavaOperationQualifiedName qualifiedName) {
+    public void setQualifiedName(final JavaOperationQualifiedName qualifiedName) {
         this.qualifiedName = qualifiedName;
     }
 

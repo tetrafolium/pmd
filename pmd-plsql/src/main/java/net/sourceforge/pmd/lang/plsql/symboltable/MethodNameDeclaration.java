@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.symboltable.AbstractNameDeclaration;
 public class MethodNameDeclaration extends AbstractNameDeclaration {
     private static final Logger LOGGER = Logger.getLogger(MethodNameDeclaration.class.getName());
 
-    public MethodNameDeclaration(ASTMethodDeclarator node) {
+    public MethodNameDeclaration(final ASTMethodDeclarator node) {
         super(node);
     }
 
@@ -28,7 +28,7 @@ public class MethodNameDeclaration extends AbstractNameDeclaration {
      *
      * @param node
      */
-    public MethodNameDeclaration(ASTTriggerTimingPointSection node) {
+    public MethodNameDeclaration(final ASTTriggerTimingPointSection node) {
         super(node);
     }
 
@@ -70,7 +70,7 @@ public class MethodNameDeclaration extends AbstractNameDeclaration {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof MethodNameDeclaration)) {
             return false;
         }

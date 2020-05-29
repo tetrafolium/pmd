@@ -42,7 +42,7 @@ public abstract class BaseCPDCLITest {
         }
     }
 
-    protected void runCPD(String... args) {
+    protected void runCPD(final String... args) {
         System.setProperty(CPDCommandLineInterface.NO_EXIT_AFTER_RUN, "true");
         CPD.main(args);
     }

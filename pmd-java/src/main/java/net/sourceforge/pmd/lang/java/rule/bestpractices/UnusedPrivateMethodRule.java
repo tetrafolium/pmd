@@ -46,7 +46,7 @@ public class UnusedPrivateMethodRule extends AbstractIgnoredAnnotationRule {
      * @return data
      */
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -70,7 +70,7 @@ public class UnusedPrivateMethodRule extends AbstractIgnoredAnnotationRule {
         return data;
     }
 
-    private Set<MethodNameDeclaration> findUnique(Map<MethodNameDeclaration, List<NameOccurrence>> methods) {
+    private Set<MethodNameDeclaration> findUnique(final Map<MethodNameDeclaration, List<NameOccurrence>> methods) {
         // some rather hideous hackery here
         // to work around the fact that PMD does not yet do full type analysis
         // when it does, delete this
@@ -86,7 +86,7 @@ public class UnusedPrivateMethodRule extends AbstractIgnoredAnnotationRule {
         return unique;
     }
 
-    private boolean calledFromOutsideItself(List<NameOccurrence> occs, NameDeclaration mnd) {
+    private boolean calledFromOutsideItself(final List<NameOccurrence> occs, final NameDeclaration mnd) {
         int callsFromOutsideMethod = 0;
         for (NameOccurrence occ : occs) {
             Node occNode = occ.getLocation();
@@ -110,7 +110,7 @@ public class UnusedPrivateMethodRule extends AbstractIgnoredAnnotationRule {
         return callsFromOutsideMethod == 0;
     }
 
-    private boolean privateAndNotExcluded(NameDeclaration mnd) {
+    private boolean privateAndNotExcluded(final NameDeclaration mnd) {
         ASTMethodDeclarator node = (ASTMethodDeclarator) mnd.getNode();
         return ((AccessNode) node.getParent()).isPrivate() && !node.hasImageEqualTo("readObject")
                 && !node.hasImageEqualTo("writeObject") && !node.hasImageEqualTo("readResolve")

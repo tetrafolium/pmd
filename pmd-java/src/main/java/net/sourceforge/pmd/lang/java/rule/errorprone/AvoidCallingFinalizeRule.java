@@ -21,13 +21,13 @@ public class AvoidCallingFinalizeRule extends AbstractJavaRule {
     private Set<MethodScope> checked = new HashSet<>();
 
     @Override
-    public Object visit(ASTCompilationUnit acu, Object ctx) {
+    public Object visit(final ASTCompilationUnit acu, final Object ctx) {
         checked.clear();
         return super.visit(acu, ctx);
     }
 
     @Override
-    public Object visit(ASTName name, Object ctx) {
+    public Object visit(final ASTName name, final Object ctx) {
         if (name.getImage() == null || !name.getImage().endsWith("finalize")) {
             return ctx;
         }
@@ -39,7 +39,7 @@ public class AvoidCallingFinalizeRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTPrimaryPrefix pp, Object ctx) {
+    public Object visit(final ASTPrimaryPrefix pp, final Object ctx) {
         List<ASTPrimarySuffix> primarySuffixes = pp.getParent().findChildrenOfType(ASTPrimarySuffix.class);
         ASTPrimarySuffix firstSuffix = null;
         if (!primarySuffixes.isEmpty()) {
@@ -55,7 +55,7 @@ public class AvoidCallingFinalizeRule extends AbstractJavaRule {
         return super.visit(pp, ctx);
     }
 
-    private boolean checkForViolation(ScopedNode node) {
+    private boolean checkForViolation(final ScopedNode node) {
         MethodScope meth = node.getScope().getEnclosingScope(MethodScope.class);
         if (meth != null && "finalize".equals(meth.getName())) {
             return false;

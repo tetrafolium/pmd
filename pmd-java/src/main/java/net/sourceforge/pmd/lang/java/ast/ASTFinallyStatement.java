@@ -10,18 +10,18 @@ public class ASTFinallyStatement extends AbstractJavaNode {
 
     @InternalApi
     @Deprecated
-    public ASTFinallyStatement(int id) {
+    public ASTFinallyStatement(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTFinallyStatement(JavaParser p, int id) {
+    public ASTFinallyStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

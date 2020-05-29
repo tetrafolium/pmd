@@ -48,7 +48,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreClassAnonymous;
         }
 
-        public void setIgnoreClassAnonymous(boolean ignoreClassAnonymous) {
+        public void setIgnoreClassAnonymous(final boolean ignoreClassAnonymous) {
             this.ignoreClassAnonymous = ignoreClassAnonymous;
         }
 
@@ -56,7 +56,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreConstructorStaticInitializer;
         }
 
-        public void setIgnoreConstructorStaticInitializer(boolean ignoreConstructorStaticInitializer) {
+        public void setIgnoreConstructorStaticInitializer(final boolean ignoreConstructorStaticInitializer) {
             this.ignoreConstructorStaticInitializer = ignoreConstructorStaticInitializer;
         }
 
@@ -64,7 +64,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreConstructorSinglePrivateNoArg;
         }
 
-        public void setIgnoreConstructorSinglePrivateNoArg(boolean ignoreConstructorSinglePrivateNoArg) {
+        public void setIgnoreConstructorSinglePrivateNoArg(final boolean ignoreConstructorSinglePrivateNoArg) {
             this.ignoreConstructorSinglePrivateNoArg = ignoreConstructorSinglePrivateNoArg;
         }
 
@@ -72,7 +72,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreConstructorAllPrivate;
         }
 
-        public void setIgnoreConstructorAllPrivate(boolean ignoreConstructorAllPrivate) {
+        public void setIgnoreConstructorAllPrivate(final boolean ignoreConstructorAllPrivate) {
             this.ignoreConstructorAllPrivate = ignoreConstructorAllPrivate;
         }
 
@@ -80,7 +80,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreMethodJavaLangObjectOverride;
         }
 
-        public void setIgnoreMethodJavaLangObjectOverride(boolean ignoreMethodJavaLangObjectOverride) {
+        public void setIgnoreMethodJavaLangObjectOverride(final boolean ignoreMethodJavaLangObjectOverride) {
             this.ignoreMethodJavaLangObjectOverride = ignoreMethodJavaLangObjectOverride;
         }
 
@@ -88,7 +88,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreMethodAllOverride;
         }
 
-        public void setIgnoreMethodAllOverride(boolean ignoreMethodAllOverride) {
+        public void setIgnoreMethodAllOverride(final boolean ignoreMethodAllOverride) {
             this.ignoreMethodAllOverride = ignoreMethodAllOverride;
         }
 
@@ -96,7 +96,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreMethodMain;
         }
 
-        public void setIgnoreMethodMain(boolean ignoreMethodMain) {
+        public void setIgnoreMethodMain(final boolean ignoreMethodMain) {
             this.ignoreMethodMain = ignoreMethodMain;
         }
 
@@ -104,7 +104,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
             return ignoreFieldInlinable;
         }
 
-        public void setIgnoreFieldInlinable(boolean ignoreFieldInlinable) {
+        public void setIgnoreFieldInlinable(final boolean ignoreFieldInlinable) {
             this.ignoreFieldInlinable = ignoreFieldInlinable;
         }
 
@@ -113,7 +113,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
     private final Options options = new Options();
 
     @Override
-    public Object visit(UsageGraph usageGraph, Object data) {
+    public Object visit(final UsageGraph usageGraph, final Object data) {
         System.out.println("----------------------------------------");
         super.visit(usageGraph, data);
         System.out.println("----------------------------------------");
@@ -121,7 +121,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
     }
 
     @Override
-    public Object visit(ClassNode classNode, Object data) {
+    public Object visit(final ClassNode classNode, final Object data) {
         boolean log = true;
         if (options.isIgnoreClassAnonymous() && classNode.getType().isAnonymousClass()) {
             ignore("class anonymous", classNode);
@@ -136,7 +136,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
     }
 
     @Override
-    public Object visit(FieldNode fieldNode, Object data) {
+    public Object visit(final FieldNode fieldNode, final Object data) {
         if (fieldNode.getUsers().isEmpty()) {
             boolean log = true;
             // A field is inlinable if:
@@ -158,7 +158,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
     }
 
     @Override
-    public Object visit(ConstructorNode constructorNode, Object data) {
+    public Object visit(final ConstructorNode constructorNode, final Object data) {
         if (constructorNode.getUsers().isEmpty()) {
             boolean log = true;
             if (constructorNode.isStaticInitializer()) {
@@ -186,7 +186,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
         return super.visit(constructorNode, data);
     }
 
-    private static boolean isMainMethod(MethodNode node) {
+    private static boolean isMainMethod(final MethodNode node) {
 
         final Method method = node.getMember();
 
@@ -197,7 +197,7 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
     }
 
     @Override
-    public Object visit(MethodNode methodNode, Object data) {
+    public Object visit(final MethodNode methodNode, final Object data) {
         if (methodNode.getUsers().isEmpty()) {
             boolean log = true;
             if (options.isIgnoreMethodAllOverride()) {
@@ -225,11 +225,11 @@ public class UsageNodeVisitor extends NodeVisitorAdapter {
         return super.visit(methodNode, data);
     }
 
-    private void ignore(String description, ClassNode classNode) {
+    private void ignore(final String description, final ClassNode classNode) {
         System.out.println("Ignoring " + description + ": " + classNode.getName());
     }
 
-    private void ignore(String description, MemberNode memberNode) {
+    private void ignore(final String description, final MemberNode memberNode) {
         System.out.println("Ignoring " + description + ": " + memberNode.toStringLong());
     }
 }

@@ -76,7 +76,7 @@ public class DeadLinksChecker {
     private final ExecutorService executorService = Executors.newCachedThreadPool();
 
 
-    public void checkDeadLinks(Path rootDirectory) {
+    public void checkDeadLinks(final Path rootDirectory) {
         final Path pagesDirectory = rootDirectory.resolve("docs/pages");
         final Path docsDirectory = rootDirectory.resolve("docs");
 
@@ -220,7 +220,7 @@ public class DeadLinksChecker {
     }
 
 
-    private Map<Path, List<String>> joinFutures(Map<Path, List<Future<String>>> map) {
+    private Map<Path, List<String>> joinFutures(final Map<Path, List<Future<String>>> map) {
         Map<Path, List<String>> joined = new HashMap<>();
 
         for (Path p : map.keySet()) {
@@ -246,12 +246,12 @@ public class DeadLinksChecker {
     }
 
 
-    private void addDeadLink(Map<Path, List<Future<String>>> fileToDeadLinks, Path file, Future<String> line) {
+    private void addDeadLink(final Map<Path, List<Future<String>>> fileToDeadLinks, final Path file, final Future<String> line) {
         fileToDeadLinks.computeIfAbsent(file, k -> new ArrayList<>()).add(line);
     }
 
 
-    private Set<String> extractLinkTargets(List<Path> mdFiles) {
+    private Set<String> extractLinkTargets(final List<Path> mdFiles) {
         final Set<String> htmlPages = new HashSet<>();
         for (Path mdFile : mdFiles) {
             final String pageContent = fileToString(mdFile);
@@ -283,7 +283,7 @@ public class DeadLinksChecker {
     }
 
 
-    private List<Path> listMdFiles(Path pagesDirectory) {
+    private List<Path> listMdFiles(final Path pagesDirectory) {
         try {
             return Files.walk(pagesDirectory)
                  .filter(Files::isRegularFile)
@@ -295,7 +295,7 @@ public class DeadLinksChecker {
     }
 
 
-    private String fileToString(Path mdFile) {
+    private String fileToString(final Path mdFile) {
         try (InputStream inputStream = Files.newInputStream(mdFile)) {
             return IOUtils.toString(inputStream, Charset.forName("UTF-8"));
         } catch (IOException ex) {
@@ -304,7 +304,7 @@ public class DeadLinksChecker {
     }
 
 
-    private CompletableFuture<Integer> getCachedFutureResponse(String url) {
+    private CompletableFuture<Integer> getCachedFutureResponse(final String url) {
         if (urlResponseCache.containsKey(url)) {
             LOG.info("response: HTTP " + urlResponseCache.get(url) + " (CACHED) on " + url);
             return urlResponseCache.get(url);
@@ -317,7 +317,7 @@ public class DeadLinksChecker {
     }
 
 
-    private int computeHttpResponse(String url) {
+    private int computeHttpResponse(final String url) {
         try {
             final HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
             httpURLConnection.setRequestMethod("HEAD");
@@ -343,7 +343,7 @@ public class DeadLinksChecker {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         if (args.length != 1) {
             System.err.println("Wrong arguments!");
             System.err.println();

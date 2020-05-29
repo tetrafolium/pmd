@@ -30,12 +30,12 @@ public class ClassNode implements NodeVisitorAcceptor, Comparable<ClassNode> {
 
     private List<MethodNode> methodNodes;
 
-    public ClassNode(String name) {
+    public ClassNode(final String name) {
         this.name = name;
     }
 
     @Override
-    public Object accept(NodeVisitor visitor, Object data) {
+    public Object accept(final NodeVisitor visitor, final Object data) {
         visitor.visitFields(this, data);
         visitor.visitConstructors(this, data);
         visitor.visitMethods(this, data);
@@ -55,7 +55,7 @@ public class ClassNode implements NodeVisitorAcceptor, Comparable<ClassNode> {
         return type;
     }
 
-    public FieldNode defineField(String name, String desc) {
+    public FieldNode defineField(final String name, final String desc) {
         if (fieldNodes == null) {
             fieldNodes = new ArrayList<>(1);
         }
@@ -69,7 +69,7 @@ public class ClassNode implements NodeVisitorAcceptor, Comparable<ClassNode> {
         return fieldNode;
     }
 
-    public ConstructorNode defineConstructor(String name, String desc) {
+    public ConstructorNode defineConstructor(final String name, final String desc) {
         if (constructorNodes == null) {
             constructorNodes = new ArrayList<>(1);
         }
@@ -84,7 +84,7 @@ public class ClassNode implements NodeVisitorAcceptor, Comparable<ClassNode> {
         return constructorNode;
     }
 
-    public MethodNode defineMethod(String name, String desc) {
+    public MethodNode defineMethod(final String name, final String desc) {
         if (methodNodes == null) {
             methodNodes = new ArrayList<>(1);
         }
@@ -112,12 +112,12 @@ public class ClassNode implements NodeVisitorAcceptor, Comparable<ClassNode> {
     }
 
     @Override
-    public int compareTo(ClassNode that) {
+    public int compareTo(final ClassNode that) {
         return this.name.compareTo(that.name);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (obj instanceof ClassNode) {
             return this.name.equals(((ClassNode) obj).name);
         }

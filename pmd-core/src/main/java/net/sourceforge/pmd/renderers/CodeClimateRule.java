@@ -38,7 +38,7 @@ public interface CodeClimateRule extends Rule {
 
         private String name;
 
-        CodeClimateCategory(String name) {
+        CodeClimateCategory(final String name) {
             this.name = name;
         }
 

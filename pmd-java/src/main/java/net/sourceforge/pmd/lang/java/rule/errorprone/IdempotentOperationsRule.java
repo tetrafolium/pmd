@@ -18,7 +18,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class IdempotentOperationsRule extends AbstractJavaRule {
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
         if (node.getNumChildren() != 3 || !(node.getChild(0) instanceof ASTPrimaryExpression)
                 || !(node.getChild(1) instanceof ASTAssignmentOperator)
                 || ((ASTAssignmentOperator) node.getChild(1)).isCompound()

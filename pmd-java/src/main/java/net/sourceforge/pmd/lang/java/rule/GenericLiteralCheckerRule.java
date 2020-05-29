@@ -50,7 +50,7 @@ public class GenericLiteralCheckerRule extends AbstractJavaRule {
      * violation is logged.
      */
     @Override
-    public Object visit(ASTLiteral node, Object data) {
+    public Object visit(final ASTLiteral node, final Object data) {
         init();
         String image = node.getImage();
         if (image != null && image.length() > 0 && RegexHelper.isMatch(this.pattern, image)) {

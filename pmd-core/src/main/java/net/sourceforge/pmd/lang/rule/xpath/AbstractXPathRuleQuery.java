@@ -48,7 +48,7 @@ public abstract class AbstractXPathRuleQuery implements XPathRuleQuery {
     }
 
     @Override
-    public void setVersion(String version) throws UnsupportedOperationException {
+    public void setVersion(final String version) throws UnsupportedOperationException {
         if (!isSupportedVersion(version)) {
             throw new UnsupportedOperationException(
                     this.getClass().getSimpleName() + " does not support XPath version: " + version);
@@ -68,7 +68,7 @@ public abstract class AbstractXPathRuleQuery implements XPathRuleQuery {
     protected abstract boolean isSupportedVersion(String version);
 
     @Override
-    public void setProperties(Map<PropertyDescriptor<?>, Object> properties) {
+    public void setProperties(final Map<PropertyDescriptor<?>, Object> properties) {
         this.properties = properties;
     }
 

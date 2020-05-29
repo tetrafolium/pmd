@@ -44,12 +44,12 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
      * @param nodeClass
      *            class of node to count
      */
-    protected AbstractNcssCountRule(Class<?> nodeClass) {
+    protected AbstractNcssCountRule(final Class<?> nodeClass) {
         this.nodeClass = nodeClass;
     }
 
     @Override
-    public Object visit(JavaNode node, Object data) {
+    public Object visit(final JavaNode node, final Object data) {
         int numNodes = 0;
 
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -81,7 +81,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
      *            node data
      * @return count of the number of children of the node, plus one
      */
-    protected Integer countNodeChildren(Node node, Object data) {
+    protected Integer countNodeChildren(final Node node, final Object data) {
         Integer nodeCount = null;
         int lineCount = 0;
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -92,17 +92,17 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
     }
 
     @Override
-    public Object visit(ASTForStatement node, Object data) {
+    public Object visit(final ASTForStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTDoStatement node, Object data) {
+    public Object visit(final ASTDoStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTIfStatement node, Object data) {
+    public Object visit(final ASTIfStatement node, final Object data) {
 
         Integer lineCount = countNodeChildren(node, data);
 
@@ -114,52 +114,52 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
     }
 
     @Override
-    public Object visit(ASTWhileStatement node, Object data) {
+    public Object visit(final ASTWhileStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTBreakStatement node, Object data) {
+    public Object visit(final ASTBreakStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTCatchStatement node, Object data) {
+    public Object visit(final ASTCatchStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTContinueStatement node, Object data) {
+    public Object visit(final ASTContinueStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTFinallyStatement node, Object data) {
+    public Object visit(final ASTFinallyStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTReturnStatement node, Object data) {
+    public Object visit(final ASTReturnStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTSynchronizedStatement node, Object data) {
+    public Object visit(final ASTSynchronizedStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTThrowStatement node, Object data) {
+    public Object visit(final ASTThrowStatement node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object visit(ASTStatementExpression node, Object data) {
+    public Object visit(final ASTStatementExpression node, final Object data) {
 
         // "For" update expressions do not count as separate lines of code
         if (node.getParent() instanceof ASTStatementExpressionList) {
@@ -170,12 +170,12 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
     }
 
     @Override
-    public Object visit(ASTLabeledStatement node, Object data) {
+    public Object visit(final ASTLabeledStatement node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTLocalVariableDeclaration node, Object data) {
+    public Object visit(final ASTLocalVariableDeclaration node, final Object data) {
 
         // "For" init declarations do not count as separate lines of code
         if (node.getParent() instanceof ASTForInit) {
@@ -192,7 +192,7 @@ public abstract class AbstractNcssCountRule extends AbstractStatisticalJavaRule 
     }
 
     @Override
-    public Object visit(ASTSwitchLabel node, Object data) {
+    public Object visit(final ASTSwitchLabel node, final Object data) {
         return countNodeChildren(node, data);
     }
 

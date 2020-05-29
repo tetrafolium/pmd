@@ -57,7 +57,7 @@ public abstract class AbstractInefficientZeroCheck extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTVariableDeclaratorId node, Object data) {
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
         Node nameNode = node.getTypeNameNode();
         if (nameNode == null || nameNode instanceof ASTPrimitiveType
                 || node.getNameDeclaration() == null
@@ -88,7 +88,7 @@ public abstract class AbstractInefficientZeroCheck extends AbstractJavaRule {
      * @param expr
      *            the ==, &lt;, &gt; expression
      */
-    protected void checkNodeAndReport(Object data, Node location, Node expr) {
+    protected void checkNodeAndReport(final Object data, final Node location, final Node expr) {
         if ((expr instanceof ASTEqualityExpression
                 || expr instanceof ASTRelationalExpression && getComparisonTargets().containsKey(expr.getImage()))
                 && isCompare(expr)) {
@@ -105,7 +105,7 @@ public abstract class AbstractInefficientZeroCheck extends AbstractJavaRule {
      *         false
      * @see #getComparisonTargets()
      */
-    private boolean isCompare(Node equality) {
+    private boolean isCompare(final Node equality) {
         if (isLiteralLeftHand(equality)) {
             return checkComparison(inverse.get(equality.getImage()), equality, 0);
         } else if (isLiteralRightHand(equality)) {
@@ -114,22 +114,22 @@ public abstract class AbstractInefficientZeroCheck extends AbstractJavaRule {
         return false;
     }
 
-    private boolean isLiteralLeftHand(Node equality) {
+    private boolean isLiteralLeftHand(final Node equality) {
         return isLiteral(equality, 0);
     }
 
-    private boolean isLiteralRightHand(Node equality) {
+    private boolean isLiteralRightHand(final Node equality) {
         return isLiteral(equality, 1);
     }
 
-    private boolean isLiteral(Node equality, int child) {
+    private boolean isLiteral(final Node equality, final int child) {
         Node target = equality.getChild(child);
         target = getFirstChildOrThis(target);
         target = getFirstChildOrThis(target);
         return target instanceof ASTLiteral;
     }
 
-    private Node getFirstChildOrThis(Node node) {
+    private Node getFirstChildOrThis(final Node node) {
         if (node.getNumChildren() > 0) {
             return node.getChild(0);
         }
@@ -147,7 +147,7 @@ public abstract class AbstractInefficientZeroCheck extends AbstractJavaRule {
      *         else false
      * @see #getComparisonTargets()
      */
-    private boolean checkComparison(String operator, Node equality, int i) {
+    private boolean checkComparison(final String operator, final Node equality, final int i) {
         Node target = equality.getChild(i).getChild(0).getChild(0);
         return target instanceof ASTLiteral && getComparisonTargets().get(operator).contains(target.getImage());
     }

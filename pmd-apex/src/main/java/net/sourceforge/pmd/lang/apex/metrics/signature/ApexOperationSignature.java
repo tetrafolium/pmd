@@ -23,7 +23,7 @@ public final class ApexOperationSignature extends ApexSignature implements Signa
      *
      * @param visibility The visibility
      */
-    private ApexOperationSignature(Visibility visibility) {
+    private ApexOperationSignature(final Visibility visibility) {
         super(visibility);
     }
 
@@ -35,12 +35,12 @@ public final class ApexOperationSignature extends ApexSignature implements Signa
 
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         return obj == this;
     }
 
 
-    private static int code(Visibility visibility) {
+    private static int code(final Visibility visibility) {
         return visibility.hashCode();
     }
 
@@ -52,7 +52,7 @@ public final class ApexOperationSignature extends ApexSignature implements Signa
      *
      * @return The signature of the node
      */
-    public static ApexOperationSignature of(ASTMethod node) {
+    public static ApexOperationSignature of(final ASTMethod node) {
         Visibility visibility = Visibility.get(node);
         int code = code(visibility);
         if (!POOL.containsKey(code)) {

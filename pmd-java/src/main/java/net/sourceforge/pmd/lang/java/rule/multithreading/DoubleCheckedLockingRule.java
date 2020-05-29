@@ -61,7 +61,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
     private List<String> volatileFields;
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isInterface()) {
             return data;
         }
@@ -69,7 +69,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTCompilationUnit compilationUnit, Object data) {
+    public Object visit(final ASTCompilationUnit compilationUnit, final Object data) {
         if (this.volatileFields == null) {
             this.volatileFields = new ArrayList<>(0);
         } else {
@@ -79,7 +79,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration fieldDeclaration, Object data) {
+    public Object visit(final ASTFieldDeclaration fieldDeclaration, final Object data) {
         if (fieldDeclaration.isVolatile()) {
             for (ASTVariableDeclaratorId declarator : fieldDeclaration
                     .findDescendantsOfType(ASTVariableDeclaratorId.class)) {
@@ -90,7 +90,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
     }
 
     @Override
-    public Object visit(ASTMethodDeclaration node, Object data) {
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
         if (node.getResultType().isVoid()) {
             return super.visit(node, data);
         }
@@ -157,7 +157,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
         return super.visit(node, data);
     }
 
-    private boolean checkLocalVariableUsage(ASTMethodDeclaration node, String returnVariableName) {
+    private boolean checkLocalVariableUsage(final ASTMethodDeclaration node, final String returnVariableName) {
         List<ASTLocalVariableDeclaration> locals = node.findDescendantsOfType(ASTLocalVariableDeclaration.class);
         ASTVariableInitializer initializer = null;
         for (ASTLocalVariableDeclaration l : locals) {
@@ -213,7 +213,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
         return true;
     }
 
-    private boolean ifVerify(ASTIfStatement is, String varname) {
+    private boolean ifVerify(final ASTIfStatement is, final String varname) {
         List<ASTPrimaryExpression> finder = is.findDescendantsOfType(ASTPrimaryExpression.class);
         if (finder.size() > 1) {
             ASTPrimaryExpression nullStmt = findNonVariableStmt(varname, finder.get(0), finder.get(1));
@@ -244,8 +244,8 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
      * @return reference from either apeLeft or apeRight, if one of them match,
      *         or 'null', if none match.
      */
-    private ASTPrimaryExpression findNonVariableStmt(String variableName, ASTPrimaryExpression apeLeft,
-            ASTPrimaryExpression apeRight) {
+    private ASTPrimaryExpression findNonVariableStmt(final String variableName, final ASTPrimaryExpression apeLeft,
+            final ASTPrimaryExpression apeRight) {
         if (matchName(apeLeft, variableName)) {
             return apeRight;
         } else if (matchName(apeRight, variableName)) {
@@ -254,7 +254,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
         return null;
     }
 
-    private boolean matchName(ASTPrimaryExpression ape, String name) {
+    private boolean matchName(final ASTPrimaryExpression ape, final String name) {
         if (ape.getNumChildren() == 1 && ape.getChild(0) instanceof ASTPrimaryPrefix) {
             ASTPrimaryPrefix pp = (ASTPrimaryPrefix) ape.getChild(0);
             String name2 = getNameFromPrimaryPrefix(pp);
@@ -265,7 +265,7 @@ public class DoubleCheckedLockingRule extends AbstractJavaRule {
         return false;
     }
 
-    private String getNameFromPrimaryPrefix(ASTPrimaryPrefix pp) {
+    private String getNameFromPrimaryPrefix(final ASTPrimaryPrefix pp) {
         if (pp.getNumChildren() == 1 && pp.getChild(0) instanceof ASTName) {
             return ((ASTName) pp.getChild(0)).getImage();
         }

@@ -15,13 +15,13 @@ import java.util.List;
 @Deprecated
 public class TypePropertyModule extends PackagedPropertyModule<Class> {
 
-    public TypePropertyModule(String[] legalPackageNames, List<Class> defaults) {
+    public TypePropertyModule(final String[] legalPackageNames, final List<Class> defaults) {
         super(legalPackageNames, defaults);
     }
 
 
     @Override
-    protected String packageNameOf(Class item) {
+    protected String packageNameOf(final Class item) {
         return item.getName();
     }
 

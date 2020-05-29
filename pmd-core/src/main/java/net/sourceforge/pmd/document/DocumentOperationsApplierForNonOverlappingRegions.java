@@ -25,7 +25,7 @@ public class DocumentOperationsApplierForNonOverlappingRegions {
         applied = false;
     }
 
-    public void addDocumentOperation(DocumentOperation documentOperation) {
+    public void addDocumentOperation(final DocumentOperation documentOperation) {
         assertOperationsHaveNotBeenApplied();
 
         final int index = getIndexForDocumentOperation(Objects.requireNonNull(documentOperation));

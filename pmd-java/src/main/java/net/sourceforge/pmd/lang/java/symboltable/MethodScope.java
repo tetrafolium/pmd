@@ -24,7 +24,7 @@ public class MethodScope extends AbstractJavaScope {
 
     private Node node;
 
-    public MethodScope(Node node) {
+    public MethodScope(final Node node) {
         this.node = node;
     }
 
@@ -33,7 +33,7 @@ public class MethodScope extends AbstractJavaScope {
     }
 
     @Override
-    public Set<NameDeclaration> addNameOccurrence(NameOccurrence occurrence) {
+    public Set<NameDeclaration> addNameOccurrence(final NameOccurrence occurrence) {
         JavaNameOccurrence javaOccurrence = (JavaNameOccurrence) occurrence;
         Set<NameDeclaration> declarations = findVariableHere(javaOccurrence);
         if (!declarations.isEmpty() && !javaOccurrence.isThisOrSuper()) {
@@ -49,7 +49,7 @@ public class MethodScope extends AbstractJavaScope {
     }
 
     @Override
-    public void addDeclaration(NameDeclaration variableDecl) {
+    public void addDeclaration(final NameDeclaration variableDecl) {
         if (!(variableDecl instanceof VariableNameDeclaration || variableDecl instanceof ClassNameDeclaration)) {
             throw new IllegalArgumentException(
                     "A MethodScope can contain only VariableNameDeclarations or ClassNameDeclarations");
@@ -58,7 +58,7 @@ public class MethodScope extends AbstractJavaScope {
     }
 
     @Override
-    public Set<NameDeclaration> findVariableHere(JavaNameOccurrence occurrence) {
+    public Set<NameDeclaration> findVariableHere(final JavaNameOccurrence occurrence) {
         if (occurrence.isThisOrSuper() || occurrence.isMethodOrConstructorInvocation()) {
             return Collections.emptySet();
         }

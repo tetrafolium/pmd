@@ -16,13 +16,13 @@ import apex.jorje.services.Version;
 public abstract class ApexRootNode<T extends AstNode> extends AbstractApexNode<T> implements RootNode {
     @Deprecated
     @InternalApi
-    public ApexRootNode(T node) {
+    public ApexRootNode(final T node) {
         super(node);
     }
 
     // For top level classes, the end is the end of file.
     @Override
-    void calculateLineNumbers(SourceCodePositioner positioner) {
+    void calculateLineNumbers(final SourceCodePositioner positioner) {
         super.calculateLineNumbers(positioner);
         this.endLine = positioner.getLastLine();
         this.endColumn = positioner.getLastLineColumn();

@@ -12,12 +12,12 @@ public class ASTExpressionStatement extends AbstractApexNode<ExpressionStatement
 
     @Deprecated
     @InternalApi
-    public ASTExpressionStatement(ExpressionStatement expressionStatement) {
+    public ASTExpressionStatement(final ExpressionStatement expressionStatement) {
         super(expressionStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

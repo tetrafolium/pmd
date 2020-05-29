@@ -41,7 +41,7 @@ public abstract class SimpleAggregatorTst extends RuleTst {
      * Add new XML tests associated with the rule to the test suite. This should
      * be called from the setup method.
      */
-    protected void addRule(String ruleSet, String ruleName) {
+    protected void addRule(final String ruleSet, final String ruleName) {
         rules.add(findRule(ruleSet, ruleName));
     }
 

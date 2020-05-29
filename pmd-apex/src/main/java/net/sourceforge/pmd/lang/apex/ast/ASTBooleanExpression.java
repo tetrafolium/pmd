@@ -14,13 +14,13 @@ public class ASTBooleanExpression extends AbstractApexNode<BooleanExpression> {
 
     @Deprecated
     @InternalApi
-    public ASTBooleanExpression(BooleanExpression booleanExpression) {
+    public ASTBooleanExpression(final BooleanExpression booleanExpression) {
         super(booleanExpression);
     }
 
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

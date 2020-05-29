@@ -44,7 +44,7 @@ public class RuntimeMacro extends Directive {
      * @param macroName
      *            name of the macro
      */
-    public RuntimeMacro(String macroName) {
+    public RuntimeMacro(final String macroName) {
         if (macroName == null) {
             throw new IllegalArgumentException("Null arguments");
         }

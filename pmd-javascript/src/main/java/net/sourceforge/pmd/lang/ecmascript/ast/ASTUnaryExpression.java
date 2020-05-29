@@ -13,7 +13,7 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTUnaryExpression extends AbstractEcmascriptNode<UnaryExpression> {
     @Deprecated
     @InternalApi
-    public ASTUnaryExpression(UnaryExpression unaryExpression) {
+    public ASTUnaryExpression(final UnaryExpression unaryExpression) {
         super(unaryExpression);
         if (unaryExpression.getOperator() == Token.VOID) {
             super.setImage("void");
@@ -23,7 +23,7 @@ public class ASTUnaryExpression extends AbstractEcmascriptNode<UnaryExpression> 
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

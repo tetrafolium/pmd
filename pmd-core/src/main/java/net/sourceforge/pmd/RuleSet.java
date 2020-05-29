@@ -332,7 +332,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder withFileExclusions(Pattern p1, Pattern... rest) {
+        public RuleSetBuilder withFileExclusions(final Pattern p1, final Pattern... rest) {
             Objects.requireNonNull(p1, "Pattern was null");
             Objects.requireNonNull(rest, "Other patterns was null");
             excludePatterns.add(p1);
@@ -352,7 +352,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder withFileExclusions(Collection<? extends Pattern> patterns) {
+        public RuleSetBuilder withFileExclusions(final Collection<? extends Pattern> patterns) {
             Objects.requireNonNull(patterns, "Pattern collection was null");
             for (Pattern p : patterns) {
                 Objects.requireNonNull(p, "Pattern was null");
@@ -370,7 +370,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder replaceFileExclusions(Collection<? extends Pattern> patterns) {
+        public RuleSetBuilder replaceFileExclusions(final Collection<? extends Pattern> patterns) {
             Objects.requireNonNull(patterns, "Pattern collection was null");
             excludePatterns.clear();
             for (Pattern p : patterns) {
@@ -391,7 +391,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder withFileInclusions(Pattern p1, Pattern... rest) {
+        public RuleSetBuilder withFileInclusions(final Pattern p1, final Pattern... rest) {
             Objects.requireNonNull(p1, "Pattern was null");
             Objects.requireNonNull(rest, "Other patterns was null");
             includePatterns.add(p1);
@@ -411,7 +411,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder withFileInclusions(Collection<? extends Pattern> patterns) {
+        public RuleSetBuilder withFileInclusions(final Collection<? extends Pattern> patterns) {
             Objects.requireNonNull(patterns, "Pattern collection was null");
             for (Pattern p : patterns) {
                 Objects.requireNonNull(p, "Pattern was null");
@@ -429,7 +429,7 @@ public class RuleSet implements ChecksumAware {
          *
          * @throws NullPointerException If any of the specified patterns is null
          */
-        public RuleSetBuilder replaceFileInclusions(Collection<? extends Pattern> patterns) {
+        public RuleSetBuilder replaceFileInclusions(final Collection<? extends Pattern> patterns) {
             Objects.requireNonNull(patterns, "Pattern collection was null");
             includePatterns.clear();
             for (Pattern p : patterns) {
@@ -466,7 +466,7 @@ public class RuleSet implements ChecksumAware {
             return new RuleSet(this);
         }
 
-        public void filterRulesByPriority(RulePriority minimumPriority) {
+        public void filterRulesByPriority(final RulePriority minimumPriority) {
             Iterator<Rule> iterator = rules.iterator();
             while (iterator.hasNext()) {
                 Rule rule = iterator.next();
@@ -519,7 +519,7 @@ public class RuleSet implements ChecksumAware {
      *            the exact name of the rule to find
      * @return the rule or null if not found
      */
-    public Rule getRuleByName(String ruleName) {
+    public Rule getRuleByName(final String ruleName) {
 
         for (Rule r : rules) {
             if (r.getName().equals(ruleName)) {
@@ -541,7 +541,7 @@ public class RuleSet implements ChecksumAware {
      * @return <code>true</code> if the file should be checked,
      *         <code>false</code> otherwise
      */
-    public boolean applies(File file) {
+    public boolean applies(final File file) {
         return file == null || filter.filter(file);
     }
 
@@ -552,7 +552,7 @@ public class RuleSet implements ChecksumAware {
      * @param ctx
      *            the current context
      */
-    public void start(RuleContext ctx) {
+    public void start(final RuleContext ctx) {
         for (Rule rule : rules) {
             rule.start(ctx);
         }
@@ -566,7 +566,7 @@ public class RuleSet implements ChecksumAware {
      * @param ctx
      *            the current context
      */
-    public void apply(List<? extends Node> acuList, RuleContext ctx) {
+    public void apply(final List<? extends Node> acuList, final RuleContext ctx) {
         try (TimedOperation to = TimeTracker.startOperation(TimedOperationCategory.RULE)) {
             for (Rule rule : rules) {
                 if (!rule.isRuleChain() && applies(rule, ctx.getLanguageVersion())) {
@@ -603,7 +603,7 @@ public class RuleSet implements ChecksumAware {
      * @return <code>true</code> if the given rule matches the given language,
      *         which means, that the rule would be executed.
      */
-    public static boolean applies(Rule rule, LanguageVersion languageVersion) {
+    public static boolean applies(final Rule rule, final LanguageVersion languageVersion) {
         final LanguageVersion min = rule.getMinimumLanguageVersion();
         final LanguageVersion max = rule.getMaximumLanguageVersion();
         return rule.getLanguage().equals(languageVersion.getLanguage())
@@ -618,7 +618,7 @@ public class RuleSet implements ChecksumAware {
      * @param ctx
      *            the current context
      */
-    public void end(RuleContext ctx) {
+    public void end(final RuleContext ctx) {
         for (Rule rule : rules) {
             rule.end(ctx);
         }
@@ -634,7 +634,7 @@ public class RuleSet implements ChecksumAware {
      *         <code>false</code> otherwise
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof RuleSet)) {
             return false; // Trivial
         }
@@ -700,7 +700,7 @@ public class RuleSet implements ChecksumAware {
      * @deprecated See {@link Rule#isDfa()}
      */
     @Deprecated
-    public boolean usesDFA(Language language) {
+    public boolean usesDFA(final Language language) {
         for (Rule r : rules) {
             if (r.getLanguage().equals(language) && r.isDfa()) {
                 return true;
@@ -719,7 +719,7 @@ public class RuleSet implements ChecksumAware {
      * @deprecated See {@link Rule#isTypeResolution()}
      */
     @Deprecated
-    public boolean usesTypeResolution(Language language) {
+    public boolean usesTypeResolution(final Language language) {
         for (Rule r : rules) {
             if (r.getLanguage().equals(language) && r.isTypeResolution()) {
                 return true;
@@ -740,7 +740,7 @@ public class RuleSet implements ChecksumAware {
      * @deprecated See {@link Rule#isMultifile()}
      */
     @Deprecated
-    public boolean usesMultifile(Language language) {
+    public boolean usesMultifile(final Language language) {
         for (Rule r : rules) {
             if (r.getLanguage().equals(language) && r.isMultifile()) {
                 return true;
@@ -755,7 +755,7 @@ public class RuleSet implements ChecksumAware {
      * @param collector
      *            the removed rules will be added to this collection
      */
-    public void removeDysfunctionalRules(Collection<Rule> collector) {
+    public void removeDysfunctionalRules(final Collection<Rule> collector) {
         Iterator<Rule> iter = rules.iterator();
 
         while (iter.hasNext()) {

@@ -20,7 +20,7 @@ public abstract class SinglePackagedPropertyBuilder<V, T extends SinglePackagedP
     protected String[] legalPackageNames;
 
 
-    public SinglePackagedPropertyBuilder(String name) {
+    public SinglePackagedPropertyBuilder(final String name) {
         super(name);
     }
 
@@ -33,7 +33,7 @@ public abstract class SinglePackagedPropertyBuilder<V, T extends SinglePackagedP
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T legalPackageNames(String... packs) {
+    public T legalPackageNames(final String... packs) {
         if (packs != null) {
             this.legalPackageNames = Arrays.copyOf(packs, packs.length);
         }
@@ -49,7 +49,7 @@ public abstract class SinglePackagedPropertyBuilder<V, T extends SinglePackagedP
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T legalPackageNames(Collection<String> packs) {
+    public T legalPackageNames(final Collection<String> packs) {
         if (packs != null) {
             this.legalPackageNames = packs.toArray(new String[0]);
         }

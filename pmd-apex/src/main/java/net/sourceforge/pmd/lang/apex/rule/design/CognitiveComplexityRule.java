@@ -47,7 +47,7 @@ public class CognitiveComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTUserTrigger node, Object data) {
+    public Object visit(final ASTUserTrigger node, final Object data) {
         inTrigger = true;
         super.visit(node, data);
         inTrigger = false;
@@ -56,7 +56,7 @@ public class CognitiveComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         classNames.push(node.getImage());
         super.visit(node, data);
@@ -83,7 +83,7 @@ public class CognitiveComplexityRule extends AbstractApexRule {
 
 
     @Override
-    public final Object visit(ASTMethod node, Object data) {
+    public final Object visit(final ASTMethod node, final Object data) {
 
         if (ApexOperationMetricKey.COGNITIVE.supports(node)) {
             int cognitive = (int) MetricsUtil.computeMetric(ApexOperationMetricKey.COGNITIVE, node);

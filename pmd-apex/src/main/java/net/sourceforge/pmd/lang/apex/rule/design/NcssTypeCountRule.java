@@ -32,7 +32,7 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
 
         if (!node.hasDescendantOfAnyType(ASTUserClass.class)) {
             return super.visit(node, data);
@@ -42,7 +42,7 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTUserInterface node, Object data) {
+    public Object visit(final ASTUserInterface node, final Object data) {
 
         if (!node.hasDescendantOfAnyType(ASTUserClass.class)) {
             return super.visit(node, data);
@@ -52,12 +52,12 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTUserEnum node, Object data) {
+    public Object visit(final ASTUserEnum node, final Object data) {
         return countNodeChildren(node, data);
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (!node.getImage().matches("<clinit>|<init>|clone")) {
             return countNodeChildren(node, data);
         }
@@ -66,12 +66,12 @@ public class NcssTypeCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
-        return new String[] { String.valueOf((int) point.getScore()) };
+    public Object[] getViolationParameters(final DataPoint point) {
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 }

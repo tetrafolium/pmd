@@ -11,13 +11,13 @@ import net.sourceforge.pmd.annotation.InternalApi;
 public class ASTFunctionNode extends AbstractEcmascriptNode<FunctionNode> {
     @Deprecated
     @InternalApi
-    public ASTFunctionNode(FunctionNode functionNode) {
+    public ASTFunctionNode(final FunctionNode functionNode) {
         super(functionNode);
         super.setImage(functionNode.getName());
     }
 
     @Override
-    public Object jjtAccept(EcmascriptParserVisitor visitor, Object data) {
+    public Object jjtAccept(final EcmascriptParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
@@ -32,7 +32,7 @@ public class ASTFunctionNode extends AbstractEcmascriptNode<FunctionNode> {
         return null;
     }
 
-    public EcmascriptNode<?> getParam(int index) {
+    public EcmascriptNode<?> getParam(final int index) {
         int paramIndex = index;
         if (node.getFunctionName() != null) {
             paramIndex = index + 1;
@@ -45,7 +45,7 @@ public class ASTFunctionNode extends AbstractEcmascriptNode<FunctionNode> {
     }
 
     @Deprecated // use getBody() instead
-    public EcmascriptNode<?> getBody(int index) {
+    public EcmascriptNode<?> getBody(final int index) {
         return getBody();
     }
 

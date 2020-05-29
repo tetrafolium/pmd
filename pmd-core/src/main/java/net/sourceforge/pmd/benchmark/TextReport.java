@@ -28,7 +28,7 @@ public class TextReport implements BenchmarkReport {
     private static final int VALUE_COLUMN_WIDTH = 8;
 
     @Override
-    public void generate(Set<RuleDuration> stressResults, PrintStream stream) {
+    public void generate(final Set<RuleDuration> stressResults, final PrintStream stream) {
 
         stream.println("=========================================================");
         stream.println("Rule\t\t\t\t\t\tTime in ms");
@@ -46,12 +46,12 @@ public class TextReport implements BenchmarkReport {
         stream.println("=========================================================");
     }
 
-    public void report(Map<String, BenchmarkResult> benchmarksByName) {
+    public void report(final Map<String, BenchmarkResult> benchmarksByName) {
         generate(benchmarksByName, System.out);
     }
 
     @Override
-    public void generate(Map<String, BenchmarkResult> benchmarksByName, PrintStream stream) {
+    public void generate(final Map<String, BenchmarkResult> benchmarksByName, final PrintStream stream) {
 
         List<BenchmarkResult> results = new ArrayList<>(benchmarksByName.values());
 
@@ -153,7 +153,7 @@ public class TextReport implements BenchmarkReport {
      *            long
      * @return double
      */
-    private static double total(long[] timeTotals, Benchmark index, long count) {
+    private static double total(final long[] timeTotals, final Benchmark index, final long count) {
         return timeTotals[index.index] / 1000000000.0d / count;
     }
 }

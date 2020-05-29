@@ -29,7 +29,7 @@ public class ApexXSSFromEscapeFalseRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node) || Helper.isSystemLevelClass(node)) {
             return data; // stops all the rules
         }
@@ -43,7 +43,7 @@ public class ApexXSSFromEscapeFalseRule extends AbstractApexRule {
         return data;
     }
 
-    private void validateBooleanParameter(ASTMethodCallExpression methodCall, Object data) {
+    private void validateBooleanParameter(final ASTMethodCallExpression methodCall, final Object data) {
         int numberOfChildren = methodCall.getNumChildren();
         if (numberOfChildren == 3) { // addError('',false)
             Object potentialLiteral = methodCall.getChild(2);
@@ -59,7 +59,7 @@ public class ApexXSSFromEscapeFalseRule extends AbstractApexRule {
         }
     }
 
-    private void validateLiteralPresence(ASTMethodCallExpression methodCall, Object data) {
+    private void validateLiteralPresence(final ASTMethodCallExpression methodCall, final Object data) {
         List<ASTVariableExpression> variables = methodCall.findDescendantsOfType(ASTVariableExpression.class);
         for (ASTVariableExpression v : variables) {
             addViolation(data, v);

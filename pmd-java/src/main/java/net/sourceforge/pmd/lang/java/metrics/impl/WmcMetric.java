@@ -20,7 +20,7 @@ import net.sourceforge.pmd.lang.metrics.ResultOption;
 public final class WmcMetric extends AbstractJavaClassMetric {
 
     @Override
-    public double computeFor(ASTAnyTypeDeclaration node, MetricOptions options) {
+    public double computeFor(final ASTAnyTypeDeclaration node, final MetricOptions options) {
         return JavaMetrics.get(JavaOperationMetricKey.CYCLO, node, options, ResultOption.SUM);
     }
 

@@ -12,12 +12,12 @@ class BenchmarkResult implements Comparable<BenchmarkResult> {
     private long time;
     private long count;
 
-    BenchmarkResult(Benchmark type, String name) {
+    BenchmarkResult(final Benchmark type, final String name) {
         this.type = type;
         this.name = name;
     }
 
-    BenchmarkResult(Benchmark type, long time, long count) {
+    BenchmarkResult(final Benchmark type, final long time, final long count) {
         this(type, type.name);
         this.time = time;
         this.count = count;
@@ -31,13 +31,13 @@ class BenchmarkResult implements Comparable<BenchmarkResult> {
         return count;
     }
 
-    public void update(long time, long count) {
+    public void update(final long time, final long count) {
         this.time += time;
         this.count += count;
     }
 
     @Override
-    public int compareTo(BenchmarkResult benchmarkResult) {
+    public int compareTo(final BenchmarkResult benchmarkResult) {
         int cmp = Integer.compare(type.index, benchmarkResult.type.index);
         if (cmp == 0) {
             cmp = Long.compare(this.time, benchmarkResult.time);

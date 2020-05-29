@@ -26,13 +26,13 @@ public class MethodPropertyModule extends PackagedPropertyModule<Method> {
     private static final Map<Class<?>, String> TYPE_SHORTCUTS = ClassUtil.getClassShortNames();
 
 
-    public MethodPropertyModule(String[] legalPackageNames, List<Method> defaults) {
+    public MethodPropertyModule(final String[] legalPackageNames, final List<Method> defaults) {
         super(legalPackageNames, defaults);
     }
 
 
     @Override
-    protected String packageNameOf(Method method) {
+    protected String packageNameOf(final Method method) {
         return method.getDeclaringClass().getName() + '.' + method.getName();
     }
 
@@ -43,7 +43,7 @@ public class MethodPropertyModule extends PackagedPropertyModule<Method> {
     }
 
 
-    public static String asString(Method method) {
+    public static String asString(final Method method) {
         return method == null ? "" : asStringFor(method);
     }
 
@@ -55,7 +55,7 @@ public class MethodPropertyModule extends PackagedPropertyModule<Method> {
      *
      * @return the string value
      */
-    private static String asStringFor(Method method) {
+    private static String asStringFor(final Method method) {
         StringBuilder sb = new StringBuilder();
         asStringOn(method, sb);
         return sb.toString();
@@ -68,7 +68,7 @@ public class MethodPropertyModule extends PackagedPropertyModule<Method> {
      * @param method Method
      * @param sb     StringBuilder
      */
-    private static void asStringOn(Method method, StringBuilder sb) {
+    private static void asStringOn(final Method method, final StringBuilder sb) {
 
         Class<?> clazz = method.getDeclaringClass();
 
@@ -93,13 +93,13 @@ public class MethodPropertyModule extends PackagedPropertyModule<Method> {
     }
 
 
-    private static String shortestNameFor(Class<?> cls) {
+    private static String shortestNameFor(final Class<?> cls) {
         String compactName = TYPE_SHORTCUTS.get(cls);
         return compactName == null ? cls.getName() : compactName;
     }
 
 
-    private static void serializedTypeIdOn(Class<?> type, StringBuilder sb) {
+    private static void serializedTypeIdOn(final Class<?> type, final StringBuilder sb) {
 
         Class<?> arrayType = type.getComponentType();
         if (arrayType == null) {

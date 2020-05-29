@@ -12,12 +12,12 @@ public class ASTDmlDeleteStatement extends AbstractApexNode<DmlDeleteStatement> 
 
     @Deprecated
     @InternalApi
-    public ASTDmlDeleteStatement(DmlDeleteStatement dmlDeleteStatement) {
+    public ASTDmlDeleteStatement(final DmlDeleteStatement dmlDeleteStatement) {
         super(dmlDeleteStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

@@ -32,13 +32,13 @@ public class ASTImportDeclaration extends AbstractJavaTypeNode {
 
     @InternalApi
     @Deprecated
-    public ASTImportDeclaration(int id) {
+    public ASTImportDeclaration(final int id) {
         super(id);
     }
 
     @InternalApi
     @Deprecated
-    public ASTImportDeclaration(JavaParser p, int id) {
+    public ASTImportDeclaration(final JavaParser p, final int id) {
         super(p, id);
     }
 
@@ -139,13 +139,13 @@ public class ASTImportDeclaration extends AbstractJavaTypeNode {
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 
     @InternalApi
     @Deprecated
-    public void setPackage(Package packge) {
+    public void setPackage(final Package packge) {
         this.pkg = packge;
     }
 

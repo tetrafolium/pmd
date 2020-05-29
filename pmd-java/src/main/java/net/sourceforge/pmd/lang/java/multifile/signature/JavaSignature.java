@@ -24,7 +24,7 @@ public abstract class JavaSignature<N extends SignedNode<N>> implements Signatur
      *
      * @param visibility The visibility of the signature
      */
-    protected JavaSignature(Visibility visibility) {
+    protected JavaSignature(final Visibility visibility) {
         this.visibility = visibility;
     }
 
@@ -43,7 +43,7 @@ public abstract class JavaSignature<N extends SignedNode<N>> implements Signatur
          *
          * @return The visibility enum key for a node
          */
-        public static Visibility get(AccessNode node) {
+        public static Visibility get(final AccessNode node) {
             if (node.isPublic()) {
                 return PUBLIC;
             } else if (node.isPackagePrivate()) {

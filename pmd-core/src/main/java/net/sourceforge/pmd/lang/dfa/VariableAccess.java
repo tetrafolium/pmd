@@ -17,7 +17,7 @@ public class VariableAccess {
     private int accessType;
     private String variableName;
 
-    public VariableAccess(int accessType, String varName) {
+    public VariableAccess(final int accessType, final String varName) {
         this.accessType = accessType;
         int dotPos = varName.indexOf('.');
         variableName = dotPos < 0 ? varName : varName.substring(0, dotPos);
@@ -28,7 +28,7 @@ public class VariableAccess {
         return accessType;
     }
 
-    public boolean accessTypeMatches(int otherType) {
+    public boolean accessTypeMatches(final int otherType) {
         return accessType == otherType;
     }
 

@@ -32,7 +32,7 @@ public class ModelicaTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         AbstractTokenManager.setFileName(fileName);
     }
 }

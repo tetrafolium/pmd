@@ -41,7 +41,7 @@ public class RuleChainAnalyzer extends SaxonExprVisitor {
     private boolean insideLazyExpression;
     private boolean foundPathInsideLazy;
 
-    public RuleChainAnalyzer(Configuration currentConfiguration) {
+    public RuleChainAnalyzer(final Configuration currentConfiguration) {
         this.configuration = currentConfiguration;
     }
 
@@ -53,14 +53,14 @@ public class RuleChainAnalyzer extends SaxonExprVisitor {
     }
 
     @Override
-    public Expression visit(DocumentSorter e) {
+    public Expression visit(final DocumentSorter e) {
         DocumentSorter result = (DocumentSorter) super.visit(e);
         // sorting of the nodes must be done after all nodes have been found
         return result.getBaseExpression();
     }
 
     @Override
-    public Expression visit(PathExpression e) {
+    public Expression visit(final PathExpression e) {
         if (!insideLazyExpression && rootElement == null) {
             Expression result = super.visit(e);
             if (rootElement != null && !rootElementReplaced) {
@@ -93,7 +93,7 @@ public class RuleChainAnalyzer extends SaxonExprVisitor {
     }
 
     @Override
-    public Expression visit(AxisExpression e) {
+    public Expression visit(final AxisExpression e) {
         if (rootElement == null && e.getNodeTest() instanceof NameTest) {
             NameTest test = (NameTest) e.getNodeTest();
             if (test.getPrimitiveType() == Type.ELEMENT && e.getAxis() == Axis.DESCENDANT) {
@@ -106,7 +106,7 @@ public class RuleChainAnalyzer extends SaxonExprVisitor {
     }
 
     @Override
-    public Expression visit(LazyExpression e) {
+    public Expression visit(final LazyExpression e) {
         boolean prevCtx = insideLazyExpression;
         insideLazyExpression = true;
         Expression result = super.visit(e);
@@ -121,7 +121,7 @@ public class RuleChainAnalyzer extends SaxonExprVisitor {
     /**
      * Split union expressions into their components.
      */
-    public static Iterable<Expression> splitUnions(Expression expr) {
+    public static Iterable<Expression> splitUnions(final Expression expr) {
         SplitUnions unions = new SplitUnions();
         unions.visit(expr);
         if (unions.getExpressions().isEmpty()) {

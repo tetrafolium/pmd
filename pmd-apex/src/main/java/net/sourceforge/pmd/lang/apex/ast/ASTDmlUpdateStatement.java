@@ -12,12 +12,12 @@ public class ASTDmlUpdateStatement extends AbstractApexNode<DmlUpdateStatement> 
 
     @Deprecated
     @InternalApi
-    public ASTDmlUpdateStatement(DmlUpdateStatement dmlUpdateStatement) {
+    public ASTDmlUpdateStatement(final DmlUpdateStatement dmlUpdateStatement) {
         super(dmlUpdateStatement);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

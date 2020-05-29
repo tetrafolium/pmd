@@ -48,7 +48,7 @@ public class ApexDangerousMethodsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         if (Helper.isTestMethodOrClass(node)) {
             return data;
         }
@@ -71,7 +71,7 @@ public class ApexDangerousMethodsRule extends AbstractApexRule {
         return data;
     }
 
-    private void collectBenignVariables(ASTUserClass node) {
+    private void collectBenignVariables(final ASTUserClass node) {
         List<ASTField> fields = node.findDescendantsOfType(ASTField.class);
         for (ASTField field : fields) {
             if (BOOLEAN.equalsIgnoreCase(field.getType())) {
@@ -89,7 +89,7 @@ public class ApexDangerousMethodsRule extends AbstractApexRule {
 
     }
 
-    private void validateParameters(ASTMethodCallExpression methodCall, Object data) {
+    private void validateParameters(final ASTMethodCallExpression methodCall, final Object data) {
         List<ASTVariableExpression> variables = methodCall.findDescendantsOfType(ASTVariableExpression.class);
         for (ASTVariableExpression var : variables) {
             if (REGEXP.matcher(var.getImage()).matches()) {

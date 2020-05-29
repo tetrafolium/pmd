@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DefaultFileWriter implements FileWriter {
     @Override
-    public void write(Path path, List<String> lines) throws IOException {
+    public void write(final Path path, final List<String> lines) throws IOException {
         Files.createDirectories(path.getParent());
         Files.write(path, lines, StandardCharsets.UTF_8);
     }

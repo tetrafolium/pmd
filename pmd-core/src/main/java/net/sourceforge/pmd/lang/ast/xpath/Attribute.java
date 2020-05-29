@@ -35,14 +35,14 @@ public class Attribute {
     private String stringValue;
 
     /** Creates a new attribute belonging to the given node using its accessor. */
-    public Attribute(Node parent, String name, Method m) {
+    public Attribute(final Node parent, final String name, final Method m) {
         this.parent = parent;
         this.name = name;
         this.method = m;
     }
 
     /** Creates a new attribute belonging to the given node using its string value. */
-    public Attribute(Node parent, String name, String value) {
+    public Attribute(final Node parent, final String name, final String value) {
         this.parent = parent;
         this.name = name;
         this.value = Collections.singletonList(value);
@@ -110,7 +110,7 @@ public class Attribute {
 
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

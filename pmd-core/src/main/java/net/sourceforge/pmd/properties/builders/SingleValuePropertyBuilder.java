@@ -18,7 +18,7 @@ public abstract class SingleValuePropertyBuilder<E, T extends SingleValuePropert
     protected E defaultValue;
 
 
-    protected SingleValuePropertyBuilder(String name) {
+    protected SingleValuePropertyBuilder(final String name) {
         super(name);
     }
 
@@ -31,7 +31,7 @@ public abstract class SingleValuePropertyBuilder<E, T extends SingleValuePropert
      * @return The same builder
      */
     @SuppressWarnings("unchecked")
-    public T defaultValue(E val) {
+    public T defaultValue(final E val) {
         this.defaultValue = val;
         return (T) this;
     }

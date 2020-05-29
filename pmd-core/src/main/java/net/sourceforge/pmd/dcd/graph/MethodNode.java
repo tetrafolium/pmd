@@ -22,7 +22,7 @@ public class MethodNode extends MemberNode<MethodNode, Method> {
 
     private WeakReference<Method> methodReference;
 
-    public MethodNode(ClassNode classNode, String name, String desc) {
+    public MethodNode(final ClassNode classNode, final String name, final String desc) {
         super(classNode, name, desc);
         // getMember();
     }
@@ -41,7 +41,7 @@ public class MethodNode extends MemberNode<MethodNode, Method> {
     }
 
     @Override
-    public int compareTo(MethodNode that) {
+    public int compareTo(final MethodNode that) {
         // Order by method name
         int cmp = this.getName().compareTo(that.getName());
         if (cmp == 0) {

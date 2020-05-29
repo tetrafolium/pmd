@@ -39,7 +39,7 @@ public final class ValueParserConstants {
     /** Extracts methods. */
     static final ValueParser<Method> METHOD_PARSER = new ValueParser<Method>() {
         @Override
-        public Method valueOf(String value) throws IllegalArgumentException {
+        public Method valueOf(final String value) throws IllegalArgumentException {
             return methodFrom(value, CLASS_METHOD_DELIMITER, METHOD_ARG_DELIMITER);
         }
 
@@ -66,7 +66,7 @@ public final class ValueParserConstants {
          *
          * @return Method
          */
-        Method methodFrom(String methodNameAndArgTypes, char classMethodDelimiter, char methodArgDelimiter) {
+        Method methodFrom(final String methodNameAndArgTypes, final char classMethodDelimiter, final char methodArgDelimiter) {
 
             // classname#methodname(arg1,arg2)
             // 0 1 2
@@ -119,7 +119,7 @@ public final class ValueParserConstants {
         }
 
 
-        private Class<?> typeFor(String typeName) {
+        private Class<?> typeFor(final String typeName) {
 
             Class<?> type;
 
@@ -147,7 +147,7 @@ public final class ValueParserConstants {
     /** Extracts characters. */
     static final ValueParser<Character> CHARACTER_PARSER = new ValueParser<Character>() {
         @Override
-        public Character valueOf(String value) {
+        public Character valueOf(final String value) {
             if (value == null || value.length() != 1) {
                 throw new IllegalArgumentException("missing/ambiguous character value");
             }
@@ -157,49 +157,49 @@ public final class ValueParserConstants {
     /** Extracts strings. That's a dummy used to return a list in StringMultiProperty. */
     static final ValueParser<String> STRING_PARSER = new ValueParser<String>() {
         @Override
-        public String valueOf(String value) {
+        public String valueOf(final String value) {
             return value;
         }
     };
     /** Extracts integers. */
     static final ValueParser<Integer> INTEGER_PARSER = new ValueParser<Integer>() {
         @Override
-        public Integer valueOf(String value) {
+        public Integer valueOf(final String value) {
             return Integer.valueOf(value);
         }
     };
     /** Extracts booleans. */
     static final ValueParser<Boolean> BOOLEAN_PARSER = new ValueParser<Boolean>() {
         @Override
-        public Boolean valueOf(String value) {
+        public Boolean valueOf(final String value) {
             return Boolean.valueOf(value);
         }
     };
     /** Extracts floats. */
     static final ValueParser<Float> FLOAT_PARSER = new ValueParser<Float>() {
         @Override
-        public Float valueOf(String value) {
+        public Float valueOf(final String value) {
             return Float.valueOf(value);
         }
     };
     /** Extracts longs. */
     static final ValueParser<Long> LONG_PARSER = new ValueParser<Long>() {
         @Override
-        public Long valueOf(String value) {
+        public Long valueOf(final String value) {
             return Long.valueOf(value);
         }
     };
     /** Extracts doubles. */
     static final ValueParser<Double> DOUBLE_PARSER = new ValueParser<Double>() {
         @Override
-        public Double valueOf(String value) {
+        public Double valueOf(final String value) {
             return Double.valueOf(value);
         }
     };
     /** Extracts files */
     static final ValueParser<File> FILE_PARSER = new ValueParser<File>() {
         @Override
-        public File valueOf(String value) throws IllegalArgumentException {
+        public File valueOf(final String value) throws IllegalArgumentException {
             return new File(value);
         }
     };
@@ -207,7 +207,7 @@ public final class ValueParserConstants {
     /** Compiles a regex. */
     static final ValueParser<Pattern> REGEX_PARSER = new ValueParser<Pattern>() {
         @Override
-        public Pattern valueOf(String value) throws IllegalArgumentException {
+        public Pattern valueOf(final String value) throws IllegalArgumentException {
             return Pattern.compile(value);
         }
     };
@@ -215,7 +215,7 @@ public final class ValueParserConstants {
     /** Extract classes. */
     static final ValueParser<Class> CLASS_PARSER = new ValueParser<Class>() {
         @Override
-        public Class valueOf(String value) throws IllegalArgumentException {
+        public Class valueOf(final String value) throws IllegalArgumentException {
             if (StringUtils.isBlank(value)) {
                 return null;
             }
@@ -247,7 +247,7 @@ public final class ValueParserConstants {
 
         return new ValueParser<T>() {
             @Override
-            public T valueOf(String value) throws IllegalArgumentException {
+            public T valueOf(final String value) throws IllegalArgumentException {
                 if (!mappings.containsKey(value)) {
                     throw new IllegalArgumentException("Value was not in the set " + mappings.keySet());
                 }
@@ -269,7 +269,7 @@ public final class ValueParserConstants {
     public static <U> ValueParser<List<U>> multi(final ValueParser<U> parser, final char delimiter) {
         return new ValueParser<List<U>>() {
             @Override
-            public List<U> valueOf(String value) throws IllegalArgumentException {
+            public List<U> valueOf(final String value) throws IllegalArgumentException {
                 return parsePrimitives(value, delimiter, parser);
             }
         };
@@ -288,7 +288,7 @@ public final class ValueParserConstants {
      */
     // FUTURE 1.8 : use java.util.function.Function<String, U> in place of ValueParser<U>,
     // replace ValueParser constants with static functions
-    static <U> List<U> parsePrimitives(String toParse, char delimiter, ValueParser<U> extractor) {
+    static <U> List<U> parsePrimitives(final String toParse, final char delimiter, final ValueParser<U> extractor) {
         String[] values = StringUtils.split(toParse, delimiter);
         List<U> result = new ArrayList<>();
         for (String s : values) {

@@ -34,7 +34,7 @@ public class SwitchDensityRule extends AbstractStatisticalJavaRule {
             stmts++;
         }
 
-        public void addStatements(int stmtCount) {
+        public void addStatements(final int stmtCount) {
             stmts += stmtCount;
         }
 
@@ -56,7 +56,7 @@ public class SwitchDensityRule extends AbstractStatisticalJavaRule {
     }
 
     @Override
-    public Object visit(ASTSwitchStatement node, Object data) {
+    public Object visit(final ASTSwitchStatement node, final Object data) {
         SwitchDensity oldData = null;
 
         if (data instanceof SwitchDensity) {
@@ -81,7 +81,7 @@ public class SwitchDensityRule extends AbstractStatisticalJavaRule {
     }
 
     @Override
-    public Object visit(ASTStatement statement, Object data) {
+    public Object visit(final ASTStatement statement, final Object data) {
         if (data instanceof SwitchDensity) {
             ((SwitchDensity) data).addStatement();
         }
@@ -92,7 +92,7 @@ public class SwitchDensityRule extends AbstractStatisticalJavaRule {
     }
 
     @Override
-    public Object visit(ASTSwitchLabel switchLabel, Object data) {
+    public Object visit(final ASTSwitchLabel switchLabel, final Object data) {
         if (data instanceof SwitchDensity) {
             ((SwitchDensity) data).addSwitchLabel();
         }

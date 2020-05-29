@@ -12,12 +12,12 @@ public class ASTUserClassMethods extends AbstractApexNode<UserClassMethods> {
 
     @Deprecated
     @InternalApi
-    public ASTUserClassMethods(UserClassMethods userClassMethods) {
+    public ASTUserClassMethods(final UserClassMethods userClassMethods) {
         super(userClassMethods);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

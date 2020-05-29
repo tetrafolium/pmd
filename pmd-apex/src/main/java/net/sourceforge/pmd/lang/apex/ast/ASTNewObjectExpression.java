@@ -12,12 +12,12 @@ public class ASTNewObjectExpression extends AbstractApexNode<NewObjectExpression
 
     @Deprecated
     @InternalApi
-    public ASTNewObjectExpression(NewObjectExpression newObjectExpression) {
+    public ASTNewObjectExpression(final NewObjectExpression newObjectExpression) {
         super(newObjectExpression);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

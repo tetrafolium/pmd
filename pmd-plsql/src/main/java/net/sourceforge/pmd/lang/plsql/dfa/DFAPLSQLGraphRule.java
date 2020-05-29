@@ -34,31 +34,31 @@ public class DFAPLSQLGraphRule extends AbstractPLSQLRule implements DFAGraphRule
     }
 
     @Override
-    public Object visit(ASTTriggerUnit node, Object data) {
+    public Object visit(final ASTTriggerUnit node, final Object data) {
         executables.add(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTProgramUnit node, Object data) {
+    public Object visit(final ASTProgramUnit node, final Object data) {
         executables.add(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTTypeMethod node, Object data) {
+    public Object visit(final ASTTypeMethod node, final Object data) {
         executables.add(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTTriggerTimingPointSection node, Object data) {
+    public Object visit(final ASTTriggerTimingPointSection node, final Object data) {
         executables.add(node);
         return super.visit(node, data);
     }
 
     @Override
-    public Object visit(ASTInput acu, Object data) {
+    public Object visit(final ASTInput acu, final Object data) {
         executables = new ArrayList<>();
         return super.visit(acu, data);
     }

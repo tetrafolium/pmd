@@ -22,7 +22,7 @@ public class ConstructorNode extends MemberNode<ConstructorNode, Constructor<?>>
 
     private WeakReference<Constructor<?>> constructorReference;
 
-    public ConstructorNode(ClassNode classNode, String name, String desc) {
+    public ConstructorNode(final ClassNode classNode, final String name, final String desc) {
         super(classNode, name, desc);
         // getMember();
     }
@@ -63,7 +63,7 @@ public class ConstructorNode extends MemberNode<ConstructorNode, Constructor<?>>
     }
 
     @Override
-    public int compareTo(ConstructorNode that) {
+    public int compareTo(final ConstructorNode that) {
         // Order by name
         int cmp = this.getName().compareTo(that.getName());
         if (cmp == 0) {

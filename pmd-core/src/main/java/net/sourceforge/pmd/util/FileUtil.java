@@ -50,7 +50,7 @@ public final class FileUtil {
      *            String
      * @return String
      */
-    public static String getFileNameWithoutExtension(String fileName) {
+    public static String getFileNameWithoutExtension(final String fileName) {
         String name = fileName;
 
         int index = fileName.lastIndexOf('.');
@@ -69,7 +69,7 @@ public final class FileUtil {
      *            the file name
      * @return the normalized file name
      */
-    public static String normalizeFilename(String fileName) {
+    public static String normalizeFilename(final String fileName) {
         if (fileName != null && File.separatorChar == '\\') {
             // windows
             return fileName.toLowerCase(Locale.ROOT);
@@ -91,7 +91,7 @@ public final class FileUtil {
      *            The FilenameFilter to apply to files.
      * @return A list of DataSources, one for each file collected.
      */
-    public static List<DataSource> collectFiles(String fileLocations, FilenameFilter filenameFilter) {
+    public static List<DataSource> collectFiles(final String fileLocations, final FilenameFilter filenameFilter) {
         List<DataSource> dataSources = new ArrayList<>();
         for (String fileLocation : fileLocations.split(",")) {
             collect(dataSources, fileLocation, filenameFilter);
@@ -99,8 +99,8 @@ public final class FileUtil {
         return dataSources;
     }
 
-    private static List<DataSource> collect(List<DataSource> dataSources, String fileLocation,
-            FilenameFilter filenameFilter) {
+    private static List<DataSource> collect(final List<DataSource> dataSources, final String fileLocation,
+            final FilenameFilter filenameFilter) {
         File file = new File(fileLocation);
         if (!file.exists()) {
             throw new RuntimeException("File " + file.getName() + " doesn't exist");
@@ -180,7 +180,7 @@ public final class FileUtil {
      * @return a comma-separated list of file paths
      * @throws IOException if the file couldn't be read
      */
-    public static String readFilelist(File filelist) throws IOException {
+    public static String readFilelist(final File filelist) throws IOException {
         String filePaths = FileUtils.readFileToString(filelist);
         filePaths = StringUtils.trimToEmpty(filePaths);
         filePaths = filePaths.replaceAll("\\r?\\n", ",");

@@ -10,18 +10,18 @@ public class ASTSwitchLabeledThrowStatement extends AbstractJavaNode implements 
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledThrowStatement(int id) {
+    ASTSwitchLabeledThrowStatement(final int id) {
         super(id);
     }
 
     @Deprecated
     @InternalApi
-    ASTSwitchLabeledThrowStatement(JavaParser p, int id) {
+    ASTSwitchLabeledThrowStatement(final JavaParser p, final int id) {
         super(p, id);
     }
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

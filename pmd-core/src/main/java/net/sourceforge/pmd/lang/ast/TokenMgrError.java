@@ -40,7 +40,7 @@ public final class TokenMgrError extends RuntimeException {
      * @deprecated Use {@link #TokenMgrError(int, int, String, String, Throwable)}
      */
     @Deprecated
-    public TokenMgrError(String message, @SuppressWarnings("PMD.UnusedFormalParameter") int reason) {
+    public TokenMgrError(final String message, final @SuppressWarnings("PMD.UnusedFormalParameter") int reason) {
         super(message);
         this.line = -1;
         this.column = -1;
@@ -56,7 +56,7 @@ public final class TokenMgrError extends RuntimeException {
      * @param message  Message of the error
      * @param cause    Cause of the error, if any
      */
-    public TokenMgrError(int line, int column, /*@Nullable*/ String filename, String message, /*@Nullable*/ Throwable cause) {
+    public TokenMgrError(final int line, final int column, /*@Nullable*/ final String filename, final String message, /*@Nullable*/ final Throwable cause) {
         super(message, cause);
         this.line = line;
         this.column = column;
@@ -70,7 +70,7 @@ public final class TokenMgrError extends RuntimeException {
      */
     @InternalApi
     @Deprecated
-    public TokenMgrError(boolean eofSeen, int lexStateName, int errorLine, int errorColumn, String errorAfter, char curChar, @SuppressWarnings("PMD.UnusedFormalParameter") int reason) {
+    public TokenMgrError(final boolean eofSeen, final int lexStateName, final int errorLine, final int errorColumn, final String errorAfter, final char curChar, final @SuppressWarnings("PMD.UnusedFormalParameter") int reason) {
         super(makeReason(eofSeen, lexStateName, errorAfter, curChar));
         line = errorLine;
         column = errorColumn;
@@ -93,13 +93,13 @@ public final class TokenMgrError extends RuntimeException {
      * @deprecated Use {@link StringUtil#escapeJava(String)}
      */
     @Deprecated
-    protected static String addEscapes(String str) {
+    protected static String addEscapes(final String str) {
         return StringUtil.escapeJava(str);
     }
 
 
     @Deprecated
-    protected static String LexicalError(boolean eofSeen, int lexState, int errorLine, int errorColumn, String errorAfter, char curChar) { // SUPPRESS CHECKSTYLE yes it's ugly, but it's for compatibility
+    protected static String LexicalError(final boolean eofSeen, final int lexState, final int errorLine, final int errorColumn, final String errorAfter, final char curChar) { // SUPPRESS CHECKSTYLE yes it's ugly, but it's for compatibility
         return makeMessage(null, errorLine, errorColumn, makeReason(eofSeen, lexState, errorAfter, curChar));
     }
 
@@ -108,7 +108,7 @@ public final class TokenMgrError extends RuntimeException {
         return makeMessage(filename, line, column, super.getMessage());
     }
 
-    private static String makeMessage(String filename, int line, int column, String message) {
+    private static String makeMessage(final String filename, final int line, final int column, final String message) {
         String leader = filename != null ? "Lexical error in file " + filename : "Lexical error";
         return leader + " at line " + line + ", column " + column + ".  Encountered: " + message;
     }
@@ -120,11 +120,11 @@ public final class TokenMgrError extends RuntimeException {
      *
      * @return A new exception
      */
-    public TokenMgrError withFileName(String filename) {
+    public TokenMgrError withFileName(final String filename) {
         return new TokenMgrError(this.line, this.column, filename, this.getMessage(), this.getCause());
     }
 
-    private static String makeReason(boolean eofseen, int lexStateName, String errorAfter, char curChar) {
+    private static String makeReason(final boolean eofseen, final int lexStateName, final String errorAfter, final char curChar) {
         String message;
         if (eofseen) {
             message = "<EOF> ";

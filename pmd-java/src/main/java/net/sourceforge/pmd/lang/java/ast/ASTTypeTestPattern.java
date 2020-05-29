@@ -20,17 +20,17 @@ import net.sourceforge.pmd.annotation.Experimental;
 public final class ASTTypeTestPattern extends AbstractJavaNode implements ASTPattern {
 
 
-    ASTTypeTestPattern(int id) {
+    ASTTypeTestPattern(final int id) {
         super(id);
     }
 
-    ASTTypeTestPattern(JavaParser p, int id) {
+    ASTTypeTestPattern(final JavaParser p, final int id) {
         super(p, id);
     }
 
 
     @Override
-    public Object jjtAccept(JavaParserVisitor visitor, Object data) {
+    public Object jjtAccept(final JavaParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

@@ -33,7 +33,7 @@ public class NcssObjectCountRule extends AbstractNcssCountRule {
     }
 
     // @Override
-    public Object visit(OracleObject node, Object data) {
+    public Object visit(final OracleObject node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(NcssObjectCountRule)");
         // Treat Schema-level ProgramUnits as Oracle Objects, otherwise as
         // subprograms
@@ -51,7 +51,7 @@ public class NcssObjectCountRule extends AbstractNcssCountRule {
      * adding DataPoints for Schema-level Functions and Procedures
      */
     @Override
-    public Object visit(ASTProgramUnit node, Object data) {
+    public Object visit(final ASTProgramUnit node, final Object data) {
         int numNodes = 0;
 
         for (int i = 0; i < node.getNumChildren(); i++) {
@@ -80,18 +80,18 @@ public class NcssObjectCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTFieldDeclaration node, Object data) {
+    public Object visit(final ASTFieldDeclaration node, final Object data) {
         LOGGER.entering(CLASS_NAME, "visit(ASTFieldDeclaration)");
         return NumericConstants.ONE;
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         LOGGER.entering(CLASS_NAME, "visit(getViolationParameters)");
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine("Node Count ==" + point.getScore());
         }
-        return new String[] { String.valueOf((int) point.getScore()) };
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 
 }

@@ -23,13 +23,13 @@ public class PLSQLRuleChainVisitor extends AbstractRuleChainVisitor {
     private static final String CLASS_NAME = PLSQLRuleChainVisitor.class.getName();
 
     @Override
-    protected void indexNodes(List<Node> nodes, RuleContext ctx) {
+    protected void indexNodes(final List<Node> nodes, final RuleContext ctx) {
         LOGGER.entering(CLASS_NAME, "indexNodes");
         PLSQLParserVisitor plsqlParserVistor = new PLSQLParserVisitorAdapter() {
             // Perform a visitation of the AST to index nodes which need
             // visiting by type
             @Override
-            public Object visit(PLSQLNode node, Object data) {
+            public Object visit(final PLSQLNode node, final Object data) {
                 indexNode(node);
                 return super.visit(node, data);
             }
@@ -42,7 +42,7 @@ public class PLSQLRuleChainVisitor extends AbstractRuleChainVisitor {
     }
 
     @Override
-    protected void visit(Rule rule, Node node, RuleContext ctx) {
+    protected void visit(final Rule rule, final Node node, final RuleContext ctx) {
         LOGGER.entering(CLASS_NAME, "visit");
         // Rule better either be a PLSQLParserVisitor, or a XPathRule#
         if (LOGGER.isLoggable(Level.FINE)) {

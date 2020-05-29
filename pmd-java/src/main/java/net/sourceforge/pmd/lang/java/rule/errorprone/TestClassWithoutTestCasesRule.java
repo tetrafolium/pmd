@@ -13,7 +13,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 public class TestClassWithoutTestCasesRule extends AbstractJUnitRule {
 
     @Override
-    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+    public Object visit(final ASTClassOrInterfaceDeclaration node, final Object data) {
         if (node.isAbstract() || node.isInterface() || node.isNested()) {
             return data;
         }

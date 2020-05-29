@@ -33,7 +33,7 @@ public class AvoidDeeplyNestedIfStmtsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTUserClass node, Object data) {
+    public Object visit(final ASTUserClass node, final Object data) {
         depth = 0;
         depthLimit = getProperty(PROBLEM_DEPTH_DESCRIPTOR);
 
@@ -41,7 +41,7 @@ public class AvoidDeeplyNestedIfStmtsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTIfBlockStatement node, Object data) {
+    public Object visit(final ASTIfBlockStatement node, final Object data) {
         depth++;
 
         super.visit(node, data);

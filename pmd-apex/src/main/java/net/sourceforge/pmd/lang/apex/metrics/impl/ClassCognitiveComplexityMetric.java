@@ -17,7 +17,7 @@ import net.sourceforge.pmd.lang.metrics.ResultOption;
  */
 public class ClassCognitiveComplexityMetric extends AbstractApexClassMetric {
     @Override
-    public double computeFor(ASTUserClassOrInterface<?> node, MetricOptions options) {
+    public double computeFor(final ASTUserClassOrInterface<?> node, final MetricOptions options) {
         return ApexMetrics.get(ApexOperationMetricKey.COGNITIVE, node, ResultOption.SUM);
     }
 }

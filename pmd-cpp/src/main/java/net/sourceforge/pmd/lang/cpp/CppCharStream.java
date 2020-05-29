@@ -26,7 +26,7 @@ public class CppCharStream extends SimpleCharStream {
     private static final char NEWLINE = '\n';
     private static final char CARRIAGE_RETURN = '\r';
 
-    public CppCharStream(Reader dstream) {
+    public CppCharStream(final Reader dstream) {
         super(dstream);
     }
 
@@ -52,7 +52,7 @@ public class CppCharStream extends SimpleCharStream {
     }
 
     @Override
-    public char[] GetSuffix(int len) {
+    public char[] GetSuffix(final int len) {
         String image = GetImage();
         return image.substring(image.length() - len, image.length()).toCharArray();
     }

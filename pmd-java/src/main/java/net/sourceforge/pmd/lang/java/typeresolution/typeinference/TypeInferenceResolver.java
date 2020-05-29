@@ -36,8 +36,8 @@ public final class TypeInferenceResolver {
 
     }
 
-    public static List<JavaTypeDefinition> inferTypes(List<Constraint> constraints, List<Bound> bounds,
-                                                      List<Variable> variables) {
+    public static List<JavaTypeDefinition> inferTypes(final List<Constraint> constraints, final List<Bound> bounds,
+                                                      final List<Variable> variables) {
 
         List<Bound> newBounds = new ArrayList<>();
         while (!constraints.isEmpty()) {
@@ -72,7 +72,7 @@ public final class TypeInferenceResolver {
         return result;
     }
 
-    public static JavaTypeDefinition lub(List<JavaTypeDefinition> types) {
+    public static JavaTypeDefinition lub(final List<JavaTypeDefinition> types) {
         for (JavaTypeDefinition type : types) {
             if (type.isArrayType()) {
                 // TODO: add support for array types
@@ -123,7 +123,7 @@ public final class TypeInferenceResolver {
     /**
      * @return the intersection of the two types
      */
-    public static JavaTypeDefinition intersect(JavaTypeDefinition first, JavaTypeDefinition second) {
+    public static JavaTypeDefinition intersect(final JavaTypeDefinition first, final JavaTypeDefinition second) {
         if (first.equals(second)) { // two types equal
             return first;
         } else if (first.getType() == second.getType()) {
@@ -140,7 +140,7 @@ public final class TypeInferenceResolver {
     /**
      * Merge two types of the same class to something both can be assigned to and is most specific.
      */
-    public static JavaTypeDefinition merge(JavaTypeDefinition first, JavaTypeDefinition second) {
+    public static JavaTypeDefinition merge(final JavaTypeDefinition first, final JavaTypeDefinition second) {
         if (first.getType() != second.getType()) {
             throw new IllegalStateException("Must be called with typedefinitions of the same class");
         }
@@ -168,7 +168,7 @@ public final class TypeInferenceResolver {
         return JavaTypeDefinition.forClass(first.getType(), mergedGeneric);
     }
 
-    public static Set<Class<?>> getErasedCandidateSet(List<JavaTypeDefinition> erasedSuperTypeSets) {
+    public static Set<Class<?>> getErasedCandidateSet(final List<JavaTypeDefinition> erasedSuperTypeSets) {
         Set<Class<?>> result = new HashSet<>();
 
         if (!erasedSuperTypeSets.isEmpty()) {
@@ -182,7 +182,7 @@ public final class TypeInferenceResolver {
         return result;
     }
 
-    public static Set<Class<?>> getMinimalErasedCandidateSet(Set<Class<?>> erasedSet) {
+    public static Set<Class<?>> getMinimalErasedCandidateSet(final Set<Class<?>> erasedSet) {
         Set<Class<?>> result = new HashSet<>();
 
         outter:
@@ -203,7 +203,7 @@ public final class TypeInferenceResolver {
     /**
      * Resolve unresolved variables in a list of bounds.
      */
-    public static Map<Variable, JavaTypeDefinition> resolveVariables(List<Bound> bounds) {
+    public static Map<Variable, JavaTypeDefinition> resolveVariables(final List<Bound> bounds) {
         Map<Variable, Set<Variable>> variableDependencies = getVariableDependencies(bounds);
         Map<Variable, JavaTypeDefinition> instantiations = getInstantiations(bounds);
 
@@ -242,7 +242,7 @@ public final class TypeInferenceResolver {
         return instantiations;
     }
 
-    public static List<JavaTypeDefinition> getLowerBoundsOf(Variable var, List<Bound> bounds) {
+    public static List<JavaTypeDefinition> getLowerBoundsOf(final Variable var, final List<Bound> bounds) {
         List<JavaTypeDefinition> result = new ArrayList<>();
         for (Bound bound : bounds) {
             if (bound.ruleType() == SUBTYPE && bound.rightVariable() == var) {
@@ -271,10 +271,10 @@ public final class TypeInferenceResolver {
      *
      * @return true, if 'variables' is a resolvable subset
      */
-    public static boolean isProperSubsetOfVariables(List<Variable> variables,
-                                                    Map<Variable, JavaTypeDefinition> instantiations,
-                                                    Map<Variable, Set<Variable>> dependencies,
-                                                    List<Bound> bounds) {
+    public static boolean isProperSubsetOfVariables(final List<Variable> variables,
+                                                    final Map<Variable, JavaTypeDefinition> instantiations,
+                                                    final Map<Variable, Set<Variable>> dependencies,
+                                                    final List<Bound> bounds) {
 
 
         for (Variable unresolvedVariable : variables) {
@@ -293,7 +293,7 @@ public final class TypeInferenceResolver {
     /**
      * @return true, if 'bounds' contains an equality between 'second' and an element from 'firstList'
      */
-    public static boolean boundsHaveAnEqualityBetween(List<Variable> firstList, Variable second, List<Bound> bounds) {
+    public static boolean boundsHaveAnEqualityBetween(final List<Variable> firstList, final Variable second, final List<Bound> bounds) {
         for (Bound bound : bounds) {
             for (Variable first : firstList) {
                 if (bound.ruleType == EQUALITY
@@ -320,7 +320,7 @@ public final class TypeInferenceResolver {
         private List<Variable> resultList = new ArrayList<>();
         private List<Variable> unmodifyableViewOfResult = Collections.unmodifiableList(resultList);
 
-        Combinations(List<Variable> permuteThis) {
+        Combinations(final List<Variable> permuteThis) {
             this.permuteThis = permuteThis;
             this.n = permuteThis.size();
             this.k = 0;
@@ -389,7 +389,7 @@ public final class TypeInferenceResolver {
     /**
      * @return A map of variable -&gt; proper type produced by searching for α = T or T = α bounds
      */
-    public static Map<Variable, JavaTypeDefinition> getInstantiations(List<Bound> bounds) {
+    public static Map<Variable, JavaTypeDefinition> getInstantiations(final List<Bound> bounds) {
         Map<Variable, JavaTypeDefinition> result = new HashMap<>();
 
         // The term "type" is used loosely in this chapter to include type-like syntax that contains inference
@@ -418,13 +418,13 @@ public final class TypeInferenceResolver {
     /**
      * @return A list of variables which have no direct instantiations
      */
-    public static Set<Variable> getUninstantiatedVariables(List<Bound> bounds) {
+    public static Set<Variable> getUninstantiatedVariables(final List<Bound> bounds) {
         Set<Variable> result = getMentionedVariables(bounds);
         result.removeAll(getInstantiations(bounds).keySet());
         return result;
     }
 
-    public static Map<Variable, Set<Variable>> getVariableDependencies(List<Bound> bounds) {
+    public static Map<Variable, Set<Variable>> getVariableDependencies(final List<Bound> bounds) {
         Map<Variable, Set<Variable>> dependencies = new HashMap<>();
 
         for (Variable mentionedVariable : getMentionedVariables(bounds)) {
@@ -490,7 +490,7 @@ public final class TypeInferenceResolver {
     /**
      * @return a set of variables mentioned by the bounds
      */
-    public static Set<Variable> getMentionedVariables(List<Bound> bounds) {
+    public static Set<Variable> getMentionedVariables(final List<Bound> bounds) {
         Set<Variable> result = new HashSet<>();
 
         for (Bound bound : bounds) {
@@ -503,7 +503,7 @@ public final class TypeInferenceResolver {
     /**
      * https://docs.oracle.com/javase/specs/jls/se8/html/jls-18.html#jls-18.3
      */
-    public static List<Constraint> incorporateBounds(List<Bound> currentBounds, List<Bound> newBounds) {
+    public static List<Constraint> incorporateBounds(final List<Bound> currentBounds, final List<Bound> newBounds) {
         // (In this section, S and T are inference variables or types, and U is a proper type. For conciseness, a bound
         // of the form α = T may also match a bound of the form T = α.)
 
@@ -567,7 +567,7 @@ public final class TypeInferenceResolver {
         /* default */ final Side first;
         /* default */ final Side second;
 
-        /* default */ Sides(Side first, Side second) {
+        /* default */ Sides(final Side first, final Side second) {
             this.first = first;
             this.second = second;
         }
@@ -577,7 +577,7 @@ public final class TypeInferenceResolver {
         }
     }
 
-    private static Sides getUnequalSides(BoundOrConstraint first, BoundOrConstraint second) {
+    private static Sides getUnequalSides(final BoundOrConstraint first, final BoundOrConstraint second) {
         if (first.leftVariable() != null) {
             if (first.leftVariable() == second.leftVariable()) {
                 return new Sides(Side.RIGHT, Side.RIGHT);
@@ -595,8 +595,8 @@ public final class TypeInferenceResolver {
         return null;
     }
 
-    private static Constraint copyConstraint(BoundOrConstraint first, BoundOrConstraint second, Sides sides,
-                                             InferenceRuleType rule) {
+    private static Constraint copyConstraint(final BoundOrConstraint first, final BoundOrConstraint second, final Sides sides,
+                                             final InferenceRuleType rule) {
         if (sides.first == Side.LEFT) {
             if (sides.second == Side.LEFT) {
                 if (first.leftVariable() != null) {

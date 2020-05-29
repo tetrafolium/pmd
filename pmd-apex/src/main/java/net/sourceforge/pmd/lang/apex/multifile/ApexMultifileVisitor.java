@@ -21,13 +21,13 @@ public class ApexMultifileVisitor extends ApexParserVisitorReducedAdapter {
     private final Stack<ApexClassStats> stack = new Stack<>();
 
 
-    public ApexMultifileVisitor(ApexProjectMirror mirror) {
+    public ApexMultifileVisitor(final ApexProjectMirror mirror) {
         this.mirror = mirror;
     }
 
 
     @Override
-    public Object visit(ASTUserClassOrInterface<?> node, Object data) {
+    public Object visit(final ASTUserClassOrInterface<?> node, final Object data) {
         stack.push(mirror.getClassStats(node.getQualifiedName(), true));
         super.visit(node, data);
         stack.pop();
@@ -36,13 +36,13 @@ public class ApexMultifileVisitor extends ApexParserVisitorReducedAdapter {
     }
 
     @Override
-    public Object visit(ASTUserTrigger node, Object data) {
+    public Object visit(final ASTUserTrigger node, final Object data) {
         return data; // ignore
     }
 
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         stack.peek().addOperation(node.getQualifiedName().getOperation(), node.getSignature());
         return data;
     }

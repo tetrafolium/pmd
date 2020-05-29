@@ -29,13 +29,13 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
 public class IdenticalCatchBranchesRule extends AbstractJavaRule {
 
 
-    private boolean areEquivalent(ASTCatchStatement st1, ASTCatchStatement st2) {
+    private boolean areEquivalent(final ASTCatchStatement st1, final ASTCatchStatement st2) {
         return hasSameSubTree(st1.getBody(), st2.getBody(), st1.getExceptionName(), st2.getExceptionName());
     }
 
 
     /** groups catch statements by equivalence class, according to the equivalence {@link #areEquivalent(ASTCatchStatement, ASTCatchStatement)}. */
-    private Set<List<ASTCatchStatement>> equivalenceClasses(List<ASTCatchStatement> catches) {
+    private Set<List<ASTCatchStatement>> equivalenceClasses(final List<ASTCatchStatement> catches) {
         Set<List<ASTCatchStatement>> result = new HashSet<>(catches.size());
         for (ASTCatchStatement stmt : catches) {
             if (result.isEmpty()) {
@@ -61,7 +61,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
     }
 
 
-    private List<ASTCatchStatement> newEquivClass(ASTCatchStatement stmt) {
+    private List<ASTCatchStatement> newEquivClass(final ASTCatchStatement stmt) {
         // Each equivalence class is sorted by document order
         List<ASTCatchStatement> result = new ArrayList<>(2);
         result.add(stmt);
@@ -70,7 +70,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
 
 
     // Gets the representation of the set of catch statements as a single multicatch
-    private String getCaughtExceptionsAsString(ASTCatchStatement stmt) {
+    private String getCaughtExceptionsAsString(final ASTCatchStatement stmt) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -86,7 +86,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
 
 
     @Override
-    public Object visit(ASTTryStatement node, Object data) {
+    public Object visit(final ASTTryStatement node, final Object data) {
 
         List<ASTCatchStatement> catchStatements = node.getCatchClauses();
         Set<List<ASTCatchStatement>> equivClasses = equivalenceClasses(catchStatements);
@@ -116,7 +116,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
      * @param exceptionName1 the first exception variable name
      * @param exceptionName2 the second exception variable name
      */
-    private boolean hasSameSubTree(Node node1, Node node2, String exceptionName1, String exceptionName2) {
+    private boolean hasSameSubTree(final Node node1, final Node node2, final String exceptionName1, final String exceptionName2) {
         if (node1 == null && node2 == null) {
             return true;
         } else if (node1 == null || node2 == null) {
@@ -145,7 +145,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
 
 
     // no subtree comparison
-    private boolean basicEquivalence(Node node1, Node node2, String varName1, String varName2) {
+    private boolean basicEquivalence(final Node node1, final Node node2, final String varName1, final String varName2) {
         // Nodes must have the same type
         if (node1.getClass() != node2.getClass()) {
             return false;
@@ -164,7 +164,7 @@ public class IdenticalCatchBranchesRule extends AbstractJavaRule {
     }
 
 
-    private boolean isNoMethodName(Node name) {
+    private boolean isNoMethodName(final Node name) {
 
         if (name instanceof ASTName
                 && (name.getParent() instanceof ASTPrimaryPrefix || name.getParent() instanceof ASTPrimarySuffix)) {

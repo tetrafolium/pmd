@@ -15,12 +15,12 @@ public class ASTModAbstract extends AbstractScalaNode<Mod.Abstract> {
 
     @Deprecated
     @InternalApi
-    public ASTModAbstract(Mod.Abstract scalaNode) {
+    public ASTModAbstract(final Mod.Abstract scalaNode) {
         super(scalaNode);
     }
 
     @Override
-    public <D, R> R accept(ScalaParserVisitor<D, R> visitor, D data) {
+    public <D, R> R accept(final ScalaParserVisitor<D, R> visitor, final D data) {
         return visitor.visit(this, data);
     }
 }

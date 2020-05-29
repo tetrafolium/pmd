@@ -12,12 +12,12 @@ public class ASTNestedStoreExpression extends AbstractApexNode<NestedStoreExpres
 
     @Deprecated
     @InternalApi
-    public ASTNestedStoreExpression(NestedStoreExpression node) {
+    public ASTNestedStoreExpression(final NestedStoreExpression node) {
         super(node);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 }

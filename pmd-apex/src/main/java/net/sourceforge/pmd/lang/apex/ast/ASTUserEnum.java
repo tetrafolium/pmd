@@ -12,12 +12,12 @@ public class ASTUserEnum extends ApexRootNode<UserEnum> {
 
     @Deprecated
     @InternalApi
-    public ASTUserEnum(UserEnum userEnum) {
+    public ASTUserEnum(final UserEnum userEnum) {
         super(userEnum);
     }
 
     @Override
-    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+    public Object jjtAccept(final ApexParserVisitor visitor, final Object data) {
         return visitor.visit(this, data);
     }
 

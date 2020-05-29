@@ -27,12 +27,12 @@ import net.sourceforge.pmd.lang.ast.SimpleCharStream;
 @Deprecated
 public class JspParser extends AbstractParser {
 
-    public JspParser(ParserOptions parserOptions) {
+    public JspParser(final ParserOptions parserOptions) {
         super(parserOptions);
     }
 
     @Override
-    public TokenManager createTokenManager(Reader source) {
+    public TokenManager createTokenManager(final Reader source) {
         return new JspTokenManager(source);
     }
 
@@ -42,7 +42,7 @@ public class JspParser extends AbstractParser {
     }
 
     @Override
-    public Node parse(String fileName, Reader source) throws ParseException {
+    public Node parse(final String fileName, final Reader source) throws ParseException {
         AbstractTokenManager.setFileName(fileName);
         return new net.sourceforge.pmd.lang.jsp.ast.JspParser(new SimpleCharStream(source)).CompilationUnit();
     }

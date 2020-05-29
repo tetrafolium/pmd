@@ -24,22 +24,22 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     }
 
     @Override
-    public Object visit(ASTSoqlExpression node, Object data) {
+    public Object visit(final ASTSoqlExpression node, final Object data) {
         if (insideLoop(node) && parentNotReturn(node) && parentNotForEach(node)) {
             addViolation(data, node);
         }
         return data;
     }
 
-    private boolean parentNotReturn(ASTSoqlExpression node) {
+    private boolean parentNotReturn(final ASTSoqlExpression node) {
         return !(node.getParent() instanceof ASTReturnStatement);
     }
 
-    private boolean parentNotForEach(ASTSoqlExpression node) {
+    private boolean parentNotForEach(final ASTSoqlExpression node) {
         return !(node.getParent() instanceof ASTForEachStatement);
     }
 
-    private boolean insideLoop(ASTSoqlExpression node) {
+    private boolean insideLoop(final ASTSoqlExpression node) {
         Node n = node.getParent();
 
         while (n != null) {

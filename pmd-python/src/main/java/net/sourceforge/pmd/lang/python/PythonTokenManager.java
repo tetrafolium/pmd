@@ -30,7 +30,7 @@ public class PythonTokenManager implements TokenManager {
      * @param source
      *            the source code
      */
-    public PythonTokenManager(Reader source) {
+    public PythonTokenManager(final Reader source) {
         tokenManager = new PythonParserTokenManager(new SimpleCharStream(source));
     }
 
@@ -40,7 +40,7 @@ public class PythonTokenManager implements TokenManager {
     }
 
     @Override
-    public void setFileName(String fileName) {
+    public void setFileName(final String fileName) {
         PythonParserTokenManager.setFileName(fileName);
     }
 }

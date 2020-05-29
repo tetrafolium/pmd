@@ -128,7 +128,7 @@ public abstract class JavaQualifiedName implements QualifiedName {
     }
 
     @Override
-    public final boolean equals(Object o) {
+    public final boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -188,7 +188,7 @@ public abstract class JavaQualifiedName implements QualifiedName {
      * @deprecated Use {@link QualifiedNameFactory#ofString(String)}. Will be removed in 7.0.0
      */
     @Deprecated
-    public static JavaQualifiedName ofString(String name) {
+    public static JavaQualifiedName ofString(final String name) {
         return QualifiedNameFactory.ofString(name);
     }
 
@@ -197,7 +197,7 @@ public abstract class JavaQualifiedName implements QualifiedName {
      * @deprecated Use {@link QualifiedNameFactory#ofClass(Class)}. Will be removed in 7.0.0
      */
     @Deprecated
-    public static JavaQualifiedName ofClass(Class<?> clazz) {
+    public static JavaQualifiedName ofClass(final Class<?> clazz) {
         return QualifiedNameFactory.ofClass(clazz);
     }
 

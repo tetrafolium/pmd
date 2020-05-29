@@ -144,7 +144,7 @@ public class MainFrame extends JFrame implements ActionListener, ViewerModelList
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         String command = e.getActionCommand();
         long t0;
         long t1;
@@ -178,7 +178,7 @@ public class MainFrame extends JFrame implements ActionListener, ViewerModelList
      *            the new status, the empty string will be set if the value is
      *            <code>null</code>
      */
-    private void setStatus(String string) {
+    private void setStatus(final String string) {
         statusLbl.setText(string == null ? "" : string);
     }
 
@@ -186,7 +186,7 @@ public class MainFrame extends JFrame implements ActionListener, ViewerModelList
      * @see ViewerModelListener#viewerModelChanged(ViewerModelEvent)
      */
     @Override
-    public void viewerModelChanged(ViewerModelEvent e) {
+    public void viewerModelChanged(final ViewerModelEvent e) {
         evalBtn.setEnabled(model.hasCompiledTree());
     }
 }

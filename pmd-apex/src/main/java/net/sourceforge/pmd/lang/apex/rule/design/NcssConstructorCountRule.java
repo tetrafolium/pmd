@@ -27,7 +27,7 @@ public class NcssConstructorCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object visit(ASTMethod node, Object data) {
+    public Object visit(final ASTMethod node, final Object data) {
         if (node.isConstructor()) {
             return super.visit(node, data);
         }
@@ -36,8 +36,8 @@ public class NcssConstructorCountRule extends AbstractNcssCountRule {
     }
 
     @Override
-    public Object[] getViolationParameters(DataPoint point) {
+    public Object[] getViolationParameters(final DataPoint point) {
         // TODO need to put class name or constructor ID in string
-        return new String[] { String.valueOf((int) point.getScore()) };
+        return new String[] {String.valueOf((int) point.getScore()) };
     }
 }
