@@ -11,16 +11,21 @@ inspecode:
     - "**/src/test/resources/"
     auto-fix: true
   pmd:
-  - ignore:
-    - "**/src/test/java/"
-    - "**/src/test/resources/"
-    auto-fix: true
-  - input:
-    - "**/src/test/java/"
-    auto-fix: true
-  - input:
-    - "**/src/test/resources/"
+  - auto-fix: false
+  - auto-fix: true
     ignore:
-    - "**/BadFile.java"
-    - "**/file_with_utf8_bom.java"
-    auto-fix: true
+    - pmd-core/src/test/resources/net/sourceforge/pmd/cpd/files/file_with_utf8_bom.java
+    - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
+    - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
+  #- auto-fix: true
+  #  input:
+  #  - pmd-core/src/test/resources/net/sourceforge/pmd/cpd/files/file_with_utf8_bom.java
+  #    ## Exception in thread "main" net.sourceforge.pmd.lang.ast.TokenMgrError: Lexical error in file file_with_utf8_bom.java at line 1, column 1.  Encountered: "\ufeff" (65279), after : ""
+  #- auto-fix: true
+  #  input:
+  #  - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
+  #    ## Exception in thread "main" net.sourceforge.pmd.lang.ast.TokenMgrError: Lexical error in file BadFile.java at line 4, column 14.  Encountered: "\ufffd" (65533), after : ""
+  #- auto-fix: true
+  #  input:
+  #  - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
+  #    ## Exception in thread "main" net.sourceforge.pmd.lang.ast.TokenMgrError: Lexical error in file EncodingTestClass.java at line 7, column 34.  Encountered: "\ufffd" (65533), after : ""
