@@ -1,26 +1,25 @@
 inspecode:
-  checkstyle:
-  - ignore:
-    - "**/src/test/java/"
-    - "**/src/test/resources/"
-    auto-fix: true
-  - input:
-    - "**/src/test/java/"
-    auto-fix: true
-  - input:
-    - "**/src/test/resources/"
-    auto-fix: true
   pmd:
-  - ignore:
-    - "**/src/test/java/"
-    - "**/src/test/resources/"
-    auto-fix: true
-  - input:
-    - "**/src/test/java/"
-    auto-fix: true
+  #- ignore:
+  #  - "**/src/test/java/"
+  #  - "**/src/test/resources/"
+  #  auto-fix: true
+  #- input:
+  #  - "**/src/test/java/"
+  #  auto-fix: true
   - input:
     - "**/src/test/resources/"
     ignore:
-    - "**/BadFile.java"
-    - "**/file_with_utf8_bom.java"
+    - pmd-core/src/test/resources/net/sourceforge/pmd/cpd/files/file_with_utf8_bom.java
+    - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
+    - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
+    auto-fix: true
+  - input:
+    - pmd-core/src/test/resources/net/sourceforge/pmd/cpd/files/file_with_utf8_bom.java
+    auto-fix: true
+  - input:
+    - pmd-java/src/test/resources/net/sourceforge/pmd/cpd/badandgood/BadFile.java
+    auto-fix: true
+  - input:
+    - pmd-java/src/test/resources/ant/java/EncodingTestClass.java
     auto-fix: true
